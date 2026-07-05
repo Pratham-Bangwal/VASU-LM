@@ -1,34 +1,33 @@
 import torch
-
+import torch.nn as nn
 from vasu.config import ModelConfig
 
 
-class RotaryEmbedding:
-    """
-    Rotary Positional Embeddings (RoPE)
-
-    This class precomputes sine and cosine tables
-    used by the attention mechanism.
-    """
-
+class RotaryEmbedding(nn.Module):
     def __init__(
         self,
         dim: int,
-        max_seq_len: int = 2048,
-        base: int = 10000,
+        max_seq_len: int = 4096,
+        base: float = 10000.0,
     ):
-        self.dim = dim
-        self.max_seq_len = max_seq_len
+        super().__init__()
 
         inv_freq = 1.0 / (
-            base ** (
-                torch.arange(0, dim, 2).float() / dim
-            )
+            base ** (torch.arange(0, dim, 2).float() / dim)
         )
 
-        positions = torch.arange(max_seq_len).float()
+        t = torch.arange(max_seq_len).float()
 
-        freqs = torch.outer(positions, inv_freq)
+        freqs = torch.outer(t, inv_freq)
 
-        self.cos = torch.cos(freqs)
-        self.sin = torch.sin(freqs)
+        emb = torch.cat((freqs, freqs), dim=-1)
+
+        self.register_buffer("cos", emb.cos(), persistent=False)
+        self.register_buffer("sin", emb.sin(), persistent=False)
+
+    def forward(self, seq_len: int):
+
+        return (
+            self.cos[:seq_len],
+            self.sin[:seq_len],
+        )
