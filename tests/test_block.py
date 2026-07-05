@@ -1,6 +1,6 @@
 import torch
 
-from config.config import ModelConfig
+from vasu.config import ModelConfig
 from vasu.model import TransformerBlock
 
 
@@ -10,9 +10,7 @@ config = ModelConfig()
 def main():
 
     block = TransformerBlock(
-        dim=config.dim,
-        num_heads=config.n_heads,
-        hidden_dim=config.hidden_dim,
+        config,
     )
 
     x = torch.randn(

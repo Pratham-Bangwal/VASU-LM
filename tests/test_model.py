@@ -1,6 +1,6 @@
 import torch
 
-from config.config import ModelConfig
+from vasu.config import ModelConfig
 from vasu.model import VASUModel
 
 

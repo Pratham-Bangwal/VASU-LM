@@ -22,29 +22,16 @@ class TransformerBlock(nn.Module):
         x = x + MLP(RMSNorm(x))
     """
 
-    def __init__(
-        self,
-        dim: int,
-        num_heads: int,
-        hidden_dim: int,
-        dropout: float = 0.1,
-    ):
+    def __init__(self, config: ModelConfig):
         super().__init__()
 
-        self.norm1 = RMSNorm(dim)
+        self.norm1 = RMSNorm(config.dim)
 
-        self.attention = MultiHeadAttention(
-            dim=dim,
-            num_heads=num_heads,
-            dropout=dropout,
-        )
+        self.attention = MultiHeadAttention(config)
 
-        self.norm2 = RMSNorm(dim)
+        self.norm2 = RMSNorm(config.dim)
 
-        self.mlp = SwiGLU(
-            dim=dim,
-            hidden_dim=hidden_dim,
-        )
+        self.mlp = SwiGLU(config)
 
     def forward(
         self,

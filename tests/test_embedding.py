@@ -1,6 +1,6 @@
 import torch
 
-from config.config import ModelConfig
+from vasu.config import ModelConfig
 from vasu.model import TokenEmbedding
 
 
@@ -10,8 +10,7 @@ config = ModelConfig()
 def main():
 
     embedding = TokenEmbedding(
-        vocab_size=config.vocab_size,
-        embedding_dim=config.dim,
+        config,
     )
 
     input_ids = torch.randint(

@@ -9,16 +9,12 @@ class SwiGLU(nn.Module):
     SwiGLU Feed Forward Network.
     """
 
-    def __init__(
-        self,
-        dim: int,
-        hidden_dim: int,
-    ):
+    def __init__(self, config: ModelConfig):
         super().__init__()
 
-        self.w1 = nn.Linear(dim, hidden_dim)
-        self.w2 = nn.Linear(dim, hidden_dim)
-        self.w3 = nn.Linear(hidden_dim, dim)
+        self.w1 = nn.Linear(config.dim, config.hidden_dim)
+        self.w2 = nn.Linear(config.dim, config.hidden_dim)
+        self.w3 = nn.Linear(config.hidden_dim, config.dim)
 
         self.silu = nn.SiLU()
 

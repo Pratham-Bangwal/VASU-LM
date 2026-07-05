@@ -6,11 +6,14 @@ from vasu.config import ModelConfig
 class RotaryEmbedding(nn.Module):
     def __init__(
         self,
-        dim: int,
-        max_seq_len: int = 4096,
-        base: float = 10000.0,
+        head_dim: int,
+        max_seq_len: int,
+        rope_theta: float,
     ):
         super().__init__()
+
+        dim = head_dim
+        base = rope_theta
 
         inv_freq = 1.0 / (
             base ** (torch.arange(0, dim, 2).float() / dim)

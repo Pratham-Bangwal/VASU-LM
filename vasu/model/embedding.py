@@ -19,12 +19,12 @@ class TokenEmbedding(nn.Module):
         embedding_dim (int): Dimension of each embedding vector.
     """
 
-    def __init__(self, vocab_size: int, embedding_dim: int):
+    def __init__(self, config: ModelConfig):
         super().__init__()
 
         self.embedding = nn.Embedding(
-            num_embeddings=vocab_size,
-            embedding_dim=embedding_dim,
+            num_embeddings=config.vocab_size,
+            embedding_dim=config.dim,
         )
 
     def forward(self, input_ids: torch.Tensor) -> torch.Tensor:

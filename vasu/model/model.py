@@ -22,19 +22,11 @@ class VASUModel(nn.Module):
 
         self.config = config
 
-        self.embedding = TokenEmbedding(
-            config.vocab_size,
-            config.dim,
-        )
+        self.embedding = TokenEmbedding(config)
 
         self.blocks = nn.ModuleList(
             [
-                TransformerBlock(
-                    dim=config.dim,
-                    num_heads=config.n_heads,
-                    hidden_dim=config.hidden_dim,
-                    dropout=config.dropout,
-                )
+                TransformerBlock(config)
                 for _ in range(config.n_layers)
             ]
         )

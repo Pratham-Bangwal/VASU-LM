@@ -1,6 +1,6 @@
 import torch
 
-from config.config import ModelConfig
+from vasu.config import ModelConfig
 from vasu.model import MultiHeadAttention
 
 
@@ -10,9 +10,7 @@ config = ModelConfig()
 def main():
 
     attention = MultiHeadAttention(
-        dim=config.dim,
-        num_heads=config.n_heads,
-        dropout=0.1,
+        config,
     )
 
     x = torch.randn(
