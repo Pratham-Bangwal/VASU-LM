@@ -1,21 +1,22 @@
 import torch
 
+from config.config import ModelConfig
 from vasu.model import TokenEmbedding
+
+
+config = ModelConfig()
 
 
 def main():
 
-    vocab_size = 32000
-    embedding_dim = 384
-
     embedding = TokenEmbedding(
-        vocab_size=vocab_size,
-        embedding_dim=embedding_dim,
+        vocab_size=config.vocab_size,
+        embedding_dim=config.dim,
     )
 
     input_ids = torch.randint(
         low=0,
-        high=vocab_size,
+        high=config.vocab_size,
         size=(2, 8),
     )
 
@@ -26,7 +27,7 @@ def main():
     print("Output Shape:", output.shape)
     print("=" * 50)
 
-    assert output.shape == (2, 8, embedding_dim)
+    assert output.shape == (2, 8, config.dim)
 
     print("✅ TokenEmbedding is working!")
 

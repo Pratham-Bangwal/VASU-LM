@@ -1,6 +1,8 @@
 import torch
 import torch.nn as nn
 
+from vasu.config import ModelConfig
+
 
 class SwiGLU(nn.Module):
     """

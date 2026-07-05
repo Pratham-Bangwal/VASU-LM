@@ -7,6 +7,8 @@ Converts token IDs into dense vector representations.
 import torch
 import torch.nn as nn
 
+from vasu.config import ModelConfig
+
 
 class TokenEmbedding(nn.Module):
     """

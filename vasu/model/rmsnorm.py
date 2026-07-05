@@ -8,6 +8,8 @@ https://arxiv.org/abs/1910.07467
 import torch
 import torch.nn as nn
 
+from vasu.config import ModelConfig
+
 
 class RMSNorm(nn.Module):
     """

@@ -7,27 +7,23 @@ class ModelConfig:
     max_seq_len: int = 256
 
     dim: int = 384
+    n_heads: int = 6
+    n_layers: int = 8
     hidden_dim: int = 1536
 
-    n_layers: int = 8
-    n_heads: int = 6
-
     dropout: float = 0.1
+    rope_theta: float = 10000.0
 
-    rope_theta: int = 10000
+    bias: bool = False
 
 
 @dataclass
 class TrainConfig:
     batch_size: int = 8
-    learning_rate: float = 3e-4
-
     epochs: int = 10
 
+    learning_rate: float = 3e-4
     weight_decay: float = 0.01
 
-    mixed_precision: bool = True
-
     device: str = "cuda"
-
     seed: int = 42

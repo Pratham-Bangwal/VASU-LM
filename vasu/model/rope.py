@@ -1,5 +1,7 @@
 import torch
 
+from vasu.config import ModelConfig
+
 
 class RotaryEmbedding:
     """

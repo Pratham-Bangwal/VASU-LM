@@ -1,7 +1,7 @@
 import torch
 
 from config.config import ModelConfig
-from vasu.model import MultiHeadAttention
+from vasu.model import TransformerBlock
 
 
 config = ModelConfig()
@@ -9,10 +9,10 @@ config = ModelConfig()
 
 def main():
 
-    attention = MultiHeadAttention(
+    block = TransformerBlock(
         dim=config.dim,
         num_heads=config.n_heads,
-        dropout=0.1,
+        hidden_dim=config.hidden_dim,
     )
 
     x = torch.randn(
@@ -21,7 +21,7 @@ def main():
         config.dim,
     )
 
-    y = attention(x)
+    y = block(x)
 
     print("=" * 50)
     print("Input :", x.shape)
@@ -30,7 +30,7 @@ def main():
 
     assert y.shape == x.shape
 
-    print("✅ MultiHeadAttention works!")
+    print("✅ Transformer Block works!")
 
 
 if __name__ == "__main__":

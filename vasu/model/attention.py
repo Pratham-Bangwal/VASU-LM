@@ -27,6 +27,8 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
+from vasu.config import ModelConfig
+
 
 class MultiHeadAttention(nn.Module):
     """
