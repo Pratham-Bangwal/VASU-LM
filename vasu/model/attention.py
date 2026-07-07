@@ -38,6 +38,8 @@ class MultiHeadAttention(nn.Module):
     def forward(
             self, 
             x: torch.Tensor,
+            kv_cache=None,
+            layer_idx=None,
         )-> torch.Tensor:
 
         """
@@ -60,9 +62,50 @@ class MultiHeadAttention(nn.Module):
         k = k.view(B, T, self.n_heads, self.head_dim).transpose(1, 2)
         v = v.view(B, T, self.n_heads, self.head_dim).transpose(1, 2)
 
-        cos, sin = self.rope(T)
+        past_len = 0
+
+        if (
+            kv_cache is not None
+            and layer_idx is not None
+        ):
+            past_k, _ = kv_cache.get(layer_idx)
+
+            if past_k is not None:
+                past_len = past_k.size(2)
+
+        cos = self.rope.cos[
+            past_len: past_len + T
+        ]
+
+        sin = self.rope.sin[
+            past_len: past_len + T
+        ]
 
         q, k = apply_rotary(q, k, cos, sin)
+
+        if kv_cache is not None:
+
+            past_k, past_v = kv_cache.get(
+                layer_idx
+            )
+
+            if past_k is not None:
+
+                k = torch.cat(
+                    [past_k, k],
+                    dim=2,
+                )
+
+                v = torch.cat(
+                    [past_v, v],
+                    dim=2,
+                )
+
+            kv_cache.update(
+                layer_idx,
+                k,
+                v,
+            )
 
         y = F.scaled_dot_product_attention(
             q,

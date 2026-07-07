@@ -36,9 +36,15 @@ class TransformerBlock(nn.Module):
     def forward(
         self,
         x: torch.Tensor,
+        kv_cache=None,
+        layer_idx=None,
     ) -> torch.Tensor:
 
-        x = x + self.attention(self.norm1(x))
+        x = x + self.attention(
+            self.norm1(x),
+            kv_cache=kv_cache,
+            layer_idx=layer_idx,
+        )
 
         x = x + self.mlp(self.norm2(x))
 

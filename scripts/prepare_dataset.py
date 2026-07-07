@@ -24,7 +24,12 @@ with open(input_file, "r", encoding="utf-8") as fin, \
 
         if not text:
             break
-
+        
+        text = text.replace("“", '"')
+        text = text.replace("”", '"')
+        text = text.replace("’", "'")
+        text = text.replace("‘", "'")
+        
         ids = tokenizer.encode(text)
 
         arr = np.array(ids, dtype=np.uint16)

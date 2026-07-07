@@ -4,6 +4,8 @@ from vasu.model.model import VASUModel
 from vasu.config import ModelConfig
 from vasu.tokenizer.tokenizer import VASUTokenizer
 from vasu.inference.generate import generate
+import time
+
 
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -34,6 +36,8 @@ while True:
 
     if prompt.lower() == "exit":
         break
+    
+    start = time.time()
 
     response = generate(
     model=model,
@@ -43,9 +47,18 @@ while True:
     max_new_tokens=50,
     temperature=0.7,
     top_k=30,
+    top_p=0.9,
     )
-
+    print(
+        f"\nGeneration time: "
+        f"{time.time()-start:.2f}s"
+    )
+    print(tokenizer.encode("“"))
+    print(tokenizer.encode("”"))
+    print(tokenizer.encode('"'))
     if response.startswith(prompt):
         response = response[len(prompt):]
 
     print("\nVASU:", response.strip())
+
+    

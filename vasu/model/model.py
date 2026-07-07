@@ -45,6 +45,7 @@ class VASUModel(nn.Module):
     def forward(
             self,
             input_ids:torch.Tensor,
+            kv_cache=None,
         ) -> torch.Tensor:
 
         """
@@ -54,16 +55,20 @@ class VASUModel(nn.Module):
             input_ids: Tensor of shape (batch_size, sequence_length)
 
         Returns:
-            Logits of shape (batch_size, sequence_length, vocab_size)
+            Logits of shape (batch_size, sequence_len th, vocab_size)
         """
 
         x = self.embedding(input_ids)
 
-        for block in self.blocks:
-            x = block(x)
+        for layer_idx, block in enumerate(self.blocks):
+            x = block(
+                x,
+                kv_cache=kv_cache,
+                layer_idx=layer_idx,
+            )
 
         x = self.norm(x)
-
+ 
         x = x / (self.config.dim ** 0.5)   
 
         logits = self.lm_head(x)

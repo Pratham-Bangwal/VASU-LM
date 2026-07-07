@@ -38,3 +38,5 @@ class TrainConfig:
     use_amp: bool = True
 
     checkpoint_path: str = "checkpoints/vasu.pt"
+
+    instruction_tuning: bool = False
