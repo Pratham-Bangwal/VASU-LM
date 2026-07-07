@@ -1,29 +1,27 @@
-from torch.utils.data import DataLoader
+from vasu.tokenizer.tokenizer import VASUTokenizer
+from vasu.training.dataset import TextDataset
 
-from vasu.data.dataset import VASUDataset
+
+def main():
+
+    tokenizer = VASUTokenizer()
+    tokenizer.load("assets/tokenizer.json")
+
+    dataset = TextDataset(
+        tokenizer=tokenizer,
+        seq_len=32,
+    )
+
+    print("Dataset size:", len(dataset))
+
+    x, y = dataset[0]
+
+    print(x.shape)
+    print(y.shape)
+
+    print(x[:10])
+    print(y[:10])
 
 
-dataset = VASUDataset(
-    data_dir="data/raw",
-    tokenizer_path="checkpoints/tokenizer.json",
-    context_length=16,
-)
-
-loader = DataLoader(
-    dataset,
-    batch_size=4,
-    shuffle=True,
-)
-
-x, y = next(iter(loader))
-
-print(x.shape)
-print(y.shape)
-
-print()
-
-print(x)
-
-print()
-
-print(y)
+if __name__ == "__main__":
+    main()

@@ -12,9 +12,9 @@ class SwiGLU(nn.Module):
     def __init__(self, config: ModelConfig):
         super().__init__()
 
-        self.w1 = nn.Linear(config.dim, config.hidden_dim)
-        self.w2 = nn.Linear(config.dim, config.hidden_dim)
-        self.w3 = nn.Linear(config.hidden_dim, config.dim)
+        self.w1 = nn.Linear(config.dim, config.hidden_dim, bias=config.bias)
+        self.w2 = nn.Linear(config.dim, config.hidden_dim, bias=config.bias)
+        self.w3 = nn.Linear(config.hidden_dim, config.dim, bias=config.bias)
 
         self.silu = nn.SiLU()
 

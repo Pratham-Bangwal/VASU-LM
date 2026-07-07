@@ -1,20 +1,56 @@
+# ===========================
+# Python
+# ===========================
 __pycache__/
 *.py[cod]
 *.pyo
 *.pyd
-*.egg-info/
+
+# ===========================
+# Virtual Environment
+# ===========================
 .venv/
 venv/
-.env
-.pytest_cache/
-.mypy_cache/
-.ruff_cache/
-.ipynb_checkpoints/
+env/
+
+# ===========================
+# PyTorch Checkpoints
+# ===========================
+checkpoints/*.pt
+checkpoints/*.pth
+
+# Keep tokenizer
+!checkpoints/tokenizer.json
+
+# ===========================
+# Dataset
+# ===========================
+data/raw/
+data/processed/
+
+# ===========================
+# TensorBoard
+# ===========================
+runs/
+
+# ===========================
+# Logs
+# ===========================
+*.log
+debug.log
+
+# ===========================
+# VS Code
+# ===========================
+.vscode/
+
+# ===========================
+# OS Files
+# ===========================
 .DS_Store
 Thumbs.db
-checkpoints/*
-!checkpoints/.gitkeep
-data/raw/*
-!data/raw/.gitkeep
-data/processed/*
-!data/processed/.gitkeep
+
+# ===========================
+# Temporary
+# ===========================
+temp.py

@@ -7,7 +7,7 @@ def main():
 
     tokenizer.train("data/raw")
 
-    tokenizer.save("checkpoints/tokenizer.json")
+    tokenizer.save("assets/tokenizer.json")
 
     text = "Hello! I am building VASU."
 

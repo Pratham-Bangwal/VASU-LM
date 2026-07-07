@@ -1,14 +1,5 @@
-"""
-Root Mean Square Layer Normalization (RMSNorm)
-
-Reference:
-https://arxiv.org/abs/1910.07467
-"""
-
 import torch
 import torch.nn as nn
-
-from vasu.config import ModelConfig
 
 
 class RMSNorm(nn.Module):
@@ -20,4 +11,5 @@ class RMSNorm(nn.Module):
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         rms = torch.rsqrt(x.pow(2).mean(dim=-1, keepdim=True) + self.eps)
-        return self.weight * (x * rms)
+        x = x * rms
+        return x * self.weight

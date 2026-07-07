@@ -30,3 +30,37 @@ VASU (Virtual AI System for Understanding) is a lightweight decoder-only Transfo
 - LoRA fine-tuning
 - Function calling
 - Vision module
+
+TinyStories
+
+↓
+
+Tokenizer
+
+↓
+
+Prepare Dataset
+
+↓
+
+Binary Dataset
+
+↓
+
+Trainer
+
+↓
+
+Model
+
+↓
+
+Checkpoint
+
+↓
+
+Inference
+
+↓
+
+Chat

@@ -5,6 +5,7 @@ from tokenizers.models import BPE
 from tokenizers.pre_tokenizers import ByteLevel
 from tokenizers.trainers import BpeTrainer
 from tokenizers.decoders import ByteLevel as ByteLevelDecoder
+from tokenizers.pre_tokenizers import ByteLevel
 
 
 class VASUTokenizer:
@@ -37,6 +38,7 @@ class VASUTokenizer:
                 "[BOS]",
                 "[EOS]",
             ],
+            initial_alphabet=ByteLevel.alphabet(),
         )
 
         self.tokenizer.train(files, trainer)

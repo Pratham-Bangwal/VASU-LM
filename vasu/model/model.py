@@ -51,6 +51,10 @@ class VASUModel(nn.Module):
 
         x = self.norm(x)
 
+        x = x / (self.config.dim ** 0.5)   # 🔥 ADD THIS LINE
+
         logits = self.lm_head(x)
 
-        return logits
+        return logits   
+    
+    

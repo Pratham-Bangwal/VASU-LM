@@ -1,3 +1,4 @@
+import os
 import torch
 
 
@@ -14,11 +15,27 @@ def save_checkpoint(model, optimizer, epoch, loss, path):
     )
 
 
-def load_checkpoint(model, optimizer, path):
+def load_checkpoint(path, model, optimizer=None):
 
-    checkpoint = torch.load(path)
+    if not os.path.exists(path):
+        return 0
 
-    model.load_state_dict(checkpoint["model"])
-    optimizer.load_state_dict(checkpoint["optimizer"])
+    checkpoint = torch.load(
+        path,
+        map_location="cpu",
+    )
 
-    return checkpoint
+    model.load_state_dict(
+        checkpoint["model"]
+    )
+
+    if optimizer is not None:
+        optimizer.load_state_dict(
+            checkpoint["optimizer"]
+        )
+
+    print(
+        f"Loaded checkpoint from epoch {checkpoint['epoch'] + 1}"
+    )
+
+    return checkpoint["epoch"] + 1
