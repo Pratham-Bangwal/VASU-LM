@@ -14,9 +14,7 @@ class TokenEmbedding(nn.Module):
     """
     Token embedding layer.
 
-    Args:
-        vocab_size (int): Size of the tokenizer vocabulary.
-        embedding_dim (int): Dimension of each embedding vector.
+    Maps token IDs to dense vectors using the model configuration.
     """
 
     def __init__(self, config: ModelConfig):
@@ -32,7 +30,8 @@ class TokenEmbedding(nn.Module):
         Args:
             input_ids: Tensor of shape (batch_size, sequence_length)
 
-        Returns:
-            Tensor of shape (batch_size, sequence_length, embedding_dim)
+       Returns:
+            Embedded token representations of shape
+            (batch_size, sequence_length, dim)
         """
         return self.embedding(input_ids)

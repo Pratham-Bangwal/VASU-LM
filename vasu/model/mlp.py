@@ -18,8 +18,12 @@ class SwiGLU(nn.Module):
 
         self.silu = nn.SiLU()
 
-    def forward(self, x: torch.Tensor):
+    def forward(
+        self,
+        x: torch.Tensor,
+    ) -> torch.Tensor:
 
-        return self.w3(
-            self.silu(self.w1(x)) * self.w2(x)
-        )
+        gate = self.silu(self.w1(x))
+        value = self.w2(x)
+
+        return self.w3(gate * value)

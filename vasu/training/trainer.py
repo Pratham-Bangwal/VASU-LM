@@ -1,6 +1,5 @@
-from pathlib import Path
-
 import torch
+from pathlib import Path
 from torch.utils.data import DataLoader
 from tqdm import tqdm
 
@@ -10,10 +9,9 @@ from vasu.training.checkpoint import (
     save_checkpoint,
     load_checkpoint,
 )
-from torch.cuda.amp import GradScaler
+
+
 from torch.utils.tensorboard import SummaryWriter
-from pathlib import Path
-from vasu.training.sample import generate_sample
 
 class Trainer:
 
@@ -35,25 +33,6 @@ class Trainer:
         self.device = device
         self.callbacks = callbacks or []
 
-        self.loader = DataLoader(
-            train_dataset,
-            batch_size=config.batch_size,
-            shuffle=True,
-            drop_last=True,
-            pin_memory=True,
-            num_workers=0,
-            persistent_workers=False,
-        )
-
-        self.val_loader = DataLoader(
-            val_dataset,
-            batch_size=config.batch_size,
-            shuffle=False,
-            drop_last=False,
-            pin_memory=True,
-            num_workers=0,
-            persistent_workers=False,
-        )
 
         self.optimizer = build_optimizer(
             self.model,
@@ -65,44 +44,71 @@ class Trainer:
             T_max=config.epochs,
         )
 
-        self.scaler = torch.cuda.amp.GradScaler()
+        self.scaler = torch.amp.GradScaler(
+            self.device.type,
+            enabled=self.config.use_amp,
+        )
 
         self.best_val_loss = float("inf")
         
+        self._build_dataloaders()
 
+        self._load_checkpoint()
+    
+    def _load_checkpoint(self):
 
-        checkpoint = Path("checkpoints/vasu.pt")
+        checkpoint = Path(self.config.checkpoint_path)
 
         self.start_epoch = 0
+        self.best_val_loss = float("inf")
 
-        if checkpoint.exists():
+        if not checkpoint.exists():
+            return
 
-            ckpt = torch.load(
-                checkpoint,
-                map_location=device,
+        ckpt = torch.load(
+            checkpoint,
+            map_location=self.device,
+        )
+
+        self.model.load_state_dict(ckpt["model"])
+        self.optimizer.load_state_dict(ckpt["optimizer"])
+
+        if "scheduler" in ckpt:
+            self.scheduler.load_state_dict(
+                ckpt["scheduler"]
             )
 
-            self.model.load_state_dict(
-                ckpt["model"]
-            )
+        self.start_epoch = ckpt["epoch"] + 1
+        self.best_val_loss = ckpt.get(
+            "best_val_loss",
+            float("inf"),
+        )
 
-            self.optimizer.load_state_dict(
-                ckpt["optimizer"]
-            )
+        print(
+            f"\n✅ Resuming from epoch {self.start_epoch}\n"
+        )
 
-            if "scheduler" in ckpt:
-                self.scheduler.load_state_dict(
-                    ckpt["scheduler"]
-                )
+    def _build_dataloaders(self):
 
-            self.start_epoch = ckpt["epoch"] + 1
+        self.loader = DataLoader(
+            self.train_dataset,
+            batch_size=self.config.batch_size,
+            shuffle=True,
+            drop_last=True,
+            pin_memory=True,
+            num_workers=0,
+            persistent_workers=False,
+        )
 
-            self.best_val_loss = ckpt.get("best_val_loss", float("inf"))
-
-            print(
-                f"\n✅ Resuming from epoch {self.start_epoch}\n"
-            )
-    
+        self.val_loader = DataLoader(
+            self.val_dataset,
+            batch_size=self.config.batch_size,
+            shuffle=False,
+            drop_last=False,
+            pin_memory=True,
+            num_workers=0,
+            persistent_workers=False,
+        )
 
     def train_epoch(self):
 
@@ -124,7 +130,10 @@ class Trainer:
             y = y.to(self.device)
 
 
-            with torch.cuda.amp.autocast():
+            with torch.amp.autocast(
+                self.device.type,
+                enabled=self.config.use_amp,
+            ):
 
                 logits = self.model(x)
 
@@ -146,7 +155,7 @@ class Trainer:
 
                 torch.nn.utils.clip_grad_norm_(
                     self.model.parameters(),
-                    1.0,
+                    self.config.grad_clip,
                 )
 
                 self.scaler.step(self.optimizer)
@@ -178,7 +187,10 @@ class Trainer:
             x = x.to(self.device)
             y = y.to(self.device)
 
-            with torch.cuda.amp.autocast():
+            with torch.amp.autocast(
+                self.device.type,
+                enabled=self.config.use_amp,
+            ):
 
                 logits = self.model(x)
 
@@ -192,7 +204,12 @@ class Trainer:
         return total_loss / len(self.val_loader)
 
     def fit(self):
-
+        if self.start_epoch >= self.config.epochs:
+            print(
+            "Training already completed. \n"
+            "Increase TrainConfig.epochs to continue."
+        )
+        return
 
         Path("checkpoints").mkdir(
             exist_ok=True
@@ -201,8 +218,6 @@ class Trainer:
         for callback in self.callbacks:
             callback.on_train_begin(self)
 
-        print(f"start_epoch = {self.start_epoch}")
-        print(f"epochs = {self.config.epochs}")
 
         for epoch in range(
             self.start_epoch,
@@ -260,11 +275,6 @@ class Trainer:
                 epoch,
                 val_loss,
                 f"checkpoints/epoch_{epoch+1}.pt",
-            )
-            generate_sample(
-                self.model,
-                self.tokenizer,
-                self.device,
             )
 
         for callback in self.callbacks:

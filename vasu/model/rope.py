@@ -1,9 +1,12 @@
 import torch
 import torch.nn as nn
-from vasu.config import ModelConfig
 
 
 class RotaryEmbedding(nn.Module):
+    """
+    Precomputes Rotary Positional Embeddings (RoPE).
+    """
+
     def __init__(
         self,
         head_dim: int,
@@ -12,11 +15,10 @@ class RotaryEmbedding(nn.Module):
     ):
         super().__init__()
 
-        dim = head_dim
-        base = rope_theta
-
         inv_freq = 1.0 / (
-            base ** (torch.arange(0, dim, 2).float() / dim)
+            rope_theta ** (
+                torch.arange(0, head_dim, 2).float() / head_dim
+            )
         )
 
         t = torch.arange(max_seq_len).float()
@@ -28,7 +30,17 @@ class RotaryEmbedding(nn.Module):
         self.register_buffer("cos", emb.cos(), persistent=False)
         self.register_buffer("sin", emb.sin(), persistent=False)
 
-    def forward(self, seq_len: int):
+        self.cos: torch.Tensor
+        self.sin: torch.Tensor
+
+    def forward(
+        self,
+        seq_len: int,
+    ) -> tuple[torch.Tensor, torch.Tensor]:
+        """
+        Returns cosine and sine rotary embeddings
+        for the requested sequence length.
+        """
 
         return (
             self.cos[:seq_len],

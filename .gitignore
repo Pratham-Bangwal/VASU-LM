@@ -54,3 +54,18 @@ Thumbs.db
 # Temporary
 # ===========================
 temp.py
+
+# Packaging
+*.egg-info/
+
+# Python cache
+.pytest_cache/
+.mypy_cache/
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# Jupyter
+.ipynb_checkpoints/

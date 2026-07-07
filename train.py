@@ -7,7 +7,7 @@ from vasu.training.dataset import TextDataset
 from vasu.training.trainer import Trainer
 from vasu.training.callbacks.checkpoint import CheckpointCallback
 from vasu.training.callbacks.tensorboard import TensorBoardCallback
-
+from vasu.training.callbacks.sample_generation import SampleGenerationCallback
 
 def main():
 
@@ -29,7 +29,7 @@ def main():
 
     dataset = TextDataset(
         data_file="data/processed/tinystories.bin",
-        seq_len=train_config.sequence_length,
+        seq_len=model_config.max_seq_len,
     )
 
     total_tokens = len(dataset.tokens)
@@ -38,14 +38,14 @@ def main():
 
     train_dataset = TextDataset(
         data_file="data/processed/tinystories.bin",
-        seq_len=train_config.sequence_length,
+        seq_len=model_config.max_seq_len,
         start=0,
         end=split,
     )
 
     val_dataset = TextDataset(
         data_file="data/processed/tinystories.bin",
-        seq_len=train_config.sequence_length,
+        seq_len=model_config.max_seq_len,
         start=split,
         end=split+500_000,
     )
@@ -64,7 +64,7 @@ def main():
     dummy = torch.randint(
         0,
         model_config.vocab_size,
-        (2, train_config.sequence_length),
+        (2, model_config.max_seq_len),
     ).to(device)
 
     with torch.no_grad():
@@ -92,6 +92,7 @@ def main():
         device=device,
         callbacks=[
             CheckpointCallback(),
+            SampleGenerationCallback(),
             TensorBoardCallback()
         ],
     )

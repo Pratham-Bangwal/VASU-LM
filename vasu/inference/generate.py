@@ -29,7 +29,6 @@ def generate(
 
         logits = model(input_ids)
 
-        print(torch.topk(logits[:, -1, :], 10).indices)
 
         next_token = sample_next_token(
             logits,

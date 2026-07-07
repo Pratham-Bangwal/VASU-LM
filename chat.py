@@ -20,7 +20,7 @@ tokenizer.load("assets/tokenizer.json")
 config = ModelConfig()
 model = VASUModel(config).to(device)
 
-checkpoint = torch.load("checkpoints/vasu.pt", map_location=device)
+checkpoint = torch.load("checkpoints/best.pt", map_location=device)
 model.load_state_dict(checkpoint["model"])
 model.eval()
 

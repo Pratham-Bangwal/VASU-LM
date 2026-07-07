@@ -11,7 +11,11 @@ class MultiHeadAttention(nn.Module):
     def __init__(self, config: ModelConfig):
         super().__init__()
 
-        assert config.dim % config.n_heads == 0
+        if config.dim % config.n_heads != 0:
+            raise ValueError(
+                f"dim ({config.dim}) must be divisible by "
+                f"n_heads ({config.n_heads})"
+            )
 
         self.dim = config.dim
         self.n_heads = config.n_heads
@@ -23,7 +27,7 @@ class MultiHeadAttention(nn.Module):
 
         self.out_proj = nn.Linear(config.dim, config.dim, bias=config.bias)
 
-        self.dropout = config.dropout
+        self.dropout_p = config.dropout
 
         self.rope = RotaryEmbedding(
         head_dim=self.head_dim,
@@ -31,7 +35,20 @@ class MultiHeadAttention(nn.Module):
         rope_theta=config.rope_theta,
         )
 
-    def forward(self, x):
+    def forward(
+            self, 
+            x: torch.Tensor,
+        )-> torch.Tensor:
+
+        """
+        Multi-head self-attention.
+
+        Args:
+            x: (B,T,C)
+
+        Returns:
+            Tensor (B,T,C)
+        """
 
         B, T, C = x.shape
 
@@ -51,7 +68,7 @@ class MultiHeadAttention(nn.Module):
             q,
             k,
             v,
-            dropout_p=self.dropout if self.training else 0.0,
+            dropout_p=self.dropout_p if self.training else 0.0,
             is_causal=True,
         )
 

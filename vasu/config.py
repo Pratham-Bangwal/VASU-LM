@@ -25,14 +25,16 @@ class TrainConfig:
 
     epochs: int = 20
 
-    sequence_length: int = 256
-
     learning_rate: float = 3e-4
 
     weight_decay: float = 0.01
 
-    device: str = "cuda"
-
     seed: int = 42
 
     gradient_accumulation_steps: int = 8
+
+    grad_clip: float = 1.0
+
+    use_amp: bool = True
+
+    checkpoint_path: str = "checkpoints/vasu.pt"

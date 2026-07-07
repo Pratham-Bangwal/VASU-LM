@@ -42,7 +42,20 @@ class VASUModel(nn.Module):
         # Weight tying
         self.lm_head.weight = self.embedding.embedding.weight
 
-    def forward(self, input_ids):
+    def forward(
+            self,
+            input_ids:torch.Tensor,
+        ) -> torch.Tensor:
+
+        """
+        Forward pass.
+        
+        Args:
+            input_ids: Tensor of shape (batch_size, sequence_length)
+
+        Returns:
+            Logits of shape (batch_size, sequence_length, vocab_size)
+        """
 
         x = self.embedding(input_ids)
 
@@ -51,7 +64,7 @@ class VASUModel(nn.Module):
 
         x = self.norm(x)
 
-        x = x / (self.config.dim ** 0.5)   # 🔥 ADD THIS LINE
+        x = x / (self.config.dim ** 0.5)   
 
         logits = self.lm_head(x)
 

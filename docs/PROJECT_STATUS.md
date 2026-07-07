@@ -55,3 +55,21 @@ Train stable 31M model.
 After that
 
 VASU-2 (60M)
+
+
+VISION
+
+Build a GPT-style AI from scratch.
+
+MISSION
+
+Build every layer.
+Understand every layer.
+
+GOAL
+
+First:
+Create a conversational GPT capable of serving as a college major project.
+
+Then:
+Transform VASU into a production-ready open-source AI framework with modern LLM capabilities.

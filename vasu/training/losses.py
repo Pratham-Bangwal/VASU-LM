@@ -1,10 +1,20 @@
+import torch
 import torch.nn.functional as F
 
 
-def language_model_loss(logits, targets):
+def language_model_loss(
+    logits: torch.Tensor,
+    targets: torch.Tensor,
+) -> torch.Tensor:
     """
-    logits: (B, T, V)
-    targets: (B, T)
+        Computes the autoregressive language modeling loss.
+
+        Args:
+            logits: (B, T, V)
+            targets: (B, T)
+
+        Returns:
+            Cross-entropy loss.
     """
 
     B, T, V = logits.shape
