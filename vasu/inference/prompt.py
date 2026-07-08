@@ -3,16 +3,13 @@ def build_prompt(
     system_prompt: str | None = None,
 ) -> str:
 
-    prompt = ""
-
-    if system_prompt:
-        prompt += (
-            f"System: {system_prompt}\n\n"
+    if system_prompt is None:
+        system_prompt = (
+            "You are VASU, a helpful AI assistant."
         )
 
-    prompt += (
+    return (
+        f"System: {system_prompt}\n\n"
         f"User: {user_message}\n"
         "Assistant:"
     )
-
-    return prompt

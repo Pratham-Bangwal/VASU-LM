@@ -22,7 +22,7 @@ tokenizer.load("assets/tokenizer.json")
 config = ModelConfig()
 model = VASUModel(config).to(device)
 
-checkpoint = torch.load("checkpoints/best.pt", map_location=device)
+checkpoint = torch.load("checkpoints/ultrachat/best.pt", map_location=device)
 model.load_state_dict(checkpoint["model"])
 model.eval()
 
@@ -53,12 +53,8 @@ while True:
         f"\nGeneration time: "
         f"{time.time()-start:.2f}s"
     )
-    print(tokenizer.encode("“"))
-    print(tokenizer.encode("”"))
-    print(tokenizer.encode('"'))
+
     if response.startswith(prompt):
         response = response[len(prompt):]
 
     print("\nVASU:", response.strip())
-
-    

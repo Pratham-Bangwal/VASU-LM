@@ -60,9 +60,13 @@ class VASUTokenizer:
     def decode(
         self,
         ids: list[int],
+        **kwargs,
     ) -> str:
 
-        return self.tokenizer.decode(ids)
+        return self.tokenizer.decode(
+            ids,
+            **kwargs
+        )
 
     def save(
         self,

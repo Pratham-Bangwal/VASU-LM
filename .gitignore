@@ -69,3 +69,9 @@ dist/
 
 # Jupyter
 .ipynb_checkpoints/
+
+# checkpoints
+checkpoints/
+*.pt
+*.pth
+*.bin

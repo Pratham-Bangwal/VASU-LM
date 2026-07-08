@@ -39,4 +39,6 @@ class TrainConfig:
 
     checkpoint_path: str = "checkpoints/vasu.pt"
 
-    instruction_tuning: bool = False
+    checkpoint_dir: str = "checkpoints"
+
+    save_every_steps: int = 1000

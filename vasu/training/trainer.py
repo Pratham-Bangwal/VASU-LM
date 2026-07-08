@@ -1,3 +1,5 @@
+# pyright: reportPrivateImportUsage=false
+
 import torch
 from pathlib import Path
 from torch.utils.data import DataLoader
@@ -206,18 +208,23 @@ class Trainer:
     def fit(self):
         if self.start_epoch >= self.config.epochs:
             print(
-            "Training already completed. \n"
-            "Increase TrainConfig.epochs to continue."
-        )
-        return
+                "Training already completed. \n"
+                "Increase TrainConfig.epochs to continue."
+            )
+            return
 
-        Path("checkpoints").mkdir(
-            exist_ok=True
-        )
+        Path(
+            self.config.checkpoint_dir
+        ).mkdir(
+            parents=True,
+            exist_ok=True,
+    )
 
         for callback in self.callbacks:
             callback.on_train_begin(self)
 
+        print(f"start_epoch = {self.start_epoch}")
+        print(f"epochs = {self.config.epochs}")
 
         for epoch in range(
             self.start_epoch,
@@ -262,7 +269,7 @@ class Trainer:
                         "optimizer": self.optimizer.state_dict(),
                         "best_val_loss": self.best_val_loss,
                     },
-                    "checkpoints/best.pt",
+                    f"{self.config.checkpoint_dir}/best.pt"
                 )
 
                 print("⭐ New best model saved!")
@@ -274,7 +281,15 @@ class Trainer:
                 self.optimizer,
                 epoch,
                 val_loss,
-                f"checkpoints/epoch_{epoch+1}.pt",
+                f"{self.config.checkpoint_dir}/epoch_{epoch+1}.pt"
+            )
+
+            save_checkpoint(
+                self.model,
+                self.optimizer,
+                epoch,
+                val_loss,
+                self.config.checkpoint_path,
             )
 
         for callback in self.callbacks:

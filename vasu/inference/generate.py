@@ -65,7 +65,12 @@ def generate(
         if next_token.item() == eos_token:
             break
 
+    generated_ids = input_ids[
+        0,
+        prompt_length:
+    ].tolist()
+
     return tokenizer.decode(
-        input_ids[0].tolist(),
-        skip_special_tokens=True
+        generated_ids,
+        skip_special_tokens=True,
     )
