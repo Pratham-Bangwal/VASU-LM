@@ -4,6 +4,9 @@
 
 ### Added
 
+- Deterministic, task-specific automatic response checks for exact/accepted answers, keywords, formatting, repetition, uncertainty, clarification, and parseable Python code.
+- Optional per-prompt `checks` metadata and automatic per-prompt/checkpoint summary fields in text and JSON evaluation reports.
+- Expanded 40-prompt automatic-check reports for greedy and sampled Alpaca-v3/UltraChat-v2 comparisons.
 - Opt-in VASU-60M configuration with 58,337,792 parameters.
 - CPU, CUDA, realistic-memory, and tiny real-data smoke-test tooling.
 - Resumable VASU-60M FineWeb block pretraining.
@@ -30,6 +33,8 @@
 
 ### Changed
 
+- Checkpoint comparison summaries now include automatic pass counts and averages alongside unchanged manual-score fields; prompts without checks remain backward compatible.
+- Response statistics and automatic repetition checks now share one canonical repetition calculation.
 - VASU-60M training now operates in short 100-optimizer-step blocks with checkpoints every 10 steps.
 - Preserved milestones are stored separately from retained operational checkpoints.
 - Project documentation now distinguishes the completed VASU-31M cycle from active VASU-60M base pretraining.
@@ -63,6 +68,7 @@
 
 ### Documented
 
+- Automatic evaluation scores are heuristic task-compliance indicators, not measures of general intelligence or model reliability; manual review remains required.
 - VASU-60M step-54,060 milestone: train loss 3.616769 and validation loss 3.613814.
 - VASU-60M base pretraining completed for this cycle at the preserved step-150,000 checkpoint.
 - The first VASU-60M instruction stage used standard Alpaca for exactly one epoch; UltraChat has not started.

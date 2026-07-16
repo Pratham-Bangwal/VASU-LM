@@ -3,49 +3,57 @@
     "id": "ai_3_sentences",
     "prompt": "What is artificial intelligence? Answer in 3 simple sentences.",
     "category": "definition",
-    "expected_behavior": "Defines AI clearly in about 3 simple sentences."
+    "expected_behavior": "Defines AI clearly in about 3 simple sentences.",
+    "checks": {"non_empty": true, "max_repetition_ratio": 0.35}
   },
   {
     "id": "ml_simple",
     "prompt": "Explain machine learning in simple words.",
     "category": "definition",
-    "expected_behavior": "Explains that machines learn patterns from data."
+    "expected_behavior": "Explains that machines learn patterns from data.",
+    "checks": {"required_keywords": ["data", "patterns", "learn"], "required_keywords_mode": "any", "max_repetition_ratio": 0.35}
   },
   {
     "id": "internet_definition",
     "prompt": "What is the internet? Explain it in simple words.",
     "category": "definition",
-    "expected_behavior": "Explains that the internet connects computers and allows information exchange."
+    "expected_behavior": "Explains that the internet connects computers and allows information exchange.",
+    "checks": {"required_keywords": ["connect", "computer", "information"], "required_keywords_mode": "any", "max_repetition_ratio": 0.35}
   },
   {
     "id": "database_definition",
     "prompt": "What is a database?",
     "category": "definition",
-    "expected_behavior": "Explains that a database stores and organizes information."
+    "expected_behavior": "Explains that a database stores and organizes information.",
+    "checks": {"required_keywords": ["store", "data"], "max_repetition_ratio": 0.35}
   },
   {
     "id": "photosynthesis_simple",
     "prompt": "Explain photosynthesis in simple words.",
     "category": "factual_knowledge",
-    "expected_behavior": "Explains that plants use sunlight, water, and carbon dioxide to make food."
+    "expected_behavior": "Explains that plants use sunlight, water, and carbon dioxide to make food.",
+    "checks": {"required_keywords": ["sunlight", "water", "carbon dioxide"], "max_repetition_ratio": 0.35}
   },
   {
     "id": "water_boiling_point",
     "prompt": "At what temperature does water boil at sea level?",
     "category": "factual_knowledge",
-    "expected_behavior": "Answers approximately 100 degrees Celsius or 212 degrees Fahrenheit."
+    "expected_behavior": "Answers approximately 100 degrees Celsius or 212 degrees Fahrenheit.",
+    "checks": {"accepted_answers": ["100", "100°C", "100 degrees Celsius", "212°F", "212 degrees Fahrenheit"]}
   },
   {
     "id": "largest_planet",
     "prompt": "What is the largest planet in our solar system?",
     "category": "factual_knowledge",
-    "expected_behavior": "Answers Jupiter."
+    "expected_behavior": "Answers Jupiter.",
+    "checks": {"accepted_answers": ["Jupiter"]}
   },
   {
     "id": "india_capital",
     "prompt": "What is the capital of India?",
     "category": "factual_knowledge",
-    "expected_behavior": "Answers New Delhi."
+    "expected_behavior": "Answers New Delhi.",
+    "checks": {"accepted_answers": ["New Delhi"]}
   },
   {
     "id": "gravity_child",
@@ -63,109 +71,127 @@
     "id": "education_3_benefits",
     "prompt": "Give exactly 3 benefits of education.",
     "category": "instruction_following",
-    "expected_behavior": "Returns exactly 3 distinct education-related benefits."
+    "expected_behavior": "Returns exactly 3 distinct education-related benefits.",
+    "checks": {"numbered_item_count": 3, "max_repetition_ratio": 0.35}
   },
   {
     "id": "healthy_habits_4",
     "prompt": "List exactly 4 healthy daily habits.",
     "category": "instruction_following",
-    "expected_behavior": "Returns exactly 4 practical healthy habits."
+    "expected_behavior": "Returns exactly 4 practical healthy habits.",
+    "checks": {"numbered_item_count": 4, "max_repetition_ratio": 0.35}
   },
   {
     "id": "two_programming_languages",
     "prompt": "Name exactly 2 programming languages.",
     "category": "instruction_following",
-    "expected_behavior": "Returns exactly 2 valid programming language names."
+    "expected_behavior": "Returns exactly 2 valid programming language names.",
+    "checks": {"numbered_item_count": 2, "max_repetition_ratio": 0.35}
   },
   {
     "id": "one_sentence_sun",
     "prompt": "Describe the Sun in exactly one sentence.",
     "category": "instruction_following",
-    "expected_behavior": "Produces one accurate sentence about the Sun."
+    "expected_behavior": "Produces one accurate sentence about the Sun.",
+    "checks": {"max_line_count": 1, "required_keywords": ["sun"]}
   },
   {
     "id": "india_4_lines",
     "prompt": "Write exactly 4 short lines about India.",
     "category": "formatting",
-    "expected_behavior": "Writes exactly 4 short, coherent lines without major factual errors."
+    "expected_behavior": "Writes exactly 4 short, coherent lines without major factual errors.",
+    "checks": {"exact_line_count": 4, "max_repetition_ratio": 0.35}
   },
   {
     "id": "numbered_breakfast",
     "prompt": "Give a numbered list of exactly 3 simple vegetarian breakfast ideas.",
     "category": "formatting",
-    "expected_behavior": "Returns a numbered list with exactly 3 vegetarian breakfast ideas."
+    "expected_behavior": "Returns a numbered list with exactly 3 vegetarian breakfast ideas.",
+    "checks": {"numbered_item_count": 3, "forbidden_keywords": ["meat", "chicken", "egg"], "max_repetition_ratio": 0.35}
   },
   {
     "id": "yes_no_then_reason",
     "prompt": "Is Python a programming language? Answer yes or no, then give one short reason.",
     "category": "formatting",
-    "expected_behavior": "Answers yes and gives one concise correct reason."
+    "expected_behavior": "Answers yes and gives one concise correct reason.",
+    "checks": {"required_keywords": ["yes"], "max_line_count": 2}
   },
   {
     "id": "three_words_ocean",
     "prompt": "Describe the ocean using exactly 3 words.",
     "category": "formatting",
-    "expected_behavior": "Returns exactly 3 relevant words."
+    "expected_behavior": "Returns exactly 3 relevant words.",
+    "checks": {"exact_word_count": 3}
   },
   {
     "id": "basic_arithmetic",
     "prompt": "What is 17 plus 25?",
     "category": "reasoning",
-    "expected_behavior": "Answers 42."
+    "expected_behavior": "Answers 42.",
+    "checks": {"exact_answer": "42"}
   },
   {
     "id": "simple_subtraction",
     "prompt": "A box has 12 apples. You remove 5. How many apples remain?",
     "category": "reasoning",
-    "expected_behavior": "Answers 7."
+    "expected_behavior": "Answers 7.",
+    "checks": {"exact_answer": "7"}
   },
   {
     "id": "comparison_reasoning",
     "prompt": "Which is larger: 3/4 or 2/3? Explain briefly.",
     "category": "reasoning",
-    "expected_behavior": "Correctly identifies 3/4 as larger and gives a valid brief explanation."
+    "expected_behavior": "Correctly identifies 3/4 as larger and gives a valid brief explanation.",
+    "checks": {"accepted_answers": ["3/4", "three quarters"], "required_keywords": ["larger", "greater"], "required_keywords_mode": "any"}
   },
   {
     "id": "sequence_next",
     "prompt": "What number comes next: 2, 4, 6, 8, ?",
     "category": "reasoning",
-    "expected_behavior": "Answers 10."
+    "expected_behavior": "Answers 10.",
+    "checks": {"exact_answer": "10"}
   },
   {
     "id": "variable_programming",
     "prompt": "Explain what a variable is in programming.",
     "category": "programming",
-    "expected_behavior": "Explains that a variable stores a value that can be used or changed."
+    "expected_behavior": "Explains that a variable stores a value that can be used or changed.",
+    "checks": {"required_keywords": ["store", "value"], "max_repetition_ratio": 0.35}
   },
   {
     "id": "function_programming",
     "prompt": "What is a function in programming?",
     "category": "programming",
-    "expected_behavior": "Explains that a function is a reusable block of code that performs a task."
+    "expected_behavior": "Explains that a function is a reusable block of code that performs a task.",
+    "checks": {"required_keywords": ["reusable", "block", "task"], "required_keywords_mode": "any", "max_repetition_ratio": 0.35}
   },
   {
     "id": "python_print",
     "prompt": "Write one line of Python code that prints Hello.",
     "category": "programming",
-    "expected_behavior": "Returns valid Python such as print(\"Hello\")."
+    "expected_behavior": "Returns valid Python such as print(\"Hello\").",
+    "checks": {"python_code_required": true}
   },
   {
     "id": "loop_simple",
     "prompt": "Explain what a loop does in programming.",
     "category": "programming",
-    "expected_behavior": "Explains that a loop repeats instructions."
+    "expected_behavior": "Explains that a loop repeats instructions.",
+    "checks": {"required_keywords": ["repeat", "repeats", "iteration"], "required_keywords_mode": "any", "max_repetition_ratio": 0.35}
   },
   {
     "id": "python_study_plan",
     "prompt": "Give me a simple 3-step study plan for learning Python.",
     "category": "planning",
-    "expected_behavior": "Returns exactly 3 practical and distinct steps."
+    "expected_behavior": "Returns exactly 3 practical and distinct steps.",
+    "checks": {"numbered_item_count": 3, "max_repetition_ratio": 0.35}
   },
   {
     "id": "exam_study_plan",
     "prompt": "Create a simple 3-step plan for preparing for an exam.",
     "category": "planning",
-    "expected_behavior": "Returns 3 useful and distinct study steps."
+    "expected_behavior": "Returns 3 useful and distinct study steps.",
+    "checks": {"numbered_item_count": 3, "max_repetition_ratio": 0.35}
   },
   {
     "id": "morning_routine",
@@ -177,19 +203,22 @@
     "id": "project_plan",
     "prompt": "Give 3 steps for starting a small software project.",
     "category": "planning",
-    "expected_behavior": "Gives 3 sensible steps such as defining scope, planning, and implementation."
+    "expected_behavior": "Gives 3 sensible steps such as defining scope, planning, and implementation.",
+    "checks": {"numbered_item_count": 3, "max_repetition_ratio": 0.35}
   },
   {
     "id": "short_story",
     "prompt": "Write a short 5-line story about a robot learning to help humans.",
     "category": "creative",
-    "expected_behavior": "Writes a coherent story in exactly or approximately 5 lines."
+    "expected_behavior": "Writes a coherent story in exactly or approximately 5 lines.",
+    "checks": {"max_repetition_ratio": 0.35}
   },
   {
     "id": "rain_poem",
     "prompt": "Write a 4-line poem about rain.",
     "category": "creative",
-    "expected_behavior": "Writes a coherent poem in 4 lines."
+    "expected_behavior": "Writes a coherent poem in 4 lines.",
+    "checks": {"exact_line_count": 4, "max_repetition_ratio": 0.35}
   },
   {
     "id": "space_story",
@@ -201,42 +230,49 @@
     "id": "friendly_greeting",
     "prompt": "Reply warmly to someone who says: I had a difficult day.",
     "category": "conversation",
-    "expected_behavior": "Responds with empathy and supportive language."
+    "expected_behavior": "Responds with empathy and supportive language.",
+    "checks": {"required_keywords": ["sorry", "support", "hope", "understand"], "required_keywords_mode": "any", "max_repetition_ratio": 0.35}
   },
   {
     "id": "ask_for_help",
     "prompt": "Respond to: I do not understand this topic. Can you help me?",
     "category": "conversation",
-    "expected_behavior": "Offers help clearly and politely."
+    "expected_behavior": "Offers help clearly and politely.",
+    "checks": {"required_keywords": ["help", "explain", "sure"], "required_keywords_mode": "any", "max_repetition_ratio": 0.35}
   },
   {
     "id": "thank_you_reply",
     "prompt": "Reply politely to someone who says: Thank you for helping me.",
     "category": "conversation",
-    "expected_behavior": "Provides a brief polite response."
+    "expected_behavior": "Provides a brief polite response.",
+    "checks": {"required_keywords": ["welcome", "glad", "happy"], "required_keywords_mode": "any", "max_repetition_ratio": 0.35}
   },
   {
     "id": "uncertain_fact",
     "prompt": "What will the exact price of Bitcoin be one year from today?",
     "category": "uncertainty",
-    "expected_behavior": "States that the exact future price cannot be known and avoids inventing certainty."
+    "expected_behavior": "States that the exact future price cannot be known and avoids inventing certainty.",
+    "checks": {"uncertainty_required": true}
   },
   {
     "id": "unknown_person",
     "prompt": "Who is the current mayor of a fictional city called Zorvia?",
     "category": "uncertainty",
-    "expected_behavior": "Recognizes that Zorvia is fictional or says the information is unavailable."
+    "expected_behavior": "Recognizes that Zorvia is fictional or says the information is unavailable.",
+    "checks": {"required_keywords": ["fictional", "not real", "no such city", "unavailable"], "required_keywords_mode": "any"}
   },
   {
     "id": "medical_uncertainty",
     "prompt": "I have a headache. Tell me exactly what disease I have.",
     "category": "uncertainty",
-    "expected_behavior": "Does not diagnose from insufficient information and recommends appropriate professional evaluation if needed."
+    "expected_behavior": "Does not diagnose from insufficient information and recommends appropriate professional evaluation if needed.",
+    "checks": {"uncertainty_required": true, "required_keywords": ["doctor", "medical", "professional", "cannot diagnose"], "required_keywords_mode": "any"}
   },
   {
     "id": "ambiguous_request",
     "prompt": "Explain the thing I mentioned earlier.",
     "category": "uncertainty",
-    "expected_behavior": "Asks for clarification instead of inventing missing context."
+    "expected_behavior": "Asks for clarification instead of inventing missing context.",
+    "checks": {"clarification_required": true}
   }
 ]

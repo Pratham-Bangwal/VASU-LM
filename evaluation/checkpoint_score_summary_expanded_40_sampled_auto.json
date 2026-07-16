@@ -1,0 +1,18 @@
+{
+  "vasu_60m_alpaca_masked_v3_from_200k": {
+    "scored_prompts": 0,
+    "average_score": null,
+    "automatically_evaluated_prompts": 36,
+    "automatic_average_score": 0.292,
+    "automatic_passed_checks": 19,
+    "automatic_total_checks": 61
+  },
+  "vasu_60m_ultrachat_masked_v2_from_alpaca_v3": {
+    "scored_prompts": 0,
+    "average_score": null,
+    "automatically_evaluated_prompts": 36,
+    "automatic_average_score": 0.301,
+    "automatic_passed_checks": 20,
+    "automatic_total_checks": 61
+  }
+}

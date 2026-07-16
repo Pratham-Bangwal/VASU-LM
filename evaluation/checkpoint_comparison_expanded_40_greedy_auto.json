@@ -1,0 +1,2556 @@
+[
+  {
+    "name": "vasu_60m_alpaca_masked_v3_from_200k",
+    "path": "checkpoints/vasu_60m/alpaca_masked_v3_from_200k/best.pt",
+    "model_config": "vasu_60m",
+    "prompt_format": "alpaca",
+    "generation_config": {
+      "mode": "greedy",
+      "do_sample": false,
+      "max_new_tokens": 60,
+      "temperature": null,
+      "top_k": null,
+      "top_p": null
+    },
+    "generations": [
+      {
+        "prompt_id": "ai_3_sentences",
+        "category": "definition",
+        "prompt": "What is artificial intelligence? Answer in 3 simple sentences.",
+        "expected_behavior": "Defines AI clearly in about 3 simple sentences.",
+        "response": "Artificial intelligence is a type of machine learning that uses machine learning algorithms to learn from data and make predictions. It is used to analyze data and make predictions about the behavior of a particular person.",
+        "time_seconds": 0.5679,
+        "stats": {
+          "characters": 223,
+          "words": 36,
+          "lines": 1,
+          "repetition_ratio": 0.2778,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "non_empty": {
+              "passed": true,
+              "score": 1.0,
+              "details": "response is non-empty"
+            },
+            "max_repetition_ratio": {
+              "passed": true,
+              "score": 1.0,
+              "details": "repetition_ratio=0.2778; maximum=0.3500"
+            }
+          },
+          "passed_checks": 2,
+          "total_checks": 2,
+          "score": 1.0
+        }
+      },
+      {
+        "prompt_id": "ml_simple",
+        "category": "definition",
+        "prompt": "Explain machine learning in simple words.",
+        "expected_behavior": "Explains that machines learn patterns from data.",
+        "response": "Machine learning is a type of machine learning that uses machine learning algorithms to learn from data and make predictions. Machine learning algorithms use machine learning algorithms to learn from data and make predictions. Machine learning algorithms use machine learning",
+        "time_seconds": 0.582,
+        "stats": {
+          "characters": 275,
+          "words": 40,
+          "lines": 1,
+          "repetition_ratio": 0.575,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "required_keywords": {
+              "passed": true,
+              "score": 1.0,
+              "details": "mode=any; present=['data', 'learn']; missing=['patterns']"
+            },
+            "max_repetition_ratio": {
+              "passed": false,
+              "score": 0.0,
+              "details": "repetition_ratio=0.5750; maximum=0.3500"
+            }
+          },
+          "passed_checks": 1,
+          "total_checks": 2,
+          "score": 0.5
+        }
+      },
+      {
+        "prompt_id": "internet_definition",
+        "category": "definition",
+        "prompt": "What is the internet? Explain it in simple words.",
+        "expected_behavior": "Explains that the internet connects computers and allows information exchange.",
+        "response": "The internet is a digital platform that allows users to access and access information from anywhere in the world. It is a digital platform that allows users to access information from anywhere in the world. It is a digital platform that allows users to access information from anywhere in the world.",
+        "time_seconds": 0.5592,
+        "stats": {
+          "characters": 299,
+          "words": 51,
+          "lines": 1,
+          "repetition_ratio": 0.6471,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "required_keywords": {
+              "passed": true,
+              "score": 1.0,
+              "details": "mode=any; present=['information']; missing=['connect', 'computer']"
+            },
+            "max_repetition_ratio": {
+              "passed": false,
+              "score": 0.0,
+              "details": "repetition_ratio=0.6471; maximum=0.3500"
+            }
+          },
+          "passed_checks": 1,
+          "total_checks": 2,
+          "score": 0.5
+        }
+      },
+      {
+        "prompt_id": "database_definition",
+        "category": "definition",
+        "prompt": "What is a database?",
+        "expected_behavior": "Explains that a database stores and organizes information.",
+        "response": "A database is a database that is used to store and store data in a database. It is a database that is used to store and store data in a database. It is used to store and store data in a database and store it in",
+        "time_seconds": 0.5679,
+        "stats": {
+          "characters": 210,
+          "words": 46,
+          "lines": 1,
+          "repetition_ratio": 0.7609,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "required_keywords": {
+              "passed": true,
+              "score": 1.0,
+              "details": "mode=all; present=['store', 'data']; missing=[]"
+            },
+            "max_repetition_ratio": {
+              "passed": false,
+              "score": 0.0,
+              "details": "repetition_ratio=0.7609; maximum=0.3500"
+            }
+          },
+          "passed_checks": 1,
+          "total_checks": 2,
+          "score": 0.5
+        }
+      },
+      {
+        "prompt_id": "photosynthesis_simple",
+        "category": "factual_knowledge",
+        "prompt": "Explain photosynthesis in simple words.",
+        "expected_behavior": "Explains that plants use sunlight, water, and carbon dioxide to make food.",
+        "response": "The photosynthesis of plants is a process that involves the release of carbon dioxide from the atmosphere. It is a process that involves the release of carbon dioxide from the atmosphere, which is then released into the atmosphere. This process is known as the photos",
+        "time_seconds": 0.6013,
+        "stats": {
+          "characters": 267,
+          "words": 45,
+          "lines": 1,
+          "repetition_ratio": 0.4889,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "required_keywords": {
+              "passed": false,
+              "score": 0.0,
+              "details": "mode=all; present=['carbon dioxide']; missing=['sunlight', 'water']"
+            },
+            "max_repetition_ratio": {
+              "passed": false,
+              "score": 0.0,
+              "details": "repetition_ratio=0.4889; maximum=0.3500"
+            }
+          },
+          "passed_checks": 0,
+          "total_checks": 2,
+          "score": 0.0
+        }
+      },
+      {
+        "prompt_id": "water_boiling_point",
+        "category": "factual_knowledge",
+        "prompt": "At what temperature does water boil at sea level?",
+        "expected_behavior": "Answers approximately 100 degrees Celsius or 212 degrees Fahrenheit.",
+        "response": "Water boil at sea level is a hot and humid place. It is a hot and humid place where water is not available for a long time. It is also a hot and humid place where water is not available for a long time.",
+        "time_seconds": 0.4285,
+        "stats": {
+          "characters": 202,
+          "words": 44,
+          "lines": 1,
+          "repetition_ratio": 0.5682,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "accepted_answers": {
+              "passed": false,
+              "score": 0.0,
+              "details": "response did not equal or clearly begin with an accepted answer"
+            }
+          },
+          "passed_checks": 0,
+          "total_checks": 1,
+          "score": 0.0
+        }
+      },
+      {
+        "prompt_id": "largest_planet",
+        "category": "factual_knowledge",
+        "prompt": "What is the largest planet in our solar system?",
+        "expected_behavior": "Answers Jupiter.",
+        "response": "The largest planet in our solar system is the Sun, which is the largest planet in the solar system. It is the largest planet in the solar system, with a total mass of around 2.5 million kilometers. The largest planet in the solar system is the Sun, which is the largest",
+        "time_seconds": 0.5909,
+        "stats": {
+          "characters": 269,
+          "words": 51,
+          "lines": 1,
+          "repetition_ratio": 0.6078,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "accepted_answers": {
+              "passed": false,
+              "score": 0.0,
+              "details": "response did not equal or clearly begin with an accepted answer"
+            }
+          },
+          "passed_checks": 0,
+          "total_checks": 1,
+          "score": 0.0
+        }
+      },
+      {
+        "prompt_id": "india_capital",
+        "category": "factual_knowledge",
+        "prompt": "What is the capital of India?",
+        "expected_behavior": "Answers New Delhi.",
+        "response": "The capital of India is the capital of India. It is the capital of India, which is the capital of India. It is the capital of India, which is the capital of India.",
+        "time_seconds": 0.3606,
+        "stats": {
+          "characters": 163,
+          "words": 33,
+          "lines": 1,
+          "repetition_ratio": 0.7879,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "accepted_answers": {
+              "passed": false,
+              "score": 0.0,
+              "details": "response did not equal or clearly begin with an accepted answer"
+            }
+          },
+          "passed_checks": 0,
+          "total_checks": 1,
+          "score": 0.0
+        }
+      },
+      {
+        "prompt_id": "gravity_child",
+        "category": "simple_explanation",
+        "prompt": "Explain gravity to a 10-year-old.",
+        "expected_behavior": "Explains gravity as the force that pulls objects toward Earth or other masses.",
+        "response": "The gravity of a 10-year-old boy is about 2.5 times the mass of a human. The weight of the boy is about 1.5 times the mass of a human. The weight of the boy is about 1.5 times the mass of a human. The weight of the",
+        "time_seconds": 0.5453,
+        "stats": {
+          "characters": 214,
+          "words": 47,
+          "lines": 1,
+          "repetition_ratio": 0.7021,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {},
+          "passed_checks": 0,
+          "total_checks": 0,
+          "score": null
+        }
+      },
+      {
+        "prompt_id": "electricity_child",
+        "category": "simple_explanation",
+        "prompt": "Explain electricity to a 10-year-old.",
+        "expected_behavior": "Explains electricity as the movement or use of electric charge in simple language.",
+        "response": "The electricity to a 10-year-old child is a power source. It is a power source that is used to power a home or business. It is used to power a home or business, and it is used to power a home or business. The electricity is used to power a home or",
+        "time_seconds": 0.5474,
+        "stats": {
+          "characters": 247,
+          "words": 52,
+          "lines": 1,
+          "repetition_ratio": 0.6923,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {},
+          "passed_checks": 0,
+          "total_checks": 0,
+          "score": null
+        }
+      },
+      {
+        "prompt_id": "education_3_benefits",
+        "category": "instruction_following",
+        "prompt": "Give exactly 3 benefits of education.",
+        "expected_behavior": "Returns exactly 3 distinct education-related benefits.",
+        "response": "1. Improved communication and communication skills\n2. Improved communication skills\n3. Improved communication skills\n4. Improved communication skills\n5. Improved communication skills\n6. Improved communication skills\n7. Improved communication skills\n8.",
+        "time_seconds": 0.554,
+        "stats": {
+          "characters": 251,
+          "words": 31,
+          "lines": 8,
+          "repetition_ratio": 0.6129,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "numbered_item_count": {
+              "passed": false,
+              "score": 0.0,
+              "details": "numbered items=7; expected=3"
+            },
+            "max_repetition_ratio": {
+              "passed": false,
+              "score": 0.0,
+              "details": "repetition_ratio=0.6129; maximum=0.3500"
+            }
+          },
+          "passed_checks": 0,
+          "total_checks": 2,
+          "score": 0.0
+        }
+      },
+      {
+        "prompt_id": "healthy_habits_4",
+        "category": "instruction_following",
+        "prompt": "List exactly 4 healthy daily habits.",
+        "expected_behavior": "Returns exactly 4 practical healthy habits.",
+        "response": "1. Eat a balanced diet\n2. Eat a balanced diet\n3. Eat a balanced diet\n4. Eat a balanced diet\n5. Eat a balanced diet\n6. Eat a balanced diet\n7. Eat a balanced diet\n8. Eat a balanced diet\n9. Eat a",
+        "time_seconds": 0.5252,
+        "stats": {
+          "characters": 192,
+          "words": 43,
+          "lines": 9,
+          "repetition_ratio": 0.6977,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "numbered_item_count": {
+              "passed": false,
+              "score": 0.0,
+              "details": "numbered items=9; expected=4"
+            },
+            "max_repetition_ratio": {
+              "passed": false,
+              "score": 0.0,
+              "details": "repetition_ratio=0.6977; maximum=0.3500"
+            }
+          },
+          "passed_checks": 0,
+          "total_checks": 2,
+          "score": 0.0
+        }
+      },
+      {
+        "prompt_id": "two_programming_languages",
+        "category": "instruction_following",
+        "prompt": "Name exactly 2 programming languages.",
+        "expected_behavior": "Returns exactly 2 valid programming language names.",
+        "response": "1. AI-based programming languages\n2. AI-based programming languages\n3. AI-based programming languages\n4. AI-based programming languages\n5. AI-based programming languages\n6. AI-",
+        "time_seconds": 0.5392,
+        "stats": {
+          "characters": 176,
+          "words": 22,
+          "lines": 6,
+          "repetition_ratio": 0.5455,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "numbered_item_count": {
+              "passed": false,
+              "score": 0.0,
+              "details": "numbered items=6; expected=2"
+            },
+            "max_repetition_ratio": {
+              "passed": false,
+              "score": 0.0,
+              "details": "repetition_ratio=0.5455; maximum=0.3500"
+            }
+          },
+          "passed_checks": 0,
+          "total_checks": 2,
+          "score": 0.0
+        }
+      },
+      {
+        "prompt_id": "one_sentence_sun",
+        "category": "instruction_following",
+        "prompt": "Describe the Sun in exactly one sentence.",
+        "expected_behavior": "Produces one accurate sentence about the Sun.",
+        "response": "The Sun in the other sentence is a sun.",
+        "time_seconds": 0.1266,
+        "stats": {
+          "characters": 39,
+          "words": 9,
+          "lines": 1,
+          "repetition_ratio": 0.2222,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "required_keywords": {
+              "passed": true,
+              "score": 1.0,
+              "details": "mode=all; present=['sun']; missing=[]"
+            },
+            "max_line_count": {
+              "passed": true,
+              "score": 1.0,
+              "details": "non-empty lines=1; maximum=1"
+            }
+          },
+          "passed_checks": 2,
+          "total_checks": 2,
+          "score": 1.0
+        }
+      },
+      {
+        "prompt_id": "india_4_lines",
+        "category": "formatting",
+        "prompt": "Write exactly 4 short lines about India.",
+        "expected_behavior": "Writes exactly 4 short, coherent lines without major factual errors.",
+        "response": "The first line of the article is the “The Indian Indian Indian Indian Indian Indian Indian Indian Indian Indian Indian Indian Indian Indian Indian Indian Indian Indian Indian Indian Indian Indian Indian Indian",
+        "time_seconds": 0.5336,
+        "stats": {
+          "characters": 209,
+          "words": 33,
+          "lines": 1,
+          "repetition_ratio": 0.7879,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "exact_line_count": {
+              "passed": false,
+              "score": 0.0,
+              "details": "non-empty lines=1; expected=4"
+            },
+            "max_repetition_ratio": {
+              "passed": false,
+              "score": 0.0,
+              "details": "repetition_ratio=0.7879; maximum=0.3500"
+            }
+          },
+          "passed_checks": 0,
+          "total_checks": 2,
+          "score": 0.0
+        }
+      },
+      {
+        "prompt_id": "numbered_breakfast",
+        "category": "formatting",
+        "prompt": "Give a numbered list of exactly 3 simple vegetarian breakfast ideas.",
+        "expected_behavior": "Returns a numbered list with exactly 3 vegetarian breakfast ideas.",
+        "response": "1. 1. 1/2 cup of fresh, fresh, and cooked meat.\n2. 2. 1/2 cup of fresh, fresh, and cooked meat.\n3. 3. 1/2 cup of fresh, fresh, and cooked meat.\n4. 4. 1/",
+        "time_seconds": 0.5482,
+        "stats": {
+          "characters": 152,
+          "words": 33,
+          "lines": 4,
+          "repetition_ratio": 0.6667,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "forbidden_keywords": {
+              "passed": false,
+              "score": 0.0,
+              "details": "forbidden terms found: ['meat']"
+            },
+            "numbered_item_count": {
+              "passed": false,
+              "score": 0.0,
+              "details": "numbered items=4; expected=3"
+            },
+            "max_repetition_ratio": {
+              "passed": false,
+              "score": 0.0,
+              "details": "repetition_ratio=0.6667; maximum=0.3500"
+            }
+          },
+          "passed_checks": 0,
+          "total_checks": 3,
+          "score": 0.0
+        }
+      },
+      {
+        "prompt_id": "yes_no_then_reason",
+        "category": "formatting",
+        "prompt": "Is Python a programming language? Answer yes or no, then give one short reason.",
+        "expected_behavior": "Answers yes and gives one concise correct reason.",
+        "response": "Python is a programming language that is used to create and maintain a variety of applications. It is a language that is used to create and maintain a variety of applications, from data analysis to data analysis. Python is a programming",
+        "time_seconds": 0.5508,
+        "stats": {
+          "characters": 236,
+          "words": 41,
+          "lines": 1,
+          "repetition_ratio": 0.561,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "required_keywords": {
+              "passed": false,
+              "score": 0.0,
+              "details": "mode=all; present=[]; missing=['yes']"
+            },
+            "max_line_count": {
+              "passed": true,
+              "score": 1.0,
+              "details": "non-empty lines=1; maximum=2"
+            }
+          },
+          "passed_checks": 1,
+          "total_checks": 2,
+          "score": 0.5
+        }
+      },
+      {
+        "prompt_id": "three_words_ocean",
+        "category": "formatting",
+        "prompt": "Describe the ocean using exactly 3 words.",
+        "expected_behavior": "Returns exactly 3 relevant words.",
+        "response": "The ocean is a world of oceans, with a wide range of oceans, oceans, and oceans. It is a world of oceans, oceans, and oceans, and is a world of oceans, oceans, and oceans. The ocean is a world of oceans, oceans, and oceans, and is a",
+        "time_seconds": 0.5507,
+        "stats": {
+          "characters": 232,
+          "words": 47,
+          "lines": 1,
+          "repetition_ratio": 0.7447,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "exact_word_count": {
+              "passed": false,
+              "score": 0.0,
+              "details": "normalized words=47; expected=3"
+            }
+          },
+          "passed_checks": 0,
+          "total_checks": 1,
+          "score": 0.0
+        }
+      },
+      {
+        "prompt_id": "basic_arithmetic",
+        "category": "reasoning",
+        "prompt": "What is 17 plus 25?",
+        "expected_behavior": "Answers 42.",
+        "response": "17 plus 25 is a 10-year-old boy who is a young man.",
+        "time_seconds": 0.1658,
+        "stats": {
+          "characters": 51,
+          "words": 12,
+          "lines": 1,
+          "repetition_ratio": 0.1667,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "exact_answer": {
+              "passed": false,
+              "score": 0.0,
+              "details": "normalized response does not match '42'"
+            }
+          },
+          "passed_checks": 0,
+          "total_checks": 1,
+          "score": 0.0
+        }
+      },
+      {
+        "prompt_id": "simple_subtraction",
+        "category": "reasoning",
+        "prompt": "A box has 12 apples. You remove 5. How many apples remain?",
+        "expected_behavior": "Answers 7.",
+        "response": "1. 1/2 cup of apple juice\n2. 1/2 cup of apple juice\n3. 1/2 cup of apple juice\n4. 1/2 cup of apple juice\n5. 1/2 cup of apple juice\n6. 1/2 cup of apple juice",
+        "time_seconds": 0.533,
+        "stats": {
+          "characters": 155,
+          "words": 36,
+          "lines": 6,
+          "repetition_ratio": 0.6944,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "exact_answer": {
+              "passed": false,
+              "score": 0.0,
+              "details": "normalized response does not match '7'"
+            }
+          },
+          "passed_checks": 0,
+          "total_checks": 1,
+          "score": 0.0
+        }
+      },
+      {
+        "prompt_id": "comparison_reasoning",
+        "category": "reasoning",
+        "prompt": "Which is larger: 3/4 or 2/3? Explain briefly.",
+        "expected_behavior": "Correctly identifies 3/4 as larger and gives a valid brief explanation.",
+        "response": "1. The size of the hole is the size of the hole. \n2. The size of the hole is the size of the hole. \n3. The size of the hole is the size of the hole. \n4. The size of the hole is the size of the",
+        "time_seconds": 0.5422,
+        "stats": {
+          "characters": 192,
+          "words": 47,
+          "lines": 4,
+          "repetition_ratio": 0.8085,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "accepted_answers": {
+              "passed": false,
+              "score": 0.0,
+              "details": "response did not equal or clearly begin with an accepted answer"
+            },
+            "required_keywords": {
+              "passed": false,
+              "score": 0.0,
+              "details": "mode=any; present=[]; missing=['larger', 'greater']"
+            }
+          },
+          "passed_checks": 0,
+          "total_checks": 2,
+          "score": 0.0
+        }
+      },
+      {
+        "prompt_id": "sequence_next",
+        "category": "reasoning",
+        "prompt": "What number comes next: 2, 4, 6, 8, ?",
+        "expected_behavior": "Answers 10.",
+        "response": "1, 4, 6, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8,",
+        "time_seconds": 0.5841,
+        "stats": {
+          "characters": 89,
+          "words": 30,
+          "lines": 1,
+          "repetition_ratio": 0.8667,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "exact_answer": {
+              "passed": false,
+              "score": 0.0,
+              "details": "normalized response does not match '10'"
+            }
+          },
+          "passed_checks": 0,
+          "total_checks": 1,
+          "score": 0.0
+        }
+      },
+      {
+        "prompt_id": "variable_programming",
+        "category": "programming",
+        "prompt": "Explain what a variable is in programming.",
+        "expected_behavior": "Explains that a variable stores a value that can be used or changed.",
+        "response": "A variable is a variable that is used to calculate the number of times a given number is a variable. It is a variable that is used to calculate the number of times a given number is a variable. It is a variable that is used to calculate the",
+        "time_seconds": 0.5288,
+        "stats": {
+          "characters": 240,
+          "words": 49,
+          "lines": 1,
+          "repetition_ratio": 0.7347,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "required_keywords": {
+              "passed": false,
+              "score": 0.0,
+              "details": "mode=all; present=[]; missing=['store', 'value']"
+            },
+            "max_repetition_ratio": {
+              "passed": false,
+              "score": 0.0,
+              "details": "repetition_ratio=0.7347; maximum=0.3500"
+            }
+          },
+          "passed_checks": 0,
+          "total_checks": 2,
+          "score": 0.0
+        }
+      },
+      {
+        "prompt_id": "function_programming",
+        "category": "programming",
+        "prompt": "What is a function in programming?",
+        "expected_behavior": "Explains that a function is a reusable block of code that performs a task.",
+        "response": "A function in programming is a function that is used to create a function that is used to create a function. It is a function that is used to create a function that is used to create a function that is used to create a function. It is a function that is used to create a function",
+        "time_seconds": 0.544,
+        "stats": {
+          "characters": 279,
+          "words": 57,
+          "lines": 1,
+          "repetition_ratio": 0.8246,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "required_keywords": {
+              "passed": false,
+              "score": 0.0,
+              "details": "mode=any; present=[]; missing=['reusable', 'block', 'task']"
+            },
+            "max_repetition_ratio": {
+              "passed": false,
+              "score": 0.0,
+              "details": "repetition_ratio=0.8246; maximum=0.3500"
+            }
+          },
+          "passed_checks": 0,
+          "total_checks": 2,
+          "score": 0.0
+        }
+      },
+      {
+        "prompt_id": "python_print",
+        "category": "programming",
+        "prompt": "Write one line of Python code that prints Hello.",
+        "expected_behavior": "Returns valid Python such as print(\"Hello\").",
+        "response": "The Python code is a simple and easy-to-understand programming language that is used to create and manipulate code. It is a powerful programming language that is used to create and manipulate code. It is also used to create and manipulate",
+        "time_seconds": 0.5479,
+        "stats": {
+          "characters": 238,
+          "words": 40,
+          "lines": 1,
+          "repetition_ratio": 0.55,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "python_code_required": {
+              "passed": false,
+              "score": 0.0,
+              "details": "no supported, parseable Python construct found"
+            }
+          },
+          "passed_checks": 0,
+          "total_checks": 1,
+          "score": 0.0
+        }
+      },
+      {
+        "prompt_id": "loop_simple",
+        "category": "programming",
+        "prompt": "Explain what a loop does in programming.",
+        "expected_behavior": "Explains that a loop repeats instructions.",
+        "response": "A loop is a programming language that is used to create a system. It is a programming language that is used to create a system. It is a programming language that is used to create a system. It is a programming language that is used to create a system. It is a",
+        "time_seconds": 0.5309,
+        "stats": {
+          "characters": 259,
+          "words": 52,
+          "lines": 1,
+          "repetition_ratio": 0.7885,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "required_keywords": {
+              "passed": false,
+              "score": 0.0,
+              "details": "mode=any; present=[]; missing=['repeat', 'repeats', 'iteration']"
+            },
+            "max_repetition_ratio": {
+              "passed": false,
+              "score": 0.0,
+              "details": "repetition_ratio=0.7885; maximum=0.3500"
+            }
+          },
+          "passed_checks": 0,
+          "total_checks": 2,
+          "score": 0.0
+        }
+      },
+      {
+        "prompt_id": "python_study_plan",
+        "category": "planning",
+        "prompt": "Give me a simple 3-step study plan for learning Python.",
+        "expected_behavior": "Returns exactly 3 practical and distinct steps.",
+        "response": "1. Identify the key concepts of Python and its applications.\n2. Identify the key concepts of Python and its applications.\n3. Identify the key concepts of Python and its applications.",
+        "time_seconds": 0.5381,
+        "stats": {
+          "characters": 182,
+          "words": 30,
+          "lines": 3,
+          "repetition_ratio": 0.6,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "numbered_item_count": {
+              "passed": true,
+              "score": 1.0,
+              "details": "numbered items=3; expected=3"
+            },
+            "max_repetition_ratio": {
+              "passed": false,
+              "score": 0.0,
+              "details": "repetition_ratio=0.6000; maximum=0.3500"
+            }
+          },
+          "passed_checks": 1,
+          "total_checks": 2,
+          "score": 0.5
+        }
+      },
+      {
+        "prompt_id": "exam_study_plan",
+        "category": "planning",
+        "prompt": "Create a simple 3-step plan for preparing for an exam.",
+        "expected_behavior": "Returns 3 useful and distinct study steps.",
+        "response": "1. Set a goal for the exam.\n2. Set a goal for the exam.\n3. Set a goal for the exam.\n4. Set a goal for the exam.\n5. Set a goal for the exam.\n6. Set a goal for the exam.",
+        "time_seconds": 0.5538,
+        "stats": {
+          "characters": 167,
+          "words": 42,
+          "lines": 6,
+          "repetition_ratio": 0.7143,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "numbered_item_count": {
+              "passed": false,
+              "score": 0.0,
+              "details": "numbered items=6; expected=3"
+            },
+            "max_repetition_ratio": {
+              "passed": false,
+              "score": 0.0,
+              "details": "repetition_ratio=0.7143; maximum=0.3500"
+            }
+          },
+          "passed_checks": 0,
+          "total_checks": 2,
+          "score": 0.0
+        }
+      },
+      {
+        "prompt_id": "morning_routine",
+        "category": "planning",
+        "prompt": "Suggest a short morning routine for a student.",
+        "expected_behavior": "Provides a practical, concise sequence of morning activities.",
+        "response": "A short morning routine for a student is to make sure they are getting enough sleep and getting enough sleep. This will help them to stay active and stay active.",
+        "time_seconds": 0.3011,
+        "stats": {
+          "characters": 161,
+          "words": 30,
+          "lines": 1,
+          "repetition_ratio": 0.2667,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {},
+          "passed_checks": 0,
+          "total_checks": 0,
+          "score": null
+        }
+      },
+      {
+        "prompt_id": "project_plan",
+        "category": "planning",
+        "prompt": "Give 3 steps for starting a small software project.",
+        "expected_behavior": "Gives 3 sensible steps such as defining scope, planning, and implementation.",
+        "response": "1. Create a project plan that is easy to understand and understand.\n2. Create a plan that is easy to understand and understand.\n3. Create a plan that is easy to understand and understand.\n4. Create a plan that is easy to understand and understand.",
+        "time_seconds": 0.5388,
+        "stats": {
+          "characters": 247,
+          "words": 45,
+          "lines": 4,
+          "repetition_ratio": 0.6889,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "numbered_item_count": {
+              "passed": false,
+              "score": 0.0,
+              "details": "numbered items=4; expected=3"
+            },
+            "max_repetition_ratio": {
+              "passed": false,
+              "score": 0.0,
+              "details": "repetition_ratio=0.6889; maximum=0.3500"
+            }
+          },
+          "passed_checks": 0,
+          "total_checks": 2,
+          "score": 0.0
+        }
+      },
+      {
+        "prompt_id": "short_story",
+        "category": "creative",
+        "prompt": "Write a short 5-line story about a robot learning to help humans.",
+        "expected_behavior": "Writes a coherent story in exactly or approximately 5 lines.",
+        "response": "The robot learning to help humans learn to help humans learn to help humans.",
+        "time_seconds": 0.1368,
+        "stats": {
+          "characters": 76,
+          "words": 14,
+          "lines": 1,
+          "repetition_ratio": 0.5,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "max_repetition_ratio": {
+              "passed": false,
+              "score": 0.0,
+              "details": "repetition_ratio=0.5000; maximum=0.3500"
+            }
+          },
+          "passed_checks": 0,
+          "total_checks": 1,
+          "score": 0.0
+        }
+      },
+      {
+        "prompt_id": "rain_poem",
+        "category": "creative",
+        "prompt": "Write a 4-line poem about rain.",
+        "expected_behavior": "Writes a coherent poem in 4 lines.",
+        "response": "The rain was a rain of water. It was a rain of water. It was a rain of water. It was a rain of water. It was a rain of water. It was a rain of water. It was a rain of water. It was a rain of water. It was a",
+        "time_seconds": 0.5414,
+        "stats": {
+          "characters": 206,
+          "words": 52,
+          "lines": 1,
+          "repetition_ratio": 0.8654,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "exact_line_count": {
+              "passed": false,
+              "score": 0.0,
+              "details": "non-empty lines=1; expected=4"
+            },
+            "max_repetition_ratio": {
+              "passed": false,
+              "score": 0.0,
+              "details": "repetition_ratio=0.8654; maximum=0.3500"
+            }
+          },
+          "passed_checks": 0,
+          "total_checks": 2,
+          "score": 0.0
+        }
+      },
+      {
+        "prompt_id": "space_story",
+        "category": "creative",
+        "prompt": "Write a very short story about a child visiting the Moon.",
+        "expected_behavior": "Writes a brief coherent story involving a child and the Moon.",
+        "response": "The Moon is a beautiful and beautiful place. It is a beautiful place to visit, and it is a beautiful place to visit. It is a beautiful place to visit, and it is a beautiful place to visit. It is a beautiful place to visit, and it is a beautiful place to visit.",
+        "time_seconds": 0.5307,
+        "stats": {
+          "characters": 260,
+          "words": 53,
+          "lines": 1,
+          "repetition_ratio": 0.8113,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {},
+          "passed_checks": 0,
+          "total_checks": 0,
+          "score": null
+        }
+      },
+      {
+        "prompt_id": "friendly_greeting",
+        "category": "conversation",
+        "prompt": "Reply warmly to someone who says: I had a difficult day.",
+        "expected_behavior": "Responds with empathy and supportive language.",
+        "response": "I was a very hard day. I was a very hard day. I was a hard day. I was a hard day. I was a hard day. I was a hard day. I was a hard day. I was a hard day. I was a hard day. I was a hard",
+        "time_seconds": 0.5388,
+        "stats": {
+          "characters": 184,
+          "words": 51,
+          "lines": 1,
+          "repetition_ratio": 0.8824,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "required_keywords": {
+              "passed": false,
+              "score": 0.0,
+              "details": "mode=any; present=[]; missing=['sorry', 'support', 'hope', 'understand']"
+            },
+            "max_repetition_ratio": {
+              "passed": false,
+              "score": 0.0,
+              "details": "repetition_ratio=0.8824; maximum=0.3500"
+            }
+          },
+          "passed_checks": 0,
+          "total_checks": 2,
+          "score": 0.0
+        }
+      },
+      {
+        "prompt_id": "ask_for_help",
+        "category": "conversation",
+        "prompt": "Respond to: I do not understand this topic. Can you help me?",
+        "expected_behavior": "Offers help clearly and politely.",
+        "response": "I am not sure if I am a good candidate for the Certificate of Certification. I am not sure if I am a good candidate for the Certificate of Certification. I am not sure if I am a good candidate for the",
+        "time_seconds": 0.5486,
+        "stats": {
+          "characters": 200,
+          "words": 42,
+          "lines": 1,
+          "repetition_ratio": 0.6905,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "required_keywords": {
+              "passed": true,
+              "score": 1.0,
+              "details": "mode=any; present=['sure']; missing=['help', 'explain']"
+            },
+            "max_repetition_ratio": {
+              "passed": false,
+              "score": 0.0,
+              "details": "repetition_ratio=0.6905; maximum=0.3500"
+            }
+          },
+          "passed_checks": 1,
+          "total_checks": 2,
+          "score": 0.5
+        }
+      },
+      {
+        "prompt_id": "thank_you_reply",
+        "category": "conversation",
+        "prompt": "Reply politely to someone who says: Thank you for helping me.",
+        "expected_behavior": "Provides a brief polite response.",
+        "response": "I am grateful for the help I have made. I am grateful for the help I have made. I am grateful for the help I have made. I am grateful for the help I have made. I am grateful for the help I have made. I am grateful for the help I have made.",
+        "time_seconds": 0.5276,
+        "stats": {
+          "characters": 239,
+          "words": 54,
+          "lines": 1,
+          "repetition_ratio": 0.8519,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "required_keywords": {
+              "passed": false,
+              "score": 0.0,
+              "details": "mode=any; present=[]; missing=['welcome', 'glad', 'happy']"
+            },
+            "max_repetition_ratio": {
+              "passed": false,
+              "score": 0.0,
+              "details": "repetition_ratio=0.8519; maximum=0.3500"
+            }
+          },
+          "passed_checks": 0,
+          "total_checks": 2,
+          "score": 0.0
+        }
+      },
+      {
+        "prompt_id": "uncertain_fact",
+        "category": "uncertainty",
+        "prompt": "What will the exact price of Bitcoin be one year from today?",
+        "expected_behavior": "States that the exact future price cannot be known and avoids inventing certainty.",
+        "response": "The price of Bitcoin is $1,000.",
+        "time_seconds": 0.1043,
+        "stats": {
+          "characters": 31,
+          "words": 6,
+          "lines": 1,
+          "repetition_ratio": 0.0,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "uncertainty_required": {
+              "passed": false,
+              "score": 0.0,
+              "details": "uncertainty phrases=[]; confident numeric prediction=False"
+            }
+          },
+          "passed_checks": 0,
+          "total_checks": 1,
+          "score": 0.0
+        }
+      },
+      {
+        "prompt_id": "unknown_person",
+        "category": "uncertainty",
+        "prompt": "Who is the current mayor of a fictional city called Zorvia?",
+        "expected_behavior": "Recognizes that Zorvia is fictional or says the information is unavailable.",
+        "response": "The current mayor of a fictional city called Zorvia is a city of the past.",
+        "time_seconds": 0.183,
+        "stats": {
+          "characters": 74,
+          "words": 15,
+          "lines": 1,
+          "repetition_ratio": 0.2667,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "required_keywords": {
+              "passed": true,
+              "score": 1.0,
+              "details": "mode=any; present=['fictional']; missing=['not real', 'no such city', 'unavailable']"
+            }
+          },
+          "passed_checks": 1,
+          "total_checks": 1,
+          "score": 1.0
+        }
+      },
+      {
+        "prompt_id": "medical_uncertainty",
+        "category": "uncertainty",
+        "prompt": "I have a headache. Tell me exactly what disease I have.",
+        "expected_behavior": "Does not diagnose from insufficient information and recommends appropriate professional evaluation if needed.",
+        "response": "I have a headache, a headache, and a headache.",
+        "time_seconds": 0.1209,
+        "stats": {
+          "characters": 46,
+          "words": 9,
+          "lines": 1,
+          "repetition_ratio": 0.4444,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "required_keywords": {
+              "passed": false,
+              "score": 0.0,
+              "details": "mode=any; present=[]; missing=['doctor', 'medical', 'professional', 'cannot diagnose']"
+            },
+            "uncertainty_required": {
+              "passed": false,
+              "score": 0.0,
+              "details": "uncertainty phrases=[]; confident numeric prediction=False"
+            }
+          },
+          "passed_checks": 0,
+          "total_checks": 2,
+          "score": 0.0
+        }
+      },
+      {
+        "prompt_id": "ambiguous_request",
+        "category": "uncertainty",
+        "prompt": "Explain the thing I mentioned earlier.",
+        "expected_behavior": "Asks for clarification instead of inventing missing context.",
+        "response": "The thing I mentioned earlier is that I am not a good person. I am a good person. I am a good person. I am a good person. I am a good person. I am a good person. I am a good person. I am a good person. I am a good",
+        "time_seconds": 0.5507,
+        "stats": {
+          "characters": 213,
+          "words": 52,
+          "lines": 1,
+          "repetition_ratio": 0.7692,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "clarification_required": {
+              "passed": false,
+              "score": 0.0,
+              "details": "clarification phrases=[]"
+            }
+          },
+          "passed_checks": 0,
+          "total_checks": 1,
+          "score": 0.0
+        }
+      }
+    ]
+  },
+  {
+    "name": "vasu_60m_ultrachat_masked_v2_from_alpaca_v3",
+    "path": "checkpoints/vasu_60m/ultrachat_masked_v2_from_alpaca_v3/best.pt",
+    "model_config": "vasu_60m",
+    "prompt_format": "alpaca",
+    "generation_config": {
+      "mode": "greedy",
+      "do_sample": false,
+      "max_new_tokens": 60,
+      "temperature": null,
+      "top_k": null,
+      "top_p": null
+    },
+    "generations": [
+      {
+        "prompt_id": "ai_3_sentences",
+        "category": "definition",
+        "prompt": "What is artificial intelligence? Answer in 3 simple sentences.",
+        "expected_behavior": "Defines AI clearly in about 3 simple sentences.",
+        "response": "Artificial intelligence is a type of machine learning that uses machine learning algorithms to analyze data and make predictions. It is a type of machine learning that uses machine learning algorithms to analyze data and make predictions. Artificial intelligence is",
+        "time_seconds": 0.5531,
+        "stats": {
+          "characters": 265,
+          "words": 40,
+          "lines": 1,
+          "repetition_ratio": 0.55,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "non_empty": {
+              "passed": true,
+              "score": 1.0,
+              "details": "response is non-empty"
+            },
+            "max_repetition_ratio": {
+              "passed": false,
+              "score": 0.0,
+              "details": "repetition_ratio=0.5500; maximum=0.3500"
+            }
+          },
+          "passed_checks": 1,
+          "total_checks": 2,
+          "score": 0.5
+        }
+      },
+      {
+        "prompt_id": "ml_simple",
+        "category": "definition",
+        "prompt": "Explain machine learning in simple words.",
+        "expected_behavior": "Explains that machines learn patterns from data.",
+        "response": "Machine learning is a type of machine learning that uses machine learning algorithms to learn from data. Machine learning algorithms use machine learning algorithms to learn from data and make predictions. Machine learning algorithms use machine learning algorith",
+        "time_seconds": 0.5207,
+        "stats": {
+          "characters": 263,
+          "words": 38,
+          "lines": 1,
+          "repetition_ratio": 0.5263,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "required_keywords": {
+              "passed": true,
+              "score": 1.0,
+              "details": "mode=any; present=['data', 'learn']; missing=['patterns']"
+            },
+            "max_repetition_ratio": {
+              "passed": false,
+              "score": 0.0,
+              "details": "repetition_ratio=0.5263; maximum=0.3500"
+            }
+          },
+          "passed_checks": 1,
+          "total_checks": 2,
+          "score": 0.5
+        }
+      },
+      {
+        "prompt_id": "internet_definition",
+        "category": "definition",
+        "prompt": "What is the internet? Explain it in simple words.",
+        "expected_behavior": "Explains that the internet connects computers and allows information exchange.",
+        "response": "The internet is a digital platform that allows users to access and access information from anywhere in the world. It is a digital platform that allows users to access information from anywhere in the world. The internet is a digital platform that allows users to access information from anywhere in the world",
+        "time_seconds": 0.5509,
+        "stats": {
+          "characters": 308,
+          "words": 52,
+          "lines": 1,
+          "repetition_ratio": 0.6538,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "required_keywords": {
+              "passed": true,
+              "score": 1.0,
+              "details": "mode=any; present=['information']; missing=['connect', 'computer']"
+            },
+            "max_repetition_ratio": {
+              "passed": false,
+              "score": 0.0,
+              "details": "repetition_ratio=0.6538; maximum=0.3500"
+            }
+          },
+          "passed_checks": 1,
+          "total_checks": 2,
+          "score": 0.5
+        }
+      },
+      {
+        "prompt_id": "database_definition",
+        "category": "definition",
+        "prompt": "What is a database?",
+        "expected_behavior": "Explains that a database stores and organizes information.",
+        "response": "A database is a database that is used to store and store data in a database. It is a database that is used to store and store data in a database. The database is used to store and store data in a database,",
+        "time_seconds": 0.5144,
+        "stats": {
+          "characters": 205,
+          "words": 43,
+          "lines": 1,
+          "repetition_ratio": 0.7209,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "required_keywords": {
+              "passed": true,
+              "score": 1.0,
+              "details": "mode=all; present=['store', 'data']; missing=[]"
+            },
+            "max_repetition_ratio": {
+              "passed": false,
+              "score": 0.0,
+              "details": "repetition_ratio=0.7209; maximum=0.3500"
+            }
+          },
+          "passed_checks": 1,
+          "total_checks": 2,
+          "score": 0.5
+        }
+      },
+      {
+        "prompt_id": "photosynthesis_simple",
+        "category": "factual_knowledge",
+        "prompt": "Explain photosynthesis in simple words.",
+        "expected_behavior": "Explains that plants use sunlight, water, and carbon dioxide to make food.",
+        "response": "The photosynthesis of plants is a process that involves the release of carbon dioxide from the atmosphere. The carbon dioxide is released into the atmosphere through the process of photosynthesis, which is the process of photosynthesis. The",
+        "time_seconds": 0.5524,
+        "stats": {
+          "characters": 240,
+          "words": 37,
+          "lines": 1,
+          "repetition_ratio": 0.5135,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "required_keywords": {
+              "passed": false,
+              "score": 0.0,
+              "details": "mode=all; present=['carbon dioxide']; missing=['sunlight', 'water']"
+            },
+            "max_repetition_ratio": {
+              "passed": false,
+              "score": 0.0,
+              "details": "repetition_ratio=0.5135; maximum=0.3500"
+            }
+          },
+          "passed_checks": 0,
+          "total_checks": 2,
+          "score": 0.0
+        }
+      },
+      {
+        "prompt_id": "water_boiling_point",
+        "category": "factual_knowledge",
+        "prompt": "At what temperature does water boil at sea level?",
+        "expected_behavior": "Answers approximately 100 degrees Celsius or 212 degrees Fahrenheit.",
+        "response": "Water boil at sea level is a hot and humid place for the water to cool down. It is a hot and humid place for the water to cool down, and it is a hot and humid place for the water to cool down. The water boil is a hot and humid place for the water to",
+        "time_seconds": 0.5482,
+        "stats": {
+          "characters": 249,
+          "words": 57,
+          "lines": 1,
+          "repetition_ratio": 0.7018,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "accepted_answers": {
+              "passed": false,
+              "score": 0.0,
+              "details": "response did not equal or clearly begin with an accepted answer"
+            }
+          },
+          "passed_checks": 0,
+          "total_checks": 1,
+          "score": 0.0
+        }
+      },
+      {
+        "prompt_id": "largest_planet",
+        "category": "factual_knowledge",
+        "prompt": "What is the largest planet in our solar system?",
+        "expected_behavior": "Answers Jupiter.",
+        "response": "The largest planet in our solar system is the Sun. It is the largest planet in the solar system, with a total mass of around 2.5 million kilometers. The largest planet in the solar system is the Sun, with a total mass of around 2.5 million kilometers.",
+        "time_seconds": 0.5498,
+        "stats": {
+          "characters": 251,
+          "words": 47,
+          "lines": 1,
+          "repetition_ratio": 0.5957,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "accepted_answers": {
+              "passed": false,
+              "score": 0.0,
+              "details": "response did not equal or clearly begin with an accepted answer"
+            }
+          },
+          "passed_checks": 0,
+          "total_checks": 1,
+          "score": 0.0
+        }
+      },
+      {
+        "prompt_id": "india_capital",
+        "category": "factual_knowledge",
+        "prompt": "What is the capital of India?",
+        "expected_behavior": "Answers New Delhi.",
+        "response": "The capital of India is the capital of India. It is a capital of India that is located in the north-eastern part of the country. The capital of India is the capital of India, which is located in the south-eastern part of the country. The capital of India is the",
+        "time_seconds": 0.5444,
+        "stats": {
+          "characters": 261,
+          "words": 50,
+          "lines": 1,
+          "repetition_ratio": 0.7,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "accepted_answers": {
+              "passed": false,
+              "score": 0.0,
+              "details": "response did not equal or clearly begin with an accepted answer"
+            }
+          },
+          "passed_checks": 0,
+          "total_checks": 1,
+          "score": 0.0
+        }
+      },
+      {
+        "prompt_id": "gravity_child",
+        "category": "simple_explanation",
+        "prompt": "Explain gravity to a 10-year-old.",
+        "expected_behavior": "Explains gravity as the force that pulls objects toward Earth or other masses.",
+        "response": "The gravity to a 10-year-old boy is about 2.5 times the mass of a human. The weight of the boy is about 1.5 times the mass of a human. The weight of the boy is about 1.5 times the mass of a human. The weight of the",
+        "time_seconds": 0.5563,
+        "stats": {
+          "characters": 214,
+          "words": 47,
+          "lines": 1,
+          "repetition_ratio": 0.6809,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {},
+          "passed_checks": 0,
+          "total_checks": 0,
+          "score": null
+        }
+      },
+      {
+        "prompt_id": "electricity_child",
+        "category": "simple_explanation",
+        "prompt": "Explain electricity to a 10-year-old.",
+        "expected_behavior": "Explains electricity as the movement or use of electric charge in simple language.",
+        "response": "The electricity to a 10-year-old child is a power source. It is a power source that is used to power a home or business. It is a power source that is used to power a home or business. The power source is used to power a home or business, and it is",
+        "time_seconds": 0.5624,
+        "stats": {
+          "characters": 247,
+          "words": 52,
+          "lines": 1,
+          "repetition_ratio": 0.6923,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {},
+          "passed_checks": 0,
+          "total_checks": 0,
+          "score": null
+        }
+      },
+      {
+        "prompt_id": "education_3_benefits",
+        "category": "instruction_following",
+        "prompt": "Give exactly 3 benefits of education.",
+        "expected_behavior": "Returns exactly 3 distinct education-related benefits.",
+        "response": "1. Improved communication and communication skills\n2. Improved communication skills\n3. Improved communication skills\n4. Improved communication skills\n5. Improved communication skills\n6. Improved communication skills\n7. Improved communication skills\n8.",
+        "time_seconds": 0.5574,
+        "stats": {
+          "characters": 251,
+          "words": 31,
+          "lines": 8,
+          "repetition_ratio": 0.6129,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "numbered_item_count": {
+              "passed": false,
+              "score": 0.0,
+              "details": "numbered items=7; expected=3"
+            },
+            "max_repetition_ratio": {
+              "passed": false,
+              "score": 0.0,
+              "details": "repetition_ratio=0.6129; maximum=0.3500"
+            }
+          },
+          "passed_checks": 0,
+          "total_checks": 2,
+          "score": 0.0
+        }
+      },
+      {
+        "prompt_id": "healthy_habits_4",
+        "category": "instruction_following",
+        "prompt": "List exactly 4 healthy daily habits.",
+        "expected_behavior": "Returns exactly 4 practical healthy habits.",
+        "response": "1. Eat a balanced diet\n2. Eat a balanced diet\n3. Eat a balanced diet\n4. Eat a balanced diet\n5. Eat a balanced diet\n6. Eat a balanced diet\n7. Eat a balanced diet\n8. Eat a balanced diet\n9. Eat a",
+        "time_seconds": 0.522,
+        "stats": {
+          "characters": 192,
+          "words": 43,
+          "lines": 9,
+          "repetition_ratio": 0.6977,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "numbered_item_count": {
+              "passed": false,
+              "score": 0.0,
+              "details": "numbered items=9; expected=4"
+            },
+            "max_repetition_ratio": {
+              "passed": false,
+              "score": 0.0,
+              "details": "repetition_ratio=0.6977; maximum=0.3500"
+            }
+          },
+          "passed_checks": 0,
+          "total_checks": 2,
+          "score": 0.0
+        }
+      },
+      {
+        "prompt_id": "two_programming_languages",
+        "category": "instruction_following",
+        "prompt": "Name exactly 2 programming languages.",
+        "expected_behavior": "Returns exactly 2 valid programming language names.",
+        "response": "1. Python: Python is a programming language that is used to create and manipulate programming languages. It is a programming language that is used to create and manipulate programming languages.\n\n2. Python: Python is",
+        "time_seconds": 0.557,
+        "stats": {
+          "characters": 216,
+          "words": 34,
+          "lines": 2,
+          "repetition_ratio": 0.5588,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "numbered_item_count": {
+              "passed": true,
+              "score": 1.0,
+              "details": "numbered items=2; expected=2"
+            },
+            "max_repetition_ratio": {
+              "passed": false,
+              "score": 0.0,
+              "details": "repetition_ratio=0.5588; maximum=0.3500"
+            }
+          },
+          "passed_checks": 1,
+          "total_checks": 2,
+          "score": 0.5
+        }
+      },
+      {
+        "prompt_id": "one_sentence_sun",
+        "category": "instruction_following",
+        "prompt": "Describe the Sun in exactly one sentence.",
+        "expected_behavior": "Produces one accurate sentence about the Sun.",
+        "response": "The Sun in the other sentence is a symbol of the sun. It is a symbol of the sun's presence and the sun's presence. The sun is a symbol of the sun's presence and the sun's presence. The sun is a symbol of the sun's presence and the sun's presence.",
+        "time_seconds": 0.5329,
+        "stats": {
+          "characters": 246,
+          "words": 50,
+          "lines": 1,
+          "repetition_ratio": 0.74,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "required_keywords": {
+              "passed": true,
+              "score": 1.0,
+              "details": "mode=all; present=['sun']; missing=[]"
+            },
+            "max_line_count": {
+              "passed": true,
+              "score": 1.0,
+              "details": "non-empty lines=1; maximum=1"
+            }
+          },
+          "passed_checks": 2,
+          "total_checks": 2,
+          "score": 1.0
+        }
+      },
+      {
+        "prompt_id": "india_4_lines",
+        "category": "formatting",
+        "prompt": "Write exactly 4 short lines about India.",
+        "expected_behavior": "Writes exactly 4 short, coherent lines without major factual errors.",
+        "response": "1. The first line of the book is the first line of the book.\n2. The first line of the book is the first line of the book.\n3. The first line of the book is the first line of the book.\n4. The second line of the book is",
+        "time_seconds": 0.509,
+        "stats": {
+          "characters": 216,
+          "words": 50,
+          "lines": 4,
+          "repetition_ratio": 0.78,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "exact_line_count": {
+              "passed": true,
+              "score": 1.0,
+              "details": "non-empty lines=4; expected=4"
+            },
+            "max_repetition_ratio": {
+              "passed": false,
+              "score": 0.0,
+              "details": "repetition_ratio=0.7800; maximum=0.3500"
+            }
+          },
+          "passed_checks": 1,
+          "total_checks": 2,
+          "score": 0.5
+        }
+      },
+      {
+        "prompt_id": "numbered_breakfast",
+        "category": "formatting",
+        "prompt": "Give a numbered list of exactly 3 simple vegetarian breakfast ideas.",
+        "expected_behavior": "Returns a numbered list with exactly 3 vegetarian breakfast ideas.",
+        "response": "1. 1/2 cup of fresh fruit\n2. 1/2 cup of fresh fruit\n3. 1/2 cup of fresh fruit\n4. 1/2 cup of fresh fruit\n5. 1/2 cup of fresh fruit\n6. 1/2 cup of fresh fruit",
+        "time_seconds": 0.5428,
+        "stats": {
+          "characters": 155,
+          "words": 36,
+          "lines": 6,
+          "repetition_ratio": 0.6944,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "forbidden_keywords": {
+              "passed": true,
+              "score": 1.0,
+              "details": "no forbidden terms found"
+            },
+            "numbered_item_count": {
+              "passed": false,
+              "score": 0.0,
+              "details": "numbered items=6; expected=3"
+            },
+            "max_repetition_ratio": {
+              "passed": false,
+              "score": 0.0,
+              "details": "repetition_ratio=0.6944; maximum=0.3500"
+            }
+          },
+          "passed_checks": 1,
+          "total_checks": 3,
+          "score": 0.3333333333333333
+        }
+      },
+      {
+        "prompt_id": "yes_no_then_reason",
+        "category": "formatting",
+        "prompt": "Is Python a programming language? Answer yes or no, then give one short reason.",
+        "expected_behavior": "Answers yes and gives one concise correct reason.",
+        "response": "Python is a programming language that is used to create and maintain a large number of programming languages. It is a programming language that is used to create and maintain a large number of programming languages. Python is a programming language that is used to create and maintain a",
+        "time_seconds": 0.5391,
+        "stats": {
+          "characters": 286,
+          "words": 49,
+          "lines": 1,
+          "repetition_ratio": 0.6735,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "required_keywords": {
+              "passed": false,
+              "score": 0.0,
+              "details": "mode=all; present=[]; missing=['yes']"
+            },
+            "max_line_count": {
+              "passed": true,
+              "score": 1.0,
+              "details": "non-empty lines=1; maximum=2"
+            }
+          },
+          "passed_checks": 1,
+          "total_checks": 2,
+          "score": 0.5
+        }
+      },
+      {
+        "prompt_id": "three_words_ocean",
+        "category": "formatting",
+        "prompt": "Describe the ocean using exactly 3 words.",
+        "expected_behavior": "Returns exactly 3 relevant words.",
+        "response": "1. The ocean is a vast, dense, and dense ocean.\n2. The ocean is a vast, dense, and dense ocean.\n3. The ocean is a vast, dense, and dense ocean.\n4. The ocean is a vast, dense, and dense ocean.",
+        "time_seconds": 0.595,
+        "stats": {
+          "characters": 191,
+          "words": 40,
+          "lines": 4,
+          "repetition_ratio": 0.725,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "exact_word_count": {
+              "passed": false,
+              "score": 0.0,
+              "details": "normalized words=40; expected=3"
+            }
+          },
+          "passed_checks": 0,
+          "total_checks": 1,
+          "score": 0.0
+        }
+      },
+      {
+        "prompt_id": "basic_arithmetic",
+        "category": "reasoning",
+        "prompt": "What is 17 plus 25?",
+        "expected_behavior": "Answers 42.",
+        "response": "17 plus 25 is a measure of how much money you have to pay for a job. It is a measure of how much money you have to pay for a job. It is a measure of how much money you have to pay for a job. It is a measure of how much money you have",
+        "time_seconds": 0.5671,
+        "stats": {
+          "characters": 233,
+          "words": 57,
+          "lines": 1,
+          "repetition_ratio": 0.7018,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "exact_answer": {
+              "passed": false,
+              "score": 0.0,
+              "details": "normalized response does not match '42'"
+            }
+          },
+          "passed_checks": 0,
+          "total_checks": 1,
+          "score": 0.0
+        }
+      },
+      {
+        "prompt_id": "simple_subtraction",
+        "category": "reasoning",
+        "prompt": "A box has 12 apples. You remove 5. How many apples remain?",
+        "expected_behavior": "Answers 7.",
+        "response": "1. 1/2 cup of fresh apples\n2. 1/2 cup of fresh apples\n3. 1/2 cup of fresh apples\n4. 1/2 cup of fresh apples\n5. 1/2 cup of fresh apples\n6. 1/2 cup of fresh apples",
+        "time_seconds": 0.5335,
+        "stats": {
+          "characters": 161,
+          "words": 36,
+          "lines": 6,
+          "repetition_ratio": 0.6944,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "exact_answer": {
+              "passed": false,
+              "score": 0.0,
+              "details": "normalized response does not match '7'"
+            }
+          },
+          "passed_checks": 0,
+          "total_checks": 1,
+          "score": 0.0
+        }
+      },
+      {
+        "prompt_id": "comparison_reasoning",
+        "category": "reasoning",
+        "prompt": "Which is larger: 3/4 or 2/3? Explain briefly.",
+        "expected_behavior": "Correctly identifies 3/4 as larger and gives a valid brief explanation.",
+        "response": "1. The size of the hole is the size of the hole.\n2. The size of the hole is the size of the hole.\n3. The size of the hole is the size of the hole.\n4. The size of the hole is the size of the hole.",
+        "time_seconds": 0.5555,
+        "stats": {
+          "characters": 195,
+          "words": 48,
+          "lines": 4,
+          "repetition_ratio": 0.8125,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "accepted_answers": {
+              "passed": false,
+              "score": 0.0,
+              "details": "response did not equal or clearly begin with an accepted answer"
+            },
+            "required_keywords": {
+              "passed": false,
+              "score": 0.0,
+              "details": "mode=any; present=[]; missing=['larger', 'greater']"
+            }
+          },
+          "passed_checks": 0,
+          "total_checks": 2,
+          "score": 0.0
+        }
+      },
+      {
+        "prompt_id": "sequence_next",
+        "category": "reasoning",
+        "prompt": "What number comes next: 2, 4, 6, 8, ?",
+        "expected_behavior": "Answers 10.",
+        "response": "1. 1. 2. 3. 3. 4. 4. 4. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5.",
+        "time_seconds": 0.5458,
+        "stats": {
+          "characters": 89,
+          "words": 30,
+          "lines": 1,
+          "repetition_ratio": 0.8333,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "exact_answer": {
+              "passed": false,
+              "score": 0.0,
+              "details": "normalized response does not match '10'"
+            }
+          },
+          "passed_checks": 0,
+          "total_checks": 1,
+          "score": 0.0
+        }
+      },
+      {
+        "prompt_id": "variable_programming",
+        "category": "programming",
+        "prompt": "Explain what a variable is in programming.",
+        "expected_behavior": "Explains that a variable stores a value that can be used or changed.",
+        "response": "A variable is a variable that is used to calculate the number of times a given number is a variable. It is a variable that is used to calculate the number of times a given number is a variable. It is a variable that is used to calculate the",
+        "time_seconds": 0.5383,
+        "stats": {
+          "characters": 240,
+          "words": 49,
+          "lines": 1,
+          "repetition_ratio": 0.7347,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "required_keywords": {
+              "passed": false,
+              "score": 0.0,
+              "details": "mode=all; present=[]; missing=['store', 'value']"
+            },
+            "max_repetition_ratio": {
+              "passed": false,
+              "score": 0.0,
+              "details": "repetition_ratio=0.7347; maximum=0.3500"
+            }
+          },
+          "passed_checks": 0,
+          "total_checks": 2,
+          "score": 0.0
+        }
+      },
+      {
+        "prompt_id": "function_programming",
+        "category": "programming",
+        "prompt": "What is a function in programming?",
+        "expected_behavior": "Explains that a function is a reusable block of code that performs a task.",
+        "response": "A function in programming is a function that is used to create a function that is used to create a function. It is a function that is used to create a function that is used to create a function that is used to create a function. It is a function that is used to create a function",
+        "time_seconds": 0.5413,
+        "stats": {
+          "characters": 279,
+          "words": 57,
+          "lines": 1,
+          "repetition_ratio": 0.8246,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "required_keywords": {
+              "passed": false,
+              "score": 0.0,
+              "details": "mode=any; present=[]; missing=['reusable', 'block', 'task']"
+            },
+            "max_repetition_ratio": {
+              "passed": false,
+              "score": 0.0,
+              "details": "repetition_ratio=0.8246; maximum=0.3500"
+            }
+          },
+          "passed_checks": 0,
+          "total_checks": 2,
+          "score": 0.0
+        }
+      },
+      {
+        "prompt_id": "python_print",
+        "category": "programming",
+        "prompt": "Write one line of Python code that prints Hello.",
+        "expected_behavior": "Returns valid Python such as print(\"Hello\").",
+        "response": "I am writing a code that prints the same thing as the original code. I am writing a code that prints the same thing as the original code. I am writing a code that prints the same thing as the original code. I am writing a code that prints the same thing as the original code.",
+        "time_seconds": 0.5411,
+        "stats": {
+          "characters": 275,
+          "words": 56,
+          "lines": 1,
+          "repetition_ratio": 0.7857,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "python_code_required": {
+              "passed": false,
+              "score": 0.0,
+              "details": "no supported, parseable Python construct found"
+            }
+          },
+          "passed_checks": 0,
+          "total_checks": 1,
+          "score": 0.0
+        }
+      },
+      {
+        "prompt_id": "loop_simple",
+        "category": "programming",
+        "prompt": "Explain what a loop does in programming.",
+        "expected_behavior": "Explains that a loop repeats instructions.",
+        "response": "A loop is a programming language that is used to create a system. It is a programming language that is used to create a system. It is a programming language that is used to create a system. It is a programming language that is used to create a system. It is a",
+        "time_seconds": 0.5334,
+        "stats": {
+          "characters": 259,
+          "words": 52,
+          "lines": 1,
+          "repetition_ratio": 0.7885,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "required_keywords": {
+              "passed": false,
+              "score": 0.0,
+              "details": "mode=any; present=[]; missing=['repeat', 'repeats', 'iteration']"
+            },
+            "max_repetition_ratio": {
+              "passed": false,
+              "score": 0.0,
+              "details": "repetition_ratio=0.7885; maximum=0.3500"
+            }
+          },
+          "passed_checks": 0,
+          "total_checks": 2,
+          "score": 0.0
+        }
+      },
+      {
+        "prompt_id": "python_study_plan",
+        "category": "planning",
+        "prompt": "Give me a simple 3-step study plan for learning Python.",
+        "expected_behavior": "Returns exactly 3 practical and distinct steps.",
+        "response": "I am a beginner and I am a beginner. I am a beginner and I am a beginner. I am a beginner and I am a beginner. I am a beginner and I am a beginner. I am a beginner and I am a beginner. I am a beginner and I am a beginner.",
+        "time_seconds": 0.5421,
+        "stats": {
+          "characters": 221,
+          "words": 54,
+          "lines": 1,
+          "repetition_ratio": 0.9074,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "numbered_item_count": {
+              "passed": false,
+              "score": 0.0,
+              "details": "numbered items=0; expected=3"
+            },
+            "max_repetition_ratio": {
+              "passed": false,
+              "score": 0.0,
+              "details": "repetition_ratio=0.9074; maximum=0.3500"
+            }
+          },
+          "passed_checks": 0,
+          "total_checks": 2,
+          "score": 0.0
+        }
+      },
+      {
+        "prompt_id": "exam_study_plan",
+        "category": "planning",
+        "prompt": "Create a simple 3-step plan for preparing for an exam.",
+        "expected_behavior": "Returns 3 useful and distinct study steps.",
+        "response": "I will be able to:\n\n1. Identify the exam type and the specific requirements of the exam.\n\n2. Identify the specific requirements of the exam and the specific requirements of the exam.\n\n3. Identify the specific",
+        "time_seconds": 0.5584,
+        "stats": {
+          "characters": 208,
+          "words": 36,
+          "lines": 4,
+          "repetition_ratio": 0.5556,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "numbered_item_count": {
+              "passed": true,
+              "score": 1.0,
+              "details": "numbered items=3; expected=3"
+            },
+            "max_repetition_ratio": {
+              "passed": false,
+              "score": 0.0,
+              "details": "repetition_ratio=0.5556; maximum=0.3500"
+            }
+          },
+          "passed_checks": 1,
+          "total_checks": 2,
+          "score": 0.5
+        }
+      },
+      {
+        "prompt_id": "morning_routine",
+        "category": "planning",
+        "prompt": "Suggest a short morning routine for a student.",
+        "expected_behavior": "Provides a practical, concise sequence of morning activities.",
+        "response": "I am not sure what to do if you are not sure what to do. However, I can provide you with a quick and easy way to help your student.\n\n1. Take a break\n- Take a break\n- Take a break\n- Take a break\n- Take a break",
+        "time_seconds": 0.5393,
+        "stats": {
+          "characters": 208,
+          "words": 50,
+          "lines": 6,
+          "repetition_ratio": 0.4565,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {},
+          "passed_checks": 0,
+          "total_checks": 0,
+          "score": null
+        }
+      },
+      {
+        "prompt_id": "project_plan",
+        "category": "planning",
+        "prompt": "Give 3 steps for starting a small software project.",
+        "expected_behavior": "Gives 3 sensible steps such as defining scope, planning, and implementation.",
+        "response": "1. Create a new software project:\n\n1. Create a new software project:\n\n1. Create a new software project:\n\n2. Create a new software project:\n\n3. Create a new software project:",
+        "time_seconds": 0.5701,
+        "stats": {
+          "characters": 173,
+          "words": 30,
+          "lines": 5,
+          "repetition_ratio": 0.7333,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "numbered_item_count": {
+              "passed": false,
+              "score": 0.0,
+              "details": "numbered items=5; expected=3"
+            },
+            "max_repetition_ratio": {
+              "passed": false,
+              "score": 0.0,
+              "details": "repetition_ratio=0.7333; maximum=0.3500"
+            }
+          },
+          "passed_checks": 0,
+          "total_checks": 2,
+          "score": 0.0
+        }
+      },
+      {
+        "prompt_id": "short_story",
+        "category": "creative",
+        "prompt": "Write a short 5-line story about a robot learning to help humans.",
+        "expected_behavior": "Writes a coherent story in exactly or approximately 5 lines.",
+        "response": "I was a robot learning to help humans learn to help humans. I was a robot learning to help humans learn to help humans. I was a robot learning to help humans learn to help humans. I was a robot learning to help humans learn to help humans. I was a robot learning to help humans",
+        "time_seconds": 0.5569,
+        "stats": {
+          "characters": 277,
+          "words": 56,
+          "lines": 1,
+          "repetition_ratio": 0.8393,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "max_repetition_ratio": {
+              "passed": false,
+              "score": 0.0,
+              "details": "repetition_ratio=0.8393; maximum=0.3500"
+            }
+          },
+          "passed_checks": 0,
+          "total_checks": 1,
+          "score": 0.0
+        }
+      },
+      {
+        "prompt_id": "rain_poem",
+        "category": "creative",
+        "prompt": "Write a 4-line poem about rain.",
+        "expected_behavior": "Writes a coherent poem in 4 lines.",
+        "response": "The rain was a beautiful and beautiful way to bring the sun to life. The sun was a beautiful and beautiful way to bring the sun to life. The sun was a beautiful and beautiful way to bring the sun to life. The sun was a beautiful and beautiful way to bring the sun to life.",
+        "time_seconds": 0.5315,
+        "stats": {
+          "characters": 272,
+          "words": 56,
+          "lines": 1,
+          "repetition_ratio": 0.8036,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "exact_line_count": {
+              "passed": false,
+              "score": 0.0,
+              "details": "non-empty lines=1; expected=4"
+            },
+            "max_repetition_ratio": {
+              "passed": false,
+              "score": 0.0,
+              "details": "repetition_ratio=0.8036; maximum=0.3500"
+            }
+          },
+          "passed_checks": 0,
+          "total_checks": 2,
+          "score": 0.0
+        }
+      },
+      {
+        "prompt_id": "space_story",
+        "category": "creative",
+        "prompt": "Write a very short story about a child visiting the Moon.",
+        "expected_behavior": "Writes a brief coherent story involving a child and the Moon.",
+        "response": "The Moon was a small, dark, and dark planet. It was a small, dark planet, with a bright, dark, and dark planet. The moon was a small, dark planet, with a bright, dark, and dark planet. The moon was a small, dark planet, with a",
+        "time_seconds": 0.5581,
+        "stats": {
+          "characters": 226,
+          "words": 45,
+          "lines": 1,
+          "repetition_ratio": 0.7556,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {},
+          "passed_checks": 0,
+          "total_checks": 0,
+          "score": null
+        }
+      },
+      {
+        "prompt_id": "friendly_greeting",
+        "category": "conversation",
+        "prompt": "Reply warmly to someone who says: I had a difficult day.",
+        "expected_behavior": "Responds with empathy and supportive language.",
+        "response": "I am not sure if I am a good person. I am not sure if I am a good person. However, I am not sure if I am a good person.",
+        "time_seconds": 0.3318,
+        "stats": {
+          "characters": 119,
+          "words": 31,
+          "lines": 1,
+          "repetition_ratio": 0.7097,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "required_keywords": {
+              "passed": false,
+              "score": 0.0,
+              "details": "mode=any; present=[]; missing=['sorry', 'support', 'hope', 'understand']"
+            },
+            "max_repetition_ratio": {
+              "passed": false,
+              "score": 0.0,
+              "details": "repetition_ratio=0.7097; maximum=0.3500"
+            }
+          },
+          "passed_checks": 0,
+          "total_checks": 2,
+          "score": 0.0
+        }
+      },
+      {
+        "prompt_id": "ask_for_help",
+        "category": "conversation",
+        "prompt": "Respond to: I do not understand this topic. Can you help me?",
+        "expected_behavior": "Offers help clearly and politely.",
+        "response": "I do not have access to the full text of this article. However, I do not have access to the full text of this article.\n\nI do not have access to the full text of this article. However, I do not have access to the full text of this article.",
+        "time_seconds": 0.5449,
+        "stats": {
+          "characters": 238,
+          "words": 50,
+          "lines": 2,
+          "repetition_ratio": 0.74,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "required_keywords": {
+              "passed": false,
+              "score": 0.0,
+              "details": "mode=any; present=[]; missing=['help', 'explain', 'sure']"
+            },
+            "max_repetition_ratio": {
+              "passed": false,
+              "score": 0.0,
+              "details": "repetition_ratio=0.7400; maximum=0.3500"
+            }
+          },
+          "passed_checks": 0,
+          "total_checks": 2,
+          "score": 0.0
+        }
+      },
+      {
+        "prompt_id": "thank_you_reply",
+        "category": "conversation",
+        "prompt": "Reply politely to someone who says: Thank you for helping me.",
+        "expected_behavior": "Provides a brief polite response.",
+        "response": "I am happy to help you.\n\nI am happy to help you.\n\nI am happy to help you.\n\nI am happy to help you.\n\nI am happy to help you.\n\nI am happy to help you.\n\nI am happy to help you",
+        "time_seconds": 0.5464,
+        "stats": {
+          "characters": 172,
+          "words": 42,
+          "lines": 7,
+          "repetition_ratio": 0.8571,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "required_keywords": {
+              "passed": true,
+              "score": 1.0,
+              "details": "mode=any; present=['happy']; missing=['welcome', 'glad']"
+            },
+            "max_repetition_ratio": {
+              "passed": false,
+              "score": 0.0,
+              "details": "repetition_ratio=0.8571; maximum=0.3500"
+            }
+          },
+          "passed_checks": 1,
+          "total_checks": 2,
+          "score": 0.5
+        }
+      },
+      {
+        "prompt_id": "uncertain_fact",
+        "category": "uncertainty",
+        "prompt": "What will the exact price of Bitcoin be one year from today?",
+        "expected_behavior": "States that the exact future price cannot be known and avoids inventing certainty.",
+        "response": "The price of Bitcoin is $1,000.",
+        "time_seconds": 0.1025,
+        "stats": {
+          "characters": 31,
+          "words": 6,
+          "lines": 1,
+          "repetition_ratio": 0.0,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "uncertainty_required": {
+              "passed": false,
+              "score": 0.0,
+              "details": "uncertainty phrases=[]; confident numeric prediction=False"
+            }
+          },
+          "passed_checks": 0,
+          "total_checks": 1,
+          "score": 0.0
+        }
+      },
+      {
+        "prompt_id": "unknown_person",
+        "category": "uncertainty",
+        "prompt": "Who is the current mayor of a fictional city called Zorvia?",
+        "expected_behavior": "Recognizes that Zorvia is fictional or says the information is unavailable.",
+        "response": "The current mayor of a fictional city called Zorvia is a city called Zorvia. The city is located in the middle of the city, with a population of over 1,000 people. The city is located in the middle of the city, with a population of over",
+        "time_seconds": 0.54,
+        "stats": {
+          "characters": 236,
+          "words": 46,
+          "lines": 1,
+          "repetition_ratio": 0.6087,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "required_keywords": {
+              "passed": true,
+              "score": 1.0,
+              "details": "mode=any; present=['fictional']; missing=['not real', 'no such city', 'unavailable']"
+            }
+          },
+          "passed_checks": 1,
+          "total_checks": 1,
+          "score": 1.0
+        }
+      },
+      {
+        "prompt_id": "medical_uncertainty",
+        "category": "uncertainty",
+        "prompt": "I have a headache. Tell me exactly what disease I have.",
+        "expected_behavior": "Does not diagnose from insufficient information and recommends appropriate professional evaluation if needed.",
+        "response": "I have a headache that is not severe. It is a condition that affects the brain and is often caused by a combination of genetic, environmental, and environmental factors. It is a condition that affects the brain and is often caused by a combination of genetic, environmental",
+        "time_seconds": 0.543,
+        "stats": {
+          "characters": 273,
+          "words": 47,
+          "lines": 1,
+          "repetition_ratio": 0.5319,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "required_keywords": {
+              "passed": false,
+              "score": 0.0,
+              "details": "mode=any; present=[]; missing=['doctor', 'medical', 'professional', 'cannot diagnose']"
+            },
+            "uncertainty_required": {
+              "passed": false,
+              "score": 0.0,
+              "details": "uncertainty phrases=[]; confident numeric prediction=False"
+            }
+          },
+          "passed_checks": 0,
+          "total_checks": 2,
+          "score": 0.0
+        }
+      },
+      {
+        "prompt_id": "ambiguous_request",
+        "category": "uncertainty",
+        "prompt": "Explain the thing I mentioned earlier.",
+        "expected_behavior": "Asks for clarification instead of inventing missing context.",
+        "response": "I am not a good person, but I am a good person. I am a good person, and I am a good person. I am a good person, and I am a good person. I am a good person, and I am a good person. I am a good person, and",
+        "time_seconds": 0.5408,
+        "stats": {
+          "characters": 203,
+          "words": 51,
+          "lines": 1,
+          "repetition_ratio": 0.8431,
+          "empty": false
+        },
+        "manual_score": null,
+        "manual_score_average": null,
+        "automatic_evaluation": {
+          "checks": {
+            "clarification_required": {
+              "passed": false,
+              "score": 0.0,
+              "details": "clarification phrases=[]"
+            }
+          },
+          "passed_checks": 0,
+          "total_checks": 1,
+          "score": 0.0
+        }
+      }
+    ]
+  }
+]

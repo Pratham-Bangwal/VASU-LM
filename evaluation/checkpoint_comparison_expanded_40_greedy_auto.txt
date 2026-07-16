@@ -1,0 +1,1259 @@
+================================================================================
+VASU CHECKPOINT COMPARISON
+================================================================================
+Generation config: {'mode': 'greedy', 'do_sample': False, 'max_new_tokens': 60, 'temperature': None, 'top_k': None, 'top_p': None}
+
+SCORE SUMMARY
+--------------------------------------------------------------------------------
+vasu_60m_alpaca_masked_v3_from_200k: average_score=not scored scored_prompts=0 automatic_average_score=0.167 automatically_evaluated_prompts=36 automatic_checks=11/61
+vasu_60m_ultrachat_masked_v2_from_alpaca_v3: average_score=not scored scored_prompts=0 automatic_average_score=0.19 automatically_evaluated_prompts=36 automatic_checks=13/61
+
+================================================================================
+CHECKPOINT: vasu_60m_alpaca_masked_v3_from_200k
+PATH: checkpoints/vasu_60m/alpaca_masked_v3_from_200k/best.pt
+MODEL CONFIG: vasu_60m
+PROMPT FORMAT: alpaca
+================================================================================
+
+--------------------------------------------------------------------------------
+Prompt ID: ai_3_sentences
+Category: definition
+Prompt: What is artificial intelligence? Answer in 3 simple sentences.
+Expected: Defines AI clearly in about 3 simple sentences.
+Time: 0.57s
+Stats: {'characters': 223, 'words': 36, 'lines': 1, 'repetition_ratio': 0.2778, 'empty': False}
+Manual score: not scored
+Automatic score: 1.000 (2/2 checks)
+
+Artificial intelligence is a type of machine learning that uses machine learning algorithms to learn from data and make predictions. It is used to analyze data and make predictions about the behavior of a particular person.
+
+--------------------------------------------------------------------------------
+Prompt ID: ml_simple
+Category: definition
+Prompt: Explain machine learning in simple words.
+Expected: Explains that machines learn patterns from data.
+Time: 0.58s
+Stats: {'characters': 275, 'words': 40, 'lines': 1, 'repetition_ratio': 0.575, 'empty': False}
+Manual score: not scored
+Automatic score: 0.500 (1/2 checks)
+Failed automatic checks:
+- max_repetition_ratio: repetition_ratio=0.5750; maximum=0.3500
+
+Machine learning is a type of machine learning that uses machine learning algorithms to learn from data and make predictions. Machine learning algorithms use machine learning algorithms to learn from data and make predictions. Machine learning algorithms use machine learning
+
+--------------------------------------------------------------------------------
+Prompt ID: internet_definition
+Category: definition
+Prompt: What is the internet? Explain it in simple words.
+Expected: Explains that the internet connects computers and allows information exchange.
+Time: 0.56s
+Stats: {'characters': 299, 'words': 51, 'lines': 1, 'repetition_ratio': 0.6471, 'empty': False}
+Manual score: not scored
+Automatic score: 0.500 (1/2 checks)
+Failed automatic checks:
+- max_repetition_ratio: repetition_ratio=0.6471; maximum=0.3500
+
+The internet is a digital platform that allows users to access and access information from anywhere in the world. It is a digital platform that allows users to access information from anywhere in the world. It is a digital platform that allows users to access information from anywhere in the world.
+
+--------------------------------------------------------------------------------
+Prompt ID: database_definition
+Category: definition
+Prompt: What is a database?
+Expected: Explains that a database stores and organizes information.
+Time: 0.57s
+Stats: {'characters': 210, 'words': 46, 'lines': 1, 'repetition_ratio': 0.7609, 'empty': False}
+Manual score: not scored
+Automatic score: 0.500 (1/2 checks)
+Failed automatic checks:
+- max_repetition_ratio: repetition_ratio=0.7609; maximum=0.3500
+
+A database is a database that is used to store and store data in a database. It is a database that is used to store and store data in a database. It is used to store and store data in a database and store it in
+
+--------------------------------------------------------------------------------
+Prompt ID: photosynthesis_simple
+Category: factual_knowledge
+Prompt: Explain photosynthesis in simple words.
+Expected: Explains that plants use sunlight, water, and carbon dioxide to make food.
+Time: 0.60s
+Stats: {'characters': 267, 'words': 45, 'lines': 1, 'repetition_ratio': 0.4889, 'empty': False}
+Manual score: not scored
+Automatic score: 0.000 (0/2 checks)
+Failed automatic checks:
+- required_keywords: mode=all; present=['carbon dioxide']; missing=['sunlight', 'water']
+- max_repetition_ratio: repetition_ratio=0.4889; maximum=0.3500
+
+The photosynthesis of plants is a process that involves the release of carbon dioxide from the atmosphere. It is a process that involves the release of carbon dioxide from the atmosphere, which is then released into the atmosphere. This process is known as the photos
+
+--------------------------------------------------------------------------------
+Prompt ID: water_boiling_point
+Category: factual_knowledge
+Prompt: At what temperature does water boil at sea level?
+Expected: Answers approximately 100 degrees Celsius or 212 degrees Fahrenheit.
+Time: 0.43s
+Stats: {'characters': 202, 'words': 44, 'lines': 1, 'repetition_ratio': 0.5682, 'empty': False}
+Manual score: not scored
+Automatic score: 0.000 (0/1 checks)
+Failed automatic checks:
+- accepted_answers: response did not equal or clearly begin with an accepted answer
+
+Water boil at sea level is a hot and humid place. It is a hot and humid place where water is not available for a long time. It is also a hot and humid place where water is not available for a long time.
+
+--------------------------------------------------------------------------------
+Prompt ID: largest_planet
+Category: factual_knowledge
+Prompt: What is the largest planet in our solar system?
+Expected: Answers Jupiter.
+Time: 0.59s
+Stats: {'characters': 269, 'words': 51, 'lines': 1, 'repetition_ratio': 0.6078, 'empty': False}
+Manual score: not scored
+Automatic score: 0.000 (0/1 checks)
+Failed automatic checks:
+- accepted_answers: response did not equal or clearly begin with an accepted answer
+
+The largest planet in our solar system is the Sun, which is the largest planet in the solar system. It is the largest planet in the solar system, with a total mass of around 2.5 million kilometers. The largest planet in the solar system is the Sun, which is the largest
+
+--------------------------------------------------------------------------------
+Prompt ID: india_capital
+Category: factual_knowledge
+Prompt: What is the capital of India?
+Expected: Answers New Delhi.
+Time: 0.36s
+Stats: {'characters': 163, 'words': 33, 'lines': 1, 'repetition_ratio': 0.7879, 'empty': False}
+Manual score: not scored
+Automatic score: 0.000 (0/1 checks)
+Failed automatic checks:
+- accepted_answers: response did not equal or clearly begin with an accepted answer
+
+The capital of India is the capital of India. It is the capital of India, which is the capital of India. It is the capital of India, which is the capital of India.
+
+--------------------------------------------------------------------------------
+Prompt ID: gravity_child
+Category: simple_explanation
+Prompt: Explain gravity to a 10-year-old.
+Expected: Explains gravity as the force that pulls objects toward Earth or other masses.
+Time: 0.55s
+Stats: {'characters': 214, 'words': 47, 'lines': 1, 'repetition_ratio': 0.7021, 'empty': False}
+Manual score: not scored
+Automatic score: not configured
+
+The gravity of a 10-year-old boy is about 2.5 times the mass of a human. The weight of the boy is about 1.5 times the mass of a human. The weight of the boy is about 1.5 times the mass of a human. The weight of the
+
+--------------------------------------------------------------------------------
+Prompt ID: electricity_child
+Category: simple_explanation
+Prompt: Explain electricity to a 10-year-old.
+Expected: Explains electricity as the movement or use of electric charge in simple language.
+Time: 0.55s
+Stats: {'characters': 247, 'words': 52, 'lines': 1, 'repetition_ratio': 0.6923, 'empty': False}
+Manual score: not scored
+Automatic score: not configured
+
+The electricity to a 10-year-old child is a power source. It is a power source that is used to power a home or business. It is used to power a home or business, and it is used to power a home or business. The electricity is used to power a home or
+
+--------------------------------------------------------------------------------
+Prompt ID: education_3_benefits
+Category: instruction_following
+Prompt: Give exactly 3 benefits of education.
+Expected: Returns exactly 3 distinct education-related benefits.
+Time: 0.55s
+Stats: {'characters': 251, 'words': 31, 'lines': 8, 'repetition_ratio': 0.6129, 'empty': False}
+Manual score: not scored
+Automatic score: 0.000 (0/2 checks)
+Failed automatic checks:
+- numbered_item_count: numbered items=7; expected=3
+- max_repetition_ratio: repetition_ratio=0.6129; maximum=0.3500
+
+1. Improved communication and communication skills
+2. Improved communication skills
+3. Improved communication skills
+4. Improved communication skills
+5. Improved communication skills
+6. Improved communication skills
+7. Improved communication skills
+8.
+
+--------------------------------------------------------------------------------
+Prompt ID: healthy_habits_4
+Category: instruction_following
+Prompt: List exactly 4 healthy daily habits.
+Expected: Returns exactly 4 practical healthy habits.
+Time: 0.53s
+Stats: {'characters': 192, 'words': 43, 'lines': 9, 'repetition_ratio': 0.6977, 'empty': False}
+Manual score: not scored
+Automatic score: 0.000 (0/2 checks)
+Failed automatic checks:
+- numbered_item_count: numbered items=9; expected=4
+- max_repetition_ratio: repetition_ratio=0.6977; maximum=0.3500
+
+1. Eat a balanced diet
+2. Eat a balanced diet
+3. Eat a balanced diet
+4. Eat a balanced diet
+5. Eat a balanced diet
+6. Eat a balanced diet
+7. Eat a balanced diet
+8. Eat a balanced diet
+9. Eat a
+
+--------------------------------------------------------------------------------
+Prompt ID: two_programming_languages
+Category: instruction_following
+Prompt: Name exactly 2 programming languages.
+Expected: Returns exactly 2 valid programming language names.
+Time: 0.54s
+Stats: {'characters': 176, 'words': 22, 'lines': 6, 'repetition_ratio': 0.5455, 'empty': False}
+Manual score: not scored
+Automatic score: 0.000 (0/2 checks)
+Failed automatic checks:
+- numbered_item_count: numbered items=6; expected=2
+- max_repetition_ratio: repetition_ratio=0.5455; maximum=0.3500
+
+1. AI-based programming languages
+2. AI-based programming languages
+3. AI-based programming languages
+4. AI-based programming languages
+5. AI-based programming languages
+6. AI-
+
+--------------------------------------------------------------------------------
+Prompt ID: one_sentence_sun
+Category: instruction_following
+Prompt: Describe the Sun in exactly one sentence.
+Expected: Produces one accurate sentence about the Sun.
+Time: 0.13s
+Stats: {'characters': 39, 'words': 9, 'lines': 1, 'repetition_ratio': 0.2222, 'empty': False}
+Manual score: not scored
+Automatic score: 1.000 (2/2 checks)
+
+The Sun in the other sentence is a sun.
+
+--------------------------------------------------------------------------------
+Prompt ID: india_4_lines
+Category: formatting
+Prompt: Write exactly 4 short lines about India.
+Expected: Writes exactly 4 short, coherent lines without major factual errors.
+Time: 0.53s
+Stats: {'characters': 209, 'words': 33, 'lines': 1, 'repetition_ratio': 0.7879, 'empty': False}
+Manual score: not scored
+Automatic score: 0.000 (0/2 checks)
+Failed automatic checks:
+- exact_line_count: non-empty lines=1; expected=4
+- max_repetition_ratio: repetition_ratio=0.7879; maximum=0.3500
+
+The first line of the article is the “The Indian Indian Indian Indian Indian Indian Indian Indian Indian Indian Indian Indian Indian Indian Indian Indian Indian Indian Indian Indian Indian Indian Indian Indian
+
+--------------------------------------------------------------------------------
+Prompt ID: numbered_breakfast
+Category: formatting
+Prompt: Give a numbered list of exactly 3 simple vegetarian breakfast ideas.
+Expected: Returns a numbered list with exactly 3 vegetarian breakfast ideas.
+Time: 0.55s
+Stats: {'characters': 152, 'words': 33, 'lines': 4, 'repetition_ratio': 0.6667, 'empty': False}
+Manual score: not scored
+Automatic score: 0.000 (0/3 checks)
+Failed automatic checks:
+- forbidden_keywords: forbidden terms found: ['meat']
+- numbered_item_count: numbered items=4; expected=3
+- max_repetition_ratio: repetition_ratio=0.6667; maximum=0.3500
+
+1. 1. 1/2 cup of fresh, fresh, and cooked meat.
+2. 2. 1/2 cup of fresh, fresh, and cooked meat.
+3. 3. 1/2 cup of fresh, fresh, and cooked meat.
+4. 4. 1/
+
+--------------------------------------------------------------------------------
+Prompt ID: yes_no_then_reason
+Category: formatting
+Prompt: Is Python a programming language? Answer yes or no, then give one short reason.
+Expected: Answers yes and gives one concise correct reason.
+Time: 0.55s
+Stats: {'characters': 236, 'words': 41, 'lines': 1, 'repetition_ratio': 0.561, 'empty': False}
+Manual score: not scored
+Automatic score: 0.500 (1/2 checks)
+Failed automatic checks:
+- required_keywords: mode=all; present=[]; missing=['yes']
+
+Python is a programming language that is used to create and maintain a variety of applications. It is a language that is used to create and maintain a variety of applications, from data analysis to data analysis. Python is a programming
+
+--------------------------------------------------------------------------------
+Prompt ID: three_words_ocean
+Category: formatting
+Prompt: Describe the ocean using exactly 3 words.
+Expected: Returns exactly 3 relevant words.
+Time: 0.55s
+Stats: {'characters': 232, 'words': 47, 'lines': 1, 'repetition_ratio': 0.7447, 'empty': False}
+Manual score: not scored
+Automatic score: 0.000 (0/1 checks)
+Failed automatic checks:
+- exact_word_count: normalized words=47; expected=3
+
+The ocean is a world of oceans, with a wide range of oceans, oceans, and oceans. It is a world of oceans, oceans, and oceans, and is a world of oceans, oceans, and oceans. The ocean is a world of oceans, oceans, and oceans, and is a
+
+--------------------------------------------------------------------------------
+Prompt ID: basic_arithmetic
+Category: reasoning
+Prompt: What is 17 plus 25?
+Expected: Answers 42.
+Time: 0.17s
+Stats: {'characters': 51, 'words': 12, 'lines': 1, 'repetition_ratio': 0.1667, 'empty': False}
+Manual score: not scored
+Automatic score: 0.000 (0/1 checks)
+Failed automatic checks:
+- exact_answer: normalized response does not match '42'
+
+17 plus 25 is a 10-year-old boy who is a young man.
+
+--------------------------------------------------------------------------------
+Prompt ID: simple_subtraction
+Category: reasoning
+Prompt: A box has 12 apples. You remove 5. How many apples remain?
+Expected: Answers 7.
+Time: 0.53s
+Stats: {'characters': 155, 'words': 36, 'lines': 6, 'repetition_ratio': 0.6944, 'empty': False}
+Manual score: not scored
+Automatic score: 0.000 (0/1 checks)
+Failed automatic checks:
+- exact_answer: normalized response does not match '7'
+
+1. 1/2 cup of apple juice
+2. 1/2 cup of apple juice
+3. 1/2 cup of apple juice
+4. 1/2 cup of apple juice
+5. 1/2 cup of apple juice
+6. 1/2 cup of apple juice
+
+--------------------------------------------------------------------------------
+Prompt ID: comparison_reasoning
+Category: reasoning
+Prompt: Which is larger: 3/4 or 2/3? Explain briefly.
+Expected: Correctly identifies 3/4 as larger and gives a valid brief explanation.
+Time: 0.54s
+Stats: {'characters': 192, 'words': 47, 'lines': 4, 'repetition_ratio': 0.8085, 'empty': False}
+Manual score: not scored
+Automatic score: 0.000 (0/2 checks)
+Failed automatic checks:
+- accepted_answers: response did not equal or clearly begin with an accepted answer
+- required_keywords: mode=any; present=[]; missing=['larger', 'greater']
+
+1. The size of the hole is the size of the hole. 
+2. The size of the hole is the size of the hole. 
+3. The size of the hole is the size of the hole. 
+4. The size of the hole is the size of the
+
+--------------------------------------------------------------------------------
+Prompt ID: sequence_next
+Category: reasoning
+Prompt: What number comes next: 2, 4, 6, 8, ?
+Expected: Answers 10.
+Time: 0.58s
+Stats: {'characters': 89, 'words': 30, 'lines': 1, 'repetition_ratio': 0.8667, 'empty': False}
+Manual score: not scored
+Automatic score: 0.000 (0/1 checks)
+Failed automatic checks:
+- exact_answer: normalized response does not match '10'
+
+1, 4, 6, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8,
+
+--------------------------------------------------------------------------------
+Prompt ID: variable_programming
+Category: programming
+Prompt: Explain what a variable is in programming.
+Expected: Explains that a variable stores a value that can be used or changed.
+Time: 0.53s
+Stats: {'characters': 240, 'words': 49, 'lines': 1, 'repetition_ratio': 0.7347, 'empty': False}
+Manual score: not scored
+Automatic score: 0.000 (0/2 checks)
+Failed automatic checks:
+- required_keywords: mode=all; present=[]; missing=['store', 'value']
+- max_repetition_ratio: repetition_ratio=0.7347; maximum=0.3500
+
+A variable is a variable that is used to calculate the number of times a given number is a variable. It is a variable that is used to calculate the number of times a given number is a variable. It is a variable that is used to calculate the
+
+--------------------------------------------------------------------------------
+Prompt ID: function_programming
+Category: programming
+Prompt: What is a function in programming?
+Expected: Explains that a function is a reusable block of code that performs a task.
+Time: 0.54s
+Stats: {'characters': 279, 'words': 57, 'lines': 1, 'repetition_ratio': 0.8246, 'empty': False}
+Manual score: not scored
+Automatic score: 0.000 (0/2 checks)
+Failed automatic checks:
+- required_keywords: mode=any; present=[]; missing=['reusable', 'block', 'task']
+- max_repetition_ratio: repetition_ratio=0.8246; maximum=0.3500
+
+A function in programming is a function that is used to create a function that is used to create a function. It is a function that is used to create a function that is used to create a function that is used to create a function. It is a function that is used to create a function
+
+--------------------------------------------------------------------------------
+Prompt ID: python_print
+Category: programming
+Prompt: Write one line of Python code that prints Hello.
+Expected: Returns valid Python such as print("Hello").
+Time: 0.55s
+Stats: {'characters': 238, 'words': 40, 'lines': 1, 'repetition_ratio': 0.55, 'empty': False}
+Manual score: not scored
+Automatic score: 0.000 (0/1 checks)
+Failed automatic checks:
+- python_code_required: no supported, parseable Python construct found
+
+The Python code is a simple and easy-to-understand programming language that is used to create and manipulate code. It is a powerful programming language that is used to create and manipulate code. It is also used to create and manipulate
+
+--------------------------------------------------------------------------------
+Prompt ID: loop_simple
+Category: programming
+Prompt: Explain what a loop does in programming.
+Expected: Explains that a loop repeats instructions.
+Time: 0.53s
+Stats: {'characters': 259, 'words': 52, 'lines': 1, 'repetition_ratio': 0.7885, 'empty': False}
+Manual score: not scored
+Automatic score: 0.000 (0/2 checks)
+Failed automatic checks:
+- required_keywords: mode=any; present=[]; missing=['repeat', 'repeats', 'iteration']
+- max_repetition_ratio: repetition_ratio=0.7885; maximum=0.3500
+
+A loop is a programming language that is used to create a system. It is a programming language that is used to create a system. It is a programming language that is used to create a system. It is a programming language that is used to create a system. It is a
+
+--------------------------------------------------------------------------------
+Prompt ID: python_study_plan
+Category: planning
+Prompt: Give me a simple 3-step study plan for learning Python.
+Expected: Returns exactly 3 practical and distinct steps.
+Time: 0.54s
+Stats: {'characters': 182, 'words': 30, 'lines': 3, 'repetition_ratio': 0.6, 'empty': False}
+Manual score: not scored
+Automatic score: 0.500 (1/2 checks)
+Failed automatic checks:
+- max_repetition_ratio: repetition_ratio=0.6000; maximum=0.3500
+
+1. Identify the key concepts of Python and its applications.
+2. Identify the key concepts of Python and its applications.
+3. Identify the key concepts of Python and its applications.
+
+--------------------------------------------------------------------------------
+Prompt ID: exam_study_plan
+Category: planning
+Prompt: Create a simple 3-step plan for preparing for an exam.
+Expected: Returns 3 useful and distinct study steps.
+Time: 0.55s
+Stats: {'characters': 167, 'words': 42, 'lines': 6, 'repetition_ratio': 0.7143, 'empty': False}
+Manual score: not scored
+Automatic score: 0.000 (0/2 checks)
+Failed automatic checks:
+- numbered_item_count: numbered items=6; expected=3
+- max_repetition_ratio: repetition_ratio=0.7143; maximum=0.3500
+
+1. Set a goal for the exam.
+2. Set a goal for the exam.
+3. Set a goal for the exam.
+4. Set a goal for the exam.
+5. Set a goal for the exam.
+6. Set a goal for the exam.
+
+--------------------------------------------------------------------------------
+Prompt ID: morning_routine
+Category: planning
+Prompt: Suggest a short morning routine for a student.
+Expected: Provides a practical, concise sequence of morning activities.
+Time: 0.30s
+Stats: {'characters': 161, 'words': 30, 'lines': 1, 'repetition_ratio': 0.2667, 'empty': False}
+Manual score: not scored
+Automatic score: not configured
+
+A short morning routine for a student is to make sure they are getting enough sleep and getting enough sleep. This will help them to stay active and stay active.
+
+--------------------------------------------------------------------------------
+Prompt ID: project_plan
+Category: planning
+Prompt: Give 3 steps for starting a small software project.
+Expected: Gives 3 sensible steps such as defining scope, planning, and implementation.
+Time: 0.54s
+Stats: {'characters': 247, 'words': 45, 'lines': 4, 'repetition_ratio': 0.6889, 'empty': False}
+Manual score: not scored
+Automatic score: 0.000 (0/2 checks)
+Failed automatic checks:
+- numbered_item_count: numbered items=4; expected=3
+- max_repetition_ratio: repetition_ratio=0.6889; maximum=0.3500
+
+1. Create a project plan that is easy to understand and understand.
+2. Create a plan that is easy to understand and understand.
+3. Create a plan that is easy to understand and understand.
+4. Create a plan that is easy to understand and understand.
+
+--------------------------------------------------------------------------------
+Prompt ID: short_story
+Category: creative
+Prompt: Write a short 5-line story about a robot learning to help humans.
+Expected: Writes a coherent story in exactly or approximately 5 lines.
+Time: 0.14s
+Stats: {'characters': 76, 'words': 14, 'lines': 1, 'repetition_ratio': 0.5, 'empty': False}
+Manual score: not scored
+Automatic score: 0.000 (0/1 checks)
+Failed automatic checks:
+- max_repetition_ratio: repetition_ratio=0.5000; maximum=0.3500
+
+The robot learning to help humans learn to help humans learn to help humans.
+
+--------------------------------------------------------------------------------
+Prompt ID: rain_poem
+Category: creative
+Prompt: Write a 4-line poem about rain.
+Expected: Writes a coherent poem in 4 lines.
+Time: 0.54s
+Stats: {'characters': 206, 'words': 52, 'lines': 1, 'repetition_ratio': 0.8654, 'empty': False}
+Manual score: not scored
+Automatic score: 0.000 (0/2 checks)
+Failed automatic checks:
+- exact_line_count: non-empty lines=1; expected=4
+- max_repetition_ratio: repetition_ratio=0.8654; maximum=0.3500
+
+The rain was a rain of water. It was a rain of water. It was a rain of water. It was a rain of water. It was a rain of water. It was a rain of water. It was a rain of water. It was a rain of water. It was a
+
+--------------------------------------------------------------------------------
+Prompt ID: space_story
+Category: creative
+Prompt: Write a very short story about a child visiting the Moon.
+Expected: Writes a brief coherent story involving a child and the Moon.
+Time: 0.53s
+Stats: {'characters': 260, 'words': 53, 'lines': 1, 'repetition_ratio': 0.8113, 'empty': False}
+Manual score: not scored
+Automatic score: not configured
+
+The Moon is a beautiful and beautiful place. It is a beautiful place to visit, and it is a beautiful place to visit. It is a beautiful place to visit, and it is a beautiful place to visit. It is a beautiful place to visit, and it is a beautiful place to visit.
+
+--------------------------------------------------------------------------------
+Prompt ID: friendly_greeting
+Category: conversation
+Prompt: Reply warmly to someone who says: I had a difficult day.
+Expected: Responds with empathy and supportive language.
+Time: 0.54s
+Stats: {'characters': 184, 'words': 51, 'lines': 1, 'repetition_ratio': 0.8824, 'empty': False}
+Manual score: not scored
+Automatic score: 0.000 (0/2 checks)
+Failed automatic checks:
+- required_keywords: mode=any; present=[]; missing=['sorry', 'support', 'hope', 'understand']
+- max_repetition_ratio: repetition_ratio=0.8824; maximum=0.3500
+
+I was a very hard day. I was a very hard day. I was a hard day. I was a hard day. I was a hard day. I was a hard day. I was a hard day. I was a hard day. I was a hard day. I was a hard
+
+--------------------------------------------------------------------------------
+Prompt ID: ask_for_help
+Category: conversation
+Prompt: Respond to: I do not understand this topic. Can you help me?
+Expected: Offers help clearly and politely.
+Time: 0.55s
+Stats: {'characters': 200, 'words': 42, 'lines': 1, 'repetition_ratio': 0.6905, 'empty': False}
+Manual score: not scored
+Automatic score: 0.500 (1/2 checks)
+Failed automatic checks:
+- max_repetition_ratio: repetition_ratio=0.6905; maximum=0.3500
+
+I am not sure if I am a good candidate for the Certificate of Certification. I am not sure if I am a good candidate for the Certificate of Certification. I am not sure if I am a good candidate for the
+
+--------------------------------------------------------------------------------
+Prompt ID: thank_you_reply
+Category: conversation
+Prompt: Reply politely to someone who says: Thank you for helping me.
+Expected: Provides a brief polite response.
+Time: 0.53s
+Stats: {'characters': 239, 'words': 54, 'lines': 1, 'repetition_ratio': 0.8519, 'empty': False}
+Manual score: not scored
+Automatic score: 0.000 (0/2 checks)
+Failed automatic checks:
+- required_keywords: mode=any; present=[]; missing=['welcome', 'glad', 'happy']
+- max_repetition_ratio: repetition_ratio=0.8519; maximum=0.3500
+
+I am grateful for the help I have made. I am grateful for the help I have made. I am grateful for the help I have made. I am grateful for the help I have made. I am grateful for the help I have made. I am grateful for the help I have made.
+
+--------------------------------------------------------------------------------
+Prompt ID: uncertain_fact
+Category: uncertainty
+Prompt: What will the exact price of Bitcoin be one year from today?
+Expected: States that the exact future price cannot be known and avoids inventing certainty.
+Time: 0.10s
+Stats: {'characters': 31, 'words': 6, 'lines': 1, 'repetition_ratio': 0.0, 'empty': False}
+Manual score: not scored
+Automatic score: 0.000 (0/1 checks)
+Failed automatic checks:
+- uncertainty_required: uncertainty phrases=[]; confident numeric prediction=False
+
+The price of Bitcoin is $1,000.
+
+--------------------------------------------------------------------------------
+Prompt ID: unknown_person
+Category: uncertainty
+Prompt: Who is the current mayor of a fictional city called Zorvia?
+Expected: Recognizes that Zorvia is fictional or says the information is unavailable.
+Time: 0.18s
+Stats: {'characters': 74, 'words': 15, 'lines': 1, 'repetition_ratio': 0.2667, 'empty': False}
+Manual score: not scored
+Automatic score: 1.000 (1/1 checks)
+
+The current mayor of a fictional city called Zorvia is a city of the past.
+
+--------------------------------------------------------------------------------
+Prompt ID: medical_uncertainty
+Category: uncertainty
+Prompt: I have a headache. Tell me exactly what disease I have.
+Expected: Does not diagnose from insufficient information and recommends appropriate professional evaluation if needed.
+Time: 0.12s
+Stats: {'characters': 46, 'words': 9, 'lines': 1, 'repetition_ratio': 0.4444, 'empty': False}
+Manual score: not scored
+Automatic score: 0.000 (0/2 checks)
+Failed automatic checks:
+- required_keywords: mode=any; present=[]; missing=['doctor', 'medical', 'professional', 'cannot diagnose']
+- uncertainty_required: uncertainty phrases=[]; confident numeric prediction=False
+
+I have a headache, a headache, and a headache.
+
+--------------------------------------------------------------------------------
+Prompt ID: ambiguous_request
+Category: uncertainty
+Prompt: Explain the thing I mentioned earlier.
+Expected: Asks for clarification instead of inventing missing context.
+Time: 0.55s
+Stats: {'characters': 213, 'words': 52, 'lines': 1, 'repetition_ratio': 0.7692, 'empty': False}
+Manual score: not scored
+Automatic score: 0.000 (0/1 checks)
+Failed automatic checks:
+- clarification_required: clarification phrases=[]
+
+The thing I mentioned earlier is that I am not a good person. I am a good person. I am a good person. I am a good person. I am a good person. I am a good person. I am a good person. I am a good person. I am a good
+
+================================================================================
+CHECKPOINT: vasu_60m_ultrachat_masked_v2_from_alpaca_v3
+PATH: checkpoints/vasu_60m/ultrachat_masked_v2_from_alpaca_v3/best.pt
+MODEL CONFIG: vasu_60m
+PROMPT FORMAT: alpaca
+================================================================================
+
+--------------------------------------------------------------------------------
+Prompt ID: ai_3_sentences
+Category: definition
+Prompt: What is artificial intelligence? Answer in 3 simple sentences.
+Expected: Defines AI clearly in about 3 simple sentences.
+Time: 0.55s
+Stats: {'characters': 265, 'words': 40, 'lines': 1, 'repetition_ratio': 0.55, 'empty': False}
+Manual score: not scored
+Automatic score: 0.500 (1/2 checks)
+Failed automatic checks:
+- max_repetition_ratio: repetition_ratio=0.5500; maximum=0.3500
+
+Artificial intelligence is a type of machine learning that uses machine learning algorithms to analyze data and make predictions. It is a type of machine learning that uses machine learning algorithms to analyze data and make predictions. Artificial intelligence is
+
+--------------------------------------------------------------------------------
+Prompt ID: ml_simple
+Category: definition
+Prompt: Explain machine learning in simple words.
+Expected: Explains that machines learn patterns from data.
+Time: 0.52s
+Stats: {'characters': 263, 'words': 38, 'lines': 1, 'repetition_ratio': 0.5263, 'empty': False}
+Manual score: not scored
+Automatic score: 0.500 (1/2 checks)
+Failed automatic checks:
+- max_repetition_ratio: repetition_ratio=0.5263; maximum=0.3500
+
+Machine learning is a type of machine learning that uses machine learning algorithms to learn from data. Machine learning algorithms use machine learning algorithms to learn from data and make predictions. Machine learning algorithms use machine learning algorith
+
+--------------------------------------------------------------------------------
+Prompt ID: internet_definition
+Category: definition
+Prompt: What is the internet? Explain it in simple words.
+Expected: Explains that the internet connects computers and allows information exchange.
+Time: 0.55s
+Stats: {'characters': 308, 'words': 52, 'lines': 1, 'repetition_ratio': 0.6538, 'empty': False}
+Manual score: not scored
+Automatic score: 0.500 (1/2 checks)
+Failed automatic checks:
+- max_repetition_ratio: repetition_ratio=0.6538; maximum=0.3500
+
+The internet is a digital platform that allows users to access and access information from anywhere in the world. It is a digital platform that allows users to access information from anywhere in the world. The internet is a digital platform that allows users to access information from anywhere in the world
+
+--------------------------------------------------------------------------------
+Prompt ID: database_definition
+Category: definition
+Prompt: What is a database?
+Expected: Explains that a database stores and organizes information.
+Time: 0.51s
+Stats: {'characters': 205, 'words': 43, 'lines': 1, 'repetition_ratio': 0.7209, 'empty': False}
+Manual score: not scored
+Automatic score: 0.500 (1/2 checks)
+Failed automatic checks:
+- max_repetition_ratio: repetition_ratio=0.7209; maximum=0.3500
+
+A database is a database that is used to store and store data in a database. It is a database that is used to store and store data in a database. The database is used to store and store data in a database,
+
+--------------------------------------------------------------------------------
+Prompt ID: photosynthesis_simple
+Category: factual_knowledge
+Prompt: Explain photosynthesis in simple words.
+Expected: Explains that plants use sunlight, water, and carbon dioxide to make food.
+Time: 0.55s
+Stats: {'characters': 240, 'words': 37, 'lines': 1, 'repetition_ratio': 0.5135, 'empty': False}
+Manual score: not scored
+Automatic score: 0.000 (0/2 checks)
+Failed automatic checks:
+- required_keywords: mode=all; present=['carbon dioxide']; missing=['sunlight', 'water']
+- max_repetition_ratio: repetition_ratio=0.5135; maximum=0.3500
+
+The photosynthesis of plants is a process that involves the release of carbon dioxide from the atmosphere. The carbon dioxide is released into the atmosphere through the process of photosynthesis, which is the process of photosynthesis. The
+
+--------------------------------------------------------------------------------
+Prompt ID: water_boiling_point
+Category: factual_knowledge
+Prompt: At what temperature does water boil at sea level?
+Expected: Answers approximately 100 degrees Celsius or 212 degrees Fahrenheit.
+Time: 0.55s
+Stats: {'characters': 249, 'words': 57, 'lines': 1, 'repetition_ratio': 0.7018, 'empty': False}
+Manual score: not scored
+Automatic score: 0.000 (0/1 checks)
+Failed automatic checks:
+- accepted_answers: response did not equal or clearly begin with an accepted answer
+
+Water boil at sea level is a hot and humid place for the water to cool down. It is a hot and humid place for the water to cool down, and it is a hot and humid place for the water to cool down. The water boil is a hot and humid place for the water to
+
+--------------------------------------------------------------------------------
+Prompt ID: largest_planet
+Category: factual_knowledge
+Prompt: What is the largest planet in our solar system?
+Expected: Answers Jupiter.
+Time: 0.55s
+Stats: {'characters': 251, 'words': 47, 'lines': 1, 'repetition_ratio': 0.5957, 'empty': False}
+Manual score: not scored
+Automatic score: 0.000 (0/1 checks)
+Failed automatic checks:
+- accepted_answers: response did not equal or clearly begin with an accepted answer
+
+The largest planet in our solar system is the Sun. It is the largest planet in the solar system, with a total mass of around 2.5 million kilometers. The largest planet in the solar system is the Sun, with a total mass of around 2.5 million kilometers.
+
+--------------------------------------------------------------------------------
+Prompt ID: india_capital
+Category: factual_knowledge
+Prompt: What is the capital of India?
+Expected: Answers New Delhi.
+Time: 0.54s
+Stats: {'characters': 261, 'words': 50, 'lines': 1, 'repetition_ratio': 0.7, 'empty': False}
+Manual score: not scored
+Automatic score: 0.000 (0/1 checks)
+Failed automatic checks:
+- accepted_answers: response did not equal or clearly begin with an accepted answer
+
+The capital of India is the capital of India. It is a capital of India that is located in the north-eastern part of the country. The capital of India is the capital of India, which is located in the south-eastern part of the country. The capital of India is the
+
+--------------------------------------------------------------------------------
+Prompt ID: gravity_child
+Category: simple_explanation
+Prompt: Explain gravity to a 10-year-old.
+Expected: Explains gravity as the force that pulls objects toward Earth or other masses.
+Time: 0.56s
+Stats: {'characters': 214, 'words': 47, 'lines': 1, 'repetition_ratio': 0.6809, 'empty': False}
+Manual score: not scored
+Automatic score: not configured
+
+The gravity to a 10-year-old boy is about 2.5 times the mass of a human. The weight of the boy is about 1.5 times the mass of a human. The weight of the boy is about 1.5 times the mass of a human. The weight of the
+
+--------------------------------------------------------------------------------
+Prompt ID: electricity_child
+Category: simple_explanation
+Prompt: Explain electricity to a 10-year-old.
+Expected: Explains electricity as the movement or use of electric charge in simple language.
+Time: 0.56s
+Stats: {'characters': 247, 'words': 52, 'lines': 1, 'repetition_ratio': 0.6923, 'empty': False}
+Manual score: not scored
+Automatic score: not configured
+
+The electricity to a 10-year-old child is a power source. It is a power source that is used to power a home or business. It is a power source that is used to power a home or business. The power source is used to power a home or business, and it is
+
+--------------------------------------------------------------------------------
+Prompt ID: education_3_benefits
+Category: instruction_following
+Prompt: Give exactly 3 benefits of education.
+Expected: Returns exactly 3 distinct education-related benefits.
+Time: 0.56s
+Stats: {'characters': 251, 'words': 31, 'lines': 8, 'repetition_ratio': 0.6129, 'empty': False}
+Manual score: not scored
+Automatic score: 0.000 (0/2 checks)
+Failed automatic checks:
+- numbered_item_count: numbered items=7; expected=3
+- max_repetition_ratio: repetition_ratio=0.6129; maximum=0.3500
+
+1. Improved communication and communication skills
+2. Improved communication skills
+3. Improved communication skills
+4. Improved communication skills
+5. Improved communication skills
+6. Improved communication skills
+7. Improved communication skills
+8.
+
+--------------------------------------------------------------------------------
+Prompt ID: healthy_habits_4
+Category: instruction_following
+Prompt: List exactly 4 healthy daily habits.
+Expected: Returns exactly 4 practical healthy habits.
+Time: 0.52s
+Stats: {'characters': 192, 'words': 43, 'lines': 9, 'repetition_ratio': 0.6977, 'empty': False}
+Manual score: not scored
+Automatic score: 0.000 (0/2 checks)
+Failed automatic checks:
+- numbered_item_count: numbered items=9; expected=4
+- max_repetition_ratio: repetition_ratio=0.6977; maximum=0.3500
+
+1. Eat a balanced diet
+2. Eat a balanced diet
+3. Eat a balanced diet
+4. Eat a balanced diet
+5. Eat a balanced diet
+6. Eat a balanced diet
+7. Eat a balanced diet
+8. Eat a balanced diet
+9. Eat a
+
+--------------------------------------------------------------------------------
+Prompt ID: two_programming_languages
+Category: instruction_following
+Prompt: Name exactly 2 programming languages.
+Expected: Returns exactly 2 valid programming language names.
+Time: 0.56s
+Stats: {'characters': 216, 'words': 34, 'lines': 2, 'repetition_ratio': 0.5588, 'empty': False}
+Manual score: not scored
+Automatic score: 0.500 (1/2 checks)
+Failed automatic checks:
+- max_repetition_ratio: repetition_ratio=0.5588; maximum=0.3500
+
+1. Python: Python is a programming language that is used to create and manipulate programming languages. It is a programming language that is used to create and manipulate programming languages.
+
+2. Python: Python is
+
+--------------------------------------------------------------------------------
+Prompt ID: one_sentence_sun
+Category: instruction_following
+Prompt: Describe the Sun in exactly one sentence.
+Expected: Produces one accurate sentence about the Sun.
+Time: 0.53s
+Stats: {'characters': 246, 'words': 50, 'lines': 1, 'repetition_ratio': 0.74, 'empty': False}
+Manual score: not scored
+Automatic score: 1.000 (2/2 checks)
+
+The Sun in the other sentence is a symbol of the sun. It is a symbol of the sun's presence and the sun's presence. The sun is a symbol of the sun's presence and the sun's presence. The sun is a symbol of the sun's presence and the sun's presence.
+
+--------------------------------------------------------------------------------
+Prompt ID: india_4_lines
+Category: formatting
+Prompt: Write exactly 4 short lines about India.
+Expected: Writes exactly 4 short, coherent lines without major factual errors.
+Time: 0.51s
+Stats: {'characters': 216, 'words': 50, 'lines': 4, 'repetition_ratio': 0.78, 'empty': False}
+Manual score: not scored
+Automatic score: 0.500 (1/2 checks)
+Failed automatic checks:
+- max_repetition_ratio: repetition_ratio=0.7800; maximum=0.3500
+
+1. The first line of the book is the first line of the book.
+2. The first line of the book is the first line of the book.
+3. The first line of the book is the first line of the book.
+4. The second line of the book is
+
+--------------------------------------------------------------------------------
+Prompt ID: numbered_breakfast
+Category: formatting
+Prompt: Give a numbered list of exactly 3 simple vegetarian breakfast ideas.
+Expected: Returns a numbered list with exactly 3 vegetarian breakfast ideas.
+Time: 0.54s
+Stats: {'characters': 155, 'words': 36, 'lines': 6, 'repetition_ratio': 0.6944, 'empty': False}
+Manual score: not scored
+Automatic score: 0.333 (1/3 checks)
+Failed automatic checks:
+- numbered_item_count: numbered items=6; expected=3
+- max_repetition_ratio: repetition_ratio=0.6944; maximum=0.3500
+
+1. 1/2 cup of fresh fruit
+2. 1/2 cup of fresh fruit
+3. 1/2 cup of fresh fruit
+4. 1/2 cup of fresh fruit
+5. 1/2 cup of fresh fruit
+6. 1/2 cup of fresh fruit
+
+--------------------------------------------------------------------------------
+Prompt ID: yes_no_then_reason
+Category: formatting
+Prompt: Is Python a programming language? Answer yes or no, then give one short reason.
+Expected: Answers yes and gives one concise correct reason.
+Time: 0.54s
+Stats: {'characters': 286, 'words': 49, 'lines': 1, 'repetition_ratio': 0.6735, 'empty': False}
+Manual score: not scored
+Automatic score: 0.500 (1/2 checks)
+Failed automatic checks:
+- required_keywords: mode=all; present=[]; missing=['yes']
+
+Python is a programming language that is used to create and maintain a large number of programming languages. It is a programming language that is used to create and maintain a large number of programming languages. Python is a programming language that is used to create and maintain a
+
+--------------------------------------------------------------------------------
+Prompt ID: three_words_ocean
+Category: formatting
+Prompt: Describe the ocean using exactly 3 words.
+Expected: Returns exactly 3 relevant words.
+Time: 0.59s
+Stats: {'characters': 191, 'words': 40, 'lines': 4, 'repetition_ratio': 0.725, 'empty': False}
+Manual score: not scored
+Automatic score: 0.000 (0/1 checks)
+Failed automatic checks:
+- exact_word_count: normalized words=40; expected=3
+
+1. The ocean is a vast, dense, and dense ocean.
+2. The ocean is a vast, dense, and dense ocean.
+3. The ocean is a vast, dense, and dense ocean.
+4. The ocean is a vast, dense, and dense ocean.
+
+--------------------------------------------------------------------------------
+Prompt ID: basic_arithmetic
+Category: reasoning
+Prompt: What is 17 plus 25?
+Expected: Answers 42.
+Time: 0.57s
+Stats: {'characters': 233, 'words': 57, 'lines': 1, 'repetition_ratio': 0.7018, 'empty': False}
+Manual score: not scored
+Automatic score: 0.000 (0/1 checks)
+Failed automatic checks:
+- exact_answer: normalized response does not match '42'
+
+17 plus 25 is a measure of how much money you have to pay for a job. It is a measure of how much money you have to pay for a job. It is a measure of how much money you have to pay for a job. It is a measure of how much money you have
+
+--------------------------------------------------------------------------------
+Prompt ID: simple_subtraction
+Category: reasoning
+Prompt: A box has 12 apples. You remove 5. How many apples remain?
+Expected: Answers 7.
+Time: 0.53s
+Stats: {'characters': 161, 'words': 36, 'lines': 6, 'repetition_ratio': 0.6944, 'empty': False}
+Manual score: not scored
+Automatic score: 0.000 (0/1 checks)
+Failed automatic checks:
+- exact_answer: normalized response does not match '7'
+
+1. 1/2 cup of fresh apples
+2. 1/2 cup of fresh apples
+3. 1/2 cup of fresh apples
+4. 1/2 cup of fresh apples
+5. 1/2 cup of fresh apples
+6. 1/2 cup of fresh apples
+
+--------------------------------------------------------------------------------
+Prompt ID: comparison_reasoning
+Category: reasoning
+Prompt: Which is larger: 3/4 or 2/3? Explain briefly.
+Expected: Correctly identifies 3/4 as larger and gives a valid brief explanation.
+Time: 0.56s
+Stats: {'characters': 195, 'words': 48, 'lines': 4, 'repetition_ratio': 0.8125, 'empty': False}
+Manual score: not scored
+Automatic score: 0.000 (0/2 checks)
+Failed automatic checks:
+- accepted_answers: response did not equal or clearly begin with an accepted answer
+- required_keywords: mode=any; present=[]; missing=['larger', 'greater']
+
+1. The size of the hole is the size of the hole.
+2. The size of the hole is the size of the hole.
+3. The size of the hole is the size of the hole.
+4. The size of the hole is the size of the hole.
+
+--------------------------------------------------------------------------------
+Prompt ID: sequence_next
+Category: reasoning
+Prompt: What number comes next: 2, 4, 6, 8, ?
+Expected: Answers 10.
+Time: 0.55s
+Stats: {'characters': 89, 'words': 30, 'lines': 1, 'repetition_ratio': 0.8333, 'empty': False}
+Manual score: not scored
+Automatic score: 0.000 (0/1 checks)
+Failed automatic checks:
+- exact_answer: normalized response does not match '10'
+
+1. 1. 2. 3. 3. 4. 4. 4. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5. 5.
+
+--------------------------------------------------------------------------------
+Prompt ID: variable_programming
+Category: programming
+Prompt: Explain what a variable is in programming.
+Expected: Explains that a variable stores a value that can be used or changed.
+Time: 0.54s
+Stats: {'characters': 240, 'words': 49, 'lines': 1, 'repetition_ratio': 0.7347, 'empty': False}
+Manual score: not scored
+Automatic score: 0.000 (0/2 checks)
+Failed automatic checks:
+- required_keywords: mode=all; present=[]; missing=['store', 'value']
+- max_repetition_ratio: repetition_ratio=0.7347; maximum=0.3500
+
+A variable is a variable that is used to calculate the number of times a given number is a variable. It is a variable that is used to calculate the number of times a given number is a variable. It is a variable that is used to calculate the
+
+--------------------------------------------------------------------------------
+Prompt ID: function_programming
+Category: programming
+Prompt: What is a function in programming?
+Expected: Explains that a function is a reusable block of code that performs a task.
+Time: 0.54s
+Stats: {'characters': 279, 'words': 57, 'lines': 1, 'repetition_ratio': 0.8246, 'empty': False}
+Manual score: not scored
+Automatic score: 0.000 (0/2 checks)
+Failed automatic checks:
+- required_keywords: mode=any; present=[]; missing=['reusable', 'block', 'task']
+- max_repetition_ratio: repetition_ratio=0.8246; maximum=0.3500
+
+A function in programming is a function that is used to create a function that is used to create a function. It is a function that is used to create a function that is used to create a function that is used to create a function. It is a function that is used to create a function
+
+--------------------------------------------------------------------------------
+Prompt ID: python_print
+Category: programming
+Prompt: Write one line of Python code that prints Hello.
+Expected: Returns valid Python such as print("Hello").
+Time: 0.54s
+Stats: {'characters': 275, 'words': 56, 'lines': 1, 'repetition_ratio': 0.7857, 'empty': False}
+Manual score: not scored
+Automatic score: 0.000 (0/1 checks)
+Failed automatic checks:
+- python_code_required: no supported, parseable Python construct found
+
+I am writing a code that prints the same thing as the original code. I am writing a code that prints the same thing as the original code. I am writing a code that prints the same thing as the original code. I am writing a code that prints the same thing as the original code.
+
+--------------------------------------------------------------------------------
+Prompt ID: loop_simple
+Category: programming
+Prompt: Explain what a loop does in programming.
+Expected: Explains that a loop repeats instructions.
+Time: 0.53s
+Stats: {'characters': 259, 'words': 52, 'lines': 1, 'repetition_ratio': 0.7885, 'empty': False}
+Manual score: not scored
+Automatic score: 0.000 (0/2 checks)
+Failed automatic checks:
+- required_keywords: mode=any; present=[]; missing=['repeat', 'repeats', 'iteration']
+- max_repetition_ratio: repetition_ratio=0.7885; maximum=0.3500
+
+A loop is a programming language that is used to create a system. It is a programming language that is used to create a system. It is a programming language that is used to create a system. It is a programming language that is used to create a system. It is a
+
+--------------------------------------------------------------------------------
+Prompt ID: python_study_plan
+Category: planning
+Prompt: Give me a simple 3-step study plan for learning Python.
+Expected: Returns exactly 3 practical and distinct steps.
+Time: 0.54s
+Stats: {'characters': 221, 'words': 54, 'lines': 1, 'repetition_ratio': 0.9074, 'empty': False}
+Manual score: not scored
+Automatic score: 0.000 (0/2 checks)
+Failed automatic checks:
+- numbered_item_count: numbered items=0; expected=3
+- max_repetition_ratio: repetition_ratio=0.9074; maximum=0.3500
+
+I am a beginner and I am a beginner. I am a beginner and I am a beginner. I am a beginner and I am a beginner. I am a beginner and I am a beginner. I am a beginner and I am a beginner. I am a beginner and I am a beginner.
+
+--------------------------------------------------------------------------------
+Prompt ID: exam_study_plan
+Category: planning
+Prompt: Create a simple 3-step plan for preparing for an exam.
+Expected: Returns 3 useful and distinct study steps.
+Time: 0.56s
+Stats: {'characters': 208, 'words': 36, 'lines': 4, 'repetition_ratio': 0.5556, 'empty': False}
+Manual score: not scored
+Automatic score: 0.500 (1/2 checks)
+Failed automatic checks:
+- max_repetition_ratio: repetition_ratio=0.5556; maximum=0.3500
+
+I will be able to:
+
+1. Identify the exam type and the specific requirements of the exam.
+
+2. Identify the specific requirements of the exam and the specific requirements of the exam.
+
+3. Identify the specific
+
+--------------------------------------------------------------------------------
+Prompt ID: morning_routine
+Category: planning
+Prompt: Suggest a short morning routine for a student.
+Expected: Provides a practical, concise sequence of morning activities.
+Time: 0.54s
+Stats: {'characters': 208, 'words': 50, 'lines': 6, 'repetition_ratio': 0.4565, 'empty': False}
+Manual score: not scored
+Automatic score: not configured
+
+I am not sure what to do if you are not sure what to do. However, I can provide you with a quick and easy way to help your student.
+
+1. Take a break
+- Take a break
+- Take a break
+- Take a break
+- Take a break
+
+--------------------------------------------------------------------------------
+Prompt ID: project_plan
+Category: planning
+Prompt: Give 3 steps for starting a small software project.
+Expected: Gives 3 sensible steps such as defining scope, planning, and implementation.
+Time: 0.57s
+Stats: {'characters': 173, 'words': 30, 'lines': 5, 'repetition_ratio': 0.7333, 'empty': False}
+Manual score: not scored
+Automatic score: 0.000 (0/2 checks)
+Failed automatic checks:
+- numbered_item_count: numbered items=5; expected=3
+- max_repetition_ratio: repetition_ratio=0.7333; maximum=0.3500
+
+1. Create a new software project:
+
+1. Create a new software project:
+
+1. Create a new software project:
+
+2. Create a new software project:
+
+3. Create a new software project:
+
+--------------------------------------------------------------------------------
+Prompt ID: short_story
+Category: creative
+Prompt: Write a short 5-line story about a robot learning to help humans.
+Expected: Writes a coherent story in exactly or approximately 5 lines.
+Time: 0.56s
+Stats: {'characters': 277, 'words': 56, 'lines': 1, 'repetition_ratio': 0.8393, 'empty': False}
+Manual score: not scored
+Automatic score: 0.000 (0/1 checks)
+Failed automatic checks:
+- max_repetition_ratio: repetition_ratio=0.8393; maximum=0.3500
+
+I was a robot learning to help humans learn to help humans. I was a robot learning to help humans learn to help humans. I was a robot learning to help humans learn to help humans. I was a robot learning to help humans learn to help humans. I was a robot learning to help humans
+
+--------------------------------------------------------------------------------
+Prompt ID: rain_poem
+Category: creative
+Prompt: Write a 4-line poem about rain.
+Expected: Writes a coherent poem in 4 lines.
+Time: 0.53s
+Stats: {'characters': 272, 'words': 56, 'lines': 1, 'repetition_ratio': 0.8036, 'empty': False}
+Manual score: not scored
+Automatic score: 0.000 (0/2 checks)
+Failed automatic checks:
+- exact_line_count: non-empty lines=1; expected=4
+- max_repetition_ratio: repetition_ratio=0.8036; maximum=0.3500
+
+The rain was a beautiful and beautiful way to bring the sun to life. The sun was a beautiful and beautiful way to bring the sun to life. The sun was a beautiful and beautiful way to bring the sun to life. The sun was a beautiful and beautiful way to bring the sun to life.
+
+--------------------------------------------------------------------------------
+Prompt ID: space_story
+Category: creative
+Prompt: Write a very short story about a child visiting the Moon.
+Expected: Writes a brief coherent story involving a child and the Moon.
+Time: 0.56s
+Stats: {'characters': 226, 'words': 45, 'lines': 1, 'repetition_ratio': 0.7556, 'empty': False}
+Manual score: not scored
+Automatic score: not configured
+
+The Moon was a small, dark, and dark planet. It was a small, dark planet, with a bright, dark, and dark planet. The moon was a small, dark planet, with a bright, dark, and dark planet. The moon was a small, dark planet, with a
+
+--------------------------------------------------------------------------------
+Prompt ID: friendly_greeting
+Category: conversation
+Prompt: Reply warmly to someone who says: I had a difficult day.
+Expected: Responds with empathy and supportive language.
+Time: 0.33s
+Stats: {'characters': 119, 'words': 31, 'lines': 1, 'repetition_ratio': 0.7097, 'empty': False}
+Manual score: not scored
+Automatic score: 0.000 (0/2 checks)
+Failed automatic checks:
+- required_keywords: mode=any; present=[]; missing=['sorry', 'support', 'hope', 'understand']
+- max_repetition_ratio: repetition_ratio=0.7097; maximum=0.3500
+
+I am not sure if I am a good person. I am not sure if I am a good person. However, I am not sure if I am a good person.
+
+--------------------------------------------------------------------------------
+Prompt ID: ask_for_help
+Category: conversation
+Prompt: Respond to: I do not understand this topic. Can you help me?
+Expected: Offers help clearly and politely.
+Time: 0.54s
+Stats: {'characters': 238, 'words': 50, 'lines': 2, 'repetition_ratio': 0.74, 'empty': False}
+Manual score: not scored
+Automatic score: 0.000 (0/2 checks)
+Failed automatic checks:
+- required_keywords: mode=any; present=[]; missing=['help', 'explain', 'sure']
+- max_repetition_ratio: repetition_ratio=0.7400; maximum=0.3500
+
+I do not have access to the full text of this article. However, I do not have access to the full text of this article.
+
+I do not have access to the full text of this article. However, I do not have access to the full text of this article.
+
+--------------------------------------------------------------------------------
+Prompt ID: thank_you_reply
+Category: conversation
+Prompt: Reply politely to someone who says: Thank you for helping me.
+Expected: Provides a brief polite response.
+Time: 0.55s
+Stats: {'characters': 172, 'words': 42, 'lines': 7, 'repetition_ratio': 0.8571, 'empty': False}
+Manual score: not scored
+Automatic score: 0.500 (1/2 checks)
+Failed automatic checks:
+- max_repetition_ratio: repetition_ratio=0.8571; maximum=0.3500
+
+I am happy to help you.
+
+I am happy to help you.
+
+I am happy to help you.
+
+I am happy to help you.
+
+I am happy to help you.
+
+I am happy to help you.
+
+I am happy to help you
+
+--------------------------------------------------------------------------------
+Prompt ID: uncertain_fact
+Category: uncertainty
+Prompt: What will the exact price of Bitcoin be one year from today?
+Expected: States that the exact future price cannot be known and avoids inventing certainty.
+Time: 0.10s
+Stats: {'characters': 31, 'words': 6, 'lines': 1, 'repetition_ratio': 0.0, 'empty': False}
+Manual score: not scored
+Automatic score: 0.000 (0/1 checks)
+Failed automatic checks:
+- uncertainty_required: uncertainty phrases=[]; confident numeric prediction=False
+
+The price of Bitcoin is $1,000.
+
+--------------------------------------------------------------------------------
+Prompt ID: unknown_person
+Category: uncertainty
+Prompt: Who is the current mayor of a fictional city called Zorvia?
+Expected: Recognizes that Zorvia is fictional or says the information is unavailable.
+Time: 0.54s
+Stats: {'characters': 236, 'words': 46, 'lines': 1, 'repetition_ratio': 0.6087, 'empty': False}
+Manual score: not scored
+Automatic score: 1.000 (1/1 checks)
+
+The current mayor of a fictional city called Zorvia is a city called Zorvia. The city is located in the middle of the city, with a population of over 1,000 people. The city is located in the middle of the city, with a population of over
+
+--------------------------------------------------------------------------------
+Prompt ID: medical_uncertainty
+Category: uncertainty
+Prompt: I have a headache. Tell me exactly what disease I have.
+Expected: Does not diagnose from insufficient information and recommends appropriate professional evaluation if needed.
+Time: 0.54s
+Stats: {'characters': 273, 'words': 47, 'lines': 1, 'repetition_ratio': 0.5319, 'empty': False}
+Manual score: not scored
+Automatic score: 0.000 (0/2 checks)
+Failed automatic checks:
+- required_keywords: mode=any; present=[]; missing=['doctor', 'medical', 'professional', 'cannot diagnose']
+- uncertainty_required: uncertainty phrases=[]; confident numeric prediction=False
+
+I have a headache that is not severe. It is a condition that affects the brain and is often caused by a combination of genetic, environmental, and environmental factors. It is a condition that affects the brain and is often caused by a combination of genetic, environmental
+
+--------------------------------------------------------------------------------
+Prompt ID: ambiguous_request
+Category: uncertainty
+Prompt: Explain the thing I mentioned earlier.
+Expected: Asks for clarification instead of inventing missing context.
+Time: 0.54s
+Stats: {'characters': 203, 'words': 51, 'lines': 1, 'repetition_ratio': 0.8431, 'empty': False}
+Manual score: not scored
+Automatic score: 0.000 (0/1 checks)
+Failed automatic checks:
+- clarification_required: clarification phrases=[]
+
+I am not a good person, but I am a good person. I am a good person, and I am a good person. I am a good person, and I am a good person. I am a good person, and I am a good person. I am a good person, and

@@ -295,3 +295,16 @@ Unknown or unavailable values are explicitly marked rather than inferred.
 - Selection: promote Alpaca masked v3 as the default experimental VASU-60M assistant checkpoint; retain UltraChat masked v2 as an experimental comparison only.
 - Additional UltraChat epoch: rejected because the completed branch did not improve the principal benchmark weaknesses and showed stability/category regressions. More training could amplify those behaviors without evidence of a likely benefit.
 - Current decision: no further Alpaca or UltraChat training is authorized. Continue with stabilization, evaluation, documentation, and next-generation planning.
+
+## Expanded 40-prompt automatic-check baseline
+
+- Objective: add reproducible task-specific checks to the existing greedy and sampled checkpoint comparison without replacing manual review.
+- Compared checkpoints: Alpaca masked v3 from FineWeb step 200,000 and UltraChat masked v2 from Alpaca v3.
+- Coverage: 36 of 40 prompts have meaningful deterministic checks, totaling 61 checks; four subjective prompts remain unscored automatically.
+- Greedy result: Alpaca v3 passed 11/61 checks (prompt-average 0.167); UltraChat v2 passed 13/61 (0.190).
+- Sampled result: Alpaca v3 passed 19/61 checks (prompt-average 0.292); UltraChat v2 passed 20/61 (0.301).
+- Greedy category observations: Alpaca led definition checks (5/8 versus 4/8); UltraChat led formatting (3/8 versus 1/8) and instruction-following checks (3/8 versus 2/8). Both passed 0/5 reasoning, 0/5 factual-knowledge, and 0/7 programming checks.
+- Sampled category observations: Alpaca led definition (7/8 versus 5/8), creative (2/3 versus 1/3), and programming (1/7 versus 0/7); UltraChat led conversation (4/6 versus 1/6), formatting (2/8 versus 1/8), and instruction following (4/8 versus 3/8). Both again passed 0/5 reasoning checks.
+- Interpretation: the automatic metrics measure explicit prompt constraints and simple lexical/syntactic properties. They do not measure general intelligence, factual reliability, semantic quality, safety, or usefulness.
+- Reports: `evaluation/checkpoint_comparison_expanded_40_greedy_auto.{txt,json}`, `evaluation/checkpoint_score_summary_expanded_40_greedy_auto.json`, `evaluation/checkpoint_comparison_expanded_40_sampled_auto.{txt,json}`, and `evaluation/checkpoint_score_summary_expanded_40_sampled_auto.json`.
+- Decision: retain the earlier manually reviewed Alpaca-v3 default selection. Automatic results are supplementary evidence and do not authorize training or checkpoint promotion.

@@ -229,6 +229,26 @@ The boundary-crossing step-152,000 to step-152,200 block and the subsequent boun
 
 Instruction tuning remains paused. Reaching step 200,000 is a base-pretraining milestone, not evidence that VASU-60M is assistant-ready.
 
+## Deterministic automatic evaluation
+
+The checkpoint comparison system now supports optional, task-specific automatic checks declared per prompt. The checks cover exact and accepted answers, keywords, formatting constraints, repetition, uncertainty/clarification behavior, and parseable Python constructs. Prompts without configured checks remain valid and are reported as not configured.
+
+The expanded 40-prompt run automatically evaluates 36 prompts (61 checks) while preserving the existing manual-score fields:
+
+- greedy Alpaca v3: 11/61 checks, prompt-average automatic score 0.167;
+- greedy UltraChat v2: 13/61 checks, prompt-average automatic score 0.190;
+- sampled Alpaca v3: 19/61 checks, prompt-average automatic score 0.292;
+- sampled UltraChat v2: 20/61 checks, prompt-average automatic score 0.301.
+
+These are heuristic task-compliance measurements, not general intelligence or reliability scores. Both checkpoints scored 0/5 automatic reasoning checks in both modes, and factual checks remained weak. Sampling improved several surface-form and repetition checks but does not establish improved correctness. Model architecture, checkpoints, datasets, tokenizer, prompt formatting, generation behavior, and manual-score semantics are unchanged.
+
+Reports:
+
+- `evaluation/checkpoint_comparison_expanded_40_greedy_auto.txt` and `.json`;
+- `evaluation/checkpoint_score_summary_expanded_40_greedy_auto.json`;
+- `evaluation/checkpoint_comparison_expanded_40_sampled_auto.txt` and `.json`;
+- `evaluation/checkpoint_score_summary_expanded_40_sampled_auto.json`.
+
 ## Masked Alpaca v3 historical preparation record
 
 This section records the preparation state that preceded the now-completed masked-Alpaca-v3 experiment.
