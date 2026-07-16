@@ -4,7 +4,9 @@ Transformer Block for VASU.
 
 import torch
 import torch.nn as nn
+from typing import Literal
 
+from vasu.cache import KVCache
 from vasu.config import ModelConfig
 
 from .attention import MultiHeadAttention
@@ -36,14 +38,16 @@ class TransformerBlock(nn.Module):
     def forward(
         self,
         x: torch.Tensor,
-        kv_cache=None,
-        layer_idx=None,
+        kv_cache: KVCache | None = None,
+        layer_idx: int | None = None,
+        cache_mode: Literal["none", "prefill", "decode"] = "none",
     ) -> torch.Tensor:
 
         x = x + self.attention(
             self.norm1(x),
             kv_cache=kv_cache,
             layer_idx=layer_idx,
+            cache_mode=cache_mode,
         )
 
         x = x + self.mlp(self.norm2(x))

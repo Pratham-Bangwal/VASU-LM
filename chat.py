@@ -21,6 +21,7 @@ MAX_NEW_TOKENS = 60
 TEMPERATURE = 0.45
 TOP_K = 20
 TOP_P = 0.8
+USE_KV_CACHE = False
 
 
 def clean_response(response: str) -> str:
@@ -117,6 +118,7 @@ def main() -> None:
                 top_k=TOP_K,
                 top_p=TOP_P,
                 prompt_format=PROMPT_FORMAT,
+                use_kv_cache=USE_KV_CACHE,
             )
 
         response = clean_response(response)

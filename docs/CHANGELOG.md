@@ -25,6 +25,8 @@
 - Isolated VASU-60M masked-Alpaca-v3 runner prepared from the authoritative FineWeb step-200,000 base, with strict preflight validation and a no-write forward-only dry-run mode.
 - Boundary-aware UltraChat masked-v2 preparation, read-only validation, supervised EOS metadata, isolated one-epoch runner, and explicit no-write dry-run mode.
 - Expanded 40-prompt greedy and sampled benchmark for final VASU-60M checkpoint selection.
+- Typed inference-only KV cache with validated per-layer tensor state, explicit causal prefill, and one-token decode modes.
+- Cached-versus-uncached preferred-checkpoint benchmark with token parity, stage timing, throughput, and CUDA peak-memory reporting.
 
 ### Changed
 
@@ -40,6 +42,8 @@
 - Alpaca masked v3 from FineWeb step 200,000 is now the default experimental VASU-60M assistant checkpoint.
 - `chat.py` now uses VASU-60M and Alpaca v3 instead of the legacy VASU-31M UltraChat checkpoint, with explicit Alpaca prompt formatting and the validated sampled-decoding settings.
 - UltraChat masked v2 is retained as an experimental branch and is not promoted.
+- Generation accepts opt-in `use_kv_cache`; the existing uncached full-history path remains the default reference implementation.
+- `chat.py` exposes `USE_KV_CACHE = False` pending a separate activation decision.
 
 ### Fixed
 
@@ -54,6 +58,8 @@
 - The earlier pre-boundary controlled runner cannot advance beyond step 152,000 and exits without training when that historical target is already reached.
 - Step-200,000 orchestration conflict detection excludes its own ancestor shell and matches actual training scripts/runners rather than unrelated commands containing FineWeb path text.
 - Interactive chat loading now strictly validates the checkpoint model-state keys and tensor shapes against the VASU-60M configuration.
+- Cached multi-token prompt prefill now uses causal attention instead of allowing prompt tokens to attend to future prompt positions.
+- Cached decode now enforces a populated synchronized cache, one-token queries, correct RoPE offsets, and the model context limit.
 
 ### Documented
 
@@ -75,6 +81,7 @@
 - Masked Alpaca v3 preparation passed a finite forward-only loss check (2.146862), 35 focused tests, and the 140-test full suite. No v3 checkpoint was written, instruction training was not started, and UltraChat remains paused.
 - Masked Alpaca v3 subsequently completed at step 200,711 with train assistant-token loss 2.627628 and validation loss 2.522585. UltraChat masked v2 preparation produced 5,099,908 tokens and passed a finite no-write dry run; UltraChat training has not started.
 - UltraChat masked v2 subsequently completed 590 optimizer steps from global step 200,711 to 201,301. The 40-prompt comparison selected Alpaca v3 as the default and preserved UltraChat v2 as experimental; neither model is documented as generally reliable.
+- KV-cache CPU/CUDA logits, greedy token IDs, EOS stopping, and context-limit parity passed. Dynamic caching lowered measured peak CUDA allocation but was approximately 0.9% slower on the 100-token benchmark, so it remains disabled by default.
 
 ## v0.5
 

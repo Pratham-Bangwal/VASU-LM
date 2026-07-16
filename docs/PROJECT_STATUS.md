@@ -35,6 +35,22 @@ Status: **VASU-60M training phase complete.** Masked Alpaca v3 is the preferred 
 
 Current phase: stabilization, evaluation, documentation, and next-generation planning. No further Alpaca or UltraChat training is currently authorized.
 
+### KV-cache inference status
+
+- Typed, inference-only per-layer K/V cache implemented.
+- Explicit causal prefill and one-token decode modes implemented.
+- CPU and CUDA logit parity passed within `rtol=1e-4`, `atol=1e-5`.
+- Greedy cached and uncached token IDs matched exactly for the required preferred-checkpoint prompts.
+- EOS and maximum-context stopping parity passed.
+- Full sampling history is retained for repetition penalty and sampling.
+- Focused tests: 25 passed; full suite: 185 passed.
+- Benchmark reports: `evaluation/kv_cache_benchmark_30_tokens.json` and `evaluation/kv_cache_benchmark_100_tokens.json`.
+- Activation: `chat.py` exposes `USE_KV_CACHE = False`; uncached generation remains the default/reference path.
+
+Measured CUDA performance showed lower cached peak allocation but no throughput improvement yet. At a 100-token limit, cached generation averaged 119.87 tokens/s versus 120.94 tokens/s uncached and used 236.89 MiB versus 258.86 MiB average peak allocation. A preallocated cache is the likely next optimization.
+
+Compatibility remains unchanged: KV cache does not alter architecture parameters, trained weights, tokenizer, prompt templates, datasets, training behavior, model-state keys, or checkpoint schema.
+
 Verified completed work:
 
 - architecture planning completed;
