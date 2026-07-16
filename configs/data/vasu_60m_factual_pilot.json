@@ -49,27 +49,31 @@
     {
       "id": "wikipedia_en_20231101_planned",
       "domain": "factual",
-      "path": "data/pilots/wikipedia_en_20231101.jsonl",
-      "format": "jsonl",
+      "path": "data/processed/pretrain/factual/wikimedia_20231101_en_e6057dc.bin",
+      "format": "token_bin",
       "tokenizer_path": "assets/tokenizer.json",
       "token_count": 50000000,
       "weight": 0.30,
-      "license": "CC-BY-SA-3.0 AND GFDL",
+      "license": "CC-BY-SA-3.0 AND GFDL (unversioned)",
       "source_url": "https://huggingface.co/datasets/wikimedia/wikipedia",
-      "dataset_revision": "20231101.en",
+      "dataset_revision": "e6057dc557255a03c9c3c47ceab0eb44353b1bc5:20231101.en",
       "attribution_required": true,
       "commercial_use_allowed": true,
       "split": "train",
       "content_hash": null,
-      "deduplication_status": "planned; must be measured before execution",
+      "deduplication_status": "approved preparation plan: exact normalized-text and MinHash/LSH near-duplicate removal, including cross-source FineWeb checks",
       "quality_filters": [
-        "English articles only",
-        "remove empty text",
-        "record source title and revision"
+        "20231101.en train split only",
+        "main/article namespace verification",
+        "redirect and disambiguation removal",
+        "markup, citation, empty-text, boilerplate, and Unicode cleanup",
+        "200-character minimum and paragraph segmentation above 100000 characters",
+        "evaluation-prompt contamination scan",
+        "retain article id, title, URL, revision, shard, and attribution provenance"
       ],
-      "notes": "Provenance placeholder for a future pilot artifact; the file is not created or downloaded by this task."
+      "notes": "Approved metadata for bounded preparation from the pinned official 41-shard Parquet distribution. The configured 50M tokens are the future prepared pilot allocation, not the full source size. No artifact exists yet."
     }
   ],
   "created_at": "2026-07-16T22:00:00+05:30",
-  "notes": "Planning manifest. Missing future source artifacts are intentional and require a separate acquisition approval."
+  "notes": "Registry approval and provenance checks are complete. Data acquisition, preparation, hashing, and physical artifact validation remain separate explicit steps."
 }

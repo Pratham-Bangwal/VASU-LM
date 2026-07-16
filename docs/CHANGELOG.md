@@ -4,6 +4,9 @@
 
 ### Added
 
+- Pinned primary-source registry evidence and an approved preparation plan for the factual pilot's official `wikimedia/wikipedia` `20231101.en` snapshot at commit `e6057dc557255a03c9c3c47ceab0eb44353b1bc5`, including exact published size/example counts, licensing obligations, Windows-safe paths, and quality/deduplication controls. No data was downloaded or training started.
+- Source-registry command-line validation for mixture readiness via `python -m vasu.data.sources.registry`.
+
 - Reproducible sampled checkpoint comparison with `--seed`, consecutive `--num-samples`, and explicit ordered `--seeds` support.
 - Multi-seed per-prompt score/repetition aggregates, per-check pass rates, checkpoint/category summaries, and grouped seed-specific text output.
 - Five-seed expanded 40-prompt stability reports for Alpaca v3 and UltraChat v2.

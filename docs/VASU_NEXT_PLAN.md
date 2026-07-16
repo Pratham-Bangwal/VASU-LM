@@ -183,13 +183,13 @@ All source revisions, licenses, attribution requirements, hashes, filters, and r
 | Evidence-linked QA material | 4% | Connect factual text to concise questions and answers. | Derive from licensed source text, retain evidence IDs, reject unsupported answers. | Leakage into evaluation and hallucinated synthetic answers. |
 | Indian and broader global knowledge | 3% | Reduce geographic imbalance and improve locally relevant common knowledge. | Balanced topic/language-source audit, factual provenance, deduplication against Wikipedia portion. | Tokenizer inefficiency outside English, cultural bias, uneven coverage. |
 
-The FineWeb-Edu card identifies an ODC-By 1.0 release subject to Common Crawl terms. FineMath is also ODC-By 1.0 and is a candidate only after a pinned-subset audit. Wikimedia text requires compliance with CC BY-SA/GFDL and attribution/share-alike obligations. Cosmopedia is Apache-2.0 but synthetic and must be quality sampled rather than treated as ground truth. The Stack v2 is gated, contains per-file licenses and provenance obligations, and requires ongoing removal updates; it should not be adopted wholesale. Stanford Alpaca is CC BY-NC 4.0 and research-only, so it must not become the foundation of a future commercially reusable model.
+The FineWeb-Edu card identifies an ODC-By 1.0 release subject to Common Crawl terms. FineMath is also ODC-By 1.0 and is a candidate only after a pinned-subset audit. The factual pilot now selects the official `wikimedia/wikipedia` Parquet distribution, configuration `20231101.en`, pinned at commit `e6057dc557255a03c9c3c47ceab0eb44353b1bc5`. Its registry review records CC BY-SA 3.0/GFDL attribution and redistribution obligations, exact provider-published size/example counts, sequential-shard preparation, and required contamination/cross-FineWeb deduplication. Approval authorizes only later bounded acquisition and preparation; no Wikimedia data has been downloaded or used for training. Cosmopedia is Apache-2.0 but synthetic and must be quality sampled rather than treated as ground truth. The Stack v2 is gated, contains per-file licenses and provenance obligations, and requires ongoing removal updates; it should not be adopted wholesale. Stanford Alpaca is CC BY-NC 4.0 and research-only, so it must not become the foundation of a future commercially reusable model.
 
 Primary source references:
 
 - [FineWeb-Edu dataset card](https://huggingface.co/datasets/HuggingFaceFW/fineweb-edu/blob/v1.0.0/README.md)
 - [FineMath dataset card](https://huggingface.co/datasets/HuggingFaceTB/finemath)
-- [Wikimedia Wikipedia dataset card](https://huggingface.co/datasets/wikimedia/wikipedia)
+- [Pinned Wikimedia Wikipedia dataset commit](https://huggingface.co/datasets/wikimedia/wikipedia/commit/e6057dc557255a03c9c3c47ceab0eb44353b1bc5)
 - [Wikimedia licensing terms](https://foundation.wikimedia.org/wiki/Policy:Terms_of_Use)
 - [Cosmopedia dataset card](https://huggingface.co/datasets/HuggingFaceTB/cosmopedia)
 - [The Stack v2 dataset card and terms](https://huggingface.co/datasets/bigcode/the-stack-v2)

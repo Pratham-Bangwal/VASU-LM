@@ -15,6 +15,17 @@ Planned sequence (not implemented):
 
 The detailed option comparison, compatibility analysis, stop conditions, and go/no-go criteria are in `docs/VASU_NEXT_PLAN.md`. None of these milestones is marked complete.
 
+Source-governance progress:
+
+- completed: pinned primary-source review and registry approval for the
+  `wikimedia/wikipedia` `20231101.en` factual source at commit
+  `e6057dc557255a03c9c3c47ceab0eb44353b1bc5`;
+- next: implement a bounded, resumable shard-by-shard Wikimedia preparer with
+  attribution metadata, filtering, contamination checks, and cross-FineWeb
+  deduplication;
+- unchanged: no data acquisition or factual-pilot training has started;
+- blocked: capability-pilot mathematics, code, and reasoning approvals.
+
 ## Historical roadmap snapshot
 
 The sections below preserve an earlier step-54,060-to-100,000 roadmap snapshot. They are retained as project history and are superseded for current planning by the completed step-200,000 cycle and `docs/VASU_NEXT_PLAN.md`.

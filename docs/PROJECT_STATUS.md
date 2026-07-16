@@ -6,6 +6,17 @@ An evidence-based next-generation plan is recorded in `docs/VASU_NEXT_PLAN.md`. 
 
 This is planning only. No architecture, runner, tokenizer, dataset, checkpoint, or training process has been changed or authorized. A future approximately 100M model remains conditional on proving the new data mixture and curriculum with the existing 60M model.
 
+### Factual pilot source gate
+
+The factual pilot now passes the metadata approval gate using the official
+`wikimedia/wikipedia` distribution, configuration `20231101.en`, split
+`train`, pinned at commit
+`e6057dc557255a03c9c3c47ceab0eb44353b1bc5`. The source is approved only for
+bounded acquisition and preparation under the recorded CC BY-SA/GFDL
+attribution and redistribution obligations. No Wikimedia data has been
+downloaded, prepared, tokenized, or used for training. The capability pilot
+remains blocked by its mathematics, code, and reasoning source reviews.
+
 ## Project snapshot
 
 - Framework: PyTorch

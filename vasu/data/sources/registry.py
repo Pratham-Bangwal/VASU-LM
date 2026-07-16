@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import asdict
+import argparse
 import json
 from pathlib import Path
 from typing import Any, Mapping
@@ -106,3 +107,35 @@ def source_record_to_dict(record: DataSourceRecord) -> dict[str, Any]:
         payload[field] = list(payload[field])
     return payload
 
+
+def main(argv: list[str] | None = None) -> int:
+    """Validate a registry and, optionally, one mixture manifest."""
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--registry-dir", type=Path, required=True)
+    parser.add_argument("--manifest", type=Path)
+    parser.add_argument("--require-approved", action="store_true")
+    args = parser.parse_args(argv)
+
+    registry = load_source_registry(args.registry_dir)
+    print(f"Validated source registry: {len(registry.records)} records")
+    if args.manifest is not None:
+        from vasu.data.mixtures import load_manifest
+
+        from .validation import validate_manifest_sources
+
+        manifest = load_manifest(args.manifest)
+        validate_manifest_sources(
+            manifest,
+            registry,
+            require_approved=args.require_approved,
+        )
+        readiness = "approved" if args.require_approved else "metadata-valid"
+        print(
+            f"Validated manifest: {manifest.experiment_id} "
+            f"({readiness}, {len(manifest.sources)} sources)"
+        )
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

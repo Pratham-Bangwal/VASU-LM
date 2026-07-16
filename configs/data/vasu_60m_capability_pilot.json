@@ -49,21 +49,28 @@
     {
       "id": "wikipedia_en_20231101_planned",
       "domain": "factual",
-      "path": "data/pilots/wikipedia_en_20231101.jsonl",
-      "format": "jsonl",
+      "path": "data/processed/pretrain/factual/wikimedia_20231101_en_e6057dc.bin",
+      "format": "token_bin",
       "tokenizer_path": "assets/tokenizer.json",
       "token_count": 50000000,
       "weight": 0.15,
-      "license": "CC-BY-SA-3.0 AND GFDL",
+      "license": "CC-BY-SA-3.0 AND GFDL (unversioned)",
       "source_url": "https://huggingface.co/datasets/wikimedia/wikipedia",
-      "dataset_revision": "20231101.en",
+      "dataset_revision": "e6057dc557255a03c9c3c47ceab0eb44353b1bc5:20231101.en",
       "attribution_required": true,
       "commercial_use_allowed": true,
       "split": "train",
       "content_hash": null,
-      "deduplication_status": "planned; must be measured before execution",
-      "quality_filters": ["English articles only", "remove empty text"],
-      "notes": "Future artifact; not downloaded by this task."
+      "deduplication_status": "approved preparation plan: exact normalized-text and MinHash/LSH near-duplicate removal, including cross-source FineWeb checks",
+      "quality_filters": [
+        "20231101.en train split only",
+        "main/article namespace verification",
+        "redirect and disambiguation removal",
+        "markup, citation, empty-text, boilerplate, and Unicode cleanup",
+        "evaluation-prompt contamination scan",
+        "retain article provenance"
+      ],
+      "notes": "Approved source metadata; the future prepared token artifact has not been created."
     },
     {
       "id": "finemath_4plus_planned",

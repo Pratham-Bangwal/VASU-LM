@@ -38,14 +38,94 @@ Registry files live under `configs/data/sources/`.
 | --- | --- | --- | --- |
 | `fineweb_edu_original_train` | FineWeb-Edu `CC-MAIN-2013-20`, fixed local training region | approved | Existing control/general/educational source |
 | `fineweb_edu_extension_2025_26` | FineWeb-Edu `CC-MAIN-2025-26`, validated extension | approved | Existing educational continuation source |
-| `wikipedia_en_20231101_planned` | English Wikipedia `20231101.en` | pending | Planned factual pilot |
+| `wikipedia_en_20231101_planned` | English Wikipedia `20231101.en` at `e6057dc557255a03c9c3c47ceab0eb44353b1bc5` | approved | Pinned factual pilot source; preparation has not begun |
 | `finemath_4plus_planned` | FineMath 4+ | blocked | Planned mathematics pilot; immutable revision and risk review required |
 | `permissive_python_code_planned` | The Stack v2 permissive Python allowlist | blocked | Planned code pilot; access, per-file licensing, and redistribution review required |
 | `vasu_verified_reasoning_v1_planned` | Locally generated verified reasoning v1 | pending | Planned reasoning pilot; generator and validation design incomplete |
 
-The control pilot is currently registry-approved. The factual and capability
-pilots are planning-valid but are not training-ready because they reference
-pending or blocked records.
+The control and factual pilots pass the registry approval gate. The capability
+pilot remains planning-valid but not training-ready because its mathematics,
+code, and reasoning records are blocked or pending. Registry readiness means
+metadata and preparation eligibility only; it does not mean that a physical
+dataset exists.
+
+## Approved Wikimedia factual source
+
+The factual pilot selects the official `wikimedia/wikipedia` Hugging Face
+distribution at immutable commit
+`e6057dc557255a03c9c3c47ceab0eb44353b1bc5`, configuration `20231101.en`,
+split `train`. The pinned card records 41 Parquet shards, 6,407,814 examples,
+11,630,929,031 compressed download bytes, and 20,200,062,385 decoded bytes.
+The provider does not publish a VASU-tokenizer count; 5 billion raw tokens is
+therefore recorded only as a planning estimate and must be replaced with a
+measured count during preparation.
+
+This source was selected over:
+
+- a Wikimedia XML dump, because old dated dump directories are not guaranteed
+  to remain available, the XML/wikitext extraction is substantially heavier,
+  and a full dump is less practical for limited local storage;
+- the Wikimedia Enterprise Snapshot API, because it requires an account and
+  its current snapshot identifiers are updated over time unless a returned
+  version is separately captured;
+- the newer Structured Contents beta, because its schema is evolving and is
+  unnecessary for the bounded plain-text pilot.
+
+The pinned Parquet distribution is practical on Windows because it is already
+sharded and can be acquired and processed sequentially with resumable cache
+state. The full 11.63 GB source need not coexist with all interim data: a future
+preparer should process one verified shard at a time and stop after producing
+the approved 50M-token pilot allocation.
+
+### License and reuse obligations
+
+The pinned dataset card declares `CC-BY-SA-3.0` and `GFDL`. Commercial reuse
+and redistribution are permitted only while complying with the applicable
+license. Preparation and any redistribution must retain article/source
+provenance, provide author attribution through article/history URLs or an
+equivalent compliant mechanism, link the license, identify modifications, and
+honor ShareAlike for adaptations. Imported text and fair-use material can carry
+additional restrictions, so visible source notices must be preserved and
+exception material excluded or separately reviewed.
+
+Primary evidence:
+
+- [pinned dataset commit and statistics](https://huggingface.co/datasets/wikimedia/wikipedia/commit/e6057dc557255a03c9c3c47ceab0eb44353b1bc5)
+- [CC BY-SA 3.0 official deed](https://creativecommons.org/licenses/by-sa/3.0/)
+- [GNU Free Documentation License 1.3](https://www.gnu.org/licenses/fdl-1.3.html)
+- [Wikimedia Terms of Use](https://foundation.wikimedia.org/wiki/Policy:Terms_of_Use)
+- [Wikimedia dump license and exception notice](https://dumps.wikimedia.org/legal.html)
+
+### Quality and contamination plan
+
+The future preparer must:
+
+1. accept only `20231101.en` / `train` records and verify article/main
+   namespace scope;
+2. remove redirects and disambiguation pages when reliably identifiable;
+3. clean markup, citation remnants, empty text, and boilerplate-heavy records;
+4. normalize Unicode to NFC and reject undecodable records;
+5. require at least 200 normalized characters and split records over 100,000
+   characters at paragraph boundaries;
+6. retain article ID, title, URL, source revision, shard, and attribution data;
+7. remove exact duplicates using normalized-text hashes;
+8. perform deterministic near-duplicate detection using documented
+   MinHash/LSH parameters;
+9. deduplicate against both existing FineWeb continuation sources;
+10. scan normalized text and n-grams against every repository evaluation
+    prompt before tokenization; and
+11. record counts and reasons for every filtered or deduplicated record.
+
+Windows-safe repository-relative path plan:
+
+```text
+data/raw/factual/wikimedia/20231101_en_e6057dc557255a03c9c3c47ceab0eb44353b1bc5/
+data/interim/factual/wikimedia/20231101_en_e6057dc/
+data/processed/pretrain/factual/wikimedia_20231101_en_e6057dc.bin
+data/manifests/factual/wikimedia_20231101_en_e6057dc.json
+```
+
+No directory or data artifact above was created by the metadata review.
 
 ## File formats
 

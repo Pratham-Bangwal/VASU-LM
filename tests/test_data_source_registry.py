@@ -89,20 +89,29 @@ def test_repository_manifests_match_registry_metadata() -> None:
         validate_manifest_sources(load_manifest(path), registry)
 
 
-def test_only_control_manifest_is_currently_training_ready() -> None:
+def test_control_and_factual_manifests_are_registry_ready() -> None:
     registry = load_source_registry(SOURCE_DIRECTORY)
-    control = load_manifest(ROOT / "configs/data/vasu_60m_control_pilot.json")
-    validate_manifest_sources(control, registry, require_approved=True)
-
-    for name in ("vasu_60m_factual_pilot.json", "vasu_60m_capability_pilot.json"):
+    for name in (
+        "vasu_60m_control_pilot.json",
+        "vasu_60m_factual_pilot.json",
+    ):
         manifest = load_manifest(ROOT / "configs" / "data" / name)
-        with pytest.raises(SourceRegistryValidationError, match="not training-ready"):
-            validate_manifest_sources(manifest, registry, require_approved=True)
+        validate_manifest_sources(manifest, registry, require_approved=True)
+
+    capability = load_manifest(
+        ROOT / "configs/data/vasu_60m_capability_pilot.json"
+    )
+    with pytest.raises(SourceRegistryValidationError, match="not training-ready"):
+        validate_manifest_sources(capability, registry, require_approved=True)
 
 
 def test_load_single_record_and_family_bundle() -> None:
     record = load_source_record(SOURCE_DIRECTORY / "wikimedia.json")
     assert record.source_id == "wikipedia_en_20231101_planned"
+    assert record.approval_status == "approved"
+    assert record.pinned_revision.startswith("e6057dc557255a03")
+    assert record.expected_download_size_bytes == 11_630_929_031
+    assert record.expected_raw_examples == 6_407_814
     with pytest.raises(ValueError, match="Expected one source-record"):
         load_source_record(SOURCE_DIRECTORY / "fineweb_edu.json")
     registry = load_source_registry(SOURCE_DIRECTORY)
@@ -244,3 +253,21 @@ def test_source_record_round_trip_is_json_compatible(tmp_path: Path) -> None:
     path = tmp_path / "record.json"
     path.write_text(json.dumps(payload), encoding="utf-8")
     assert load_source_record(path) == record
+
+
+def test_registry_cli_validates_factual_readiness(capsys: pytest.CaptureFixture[str]) -> None:
+    from vasu.data.sources.registry import main
+
+    result = main(
+        [
+            "--registry-dir",
+            str(SOURCE_DIRECTORY),
+            "--manifest",
+            str(ROOT / "configs/data/vasu_60m_factual_pilot.json"),
+            "--require-approved",
+        ]
+    )
+    assert result == 0
+    output = capsys.readouterr().out
+    assert "Validated source registry: 6 records" in output
+    assert "vasu_60m_factual_pilot (approved, 3 sources)" in output

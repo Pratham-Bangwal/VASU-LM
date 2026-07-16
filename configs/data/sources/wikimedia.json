@@ -1,50 +1,58 @@
 {
   "source_id": "wikipedia_en_20231101_planned",
-  "display_name": "English Wikipedia 2023-11-01 planned factual pilot",
+  "display_name": "Pinned English Wikipedia 2023-11-01 factual pilot",
   "provider": "Wikimedia Foundation",
   "dataset_name": "wikimedia/wikipedia",
   "dataset_card_url": "https://huggingface.co/datasets/wikimedia/wikipedia",
   "homepage_url": "https://www.wikipedia.org/",
-  "access_method": "Planned Hugging Face dataset snapshot; acquisition has not been authorized",
+  "access_method": "Hugging Face Hub Parquet shards using dataset config 20231101.en and revision e6057dc557255a03c9c3c47ceab0eb44353b1bc5; acquire shards sequentially with resumable HTTP/Hugging Face caching",
   "subset": "20231101.en",
   "split": "train",
-  "pinned_revision": "20231101.en",
-  "license_name": "CC-BY-SA-3.0 AND GFDL",
-  "license_url": "https://dumps.wikimedia.org/legal.html",
+  "pinned_revision": "e6057dc557255a03c9c3c47ceab0eb44353b1bc5:20231101.en",
+  "license_name": "CC-BY-SA-3.0 AND GFDL (unversioned)",
+  "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
   "commercial_use_allowed": true,
   "attribution_required": true,
   "redistribution_allowed": true,
   "gated_access": false,
   "requires_authentication": false,
-  "expected_download_size_bytes": null,
-  "expected_raw_examples": null,
-  "expected_raw_tokens": 50000000,
+  "expected_download_size_bytes": 11630929031,
+  "expected_raw_examples": 6407814,
+  "expected_raw_tokens": 5000000000,
   "supported_domains": ["factual"],
   "intended_purpose": "Planned factual-language continuation pilot with article-level provenance.",
   "quality_risks": [
-    "encyclopedic content can still be inaccurate or outdated",
-    "article and topic imbalance",
-    "markup or template remnants"
+    "encyclopedic content can still be inaccurate, disputed, biased, or outdated",
+    "article, geography, demographic, and topic imbalance",
+    "redirects, disambiguation pages, citation remnants, templates, lists, and boilerplate may remain",
+    "the provider notes 20,200,062,385 decoded bytes but does not publish VASU-tokenizer counts"
   ],
   "required_quality_filters": [
-    "English articles only",
-    "remove empty and malformed text",
-    "retain article title and revision provenance"
+    "accept only config 20231101.en and split train",
+    "verify main/article namespace and reject non-article namespace records",
+    "remove redirects and disambiguation pages when reliably identified",
+    "clean residual markup, citation artifacts, empty text, and boilerplate-heavy records",
+    "normalize malformed Unicode to NFC and reject undecodable records",
+    "require at least 200 normalized characters; segment records above 100000 characters at paragraph boundaries",
+    "retain article id, title, URL, source revision, shard, and attribution provenance"
   ],
   "deduplication_requirements": [
-    "remove exact duplicate article text",
-    "measure overlap with FineWeb sources"
+    "hash normalized document text and remove exact duplicates",
+    "apply deterministic MinHash/LSH near-duplicate detection over normalized word 5-grams with a documented threshold",
+    "measure and remove exact and near-duplicate overlap with both existing FineWeb continuation sources",
+    "record every removal count and rule in the preparation manifest"
   ],
   "contamination_risks": [
-    "benchmark questions and answers may be quoted in articles",
-    "facts from evaluation suites may appear verbatim"
+    "benchmark questions, answers, and source passages may be quoted in articles",
+    "facts and phrasing from the VASU fixed evaluation prompts may appear verbatim",
+    "preparation must scan normalized text and n-grams against all repository evaluation prompts before tokenization"
   ],
-  "local_raw_path": "data/raw/wikipedia/20231101.en",
-  "local_processed_path": "data/pilots/wikipedia_en_20231101.jsonl",
-  "approval_status": "pending",
-  "approval_notes": "Dataset acquisition, exact snapshot pin, attribution packaging, and contamination review are not complete.",
-  "reviewed_by": "",
-  "reviewed_at": "",
+  "local_raw_path": "data/raw/factual/wikimedia/20231101_en_e6057dc557255a03c9c3c47ceab0eb44353b1bc5",
+  "local_processed_path": "data/processed/pretrain/factual/wikimedia_20231101_en_e6057dc.bin",
+  "approval_status": "approved",
+  "approval_notes": "Approved for bounded acquisition and preparation from the pinned official Parquet snapshot. Reuse and redistribution require article-level attribution, a license link, change notices, ShareAlike compliance for adaptations, preservation of additional source notices, and exclusion or separate review of fair-use material.",
+  "reviewed_by": "VASU project maintainer (primary-source metadata review)",
+  "reviewed_at": "2026-07-17T00:27:57+05:30",
   "content_hash": null,
-  "notes": "Metadata placeholder only; no source data exists as a result of this registry task."
+  "notes": "The official pinned dataset card publishes 41 Parquet shards, 6,407,814 examples, 11,630,929,031 compressed bytes, and 20,200,062,385 decoded bytes. The 5,000,000,000 raw-token figure is a planning estimate, not an observed VASU-tokenizer count. The dataset card declares CC-BY-SA-3.0 and GFDL; the GFDL text is https://www.gnu.org/licenses/fdl-1.3.html. No data was downloaded by this review."
 }
