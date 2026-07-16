@@ -1,0 +1,242 @@
+[
+  {
+    "id": "ai_3_sentences",
+    "prompt": "What is artificial intelligence? Answer in 3 simple sentences.",
+    "category": "definition",
+    "expected_behavior": "Defines AI clearly in about 3 simple sentences."
+  },
+  {
+    "id": "ml_simple",
+    "prompt": "Explain machine learning in simple words.",
+    "category": "definition",
+    "expected_behavior": "Explains that machines learn patterns from data."
+  },
+  {
+    "id": "internet_definition",
+    "prompt": "What is the internet? Explain it in simple words.",
+    "category": "definition",
+    "expected_behavior": "Explains that the internet connects computers and allows information exchange."
+  },
+  {
+    "id": "database_definition",
+    "prompt": "What is a database?",
+    "category": "definition",
+    "expected_behavior": "Explains that a database stores and organizes information."
+  },
+  {
+    "id": "photosynthesis_simple",
+    "prompt": "Explain photosynthesis in simple words.",
+    "category": "factual_knowledge",
+    "expected_behavior": "Explains that plants use sunlight, water, and carbon dioxide to make food."
+  },
+  {
+    "id": "water_boiling_point",
+    "prompt": "At what temperature does water boil at sea level?",
+    "category": "factual_knowledge",
+    "expected_behavior": "Answers approximately 100 degrees Celsius or 212 degrees Fahrenheit."
+  },
+  {
+    "id": "largest_planet",
+    "prompt": "What is the largest planet in our solar system?",
+    "category": "factual_knowledge",
+    "expected_behavior": "Answers Jupiter."
+  },
+  {
+    "id": "india_capital",
+    "prompt": "What is the capital of India?",
+    "category": "factual_knowledge",
+    "expected_behavior": "Answers New Delhi."
+  },
+  {
+    "id": "gravity_child",
+    "prompt": "Explain gravity to a 10-year-old.",
+    "category": "simple_explanation",
+    "expected_behavior": "Explains gravity as the force that pulls objects toward Earth or other masses."
+  },
+  {
+    "id": "electricity_child",
+    "prompt": "Explain electricity to a 10-year-old.",
+    "category": "simple_explanation",
+    "expected_behavior": "Explains electricity as the movement or use of electric charge in simple language."
+  },
+  {
+    "id": "education_3_benefits",
+    "prompt": "Give exactly 3 benefits of education.",
+    "category": "instruction_following",
+    "expected_behavior": "Returns exactly 3 distinct education-related benefits."
+  },
+  {
+    "id": "healthy_habits_4",
+    "prompt": "List exactly 4 healthy daily habits.",
+    "category": "instruction_following",
+    "expected_behavior": "Returns exactly 4 practical healthy habits."
+  },
+  {
+    "id": "two_programming_languages",
+    "prompt": "Name exactly 2 programming languages.",
+    "category": "instruction_following",
+    "expected_behavior": "Returns exactly 2 valid programming language names."
+  },
+  {
+    "id": "one_sentence_sun",
+    "prompt": "Describe the Sun in exactly one sentence.",
+    "category": "instruction_following",
+    "expected_behavior": "Produces one accurate sentence about the Sun."
+  },
+  {
+    "id": "india_4_lines",
+    "prompt": "Write exactly 4 short lines about India.",
+    "category": "formatting",
+    "expected_behavior": "Writes exactly 4 short, coherent lines without major factual errors."
+  },
+  {
+    "id": "numbered_breakfast",
+    "prompt": "Give a numbered list of exactly 3 simple vegetarian breakfast ideas.",
+    "category": "formatting",
+    "expected_behavior": "Returns a numbered list with exactly 3 vegetarian breakfast ideas."
+  },
+  {
+    "id": "yes_no_then_reason",
+    "prompt": "Is Python a programming language? Answer yes or no, then give one short reason.",
+    "category": "formatting",
+    "expected_behavior": "Answers yes and gives one concise correct reason."
+  },
+  {
+    "id": "three_words_ocean",
+    "prompt": "Describe the ocean using exactly 3 words.",
+    "category": "formatting",
+    "expected_behavior": "Returns exactly 3 relevant words."
+  },
+  {
+    "id": "basic_arithmetic",
+    "prompt": "What is 17 plus 25?",
+    "category": "reasoning",
+    "expected_behavior": "Answers 42."
+  },
+  {
+    "id": "simple_subtraction",
+    "prompt": "A box has 12 apples. You remove 5. How many apples remain?",
+    "category": "reasoning",
+    "expected_behavior": "Answers 7."
+  },
+  {
+    "id": "comparison_reasoning",
+    "prompt": "Which is larger: 3/4 or 2/3? Explain briefly.",
+    "category": "reasoning",
+    "expected_behavior": "Correctly identifies 3/4 as larger and gives a valid brief explanation."
+  },
+  {
+    "id": "sequence_next",
+    "prompt": "What number comes next: 2, 4, 6, 8, ?",
+    "category": "reasoning",
+    "expected_behavior": "Answers 10."
+  },
+  {
+    "id": "variable_programming",
+    "prompt": "Explain what a variable is in programming.",
+    "category": "programming",
+    "expected_behavior": "Explains that a variable stores a value that can be used or changed."
+  },
+  {
+    "id": "function_programming",
+    "prompt": "What is a function in programming?",
+    "category": "programming",
+    "expected_behavior": "Explains that a function is a reusable block of code that performs a task."
+  },
+  {
+    "id": "python_print",
+    "prompt": "Write one line of Python code that prints Hello.",
+    "category": "programming",
+    "expected_behavior": "Returns valid Python such as print(\"Hello\")."
+  },
+  {
+    "id": "loop_simple",
+    "prompt": "Explain what a loop does in programming.",
+    "category": "programming",
+    "expected_behavior": "Explains that a loop repeats instructions."
+  },
+  {
+    "id": "python_study_plan",
+    "prompt": "Give me a simple 3-step study plan for learning Python.",
+    "category": "planning",
+    "expected_behavior": "Returns exactly 3 practical and distinct steps."
+  },
+  {
+    "id": "exam_study_plan",
+    "prompt": "Create a simple 3-step plan for preparing for an exam.",
+    "category": "planning",
+    "expected_behavior": "Returns 3 useful and distinct study steps."
+  },
+  {
+    "id": "morning_routine",
+    "prompt": "Suggest a short morning routine for a student.",
+    "category": "planning",
+    "expected_behavior": "Provides a practical, concise sequence of morning activities."
+  },
+  {
+    "id": "project_plan",
+    "prompt": "Give 3 steps for starting a small software project.",
+    "category": "planning",
+    "expected_behavior": "Gives 3 sensible steps such as defining scope, planning, and implementation."
+  },
+  {
+    "id": "short_story",
+    "prompt": "Write a short 5-line story about a robot learning to help humans.",
+    "category": "creative",
+    "expected_behavior": "Writes a coherent story in exactly or approximately 5 lines."
+  },
+  {
+    "id": "rain_poem",
+    "prompt": "Write a 4-line poem about rain.",
+    "category": "creative",
+    "expected_behavior": "Writes a coherent poem in 4 lines."
+  },
+  {
+    "id": "space_story",
+    "prompt": "Write a very short story about a child visiting the Moon.",
+    "category": "creative",
+    "expected_behavior": "Writes a brief coherent story involving a child and the Moon."
+  },
+  {
+    "id": "friendly_greeting",
+    "prompt": "Reply warmly to someone who says: I had a difficult day.",
+    "category": "conversation",
+    "expected_behavior": "Responds with empathy and supportive language."
+  },
+  {
+    "id": "ask_for_help",
+    "prompt": "Respond to: I do not understand this topic. Can you help me?",
+    "category": "conversation",
+    "expected_behavior": "Offers help clearly and politely."
+  },
+  {
+    "id": "thank_you_reply",
+    "prompt": "Reply politely to someone who says: Thank you for helping me.",
+    "category": "conversation",
+    "expected_behavior": "Provides a brief polite response."
+  },
+  {
+    "id": "uncertain_fact",
+    "prompt": "What will the exact price of Bitcoin be one year from today?",
+    "category": "uncertainty",
+    "expected_behavior": "States that the exact future price cannot be known and avoids inventing certainty."
+  },
+  {
+    "id": "unknown_person",
+    "prompt": "Who is the current mayor of a fictional city called Zorvia?",
+    "category": "uncertainty",
+    "expected_behavior": "Recognizes that Zorvia is fictional or says the information is unavailable."
+  },
+  {
+    "id": "medical_uncertainty",
+    "prompt": "I have a headache. Tell me exactly what disease I have.",
+    "category": "uncertainty",
+    "expected_behavior": "Does not diagnose from insufficient information and recommends appropriate professional evaluation if needed."
+  },
+  {
+    "id": "ambiguous_request",
+    "prompt": "Explain the thing I mentioned earlier.",
+    "category": "uncertainty",
+    "expected_behavior": "Asks for clarification instead of inventing missing context."
+  }
+]
