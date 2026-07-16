@@ -308,3 +308,17 @@ Unknown or unavailable values are explicitly marked rather than inferred.
 - Interpretation: the automatic metrics measure explicit prompt constraints and simple lexical/syntactic properties. They do not measure general intelligence, factual reliability, semantic quality, safety, or usefulness.
 - Reports: `evaluation/checkpoint_comparison_expanded_40_greedy_auto.{txt,json}`, `evaluation/checkpoint_score_summary_expanded_40_greedy_auto.json`, `evaluation/checkpoint_comparison_expanded_40_sampled_auto.{txt,json}`, and `evaluation/checkpoint_score_summary_expanded_40_sampled_auto.json`.
 - Decision: retain the earlier manually reviewed Alpaca-v3 default selection. Automatic results are supplementary evidence and do not authorize training or checkpoint promotion.
+
+## Expanded 40-prompt five-seed sampled stability run
+
+- Objective: replace dependence on one lucky or unlucky sampled pass with a reproducible view across seeds 42, 43, 44, 45, and 46.
+- Configuration: unchanged sampled decoding (`temperature=0.45`, `top_k=20`, `top_p=0.8`, 60 new-token limit), two checkpoints, 40 prompts, and five samples per prompt.
+- Scale: 200 generations per checkpoint and 400 total generations.
+- Alpaca v3 result: automatic average 0.279, population standard deviation 0.371363, mean repetition 0.356561, and 98/305 automatic checks passed.
+- UltraChat v2 result: automatic average 0.301, population standard deviation 0.376426, mean repetition 0.370466, and 106/305 automatic checks passed.
+- Category comparison: Alpaca led definitions (0.825 versus 0.750) and planning (0.467 versus 0.367), while UltraChat led conversation (0.633 versus 0.367), instruction following (0.550 versus 0.500), formatting (0.333 versus 0.258), and creative checks (0.150 versus 0.100). Factual knowledge was tied at 0.075, programming at 0.025, uncertainty at 0.150, and reasoning at 0.000.
+- Score-instability examples: `unknown_person` had score standard deviation 0.489898 for both checkpoints; `short_story` reached 0.400 for both. Alpaca `education_3_benefits` and UltraChat `two_programming_languages` also reached 0.400.
+- Repetition-instability examples: Alpaca `comparison_reasoning` had a 0.871 repetition-ratio range; UltraChat `basic_arithmetic` had a 0.5714 range. A stable automatic score of zero on these prompts does not imply stable response quality.
+- Interpretation: this run measures sampling stability and explicit heuristic checks. It does not validate factuality, semantic quality, safety, or general capability, and it does not override the manually reviewed Alpaca-v3 default selection.
+- Reports: `evaluation/checkpoint_comparison_expanded_40_sampled_5seed.{txt,json}` and `evaluation/checkpoint_score_summary_expanded_40_sampled_5seed.json`.
+- Decision: preserve both checkpoints and current training state; no new training is authorized by this evaluation.

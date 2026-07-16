@@ -249,6 +249,23 @@ Reports:
 - `evaluation/checkpoint_comparison_expanded_40_sampled_auto.txt` and `.json`;
 - `evaluation/checkpoint_score_summary_expanded_40_sampled_auto.json`.
 
+## Reproducible five-seed sampled evaluation
+
+Sampled checkpoint comparison now supports a fixed single seed, a deterministic consecutive seed range, or an explicit ordered seed list. The official five-seed stability run used seeds 42-46 and produced 200 generations per checkpoint (400 total) without changing the sampling algorithm or its temperature/top-k/top-p settings.
+
+- Alpaca v3: automatic prompt-average 0.279, automatic-score population standard deviation 0.371363, mean repetition ratio 0.356561, and 98/305 checks passed.
+- UltraChat v2: automatic prompt-average 0.301, automatic-score population standard deviation 0.376426, mean repetition ratio 0.370466, and 106/305 checks passed.
+- Both checkpoints: reasoning automatic average 0.000; factual-knowledge average 0.075; programming average 0.025.
+- Relative category results: Alpaca was higher on definition and planning checks and had lower overall repetition. UltraChat was higher on conversation, instruction-following, formatting, and creative checks.
+
+The standard deviations show substantial response-to-response variation. These task-specific automatic checks report stability and explicit constraint compliance, not general intelligence, factual correctness, or safety. Existing greedy reports, unseeded sampled reports, and single-seed flat JSON entries remain compatible.
+
+Reports:
+
+- `evaluation/checkpoint_comparison_expanded_40_sampled_5seed.txt`;
+- `evaluation/checkpoint_comparison_expanded_40_sampled_5seed.json`;
+- `evaluation/checkpoint_score_summary_expanded_40_sampled_5seed.json`.
+
 ## Masked Alpaca v3 historical preparation record
 
 This section records the preparation state that preceded the now-completed masked-Alpaca-v3 experiment.

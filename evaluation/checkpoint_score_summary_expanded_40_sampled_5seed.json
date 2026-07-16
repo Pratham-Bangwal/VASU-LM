@@ -1,0 +1,176 @@
+{
+  "vasu_60m_alpaca_masked_v3_from_200k": {
+    "scored_prompts": 0,
+    "average_score": null,
+    "automatically_evaluated_prompts": 36,
+    "automatic_average_score": 0.279,
+    "automatic_passed_checks": 98,
+    "automatic_total_checks": 305,
+    "automatic_score_std_across_samples": 0.371363,
+    "sample_count_per_prompt": 5,
+    "total_sample_generations": 200,
+    "mean_repetition_ratio": 0.356561,
+    "seed_list": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "category_summary": {
+      "definition": {
+        "prompt_count": 4,
+        "sample_generations": 20,
+        "automatic_average_score": 0.825,
+        "mean_repetition_ratio": 0.31631
+      },
+      "factual_knowledge": {
+        "prompt_count": 4,
+        "sample_generations": 20,
+        "automatic_average_score": 0.075,
+        "mean_repetition_ratio": 0.334795
+      },
+      "simple_explanation": {
+        "prompt_count": 2,
+        "sample_generations": 10,
+        "automatic_average_score": null,
+        "mean_repetition_ratio": 0.23589
+      },
+      "instruction_following": {
+        "prompt_count": 4,
+        "sample_generations": 20,
+        "automatic_average_score": 0.5,
+        "mean_repetition_ratio": 0.310755
+      },
+      "formatting": {
+        "prompt_count": 4,
+        "sample_generations": 20,
+        "automatic_average_score": 0.258,
+        "mean_repetition_ratio": 0.401365
+      },
+      "reasoning": {
+        "prompt_count": 4,
+        "sample_generations": 20,
+        "automatic_average_score": 0.0,
+        "mean_repetition_ratio": 0.357355
+      },
+      "programming": {
+        "prompt_count": 4,
+        "sample_generations": 20,
+        "automatic_average_score": 0.025,
+        "mean_repetition_ratio": 0.476075
+      },
+      "planning": {
+        "prompt_count": 4,
+        "sample_generations": 20,
+        "automatic_average_score": 0.467,
+        "mean_repetition_ratio": 0.35564
+      },
+      "creative": {
+        "prompt_count": 3,
+        "sample_generations": 15,
+        "automatic_average_score": 0.1,
+        "mean_repetition_ratio": 0.485953
+      },
+      "conversation": {
+        "prompt_count": 3,
+        "sample_generations": 15,
+        "automatic_average_score": 0.367,
+        "mean_repetition_ratio": 0.394733
+      },
+      "uncertainty": {
+        "prompt_count": 4,
+        "sample_generations": 20,
+        "automatic_average_score": 0.15,
+        "mean_repetition_ratio": 0.234855
+      }
+    }
+  },
+  "vasu_60m_ultrachat_masked_v2_from_alpaca_v3": {
+    "scored_prompts": 0,
+    "average_score": null,
+    "automatically_evaluated_prompts": 36,
+    "automatic_average_score": 0.301,
+    "automatic_passed_checks": 106,
+    "automatic_total_checks": 305,
+    "automatic_score_std_across_samples": 0.376426,
+    "sample_count_per_prompt": 5,
+    "total_sample_generations": 200,
+    "mean_repetition_ratio": 0.370466,
+    "seed_list": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "category_summary": {
+      "definition": {
+        "prompt_count": 4,
+        "sample_generations": 20,
+        "automatic_average_score": 0.75,
+        "mean_repetition_ratio": 0.354295
+      },
+      "factual_knowledge": {
+        "prompt_count": 4,
+        "sample_generations": 20,
+        "automatic_average_score": 0.075,
+        "mean_repetition_ratio": 0.39899
+      },
+      "simple_explanation": {
+        "prompt_count": 2,
+        "sample_generations": 10,
+        "automatic_average_score": null,
+        "mean_repetition_ratio": 0.41299
+      },
+      "instruction_following": {
+        "prompt_count": 4,
+        "sample_generations": 20,
+        "automatic_average_score": 0.55,
+        "mean_repetition_ratio": 0.388385
+      },
+      "formatting": {
+        "prompt_count": 4,
+        "sample_generations": 20,
+        "automatic_average_score": 0.333,
+        "mean_repetition_ratio": 0.395505
+      },
+      "reasoning": {
+        "prompt_count": 4,
+        "sample_generations": 20,
+        "automatic_average_score": 0.0,
+        "mean_repetition_ratio": 0.42118
+      },
+      "programming": {
+        "prompt_count": 4,
+        "sample_generations": 20,
+        "automatic_average_score": 0.025,
+        "mean_repetition_ratio": 0.4721
+      },
+      "planning": {
+        "prompt_count": 4,
+        "sample_generations": 20,
+        "automatic_average_score": 0.367,
+        "mean_repetition_ratio": 0.321875
+      },
+      "creative": {
+        "prompt_count": 3,
+        "sample_generations": 15,
+        "automatic_average_score": 0.15,
+        "mean_repetition_ratio": 0.449927
+      },
+      "conversation": {
+        "prompt_count": 3,
+        "sample_generations": 15,
+        "automatic_average_score": 0.633,
+        "mean_repetition_ratio": 0.257273
+      },
+      "uncertainty": {
+        "prompt_count": 4,
+        "sample_generations": 20,
+        "automatic_average_score": 0.15,
+        "mean_repetition_ratio": 0.21543
+      }
+    }
+  }
+}
