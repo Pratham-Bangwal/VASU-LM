@@ -73,6 +73,8 @@
 
 ### Documented
 
+- Added an evidence-based next-generation planning decision: first validate a factual/math/code/reasoning data mixture through small ablations, then conditionally continue the existing VASU-60M base for approximately 1.2B new tokens. No implementation or training is authorized by the plan.
+- Compared continued VASU-60M training, a same-size v2, an approximately 100M–120M scale-up, and a smaller pipeline-validation model, including hardware, runtime, compatibility, data, and failure-risk trade-offs.
 - Five-seed results describe sampling stability rather than a single sampled outcome; the automatic metrics remain heuristic and are not general-intelligence scores.
 - Automatic evaluation scores are heuristic task-compliance indicators, not measures of general intelligence or model reliability; manual review remains required.
 - VASU-60M step-54,060 milestone: train loss 3.616769 and validation loss 3.613814.

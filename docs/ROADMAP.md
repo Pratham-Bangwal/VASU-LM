@@ -1,39 +1,78 @@
-# Roadmap
+# VASU Roadmap
 
-Sprint 7
+## Next-generation planning update
 
-Top-p Sampling
+The completed VASU-60M cycle is now followed by a planning gate rather than immediate scale-up.
 
-KV Cache
+Planned sequence (not implemented):
 
-Streaming Generation
+1. Specify a provenance-aware multi-domain mixture manifest and deterministic resumeable sampler.
+2. Prepare only small licensed pilot shards for factual, math, permissive-code, and verified synthetic reasoning data.
+3. Run matched 20M–50M-token continuation ablations from `fineweb_step_200000.pt`.
+4. If the gate passes, continue the existing VASU-60M base for approximately 1.2B new tokens using broad replay and staged domain emphasis.
+5. Rebuild instruction tuning as general instruction → verified reasoning/formatting → limited conversation, evaluating after every stage.
+6. Consider an approximately 100M model only after the mixture demonstrates measurable improvement without unacceptable forgetting or repetition.
 
----
+The detailed option comparison, compatibility analysis, stop conditions, and go/no-go criteria are in `docs/VASU_NEXT_PLAN.md`. None of these milestones is marked complete.
 
-Sprint 8
+## Historical roadmap snapshot
 
-60M model
+The sections below preserve an earlier step-54,060-to-100,000 roadmap snapshot. They are retained as project history and are superseded for current planning by the completed step-200,000 cycle and `docs/VASU_NEXT_PLAN.md`.
 
-Longer context
+## Completed
 
-Scheduler improvements
+- VASU-31M architecture and training pipeline;
+- TinyStories and FineWeb pretraining experiments;
+- VASU-31M Alpaca and UltraChat instruction-tuning experiments;
+- masked-response training experiments;
+- VASU-31M fixed-prompt comparison and 2.225 / 5 manual baseline;
+- VASU-60M architecture planning and opt-in configuration;
+- VASU-60M CPU and CUDA smoke tests;
+- VASU-60M tiny real-data and save/resume tests;
+- resumable, thermal-safe FineWeb block pretraining;
+- atomic checkpoint saving and corrupt-checkpoint filtering;
+- bounded checkpoint retention and low-disk protection;
+- base-generation milestone evaluation through step 54,060.
 
----
+## In progress
 
-Sprint 9
+- Continue VASU-60M FineWeb base pretraining from the preserved step-54,060 milestone toward global step 100,000.
 
-Instruction tuning
+VASU-60M instruction tuning has not started.
 
-Chat model
+## Next
 
-Conversation memory
+1. Preserve and evaluate the step-100,000 VASU-60M checkpoint.
+2. Compare grammar, repetition, topic retention, coherence, and factuality against earlier base milestones.
+3. Decide whether more base pretraining is required.
+4. If the base-model gate passes, run controlled VASU-60M Alpaca tuning.
+5. Evaluate before any controlled UltraChat tuning.
+6. Compare the resulting VASU-60M instruction model against the VASU-31M baseline of 2.225 / 5.
+7. Expand evaluation coverage and investigate generation repetition controls.
 
----
+## Later
 
-Sprint 10
+- KV-cache optimization;
+- longer context support;
+- improved learning-rate scheduling experiments;
+- complete data-sampler resume state;
+- broader language-model and factuality evaluation;
+- improved instruction and safety data;
+- quantization and inference optimization;
+- conversational memory, tools, and possible Jarvis-style assistant layers only after the language model is stable.
 
-RLHF
+## Guiding principle
 
-Function Calling
+Promote a checkpoint only through reproducible evaluation. Keep the VASU-31M assistant checkpoint as the stable fallback until a VASU-60M instruction checkpoint measurably exceeds it.
 
-Web Search
+
+KV-cache v1:
+Correct dynamic cache implementation
+Fully parity-tested
+Lower peak memory
+Not enabled because performance regressed slightly
+
+KV-cache v2:
+Preallocated storage
+Future optimization task
+Must preserve all existing parity tests

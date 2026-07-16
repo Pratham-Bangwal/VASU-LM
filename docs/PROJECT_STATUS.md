@@ -1,5 +1,11 @@
 # VASU Project Status
 
+## Next-generation planning status
+
+An evidence-based next-generation plan is recorded in `docs/VASU_NEXT_PLAN.md`. The recommended path is a capability-focused continuation of the preserved VASU-60M FineWeb step-200,000 **base** checkpoint, gated first by small data-mixture ablations. The planning target is approximately 1.2B additional new token positions at the existing 58,337,792-parameter architecture and 256-token context.
+
+This is planning only. No architecture, runner, tokenizer, dataset, checkpoint, or training process has been changed or authorized. A future approximately 100M model remains conditional on proving the new data mixture and curriculum with the existing 60M model.
+
 ## Project snapshot
 
 - Framework: PyTorch
