@@ -1,0 +1,50 @@
+{
+  "source_id": "finemath_4plus_planned",
+  "display_name": "FineMath 4+ planned mathematics pilot",
+  "provider": "Hugging FaceTB",
+  "dataset_name": "HuggingFaceTB/finemath",
+  "dataset_card_url": "https://huggingface.co/datasets/HuggingFaceTB/finemath",
+  "homepage_url": "https://huggingface.co/datasets/HuggingFaceTB/finemath",
+  "access_method": "Planned Hugging Face dataset snapshot; exact immutable revision must be selected",
+  "subset": "finemath-4plus",
+  "split": "train",
+  "pinned_revision": "finemath-4plus-planning-snapshot",
+  "license_name": "ODC-By-1.0",
+  "license_url": "https://opendatacommons.org/licenses/by/1-0/",
+  "commercial_use_allowed": true,
+  "attribution_required": true,
+  "redistribution_allowed": true,
+  "gated_access": false,
+  "requires_authentication": false,
+  "expected_download_size_bytes": null,
+  "expected_raw_examples": null,
+  "expected_raw_tokens": 20000000,
+  "supported_domains": ["mathematics"],
+  "intended_purpose": "Planned pilot for mathematical exposition and symbolic-text coverage.",
+  "quality_risks": [
+    "incorrect mathematical derivations",
+    "OCR or formula-formatting artifacts",
+    "quality-score selection bias"
+  ],
+  "required_quality_filters": [
+    "select only the documented 4+ quality subset",
+    "reject malformed equations and empty records",
+    "preserve source provenance"
+  ],
+  "deduplication_requirements": [
+    "exact and near-duplicate removal",
+    "cross-source overlap audit against FineWeb and evaluation corpora"
+  ],
+  "contamination_risks": [
+    "competition and benchmark solutions may occur in source pages",
+    "common evaluation problems may appear verbatim"
+  ],
+  "local_raw_path": "data/raw/finemath/finemath-4plus",
+  "local_processed_path": "data/pilots/finemath_4plus_pilot.parquet",
+  "approval_status": "blocked",
+  "approval_notes": "Blocked until an immutable upstream revision, exact license scope, and benchmark-contamination policy are verified.",
+  "reviewed_by": "",
+  "reviewed_at": "",
+  "content_hash": null,
+  "notes": "The planning revision is not an acquisition-ready commit pin."
+}

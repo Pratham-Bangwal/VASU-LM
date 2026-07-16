@@ -1,0 +1,53 @@
+{
+  "source_id": "permissive_python_code_planned",
+  "display_name": "Permissively licensed Python code pilot",
+  "provider": "BigCode and Software Heritage",
+  "dataset_name": "bigcode/the-stack-v2",
+  "dataset_card_url": "https://huggingface.co/datasets/bigcode/the-stack-v2",
+  "homepage_url": "https://www.bigcode-project.org/",
+  "access_method": "Planned authenticated dataset access plus Software Heritage content retrieval",
+  "subset": "Python files passing a per-file permissive-license allowlist",
+  "split": "train",
+  "pinned_revision": "SoftwareHeritage-2023-09-06",
+  "license_name": "PER-FILE-PERMISSIVE-ALLOWLIST",
+  "license_url": "https://huggingface.co/datasets/bigcode/the-stack-v2",
+  "commercial_use_allowed": true,
+  "attribution_required": true,
+  "redistribution_allowed": null,
+  "gated_access": true,
+  "requires_authentication": true,
+  "expected_download_size_bytes": null,
+  "expected_raw_examples": null,
+  "expected_raw_tokens": 20000000,
+  "supported_domains": ["code"],
+  "intended_purpose": "Planned Python syntax, API-use, and code-explanation continuation pilot.",
+  "quality_risks": [
+    "incorrect or insecure code",
+    "generated and vendored files",
+    "secrets and personal information",
+    "license metadata errors"
+  ],
+  "required_quality_filters": [
+    "Python files only",
+    "per-file permissive-license allowlist",
+    "secret and PII scanning",
+    "remove generated, vendored, and minified files"
+  ],
+  "deduplication_requirements": [
+    "exact file deduplication",
+    "near-duplicate repository-fork detection",
+    "cross-source overlap audit"
+  ],
+  "contamination_risks": [
+    "benchmark solutions may exist in public repositories",
+    "test fixtures may contain evaluation answers"
+  ],
+  "local_raw_path": "data/raw/the_stack_v2/permissive_python",
+  "local_processed_path": "data/pilots/permissive_python_code.jsonl",
+  "approval_status": "blocked",
+  "approval_notes": "Blocked until access terms, redistribution rights, per-file licenses, and secret scanning are fully specified.",
+  "reviewed_by": "",
+  "reviewed_at": "",
+  "content_hash": null,
+  "notes": "Commercial-use eligibility is conditional on the planned license allowlist; redistribution remains unknown."
+}

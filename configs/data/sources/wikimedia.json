@@ -1,0 +1,50 @@
+{
+  "source_id": "wikipedia_en_20231101_planned",
+  "display_name": "English Wikipedia 2023-11-01 planned factual pilot",
+  "provider": "Wikimedia Foundation",
+  "dataset_name": "wikimedia/wikipedia",
+  "dataset_card_url": "https://huggingface.co/datasets/wikimedia/wikipedia",
+  "homepage_url": "https://www.wikipedia.org/",
+  "access_method": "Planned Hugging Face dataset snapshot; acquisition has not been authorized",
+  "subset": "20231101.en",
+  "split": "train",
+  "pinned_revision": "20231101.en",
+  "license_name": "CC-BY-SA-3.0 AND GFDL",
+  "license_url": "https://dumps.wikimedia.org/legal.html",
+  "commercial_use_allowed": true,
+  "attribution_required": true,
+  "redistribution_allowed": true,
+  "gated_access": false,
+  "requires_authentication": false,
+  "expected_download_size_bytes": null,
+  "expected_raw_examples": null,
+  "expected_raw_tokens": 50000000,
+  "supported_domains": ["factual"],
+  "intended_purpose": "Planned factual-language continuation pilot with article-level provenance.",
+  "quality_risks": [
+    "encyclopedic content can still be inaccurate or outdated",
+    "article and topic imbalance",
+    "markup or template remnants"
+  ],
+  "required_quality_filters": [
+    "English articles only",
+    "remove empty and malformed text",
+    "retain article title and revision provenance"
+  ],
+  "deduplication_requirements": [
+    "remove exact duplicate article text",
+    "measure overlap with FineWeb sources"
+  ],
+  "contamination_risks": [
+    "benchmark questions and answers may be quoted in articles",
+    "facts from evaluation suites may appear verbatim"
+  ],
+  "local_raw_path": "data/raw/wikipedia/20231101.en",
+  "local_processed_path": "data/pilots/wikipedia_en_20231101.jsonl",
+  "approval_status": "pending",
+  "approval_notes": "Dataset acquisition, exact snapshot pin, attribution packaging, and contamination review are not complete.",
+  "reviewed_by": "",
+  "reviewed_at": "",
+  "content_hash": null,
+  "notes": "Metadata placeholder only; no source data exists as a result of this registry task."
+}

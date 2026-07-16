@@ -1,0 +1,102 @@
+{
+  "records": [
+    {
+      "source_id": "fineweb_edu_original_train",
+      "display_name": "FineWeb-Edu original VASU training region",
+      "provider": "Hugging Face FineWeb team",
+      "dataset_name": "HuggingFaceFW/fineweb-edu",
+      "dataset_card_url": "https://huggingface.co/datasets/HuggingFaceFW/fineweb-edu",
+      "homepage_url": "https://huggingface.co/datasets/HuggingFaceFW/fineweb-edu",
+      "access_method": "Hugging Face Datasets snapshot pinned by repository revision and dump configuration",
+      "subset": "CC-MAIN-2013-20; local training slice [0, 1245891252)",
+      "split": "train",
+      "pinned_revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9:CC-MAIN-2013-20",
+      "license_name": "ODC-By-1.0",
+      "license_url": "https://opendatacommons.org/licenses/by/1-0/",
+      "commercial_use_allowed": true,
+      "attribution_required": true,
+      "redistribution_allowed": true,
+      "gated_access": false,
+      "requires_authentication": false,
+      "expected_download_size_bytes": null,
+      "expected_raw_examples": 1000000,
+      "expected_raw_tokens": 1245891252,
+      "supported_domains": ["general", "educational"],
+      "intended_purpose": "Existing VASU base-pretraining control and educational/general mixture source.",
+      "quality_risks": [
+        "web-text factual errors and stale information",
+        "residual duplication and source imbalance",
+        "possible benchmark contamination"
+      ],
+      "required_quality_filters": [
+        "retain FineWeb-Edu educational-quality filtering",
+        "exclude the fixed original validation region"
+      ],
+      "deduplication_requirements": [
+        "preserve upstream FineWeb deduplication metadata",
+        "check cross-source overlap before any new mixture"
+      ],
+      "contamination_risks": [
+        "web pages may reproduce common evaluation questions",
+        "evaluation benchmark overlap has not been exhaustively measured"
+      ],
+      "local_raw_path": "data/raw/fineweb_edu/CC-MAIN-2013-20",
+      "local_processed_path": "data/processed/pretrain/fineweb_1m.bin",
+      "approval_status": "approved",
+      "approval_notes": "Approved for the existing VASU training artifact with attribution and validation-slice isolation preserved.",
+      "reviewed_by": "VASU project maintainer",
+      "reviewed_at": "2026-07-16T22:00:00+05:30",
+      "content_hash": "cd42417dd6456f438fb3fcde2f47d6a604d6dcf9cb76402e16ff3ae10f15aee6",
+      "notes": "The processed file also contains a fixed held-out tail; mixture token_count refers only to the training region."
+    },
+    {
+      "source_id": "fineweb_edu_extension_2025_26",
+      "display_name": "FineWeb-Edu validated 500M-token extension",
+      "provider": "Hugging Face FineWeb team",
+      "dataset_name": "HuggingFaceFW/fineweb-edu",
+      "dataset_card_url": "https://huggingface.co/datasets/HuggingFaceFW/fineweb-edu",
+      "homepage_url": "https://huggingface.co/datasets/HuggingFaceFW/fineweb-edu",
+      "access_method": "Hugging Face Datasets snapshot pinned by repository revision and dump configuration",
+      "subset": "CC-MAIN-2025-26; validated 500,000,478-token local extension",
+      "split": "train",
+      "pinned_revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9:CC-MAIN-2025-26",
+      "license_name": "ODC-By-1.0",
+      "license_url": "https://opendatacommons.org/licenses/by/1-0/",
+      "commercial_use_allowed": true,
+      "attribution_required": true,
+      "redistribution_allowed": true,
+      "gated_access": false,
+      "requires_authentication": false,
+      "expected_download_size_bytes": null,
+      "expected_raw_examples": null,
+      "expected_raw_tokens": 500000478,
+      "supported_domains": ["educational"],
+      "intended_purpose": "Existing compatible continuation shard for educational base pretraining.",
+      "quality_risks": [
+        "web-text factual errors and stale information",
+        "distribution shift from the older original crawl",
+        "possible benchmark contamination"
+      ],
+      "required_quality_filters": [
+        "retain FineWeb-Edu educational-quality filtering",
+        "validate tokenizer and manifest compatibility"
+      ],
+      "deduplication_requirements": [
+        "preserve upstream deduplication",
+        "audit overlap with the original VASU FineWeb region"
+      ],
+      "contamination_risks": [
+        "recent web text may include benchmark solutions",
+        "cross-shard contamination has not been exhaustively measured"
+      ],
+      "local_raw_path": "data/raw/fineweb_edu/CC-MAIN-2025-26",
+      "local_processed_path": "data/processed/pretrain/fineweb_extension_500m.bin",
+      "approval_status": "approved",
+      "approval_notes": "Approved as the already validated VASU extension shard with manifest and tokenizer compatibility preserved.",
+      "reviewed_by": "VASU project maintainer",
+      "reviewed_at": "2026-07-16T22:00:00+05:30",
+      "content_hash": "d62efa0521365fa634d1e8f34bf8c84764a8066a9cc53430f9fc4bb89cabf51e",
+      "notes": "This record describes an existing artifact and does not authorize new downloading."
+    }
+  ]
+}
