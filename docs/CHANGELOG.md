@@ -4,6 +4,17 @@
 
 ### Added
 
+- Added a bounded, resumable Wikimedia factual-pilot preparation package and
+  CLI pinned to the approved `20231101.en` revision and one explicit Parquet
+  shard.
+- Added deterministic filtering with reason accounting, exact and bounded
+  near-duplicate detection, evaluation-prompt contamination checks, exact VASU
+  token measurement, provenance-rich JSONL, atomic progress, manifests, and
+  output validation.
+- Added 31 network-free Wikimedia preparation tests covering limits, source
+  approval, pinned acquisition, filtering, deduplication, contamination,
+  resume/restart, hashes, validation, path independence, and Git-ignore rules.
+
 - Pinned primary-source registry evidence and an approved preparation plan for the factual pilot's official `wikimedia/wikipedia` `20231101.en` snapshot at commit `e6057dc557255a03c9c3c47ceab0eb44353b1bc5`, including exact published size/example counts, licensing obligations, Windows-safe paths, and quality/deduplication controls. No data was downloaded or training started.
 - Source-registry command-line validation for mixture readiness via `python -m vasu.data.sources.registry`.
 
@@ -75,6 +86,14 @@
 - Cached decode now enforces a populated synchronized cache, one-token queries, correct RoPE offsets, and the model context limit.
 
 ### Documented
+
+- Wikimedia pilot limits are one shard, 10,000 raw rows, 2,000 retained
+  documents, 2,000,000 tokens, and 1 GB downloaded. The default pilot and model
+  training were not started; a smaller network smoke attempt stalled at 0
+  bytes and was stopped.
+- FineWeb cross-source deduplication is explicitly blocked without a versioned
+  document-level normalized-hash/signature index; existing token binaries are
+  not sufficient.
 
 - Added an evidence-based next-generation planning decision: first validate a factual/math/code/reasoning data mixture through small ablations, then conditionally continue the existing VASU-60M base for approximately 1.2B new tokens. No implementation or training is authorized by the plan.
 - Compared continued VASU-60M training, a same-size v2, an approximately 100M–120M scale-up, and a smaller pipeline-validation model, including hardware, runtime, compatibility, data, and failure-risk trade-offs.

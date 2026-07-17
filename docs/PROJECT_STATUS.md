@@ -296,3 +296,25 @@ This section records the preparation state that preceded the now-completed maske
 - Dry-run writes: none; the v3 output directory was not created.
 - Test status: 140 tests passed.
 - Status at the time of this preparation record: training had not started. The completed v3 result and current UltraChat-v2 readiness are recorded above.
+
+## Bounded Wikimedia factual preparation pipeline
+
+The approved `wikimedia/wikipedia` factual source now has a reusable,
+interruption-safe pilot preparation pipeline. It is pinned to subset
+`20231101.en`, split `train`, revision
+`e6057dc557255a03c9c3c47ceab0eb44353b1bc5`, and one explicit Parquet shard.
+
+Hard pilot limits are one shard, 10,000 inspected rows, 2,000 accepted
+documents, 2,000,000 exact VASU-tokenizer tokens, and 1 GB downloaded. The
+pipeline records provenance, explicit filter reasons, exact and bounded
+near-duplicate checks, evaluation-prompt contamination evidence, hashes,
+atomic progress, and deterministic resume/restart state. Generated raw,
+interim, processed, and factual-manifest artifacts are ignored by Git.
+
+Dry-run validation and all tests passed. A smaller acquisition smoke attempt
+(100 rows, 20 accepted documents, 20,000 tokens) was attempted, but the pinned
+file transfer remained at 0 bytes and was stopped. Therefore no Wikimedia
+documents or tokens were prepared, the default pilot was not run, and no
+training started. Cross-FineWeb document deduplication remains blocked because
+the repository has no versioned document-level normalized-hash/signature
+index; token binaries are not treated as a substitute.

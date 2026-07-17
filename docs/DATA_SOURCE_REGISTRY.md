@@ -209,3 +209,26 @@ Before changing a record to `approved`:
 10. Add a SHA-256 content hash once a concrete prepared artifact exists.
 
 No pending, blocked, or rejected source should pass the training-readiness gate.
+
+## Wikimedia bounded preparation
+
+The approved `wikipedia_en_20231101_planned` record is consumed by
+`scripts/prepare_wikimedia_pilot.py`. The preparation config pins the exact
+dataset revision, subset, split, and a single shard; dry-run validates this
+registry and the factual mixture readiness gate before any acquisition.
+
+The default pilot cannot exceed 10,000 source rows, 2,000 accepted documents,
+2,000,000 VASU tokens, one shard, or 1 GB downloaded. It produces a reviewable
+document-level JSONL plus progress, preparation manifest, machine-readable
+summary, and text summary. Resume verifies the configuration/source identity
+and reconciles output to the last atomically committed byte offset.
+
+FineWeb cross-source deduplication is currently reported as `blocked`: no
+document-level FineWeb hash/signature index exists locally. If a supported
+normalized SHA-256 index is later supplied, exact hashes are loaded and applied
+by the preparer. Reliable near cross-source deduplication additionally requires
+compatible word-5-gram signatures with normalization and provenance metadata.
+The existing token binaries alone are deliberately not used for this purpose.
+
+As of the first smoke attempt, the pinned transfer stalled at 0 bytes and was
+stopped. No Wikimedia pilot output and no training data were created.

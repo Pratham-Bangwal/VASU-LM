@@ -20,10 +20,16 @@ Source-governance progress:
 - completed: pinned primary-source review and registry approval for the
   `wikimedia/wikipedia` `20231101.en` factual source at commit
   `e6057dc557255a03c9c3c47ceab0eb44353b1bc5`;
-- next: implement a bounded, resumable shard-by-shard Wikimedia preparer with
-  attribution metadata, filtering, contamination checks, and cross-FineWeb
-  deduplication;
-- unchanged: no data acquisition or factual-pilot training has started;
+- completed: bounded, resumable, one-shard Wikimedia pilot preparation with
+  provenance, deterministic filtering, contamination checks, exact/near
+  deduplication, exact tokenizer measurement, and atomic progress;
+- next: retry only the capped 100-row/20-document/20,000-token acquisition
+  smoke test when pinned-file network access is available, then manually review
+  the JSONL before authorizing the default pilot;
+- unchanged: the smoke transfer produced 0 downloaded bytes, no Wikimedia
+  documents were prepared, and no factual-pilot training has started;
+- blocked: cross-FineWeb document deduplication until a versioned normalized
+  document-hash and compatible word-shingle signature index exists;
 - blocked: capability-pilot mathematics, code, and reasoning approvals.
 
 ## Historical roadmap snapshot

@@ -27,6 +27,8 @@ checkpoints/*.pth
 # ===========================
 data/raw/
 data/processed/
+data/interim/
+data/manifests/factual/
 
 # ===========================
 # TensorBoard

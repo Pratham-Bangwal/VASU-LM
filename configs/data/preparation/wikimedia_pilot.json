@@ -1,0 +1,32 @@
+{
+  "source_id": "wikipedia_en_20231101_planned",
+  "dataset_name": "wikimedia/wikipedia",
+  "subset": "20231101.en",
+  "split": "train",
+  "pinned_revision": "e6057dc557255a03c9c3c47ceab0eb44353b1bc5",
+  "shard_identifier": "20231101.en/train-00000-of-00041.parquet",
+  "tokenizer_path": "assets/tokenizer.json",
+  "random_seed": 42,
+  "max_download_bytes": 500000000,
+  "max_raw_examples": 10000,
+  "max_accepted_documents": 2000,
+  "max_output_tokens": 2000000,
+  "minimum_document_characters": 200,
+  "maximum_document_characters": 100000,
+  "exact_deduplication_enabled": true,
+  "near_deduplication_enabled": true,
+  "near_duplicate_similarity_threshold": 0.9,
+  "contamination_check_enabled": true,
+  "contamination_ngram_words": 5,
+  "output_paths": {
+    "raw_directory": "data/raw/factual/wikimedia/20231101_en",
+    "interim_directory": "data/interim/factual/wikimedia/20231101_en",
+    "processed_directory": "data/processed/pretrain/factual/wikimedia_pilot",
+    "output_jsonl": "data/processed/pretrain/factual/wikimedia_pilot/documents.jsonl",
+    "manifest_json": "data/manifests/factual/wikimedia_pilot.json",
+    "progress_json": "data/interim/factual/wikimedia/20231101_en/progress.json",
+    "summary_json": "data/processed/pretrain/factual/wikimedia_pilot/summary.json",
+    "summary_text": "data/processed/pretrain/factual/wikimedia_pilot/summary.txt"
+  },
+  "resume_enabled": true
+}

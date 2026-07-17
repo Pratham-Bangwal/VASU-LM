@@ -353,3 +353,19 @@ First data task: Build only a small licensed/provenance-audited pilot covering W
 First training experiment: Two or more isolated 20M–50M-token continuation ablations from the same step-200,000 base, with matched optimizer settings and evaluation.
 Go/no-go criteria: Proceed only if a candidate improves at least two targeted held-out categories, preserves broad validation/language quality, does not increase mean repetition by more than 0.05, remains thermally stable, and passes artifact/license/provenance checks.
 ```
+
+## Wikimedia factual-pilot implementation status
+
+The first data-preparation component of this plan is implemented but has not
+produced training data. The Wikimedia preparer is pinned to the approved
+source revision and refuses unbounded execution. Its default limits are one
+Parquet shard, 10,000 inspected examples, 2,000 retained documents, 2,000,000
+VASU tokens, and 1 GB downloaded. A smoke mode reduces those caps to 100 rows,
+20 documents, and 20,000 tokens.
+
+Configuration/approval validation, deterministic filtering, exact and bounded
+near deduplication, prompt contamination checks, exact token measurement,
+atomic resume/restart, provenance manifests, and output validation are covered
+by tests. The first pinned-file smoke transfer stalled at 0 bytes and was
+stopped, so there are no pilot statistics and no factual continuation is
+authorized. Cross-FineWeb deduplication still requires a document-level index.
