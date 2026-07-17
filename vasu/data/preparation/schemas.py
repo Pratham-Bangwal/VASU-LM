@@ -45,6 +45,11 @@ class WikimediaPreparationConfig:
     near_duplicate_similarity_threshold: float
     contamination_check_enabled: bool
     contamination_ngram_words: int
+    chunking_enabled: bool
+    target_chunk_tokens: int
+    maximum_chunk_tokens: int
+    minimum_chunk_tokens: int
+    chunk_overlap_tokens: int
     output_paths: PreparationOutputPaths
     resume_enabled: bool
 
@@ -87,6 +92,10 @@ class PreparationProgress:
     near_duplicate_candidate_comparisons: int = 0
     exact_duplicates: int = 0
     near_duplicates: int = 0
+    encoding_repairs: int = 0
+    quality_rejections: int = 0
+    active_row_index: int | None = None
+    next_chunk_index: int = 0
     status: str = "in_progress"
 
     def __post_init__(self) -> None:
@@ -96,4 +105,3 @@ class PreparationProgress:
             self.seen_exact_hashes = []
         if self.contamination_matches is None:
             self.contamination_matches = []
-

@@ -23,11 +23,12 @@ Source-governance progress:
 - completed: bounded, resumable, one-shard Wikimedia pilot preparation with
   provenance, deterministic filtering, contamination checks, exact/near
   deduplication, exact tokenizer measurement, and atomic progress;
-- next: retry only the capped 100-row/20-document/20,000-token acquisition
-  smoke test when pinned-file network access is available, then manually review
-  the JSONL before authorizing the default pilot;
-- unchanged: the smoke transfer produced 0 downloaded bytes, no Wikimedia
-  documents were prepared, and no factual-pilot training has started;
+- completed: corrected v2 smoke preparation with exact-token chunking, safe
+  inline-markup spacing, conservative Unicode handling, 20 distinct chunks,
+  17,237 tokens, and a 1,022-token observed maximum;
+- next: review broader bounded samples before deciding whether to authorize the
+  default 2M-token pilot;
+- unchanged: the default pilot and factual-pilot training have not started;
 - blocked: cross-FineWeb document deduplication until a versioned normalized
   document-hash and compatible word-shingle signature index exists;
 - blocked: capability-pilot mathematics, code, and reasoning approvals.

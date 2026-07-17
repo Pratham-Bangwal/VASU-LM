@@ -7,9 +7,18 @@ import re
 import unicodedata
 from typing import Mapping, Any
 
+from .quality import assess_text_quality, repair_mojibake
+
 
 CITATION_PATTERN = re.compile(r"\[(?:\d{1,4}|citation needed)\]", re.IGNORECASE)
+REFERENCE_PATTERN = re.compile(
+    r"<ref\b[^>]*>.*?</ref\s*>|<ref\b[^>]*/\s*>",
+    re.IGNORECASE | re.DOTALL,
+)
+TEMPLATE_PATTERN = re.compile(r"\{\{[^{}]*\}\}", re.DOTALL)
+COMMENT_PATTERN = re.compile(r"<!--.*?-->", re.DOTALL)
 SPACE_PATTERN = re.compile(r"[ \t]+")
+SPACE_BEFORE_PUNCTUATION = re.compile(r"\s+([,.;:!?])")
 
 
 @dataclass(frozen=True)
@@ -26,11 +35,48 @@ def comparison_normalize(text: str) -> str:
     return "\n".join(line for line in lines if line).casefold()
 
 
-def clean_training_text(text: str) -> tuple[str, int]:
-    normalized = unicodedata.normalize("NFC", text).replace("\r\n", "\n").replace("\r", "\n")
-    without_citations, count = CITATION_PATTERN.subn("", normalized)
-    lines = [SPACE_PATTERN.sub(" ", line).strip() for line in without_citations.splitlines()]
-    return "\n".join(line for line in lines if line).strip(), count
+def clean_training_text(text: str) -> tuple[str, dict[str, int | bool | list[str]], str | None]:
+    encoding = repair_mojibake(text)
+    if encoding.rejection_reason:
+        return "", {
+            "encoding_repaired": encoding.repaired,
+            "encoding_repair_count": encoding.repair_count,
+            "quality_warnings": list(encoding.warnings),
+        }, encoding.rejection_reason
+    normalized = unicodedata.normalize("NFC", encoding.text).replace("\r\n", "\n").replace("\r", "\n")
+    cleaned, comments = COMMENT_PATTERN.subn(" ", normalized)
+    cleaned, references = REFERENCE_PATTERN.subn(" ", cleaned)
+    templates = 0
+    while True:
+        cleaned, count = TEMPLATE_PATTERN.subn(" ", cleaned)
+        templates += count
+        if count == 0:
+            break
+    cleaned, citations = CITATION_PATTERN.subn(" ", cleaned)
+    paragraphs: list[str] = []
+    current: list[str] = []
+    for raw_line in cleaned.splitlines():
+        line = SPACE_PATTERN.sub(" ", raw_line).strip()
+        line = SPACE_BEFORE_PUNCTUATION.sub(r"\1", line)
+        if line:
+            current.append(line)
+        elif current:
+            paragraphs.append("\n".join(current))
+            current = []
+    if current:
+        paragraphs.append("\n".join(current))
+    result = "\n\n".join(paragraphs).strip()
+    quality_warnings, rejection = assess_text_quality(result)
+    warnings = list(dict.fromkeys((*encoding.warnings, *quality_warnings)))
+    return result, {
+        "encoding_repaired": encoding.repaired,
+        "encoding_repair_count": encoding.repair_count,
+        "quality_warnings": warnings,
+        "citations_removed": citations,
+        "references_removed": references,
+        "templates_removed": templates,
+        "comments_removed": comments,
+    }, rejection
 
 
 def _repeated_line_ratio(text: str) -> float:
@@ -69,7 +115,9 @@ def filter_wikimedia_record(
     if lowered_title.endswith("(disambiguation)") or "may refer to:" in lowered_start or "can refer to:" in lowered_start:
         return FilterResult(False, "disambiguation", "", {})
 
-    cleaned, citations_removed = clean_training_text(raw_text)
+    cleaned, cleanup_metadata, quality_rejection = clean_training_text(raw_text)
+    if quality_rejection:
+        return FilterResult(False, quality_rejection, "", cleanup_metadata)
     if len(cleaned) < minimum_characters:
         return FilterResult(False, "too_short", "", {})
     if len(cleaned) > maximum_characters:
@@ -90,9 +138,8 @@ def filter_wikimedia_record(
         None,
         cleaned,
         {
-            "citations_removed": citations_removed,
+            **cleanup_metadata,
             "repeated_line_ratio": round(repeated_ratio, 6),
             "unicode_normalization": "NFC",
         },
     )
-

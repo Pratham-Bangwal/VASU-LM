@@ -217,7 +217,7 @@ The approved `wikipedia_en_20231101_planned` record is consumed by
 dataset revision, subset, split, and a single shard; dry-run validates this
 registry and the factual mixture readiness gate before any acquisition.
 
-The default pilot cannot exceed 10,000 source rows, 2,000 accepted documents,
+The default pilot cannot exceed 10,000 source rows, 2,000 accepted chunks,
 2,000,000 VASU tokens, one shard, or 1 GB downloaded. It produces a reviewable
 document-level JSONL plus progress, preparation manifest, machine-readable
 summary, and text summary. Resume verifies the configuration/source identity
@@ -230,5 +230,19 @@ by the preparer. Reliable near cross-source deduplication additionally requires
 compatible word-5-gram signatures with normalization and provenance metadata.
 The existing token binaries alone are deliberately not used for this purpose.
 
-As of the first smoke attempt, the pinned transfer stalled at 0 bytes and was
-stopped. No Wikimedia pilot output and no training data were created.
+The pinned 420,296,449-byte shard is cached and verified against its
+acquisition metadata and SHA-256. The corrected v2 smoke inspected 2 rows,
+retained 20 distinct chunks and 17,237 tokens, and observed a maximum of 1,022
+tokens per chunk. It recorded no encoding repairs or quality rejections and
+passed output validation.
+
+The apparent smoke mojibake came from displaying clean UTF-8 JSONL through an
+incompatible Windows decoder. The preparer now also detects and conservatively
+repairs only reversible source corruption, rejects replacement/control or
+low-confidence cases, and preserves correct Unicode. Inline references,
+citations, comments, and templates are removed with spaces before canonical
+whitespace cleanup. Chunk-level hashes, deduplication, contamination checks,
+token accounting, and parent/source-row provenance use the versioned
+`wikimedia_pilot_document_v2` schema.
+
+The default 2M-token pilot has not run and no Wikimedia training has started.

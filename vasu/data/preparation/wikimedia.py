@@ -16,9 +16,11 @@ from vasu.data.sources.validation import validate_manifest_sources
 from vasu.data.mixtures import load_manifest
 
 from .contamination import check_contamination, load_prompt_evidence
+from .chunking import TextChunk, chunk_document
 from .deduplication import (
     PilotDeduplicator,
     load_fineweb_exact_hashes,
+    normalized_sha256,
 )
 from .filters import filter_wikimedia_record
 from .progress import (
@@ -27,6 +29,7 @@ from .progress import (
     save_progress,
     validate_resume_identity,
 )
+from .quality import assess_text_quality
 from .reporting import (
     atomic_write_json,
     atomic_write_text,
@@ -139,6 +142,7 @@ def validate_preparation_config(config: WikimediaPreparationConfig) -> None:
         "exact_deduplication_enabled",
         "near_deduplication_enabled",
         "contamination_check_enabled",
+        "chunking_enabled",
         "resume_enabled",
     ):
         if not isinstance(getattr(config, field), bool):
@@ -148,6 +152,22 @@ def validate_preparation_config(config: WikimediaPreparationConfig) -> None:
     ) or not 0 < float(config.near_duplicate_similarity_threshold) <= 1:
         raise ValueError("near_duplicate_similarity_threshold must be in (0, 1]")
     _positive_int(config.contamination_ngram_words, "contamination_ngram_words")
+    _positive_int(config.target_chunk_tokens, "target_chunk_tokens")
+    _positive_int(config.maximum_chunk_tokens, "maximum_chunk_tokens")
+    _positive_int(config.minimum_chunk_tokens, "minimum_chunk_tokens")
+    if isinstance(config.chunk_overlap_tokens, bool) or not isinstance(
+        config.chunk_overlap_tokens, int
+    ) or config.chunk_overlap_tokens < 0:
+        raise ValueError("chunk_overlap_tokens must be a non-negative integer")
+    if not (
+        config.chunk_overlap_tokens
+        < config.minimum_chunk_tokens
+        <= config.target_chunk_tokens
+        <= config.maximum_chunk_tokens
+    ):
+        raise ValueError(
+            "Chunk limits must satisfy overlap < minimum <= target <= maximum"
+        )
     values = []
     for field in OUTPUT_PATH_FIELDS:
         value = getattr(config.output_paths, field)
@@ -211,9 +231,38 @@ def acquire_pinned_shard(
     config: WikimediaPreparationConfig,
     repository_root: Path,
 ) -> tuple[Path, dict[str, Any]]:
+    paths = resolve_paths(config, repository_root)
+    local_candidate = paths["raw_directory"] / config.shard_identifier
+    acquisition_path = paths["interim_directory"] / "acquisition.json"
+    if local_candidate.is_file() and acquisition_path.is_file():
+        metadata = json.loads(acquisition_path.read_text(encoding="utf-8"))
+        expected = {
+            "dataset_name": config.dataset_name,
+            "subset": config.subset,
+            "split": config.split,
+            "pinned_revision": config.pinned_revision,
+            "shard_identifier": config.shard_identifier,
+        }
+        mismatches = [
+            field
+            for field, value in expected.items()
+            if metadata.get(field) != value
+        ]
+        if mismatches:
+            raise ValueError(
+                f"Cached shard acquisition metadata mismatch: {mismatches}"
+            )
+        actual_size = local_candidate.stat().st_size
+        if actual_size > config.max_download_bytes:
+            raise ValueError("Cached shard exceeds configured download limit")
+        if metadata.get("downloaded_size_bytes") != actual_size:
+            raise ValueError("Cached shard size differs from acquisition metadata")
+        if metadata.get("input_sha256") != sha256_file(local_candidate):
+            raise ValueError("Cached shard hash differs from acquisition metadata")
+        return local_candidate, metadata
+
     from huggingface_hub import HfApi, hf_hub_download
 
-    paths = resolve_paths(config, repository_root)
     api = HfApi()
     info = api.dataset_info(
         config.dataset_name,
@@ -358,19 +407,23 @@ def prepare_wikimedia_pilot(
     started_at = utc_now()
     completion_reason = "shard_exhausted"
 
+    start_row = (
+        progress.active_row_index
+        if progress.active_row_index is not None
+        else progress.last_processed_row + 1
+    )
+    stop_processing = False
     with output_path.open("ab") as output:
-        for row_index, row in enumerate(
-            iter_parquet_rows(input_parquet, progress.last_processed_row + 1),
-            start=progress.last_processed_row + 1,
-        ):
-            if progress.raw_examples >= config.max_raw_examples:
-                completion_reason = "raw_example_limit"
-                break
-            if progress.accepted_documents >= config.max_accepted_documents:
-                completion_reason = "accepted_document_limit"
-                break
-            progress.raw_examples += 1
-            progress.last_processed_row = row_index
+        for row_index, row in enumerate(iter_parquet_rows(input_parquet, start_row), start=start_row):
+            resuming_row = progress.active_row_index == row_index
+            if not resuming_row:
+                if progress.raw_examples >= config.max_raw_examples:
+                    completion_reason = "raw_example_limit"
+                    break
+                progress.raw_examples += 1
+                progress.active_row_index = row_index
+                progress.next_chunk_index = 0
+                save_progress(progress_path, progress)
             filtered = filter_wikimedia_record(
                 row,
                 minimum_characters=config.minimum_document_characters,
@@ -378,70 +431,122 @@ def prepare_wikimedia_pilot(
             )
             if not filtered.accepted:
                 _increment(progress, filtered.reason or "filter_rejected")
+                if filtered.reason in {
+                    "replacement_character",
+                    "control_character",
+                    "low_confidence_encoding_corruption",
+                    "implausible_non_ascii_corruption",
+                }:
+                    progress.quality_rejections += 1
+                progress.last_processed_row = row_index
+                progress.active_row_index = None
+                progress.next_chunk_index = 0
                 save_progress(progress_path, progress)
                 continue
-            document_id = str(row["id"])
-            duplicate_reason, fingerprint = deduplicator.classify(filtered.cleaned_text)
-            if duplicate_reason:
-                if duplicate_reason == "exact_duplicate" and fingerprint in fineweb_hashes:
-                    duplicate_reason = "fineweb_exact_duplicate"
-                _increment(progress, duplicate_reason)
-                if duplicate_reason in {"exact_duplicate", "fineweb_exact_duplicate"}:
-                    progress.exact_duplicates += 1
-                else:
-                    progress.near_duplicates += 1
+            if not resuming_row and bool(filtered.metadata.get("encoding_repaired")):
+                progress.encoding_repairs += 1
+            if config.chunking_enabled:
+                chunks = chunk_document(
+                    filtered.cleaned_text,
+                    tokenizer,
+                    target_tokens=config.target_chunk_tokens,
+                    maximum_tokens=config.maximum_chunk_tokens,
+                    minimum_tokens=config.minimum_chunk_tokens,
+                    overlap_tokens=config.chunk_overlap_tokens,
+                )
+            else:
+                chunks = [
+                    TextChunk(
+                        filtered.cleaned_text,
+                        count_tokens(tokenizer, filtered.cleaned_text),
+                        None,
+                    )
+                ]
+            parent_document_id = str(row["id"])
+            for chunk_index in range(progress.next_chunk_index, len(chunks)):
+                if progress.accepted_documents >= config.max_accepted_documents:
+                    completion_reason = "accepted_document_limit"
+                    stop_processing = True
+                    break
+                chunk = chunks[chunk_index]
+                chunk_id = f"{parent_document_id}:{chunk_index:04d}"
+                duplicate_reason, fingerprint = deduplicator.classify(chunk.text)
+                if duplicate_reason:
+                    if duplicate_reason == "exact_duplicate" and fingerprint in fineweb_hashes:
+                        duplicate_reason = "fineweb_exact_duplicate"
+                    _increment(progress, duplicate_reason)
+                    if duplicate_reason in {"exact_duplicate", "fineweb_exact_duplicate"}:
+                        progress.exact_duplicates += 1
+                    else:
+                        progress.near_duplicates += 1
+                    progress.next_chunk_index = chunk_index + 1
+                    save_progress(progress_path, progress)
+                    continue
+                exact_contamination, contamination_matches = check_contamination(
+                    chunk.text, chunk_id, prompt_evidence
+                )
+                assert progress.contamination_matches is not None
+                progress.contamination_matches.extend(contamination_matches)
+                if exact_contamination:
+                    _increment(progress, "contamination_exact_prompt")
+                    progress.next_chunk_index = chunk_index + 1
+                    save_progress(progress_path, progress)
+                    continue
+                if progress.output_tokens + chunk.token_count > config.max_output_tokens:
+                    _increment(progress, "token_limit")
+                    completion_reason = "token_limit"
+                    stop_processing = True
+                    save_progress(progress_path, progress)
+                    break
+                deduplicator.accept(chunk.text, fingerprint)
+                output_record = {
+                    "format_version": "wikimedia_pilot_document_v2",
+                    "document_id": chunk_id,
+                    "parent_document_id": parent_document_id,
+                    "chunk_id": chunk_id,
+                    "chunk_index": chunk_index,
+                    "chunk_count": len(chunks),
+                    "section_title": chunk.section_title,
+                    "source_id": config.source_id,
+                    "source_revision": config.pinned_revision,
+                    "source_shard": config.shard_identifier,
+                    "source_url": str(row["url"]),
+                    "title": str(row["title"]),
+                    "cleaned_text": chunk.text,
+                    "token_count": chunk.token_count,
+                    "normalized_sha256": fingerprint,
+                    "encoding_repaired": bool(filtered.metadata.get("encoding_repaired")),
+                    "quality_warnings": list(filtered.metadata.get("quality_warnings", [])),
+                    "filtering_metadata": filtered.metadata,
+                    "provenance_metadata": {
+                        "dataset_name": config.dataset_name,
+                        "subset": config.subset,
+                        "split": config.split,
+                        "source_row_index": row_index,
+                        "parent_document_id": parent_document_id,
+                    },
+                }
+                encoded = (json.dumps(output_record, ensure_ascii=False) + "\n").encode("utf-8")
+                output.write(encoded)
+                output.flush()
+                os.fsync(output.fileno())
+                progress.accepted_documents += 1
+                progress.output_tokens += chunk.token_count
+                progress.total_characters += len(chunk.text)
+                progress.output_size_bytes = output.tell()
+                progress.next_chunk_index = chunk_index + 1
+                assert progress.seen_exact_hashes is not None
+                progress.seen_exact_hashes.append(fingerprint)
+                progress.near_duplicate_candidate_comparisons = deduplicator.candidate_comparisons
                 save_progress(progress_path, progress)
-                continue
-            exact_contamination, contamination_matches = check_contamination(
-                filtered.cleaned_text,
-                document_id,
-                prompt_evidence,
-            )
-            assert progress.contamination_matches is not None
-            progress.contamination_matches.extend(contamination_matches)
-            if exact_contamination:
-                _increment(progress, "contamination_exact_prompt")
-                save_progress(progress_path, progress)
-                continue
-            document_tokens = count_tokens(tokenizer, filtered.cleaned_text)
-            if progress.output_tokens + document_tokens > config.max_output_tokens:
-                _increment(progress, "token_limit")
-                completion_reason = "token_limit"
-                save_progress(progress_path, progress)
+                if stop_after_rows is not None and progress.raw_examples >= stop_after_rows:
+                    raise InterruptedError("Synthetic interruption after committed progress")
+            if stop_processing:
                 break
-            deduplicator.accept(filtered.cleaned_text, fingerprint)
-            output_record = {
-                "document_id": document_id,
-                "source_id": config.source_id,
-                "source_revision": config.pinned_revision,
-                "source_shard": config.shard_identifier,
-                "source_url": str(row["url"]),
-                "title": str(row["title"]),
-                "cleaned_text": filtered.cleaned_text,
-                "token_count": document_tokens,
-                "normalized_sha256": fingerprint,
-                "filtering_metadata": filtered.metadata,
-                "provenance_metadata": {
-                    "dataset_name": config.dataset_name,
-                    "subset": config.subset,
-                    "split": config.split,
-                    "row_index": row_index,
-                },
-            }
-            encoded = (json.dumps(output_record, ensure_ascii=False) + "\n").encode("utf-8")
-            output.write(encoded)
-            output.flush()
-            os.fsync(output.fileno())
-            progress.accepted_documents += 1
-            progress.output_tokens += document_tokens
-            progress.total_characters += len(filtered.cleaned_text)
-            progress.output_size_bytes = output.tell()
-            assert progress.seen_exact_hashes is not None
-            progress.seen_exact_hashes.append(fingerprint)
-            progress.near_duplicate_candidate_comparisons = deduplicator.candidate_comparisons
+            progress.last_processed_row = row_index
+            progress.active_row_index = None
+            progress.next_chunk_index = 0
             save_progress(progress_path, progress)
-            if stop_after_rows is not None and progress.raw_examples >= stop_after_rows:
-                raise InterruptedError("Synthetic interruption after committed progress")
         else:
             completion_reason = "shard_exhausted"
 
@@ -453,7 +558,7 @@ def prepare_wikimedia_pilot(
     output_hash = sha256_file(output_path)
     rejected = sum((progress.rejection_counts or {}).values())
     manifest = {
-        "format_version": "wikimedia_pilot_v1",
+        "format_version": "wikimedia_pilot_v2",
         "source_registry_id": config.source_id,
         "dataset_name": config.dataset_name,
         "source_revision": config.pinned_revision,
@@ -469,15 +574,24 @@ def prepare_wikimedia_pilot(
         "tokenizer_sha256": tokenizer_hash,
         "prompt_suite_path": "evaluation/prompts.json",
         "prompt_suite_sha256": prompt_hash,
-        "processed_row_range": [0 if progress.last_processed_row >= 0 else None, progress.last_processed_row],
+        "processed_row_range": [
+            0 if progress.raw_examples else None,
+            max(
+                progress.last_processed_row,
+                progress.active_row_index if progress.active_row_index is not None else -1,
+            ),
+        ],
         "raw_examples": progress.raw_examples,
         "accepted_documents": progress.accepted_documents,
+        "accepted_chunks": progress.accepted_documents,
         "rejected_documents": rejected,
         "rejection_reasons": progress.rejection_counts,
         "exact_duplicates": progress.exact_duplicates,
         "near_duplicates": progress.near_duplicates,
         "near_duplicate_candidate_comparisons": progress.near_duplicate_candidate_comparisons,
         "near_duplicate_similarity_threshold": config.near_duplicate_similarity_threshold,
+        "encoding_repairs": progress.encoding_repairs,
+        "quality_rejections": progress.quality_rejections,
         "contamination_matches": progress.contamination_matches,
         "fineweb_cross_deduplication": fineweb_status,
         "total_characters": progress.total_characters,
@@ -503,17 +617,38 @@ def prepare_wikimedia_pilot(
         "completion_status": completion_reason,
         "raw_examples": progress.raw_examples,
         "accepted_documents": progress.accepted_documents,
+        "accepted_chunks": progress.accepted_documents,
         "rejected_documents": rejected,
         "total_vasu_tokens": progress.output_tokens,
         "total_characters": progress.total_characters,
         "rejection_reasons": progress.rejection_counts,
         "exact_duplicates": progress.exact_duplicates,
         "near_duplicates": progress.near_duplicates,
+        "encoding_repairs": progress.encoding_repairs,
+        "quality_rejections": progress.quality_rejections,
         "contamination_match_count": len(progress.contamination_matches or []),
         "fineweb_cross_deduplication": fineweb_status,
     }
     atomic_write_json(paths["manifest_json"], manifest)
     atomic_write_json(paths["summary_json"], summary)
+    review_lines = ["", "Manual review sample (maximum 20 chunks)"]
+    with output_path.open("r", encoding="utf-8") as review_input:
+        for review_index, line in enumerate(review_input):
+            if review_index >= 20:
+                break
+            record = json.loads(line)
+            excerpt = " ".join(record["cleaned_text"][:500].split())
+            review_lines.extend(
+                [
+                    "",
+                    f"Title: {record['title']}",
+                    f"Chunk: {record['chunk_id']}",
+                    f"Tokens: {record['token_count']}",
+                    f"Encoding repaired: {record['encoding_repaired']}",
+                    f"Quality warnings: {record['quality_warnings']}",
+                    f"Excerpt: {excerpt}",
+                ]
+            )
     atomic_write_text(
         paths["summary_text"],
         "\n".join(
@@ -521,10 +656,11 @@ def prepare_wikimedia_pilot(
                 "VASU Wikimedia pilot preparation",
                 f"Status: {completion_reason}",
                 f"Raw examples: {progress.raw_examples}",
-                f"Accepted documents: {progress.accepted_documents}",
+                f"Accepted chunks: {progress.accepted_documents}",
                 f"Rejected documents: {rejected}",
                 f"VASU tokens: {progress.output_tokens}",
                 f"FineWeb cross-deduplication: {fineweb_status['status']}",
+                *review_lines,
                 "",
             ]
         ),
@@ -536,9 +672,14 @@ def validate_preparation_output(
     config: WikimediaPreparationConfig,
     *,
     repository_root: Path,
+    tokenizer: Any | None = None,
 ) -> dict[str, Any]:
     paths = resolve_paths(config, repository_root)
     manifest = json.loads(paths["manifest_json"].read_text(encoding="utf-8"))
+    if manifest.get("format_version") != "wikimedia_pilot_v2":
+        raise ValueError(
+            "Unsupported preparation output format; expected wikimedia_pilot_v2"
+        )
     if manifest.get("configuration_hash") != canonical_json_hash(config_to_dict(config)):
         raise ValueError("Output manifest configuration hash mismatch")
     output = paths["output_jsonl"]
@@ -547,6 +688,7 @@ def validate_preparation_output(
         raise ValueError("Output JSONL hash mismatch")
     documents = 0
     tokens = 0
+    tokenizer = tokenizer or load_vasu_tokenizer(paths["tokenizer"])
     seen_ids: set[str] = set()
     seen_hashes: set[str] = set()
     with output.open("r", encoding="utf-8") as handle:
@@ -562,6 +704,39 @@ def validate_preparation_output(
                 raise ValueError(f"Duplicate document/hash in output at line {line_number}")
             seen_ids.add(document_id)
             seen_hashes.add(fingerprint)
+            if record.get("format_version") != "wikimedia_pilot_document_v2":
+                raise ValueError(f"Unsupported document format at line {line_number}")
+            required = (
+                "parent_document_id",
+                "chunk_id",
+                "chunk_index",
+                "chunk_count",
+                "section_title",
+                "encoding_repaired",
+                "quality_warnings",
+                "provenance_metadata",
+            )
+            missing = [field for field in required if field not in record]
+            if missing:
+                raise ValueError(f"Output JSONL line {line_number} missing fields: {missing}")
+            text = record.get("cleaned_text")
+            if not isinstance(text, str) or not text:
+                raise ValueError(f"Output JSONL line {line_number} has invalid text")
+            if normalized_sha256(text) != fingerprint:
+                raise ValueError(f"Output JSONL line {line_number} hash mismatch")
+            exact_count = count_tokens(tokenizer, text)
+            if token_count != exact_count:
+                raise ValueError(f"Output JSONL line {line_number} token count mismatch")
+            if token_count > config.maximum_chunk_tokens:
+                raise ValueError(f"Output JSONL line {line_number} exceeds chunk maximum")
+            if "\ufffd" in text:
+                raise ValueError(f"Output JSONL line {line_number} contains replacement text")
+            _, quality_rejection = assess_text_quality(text)
+            if quality_rejection:
+                raise ValueError(
+                    f"Output JSONL line {line_number} fails quality validation: "
+                    f"{quality_rejection}"
+                )
             documents += 1
             tokens += token_count
     if documents != manifest["accepted_documents"] or tokens != manifest["total_vasu_tokens"]:

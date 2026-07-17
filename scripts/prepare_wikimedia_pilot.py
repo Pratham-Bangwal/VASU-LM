@@ -91,7 +91,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     )
     print(f"Completion status: {manifest['completion_status']}")
     print(f"Raw examples: {manifest['raw_examples']:,}")
-    print(f"Accepted documents: {manifest['accepted_documents']:,}")
+    print(f"Accepted chunks: {manifest['accepted_chunks']:,}")
     print(f"VASU tokens: {manifest['total_vasu_tokens']:,}")
     print(f"Reviewable JSONL: {config.output_paths.output_jsonl}")
     print(f"Manifest: {config.output_paths.manifest_json}")

@@ -18,6 +18,11 @@
   "near_duplicate_similarity_threshold": 0.9,
   "contamination_check_enabled": true,
   "contamination_ngram_words": 5,
+  "chunking_enabled": true,
+  "target_chunk_tokens": 768,
+  "maximum_chunk_tokens": 1024,
+  "minimum_chunk_tokens": 128,
+  "chunk_overlap_tokens": 32,
   "output_paths": {
     "raw_directory": "data/raw/factual/wikimedia/20231101_en",
     "interim_directory": "data/interim/factual/wikimedia/20231101_en",

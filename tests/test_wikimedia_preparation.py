@@ -19,15 +19,18 @@ from vasu.data.preparation.contamination import (
     check_contamination,
     load_prompt_evidence,
 )
+from vasu.data.preparation.chunking import chunk_document
 from vasu.data.preparation.deduplication import (
     PilotDeduplicator,
     fineweb_document_index_status,
     load_fineweb_exact_hashes,
 )
 from vasu.data.preparation.filters import (
+    clean_training_text,
     comparison_normalize,
     filter_wikimedia_record,
 )
+from vasu.data.preparation.quality import assess_text_quality, repair_mojibake
 from vasu.data.preparation.progress import load_progress, save_progress
 from vasu.data.preparation.reporting import sha256_file
 from vasu.data.preparation.schemas import (
@@ -52,8 +55,22 @@ SHARD = "20231101.en/train-00000-of-00041.parquet"
 
 
 class WordTokenizer:
+    def __init__(self) -> None:
+        self._vocab: dict[str, int] = {}
+        self._inverse: dict[int, str] = {}
+
     def encode(self, text: str) -> list[int]:
-        return list(range(len(text.split())))
+        ids = []
+        for word in text.split():
+            if word not in self._vocab:
+                token_id = len(self._vocab) + 1
+                self._vocab[word] = token_id
+                self._inverse[token_id] = word
+            ids.append(self._vocab[word])
+        return ids
+
+    def decode(self, ids: list[int]) -> str:
+        return " ".join(self._inverse[token_id] for token_id in ids)
 
 
 def make_config(**changes: object) -> WikimediaPreparationConfig:
@@ -87,6 +104,11 @@ def make_config(**changes: object) -> WikimediaPreparationConfig:
         near_duplicate_similarity_threshold=0.9,
         contamination_check_enabled=True,
         contamination_ngram_words=5,
+        chunking_enabled=True,
+        target_chunk_tokens=768,
+        maximum_chunk_tokens=1024,
+        minimum_chunk_tokens=128,
+        chunk_overlap_tokens=32,
         output_paths=paths,
         resume_enabled=True,
     )
@@ -246,6 +268,38 @@ def test_acquisition_uses_one_pinned_shard(
     assert metadata["input_sha256"] == sha256_file(source)
 
 
+def test_acquisition_reuses_verified_cached_shard_without_network(
+    repository: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    config = make_config()
+    paths = resolve_paths(config, repository)
+    cached = paths["raw_directory"] / SHARD
+    write_parquet(cached, [article(1)])
+    metadata = {
+        "dataset_name": config.dataset_name,
+        "subset": config.subset,
+        "split": config.split,
+        "pinned_revision": config.pinned_revision,
+        "shard_identifier": config.shard_identifier,
+        "downloaded_size_bytes": cached.stat().st_size,
+        "input_sha256": sha256_file(cached),
+    }
+    paths["interim_directory"].mkdir(parents=True)
+    (paths["interim_directory"] / "acquisition.json").write_text(
+        json.dumps(metadata), encoding="utf-8"
+    )
+    import huggingface_hub
+
+    monkeypatch.setattr(
+        huggingface_hub,
+        "HfApi",
+        lambda: pytest.fail("verified cache attempted network access"),
+    )
+    result, loaded = acquire_pinned_shard(config, repository)
+    assert result == cached
+    assert loaded == metadata
+
+
 def test_required_parquet_schema_is_validated(repository: Path) -> None:
     path = repository / "bad.parquet"
     write_parquet(path, [{"id": "1", "title": "Missing fields"}])
@@ -317,7 +371,7 @@ def test_pipeline_limits_provenance_hashes_and_rejections(repository: Path) -> N
     assert manifest["rejection_reasons"]["too_short"] == 1
     assert manifest["input_sha256"] == sha256_file(shard)
     assert manifest["output_artifact_hashes"]["documents_jsonl_sha256"] == sha256_file(paths["output_jsonl"])
-    assert records[0]["provenance_metadata"]["row_index"] == 0
+    assert records[0]["provenance_metadata"]["source_row_index"] == 0
     assert records[0]["source_revision"] == PINNED_REVISION
 
 
@@ -397,11 +451,15 @@ def test_fineweb_document_hash_index_is_loaded(tmp_path: Path) -> None:
 
 def test_output_validation_detects_tampering(repository: Path) -> None:
     _, config, _ = run_pipeline(repository, [article(1), article(2)])
-    assert validate_preparation_output(config, repository_root=repository)["valid"]
+    assert validate_preparation_output(
+        config, repository_root=repository, tokenizer=WordTokenizer()
+    )["valid"]
     output = resolve_paths(config, repository)["output_jsonl"]
     output.write_text(output.read_text(encoding="utf-8") + "{}\n", encoding="utf-8")
     with pytest.raises(ValueError, match="hash"):
-        validate_preparation_output(config, repository_root=repository)
+        validate_preparation_output(
+            config, repository_root=repository, tokenizer=WordTokenizer()
+        )
 
 
 def test_cli_has_no_current_working_directory_dependency(tmp_path: Path) -> None:
@@ -430,3 +488,249 @@ def test_generated_data_paths_are_gitignored() -> None:
     assert "data/manifests/factual/" in ignored
     assert "data/raw/" in ignored
     assert "data/processed/" in ignored
+
+
+def mojibake(value: str, encoding: str = "cp1252") -> str:
+    return value.encode("utf-8").decode(encoding)
+
+
+def test_clean_unicode_remains_unchanged() -> None:
+    clean = "Enragés – μm m−2 ‘quoted’ 23° Târgoviște Ãngela Île"
+    result = repair_mojibake(clean)
+    assert result.text == clean
+    assert not result.repaired
+    assert result.repair_count == 0
+
+
+@pytest.mark.parametrize(
+    "clean",
+    ["Enragés", "1756–1836", "μm", "m−2", "it’s", "23°"],
+)
+def test_common_mojibake_is_repaired(clean: str) -> None:
+    encoding = "latin-1" if clean == "m−2" else "cp1252"
+    result = repair_mojibake(mojibake(clean, encoding))
+    assert result.text == clean
+    assert result.repaired
+    assert result.rejection_reason is None
+
+
+def test_double_mojibake_is_repaired() -> None:
+    first = mojibake("Enragés")
+    second = mojibake(first)
+    result = repair_mojibake(second)
+    assert result.text == "Enragés"
+    assert result.repair_count == 2
+
+
+def test_low_confidence_corruption_is_flagged() -> None:
+    result = repair_mojibake("Suspicious Ã© marker with valid Ω")
+    assert result.text == "Suspicious Ã© marker with valid Ω"
+    assert result.rejection_reason == "low_confidence_encoding_corruption"
+
+
+def test_replacement_and_control_characters_are_rejected() -> None:
+    assert repair_mojibake("bad \ufffd text").rejection_reason == "replacement_character"
+    assert assess_text_quality("bad\x01text")[1] == "control_character"
+
+
+@pytest.mark.parametrize(
+    ("raw", "expected", "metadata_key"),
+    [
+        ("word[1] next", "word next", "citations_removed"),
+        ("end<ref>source</ref>of", "end of", "references_removed"),
+        ("text{{template}}continuation", "text continuation", "templates_removed"),
+        ("word[1], next", "word, next", "citations_removed"),
+    ],
+)
+def test_inline_cleanup_preserves_word_boundaries(
+    raw: str, expected: str, metadata_key: str
+) -> None:
+    cleaned, metadata, rejection = clean_training_text(raw)
+    assert rejection is None
+    assert cleaned == expected
+    assert metadata[metadata_key] == 1
+
+
+def test_joined_word_smoke_regressions_are_fixed() -> None:
+    raw = (
+        "for<ref>x</ref>authority end{{x}}of within[1]anarchist "
+        "from<ref/>the as{{t}}distinct"
+    )
+    cleaned, _, rejection = clean_training_text(raw)
+    assert rejection is None
+    assert cleaned == "for authority end of within anarchist from the as distinct"
+
+
+def test_valid_greek_math_and_accents_survive_cleanup() -> None:
+    raw = "Enragés measured 0.5 μm at 23° and reported m−2."
+    cleaned, metadata, rejection = clean_training_text(raw)
+    assert cleaned == raw
+    assert rejection is None
+    assert not metadata["encoding_repaired"]
+
+
+def test_chunking_is_deterministic_and_bounded() -> None:
+    tokenizer = WordTokenizer()
+    text = "\n\n".join(
+        " ".join(f"p{paragraph}_{word}" for word in range(7))
+        for paragraph in range(8)
+    )
+    kwargs = dict(target_tokens=16, maximum_tokens=20, minimum_tokens=5, overlap_tokens=2)
+    first = chunk_document(text, tokenizer, **kwargs)
+    second = chunk_document(text, tokenizer, **kwargs)
+    assert first == second
+    assert len(first) >= 3
+    assert max(chunk.token_count for chunk in first) <= 20
+
+
+def test_chunking_prefers_paragraph_boundaries() -> None:
+    tokenizer = WordTokenizer()
+    first = " ".join(f"first{i}" for i in range(8))
+    second = " ".join(f"second{i}" for i in range(8))
+    chunks = chunk_document(
+        f"{first}\n\n{second}",
+        tokenizer,
+        target_tokens=8,
+        maximum_tokens=10,
+        minimum_tokens=3,
+        overlap_tokens=0,
+    )
+    assert [chunk.text for chunk in chunks] == [first, second]
+
+
+def test_small_trailing_chunk_merges_when_safe() -> None:
+    tokenizer = WordTokenizer()
+    chunks = chunk_document(
+        "one two three four five six\n\nseven eight",
+        tokenizer,
+        target_tokens=6,
+        maximum_tokens=8,
+        minimum_tokens=3,
+        overlap_tokens=0,
+    )
+    assert len(chunks) == 1
+    assert chunks[0].token_count == 8
+
+
+def test_chunk_output_provenance_hashes_and_limits(repository: Path) -> None:
+    text = "\n\n".join(
+        " ".join(f"section{section}_word{word}" for word in range(8))
+        for section in range(5)
+    )
+    config = make_config(
+        target_chunk_tokens=10,
+        maximum_chunk_tokens=12,
+        minimum_chunk_tokens=3,
+        chunk_overlap_tokens=1,
+    )
+    manifest, _, _ = run_pipeline(repository, [article(7, text)], config)
+    records = [
+        json.loads(line)
+        for line in resolve_paths(config, repository)["output_jsonl"]
+        .read_text(encoding="utf-8")
+        .splitlines()
+    ]
+    assert manifest["format_version"] == "wikimedia_pilot_v2"
+    assert manifest["accepted_chunks"] == len(records) >= 3
+    for index, record in enumerate(records):
+        assert record["format_version"] == "wikimedia_pilot_document_v2"
+        assert record["parent_document_id"] == "7"
+        assert record["chunk_id"] == f"7:{index:04d}"
+        assert record["chunk_index"] == index
+        assert record["chunk_count"] == len(records)
+        assert record["provenance_metadata"]["source_row_index"] == 0
+        assert record["token_count"] <= 12
+        assert record["normalized_sha256"] == hashlib.sha256(
+            comparison_normalize(record["cleaned_text"]).encode("utf-8")
+        ).hexdigest()
+
+
+def test_deduplication_operates_on_final_chunks(repository: Path) -> None:
+    text = " ".join(f"same{index}" for index in range(30))
+    config = make_config(
+        target_chunk_tokens=10,
+        maximum_chunk_tokens=10,
+        minimum_chunk_tokens=3,
+        chunk_overlap_tokens=0,
+        near_deduplication_enabled=False,
+    )
+    manifest, _, _ = run_pipeline(repository, [article(1, text), article(2, text)], config)
+    assert manifest["accepted_chunks"] == 3
+    assert manifest["exact_duplicates"] == 3
+
+
+def test_contamination_operates_on_final_chunks(repository: Path) -> None:
+    text = (
+        "Explain gravity in simple words and include enough surrounding factual prose.\n\n"
+        "A separate clean paragraph contains educational content for this pilot record."
+    )
+    config = make_config(
+        target_chunk_tokens=10,
+        maximum_chunk_tokens=14,
+        minimum_chunk_tokens=3,
+        chunk_overlap_tokens=0,
+    )
+    manifest, _, _ = run_pipeline(repository, [article(1, text)], config)
+    assert manifest["rejection_reasons"]["contamination_exact_prompt"] == 1
+    assert manifest["accepted_chunks"] == 1
+
+
+def test_token_limit_accounting_uses_chunks(repository: Path) -> None:
+    text = "\n\n".join(
+        " ".join(f"part{part}_{word}" for word in range(6)) for part in range(4)
+    )
+    config = make_config(
+        max_output_tokens=10,
+        target_chunk_tokens=6,
+        maximum_chunk_tokens=6,
+        minimum_chunk_tokens=2,
+        chunk_overlap_tokens=0,
+    )
+    manifest, _, _ = run_pipeline(repository, [article(1, text)], config)
+    assert manifest["completion_status"] == "token_limit"
+    assert manifest["accepted_chunks"] == 1
+    assert manifest["total_vasu_tokens"] == 6
+
+
+def test_chunked_resume_is_deterministic(repository: Path) -> None:
+    text = "\n\n".join(
+        " ".join(f"part{part}_{word}" for word in range(8)) for part in range(5)
+    )
+    config = make_config(
+        target_chunk_tokens=8,
+        maximum_chunk_tokens=9,
+        minimum_chunk_tokens=3,
+        chunk_overlap_tokens=1,
+    )
+    shard = repository / "input.parquet"
+    write_parquet(shard, [article(1, text)])
+    with pytest.raises(InterruptedError):
+        prepare_wikimedia_pilot(
+            config,
+            repository_root=repository,
+            input_parquet=shard,
+            tokenizer=WordTokenizer(),
+            stop_after_rows=1,
+        )
+    manifest = prepare_wikimedia_pilot(
+        config,
+        repository_root=repository,
+        input_parquet=shard,
+        tokenizer=WordTokenizer(),
+        resume=True,
+    )
+    records = resolve_paths(config, repository)["output_jsonl"].read_text(encoding="utf-8").splitlines()
+    assert len(records) == manifest["accepted_chunks"]
+    assert len({json.loads(line)["chunk_id"] for line in records}) == len(records)
+
+
+def test_previous_v1_output_is_rejected_clearly(repository: Path) -> None:
+    _, config, _ = run_pipeline(repository, [article(1)])
+    manifest_path = resolve_paths(config, repository)["manifest_json"]
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    manifest["format_version"] = "wikimedia_pilot_v1"
+    manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+    with pytest.raises(ValueError, match="expected wikimedia_pilot_v2"):
+        validate_preparation_output(
+            config, repository_root=repository, tokenizer=WordTokenizer()
+        )

@@ -183,7 +183,7 @@ All source revisions, licenses, attribution requirements, hashes, filters, and r
 | Evidence-linked QA material | 4% | Connect factual text to concise questions and answers. | Derive from licensed source text, retain evidence IDs, reject unsupported answers. | Leakage into evaluation and hallucinated synthetic answers. |
 | Indian and broader global knowledge | 3% | Reduce geographic imbalance and improve locally relevant common knowledge. | Balanced topic/language-source audit, factual provenance, deduplication against Wikipedia portion. | Tokenizer inefficiency outside English, cultural bias, uneven coverage. |
 
-The FineWeb-Edu card identifies an ODC-By 1.0 release subject to Common Crawl terms. FineMath is also ODC-By 1.0 and is a candidate only after a pinned-subset audit. The factual pilot now selects the official `wikimedia/wikipedia` Parquet distribution, configuration `20231101.en`, pinned at commit `e6057dc557255a03c9c3c47ceab0eb44353b1bc5`. Its registry review records CC BY-SA 3.0/GFDL attribution and redistribution obligations, exact provider-published size/example counts, sequential-shard preparation, and required contamination/cross-FineWeb deduplication. Approval authorizes only later bounded acquisition and preparation; no Wikimedia data has been downloaded or used for training. Cosmopedia is Apache-2.0 but synthetic and must be quality sampled rather than treated as ground truth. The Stack v2 is gated, contains per-file licenses and provenance obligations, and requires ongoing removal updates; it should not be adopted wholesale. Stanford Alpaca is CC BY-NC 4.0 and research-only, so it must not become the foundation of a future commercially reusable model.
+The FineWeb-Edu card identifies an ODC-By 1.0 release subject to Common Crawl terms. FineMath is also ODC-By 1.0 and is a candidate only after a pinned-subset audit. The factual pilot now selects the official `wikimedia/wikipedia` Parquet distribution, configuration `20231101.en`, pinned at commit `e6057dc557255a03c9c3c47ceab0eb44353b1bc5`. Its registry review records CC BY-SA 3.0/GFDL attribution and redistribution obligations, exact provider-published size/example counts, sequential-shard preparation, and required contamination/cross-FineWeb deduplication. Approval authorizes only bounded acquisition and preparation. One pinned shard has been acquired for a validated smoke artifact, but no Wikimedia data has been used for training. Cosmopedia is Apache-2.0 but synthetic and must be quality sampled rather than treated as ground truth. The Stack v2 is gated, contains per-file licenses and provenance obligations, and requires ongoing removal updates; it should not be adopted wholesale. Stanford Alpaca is CC BY-NC 4.0 and research-only, so it must not become the foundation of a future commercially reusable model.
 
 Primary source references:
 
@@ -356,16 +356,19 @@ Go/no-go criteria: Proceed only if a candidate improves at least two targeted he
 
 ## Wikimedia factual-pilot implementation status
 
-The first data-preparation component of this plan is implemented but has not
-produced training data. The Wikimedia preparer is pinned to the approved
+The first data-preparation component is implemented and validated on a small
+review artifact, but has not produced authorized training data. The preparer is pinned to the approved
 source revision and refuses unbounded execution. Its default limits are one
-Parquet shard, 10,000 inspected examples, 2,000 retained documents, 2,000,000
+Parquet shard, 10,000 inspected examples, 2,000 retained chunks, 2,000,000
 VASU tokens, and 1 GB downloaded. A smoke mode reduces those caps to 100 rows,
 20 documents, and 20,000 tokens.
 
 Configuration/approval validation, deterministic filtering, exact and bounded
 near deduplication, prompt contamination checks, exact token measurement,
 atomic resume/restart, provenance manifests, and output validation are covered
-by tests. The first pinned-file smoke transfer stalled at 0 bytes and was
-stopped, so there are no pilot statistics and no factual continuation is
-authorized. Cross-FineWeb deduplication still requires a document-level index.
+by tests. The corrected v2 path adds conservative Unicode repair,
+word-boundary-safe markup cleanup, and 768-target/1,024-maximum token chunks
+with 32-token overlap. The smoke retained 20 distinct chunks and 17,237 tokens
+from 2 rows; the largest chunk was 1,022 tokens, with 0 encoding repairs and 0
+quality rejections. The default pilot and factual continuation remain
+unauthorized. Cross-FineWeb deduplication still requires a document-level index.

@@ -13,9 +13,10 @@ The factual pilot now passes the metadata approval gate using the official
 `train`, pinned at commit
 `e6057dc557255a03c9c3c47ceab0eb44353b1bc5`. The source is approved only for
 bounded acquisition and preparation under the recorded CC BY-SA/GFDL
-attribution and redistribution obligations. No Wikimedia data has been
-downloaded, prepared, tokenized, or used for training. The capability pilot
-remains blocked by its mathematics, code, and reasoning source reviews.
+attribution and redistribution obligations. One pinned 420,296,449-byte shard
+has been acquired for a bounded preparation smoke test; no Wikimedia data has
+been used for training. The capability pilot remains blocked by its
+mathematics, code, and reasoning source reviews.
 
 ## Project snapshot
 
@@ -305,16 +306,28 @@ interruption-safe pilot preparation pipeline. It is pinned to subset
 `e6057dc557255a03c9c3c47ceab0eb44353b1bc5`, and one explicit Parquet shard.
 
 Hard pilot limits are one shard, 10,000 inspected rows, 2,000 accepted
-documents, 2,000,000 exact VASU-tokenizer tokens, and 1 GB downloaded. The
+chunks, 2,000,000 exact VASU-tokenizer tokens, and 1 GB downloaded. The
 pipeline records provenance, explicit filter reasons, exact and bounded
 near-duplicate checks, evaluation-prompt contamination evidence, hashes,
 atomic progress, and deterministic resume/restart state. Generated raw,
 interim, processed, and factual-manifest artifacts are ignored by Git.
 
-Dry-run validation and all tests passed. A smaller acquisition smoke attempt
-(100 rows, 20 accepted documents, 20,000 tokens) was attempted, but the pinned
-file transfer remained at 0 bytes and was stopped. Therefore no Wikimedia
-documents or tokens were prepared, the default pilot was not run, and no
-training started. Cross-FineWeb document deduplication remains blocked because
-the repository has no versioned document-level normalized-hash/signature
-index; token binaries are not treated as a substitute.
+Manual review of the first smoke artifact exposed apparent mojibake, possible
+joined words, and oversized full-article records. Code-point tracing proved
+the pinned Parquet and UTF-8 JSONL contained correct Unicode; mojibake appeared
+only when the JSONL was displayed through an incompatible Windows decoder.
+The old citation-only cleanup still had a real boundary risk because it used
+empty-string replacement and did not handle references or templates.
+
+The v2 pipeline now performs conservative reversible encoding repair only
+when corruption markers demonstrably decrease, rejects replacement/control or
+low-confidence corruption, preserves inline word boundaries, and chunks before
+deduplication, contamination checks, and token accounting. Chunk settings are
+768 target, 1,024 maximum, 128 minimum, and 32 overlap tokens.
+
+The corrected smoke inspected 2 rows and retained 20 distinct chunks with
+17,237 tokens; the maximum was 1,022 tokens. It recorded 0 encoding repairs,
+0 quality rejections, no replacement characters, and no detected joined-word
+regressions. Output validation passed. The default 2M-token pilot was not run
+and no training started. Cross-FineWeb document deduplication remains blocked
+without a versioned document-level normalized-hash/signature index.

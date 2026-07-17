@@ -11,9 +11,14 @@
   near-duplicate detection, evaluation-prompt contamination checks, exact VASU
   token measurement, provenance-rich JSONL, atomic progress, manifests, and
   output validation.
-- Added 31 network-free Wikimedia preparation tests covering limits, source
+- Added 57 network-free Wikimedia preparation tests covering limits, source
   approval, pinned acquisition, filtering, deduplication, contamination,
   resume/restart, hashes, validation, path independence, and Git-ignore rules.
+- Added conservative reversible mojibake repair, Unicode quality reason codes,
+  boundary-preserving reference/citation/template cleanup, and exact-token
+  article chunking.
+- Added the `wikimedia_pilot_v2` chunk schema with parent provenance, chunk
+  IDs/index/count, section metadata, repair status, warnings, and chunk hashes.
 
 - Pinned primary-source registry evidence and an approved preparation plan for the factual pilot's official `wikimedia/wikipedia` `20231101.en` snapshot at commit `e6057dc557255a03c9c3c47ceab0eb44353b1bc5`, including exact published size/example counts, licensing obligations, Windows-safe paths, and quality/deduplication controls. No data was downloaded or training started.
 - Source-registry command-line validation for mixture readiness via `python -m vasu.data.sources.registry`.
@@ -87,10 +92,13 @@
 
 ### Documented
 
-- Wikimedia pilot limits are one shard, 10,000 raw rows, 2,000 retained
-  documents, 2,000,000 tokens, and 1 GB downloaded. The default pilot and model
-  training were not started; a smaller network smoke attempt stalled at 0
-  bytes and was stopped.
+- Wikimedia pilot limits are one shard, 10,000 raw rows, 2,000 retained chunks,
+  2,000,000 tokens, and 1 GB downloaded. The corrected smoke retained 20 chunks
+  and 17,237 tokens with a 1,022-token maximum; the default pilot and model
+  training were not started.
+- Smoke mojibake was traced to incompatible Windows display decoding rather
+  than corrupted Parquet/JSONL bytes. The real empty-string inline-cleanup
+  boundary risk was fixed and regression-tested.
 - FineWeb cross-source deduplication is explicitly blocked without a versioned
   document-level normalized-hash/signature index; existing token binaries are
   not sufficient.
