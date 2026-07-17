@@ -50,6 +50,10 @@ class WikimediaPreparationConfig:
     maximum_chunk_tokens: int
     minimum_chunk_tokens: int
     chunk_overlap_tokens: int
+    review_sampling_enabled: bool
+    reference_section_behavior: str
+    quality_warning_threshold: int
+    review_max_chunks_per_article: int
     output_paths: PreparationOutputPaths
     resume_enabled: bool
 
@@ -71,6 +75,29 @@ class WikimediaPreparationConfig:
             max_accepted_documents=min(self.max_accepted_documents, 20),
             max_output_tokens=min(self.max_output_tokens, 20_000),
             output_paths=smoke,
+        )
+
+    def for_review_sample(self) -> "WikimediaPreparationConfig":
+        base = self.output_paths
+        review = PreparationOutputPaths(
+            raw_directory=base.raw_directory,
+            interim_directory=base.interim_directory,
+            processed_directory=f"{base.processed_directory}_review",
+            output_jsonl=str(Path(base.output_jsonl).with_name("documents_review.jsonl")),
+            manifest_json=str(Path(base.manifest_json).with_name("wikimedia_pilot_review.json")),
+            progress_json=str(Path(base.progress_json).with_name("progress_review.json")),
+            summary_json=str(Path(base.summary_json).with_name("summary_review.json")),
+            summary_text=str(Path(base.summary_text).with_name("summary_review.txt")),
+        )
+        return replace(
+            self,
+            max_raw_examples=min(self.max_raw_examples, 500),
+            max_accepted_documents=min(self.max_accepted_documents, 50),
+            max_output_tokens=min(self.max_output_tokens, 50_000),
+            review_sampling_enabled=True,
+            reference_section_behavior="flag",
+            review_max_chunks_per_article=5,
+            output_paths=review,
         )
 
 
@@ -96,6 +123,8 @@ class PreparationProgress:
     quality_rejections: int = 0
     active_row_index: int | None = None
     next_chunk_index: int = 0
+    inspected_row_indices: list[int] | None = None
+    reference_section_detections: int = 0
     status: str = "in_progress"
 
     def __post_init__(self) -> None:
@@ -105,3 +134,5 @@ class PreparationProgress:
             self.seen_exact_hashes = []
         if self.contamination_matches is None:
             self.contamination_matches = []
+        if self.inspected_row_indices is None:
+            self.inspected_row_indices = []

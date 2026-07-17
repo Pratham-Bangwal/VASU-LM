@@ -19,6 +19,11 @@
   article chunking.
 - Added the `wikimedia_pilot_v2` chunk schema with parent provenance, chunk
   IDs/index/count, section metadata, repair status, warnings, and chunk hashes.
+- Added deterministic broad-review row selection, row-group-bounded reads,
+  review-suffixed outputs, a five-chunk-per-parent diversity cap, reference
+  section keep/flag/exclude behavior, and diversity/warning summaries.
+- Added bounded retries around atomic replace to tolerate transient Windows
+  file locks without weakening atomic progress semantics.
 
 - Pinned primary-source registry evidence and an approved preparation plan for the factual pilot's official `wikimedia/wikipedia` `20231101.en` snapshot at commit `e6057dc557255a03c9c3c47ceab0eb44353b1bc5`, including exact published size/example counts, licensing obligations, Windows-safe paths, and quality/deduplication controls. No data was downloaded or training started.
 - Source-registry command-line validation for mixture readiness via `python -m vasu.data.sources.registry`.
@@ -99,6 +104,8 @@
 - Smoke mojibake was traced to incompatible Windows display decoding rather
   than corrupted Parquet/JSONL bytes. The real empty-string inline-cleanup
   boundary risk was fixed and regression-tested.
+- The review-only Wikimedia sample retained 50 chunks from 14 articles and
+  26,435 tokens; it is not an authorized training artifact.
 - FineWeb cross-source deduplication is explicitly blocked without a versioned
   document-level normalized-hash/signature index; existing token binaries are
   not sufficient.

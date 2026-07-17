@@ -372,3 +372,12 @@ with 32-token overlap. The smoke retained 20 distinct chunks and 17,237 tokens
 from 2 rows; the largest chunk was 1,022 tokens, with 0 encoding repairs and 0
 quality rejections. The default pilot and factual continuation remain
 unauthorized. Cross-FineWeb deduplication still requires a document-level index.
+
+The subsequent deterministic broad review selected 500 shard-spanning row
+indices and stopped after inspecting 15 rows and retaining 50 chunks from 14
+articles. It measured 26,435 tokens, a 938-token maximum, and 10% largest-parent
+contribution. Three reference-section chunks were flagged; no quality
+rejections, encoding repairs, contamination matches, or duplicates were
+reported. This remains review evidence only, not a training dataset. Broader
+source-quality review and cross-FineWeb indexing are still gates for the 2M
+pilot.

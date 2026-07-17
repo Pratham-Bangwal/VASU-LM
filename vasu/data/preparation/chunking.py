@@ -27,6 +27,8 @@ def _is_heading(paragraph: str) -> bool:
     words = paragraph.split()
     return (
         "\n" not in paragraph
+        and bool(paragraph)
+        and paragraph[0].isupper()
         and 1 <= len(words) <= 12
         and len(paragraph) <= 120
         and not paragraph.rstrip().endswith((".", "!", "?", ";", ":", ","))
@@ -41,6 +43,7 @@ def _atomic_units(text: str, tokenizer: Any, maximum_tokens: int) -> list[tuple[
             continue
         if _is_heading(paragraph):
             section = paragraph
+            continue
         if len(tokenizer.encode(paragraph)) <= maximum_tokens:
             units.append((paragraph, section))
             continue
@@ -87,6 +90,8 @@ def chunk_document(
         current_section = None
 
     for unit, section in units:
+        if current and section is not None and section != current_section:
+            emit()
         candidate = unit if not current else f"{current}\n\n{unit}"
         candidate_count = len(tokenizer.encode(candidate))
         if current and (candidate_count > maximum_tokens or len(tokenizer.encode(current)) >= target_tokens):

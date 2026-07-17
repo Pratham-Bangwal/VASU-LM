@@ -7,6 +7,9 @@ from datetime import datetime, timezone
 import json
 import os
 from pathlib import Path
+import random
+import statistics
+from collections import Counter
 from typing import Any, Iterator, Mapping
 
 import pyarrow.parquet as pq
@@ -143,6 +146,7 @@ def validate_preparation_config(config: WikimediaPreparationConfig) -> None:
         "near_deduplication_enabled",
         "contamination_check_enabled",
         "chunking_enabled",
+        "review_sampling_enabled",
         "resume_enabled",
     ):
         if not isinstance(getattr(config, field), bool):
@@ -168,6 +172,18 @@ def validate_preparation_config(config: WikimediaPreparationConfig) -> None:
         raise ValueError(
             "Chunk limits must satisfy overlap < minimum <= target <= maximum"
         )
+    if config.reference_section_behavior not in {"keep", "flag", "exclude"}:
+        raise ValueError("reference_section_behavior must be keep, flag, or exclude")
+    if isinstance(config.quality_warning_threshold, bool) or not isinstance(
+        config.quality_warning_threshold, int
+    ) or config.quality_warning_threshold < 0:
+        raise ValueError("quality_warning_threshold must be a non-negative integer")
+    if isinstance(config.review_max_chunks_per_article, bool) or not isinstance(
+        config.review_max_chunks_per_article, int
+    ) or config.review_max_chunks_per_article < 0:
+        raise ValueError("review_max_chunks_per_article must be a non-negative integer")
+    if config.review_sampling_enabled and config.review_max_chunks_per_article < 1:
+        raise ValueError("Review sampling requires a positive per-article chunk cap")
     values = []
     for field in OUTPUT_PATH_FIELDS:
         value = getattr(config.output_paths, field)
@@ -225,6 +241,79 @@ def iter_parquet_rows(path: Path, start_row: int = 0) -> Iterator[dict[str, Any]
             if row_index >= start_row:
                 yield row
             row_index += 1
+
+
+def select_review_row_indices(
+    total_rows: int,
+    maximum_rows: int,
+    seed: int,
+) -> tuple[int, ...]:
+    """Select unique, shard-spanning rows without mutating global RNG state."""
+    if total_rows < 1 or maximum_rows < 1:
+        raise ValueError("total_rows and maximum_rows must be positive")
+    count = min(total_rows, maximum_rows)
+    offset = random.Random(seed).random()
+    indices = tuple(
+        min(total_rows - 1, int((position + offset) * total_rows / count))
+        for position in range(count)
+    )
+    if len(set(indices)) != len(indices):  # Defensive; spacing should be unique.
+        raise AssertionError("Deterministic review row selection produced duplicates")
+    return indices
+
+
+def iter_selected_parquet_rows(
+    path: Path,
+    selected_indices: tuple[int, ...],
+    *,
+    minimum_row: int = 0,
+) -> Iterator[tuple[int, dict[str, Any]]]:
+    """Read only row groups containing selected rows."""
+    parquet = pq.ParquetFile(path)
+    total_rows = parquet.metadata.num_rows
+    selected = tuple(
+        index for index in selected_indices if index >= minimum_row
+    )
+    if any(index < 0 or index >= total_rows for index in selected):
+        raise IndexError("Selected review row is outside the Parquet shard")
+    columns = [
+        name
+        for name in ("id", "url", "title", "text", "language")
+        if name in parquet.schema_arrow.names
+    ]
+    position = 0
+    row_group_start = 0
+    for row_group_index in range(parquet.metadata.num_row_groups):
+        row_group_rows = parquet.metadata.row_group(row_group_index).num_rows
+        row_group_end = row_group_start + row_group_rows
+        group_indices: list[int] = []
+        while position < len(selected) and selected[position] < row_group_end:
+            group_indices.append(selected[position])
+            position += 1
+        if group_indices:
+            table = parquet.read_row_group(row_group_index, columns=columns)
+            rows = table.to_pylist()
+            for absolute_index in group_indices:
+                yield absolute_index, rows[absolute_index - row_group_start]
+        row_group_start = row_group_end
+        if position >= len(selected):
+            break
+
+
+REFERENCE_SECTION_TITLES = {
+    "references",
+    "external links",
+    "further reading",
+    "bibliography",
+    "see also",
+}
+
+
+def is_reference_section(section_title: str | None) -> bool:
+    if not section_title:
+        return False
+    normalized = " ".join(section_title.casefold().split()).strip(":")
+    return normalized in REFERENCE_SECTION_TITLES
 
 
 def acquire_pinned_shard(
@@ -321,21 +410,82 @@ def acquire_pinned_shard(
 def _load_existing_output(
     output_path: Path,
     deduplicator: PilotDeduplicator,
-) -> None:
+) -> Counter[str]:
+    parent_counts: Counter[str] = Counter()
     if not output_path.exists():
-        return
+        return parent_counts
     with output_path.open("r", encoding="utf-8") as handle:
         for line_number, line in enumerate(handle, start=1):
             try:
                 record = json.loads(line)
                 deduplicator.add_existing(record["cleaned_text"], record["normalized_sha256"])
+                parent_counts[str(record.get("parent_document_id", record["document_id"]))] += 1
             except (json.JSONDecodeError, KeyError, TypeError) as error:
                 raise ValueError(f"Invalid existing output JSONL at line {line_number}") from error
+    return parent_counts
 
 
 def _increment(progress: PreparationProgress, reason: str) -> None:
     assert progress.rejection_counts is not None
     progress.rejection_counts[reason] = progress.rejection_counts.get(reason, 0) + 1
+
+
+def summarize_review_diversity(
+    output_path: Path,
+    *,
+    maximum_chunk_tokens: int,
+    quality_warning_threshold: int,
+) -> dict[str, Any]:
+    parent_counts: Counter[str] = Counter()
+    tokens: list[int] = []
+    titles: set[str] = set()
+    source_rows: set[int] = set()
+    warning_count = 0
+    reference_flags = 0
+    replacement_characters = 0
+    with output_path.open("r", encoding="utf-8") as handle:
+        for line in handle:
+            record = json.loads(line)
+            parent_counts[str(record["parent_document_id"])] += 1
+            tokens.append(int(record["token_count"]))
+            titles.add(str(record["title"]))
+            source_rows.add(int(record["provenance_metadata"]["source_row_index"]))
+            warnings = list(record.get("quality_warnings", []))
+            warning_count += len(warnings)
+            reference_flags += int("reference_section" in warnings)
+            replacement_characters += str(record["cleaned_text"]).count("\ufffd")
+    chunk_count = len(tokens)
+    largest_count = max(parent_counts.values(), default=0)
+    largest_proportion = largest_count / chunk_count if chunk_count else 0.0
+    warnings: list[str] = []
+    if len(parent_counts) < 10:
+        warnings.append("fewer_than_10_parent_articles")
+    if largest_proportion > 0.25:
+        warnings.append("largest_article_exceeds_25_percent")
+    if warning_count > quality_warning_threshold:
+        warnings.append("quality_warning_threshold_exceeded")
+    if replacement_characters:
+        warnings.append("replacement_characters_present")
+    if tokens and max(tokens) > maximum_chunk_tokens:
+        warnings.append("chunk_maximum_exceeded")
+    return {
+        "distinct_parent_articles": len(parent_counts),
+        "chunks_per_article": dict(sorted(parent_counts.items())),
+        "chunk_tokens": {
+            "minimum": min(tokens, default=0),
+            "median": statistics.median(tokens) if tokens else 0,
+            "mean": statistics.fmean(tokens) if tokens else 0.0,
+            "maximum": max(tokens, default=0),
+        },
+        "titles_represented": sorted(titles),
+        "source_row_indices": sorted(source_rows),
+        "quality_warning_count": warning_count,
+        "reference_section_flags": reference_flags,
+        "replacement_character_count": replacement_characters,
+        "largest_article_chunk_count": largest_count,
+        "largest_article_proportion": largest_proportion,
+        "warnings": warnings,
+    }
 
 
 def _restart(paths: Mapping[str, Path]) -> None:
@@ -403,9 +553,19 @@ def prepare_wikimedia_pilot(
     )
     fineweb_hashes, fineweb_status = load_fineweb_exact_hashes(Path(repository_root))
     deduplicator.exact_hashes.update(fineweb_hashes)
-    _load_existing_output(output_path, deduplicator)
+    retained_parent_counts = _load_existing_output(output_path, deduplicator)
     started_at = utc_now()
     completion_reason = "shard_exhausted"
+    parquet_row_count = pq.ParquetFile(input_parquet).metadata.num_rows
+    selected_row_indices = (
+        select_review_row_indices(
+            parquet_row_count,
+            config.max_raw_examples,
+            config.random_seed,
+        )
+        if config.review_sampling_enabled
+        else tuple()
+    )
 
     start_row = (
         progress.active_row_index
@@ -413,14 +573,24 @@ def prepare_wikimedia_pilot(
         else progress.last_processed_row + 1
     )
     stop_processing = False
+    if config.review_sampling_enabled:
+        row_iterator: Iterator[tuple[int, dict[str, Any]]] = iter_selected_parquet_rows(
+            input_parquet,
+            selected_row_indices,
+            minimum_row=start_row,
+        )
+    else:
+        row_iterator = enumerate(iter_parquet_rows(input_parquet, start_row), start=start_row)
     with output_path.open("ab") as output:
-        for row_index, row in enumerate(iter_parquet_rows(input_parquet, start_row), start=start_row):
+        for row_index, row in row_iterator:
             resuming_row = progress.active_row_index == row_index
             if not resuming_row:
                 if progress.raw_examples >= config.max_raw_examples:
                     completion_reason = "raw_example_limit"
                     break
                 progress.raw_examples += 1
+                assert progress.inspected_row_indices is not None
+                progress.inspected_row_indices.append(row_index)
                 progress.active_row_index = row_index
                 progress.next_chunk_index = 0
                 save_progress(progress_path, progress)
@@ -470,6 +640,26 @@ def prepare_wikimedia_pilot(
                     break
                 chunk = chunks[chunk_index]
                 chunk_id = f"{parent_document_id}:{chunk_index:04d}"
+                if (
+                    config.review_sampling_enabled
+                    and retained_parent_counts[parent_document_id]
+                    >= config.review_max_chunks_per_article
+                ):
+                    _increment(progress, "review_article_chunk_cap")
+                    progress.next_chunk_index = chunk_index + 1
+                    save_progress(progress_path, progress)
+                    continue
+                reference_section = is_reference_section(chunk.section_title)
+                if reference_section:
+                    progress.reference_section_detections += 1
+                    if config.reference_section_behavior == "exclude":
+                        _increment(progress, "reference_section_excluded")
+                        progress.next_chunk_index = chunk_index + 1
+                        save_progress(progress_path, progress)
+                        continue
+                chunk_warnings = list(filtered.metadata.get("quality_warnings", []))
+                if reference_section and config.reference_section_behavior == "flag":
+                    chunk_warnings.append("reference_section")
                 duplicate_reason, fingerprint = deduplicator.classify(chunk.text)
                 if duplicate_reason:
                     if duplicate_reason == "exact_duplicate" and fingerprint in fineweb_hashes:
@@ -516,7 +706,7 @@ def prepare_wikimedia_pilot(
                     "token_count": chunk.token_count,
                     "normalized_sha256": fingerprint,
                     "encoding_repaired": bool(filtered.metadata.get("encoding_repaired")),
-                    "quality_warnings": list(filtered.metadata.get("quality_warnings", [])),
+                    "quality_warnings": list(dict.fromkeys(chunk_warnings)),
                     "filtering_metadata": filtered.metadata,
                     "provenance_metadata": {
                         "dataset_name": config.dataset_name,
@@ -531,6 +721,7 @@ def prepare_wikimedia_pilot(
                 output.flush()
                 os.fsync(output.fileno())
                 progress.accepted_documents += 1
+                retained_parent_counts[parent_document_id] += 1
                 progress.output_tokens += chunk.token_count
                 progress.total_characters += len(chunk.text)
                 progress.output_size_bytes = output.tell()
@@ -556,6 +747,11 @@ def prepare_wikimedia_pilot(
     tokenizer_hash = sha256_file(paths["tokenizer"])
     prompt_hash = sha256_file(paths["prompts"])
     output_hash = sha256_file(output_path)
+    diversity = summarize_review_diversity(
+        output_path,
+        maximum_chunk_tokens=config.maximum_chunk_tokens,
+        quality_warning_threshold=config.quality_warning_threshold,
+    )
     rejected = sum((progress.rejection_counts or {}).values())
     manifest = {
         "format_version": "wikimedia_pilot_v2",
@@ -581,6 +777,17 @@ def prepare_wikimedia_pilot(
                 progress.active_row_index if progress.active_row_index is not None else -1,
             ),
         ],
+        "row_selection": {
+            "mode": "deterministic_broad_review"
+            if config.review_sampling_enabled
+            else "sequential",
+            "strategy": "evenly_spaced_with_seeded_offset"
+            if config.review_sampling_enabled
+            else "sequential_from_start",
+            "shard_row_count": parquet_row_count,
+            "selected_row_indices": list(selected_row_indices),
+            "inspected_row_indices": progress.inspected_row_indices,
+        },
         "raw_examples": progress.raw_examples,
         "accepted_documents": progress.accepted_documents,
         "accepted_chunks": progress.accepted_documents,
@@ -592,6 +799,8 @@ def prepare_wikimedia_pilot(
         "near_duplicate_similarity_threshold": config.near_duplicate_similarity_threshold,
         "encoding_repairs": progress.encoding_repairs,
         "quality_rejections": progress.quality_rejections,
+        "reference_section_detections": progress.reference_section_detections,
+        "review_diversity": diversity,
         "contamination_matches": progress.contamination_matches,
         "fineweb_cross_deduplication": fineweb_status,
         "total_characters": progress.total_characters,
@@ -626,6 +835,8 @@ def prepare_wikimedia_pilot(
         "near_duplicates": progress.near_duplicates,
         "encoding_repairs": progress.encoding_repairs,
         "quality_rejections": progress.quality_rejections,
+        "reference_section_detections": progress.reference_section_detections,
+        "review_diversity": diversity,
         "contamination_match_count": len(progress.contamination_matches or []),
         "fineweb_cross_deduplication": fineweb_status,
     }
@@ -660,6 +871,18 @@ def prepare_wikimedia_pilot(
                 f"Rejected documents: {rejected}",
                 f"VASU tokens: {progress.output_tokens}",
                 f"FineWeb cross-deduplication: {fineweb_status['status']}",
+                f"Distinct parent articles: {diversity['distinct_parent_articles']}",
+                f"Chunks per article: {diversity['chunks_per_article']}",
+                f"Chunk token min/median/mean/max: {diversity['chunk_tokens']}",
+                f"Titles represented: {diversity['titles_represented']}",
+                f"Source row indices: {diversity['source_row_indices']}",
+                f"Encoding repairs: {progress.encoding_repairs}",
+                f"Quality warnings: {diversity['quality_warning_count']}",
+                f"Quality rejections: {progress.quality_rejections}",
+                f"Reference-section flags: {diversity['reference_section_flags']}",
+                f"Contamination matches: {len(progress.contamination_matches or [])}",
+                f"Largest article proportion: {diversity['largest_article_proportion']:.6f}",
+                f"Review warnings: {diversity['warnings']}",
                 *review_lines,
                 "",
             ]

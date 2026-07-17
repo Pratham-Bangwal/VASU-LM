@@ -35,12 +35,19 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
         action="store_true",
         help="Cap execution at 100 rows, 20 documents, and 20,000 tokens.",
     )
+    parser.add_argument(
+        "--review-sample",
+        action="store_true",
+        help="Sample at most 500 shard-spanning rows and retain 50 review chunks.",
+    )
     args = parser.parse_args(argv)
     selected = sum((args.dry_run, args.validate_output))
     if selected > 1:
         parser.error("--dry-run and --validate-output are mutually exclusive")
     if args.resume and args.restart:
         parser.error("--resume and --restart are mutually exclusive")
+    if args.smoke_test and args.review_sample:
+        parser.error("--smoke-test and --review-sample are mutually exclusive")
     return args
 
 
@@ -50,6 +57,9 @@ def main(argv: Sequence[str] | None = None) -> int:
     config = load_preparation_config(config_path)
     if args.smoke_test:
         config = config.for_smoke_test()
+        validate_preparation_config(config)
+    elif args.review_sample:
+        config = config.for_review_sample()
         validate_preparation_config(config)
     validate_registry_approval(config, REPOSITORY_ROOT)
     paths = resolve_paths(config, REPOSITORY_ROOT)
@@ -64,6 +74,10 @@ def main(argv: Sequence[str] | None = None) -> int:
         print(f"Maximum raw examples: {config.max_raw_examples:,}")
         print(f"Maximum accepted documents: {config.max_accepted_documents:,}")
         print(f"Maximum output tokens: {config.max_output_tokens:,}")
+        print(
+            "Row selection: "
+            f"{'deterministic broad review' if config.review_sampling_enabled else 'sequential'}"
+        )
         print(f"Output JSONL: {paths['output_jsonl'].relative_to(REPOSITORY_ROOT)}")
         print(
             "FineWeb cross-deduplication: "

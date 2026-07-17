@@ -246,3 +246,19 @@ token accounting, and parent/source-row provenance use the versioned
 `wikimedia_pilot_document_v2` schema.
 
 The default 2M-token pilot has not run and no Wikimedia training has started.
+
+### Broad-review evidence
+
+Review mode deterministically chooses 500 unique, evenly distributed row
+indices with a seed-local offset and reads only their Parquet row groups. It
+uses separate `*_review` artifacts, flags reference-like sections, caps each
+parent at five retained chunks, and reports diversity and quality warnings.
+
+The current review inspected 15 rows and retained 50 chunks from 14 articles,
+totalling 26,435 tokens. Token counts were 43/470.5/528.7/938 for
+minimum/median/mean/maximum, and the largest article contributed 10%. Three
+reference-section chunks were flagged. No encoding repair, quality rejection,
+contamination match, or duplicate was recorded, and output validation passed.
+One malformed date boundary was present in the source Parquet itself; it was
+left unchanged because an automatic factual reconstruction would be unsafe.
+The review artifact is not approved training data.

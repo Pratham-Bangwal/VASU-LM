@@ -6,6 +6,7 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import time
 from typing import Any, Mapping
 
 
@@ -27,6 +28,18 @@ def sha256_file(path: Path, chunk_size: int = 1024 * 1024) -> str:
     return digest.hexdigest()
 
 
+def _replace_with_retry(temporary: Path, path: Path) -> None:
+    """Retain atomic replace semantics across transient Windows file locks."""
+    for attempt in range(5):
+        try:
+            os.replace(temporary, path)
+            return
+        except PermissionError:
+            if attempt == 4:
+                raise
+            time.sleep(0.05 * (attempt + 1))
+
+
 def atomic_write_json(path: Path, payload: Mapping[str, Any]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_suffix(path.suffix + ".tmp")
@@ -36,7 +49,7 @@ def atomic_write_json(path: Path, payload: Mapping[str, Any]) -> None:
         handle.write("\n")
         handle.flush()
         os.fsync(handle.fileno())
-    os.replace(temporary, path)
+    _replace_with_retry(temporary, path)
 
 
 def atomic_write_text(path: Path, text: str) -> None:
@@ -47,5 +60,4 @@ def atomic_write_text(path: Path, text: str) -> None:
         handle.write(text)
         handle.flush()
         os.fsync(handle.fileno())
-    os.replace(temporary, path)
-
+    _replace_with_retry(temporary, path)

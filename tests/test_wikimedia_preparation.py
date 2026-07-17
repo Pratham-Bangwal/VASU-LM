@@ -10,6 +10,7 @@ import shutil
 import subprocess
 import sys
 from types import SimpleNamespace
+import random
 
 import pyarrow as pa
 import pyarrow.parquet as pq
@@ -33,6 +34,7 @@ from vasu.data.preparation.filters import (
 from vasu.data.preparation.quality import assess_text_quality, repair_mojibake
 from vasu.data.preparation.progress import load_progress, save_progress
 from vasu.data.preparation.reporting import sha256_file
+from vasu.data.preparation.reporting import atomic_write_json
 from vasu.data.preparation.schemas import (
     PreparationOutputPaths,
     PreparationProgress,
@@ -44,6 +46,9 @@ from vasu.data.preparation.wikimedia import (
     load_preparation_config,
     prepare_wikimedia_pilot,
     resolve_paths,
+    iter_selected_parquet_rows,
+    select_review_row_indices,
+    summarize_review_diversity,
     validate_preparation_config,
     validate_preparation_output,
     validate_registry_approval,
@@ -109,6 +114,10 @@ def make_config(**changes: object) -> WikimediaPreparationConfig:
         maximum_chunk_tokens=1024,
         minimum_chunk_tokens=128,
         chunk_overlap_tokens=32,
+        review_sampling_enabled=False,
+        reference_section_behavior="keep",
+        quality_warning_threshold=5,
+        review_max_chunks_per_article=0,
         output_paths=paths,
         resume_enabled=True,
     )
@@ -381,6 +390,28 @@ def test_atomic_progress_write_and_load(tmp_path: Path) -> None:
     save_progress(path, progress)
     assert load_progress(path).configuration_hash == "hash"
     assert not list(tmp_path.glob("*.tmp"))
+
+
+def test_atomic_write_retries_transient_windows_lock(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    import vasu.data.preparation.reporting as reporting
+
+    real_replace = reporting.os.replace
+    attempts = 0
+
+    def flaky_replace(source: Path, destination: Path) -> None:
+        nonlocal attempts
+        attempts += 1
+        if attempts < 3:
+            raise PermissionError("synthetic transient lock")
+        real_replace(source, destination)
+
+    monkeypatch.setattr(reporting.os, "replace", flaky_replace)
+    path = tmp_path / "atomic.json"
+    atomic_write_json(path, {"valid": True})
+    assert json.loads(path.read_text(encoding="utf-8")) == {"valid": True}
+    assert attempts == 3
 
 
 def test_resume_has_no_duplicates_and_rejects_config_mismatch(repository: Path) -> None:
@@ -734,3 +765,222 @@ def test_previous_v1_output_is_rejected_clearly(repository: Path) -> None:
         validate_preparation_output(
             config, repository_root=repository, tokenizer=WordTokenizer()
         )
+
+
+def test_review_row_selection_is_deterministic_unique_and_spread() -> None:
+    random.seed(991)
+    before = random.getstate()
+    first = select_review_row_indices(156_289, 500, 42)
+    second = select_review_row_indices(156_289, 500, 42)
+    assert first == second
+    assert len(first) == len(set(first)) == 500
+    assert first[0] < 1_000
+    assert first[-1] > 155_000
+    assert random.getstate() == before
+
+
+def test_selected_reader_does_not_use_full_table_loading(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    path = tmp_path / "rows.parquet"
+    rows = [article(index) for index in range(30)]
+    path.parent.mkdir(parents=True, exist_ok=True)
+    pq.write_table(pa.Table.from_pylist(rows), path, row_group_size=10)
+    monkeypatch.setattr(
+        pq,
+        "read_table",
+        lambda *args, **kwargs: pytest.fail("full table load attempted"),
+    )
+    selected = list(iter_selected_parquet_rows(path, (1, 15, 29)))
+    assert [index for index, _ in selected] == [1, 15, 29]
+
+
+def test_review_mode_paths_and_limits_do_not_overlap_smoke() -> None:
+    base = make_config()
+    smoke = base.for_smoke_test()
+    review = base.for_review_sample()
+    assert review.max_raw_examples == 100  # Base test fixture is already capped.
+    assert review.max_accepted_documents == 20
+    assert review.max_output_tokens == 20_000
+    assert review.review_sampling_enabled
+    assert review.reference_section_behavior == "flag"
+    assert review.review_max_chunks_per_article == 5
+    assert review.output_paths.output_jsonl.endswith("documents_review.jsonl")
+    assert review.output_paths != smoke.output_paths
+    assert review.output_paths != base.output_paths
+
+
+def test_production_review_mode_hard_defaults() -> None:
+    root = Path(__file__).resolve().parents[1]
+    config = load_preparation_config(
+        root / "configs/data/preparation/wikimedia_pilot.json"
+    ).for_review_sample()
+    assert config.max_raw_examples == 500
+    assert config.max_accepted_documents == 50
+    assert config.max_output_tokens == 50_000
+    assert config.review_max_chunks_per_article == 5
+
+
+def test_review_manifest_records_selected_and_inspected_rows(repository: Path) -> None:
+    rows = [article(index) for index in range(30)]
+    config = replace(
+        make_config(),
+        review_sampling_enabled=True,
+        review_max_chunks_per_article=5,
+        max_raw_examples=10,
+        max_accepted_documents=20,
+    )
+    manifest, _, _ = run_pipeline(repository, rows, config)
+    selection = manifest["row_selection"]
+    assert selection["mode"] == "deterministic_broad_review"
+    assert len(selection["selected_row_indices"]) == 10
+    assert selection["inspected_row_indices"] == selection["selected_row_indices"]
+
+
+def test_review_resume_is_deterministic(repository: Path) -> None:
+    rows = [article(index) for index in range(30)]
+    config = replace(
+        make_config(),
+        review_sampling_enabled=True,
+        review_max_chunks_per_article=5,
+        max_raw_examples=10,
+        max_accepted_documents=20,
+    )
+    shard = repository / "input.parquet"
+    write_parquet(shard, rows)
+    with pytest.raises(InterruptedError):
+        prepare_wikimedia_pilot(
+            config,
+            repository_root=repository,
+            input_parquet=shard,
+            tokenizer=WordTokenizer(),
+            stop_after_rows=1,
+        )
+    manifest = prepare_wikimedia_pilot(
+        config,
+        repository_root=repository,
+        input_parquet=shard,
+        tokenizer=WordTokenizer(),
+        resume=True,
+    )
+    selected = manifest["row_selection"]["selected_row_indices"]
+    inspected = manifest["row_selection"]["inspected_row_indices"]
+    assert inspected == selected
+    assert len(inspected) == len(set(inspected))
+
+
+def test_review_diversity_metrics_and_largest_article_warning(tmp_path: Path) -> None:
+    output = tmp_path / "review.jsonl"
+    records = []
+    for index in range(4):
+        parent = "dominant" if index < 3 else "other"
+        records.append(
+            {
+                "parent_document_id": parent,
+                "token_count": index + 2,
+                "title": parent,
+                "quality_warnings": [],
+                "cleaned_text": "clean text",
+                "provenance_metadata": {"source_row_index": index},
+            }
+        )
+    output.write_text(
+        "".join(json.dumps(record) + "\n" for record in records),
+        encoding="utf-8",
+    )
+    summary = summarize_review_diversity(
+        output, maximum_chunk_tokens=10, quality_warning_threshold=5
+    )
+    assert summary["distinct_parent_articles"] == 2
+    assert summary["chunk_tokens"] == {
+        "minimum": 2,
+        "median": 3.5,
+        "mean": 3.5,
+        "maximum": 5,
+    }
+    assert summary["largest_article_proportion"] == 0.75
+    assert "largest_article_exceeds_25_percent" in summary["warnings"]
+
+
+def reference_article() -> dict[str, str]:
+    return article(
+        1,
+        "A factual lead paragraph contains enough words for deterministic review.\n\n"
+        "References\n\n"
+        "A reference entry provides publication information and source details.",
+    )
+
+
+def test_reference_sections_are_flagged(repository: Path) -> None:
+    config = replace(
+        make_config(),
+        reference_section_behavior="flag",
+        target_chunk_tokens=15,
+        maximum_chunk_tokens=20,
+        minimum_chunk_tokens=3,
+        chunk_overlap_tokens=0,
+    )
+    manifest, _, _ = run_pipeline(repository, [reference_article()], config)
+    records = [
+        json.loads(line)
+        for line in resolve_paths(config, repository)["output_jsonl"]
+        .read_text(encoding="utf-8")
+        .splitlines()
+    ]
+    flagged = [record for record in records if "reference_section" in record["quality_warnings"]]
+    assert flagged
+    assert all(record["section_title"] == "References" for record in flagged)
+    assert manifest["reference_section_detections"] >= 1
+
+
+def test_reference_sections_can_be_excluded(repository: Path) -> None:
+    config = replace(
+        make_config(),
+        reference_section_behavior="exclude",
+        target_chunk_tokens=15,
+        maximum_chunk_tokens=20,
+        minimum_chunk_tokens=3,
+        chunk_overlap_tokens=0,
+    )
+    manifest, _, _ = run_pipeline(repository, [reference_article()], config)
+    assert manifest["rejection_reasons"]["reference_section_excluded"] >= 1
+    records = resolve_paths(config, repository)["output_jsonl"].read_text(encoding="utf-8")
+    assert "reference entry" not in records.casefold()
+
+
+def test_review_output_validation(repository: Path) -> None:
+    config = replace(
+        make_config(),
+        review_sampling_enabled=True,
+        review_max_chunks_per_article=5,
+        max_raw_examples=5,
+    )
+    run_pipeline(repository, [article(index) for index in range(10)], config)
+    result = validate_preparation_output(
+        config, repository_root=repository, tokenizer=WordTokenizer()
+    )
+    assert result["valid"]
+
+
+def test_review_mode_caps_chunks_per_article_for_diversity(repository: Path) -> None:
+    text = " ".join(f"word{index}" for index in range(30))
+    config = replace(
+        make_config(),
+        review_sampling_enabled=True,
+        review_max_chunks_per_article=2,
+        max_raw_examples=3,
+        max_accepted_documents=6,
+        target_chunk_tokens=10,
+        maximum_chunk_tokens=10,
+        minimum_chunk_tokens=3,
+        chunk_overlap_tokens=0,
+    )
+    manifest, _, _ = run_pipeline(
+        repository,
+        [article(index, text.replace("word", f"article{index}_word")) for index in range(3)],
+        config,
+    )
+    counts = manifest["review_diversity"]["chunks_per_article"]
+    assert len(counts) == 3
+    assert max(counts.values()) == 2
+    assert manifest["accepted_chunks"] == 6

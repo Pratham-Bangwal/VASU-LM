@@ -23,6 +23,10 @@
   "maximum_chunk_tokens": 1024,
   "minimum_chunk_tokens": 128,
   "chunk_overlap_tokens": 32,
+  "review_sampling_enabled": false,
+  "reference_section_behavior": "keep",
+  "quality_warning_threshold": 5,
+  "review_max_chunks_per_article": 0,
   "output_paths": {
     "raw_directory": "data/raw/factual/wikimedia/20231101_en",
     "interim_directory": "data/interim/factual/wikimedia/20231101_en",

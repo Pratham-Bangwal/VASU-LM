@@ -26,6 +26,8 @@ Source-governance progress:
 - completed: corrected v2 smoke preparation with exact-token chunking, safe
   inline-markup spacing, conservative Unicode handling, 20 distinct chunks,
   17,237 tokens, and a 1,022-token observed maximum;
+- completed: deterministic broad review across the shard, producing 50 chunks
+  from 14 parent articles and 26,435 tokens with a 938-token maximum;
 - next: review broader bounded samples before deciding whether to authorize the
   default 2M-token pilot;
 - unchanged: the default pilot and factual-pilot training have not started;

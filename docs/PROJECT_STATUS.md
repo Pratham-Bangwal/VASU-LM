@@ -331,3 +331,20 @@ The corrected smoke inspected 2 rows and retained 20 distinct chunks with
 regressions. Output validation passed. The default 2M-token pilot was not run
 and no training started. Cross-FineWeb document deduplication remains blocked
 without a versioned document-level normalized-hash/signature index.
+
+### Deterministic broad-review sample
+
+A separate review-only mode now selects 500 unique, shard-spanning row indices
+using evenly spaced positions with a seed-local deterministic offset. It reads
+only the required Parquet row groups, retains at most 5 chunks per parent, and
+writes review-suffixed artifacts without touching smoke/default outputs.
+
+The validated review inspected 15 selected rows and retained 50 chunks from 14
+parent articles (26,435 tokens). Chunk tokens were 43 minimum, 470.5 median,
+528.7 mean, and 938 maximum. The largest article contributed 10%; 3
+reference-section chunks were flagged. Encoding repairs, quality rejections,
+contamination matches, and exact/near duplicates were all zero. Validation and
+bounded UTF-8 preview review passed. One malformed date boundary was traced to
+the pinned Parquet source itself, so uncertain factual text was not silently
+rewritten. This artifact is for review, not training; the full pilot remains
+unauthorized.
