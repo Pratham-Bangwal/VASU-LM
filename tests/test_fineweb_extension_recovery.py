@@ -206,6 +206,25 @@ def test_atomic_progress_write(tmp_path: Path) -> None:
     assert not target.with_name("progress.json.tmp").exists()
 
 
+def test_atomic_progress_retries_transient_windows_lock(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
+    target = tmp_path / "progress.json"
+    original = Path.replace
+    attempts = [0]
+
+    def replace(path: Path, destination: Path) -> Path:
+        attempts[0] += 1
+        if attempts[0] < 3:
+            raise PermissionError("scanner lock")
+        return original(path, destination)
+
+    monkeypatch.setattr(Path, "replace", replace)
+    atomic_write_json(target, {"safe": True})
+    assert attempts[0] == 3
+    assert json.loads(target.read_text()) == {"safe": True}
+
+
 def test_report_validation_and_no_full_text_leak(tmp_path: Path) -> None:
     audit = ExtensionRecoveryAudit(
         "source_id_reacquisition_possible", "r", "c", REVISION, "train", 1, 1, 0

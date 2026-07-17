@@ -33,6 +33,49 @@ No full source text is stored in any report. This evidence authorizes planning
 a broader source-ID reacquisition, but the complete 379,247-record recovery and
 the extension document index have not been run.
 
+## Provider-friendly 1,000-ID benchmark (2026-07-17)
+
+The benchmark selected one deterministic, evenly spread set of 1,000
+historical IDs and used it for every strategy. Each strategy used an isolated,
+initially empty local response cache. Cold timings therefore exclude local
+cache hits; provider-side cache state cannot be cleared or measured and is not
+claimed as cold. A second pass measured local-cache behavior separately and is
+not interpreted as provider throughput.
+
+Official Dataset Viewer documentation supports composite `OR` predicates,
+filtered pagination, and up to 100 returned rows. Live checks confirmed exact
+OR filters for 5, 10, and 25 IDs and the pinned `x-revision` header. SQL-style
+`IN` membership is not documented and was rejected with HTTP 422. No
+Dataset Viewer-specific fixed rate is documented and no server response-byte
+parameter exists, so the client enforces its own byte limit and handles 429,
+Retry-After, transient 5xx responses, timeouts, and bounded backoff.
+
+| Strategy | Cold seconds | Requests | Transients/retries | Exact hashes |
+| --- | ---: | ---: | ---: | ---: |
+| Serial | 2,277.46 | 1,005 | 5 / 4 | 1,000/1,000 |
+| Concurrency 2 | 512.34 | 1,001 | 1 / 1 | 1,000/1,000 |
+| Concurrency 4 | 334.96 | 1,001 | 1 / 1 | 1,000/1,000 |
+| Concurrency 8 | 257.71 | 1,002 | 2 / 2 | 1,000/1,000 |
+| OR batch 5 | 172.66 | 200 | 0 / 0 | 1,000/1,000 |
+| OR batch 10 | 86.45 | 100 | 0 / 0 | 1,000/1,000 |
+| OR batch 25 | 37.33 | 40 | 0 / 0 | 1,000/1,000 |
+
+All strategies had zero mismatches, missing IDs, duplicate provider records,
+malformed records, revision fallbacks, and HTTP 429 responses. Batch 25 with
+concurrency 1 is selected because it passed exact correctness with the fewest
+provider requests and lowest complexity. Production should use a conservative
+2 RPS ceiling (observed latency already kept throughput near 1.1 RPS), four
+retries, Retry-After, exponential backoff with bounded seeded jitter, and an
+atomic checkpoint every 1,000 completed documents.
+
+The measured projection for all 379,247 IDs is 15,170 filter requests,
+approximately 3.93 hours under benchmark conditions, 2.24 GB of downloaded
+JSON responses, 2.03 GB of accepted raw text, and 4.06 GB of temporary working
+storage. Plan for roughly 3.9-6 hours and at least 10 GiB free because provider
+latency and rate limits can change. Reports are
+`data/manifests/pretrain/fineweb_extension_recovery_benchmark.json` and `.txt`.
+The complete recovery and extension index remain unstarted.
+
 ## Status and classification
 
 Recovery classification: **`source_id_reacquisition_possible`**.

@@ -9,6 +9,7 @@ import json
 from pathlib import Path
 import random
 import sqlite3
+import time
 from typing import Any, Callable, Iterable, Mapping
 import urllib.error
 import urllib.parse
@@ -226,7 +227,7 @@ def atomic_write_json(path: Path, payload: Mapping[str, Any]) -> None:
     temporary.write_text(
         json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
     )
-    temporary.replace(path)
+    _replace_with_windows_retry(temporary, path)
 
 
 def atomic_write_text(path: Path, text: str) -> None:
@@ -234,7 +235,19 @@ def atomic_write_text(path: Path, text: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_name(f"{path.name}.tmp")
     temporary.write_text(text, encoding="utf-8")
-    temporary.replace(path)
+    _replace_with_windows_retry(temporary, path)
+
+
+def _replace_with_windows_retry(temporary: Path, target: Path) -> None:
+    """Atomically promote a file despite short-lived Windows scanner locks."""
+    for attempt in range(6):
+        try:
+            temporary.replace(target)
+            return
+        except PermissionError:
+            if attempt == 5:
+                raise
+            time.sleep(0.05 * (2**attempt))
 
 
 def _bounded_json_request(

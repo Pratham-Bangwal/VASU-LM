@@ -14,6 +14,13 @@
   `SHA-256(text.strip())` matches, zero failures, 498,312 accepted text bytes,
   and no retained source text. Full reacquisition and extension indexing remain
   unexecuted.
+- Added a 1,000-ID recovery benchmark with serial, bounded concurrency 2/4/8,
+  documented OR batches 5/10/25, isolated cold/warm caches, rate limiting,
+  separate connect/read timeouts, Retry-After, exponential retry, seeded
+  jitter, HTTP accounting, atomic resume, and production estimates.
+- Selected OR batch 25 with concurrency 1 after all seven strategies produced
+  1,000/1,000 exact historical hashes. It used 40 requests in 37.33 seconds;
+  full recovery, extension indexing, and training remain unstarted.
 
 - Added a versioned SQLite FineWeb document-index abstraction with exact
   normalized SHA-256 lookup, deterministic word-5-gram MinHash/LSH candidates,
@@ -112,6 +119,10 @@
 - `chat.py` exposes `USE_KV_CACHE = False` pending a separate activation decision.
 
 ### Fixed
+
+- Bounded benchmark task submission so a failed request cannot drain an
+  uncommitted pre-submitted queue, and added bounded atomic-promotion retries
+  for transient Windows scanner locks.
 
 - Checkpoints are saved through temporary files and atomically promoted after serialization.
 - Corrupt and incomplete checkpoints are ignored during resume selection.

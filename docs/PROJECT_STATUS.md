@@ -11,6 +11,13 @@ bytes. Full source-ID reacquisition is now eligible for a separately reviewed
 run, but it has not started. The extension document index remains unbuilt, the
 factual-pilot completeness gate remains blocked, and no training occurred.
 
+The follow-up 1,000-ID benchmark passed exact correctness for serial,
+concurrency 2/4/8, and documented OR batches of 5/10/25. Batch 25 with
+concurrency 1 is the selected production design: 40 requests and 37.33 seconds
+for 1,000 IDs, with zero 429s, transient errors, or retries. A conservative
+2 RPS production ceiling is recommended. Full recovery remains a separate,
+unstarted operation; factual-pilot readiness is unchanged.
+
 ## FineWeb document-level deduplication status
 
 The production original-source index is complete. It contains 999,992 unique

@@ -11,6 +11,13 @@ indexed with `vasu_cross_source_nfc_casefold_ws_v1`, factual-mixture preparation
 must continue to report incomplete cross-source coverage. No continuation or
 pilot training was authorized by the smoke.
 
+The subsequent 1,000-ID benchmark selected documented 25-ID OR filters with
+concurrency 1 and a conservative 2 RPS ceiling. All 1,000 hashes matched for
+every tested strategy; batch 25 reduced the cold provider load to 40 requests
+and projected roughly 15,170 requests / 3.9-6 hours for full recovery. This
+improves implementation readiness but does not authorize the full recovery,
+extension index construction, factual preparation, or training.
+
 ## FineWeb document-index implementation gate
 
 The original-source production index is built and validated: 1,000,000 inputs,

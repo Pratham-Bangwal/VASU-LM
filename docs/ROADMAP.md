@@ -5,7 +5,9 @@
 - [x] Audit 379,247 retained source IDs and historical fingerprints.
 - [x] Implement deterministic, atomic, revision-pinned bounded reacquisition.
 - [x] Pass a 100-ID spread smoke with 100 exact historical hash matches.
-- [ ] Review provider implications and authorize a resumable full reacquisition.
+- [x] Benchmark 1,000 IDs across serial, concurrency 2/4/8, and OR batches
+  5/10/25; select batch 25, concurrency 1, and a conservative 2 RPS ceiling.
+- [ ] Explicitly authorize and run the resumable full reacquisition.
 - [ ] Build and validate compatible extension coverage under
   `vasu_cross_source_nfc_casefold_ws_v1`.
 - [ ] Re-run the factual-pilot readiness gate only after complete coverage.
