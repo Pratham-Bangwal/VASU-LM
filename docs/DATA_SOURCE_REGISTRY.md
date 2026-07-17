@@ -14,12 +14,14 @@ exact lookups, and normalization-version rejection passed.
 
 The extension is not document-level recoverable from its local token binary.
 Its dedup database contains reusable historical exact hashes and extension
-source IDs, but no text or shingles for compatible near matching. All 379,247
-retained extension fingerprints have source IDs, so recovery is classified as
-`source_id_reacquisition_possible`, not exact reconstruction. Bounded or
-original-only indexes are not accepted by the default
-factual preparation gate; extension document text must first be reacquired
-from the pinned source. Token binaries are never treated as document indexes.
+source IDs, but no text or shingles for compatible near matching. A bounded
+2026-07-17 official Dataset Viewer smoke selected 100 evenly spread IDs at the
+pinned revision; all 100 were found and reproduced their historical
+`SHA-256(text.strip())` values, with no mismatch or duplicate. This proves the
+bounded source-ID mechanism, not complete extension recovery. Bounded or
+original-only indexes are not accepted by the default factual preparation
+gate; all extension document text must first be reacquired and indexed. Token
+binaries are never treated as document indexes.
 
 ## Purpose
 

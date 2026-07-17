@@ -1,5 +1,16 @@
 # VASU Project Status
 
+## FineWeb extension recovery smoke
+
+The 2026-07-17 bounded source-ID smoke selected 100 evenly spread historical
+extension IDs and retrieved them through the official Dataset Viewer exact-ID
+filter pinned by the response revision header. All 100 IDs were found and all
+100 `SHA-256(text.strip())` values matched; all failure categories were zero.
+The method inspected 498,312 text bytes and downloaded 645,735 JSON response
+bytes. Full source-ID reacquisition is now eligible for a separately reviewed
+run, but it has not started. The extension document index remains unbuilt, the
+factual-pilot completeness gate remains blocked, and no training occurred.
+
 ## FineWeb document-level deduplication status
 
 The production original-source index is complete. It contains 999,992 unique

@@ -4,6 +4,17 @@
 
 ### Added
 
+- Added a deterministic, resumable, atomic FineWeb-extension source-ID recovery
+  smoke using the official Dataset Viewer exact-ID filter with per-request
+  pinned-revision enforcement and no full-scan fallback.
+- Added 25 network-free recovery tests covering historical evidence, spread
+  sampling, exact hashing, classifications, revision/config protection,
+  resume, atomic writes, report safety, and scalability blocking.
+- Completed the bounded 100-ID smoke: 100 IDs found, 100 exact
+  `SHA-256(text.strip())` matches, zero failures, 498,312 accepted text bytes,
+  and no retained source text. Full reacquisition and extension indexing remain
+  unexecuted.
+
 - Added a versioned SQLite FineWeb document-index abstraction with exact
   normalized SHA-256 lookup, deterministic word-5-gram MinHash/LSH candidates,
   provenance fields, atomic promotion, bounded builds, and resumable progress.

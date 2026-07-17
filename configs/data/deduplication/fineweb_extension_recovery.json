@@ -1,0 +1,22 @@
+{
+  "format_version": 1,
+  "dataset_repository": "HuggingFaceFW/fineweb-edu",
+  "dataset_config": "CC-MAIN-2025-26",
+  "split": "train",
+  "dataset_revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9",
+  "source_id_field": "id",
+  "text_field": "text",
+  "metadata_path": "data/processed/pretrain/fineweb_extension_500m_metadata.json",
+  "historical_database_path": "data/processed/pretrain/fineweb_extension_500m.bin.dedup.sqlite3",
+  "progress_path": "data/interim/pretrain/fineweb_extension_recovery_progress.json",
+  "json_report_path": "data/manifests/pretrain/fineweb_extension_recovery_smoke.json",
+  "text_report_path": "data/manifests/pretrain/fineweb_extension_recovery_smoke.txt",
+  "sample_size": 100,
+  "maximum_matches": 100,
+  "maximum_accepted_text_bytes": 20000000,
+  "maximum_response_bytes": 2000000,
+  "request_timeout_seconds": 120,
+  "acquisition_method": "huggingface_dataset_viewer_exact_id_filter",
+  "allow_parquet_scan_fallback": false,
+  "historical_fingerprint": "sha256_utf8_python_str_strip_v1"
+}

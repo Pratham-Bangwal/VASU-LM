@@ -1,5 +1,18 @@
 # VASU Roadmap
 
+## FineWeb extension document recovery
+
+- [x] Audit 379,247 retained source IDs and historical fingerprints.
+- [x] Implement deterministic, atomic, revision-pinned bounded reacquisition.
+- [x] Pass a 100-ID spread smoke with 100 exact historical hash matches.
+- [ ] Review provider implications and authorize a resumable full reacquisition.
+- [ ] Build and validate compatible extension coverage under
+  `vasu_cross_source_nfc_casefold_ws_v1`.
+- [ ] Re-run the factual-pilot readiness gate only after complete coverage.
+
+The smoke did not reacquire the full extension, build an index, or start
+training.
+
 ## FineWeb cross-source deduplication gate
 
 - Completed: versioned, resumable FineWeb document-index schema, exact lookup,

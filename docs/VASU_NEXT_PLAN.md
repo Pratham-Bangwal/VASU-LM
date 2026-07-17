@@ -1,5 +1,16 @@
 # VASU Next-Generation Training Plan
 
+## FineWeb extension prerequisite update
+
+The extension recovery evidence advanced from theoretical source-ID recovery
+to a successful bounded proof: 100 evenly spread IDs were found at the pinned
+provider revision and all 100 historical hashes matched. A complete recovery
+is now technically plausible, but it remains a separate, storage- and
+provider-reviewed operation. Until all 379,247 documents are reacquired and
+indexed with `vasu_cross_source_nfc_casefold_ws_v1`, factual-mixture preparation
+must continue to report incomplete cross-source coverage. No continuation or
+pilot training was authorized by the smoke.
+
 ## FineWeb document-index implementation gate
 
 The original-source production index is built and validated: 1,000,000 inputs,
