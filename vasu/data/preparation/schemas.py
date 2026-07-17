@@ -56,6 +56,8 @@ class WikimediaPreparationConfig:
     review_max_chunks_per_article: int
     output_paths: PreparationOutputPaths
     resume_enabled: bool
+    fineweb_index_path: str = "data/manifests/pretrain/fineweb_document_index.sqlite3"
+    fineweb_index_required: bool = False
 
     def for_smoke_test(self) -> "WikimediaPreparationConfig":
         base = self.output_paths
@@ -74,6 +76,7 @@ class WikimediaPreparationConfig:
             max_raw_examples=min(self.max_raw_examples, 100),
             max_accepted_documents=min(self.max_accepted_documents, 20),
             max_output_tokens=min(self.max_output_tokens, 20_000),
+            fineweb_index_required=False,
             output_paths=smoke,
         )
 
@@ -96,6 +99,7 @@ class WikimediaPreparationConfig:
             max_output_tokens=min(self.max_output_tokens, 50_000),
             review_sampling_enabled=True,
             reference_section_behavior="flag",
+            fineweb_index_required=False,
             review_max_chunks_per_article=5,
             output_paths=review,
         )
@@ -116,6 +120,7 @@ class PreparationProgress:
     rejection_counts: dict[str, int] | None = None
     seen_exact_hashes: list[str] | None = None
     contamination_matches: list[dict[str, str]] | None = None
+    fineweb_matches: list[dict[str, object]] | None = None
     near_duplicate_candidate_comparisons: int = 0
     exact_duplicates: int = 0
     near_duplicates: int = 0
@@ -134,5 +139,7 @@ class PreparationProgress:
             self.seen_exact_hashes = []
         if self.contamination_matches is None:
             self.contamination_matches = []
+        if self.fineweb_matches is None:
+            self.fineweb_matches = []
         if self.inspected_row_indices is None:
             self.inspected_row_indices = []

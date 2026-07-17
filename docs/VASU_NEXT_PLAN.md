@@ -1,5 +1,14 @@
 # VASU Next-Generation Training Plan
 
+## FineWeb document-index implementation gate
+
+Cross-FineWeb index tooling is implemented, but production coverage is not.
+The original raw JSONL is document-recoverable with incomplete provenance;
+the extension has only token data and historical exact hashes locally. A full
+compatible index was deliberately not built, so factual training preparation
+remains blocked pending extension document acquisition and full index
+validation. No training was started.
+
 ## Purpose and decision boundary
 
 This document plans the next VASU training generation from measured repository evidence. It does not authorize implementation, dataset creation, checkpoint conversion, or training.

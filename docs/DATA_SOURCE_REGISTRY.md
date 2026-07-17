@@ -1,5 +1,21 @@
 # VASU Data Source Registry
 
+## FineWeb document recovery and index readiness
+
+The versioned SQLite index implementation supports normalized SHA-256 exact
+lookup and deterministic word-5-gram MinHash/LSH candidates using normalization
+version `vasu_cross_source_nfc_casefold_ws_v1`. The original
+`data/raw/pretrain/fineweb_1m.jsonl` is document-level recoverable, although it
+lacks original IDs and URLs; its stable local reference is its line number and
+its provenance is explicitly incomplete.
+
+The extension is not document-level recoverable from its local token binary.
+Its dedup database contains reusable historical exact hashes and extension
+source IDs, but no text or shingles for compatible near matching. No complete
+production index was built. Bounded indexes are not accepted by the default
+factual preparation gate; extension document text must first be reacquired
+from the pinned source. Token binaries are never treated as document indexes.
+
 ## Purpose
 
 The source registry is the provenance and approval layer for datasets proposed

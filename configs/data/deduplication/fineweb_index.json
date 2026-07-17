@@ -1,0 +1,26 @@
+{
+  "format_version": "fineweb_document_index_v1",
+  "output_path": "data/manifests/pretrain/fineweb_document_index.sqlite3",
+  "metadata_path": "data/manifests/pretrain/fineweb_document_index_metadata.json",
+  "progress_path": "data/interim/pretrain/fineweb_document_index_progress.json",
+  "normalization_version": "vasu_cross_source_nfc_casefold_ws_v1",
+  "shingle_size": 5,
+  "signature_size": 64,
+  "bands": 8,
+  "batch_size": 1000,
+  "maximum_documents": 10000,
+  "sources": [
+    {
+      "source_id": "fineweb_edu_original_train",
+      "source_revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9",
+      "source_shard": "CC-MAIN-2013-20/original-local-1m",
+      "path": "data/raw/pretrain/fineweb_1m.jsonl",
+      "format": "jsonl_text",
+      "text_field": "text",
+      "source_url_field": null,
+      "document_id_field": null,
+      "provenance_completeness": "incomplete",
+      "expected_sha256": null
+    }
+  ]
+}

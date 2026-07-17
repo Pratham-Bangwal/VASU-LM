@@ -1,5 +1,19 @@
 # VASU Project Status
 
+## FineWeb document-level deduplication status
+
+The document-index schema and Wikimedia integration are implemented, but the
+factual pilot remains blocked. The local original FineWeb JSONL is recoverable
+as one text document per line, with incomplete URL/source-ID provenance. The
+FineWeb extension is present only as a token binary plus an exact-fingerprint
+database; its document text is unavailable for compatible near-duplicate
+indexing. No real index was built and no training occurred in this work.
+
+The default factual mode requires a complete compatible index. Smoke and
+broad-review modes may report the blocked state without treating their output
+as training-ready. Cross-source comparison uses normalization version
+`vasu_cross_source_nfc_casefold_ws_v1`.
+
 ## Next-generation planning status
 
 An evidence-based next-generation plan is recorded in `docs/VASU_NEXT_PLAN.md`. The recommended path is a capability-focused continuation of the preserved VASU-60M FineWeb step-200,000 **base** checkpoint, gated first by small data-mixture ablations. The planning target is approximately 1.2B additional new token positions at the existing 58,337,792-parameter architecture and 256-token context.

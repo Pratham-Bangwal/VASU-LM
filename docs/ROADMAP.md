@@ -1,5 +1,14 @@
 # VASU Roadmap
 
+## FineWeb cross-source deduplication gate
+
+- Completed: versioned, resumable FineWeb document-index schema, exact lookup,
+  word-5-gram MinHash/LSH candidate lookup, shared normalization, synthetic
+  validation, and Wikimedia enforcement integration.
+- Blocked: production coverage until a full compatible index is built and the
+  extension's document-level text is reacquired from an authoritative source.
+- Not started: default factual-pilot preparation or training.
+
 ## Next-generation planning update
 
 The completed VASU-60M cycle is now followed by a planning gate rather than immediate scale-up.

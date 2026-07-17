@@ -7,6 +7,8 @@ import re
 import unicodedata
 from typing import Mapping, Any
 
+from vasu.data.deduplication.normalization import normalize_for_matching
+
 from .quality import assess_text_quality, repair_mojibake
 
 
@@ -30,9 +32,8 @@ class FilterResult:
 
 
 def comparison_normalize(text: str) -> str:
-    normalized = unicodedata.normalize("NFC", text)
-    lines = [SPACE_PATTERN.sub(" ", line).strip() for line in normalized.splitlines()]
-    return "\n".join(line for line in lines if line).casefold()
+    """Backward-compatible entry point for the shared cross-source contract."""
+    return normalize_for_matching(text)
 
 
 def clean_training_text(text: str) -> tuple[str, dict[str, int | bool | list[str]], str | None]:

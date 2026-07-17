@@ -8,6 +8,10 @@ from pathlib import Path
 import re
 import sqlite3
 
+from vasu.data.deduplication.fineweb_index import FineWebDocumentIndex
+from vasu.data.deduplication.fineweb_index import sha256_file as index_sha256_file
+from vasu.data.deduplication.normalization import NORMALIZATION_VERSION
+
 from .filters import comparison_normalize
 
 
@@ -70,7 +74,40 @@ class PilotDeduplicator:
             self.signatures.append(word_shingles(text))
 
 
-def fineweb_document_index_status(repository_root: Path) -> dict[str, object]:
+def fineweb_document_index_status(
+    repository_root: Path,
+    configured_path: str = "data/manifests/pretrain/fineweb_document_index.sqlite3",
+) -> dict[str, object]:
+    preferred = repository_root / configured_path
+    if preferred.is_file():
+        try:
+            index = FineWebDocumentIndex(preferred)
+            index.close()
+            metadata_path = preferred.with_name(f"{preferred.stem}_metadata.json")
+            metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+            if metadata.get("completion_status") != "complete":
+                raise ValueError("FineWeb document index metadata is not complete")
+            if metadata.get("normalization_version") != NORMALIZATION_VERSION:
+                raise ValueError("FineWeb document index metadata normalization mismatch")
+            if metadata.get("output_sha256") != index_sha256_file(preferred):
+                raise ValueError("FineWeb document index output hash mismatch")
+        except (
+            FileNotFoundError,
+            json.JSONDecodeError,
+            ValueError,
+            sqlite3.DatabaseError,
+        ) as error:
+            return {
+                "status": "blocked",
+                "path": preferred.relative_to(repository_root).as_posix(),
+                "reason": str(error),
+                "normalization_version": NORMALIZATION_VERSION,
+            }
+        return {
+            "status": "available",
+            "path": preferred.relative_to(repository_root).as_posix(),
+            "normalization_version": NORMALIZATION_VERSION,
+        }
     candidates = (
         repository_root / "data/manifests/pretrain/fineweb_document_hashes.jsonl",
         repository_root / "data/manifests/pretrain/fineweb_document_hashes.sqlite",
@@ -84,7 +121,7 @@ def fineweb_document_index_status(repository_root: Path) -> dict[str, object]:
         "path": None,
         "required_artifact": (
             "A versioned document-level index containing normalized-text SHA-256 "
-            "hashes and compatible word-5-gram MinHash signatures for both FineWeb "
+            "hashes and compatible word-5-gram MinHash signatures for all FineWeb "
             "training sources, with normalization version and source provenance."
         ),
     }

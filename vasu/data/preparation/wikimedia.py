@@ -17,11 +17,13 @@ import pyarrow.parquet as pq
 from vasu.data.sources import get_source, load_source_registry
 from vasu.data.sources.validation import validate_manifest_sources
 from vasu.data.mixtures import load_manifest
+from vasu.data.deduplication import FineWebDocumentIndex, MatchDecision, match_text
 
 from .contamination import check_contamination, load_prompt_evidence
 from .chunking import TextChunk, chunk_document
 from .deduplication import (
     PilotDeduplicator,
+    fineweb_document_index_status,
     load_fineweb_exact_hashes,
     normalized_sha256,
 )
@@ -148,6 +150,7 @@ def validate_preparation_config(config: WikimediaPreparationConfig) -> None:
         "chunking_enabled",
         "review_sampling_enabled",
         "resume_enabled",
+        "fineweb_index_required",
     ):
         if not isinstance(getattr(config, field), bool):
             raise ValueError(f"{field} must be boolean")
@@ -174,6 +177,13 @@ def validate_preparation_config(config: WikimediaPreparationConfig) -> None:
         )
     if config.reference_section_behavior not in {"keep", "flag", "exclude"}:
         raise ValueError("reference_section_behavior must be keep, flag, or exclude")
+    fineweb_path = Path(config.fineweb_index_path)
+    if (
+        not config.fineweb_index_path
+        or fineweb_path.is_absolute()
+        or ".." in fineweb_path.parts
+    ):
+        raise ValueError("fineweb_index_path must be repository-relative and traversal-free")
     if isinstance(config.quality_warning_threshold, bool) or not isinstance(
         config.quality_warning_threshold, int
     ) or config.quality_warning_threshold < 0:
@@ -204,6 +214,7 @@ def resolve_paths(config: WikimediaPreparationConfig, repository_root: Path) -> 
     paths["prompts"] = root / "evaluation/prompts.json"
     paths["registry"] = root / "configs/data/sources"
     paths["factual_manifest"] = root / "configs/data/vasu_60m_factual_pilot.json"
+    paths["fineweb_index"] = root / config.fineweb_index_path
     return paths
 
 
@@ -551,8 +562,22 @@ def prepare_wikimedia_pilot(
         near_enabled=config.near_deduplication_enabled,
         threshold=config.near_duplicate_similarity_threshold,
     )
-    fineweb_hashes, fineweb_status = load_fineweb_exact_hashes(Path(repository_root))
-    deduplicator.exact_hashes.update(fineweb_hashes)
+    fineweb_status = fineweb_document_index_status(
+        Path(repository_root), config.fineweb_index_path
+    )
+    if config.fineweb_index_required and fineweb_status["status"] != "available":
+        raise RuntimeError(
+            "Default factual preparation is blocked until a completed compatible "
+            "FineWeb document index is available"
+        )
+    fineweb_index: FineWebDocumentIndex | None = None
+    fineweb_hashes: set[str] = set()
+    if fineweb_status["status"] == "available" and paths["fineweb_index"].is_file():
+        fineweb_index = FineWebDocumentIndex(paths["fineweb_index"])
+    elif fineweb_status["status"] == "available":
+        # Backward compatibility for a legacy exact-hash-only artifact.
+        fineweb_hashes, fineweb_status = load_fineweb_exact_hashes(Path(repository_root))
+        deduplicator.exact_hashes.update(fineweb_hashes)
     retained_parent_counts = _load_existing_output(output_path, deduplicator)
     started_at = utc_now()
     completion_reason = "shard_exhausted"
@@ -672,6 +697,30 @@ def prepare_wikimedia_pilot(
                     progress.next_chunk_index = chunk_index + 1
                     save_progress(progress_path, progress)
                     continue
+                fineweb_overlap: dict[str, Any] | None = None
+                if fineweb_index is not None:
+                    overlap = match_text(fineweb_index, chunk.text, chunk_id=chunk_id)
+                    if overlap.match_type:
+                        fineweb_overlap = asdict(overlap)
+                        fineweb_overlap["decision"] = overlap.decision.value
+                        assert progress.fineweb_matches is not None
+                        progress.fineweb_matches.append(fineweb_overlap)
+                    if overlap.decision == MatchDecision.REJECT:
+                        reason = (
+                            "fineweb_exact_duplicate"
+                            if overlap.match_type == "exact"
+                            else "fineweb_near_duplicate"
+                        )
+                        _increment(progress, reason)
+                        if overlap.match_type == "exact":
+                            progress.exact_duplicates += 1
+                        else:
+                            progress.near_duplicates += 1
+                        progress.next_chunk_index = chunk_index + 1
+                        save_progress(progress_path, progress)
+                        continue
+                    if overlap.decision == MatchDecision.REVIEW:
+                        chunk_warnings.append("fineweb_ambiguous_overlap")
                 exact_contamination, contamination_matches = check_contamination(
                     chunk.text, chunk_id, prompt_evidence
                 )
@@ -708,6 +757,7 @@ def prepare_wikimedia_pilot(
                     "encoding_repaired": bool(filtered.metadata.get("encoding_repaired")),
                     "quality_warnings": list(dict.fromkeys(chunk_warnings)),
                     "filtering_metadata": filtered.metadata,
+                    "fineweb_overlap": fineweb_overlap,
                     "provenance_metadata": {
                         "dataset_name": config.dataset_name,
                         "subset": config.subset,
@@ -803,6 +853,7 @@ def prepare_wikimedia_pilot(
         "review_diversity": diversity,
         "contamination_matches": progress.contamination_matches,
         "fineweb_cross_deduplication": fineweb_status,
+        "fineweb_overlap_matches": progress.fineweb_matches,
         "total_characters": progress.total_characters,
         "total_vasu_tokens": progress.output_tokens,
         "tokens_per_document": (
@@ -839,6 +890,7 @@ def prepare_wikimedia_pilot(
         "review_diversity": diversity,
         "contamination_match_count": len(progress.contamination_matches or []),
         "fineweb_cross_deduplication": fineweb_status,
+        "fineweb_overlap_match_count": len(progress.fineweb_matches or []),
     }
     atomic_write_json(paths["manifest_json"], manifest)
     atomic_write_json(paths["summary_json"], summary)
@@ -888,6 +940,8 @@ def prepare_wikimedia_pilot(
             ]
         ),
     )
+    if fineweb_index is not None:
+        fineweb_index.close()
     return manifest
 
 

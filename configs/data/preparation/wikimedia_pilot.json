@@ -24,7 +24,9 @@
   "minimum_chunk_tokens": 128,
   "chunk_overlap_tokens": 32,
   "review_sampling_enabled": false,
-  "reference_section_behavior": "keep",
+  "reference_section_behavior": "exclude",
+  "fineweb_index_path": "data/manifests/pretrain/fineweb_document_index.sqlite3",
+  "fineweb_index_required": true,
   "quality_warning_threshold": 5,
   "review_max_chunks_per_article": 0,
   "output_paths": {

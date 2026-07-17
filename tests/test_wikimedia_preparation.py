@@ -53,6 +53,13 @@ from vasu.data.preparation.wikimedia import (
     validate_preparation_output,
     validate_registry_approval,
 )
+from vasu.data.deduplication.fineweb_index import build_fineweb_document_index
+from vasu.data.deduplication.schemas import (
+    FineWebIndexConfig,
+    FineWebSource,
+    INDEX_FORMAT_VERSION,
+)
+from vasu.data.deduplication.normalization import NORMALIZATION_VERSION
 
 
 PINNED_REVISION = "e6057dc557255a03c9c3c47ceab0eb44353b1bc5"
@@ -181,6 +188,37 @@ def run_pipeline(
         **kwargs,
     )
     return manifest, selected, shard
+
+
+def build_test_fineweb_index(repository: Path, texts: list[str]) -> str:
+    source = repository / "fineweb.jsonl"
+    source.write_text(
+        "".join(json.dumps({"text": text}) + "\n" for text in texts),
+        encoding="utf-8",
+    )
+    relative_index = "data/manifests/pretrain/fineweb_document_index.sqlite3"
+    config = FineWebIndexConfig(
+        format_version=INDEX_FORMAT_VERSION,
+        output_path=relative_index,
+        metadata_path="data/manifests/pretrain/fineweb_document_index_metadata.json",
+        progress_path="data/interim/pretrain/fineweb_index_progress.json",
+        normalization_version=NORMALIZATION_VERSION,
+        shingle_size=5,
+        signature_size=64,
+        bands=8,
+        batch_size=1,
+        maximum_documents=None,
+        sources=(
+            FineWebSource(
+                source_id="fineweb-test",
+                source_revision="revision",
+                source_shard="fixture",
+                path="fineweb.jsonl",
+            ),
+        ),
+    )
+    build_fineweb_document_index(config, repository_root=repository)
+    return relative_index
 
 
 def test_valid_configuration_round_trip(tmp_path: Path) -> None:
@@ -478,6 +516,78 @@ def test_fineweb_document_hash_index_is_loaded(tmp_path: Path) -> None:
     assert hashes == {expected}
     assert status["status"] == "available"
     assert status["loaded_exact_hashes"] == 1
+
+
+def test_wikimedia_exact_fineweb_match_is_rejected(repository: Path) -> None:
+    text = "This exact factual article has enough distinct words for matching correctly."
+    index_path = build_test_fineweb_index(repository, [text])
+    config = make_config(
+        chunking_enabled=False,
+        fineweb_index_path=index_path,
+        fineweb_index_required=True,
+    )
+    manifest, _, _ = run_pipeline(repository, [article(1, text)], config)
+    assert manifest["accepted_chunks"] == 0
+    assert manifest["rejection_reasons"]["fineweb_exact_duplicate"] == 1
+    assert manifest["fineweb_overlap_matches"][0]["decision"] == "reject"
+
+
+def test_wikimedia_near_fineweb_match_is_rejected(repository: Path) -> None:
+    original = " ".join(f"factword{index}" for index in range(100))
+    changed = original.replace("factword50", "replacementword")
+    index_path = build_test_fineweb_index(repository, [original])
+    config = make_config(
+        chunking_enabled=False,
+        fineweb_index_path=index_path,
+        fineweb_index_required=True,
+    )
+    manifest, _, _ = run_pipeline(repository, [article(1, changed)], config)
+    assert manifest["accepted_chunks"] == 0
+    assert manifest["rejection_reasons"]["fineweb_near_duplicate"] == 1
+
+
+def test_wikimedia_ambiguous_fineweb_match_is_flagged(
+    repository: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    original = " ".join(f"factword{index}" for index in range(80))
+    changed = original.replace("factword40", "replacementword")
+    index_path = build_test_fineweb_index(repository, [original])
+    from vasu.data.deduplication import matching
+
+    real_match = matching.match_text
+    monkeypatch.setattr(
+        "vasu.data.preparation.wikimedia.match_text",
+        lambda index, text, chunk_id: real_match(
+            index,
+            text,
+            chunk_id=chunk_id,
+            reject_threshold=1.0,
+            review_threshold=0.5,
+        ),
+    )
+    config = make_config(
+        chunking_enabled=False,
+        fineweb_index_path=index_path,
+        fineweb_index_required=True,
+    )
+    manifest, selected, _ = run_pipeline(repository, [article(1, changed)], config)
+    assert manifest["accepted_chunks"] == 1
+    output = json.loads(resolve_paths(selected, repository)["output_jsonl"].read_text())
+    assert "fineweb_ambiguous_overlap" in output["quality_warnings"]
+    assert output["fineweb_overlap"]["decision"] == "review"
+
+
+def test_review_mode_without_index_remains_allowed(repository: Path) -> None:
+    config = make_config().for_review_sample()
+    manifest, _, _ = run_pipeline(repository, [article(1)], config)
+    assert manifest["fineweb_cross_deduplication"]["status"] == "blocked"
+    assert manifest["accepted_chunks"] == 1
+
+
+def test_default_factual_mode_without_index_is_blocked(repository: Path) -> None:
+    config = make_config(fineweb_index_required=True)
+    with pytest.raises(RuntimeError, match="blocked"):
+        run_pipeline(repository, [article(1)], config)
 
 
 def test_output_validation_detects_tampering(repository: Path) -> None:
@@ -819,6 +929,14 @@ def test_production_review_mode_hard_defaults() -> None:
     assert config.max_accepted_documents == 50
     assert config.max_output_tokens == 50_000
     assert config.review_max_chunks_per_article == 5
+
+
+def test_production_modes_apply_reference_section_policy() -> None:
+    root = Path(__file__).resolve().parents[1]
+    base = load_preparation_config(root / "configs/data/preparation/wikimedia_pilot.json")
+    assert base.reference_section_behavior == "exclude"
+    assert base.for_smoke_test().reference_section_behavior == "exclude"
+    assert base.for_review_sample().reference_section_behavior == "flag"
 
 
 def test_review_manifest_records_selected_and_inspected_rows(repository: Path) -> None:

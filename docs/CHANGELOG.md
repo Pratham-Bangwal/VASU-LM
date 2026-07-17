@@ -4,6 +4,22 @@
 
 ### Added
 
+- Added a versioned SQLite FineWeb document-index abstraction with exact
+  normalized SHA-256 lookup, deterministic word-5-gram MinHash/LSH candidates,
+  provenance fields, atomic promotion, bounded builds, and resumable progress.
+- Added Wikimedia cross-source exact/near rejection and ambiguous-overlap
+  review flags under normalization version
+  `vasu_cross_source_nfc_casefold_ws_v1`.
+- Added FineWeb artifact inventory/build/check CLIs and network-free tests. No
+  production index or training run was started.
+
+### Changed
+
+- Training-oriented Wikimedia preparation excludes reference-like sections by
+  default; broad-review mode continues to flag them.
+- Default factual preparation requires a completed compatible FineWeb index.
+  Smoke and broad-review modes may proceed only with an explicit blocked status.
+
 - Added a bounded, resumable Wikimedia factual-pilot preparation package and
   CLI pinned to the approved `20231101.en` revision and one explicit Parquet
   shard.
