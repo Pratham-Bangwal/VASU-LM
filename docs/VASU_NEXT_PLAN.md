@@ -2,12 +2,12 @@
 
 ## FineWeb document-index implementation gate
 
-Cross-FineWeb index tooling is implemented, but production coverage is not.
-The original raw JSONL is document-recoverable with incomplete provenance;
-the extension has only token data and historical exact hashes locally. A full
-compatible index was deliberately not built, so factual training preparation
-remains blocked pending extension document acquisition and full index
-validation. No training was started.
+The original-source production index is built and validated: 1,000,000 inputs,
+999,992 unique documents, eight duplicate hashes, and original-only coverage.
+The extension has only token data, 379,247 retained source IDs, and historical
+exact hashes locally. Factual preparation remains blocked pending authoritative
+source-ID reacquisition and compatible extension indexing. No training was
+started.
 
 ## Purpose and decision boundary
 
@@ -380,7 +380,8 @@ word-boundary-safe markup cleanup, and 768-target/1,024-maximum token chunks
 with 32-token overlap. The smoke retained 20 distinct chunks and 17,237 tokens
 from 2 rows; the largest chunk was 1,022 tokens, with 0 encoding repairs and 0
 quality rejections. The default pilot and factual continuation remain
-unauthorized. Cross-FineWeb deduplication still requires a document-level index.
+unauthorized. Original-source indexing is complete, but cross-FineWeb
+deduplication still requires compatible extension document coverage.
 
 The subsequent deterministic broad review selected 500 shard-spanning row
 indices and stopped after inspecting 15 rows and retaining 50 chunks from 14

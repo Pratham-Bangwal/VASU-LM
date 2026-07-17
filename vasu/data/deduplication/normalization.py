@@ -5,6 +5,7 @@ from __future__ import annotations
 import hashlib
 import re
 import unicodedata
+import zlib
 
 
 NORMALIZATION_VERSION = "vasu_cross_source_nfc_casefold_ws_v1"
@@ -53,39 +54,58 @@ def minhash_signature(
     shingle_size: int = DEFAULT_SHINGLE_SIZE,
     signature_size: int = DEFAULT_SIGNATURE_SIZE,
 ) -> tuple[int, ...]:
+    """Build a deterministic bounded bottom-k MinHash signature.
+
+    Very long documents are sampled at deterministic, evenly-spaced shingle
+    positions.  This bounds CPU while retaining coverage across the document.
+    """
     if signature_size < 1:
         raise ValueError("signature size must be positive")
     shingles = word_shingles(text, shingle_size)
     if not shingles:
         return tuple((1 << 64) - 1 for _ in range(signature_size))
-    signature: list[int] = []
-    for seed in range(signature_size):
-        prefix = seed.to_bytes(4, "big")
-        signature.append(
-            min(
-                int.from_bytes(
-                    hashlib.blake2b(prefix + shingle.encode("utf-8"), digest_size=8).digest(),
-                    "big",
-                )
-                for shingle in shingles
-            )
+    ordered = sorted(shingles)
+    maximum_sampled_shingles = max(signature_size * 4, signature_size)
+    if len(ordered) > maximum_sampled_shingles:
+        ordered = [
+            ordered[(index * (len(ordered) - 1)) // (maximum_sampled_shingles - 1)]
+            for index in range(maximum_sampled_shingles)
+        ]
+    maximum = (1 << 64) - 1
+    hashes: set[int] = set()
+    for shingle in ordered:
+        encoded = shingle.encode("utf-8")
+        high = zlib.crc32(encoded)
+        low = zlib.crc32(encoded, 0x9E3779B9)
+        value = (high << 32) | low
+        hashes.add(value)
+    selected = sorted(hashes)[:signature_size]
+    pad_seed = 0
+    for value in selected:
+        pad_seed ^= value
+    while len(selected) < signature_size:
+        pad_index = len(selected) + 1
+        selected.append(
+            (pad_seed ^ (pad_index * 0x9E3779B97F4A7C15)) & maximum
         )
-    return tuple(signature)
+    return tuple(selected)
 
 
 def signature_similarity(left: tuple[int, ...], right: tuple[int, ...]) -> float:
     if len(left) != len(right) or not left:
         raise ValueError("signatures must be non-empty and have equal length")
-    return sum(a == b for a, b in zip(left, right)) / len(left)
+    return len(set(left) & set(right)) / len(left)
 
 
 def bucket_keys(signature: tuple[int, ...], bands: int = DEFAULT_BANDS) -> tuple[str, ...]:
     if bands < 1 or len(signature) % bands:
         raise ValueError("signature length must be divisible by band count")
-    rows = len(signature) // bands
     keys = []
     for band in range(bands):
-        values = signature[band * rows : (band + 1) * rows]
+        # Partition by stable hash value rather than tuple position. A small
+        # edit therefore changes only the affected bands instead of shifting
+        # every subsequent bottom-k value.
+        values = tuple(value for value in signature if value % bands == band)
         raw = b"".join(value.to_bytes(8, "big") for value in values)
         keys.append(f"{band}:{hashlib.sha256(raw).hexdigest()}")
     return tuple(keys)

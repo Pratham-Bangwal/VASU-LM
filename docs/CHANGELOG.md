@@ -11,7 +11,12 @@
   review flags under normalization version
   `vasu_cross_source_nfc_casefold_ws_v1`.
 - Added FineWeb artifact inventory/build/check CLIs and network-free tests. No
-  production index or training run was started.
+  training run was started.
+- Built and validated the original FineWeb document index: 999,992 unique
+  documents, eight duplicate hashes, 7,999,936 LSH buckets, original-only
+  coverage, and explicit missing-extension status.
+- Added an extension recovery audit and source-ID reacquisition plan without
+  downloading or rebuilding extension data.
 
 ### Changed
 

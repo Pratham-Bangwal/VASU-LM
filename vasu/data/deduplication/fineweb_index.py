@@ -9,7 +9,8 @@ import json
 import os
 from pathlib import Path
 import sqlite3
-from typing import Any, Iterator
+import time
+from typing import Any, Callable, Iterator
 
 from .normalization import (
     NORMALIZATION_VERSION,
@@ -52,6 +53,8 @@ def load_index_config(path: Path) -> FineWebIndexConfig:
     except json.JSONDecodeError as error:
         raise ValueError(f"FineWeb index config is invalid JSON: {path}") from error
     sources = tuple(FineWebSource(**item) for item in payload.pop("sources"))
+    payload["coverage"] = tuple(payload.get("coverage", ("fineweb_original", "fineweb_extension")))
+    payload["missing_coverage"] = tuple(payload.get("missing_coverage", ()))
     config = FineWebIndexConfig(sources=sources, **payload)
     config.validate()
     return config
@@ -102,18 +105,17 @@ def _parse_signature(value: str) -> tuple[int, ...]:
     return tuple(int(item, 16) for item in value.split(","))
 
 
-def _iter_jsonl(source_path: Path, start_line: int) -> Iterator[tuple[int, dict[str, Any]]]:
+def _iter_jsonl(source_path: Path, start_line: int) -> Iterator[tuple[int, dict[str, Any] | None]]:
     with source_path.open("r", encoding="utf-8") as handle:
         for line_number, line in enumerate(handle):
             if line_number < start_line:
                 continue
             try:
                 value = json.loads(line)
-            except json.JSONDecodeError as error:
-                raise ValueError(f"invalid JSON in {source_path} line {line_number + 1}") from error
-            if not isinstance(value, dict):
-                raise ValueError(f"expected JSON object in {source_path} line {line_number + 1}")
-            yield line_number, value
+            except json.JSONDecodeError:
+                yield line_number, None
+                continue
+            yield line_number, value if isinstance(value, dict) else None
 
 
 def build_fineweb_document_index(
@@ -122,8 +124,10 @@ def build_fineweb_document_index(
     repository_root: Path,
     resume: bool = False,
     stop_after_documents: int | None = None,
+    progress_callback: Callable[[dict[str, int | str]], None] | None = None,
 ) -> dict[str, Any]:
     """Build a bounded index into a temporary DB and atomically promote it."""
+    started = time.monotonic()
     config.validate()
     root = repository_root.resolve()
     output = root / config.output_path
@@ -174,6 +178,7 @@ def build_fineweb_document_index(
     total_rejected = 0
     total_duplicates = 0
     stopped_by_bound = False
+    indexed_now = int(connection.execute("SELECT COUNT(*) FROM documents").fetchone()[0])
     for source, path, source_hash in source_info:
         row = connection.execute(
             "SELECT source_sha256,next_line,processed,rejected,duplicate_hashes,complete "
@@ -193,12 +198,12 @@ def build_fineweb_document_index(
             total_rejected += rejected
             total_duplicates += duplicates
             continue
+        bucket_buffer: list[tuple[str, str]] = []
         for line_number, payload in _iter_jsonl(path, next_line):
-            indexed_now = connection.execute("SELECT COUNT(*) FROM documents").fetchone()[0]
             if config.maximum_documents is not None and indexed_now >= config.maximum_documents:
                 stopped_by_bound = True
                 break
-            text = payload.get(source.text_field)
+            text = payload.get(source.text_field) if payload is not None else None
             if not isinstance(text, str) or not text.strip():
                 rejected += 1
             else:
@@ -243,19 +248,26 @@ def build_fineweb_document_index(
                     ),
                 ).rowcount
                 if inserted:
-                    connection.executemany(
-                        "INSERT OR IGNORE INTO buckets(bucket_key,document_id) VALUES(?,?)",
-                        ((key, record.document_id) for key in bucket_keys(signature, config.bands)),
+                    bucket_buffer.extend(
+                        (key, record.document_id)
+                        for key in bucket_keys(signature, config.bands)
                     )
                     processed += 1
+                    indexed_now += 1
                 else:
                     duplicates += 1
             next_line = line_number + 1
-            connection.execute(
-                "INSERT OR REPLACE INTO source_progress VALUES(?,?,?,?,?,?,0)",
-                (source.source_id, source_hash, next_line, processed, rejected, duplicates),
-            )
             if (processed + rejected + duplicates) % config.batch_size == 0:
+                if bucket_buffer:
+                    connection.executemany(
+                        "INSERT OR IGNORE INTO buckets(bucket_key,document_id) VALUES(?,?)",
+                        bucket_buffer,
+                    )
+                    bucket_buffer.clear()
+                connection.execute(
+                    "INSERT OR REPLACE INTO source_progress VALUES(?,?,?,?,?,?,0)",
+                    (source.source_id, source_hash, next_line, processed, rejected, duplicates),
+                )
                 connection.commit()
                 atomic_write_json(
                     progress_path,
@@ -267,9 +279,30 @@ def build_fineweb_document_index(
                         "indexed_documents": connection.execute("SELECT COUNT(*) FROM documents").fetchone()[0],
                     },
                 )
+                if progress_callback is not None:
+                    progress_callback(
+                        {
+                            "source_id": source.source_id,
+                            "next_line": next_line,
+                            "indexed_documents": int(
+                                connection.execute("SELECT COUNT(*) FROM documents").fetchone()[0]
+                            ),
+                            "rejected_records": rejected,
+                            "duplicate_hashes": duplicates,
+                        }
+                    )
             if stop_after_documents is not None and connection.execute(
                 "SELECT COUNT(*) FROM documents"
             ).fetchone()[0] >= stop_after_documents:
+                if bucket_buffer:
+                    connection.executemany(
+                        "INSERT OR IGNORE INTO buckets(bucket_key,document_id) VALUES(?,?)",
+                        bucket_buffer,
+                    )
+                connection.execute(
+                    "INSERT OR REPLACE INTO source_progress VALUES(?,?,?,?,?,?,0)",
+                    (source.source_id, source_hash, next_line, processed, rejected, duplicates),
+                )
                 connection.commit()
                 connection.close()
                 atomic_write_json(
@@ -283,6 +316,16 @@ def build_fineweb_document_index(
                     },
                 )
                 raise InterruptedError("synthetic bounded interruption")
+        if bucket_buffer:
+            connection.executemany(
+                "INSERT OR IGNORE INTO buckets(bucket_key,document_id) VALUES(?,?)",
+                bucket_buffer,
+            )
+        connection.execute(
+            "INSERT OR REPLACE INTO source_progress VALUES(?,?,?,?,?,?,0)",
+            (source.source_id, source_hash, next_line, processed, rejected, duplicates),
+        )
+        connection.commit()
         total_processed += processed
         total_rejected += rejected
         total_duplicates += duplicates
@@ -295,6 +338,31 @@ def build_fineweb_document_index(
         connection.commit()
 
     indexed_documents = int(connection.execute("SELECT COUNT(*) FROM documents").fetchone()[0])
+    input_documents = int(
+        connection.execute(
+            "SELECT COALESCE(SUM(processed + rejected + duplicate_hashes),0) FROM source_progress"
+        ).fetchone()[0]
+    )
+    if complete and config.expected_document_count is not None and input_documents != config.expected_document_count:
+        connection.close()
+        raise ValueError(
+            f"input document count mismatch: expected={config.expected_document_count}, "
+            f"actual={input_documents}"
+        )
+    complete_ids = int(
+        connection.execute(
+            "SELECT COUNT(*) FROM documents WHERE document_id NOT LIKE '%:line:%'"
+        ).fetchone()[0]
+    )
+    url_records = int(
+        connection.execute("SELECT COUNT(*) FROM documents WHERE source_url IS NOT NULL").fetchone()[0]
+    )
+    incomplete_provenance = int(
+        connection.execute(
+            "SELECT COUNT(*) FROM documents WHERE provenance_completeness='incomplete'"
+        ).fetchone()[0]
+    )
+    bucket_count = int(connection.execute("SELECT COUNT(*) FROM buckets").fetchone()[0])
     complete = not stopped_by_bound
     connection.execute(
         "INSERT OR REPLACE INTO metadata(key,value) VALUES('completion_status',?)",
@@ -311,15 +379,24 @@ def build_fineweb_document_index(
         "configuration_hash": config_hash,
         "completion_status": "complete" if complete else "bounded_complete",
         "coverage": "configured_sources_only",
+        "coverage_sources": list(config.coverage),
+        "missing_coverage": list(config.missing_coverage),
+        "training_ready": complete and not config.missing_coverage,
+        "input_documents": input_documents,
         "indexed_documents": indexed_documents,
         "rejected_records": total_rejected,
         "duplicate_hashes": total_duplicates,
+        "records_with_complete_ids": complete_ids,
+        "records_with_urls": url_records,
+        "records_with_incomplete_provenance": incomplete_provenance,
+        "lsh_bucket_count": bucket_count,
         "source_files": [
             {"source_id": source.source_id, "path": source.path, "sha256": source_hash}
             for source, _, source_hash in source_info
         ],
         "output_path": config.output_path,
         "output_sha256": output_hash,
+        "elapsed_seconds": round(time.monotonic() - started, 3),
         "created_at": _utc_now(),
     }
     atomic_write_json(metadata_path, metadata)

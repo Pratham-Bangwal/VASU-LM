@@ -2,17 +2,22 @@
 
 ## FineWeb document recovery and index readiness
 
-The versioned SQLite index implementation supports normalized SHA-256 exact
+The versioned SQLite index supports normalized SHA-256 exact
 lookup and deterministic word-5-gram MinHash/LSH candidates using normalization
 version `vasu_cross_source_nfc_casefold_ws_v1`. The original
 `data/raw/pretrain/fineweb_1m.jsonl` is document-level recoverable, although it
 lacks original IDs and URLs; its stable local reference is its line number and
-its provenance is explicitly incomplete.
+its provenance is explicitly incomplete. The completed original index contains
+999,992 unique documents from 1,000,000 input lines and collapses eight
+duplicate normalized hashes. SQLite integrity, manifest hash, deterministic
+exact lookups, and normalization-version rejection passed.
 
 The extension is not document-level recoverable from its local token binary.
 Its dedup database contains reusable historical exact hashes and extension
-source IDs, but no text or shingles for compatible near matching. No complete
-production index was built. Bounded indexes are not accepted by the default
+source IDs, but no text or shingles for compatible near matching. All 379,247
+retained extension fingerprints have source IDs, so recovery is classified as
+`source_id_reacquisition_possible`, not exact reconstruction. Bounded or
+original-only indexes are not accepted by the default
 factual preparation gate; extension document text must first be reacquired
 from the pinned source. Token binaries are never treated as document indexes.
 

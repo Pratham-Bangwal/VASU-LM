@@ -5,6 +5,8 @@
 - Completed: versioned, resumable FineWeb document-index schema, exact lookup,
   word-5-gram MinHash/LSH candidate lookup, shared normalization, synthetic
   validation, and Wikimedia enforcement integration.
+- Completed: real original-source build covering 1,000,000 inputs and 999,992
+  unique indexed documents, with SQLite integrity and output-hash validation.
 - Blocked: production coverage until a full compatible index is built and the
   extension's document-level text is reacquired from an authoritative source.
 - Not started: default factual-pilot preparation or training.

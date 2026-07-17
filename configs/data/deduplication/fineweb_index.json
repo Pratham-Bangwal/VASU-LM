@@ -8,7 +8,15 @@
   "signature_size": 64,
   "bands": 8,
   "batch_size": 1000,
-  "maximum_documents": 10000,
+  "maximum_documents": null,
+  "expected_document_count": 1000000,
+  "replacement_policy": "refuse_existing_use_explicit_restart",
+  "coverage": [
+    "fineweb_original"
+  ],
+  "missing_coverage": [
+    "fineweb_extension"
+  ],
   "sources": [
     {
       "source_id": "fineweb_edu_original_train",
@@ -20,7 +28,7 @@
       "source_url_field": null,
       "document_id_field": null,
       "provenance_completeness": "incomplete",
-      "expected_sha256": null
+      "expected_sha256": "0748f0871487b95f7bccc84515ab9fe590422b8903e8ef8bcfc069517c00ca55"
     }
   ]
 }

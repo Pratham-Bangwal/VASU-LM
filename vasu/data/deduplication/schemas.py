@@ -53,6 +53,10 @@ class FineWebIndexConfig:
     batch_size: int
     maximum_documents: int | None
     sources: tuple[FineWebSource, ...]
+    expected_document_count: int | None = None
+    replacement_policy: str = "refuse_existing_use_explicit_restart"
+    coverage: tuple[str, ...] = ("fineweb_original", "fineweb_extension")
+    missing_coverage: tuple[str, ...] = ()
 
     def validate(self) -> None:
         if self.format_version != INDEX_FORMAT_VERSION:
@@ -69,6 +73,17 @@ class FineWebIndexConfig:
             raise ValueError("batch_size must be positive")
         if self.maximum_documents is not None and self.maximum_documents < 1:
             raise ValueError("maximum_documents must be positive or null")
+        if self.expected_document_count is not None and self.expected_document_count < 1:
+            raise ValueError("expected_document_count must be positive or null")
+        if self.replacement_policy not in {
+            "refuse_existing_use_explicit_restart",
+            "refuse_existing",
+        }:
+            raise ValueError("unsupported index replacement policy")
+        if not self.coverage or any(not value for value in self.coverage):
+            raise ValueError("index coverage must be non-empty")
+        if set(self.coverage) & set(self.missing_coverage):
+            raise ValueError("coverage and missing_coverage must not overlap")
         if len({source.source_id for source in self.sources}) != len(self.sources):
             raise ValueError("duplicate FineWeb source IDs")
         for source in self.sources:

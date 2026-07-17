@@ -2,17 +2,25 @@
 
 ## FineWeb document-level deduplication status
 
-The document-index schema and Wikimedia integration are implemented, but the
-factual pilot remains blocked. The local original FineWeb JSONL is recoverable
-as one text document per line, with incomplete URL/source-ID provenance. The
-FineWeb extension is present only as a token binary plus an exact-fingerprint
-database; its document text is unavailable for compatible near-duplicate
-indexing. No real index was built and no training occurred in this work.
+The production original-source index is complete. It contains 999,992 unique
+documents from 1,000,000 JSONL records, collapses eight normalized duplicates,
+and contains 7,999,936 LSH bucket entries. The 4,876,034,048-byte SQLite file
+has SHA-256 `07508a0fe83023cfe0a624ae1af21cba4c2e6dffe62f83b7078656bb168888cd`.
+All indexed records use stable line-based IDs and explicitly incomplete
+provenance because the source JSONL retained only `text`.
+
+The FineWeb extension is present only as a token binary plus an exact-
+fingerprint database; its text is unavailable for compatible near-duplicate
+indexing. Therefore the factual pilot remains blocked and no training occurred.
 
 The default factual mode requires a complete compatible index. Smoke and
 broad-review modes may report the blocked state without treating their output
 as training-ready. Cross-source comparison uses normalization version
 `vasu_cross_source_nfc_casefold_ws_v1`.
+
+Read-only comparison of the 50-chunk Wikimedia broad-review artifact found no
+exact, high-confidence near, or ambiguous overlaps against the original index.
+This result does not make the review artifact training data.
 
 ## Next-generation planning status
 

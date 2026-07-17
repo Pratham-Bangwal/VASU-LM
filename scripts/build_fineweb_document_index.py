@@ -61,7 +61,10 @@ def main() -> int:
     if args.dry_run:
         print("FineWeb document index dry-run: configuration valid")
         print(f"Configured sources: {len(config.sources)}")
-        print(f"Bounded maximum documents: {config.maximum_documents}")
+        print(f"Maximum documents: {config.maximum_documents}")
+        print(f"Expected documents: {config.expected_document_count}")
+        print(f"Coverage: {config.coverage}")
+        print(f"Missing coverage: {config.missing_coverage}")
         print("Full index build performed: no")
         return 0
     output = REPOSITORY_ROOT / config.output_path
@@ -74,7 +77,14 @@ def main() -> int:
         print(f"FineWeb document index valid: {output}")
         return 0
     metadata = build_fineweb_document_index(
-        config, repository_root=REPOSITORY_ROOT, resume=args.resume
+        config,
+        repository_root=REPOSITORY_ROOT,
+        resume=args.resume,
+        progress_callback=lambda progress: print(
+            "Indexed {indexed_documents:,}/{next_line:,} lines; rejected={rejected_records:,}; "
+            "duplicates={duplicate_hashes:,}".format(**progress),
+            flush=True,
+        ),
     )
     print(json.dumps(metadata, indent=2))
     return 0
