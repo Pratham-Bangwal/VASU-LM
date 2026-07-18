@@ -78,6 +78,52 @@ def fineweb_document_index_status(
     repository_root: Path,
     configured_path: str = "data/manifests/pretrain/fineweb_document_index.sqlite3",
 ) -> dict[str, object]:
+    combined_path = repository_root / "data/manifests/pretrain/fineweb_combined_coverage.json"
+    if combined_path.is_file():
+        try:
+            combined = json.loads(combined_path.read_text(encoding="utf-8"))
+            if combined.get("status") != "complete" or not combined.get("training_ready"):
+                raise ValueError("combined FineWeb coverage is not complete")
+            if combined.get("normalization_version") != NORMALIZATION_VERSION:
+                raise ValueError("combined FineWeb normalization version mismatch")
+            expected_sources = {"fineweb_original", "fineweb_extension"}
+            if set(combined.get("coverage_sources", [])) != expected_sources:
+                raise ValueError("combined FineWeb source identities are incomplete")
+            index_paths: list[str] = []
+            for item in combined.get("indexes", []):
+                relative = item.get("index_path")
+                if not isinstance(relative, str):
+                    raise ValueError("combined FineWeb coverage has an invalid index path")
+                database = repository_root / relative
+                if item.get("index_sha256") != index_sha256_file(database):
+                    raise ValueError(f"combined FineWeb index hash mismatch: {relative}")
+                index = FineWebDocumentIndex(database)
+                index.close()
+                index_paths.append(relative)
+            if len(index_paths) != 2:
+                raise ValueError("combined FineWeb coverage must reference exactly two indexes")
+        except (
+            FileNotFoundError,
+            json.JSONDecodeError,
+            ValueError,
+            sqlite3.DatabaseError,
+        ) as error:
+            return {
+                "status": "blocked",
+                "path": combined_path.relative_to(repository_root).as_posix(),
+                "reason": str(error),
+                "normalization_version": NORMALIZATION_VERSION,
+            }
+        return {
+            "status": "available",
+            "path": index_paths[0],
+            "index_paths": index_paths,
+            "coverage_manifest": combined_path.relative_to(repository_root).as_posix(),
+            "normalization_version": NORMALIZATION_VERSION,
+            "coverage": sorted(expected_sources),
+            "missing_coverage": [],
+            "training_ready": True,
+        }
     preferred = repository_root / configured_path
     if preferred.is_file():
         try:
@@ -107,6 +153,9 @@ def fineweb_document_index_status(
             "status": "available",
             "path": preferred.relative_to(repository_root).as_posix(),
             "normalization_version": NORMALIZATION_VERSION,
+            "coverage": metadata.get("coverage_sources", []),
+            "missing_coverage": metadata.get("missing_coverage", []),
+            "training_ready": bool(metadata.get("training_ready", False)),
         }
     candidates = (
         repository_root / "data/manifests/pretrain/fineweb_document_hashes.jsonl",

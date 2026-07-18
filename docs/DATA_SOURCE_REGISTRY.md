@@ -12,16 +12,15 @@ its provenance is explicitly incomplete. The completed original index contains
 duplicate normalized hashes. SQLite integrity, manifest hash, deterministic
 exact lookups, and normalization-version rejection passed.
 
-The extension is not document-level recoverable from its local token binary.
-Its dedup database contains reusable historical exact hashes and extension
-source IDs, but no text or shingles for compatible near matching. A bounded
-2026-07-17 official Dataset Viewer smoke selected 100 evenly spread IDs at the
-pinned revision; all 100 were found and reproduced their historical
-`SHA-256(text.strip())` values, with no mismatch or duplicate. This proves the
-bounded source-ID mechanism, not complete extension recovery. Bounded or
-original-only indexes are not accepted by the default factual preparation
-gate; all extension document text must first be reacquired and indexed. Token
-binaries are never treated as document indexes.
+The extension is not document-level recoverable from its local token binary
+alone. Its dedup database contained reusable historical exact hashes and
+extension source IDs, which enabled the 2026-07-17 production recovery against
+the official Dataset Viewer pinned revision. All 379,247 retained source IDs
+were recovered and reproduced their historical `SHA-256(text.strip())` values.
+The recovered gzip JSONL artifact was then indexed with the same normalization
+version as the original source. Combined coverage now includes both the
+original and extension FineWeb indexes. Token binaries are still never treated
+as document indexes.
 
 ## Purpose
 
@@ -61,7 +60,7 @@ Registry files live under `configs/data/sources/`.
 | --- | --- | --- | --- |
 | `fineweb_edu_original_train` | FineWeb-Edu `CC-MAIN-2013-20`, fixed local training region | approved | Existing control/general/educational source |
 | `fineweb_edu_extension_2025_26` | FineWeb-Edu `CC-MAIN-2025-26`, validated extension | approved | Existing educational continuation source |
-| `wikipedia_en_20231101_planned` | English Wikipedia `20231101.en` at `e6057dc557255a03c9c3c47ceab0eb44353b1bc5` | approved | Pinned factual pilot source; preparation has not begun |
+| `wikipedia_en_20231101_planned` | English Wikipedia `20231101.en` at `e6057dc557255a03c9c3c47ceab0eb44353b1bc5` | approved | Pinned factual source; bounded default preparation validated, training not started |
 | `finemath_4plus_planned` | FineMath 4+ | blocked | Planned mathematics pilot; immutable revision and risk review required |
 | `permissive_python_code_planned` | The Stack v2 permissive Python allowlist | blocked | Planned code pilot; access, per-file licensing, and redistribution review required |
 | `vasu_verified_reasoning_v1_planned` | Locally generated verified reasoning v1 | pending | Planned reasoning pilot; generator and validation design incomplete |
@@ -240,18 +239,22 @@ The approved `wikipedia_en_20231101_planned` record is consumed by
 dataset revision, subset, split, and a single shard; dry-run validates this
 registry and the factual mixture readiness gate before any acquisition.
 
-The default pilot cannot exceed 10,000 source rows, 2,000 accepted chunks,
-2,000,000 VASU tokens, one shard, or 1 GB downloaded. It produces a reviewable
+The default pilot cannot exceed 10,000 source rows, 2,000 accepted parent
+documents, 4,000 accepted chunks, 2,000,000 VASU tokens, one shard, or 1 GB
+downloaded. Parent and chunk counters are explicit and independent; the legacy
+`max_accepted_documents` key is interpreted only as a deprecated chunk-limit
+alias. The pipeline produces a reviewable
 document-level JSONL plus progress, preparation manifest, machine-readable
 summary, and text summary. Resume verifies the configuration/source identity
 and reconciles output to the last atomically committed byte offset.
 
-FineWeb cross-source deduplication is currently reported as `blocked`: no
-document-level FineWeb hash/signature index exists locally. If a supported
-normalized SHA-256 index is later supplied, exact hashes are loaded and applied
-by the preparer. Reliable near cross-source deduplication additionally requires
-compatible word-5-gram signatures with normalization and provenance metadata.
-The existing token binaries alone are deliberately not used for this purpose.
+FineWeb cross-source deduplication is available through the combined
+original-plus-extension coverage manifest and compatible document indexes. The
+Wikimedia broad-review artifact was compared against both indexes with zero
+overlap candidates. The existing token binaries alone remain deliberately
+insufficient for this purpose; the gate relies on recovered document text,
+normalized exact hashes, compatible word-5-gram signatures, and provenance
+metadata.
 
 The pinned 420,296,449-byte shard is cached and verified against its
 acquisition metadata and SHA-256. The corrected v2 smoke inspected 2 rows,
@@ -268,7 +271,13 @@ whitespace cleanup. Chunk-level hashes, deduplication, contamination checks,
 token accounting, and parent/source-row provenance use the versioned
 `wikimedia_pilot_document_v2` schema.
 
-The default 2M-token pilot has not run and no Wikimedia training has started.
+The earlier default artifact stopped at the historical 2,000-chunk limit with
+1,036,527 tokens. It remains valid but is limit-bound. The refactored default
+pilot completed at `token_limit` with 279 inspected rows, 262 accepted parent
+documents, 3,751 accepted chunks, and 1,999,974 tokens. The maximum chunk was
+1,024 tokens, no replacement characters were present, one high-confidence
+FineWeb near overlap was rejected, and v3 output validation passed. No
+Wikimedia model training has started.
 
 ### Broad-review evidence
 

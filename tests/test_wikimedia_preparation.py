@@ -37,7 +37,7 @@ from vasu.data.preparation.quality import (
     repair_mojibake,
 )
 from vasu.data.preparation.progress import load_progress, save_progress
-from vasu.data.preparation.reporting import sha256_file
+from vasu.data.preparation.reporting import canonical_json_hash, sha256_file
 from vasu.data.preparation.reporting import atomic_write_json
 from vasu.data.preparation.schemas import (
     PreparationOutputPaths,
@@ -47,6 +47,7 @@ from vasu.data.preparation.schemas import (
 from vasu.data.preparation.token_count import count_tokens
 from vasu.data.preparation.wikimedia import (
     acquire_pinned_shard,
+    config_to_dict,
     load_preparation_config,
     prepare_wikimedia_pilot,
     resolve_paths,
@@ -112,7 +113,8 @@ def make_config(**changes: object) -> WikimediaPreparationConfig:
         random_seed=42,
         max_download_bytes=500_000_000,
         max_raw_examples=100,
-        max_accepted_documents=20,
+        max_accepted_parent_documents=20,
+        max_accepted_chunks=20,
         max_output_tokens=20_000,
         minimum_document_characters=20,
         maximum_document_characters=10_000,
@@ -195,6 +197,24 @@ def run_pipeline(
     return manifest, selected, shard
 
 
+def install_fixed_chunker(
+    monkeypatch: pytest.MonkeyPatch,
+    chunks_per_parent: int,
+) -> None:
+    def fixed_chunks(text: str, *args: object, **kwargs: object) -> list[TextChunk]:
+        parent_marker = "_".join(text.split()[:2])
+        values = [
+            f"{parent_marker} deterministic accepted chunk number {index}"
+            for index in range(chunks_per_parent)
+        ]
+        return [TextChunk(value, len(value.split()), None) for value in values]
+
+    monkeypatch.setattr(
+        "vasu.data.preparation.wikimedia.chunk_document",
+        fixed_chunks,
+    )
+
+
 def build_test_fineweb_index(repository: Path, texts: list[str]) -> str:
     source = repository / "fineweb.jsonl"
     source.write_text(
@@ -235,17 +255,75 @@ def test_valid_configuration_round_trip(tmp_path: Path) -> None:
 
 
 @pytest.mark.parametrize(
+    "field",
+    ["max_accepted_parent_documents", "max_accepted_chunks"],
+)
+def test_explicit_parent_and_chunk_limits_are_required(
+    tmp_path: Path,
+    field: str,
+) -> None:
+    payload = asdict(make_config())
+    payload.pop(field)
+    path = tmp_path / "config.json"
+    path.write_text(json.dumps(payload), encoding="utf-8")
+    with pytest.raises(ValueError, match=f"missing fields.*{field}"):
+        load_preparation_config(path)
+
+
+@pytest.mark.parametrize("value", [True, "20", 20.5])
+def test_limit_types_reject_booleans_strings_and_fractions(value: object) -> None:
+    with pytest.raises(TypeError, match="must be an integer"):
+        validate_preparation_config(
+            replace(make_config(), max_accepted_chunks=value)  # type: ignore[arg-type]
+        )
+
+
+def test_legacy_chunk_limit_maps_with_deprecation_warning(tmp_path: Path) -> None:
+    payload = asdict(make_config())
+    payload.pop("max_accepted_parent_documents")
+    payload.pop("max_accepted_chunks")
+    payload["max_accepted_documents"] = 17
+    path = tmp_path / "legacy.json"
+    path.write_text(json.dumps(payload), encoding="utf-8")
+    with pytest.warns(DeprecationWarning, match="interpreted as 'max_accepted_chunks'"):
+        config = load_preparation_config(path)
+    assert config.max_accepted_chunks == 17
+    assert config.max_accepted_parent_documents == 17
+    assert "max_accepted_documents" not in config_to_dict(config)
+
+
+def test_legacy_and_explicit_chunk_limits_conflict(tmp_path: Path) -> None:
+    payload = asdict(make_config())
+    payload["max_accepted_documents"] = 20
+    path = tmp_path / "conflict.json"
+    path.write_text(json.dumps(payload), encoding="utf-8")
+    with pytest.raises(ValueError, match="either.*not both"):
+        load_preparation_config(path)
+
+
+def test_resolved_configuration_hash_is_deterministic(tmp_path: Path) -> None:
+    path = tmp_path / "config.json"
+    write_config(path, make_config())
+    first = load_preparation_config(path)
+    second = load_preparation_config(path)
+    assert canonical_json_hash(config_to_dict(first)) == canonical_json_hash(
+        config_to_dict(second)
+    )
+
+
+@pytest.mark.parametrize(
     ("field", "value"),
     [
         ("max_download_bytes", 1_000_000_001),
         ("max_raw_examples", 10_001),
-        ("max_accepted_documents", 2_001),
+        ("max_accepted_parent_documents", 2_001),
+        ("max_accepted_chunks", 4_001),
         ("max_output_tokens", 2_000_001),
         ("max_output_tokens", 0),
     ],
 )
 def test_invalid_limits_are_rejected(field: str, value: int) -> None:
-    with pytest.raises(ValueError, match="limit|positive"):
+    with pytest.raises(ValueError, match="limit|positive|greater than zero"):
         validate_preparation_config(replace(make_config(), **{field: value}))
 
 
@@ -274,7 +352,11 @@ def test_unapproved_source_is_rejected(tmp_path: Path) -> None:
         validate_registry_approval(make_config(), tmp_path)
 
 
-def test_dry_run_performs_no_download(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+def test_dry_run_performs_no_download(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    capsys: pytest.CaptureFixture[str],
+) -> None:
     import scripts.prepare_wikimedia_pilot as cli
 
     root = Path(__file__).resolve().parents[1]
@@ -285,6 +367,9 @@ def test_dry_run_performs_no_download(tmp_path: Path, monkeypatch: pytest.Monkey
         lambda *args, **kwargs: pytest.fail("dry-run attempted acquisition"),
     )
     assert cli.main(["--config", str(root / "configs/data/preparation/wikimedia_pilot.json"), "--dry-run"]) == 0
+    output = capsys.readouterr().out
+    assert "Maximum accepted parent documents: 2,000" in output
+    assert "Maximum accepted chunks: 4,000" in output
 
 
 def test_acquisition_uses_one_pinned_shard(
@@ -427,12 +512,100 @@ def test_pipeline_limits_provenance_hashes_and_rejections(repository: Path) -> N
     assert records[0]["source_revision"] == PINNED_REVISION
 
 
+def test_parent_and_chunk_limits_are_counted_independently(
+    repository: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    install_fixed_chunker(monkeypatch, 5)
+    config = make_config(
+        max_accepted_parent_documents=2,
+        max_accepted_chunks=7,
+        max_output_tokens=20_000,
+        contamination_check_enabled=False,
+        exact_deduplication_enabled=False,
+        near_deduplication_enabled=False,
+    )
+    manifest, _, _ = run_pipeline(repository, [article(1), article(2)], config)
+    assert manifest["accepted_parent_documents"] == 2
+    assert manifest["accepted_chunks"] == 7
+    assert manifest["completion_status"] == "accepted_chunk_limit"
+
+
+def test_parent_limit_stops_before_accepting_a_new_parent(
+    repository: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    install_fixed_chunker(monkeypatch, 5)
+    config = make_config(
+        max_accepted_parent_documents=2,
+        max_accepted_chunks=100,
+        max_output_tokens=20_000,
+        contamination_check_enabled=False,
+        exact_deduplication_enabled=False,
+        near_deduplication_enabled=False,
+    )
+    manifest, _, _ = run_pipeline(
+        repository,
+        [article(1), article(2), article(3)],
+        config,
+    )
+    assert manifest["accepted_parent_documents"] == 2
+    assert manifest["accepted_chunks"] == 10
+    assert manifest["completion_status"] == "parent_document_limit"
+
+
+def test_raw_example_limit_is_independent(
+    repository: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    install_fixed_chunker(monkeypatch, 1)
+    config = make_config(
+        max_raw_examples=2,
+        max_accepted_parent_documents=10,
+        max_accepted_chunks=10,
+        max_output_tokens=20_000,
+        contamination_check_enabled=False,
+        exact_deduplication_enabled=False,
+        near_deduplication_enabled=False,
+    )
+    manifest, _, _ = run_pipeline(
+        repository,
+        [article(1), article(2), article(3)],
+        config,
+    )
+    assert manifest["raw_examples"] == 2
+    assert manifest["accepted_parent_documents"] == 2
+    assert manifest["accepted_chunks"] == 2
+    assert manifest["completion_status"] == "raw_example_limit"
+
+
 def test_atomic_progress_write_and_load(tmp_path: Path) -> None:
     path = tmp_path / "progress.json"
     progress = PreparationProgress("hash", "source", "revision", "shard")
     save_progress(path, progress)
     assert load_progress(path).configuration_hash == "hash"
     assert not list(tmp_path.glob("*.tmp"))
+
+
+def test_legacy_progress_fails_without_unsafe_counter_migration(
+    tmp_path: Path,
+) -> None:
+    path = tmp_path / "progress.json"
+    path.write_text(
+        json.dumps(
+            {
+                "configuration_hash": "hash",
+                "source_id": "source",
+                "pinned_revision": "revision",
+                "shard_identifier": "shard",
+                "accepted_documents": 4,
+                "output_tokens": 100,
+            }
+        ),
+        encoding="utf-8",
+    )
+    with pytest.raises(ValueError, match="cannot be migrated safely"):
+        load_progress(path)
 
 
 def test_atomic_write_retries_transient_windows_lock(
@@ -486,8 +659,13 @@ def test_resume_has_no_duplicates_and_rejects_config_mismatch(repository: Path) 
         resume=True,
     )
     records = resolve_paths(config, repository)["output_jsonl"].read_text(encoding="utf-8").splitlines()
-    assert len(records) == manifest["accepted_documents"] == 3
+    assert len(records) == manifest["accepted_chunks"] == 3
+    assert manifest["accepted_parent_documents"] == 3
     assert len({json.loads(line)["document_id"] for line in records}) == 3
+    progress = load_progress(resolve_paths(config, repository)["progress_json"])
+    assert progress.accepted_chunks == 3
+    assert progress.accepted_parent_documents == 3
+    assert len(set(progress.accepted_parent_document_ids or [])) == 3
 
 
 def test_restart_is_clean_and_deterministic(repository: Path) -> None:
@@ -504,6 +682,8 @@ def test_restart_is_clean_and_deterministic(repository: Path) -> None:
     )
     assert sha256_file(output) == first_hash
     assert first["total_vasu_tokens"] == second["total_vasu_tokens"]
+    assert first["accepted_parent_documents"] == second["accepted_parent_documents"]
+    assert first["accepted_chunks"] == second["accepted_chunks"]
 
 
 def test_fineweb_cross_dedup_blocked_without_document_index(tmp_path: Path) -> None:
@@ -533,6 +713,7 @@ def test_wikimedia_exact_fineweb_match_is_rejected(repository: Path) -> None:
     )
     manifest, _, _ = run_pipeline(repository, [article(1, text)], config)
     assert manifest["accepted_chunks"] == 0
+    assert manifest["accepted_parent_documents"] == 0
     assert manifest["rejection_reasons"]["fineweb_exact_duplicate"] == 1
     assert manifest["fineweb_overlap_matches"][0]["decision"] == "reject"
 
@@ -548,6 +729,7 @@ def test_wikimedia_near_fineweb_match_is_rejected(repository: Path) -> None:
     )
     manifest, _, _ = run_pipeline(repository, [article(1, changed)], config)
     assert manifest["accepted_chunks"] == 0
+    assert manifest["accepted_parent_documents"] == 0
     assert manifest["rejection_reasons"]["fineweb_near_duplicate"] == 1
 
 
@@ -825,8 +1007,15 @@ def test_chunk_output_provenance_hashes_and_limits(repository: Path) -> None:
         .read_text(encoding="utf-8")
         .splitlines()
     ]
-    assert manifest["format_version"] == "wikimedia_pilot_v2"
+    assert manifest["format_version"] == "wikimedia_pilot_v3"
     assert manifest["accepted_chunks"] == len(records) >= 3
+    assert manifest["accepted_parent_documents"] == 1
+    assert "accepted_documents" not in manifest
+    summary_text = resolve_paths(config, repository)["summary_text"].read_text(
+        encoding="utf-8"
+    )
+    assert "Accepted parent documents: 1" in summary_text
+    assert f"Accepted chunks: {len(records)}" in summary_text
     for index, record in enumerate(records):
         assert record["format_version"] == "wikimedia_pilot_document_v2"
         assert record["parent_document_id"] == "7"
@@ -851,6 +1040,7 @@ def test_deduplication_operates_on_final_chunks(repository: Path) -> None:
     )
     manifest, _, _ = run_pipeline(repository, [article(1, text), article(2, text)], config)
     assert manifest["accepted_chunks"] == 3
+    assert manifest["accepted_parent_documents"] == 1
     assert manifest["exact_duplicates"] == 3
 
 
@@ -868,6 +1058,7 @@ def test_contamination_operates_on_final_chunks(repository: Path) -> None:
     manifest, _, _ = run_pipeline(repository, [article(1, text)], config)
     assert manifest["rejection_reasons"]["contamination_exact_prompt"] == 1
     assert manifest["accepted_chunks"] == 1
+    assert manifest["accepted_parent_documents"] == 1
 
 
 def test_token_limit_accounting_uses_chunks(repository: Path) -> None:
@@ -884,6 +1075,7 @@ def test_token_limit_accounting_uses_chunks(repository: Path) -> None:
     manifest, _, _ = run_pipeline(repository, [article(1, text)], config)
     assert manifest["completion_status"] == "token_limit"
     assert manifest["accepted_chunks"] == 1
+    assert manifest["accepted_parent_documents"] == 1
     assert manifest["total_vasu_tokens"] == 6
 
 
@@ -921,6 +1113,7 @@ def test_final_chunk_quality_gate_rejects_replacement_and_keeps_clean_sibling(
     assert manifest["rejection_reasons"]["replacement_character"] == 1
     assert manifest["quality_rejections"] == 1
     assert manifest["accepted_chunks"] == 1
+    assert manifest["accepted_parent_documents"] == 1
     assert manifest["total_vasu_tokens"] == len(tokenizer.encode(clean))
     assert [record["cleaned_text"] for record in records] == [clean]
 
@@ -943,6 +1136,7 @@ def test_source_replacement_character_is_rejected_before_chunking(
     assert manifest["rejection_reasons"]["replacement_character"] == 1
     assert manifest["quality_rejections"] == 1
     assert manifest["accepted_chunks"] == 1
+    assert manifest["accepted_parent_documents"] == 1
 
 
 def test_chunked_resume_is_deterministic(repository: Path) -> None:
@@ -974,7 +1168,32 @@ def test_chunked_resume_is_deterministic(repository: Path) -> None:
     )
     records = resolve_paths(config, repository)["output_jsonl"].read_text(encoding="utf-8").splitlines()
     assert len(records) == manifest["accepted_chunks"]
+    assert manifest["accepted_parent_documents"] == 1
     assert len({json.loads(line)["chunk_id"] for line in records}) == len(records)
+
+
+def test_default_mode_can_exceed_two_thousand_chunks(
+    repository: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    install_fixed_chunker(monkeypatch, 2_001)
+    monkeypatch.setattr(
+        "vasu.data.preparation.wikimedia.save_progress",
+        lambda *args, **kwargs: None,
+    )
+    monkeypatch.setattr("vasu.data.preparation.wikimedia.os.fsync", lambda *args: None)
+    config = make_config(
+        max_accepted_parent_documents=20,
+        max_accepted_chunks=4_000,
+        max_output_tokens=20_000,
+        contamination_check_enabled=False,
+        exact_deduplication_enabled=False,
+        near_deduplication_enabled=False,
+    )
+    manifest, _, _ = run_pipeline(repository, [article(1)], config)
+    assert manifest["accepted_parent_documents"] == 1
+    assert manifest["accepted_chunks"] == 2_001
+    assert manifest["completion_status"] == "source_exhausted"
 
 
 def test_previous_v1_output_is_rejected_clearly(repository: Path) -> None:
@@ -983,7 +1202,7 @@ def test_previous_v1_output_is_rejected_clearly(repository: Path) -> None:
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     manifest["format_version"] = "wikimedia_pilot_v1"
     manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
-    with pytest.raises(ValueError, match="expected wikimedia_pilot_v2"):
+    with pytest.raises(ValueError, match="expected wikimedia_pilot_v2 or wikimedia_pilot_v3"):
         validate_preparation_output(
             config, repository_root=repository, tokenizer=WordTokenizer()
         )
@@ -1022,7 +1241,8 @@ def test_review_mode_paths_and_limits_do_not_overlap_smoke() -> None:
     smoke = base.for_smoke_test()
     review = base.for_review_sample()
     assert review.max_raw_examples == 100  # Base test fixture is already capped.
-    assert review.max_accepted_documents == 20
+    assert review.max_accepted_parent_documents == 20
+    assert review.max_accepted_chunks == 20
     assert review.max_output_tokens == 20_000
     assert review.review_sampling_enabled
     assert review.reference_section_behavior == "flag"
@@ -1038,7 +1258,8 @@ def test_production_review_mode_hard_defaults() -> None:
         root / "configs/data/preparation/wikimedia_pilot.json"
     ).for_review_sample()
     assert config.max_raw_examples == 500
-    assert config.max_accepted_documents == 50
+    assert config.max_accepted_parent_documents == 50
+    assert config.max_accepted_chunks == 50
     assert config.max_output_tokens == 50_000
     assert config.review_max_chunks_per_article == 5
 
@@ -1058,7 +1279,8 @@ def test_review_manifest_records_selected_and_inspected_rows(repository: Path) -
         review_sampling_enabled=True,
         review_max_chunks_per_article=5,
         max_raw_examples=10,
-        max_accepted_documents=20,
+        max_accepted_parent_documents=20,
+        max_accepted_chunks=20,
     )
     manifest, _, _ = run_pipeline(repository, rows, config)
     selection = manifest["row_selection"]
@@ -1074,7 +1296,8 @@ def test_review_resume_is_deterministic(repository: Path) -> None:
         review_sampling_enabled=True,
         review_max_chunks_per_article=5,
         max_raw_examples=10,
-        max_accepted_documents=20,
+        max_accepted_parent_documents=20,
+        max_accepted_chunks=20,
     )
     shard = repository / "input.parquet"
     write_parquet(shard, rows)
@@ -1199,7 +1422,8 @@ def test_review_mode_caps_chunks_per_article_for_diversity(repository: Path) -> 
         review_sampling_enabled=True,
         review_max_chunks_per_article=2,
         max_raw_examples=3,
-        max_accepted_documents=6,
+        max_accepted_parent_documents=6,
+        max_accepted_chunks=6,
         target_chunk_tokens=10,
         maximum_chunk_tokens=10,
         minimum_chunk_tokens=3,

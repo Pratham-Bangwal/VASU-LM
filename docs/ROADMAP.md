@@ -7,13 +7,14 @@
 - [x] Pass a 100-ID spread smoke with 100 exact historical hash matches.
 - [x] Benchmark 1,000 IDs across serial, concurrency 2/4/8, and OR batches
   5/10/25; select batch 25, concurrency 1, and a conservative 2 RPS ceiling.
-- [ ] Explicitly authorize and run the resumable full reacquisition.
-- [ ] Build and validate compatible extension coverage under
+- [x] Run the resumable full reacquisition for all 379,247 retained extension
+  source IDs with 379,247 exact historical text-hash matches.
+- [x] Build and validate compatible extension coverage under
   `vasu_cross_source_nfc_casefold_ws_v1`.
-- [ ] Re-run the factual-pilot readiness gate only after complete coverage.
+- [x] Re-run the factual-pilot readiness gate after complete coverage.
 
-The smoke did not reacquire the full extension, build an index, or start
-training.
+The completed recovery and indexing work did not start model training or
+authorize the default factual pilot.
 
 ## FineWeb cross-source deduplication gate
 
@@ -22,9 +23,13 @@ training.
   validation, and Wikimedia enforcement integration.
 - Completed: real original-source build covering 1,000,000 inputs and 999,992
   unique indexed documents, with SQLite integrity and output-hash validation.
-- Blocked: production coverage until a full compatible index is built and the
-  extension's document-level text is reacquired from an authoritative source.
-- Not started: default factual-pilot preparation or training.
+- Completed: production extension source-ID recovery, compatible extension
+  document index, combined original-plus-extension coverage manifest, and a
+  Wikimedia broad-review overlap check with zero candidates.
+- Completed: refactored default factual-pilot preparation reached the token
+  ceiling with 262 parent documents, 3,751 chunks, and 1,999,974 tokens; its
+  v3 manifest and output validation passed.
+- Not started: factual-pilot model training.
 
 ## Next-generation planning update
 
@@ -54,11 +59,15 @@ Source-governance progress:
   17,237 tokens, and a 1,022-token observed maximum;
 - completed: deterministic broad review across the shard, producing 50 chunks
   from 14 parent articles and 26,435 tokens with a 938-token maximum;
-- next: review broader bounded samples before deciding whether to authorize the
-  default 2M-token pilot;
-- unchanged: the default pilot and factual-pilot training have not started;
-- blocked: cross-FineWeb document deduplication until a versioned normalized
-  document-hash and compatible word-shingle signature index exists;
+- completed: split the ambiguous accepted-document counter into independent
+  parent-document and chunk limits, then regenerate the default pilot to
+  1,999,974 tokens with zero replacement characters and one rejected FineWeb
+  near overlap;
+- next: review the validated default pilot and decide whether to authorize a
+  controlled factual continuation experiment;
+- unchanged: factual-pilot model training has not started;
+- available: cross-FineWeb document deduplication through the combined
+  original-plus-extension coverage manifest and compatible indexes;
 - blocked: capability-pilot mathematics, code, and reasoning approvals.
 
 ## Historical roadmap snapshot

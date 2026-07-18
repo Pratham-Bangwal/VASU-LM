@@ -363,8 +363,11 @@ interruption-safe pilot preparation pipeline. It is pinned to subset
 `20231101.en`, split `train`, revision
 `e6057dc557255a03c9c3c47ceab0eb44353b1bc5`, and one explicit Parquet shard.
 
-Hard pilot limits are one shard, 10,000 inspected rows, 2,000 accepted
-chunks, 2,000,000 exact VASU-tokenizer tokens, and 1 GB downloaded. The
+Hard pilot limits are one shard, 10,000 inspected rows, 2,000 accepted parent
+documents, 4,000 accepted chunks, 2,000,000 exact VASU-tokenizer tokens, and
+1 GB downloaded. Parent-document and chunk limits are independent; the former
+ambiguous `max_accepted_documents` setting historically counted accepted
+chunks and is now accepted only as a deprecated legacy chunk-limit alias. The
 pipeline records provenance, explicit filter reasons, exact and bounded
 near-duplicate checks, evaluation-prompt contamination evidence, hashes,
 atomic progress, and deterministic resume/restart state. Generated raw,
@@ -386,9 +389,21 @@ deduplication, contamination checks, and token accounting. Chunk settings are
 The corrected smoke inspected 2 rows and retained 20 distinct chunks with
 17,237 tokens; the maximum was 1,022 tokens. It recorded 0 encoding repairs,
 0 quality rejections, no replacement characters, and no detected joined-word
-regressions. Output validation passed. The default 2M-token pilot was not run
-and no training started. Cross-FineWeb document deduplication is now available
-through the combined original-plus-extension coverage manifest and indexes.
+regressions. Output validation passed. The earlier default artifact retained
+2,000 chunks and 1,036,527 tokens; it remains valid historical evidence but
+was limited by the ambiguous chunk counter rather than by the intended token
+budget.
+
+The refactored default pilot completed with status `token_limit` after 279 raw
+examples, 262 accepted parent documents, 3,751 accepted chunks, and 1,999,974
+VASU tokens. Its maximum chunk is 1,024 tokens, replacement-character count is
+zero, and output SHA-256 is
+`cdccaff4d305dc4cfd273c3e94f5376c349773c317c5720227db97745f1d646a`.
+One high-confidence near overlap with FineWeb was rejected before accounting.
+The v3 manifest and output validator passed. This is a prepared pilot artifact;
+no factual-pilot model training has started. Cross-FineWeb document
+deduplication uses the combined original-plus-extension coverage manifest and
+indexes.
 
 ### Deterministic broad-review sample
 

@@ -7,7 +7,7 @@ import json
 from pathlib import Path
 
 from .reporting import atomic_write_json
-from .schemas import PreparationProgress
+from .schemas import PREPARATION_PROGRESS_FORMAT_VERSION, PreparationProgress
 
 
 def save_progress(path: Path, progress: PreparationProgress) -> None:
@@ -21,6 +21,20 @@ def load_progress(path: Path) -> PreparationProgress:
         raise FileNotFoundError(f"Preparation progress does not exist: {path}") from error
     except json.JSONDecodeError as error:
         raise ValueError(f"Preparation progress is invalid JSON: {path}") from error
+    version = payload.get("format_version")
+    if version != PREPARATION_PROGRESS_FORMAT_VERSION:
+        if version is None and (
+            "accepted_documents" in payload or "output_tokens" in payload
+        ):
+            raise ValueError(
+                "Legacy Wikimedia preparation progress cannot be migrated safely: "
+                "its accepted_documents field counted chunks, not unique parents. "
+                "Restart this preparation mode explicitly."
+            )
+        raise ValueError(
+            f"Unsupported preparation progress format {version!r}; expected "
+            f"{PREPARATION_PROGRESS_FORMAT_VERSION!r}"
+        )
     return PreparationProgress(**payload)
 
 
@@ -57,4 +71,3 @@ def reconcile_output(path: Path, committed_size: int) -> None:
     if actual_size > committed_size:
         with path.open("r+b") as handle:
             handle.truncate(committed_size)
-

@@ -9,6 +9,7 @@ import os
 from pathlib import Path
 import random
 import statistics
+import warnings
 from collections import Counter
 from typing import Any, Iterator, Mapping
 
@@ -44,10 +45,12 @@ from .reporting import (
     atomic_write_json,
     atomic_write_text,
     canonical_json_hash,
+    format_wikimedia_summary,
     sha256_file,
 )
 from .schemas import (
-    MAX_PILOT_ACCEPTED_DOCUMENTS,
+    MAX_PILOT_ACCEPTED_CHUNKS,
+    MAX_PILOT_ACCEPTED_PARENT_DOCUMENTS,
     MAX_PILOT_DOWNLOAD_BYTES,
     MAX_PILOT_OUTPUT_TOKENS,
     MAX_PILOT_RAW_EXAMPLES,
@@ -60,6 +63,7 @@ from .token_count import count_tokens, load_vasu_tokenizer
 
 REQUIRED_PARQUET_FIELDS = frozenset({"id", "url", "title", "text"})
 CONFIG_FIELDS = frozenset(WikimediaPreparationConfig.__dataclass_fields__)
+LEGACY_CHUNK_LIMIT_FIELD = "max_accepted_documents"
 OUTPUT_PATH_FIELDS = frozenset(PreparationOutputPaths.__dataclass_fields__)
 
 
@@ -80,6 +84,30 @@ def load_preparation_config(path: Path) -> WikimediaPreparationConfig:
         raise ValueError(f"Preparation config is invalid JSON: {path}") from error
     if not isinstance(payload, dict):
         raise ValueError("Preparation config must be a JSON object")
+    legacy_present = LEGACY_CHUNK_LIMIT_FIELD in payload
+    explicit_chunk_present = "max_accepted_chunks" in payload
+    if legacy_present and explicit_chunk_present:
+        raise ValueError(
+            "Use either 'max_accepted_documents' or 'max_accepted_chunks', not both"
+        )
+    if legacy_present:
+        warnings.warn(
+            "'max_accepted_documents' is deprecated and is interpreted as "
+            "'max_accepted_chunks' because that matches historical behavior",
+            DeprecationWarning,
+            stacklevel=2,
+        )
+        payload["max_accepted_chunks"] = payload.pop(LEGACY_CHUNK_LIMIT_FIELD)
+        # Historical configurations had no independent parent ceiling. The raw
+        # and chunk caps together provide a safe non-tightening compatibility
+        # bound because accepted parents can never exceed accepted chunks.
+        payload.setdefault(
+            "max_accepted_parent_documents",
+            min(
+                payload.get("max_raw_examples", 0),
+                payload["max_accepted_chunks"],
+            ),
+        )
     missing = sorted(CONFIG_FIELDS - set(payload))
     unknown = sorted(set(payload) - CONFIG_FIELDS)
     if missing:
@@ -102,8 +130,10 @@ def load_preparation_config(path: Path) -> WikimediaPreparationConfig:
 
 
 def _positive_int(value: object, name: str, maximum: int | None = None) -> None:
-    if isinstance(value, bool) or not isinstance(value, int) or value < 1:
-        raise ValueError(f"{name} must be a positive integer")
+    if isinstance(value, bool) or not isinstance(value, int):
+        raise TypeError(f"{name} must be an integer")
+    if value < 1:
+        raise ValueError(f"{name} must be greater than zero")
     if maximum is not None and value > maximum:
         raise ValueError(f"{name} exceeds hard pilot limit {maximum:,}: {value:,}")
 
@@ -139,9 +169,14 @@ def validate_preparation_config(config: WikimediaPreparationConfig) -> None:
     _positive_int(config.max_download_bytes, "max_download_bytes", MAX_PILOT_DOWNLOAD_BYTES)
     _positive_int(config.max_raw_examples, "max_raw_examples", MAX_PILOT_RAW_EXAMPLES)
     _positive_int(
-        config.max_accepted_documents,
-        "max_accepted_documents",
-        MAX_PILOT_ACCEPTED_DOCUMENTS,
+        config.max_accepted_parent_documents,
+        "max_accepted_parent_documents",
+        MAX_PILOT_ACCEPTED_PARENT_DOCUMENTS,
+    )
+    _positive_int(
+        config.max_accepted_chunks,
+        "max_accepted_chunks",
+        MAX_PILOT_ACCEPTED_CHUNKS,
     )
     _positive_int(config.max_output_tokens, "max_output_tokens", MAX_PILOT_OUTPUT_TOKENS)
     _positive_int(config.minimum_document_characters, "minimum_document_characters")
@@ -426,19 +461,28 @@ def acquire_pinned_shard(
 def _load_existing_output(
     output_path: Path,
     deduplicator: PilotDeduplicator,
-) -> Counter[str]:
+) -> tuple[Counter[str], set[str], int, int]:
     parent_counts: Counter[str] = Counter()
+    accepted_parent_ids: set[str] = set()
+    accepted_chunks = 0
+    total_tokens = 0
     if not output_path.exists():
-        return parent_counts
+        return parent_counts, accepted_parent_ids, accepted_chunks, total_tokens
     with output_path.open("r", encoding="utf-8") as handle:
         for line_number, line in enumerate(handle, start=1):
             try:
                 record = json.loads(line)
                 deduplicator.add_existing(record["cleaned_text"], record["normalized_sha256"])
-                parent_counts[str(record.get("parent_document_id", record["document_id"]))] += 1
+                parent_id = str(
+                    record.get("parent_document_id", record["document_id"])
+                )
+                parent_counts[parent_id] += 1
+                accepted_parent_ids.add(parent_id)
+                accepted_chunks += 1
+                total_tokens += int(record["token_count"])
             except (json.JSONDecodeError, KeyError, TypeError) as error:
                 raise ValueError(f"Invalid existing output JSONL at line {line_number}") from error
-    return parent_counts
+    return parent_counts, accepted_parent_ids, accepted_chunks, total_tokens
 
 
 def _increment(progress: PreparationProgress, reason: str) -> None:
@@ -587,9 +631,32 @@ def prepare_wikimedia_pilot(
         # Backward compatibility for a legacy exact-hash-only artifact.
         fineweb_hashes, fineweb_status = load_fineweb_exact_hashes(Path(repository_root))
         deduplicator.exact_hashes.update(fineweb_hashes)
-    retained_parent_counts = _load_existing_output(output_path, deduplicator)
+    (
+        retained_parent_counts,
+        output_parent_ids,
+        output_chunk_count,
+        output_token_count,
+    ) = _load_existing_output(output_path, deduplicator)
+    assert progress.accepted_parent_document_ids is not None
+    progress_parent_ids = set(progress.accepted_parent_document_ids)
+    if output_parent_ids != progress_parent_ids:
+        raise ValueError(
+            "Existing output parent IDs do not match committed preparation progress"
+        )
+    if output_chunk_count != progress.accepted_chunks:
+        raise ValueError(
+            "Existing output chunk count does not match committed preparation progress"
+        )
+    if output_token_count != progress.total_vasu_tokens:
+        raise ValueError(
+            "Existing output token count does not match committed preparation progress"
+        )
+    if len(progress_parent_ids) != progress.accepted_parent_documents:
+        raise ValueError(
+            "Committed parent-document count does not match its deterministic ID list"
+        )
     started_at = utc_now()
-    completion_reason = "shard_exhausted"
+    completion_reason = "source_exhausted"
     parquet_row_count = pq.ParquetFile(input_parquet).metadata.num_rows
     selected_row_indices = (
         select_review_row_indices(
@@ -668,10 +735,6 @@ def prepare_wikimedia_pilot(
                 ]
             parent_document_id = str(row["id"])
             for chunk_index in range(progress.next_chunk_index, len(chunks)):
-                if progress.accepted_documents >= config.max_accepted_documents:
-                    completion_reason = "accepted_document_limit"
-                    stop_processing = True
-                    break
                 chunk = chunks[chunk_index]
                 chunk_id = f"{parent_document_id}:{chunk_index:04d}"
                 if (
@@ -706,6 +769,16 @@ def prepare_wikimedia_pilot(
                     save_progress(progress_path, progress)
                     continue
                 chunk_warnings.extend(final_warnings)
+                exact_contamination, contamination_matches = check_contamination(
+                    chunk.text, chunk_id, prompt_evidence
+                )
+                assert progress.contamination_matches is not None
+                progress.contamination_matches.extend(contamination_matches)
+                if exact_contamination:
+                    _increment(progress, "contamination_exact_prompt")
+                    progress.next_chunk_index = chunk_index + 1
+                    save_progress(progress_path, progress)
+                    continue
                 duplicate_reason, fingerprint = deduplicator.classify(chunk.text)
                 if duplicate_reason:
                     if duplicate_reason == "exact_duplicate" and fingerprint in fineweb_hashes:
@@ -742,17 +815,24 @@ def prepare_wikimedia_pilot(
                         continue
                     if overlap.decision == MatchDecision.REVIEW:
                         chunk_warnings.append("fineweb_ambiguous_overlap")
-                exact_contamination, contamination_matches = check_contamination(
-                    chunk.text, chunk_id, prompt_evidence
-                )
-                assert progress.contamination_matches is not None
-                progress.contamination_matches.extend(contamination_matches)
-                if exact_contamination:
-                    _increment(progress, "contamination_exact_prompt")
-                    progress.next_chunk_index = chunk_index + 1
+                if (
+                    parent_document_id not in progress_parent_ids
+                    and progress.accepted_parent_documents
+                    >= config.max_accepted_parent_documents
+                ):
+                    completion_reason = "parent_document_limit"
+                    stop_processing = True
                     save_progress(progress_path, progress)
-                    continue
-                if progress.output_tokens + chunk.token_count > config.max_output_tokens:
+                    break
+                if progress.accepted_chunks >= config.max_accepted_chunks:
+                    completion_reason = "accepted_chunk_limit"
+                    stop_processing = True
+                    save_progress(progress_path, progress)
+                    break
+                if (
+                    progress.total_vasu_tokens + chunk.token_count
+                    > config.max_output_tokens
+                ):
                     _increment(progress, "token_limit")
                     completion_reason = "token_limit"
                     stop_processing = True
@@ -791,9 +871,13 @@ def prepare_wikimedia_pilot(
                 output.write(encoded)
                 output.flush()
                 os.fsync(output.fileno())
-                progress.accepted_documents += 1
+                if parent_document_id not in progress_parent_ids:
+                    progress_parent_ids.add(parent_document_id)
+                    progress.accepted_parent_document_ids.append(parent_document_id)
+                    progress.accepted_parent_documents += 1
+                progress.accepted_chunks += 1
                 retained_parent_counts[parent_document_id] += 1
-                progress.output_tokens += chunk.token_count
+                progress.total_vasu_tokens += chunk.token_count
                 progress.total_characters += len(chunk.text)
                 progress.output_size_bytes = output.tell()
                 progress.next_chunk_index = chunk_index + 1
@@ -810,9 +894,10 @@ def prepare_wikimedia_pilot(
             progress.next_chunk_index = 0
             save_progress(progress_path, progress)
         else:
-            completion_reason = "shard_exhausted"
+            completion_reason = "source_exhausted"
 
     progress.status = "complete"
+    progress.completion_status = completion_reason
     save_progress(progress_path, progress)
     input_hash = sha256_file(input_parquet)
     tokenizer_hash = sha256_file(paths["tokenizer"])
@@ -825,7 +910,7 @@ def prepare_wikimedia_pilot(
     )
     rejected = sum((progress.rejection_counts or {}).values())
     manifest = {
-        "format_version": "wikimedia_pilot_v2",
+        "format_version": "wikimedia_pilot_v3",
         "source_registry_id": config.source_id,
         "dataset_name": config.dataset_name,
         "source_revision": config.pinned_revision,
@@ -860,9 +945,9 @@ def prepare_wikimedia_pilot(
             "inspected_row_indices": progress.inspected_row_indices,
         },
         "raw_examples": progress.raw_examples,
-        "accepted_documents": progress.accepted_documents,
-        "accepted_chunks": progress.accepted_documents,
-        "rejected_documents": rejected,
+        "accepted_parent_documents": progress.accepted_parent_documents,
+        "accepted_chunks": progress.accepted_chunks,
+        "rejected_items": rejected,
         "rejection_reasons": progress.rejection_counts,
         "exact_duplicates": progress.exact_duplicates,
         "near_duplicates": progress.near_duplicates,
@@ -876,14 +961,18 @@ def prepare_wikimedia_pilot(
         "fineweb_cross_deduplication": fineweb_status,
         "fineweb_overlap_matches": progress.fineweb_matches,
         "total_characters": progress.total_characters,
-        "total_vasu_tokens": progress.output_tokens,
-        "tokens_per_document": (
-            progress.output_tokens / progress.accepted_documents
-            if progress.accepted_documents else 0.0
+        "total_vasu_tokens": progress.total_vasu_tokens,
+        "tokens_per_parent_document": (
+            progress.total_vasu_tokens / progress.accepted_parent_documents
+            if progress.accepted_parent_documents else 0.0
+        ),
+        "tokens_per_chunk": (
+            progress.total_vasu_tokens / progress.accepted_chunks
+            if progress.accepted_chunks else 0.0
         ),
         "characters_per_token": (
-            progress.total_characters / progress.output_tokens
-            if progress.output_tokens else 0.0
+            progress.total_characters / progress.total_vasu_tokens
+            if progress.total_vasu_tokens else 0.0
         ),
         "output_artifact_paths": {"documents_jsonl": config.output_paths.output_jsonl},
         "output_artifact_hashes": {"documents_jsonl_sha256": output_hash},
@@ -897,10 +986,10 @@ def prepare_wikimedia_pilot(
         "shard_identifier": config.shard_identifier,
         "completion_status": completion_reason,
         "raw_examples": progress.raw_examples,
-        "accepted_documents": progress.accepted_documents,
-        "accepted_chunks": progress.accepted_documents,
-        "rejected_documents": rejected,
-        "total_vasu_tokens": progress.output_tokens,
+        "accepted_parent_documents": progress.accepted_parent_documents,
+        "accepted_chunks": progress.accepted_chunks,
+        "rejected_items": rejected,
+        "total_vasu_tokens": progress.total_vasu_tokens,
         "total_characters": progress.total_characters,
         "rejection_reasons": progress.rejection_counts,
         "exact_duplicates": progress.exact_duplicates,
@@ -935,31 +1024,7 @@ def prepare_wikimedia_pilot(
             )
     atomic_write_text(
         paths["summary_text"],
-        "\n".join(
-            [
-                "VASU Wikimedia pilot preparation",
-                f"Status: {completion_reason}",
-                f"Raw examples: {progress.raw_examples}",
-                f"Accepted chunks: {progress.accepted_documents}",
-                f"Rejected documents: {rejected}",
-                f"VASU tokens: {progress.output_tokens}",
-                f"FineWeb cross-deduplication: {fineweb_status['status']}",
-                f"Distinct parent articles: {diversity['distinct_parent_articles']}",
-                f"Chunks per article: {diversity['chunks_per_article']}",
-                f"Chunk token min/median/mean/max: {diversity['chunk_tokens']}",
-                f"Titles represented: {diversity['titles_represented']}",
-                f"Source row indices: {diversity['source_row_indices']}",
-                f"Encoding repairs: {progress.encoding_repairs}",
-                f"Quality warnings: {diversity['quality_warning_count']}",
-                f"Quality rejections: {progress.quality_rejections}",
-                f"Reference-section flags: {diversity['reference_section_flags']}",
-                f"Contamination matches: {len(progress.contamination_matches or [])}",
-                f"Largest article proportion: {diversity['largest_article_proportion']:.6f}",
-                f"Review warnings: {diversity['warnings']}",
-                *review_lines,
-                "",
-            ]
-        ),
+        format_wikimedia_summary(summary, review_lines),
     )
     if fineweb_index is not None:
         fineweb_index.close()
@@ -974,11 +1039,28 @@ def validate_preparation_output(
 ) -> dict[str, Any]:
     paths = resolve_paths(config, repository_root)
     manifest = json.loads(paths["manifest_json"].read_text(encoding="utf-8"))
-    if manifest.get("format_version") != "wikimedia_pilot_v2":
+    format_version = manifest.get("format_version")
+    if format_version not in {"wikimedia_pilot_v2", "wikimedia_pilot_v3"}:
         raise ValueError(
-            "Unsupported preparation output format; expected wikimedia_pilot_v2"
+            "Unsupported preparation output format; expected wikimedia_pilot_v2 "
+            "or wikimedia_pilot_v3"
         )
-    if manifest.get("configuration_hash") != canonical_json_hash(config_to_dict(config)):
+    resolved_config = config_to_dict(config)
+    if format_version == "wikimedia_pilot_v2":
+        stored_config = manifest.get("configuration")
+        if not isinstance(stored_config, dict):
+            raise ValueError("Legacy output manifest lacks its resolved configuration")
+        stored_config = dict(stored_config)
+        legacy_limit = stored_config.pop(LEGACY_CHUNK_LIMIT_FIELD, None)
+        if legacy_limit is not None:
+            stored_config.setdefault("max_accepted_chunks", legacy_limit)
+            stored_config.setdefault(
+                "max_accepted_parent_documents",
+                stored_config.get("max_raw_examples"),
+            )
+        if stored_config != resolved_config:
+            raise ValueError("Output manifest configuration mismatch")
+    elif manifest.get("configuration_hash") != canonical_json_hash(resolved_config):
         raise ValueError("Output manifest configuration hash mismatch")
     output = paths["output_jsonl"]
     expected_hash = manifest["output_artifact_hashes"]["documents_jsonl_sha256"]
@@ -986,6 +1068,7 @@ def validate_preparation_output(
         raise ValueError("Output JSONL hash mismatch")
     documents = 0
     tokens = 0
+    parent_ids: set[str] = set()
     tokenizer = tokenizer or load_vasu_tokenizer(paths["tokenizer"])
     seen_ids: set[str] = set()
     seen_hashes: set[str] = set()
@@ -1002,6 +1085,7 @@ def validate_preparation_output(
                 raise ValueError(f"Duplicate document/hash in output at line {line_number}")
             seen_ids.add(document_id)
             seen_hashes.add(fingerprint)
+            parent_ids.add(str(record.get("parent_document_id", document_id)))
             if record.get("format_version") != "wikimedia_pilot_document_v2":
                 raise ValueError(f"Unsupported document format at line {line_number}")
             required = (
@@ -1037,11 +1121,22 @@ def validate_preparation_output(
                 )
             documents += 1
             tokens += token_count
-    if documents != manifest["accepted_documents"] or tokens != manifest["total_vasu_tokens"]:
+    manifest_chunks = (
+        manifest.get("accepted_chunks")
+        if format_version == "wikimedia_pilot_v3"
+        else manifest.get("accepted_documents", manifest.get("accepted_chunks"))
+    )
+    if documents != manifest_chunks or tokens != manifest["total_vasu_tokens"]:
         raise ValueError("Output JSONL counts do not match manifest")
+    if (
+        format_version == "wikimedia_pilot_v3"
+        and len(parent_ids) != manifest["accepted_parent_documents"]
+    ):
+        raise ValueError("Output parent-document count does not match manifest")
     return {
         "valid": True,
-        "documents": documents,
+        "parent_documents": len(parent_ids),
+        "chunks": documents,
         "tokens": tokens,
         "sha256": expected_hash,
     }

@@ -8,8 +8,10 @@ from pathlib import Path
 
 MAX_PILOT_DOWNLOAD_BYTES = 1_000_000_000
 MAX_PILOT_RAW_EXAMPLES = 10_000
-MAX_PILOT_ACCEPTED_DOCUMENTS = 2_000
+MAX_PILOT_ACCEPTED_PARENT_DOCUMENTS = 2_000
+MAX_PILOT_ACCEPTED_CHUNKS = 4_000
 MAX_PILOT_OUTPUT_TOKENS = 2_000_000
+PREPARATION_PROGRESS_FORMAT_VERSION = "wikimedia_preparation_progress_v2"
 
 
 @dataclass(frozen=True)
@@ -36,7 +38,8 @@ class WikimediaPreparationConfig:
     random_seed: int
     max_download_bytes: int
     max_raw_examples: int
-    max_accepted_documents: int
+    max_accepted_parent_documents: int
+    max_accepted_chunks: int
     max_output_tokens: int
     minimum_document_characters: int
     maximum_document_characters: int
@@ -74,7 +77,11 @@ class WikimediaPreparationConfig:
         return replace(
             self,
             max_raw_examples=min(self.max_raw_examples, 100),
-            max_accepted_documents=min(self.max_accepted_documents, 20),
+            max_accepted_parent_documents=min(
+                self.max_accepted_parent_documents,
+                20,
+            ),
+            max_accepted_chunks=min(self.max_accepted_chunks, 20),
             max_output_tokens=min(self.max_output_tokens, 20_000),
             fineweb_index_required=False,
             output_paths=smoke,
@@ -95,7 +102,11 @@ class WikimediaPreparationConfig:
         return replace(
             self,
             max_raw_examples=min(self.max_raw_examples, 500),
-            max_accepted_documents=min(self.max_accepted_documents, 50),
+            max_accepted_parent_documents=min(
+                self.max_accepted_parent_documents,
+                50,
+            ),
+            max_accepted_chunks=min(self.max_accepted_chunks, 50),
             max_output_tokens=min(self.max_output_tokens, 50_000),
             review_sampling_enabled=True,
             reference_section_behavior="flag",
@@ -111,10 +122,13 @@ class PreparationProgress:
     source_id: str
     pinned_revision: str
     shard_identifier: str
+    format_version: str = PREPARATION_PROGRESS_FORMAT_VERSION
     last_processed_row: int = -1
     raw_examples: int = 0
-    accepted_documents: int = 0
-    output_tokens: int = 0
+    accepted_parent_document_ids: list[str] | None = None
+    accepted_parent_documents: int = 0
+    accepted_chunks: int = 0
+    total_vasu_tokens: int = 0
     total_characters: int = 0
     output_size_bytes: int = 0
     rejection_counts: dict[str, int] | None = None
@@ -131,10 +145,13 @@ class PreparationProgress:
     inspected_row_indices: list[int] | None = None
     reference_section_detections: int = 0
     status: str = "in_progress"
+    completion_status: str | None = None
 
     def __post_init__(self) -> None:
         if self.rejection_counts is None:
             self.rejection_counts = {}
+        if self.accepted_parent_document_ids is None:
+            self.accepted_parent_document_ids = []
         if self.seen_exact_hashes is None:
             self.seen_exact_hashes = []
         if self.contamination_matches is None:

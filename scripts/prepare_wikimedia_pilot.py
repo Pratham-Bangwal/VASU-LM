@@ -33,7 +33,7 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser.add_argument(
         "--smoke-test",
         action="store_true",
-        help="Cap execution at 100 rows, 20 documents, and 20,000 tokens.",
+        help="Cap execution at 100 rows, 20 parents, 20 chunks, and 20,000 tokens.",
     )
     parser.add_argument(
         "--review-sample",
@@ -72,7 +72,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         print(f"Selected shard: {config.shard_identifier}")
         print(f"Maximum download bytes: {config.max_download_bytes:,}")
         print(f"Maximum raw examples: {config.max_raw_examples:,}")
-        print(f"Maximum accepted documents: {config.max_accepted_documents:,}")
+        print(
+            "Maximum accepted parent documents: "
+            f"{config.max_accepted_parent_documents:,}"
+        )
+        print(f"Maximum accepted chunks: {config.max_accepted_chunks:,}")
         print(f"Maximum output tokens: {config.max_output_tokens:,}")
         print(
             "Row selection: "
@@ -81,15 +85,19 @@ def main(argv: Sequence[str] | None = None) -> int:
         print(f"Output JSONL: {paths['output_jsonl'].relative_to(REPOSITORY_ROOT)}")
         print(
             "FineWeb cross-deduplication: "
-            f"{fineweb_document_index_status(REPOSITORY_ROOT)['status']}"
+            f"{fineweb_document_index_status(REPOSITORY_ROOT, config.fineweb_index_path)['status']}"
         )
+        status = fineweb_document_index_status(REPOSITORY_ROOT, config.fineweb_index_path)
+        if config.fineweb_index_required and not status.get("training_ready", False):
+            print("Factual training preparation status: blocked (FineWeb index required)")
         print("Download performed: no")
         return 0
 
     if args.validate_output:
         result = validate_preparation_output(config, repository_root=REPOSITORY_ROOT)
         print(
-            f"Output valid: documents={result['documents']:,}, "
+            f"Output valid: parent_documents={result['parent_documents']:,}, "
+            f"chunks={result['chunks']:,}, "
             f"tokens={result['tokens']:,}, sha256={result['sha256']}"
         )
         return 0
@@ -105,6 +113,10 @@ def main(argv: Sequence[str] | None = None) -> int:
     )
     print(f"Completion status: {manifest['completion_status']}")
     print(f"Raw examples: {manifest['raw_examples']:,}")
+    print(
+        "Accepted parent documents: "
+        f"{manifest['accepted_parent_documents']:,}"
+    )
     print(f"Accepted chunks: {manifest['accepted_chunks']:,}")
     print(f"VASU tokens: {manifest['total_vasu_tokens']:,}")
     print(f"Reviewable JSONL: {config.output_paths.output_jsonl}")

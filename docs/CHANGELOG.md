@@ -38,6 +38,17 @@
 
 ### Changed
 
+- Replaced Wikimedia preparation's ambiguous accepted-document limit with
+  independent `max_accepted_parent_documents` and `max_accepted_chunks`
+  limits. The legacy key remains a deprecated chunk-limit alias and cannot be
+  combined with the explicit chunk field.
+- Versioned Wikimedia progress and preparation manifests now report raw
+  examples, unique accepted parents, accepted chunks, rejected items, and VASU
+  tokens independently. Unsafe legacy progress requires an explicit restart.
+- Regenerated the bounded default Wikimedia pilot under the explicit limits:
+  262 parent documents, 3,751 chunks, and 1,999,974 tokens, ending at the token
+  ceiling with a validated v3 manifest and no replacement characters. One
+  high-confidence FineWeb near overlap was rejected.
 - Training-oriented Wikimedia preparation excludes reference-like sections by
   default; broad-review mode continues to flag them.
 - Default factual preparation requires a completed compatible FineWeb index.
@@ -140,10 +151,12 @@
 
 ### Documented
 
-- Wikimedia pilot limits are one shard, 10,000 raw rows, 2,000 retained chunks,
-  2,000,000 tokens, and 1 GB downloaded. The corrected smoke retained 20 chunks
-  and 17,237 tokens with a 1,022-token maximum; the default pilot and model
-  training were not started.
+- Wikimedia pilot limits are one shard, 10,000 raw rows, 2,000 accepted parent
+  documents, 4,000 accepted chunks, 2,000,000 tokens, and 1 GB downloaded. The
+  corrected smoke retained 20 chunks and 17,237 tokens with a 1,022-token
+  maximum. The earlier 2,000-chunk/1,036,527-token default artifact remains
+  valid but limit-bound; the refactored default artifact reached 1,999,974
+  tokens. Model training was not started.
 - Smoke mojibake was traced to incompatible Windows display decoding rather
   than corrupted Parquet/JSONL bytes. The real empty-string inline-cleanup
   boundary risk was fixed and regression-tested.

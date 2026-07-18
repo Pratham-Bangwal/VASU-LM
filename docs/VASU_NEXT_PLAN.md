@@ -3,29 +3,31 @@
 ## FineWeb extension prerequisite update
 
 The extension recovery evidence advanced from theoretical source-ID recovery
-to a successful bounded proof: 100 evenly spread IDs were found at the pinned
-provider revision and all 100 historical hashes matched. A complete recovery
-is now technically plausible, but it remains a separate, storage- and
-provider-reviewed operation. Until all 379,247 documents are reacquired and
-indexed with `vasu_cross_source_nfc_casefold_ws_v1`, factual-mixture preparation
-must continue to report incomplete cross-source coverage. No continuation or
-pilot training was authorized by the smoke.
+to a successful bounded proof and then to a completed production recovery. All
+379,247 retained extension source IDs were reacquired from the pinned provider
+revision and all 379,247 historical `SHA-256(text.strip())` hashes matched. The
+recovered text was indexed with `vasu_cross_source_nfc_casefold_ws_v1`, and
+combined original-plus-extension FineWeb coverage now reports
+`training_ready: true` for cross-source deduplication gates. No continuation or
+pilot training was authorized by the recovery/indexing work.
 
-The subsequent 1,000-ID benchmark selected documented 25-ID OR filters with
+The 1,000-ID benchmark selected documented 25-ID OR filters with
 concurrency 1 and a conservative 2 RPS ceiling. All 1,000 hashes matched for
 every tested strategy; batch 25 reduced the cold provider load to 40 requests
 and projected roughly 15,170 requests / 3.9-6 hours for full recovery. This
-improves implementation readiness but does not authorize the full recovery,
-extension index construction, factual preparation, or training.
+benchmark selected the strategy used by the later completed production run.
 
 ## FineWeb document-index implementation gate
 
 The original-source production index is built and validated: 1,000,000 inputs,
 999,992 unique documents, eight duplicate hashes, and original-only coverage.
-The extension has only token data, 379,247 retained source IDs, and historical
-exact hashes locally. Factual preparation remains blocked pending authoritative
-source-ID reacquisition and compatible extension indexing. No training was
-started.
+The extension now has recovered document text and a compatible production
+index: 379,247 indexed documents, 3,033,976 LSH buckets, zero duplicate hashes,
+and SQLite integrity `ok`. Combined coverage is recorded in
+`data/manifests/pretrain/fineweb_combined_coverage.json`. The Wikimedia
+broad-review overlap check against both indexes found zero candidates, and the
+factual dry-run passed with FineWeb cross-deduplication available. No factual
+pilot or model training was started.
 
 ## Purpose and decision boundary
 
@@ -386,9 +388,11 @@ Go/no-go criteria: Proceed only if a candidate improves at least two targeted he
 The first data-preparation component is implemented and validated on a small
 review artifact, but has not produced authorized training data. The preparer is pinned to the approved
 source revision and refuses unbounded execution. Its default limits are one
-Parquet shard, 10,000 inspected examples, 2,000 retained chunks, 2,000,000
-VASU tokens, and 1 GB downloaded. A smoke mode reduces those caps to 100 rows,
-20 documents, and 20,000 tokens.
+Parquet shard, 10,000 inspected examples, 2,000 accepted parent documents,
+4,000 accepted chunks, 2,000,000 VASU tokens, and 1 GB downloaded. A smoke
+mode reduces those caps to 100 rows, 20 parent documents, 20 chunks, and
+20,000 tokens. The former `max_accepted_documents` key historically counted
+chunks; it is now a deprecated compatibility alias for the chunk limit.
 
 Configuration/approval validation, deterministic filtering, exact and bounded
 near deduplication, prompt contamination checks, exact token measurement,
@@ -397,9 +401,16 @@ by tests. The corrected v2 path adds conservative Unicode repair,
 word-boundary-safe markup cleanup, and 768-target/1,024-maximum token chunks
 with 32-token overlap. The smoke retained 20 distinct chunks and 17,237 tokens
 from 2 rows; the largest chunk was 1,022 tokens, with 0 encoding repairs and 0
-quality rejections. The default pilot and factual continuation remain
-unauthorized. Original-source indexing is complete, but cross-FineWeb
-deduplication still requires compatible extension document coverage.
+quality rejections. The earlier default artifact stopped at 2,000 chunks and
+1,036,527 tokens and remains valid but limit-bound. After separating parent
+and chunk counters, the regenerated default pilot reached `token_limit` with
+262 parent documents, 3,751 chunks, and 1,999,974 tokens. Its v3 manifest and
+output validation passed, its maximum chunk was 1,024 tokens, it contained no
+replacement characters, and it rejected one high-confidence FineWeb near
+overlap. Factual continuation training remains unauthorized. Original-source
+and extension indexing are complete, and
+cross-FineWeb deduplication is available through the combined coverage
+manifest.
 
 The subsequent deterministic broad review selected 500 shard-spanning row
 indices and stopped after inspecting 15 rows and retaining 50 chunks from 14
@@ -407,5 +418,5 @@ articles. It measured 26,435 tokens, a 938-token maximum, and 10% largest-parent
 contribution. Three reference-section chunks were flagged; no quality
 rejections, encoding repairs, contamination matches, or duplicates were
 reported. This remains review evidence only, not a training dataset. Broader
-source-quality review and cross-FineWeb indexing are still gates for the 2M
-pilot.
+source-quality review and an explicit authorization decision remain gates for
+using the prepared default pilot in any training experiment.
