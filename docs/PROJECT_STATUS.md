@@ -1,22 +1,42 @@
 # VASU Project Status
 
-## FineWeb extension recovery smoke
+## FineWeb extension recovery and coverage
 
 The 2026-07-17 bounded source-ID smoke selected 100 evenly spread historical
 extension IDs and retrieved them through the official Dataset Viewer exact-ID
 filter pinned by the response revision header. All 100 IDs were found and all
 100 `SHA-256(text.strip())` values matched; all failure categories were zero.
 The method inspected 498,312 text bytes and downloaded 645,735 JSON response
-bytes. Full source-ID reacquisition is now eligible for a separately reviewed
-run, but it has not started. The extension document index remains unbuilt, the
-factual-pilot completeness gate remains blocked, and no training occurred.
+bytes. This smoke is historical evidence; it was superseded by the completed
+production recovery described below.
 
 The follow-up 1,000-ID benchmark passed exact correctness for serial,
 concurrency 2/4/8, and documented OR batches of 5/10/25. Batch 25 with
 concurrency 1 is the selected production design: 40 requests and 37.33 seconds
 for 1,000 IDs, with zero 429s, transient errors, or retries. A conservative
-2 RPS production ceiling is recommended. Full recovery remains a separate,
-unstarted operation; factual-pilot readiness is unchanged.
+2 RPS production ceiling is recommended. This benchmark selected the production
+strategy used for the completed full recovery.
+
+Production recovery completed for all 379,247 retained extension source IDs
+against the pinned `HuggingFaceFW/fineweb-edu` `CC-MAIN-2025-26` revision
+`87f09149ef4734204d70ed1d046ddc9ca3f2b8f9`. All 379,247 recovered
+`text.strip()` hashes matched the historical fingerprints, with zero missing
+IDs, hash mismatches, duplicate accepted IDs, malformed records, or unrecovered
+retrieval errors. The compressed recovered artifact is
+`data/interim/pretrain/fineweb_extension_recovered.jsonl.gz`, size
+797,342,910 bytes, SHA-256
+`c90f9e21d9b73324b9165cf1fb7ffbc274fbba5ac22b7cbe48abb6d7f1e`.
+
+The extension document index is complete at
+`data/manifests/pretrain/fineweb_extension_document_index.sqlite3`, with
+379,247 indexed documents, 3,033,976 LSH buckets, zero rejected records, zero
+duplicate hashes, SQLite integrity `ok`, and SHA-256
+`d093770179204b45af1a5a824d5a5826a6f0626b3c8825aa81ac8d3557acf16e`.
+Combined coverage is recorded in
+`data/manifests/pretrain/fineweb_combined_coverage.json`, covering both
+`fineweb_original` and `fineweb_extension` with no missing coverage and
+`training_ready: true`. No model training was started by the recovery or
+indexing workflows.
 
 ## FineWeb document-level deduplication status
 
@@ -27,18 +47,16 @@ has SHA-256 `07508a0fe83023cfe0a624ae1af21cba4c2e6dffe62f83b7078656bb168888cd`.
 All indexed records use stable line-based IDs and explicitly incomplete
 provenance because the source JSONL retained only `text`.
 
-The FineWeb extension is present only as a token binary plus an exact-
-fingerprint database; its text is unavailable for compatible near-duplicate
-indexing. Therefore the factual pilot remains blocked and no training occurred.
+The FineWeb extension document text was recovered and indexed separately from
+the protected token binary. The combined coverage manifest now allows the
+factual preparation pipeline to use both original and extension FineWeb
+coverage under normalization version `vasu_cross_source_nfc_casefold_ws_v1`.
 
-The default factual mode requires a complete compatible index. Smoke and
-broad-review modes may report the blocked state without treating their output
-as training-ready. Cross-source comparison uses normalization version
-`vasu_cross_source_nfc_casefold_ws_v1`.
-
-Read-only comparison of the 50-chunk Wikimedia broad-review artifact found no
-exact, high-confidence near, or ambiguous overlaps against the original index.
-This result does not make the review artifact training data.
+Read-only comparison of the 50-chunk Wikimedia broad-review artifact against
+the combined original-plus-extension FineWeb indexes found no exact,
+high-confidence near, or ambiguous overlaps. The report is
+`data/manifests/factual/wikimedia_fineweb_combined_overlap.json`. This result
+does not make the review artifact training data.
 
 ## Next-generation planning status
 
@@ -369,8 +387,8 @@ The corrected smoke inspected 2 rows and retained 20 distinct chunks with
 17,237 tokens; the maximum was 1,022 tokens. It recorded 0 encoding repairs,
 0 quality rejections, no replacement characters, and no detected joined-word
 regressions. Output validation passed. The default 2M-token pilot was not run
-and no training started. Cross-FineWeb document deduplication remains blocked
-without a versioned document-level normalized-hash/signature index.
+and no training started. Cross-FineWeb document deduplication is now available
+through the combined original-plus-extension coverage manifest and indexes.
 
 ### Deterministic broad-review sample
 

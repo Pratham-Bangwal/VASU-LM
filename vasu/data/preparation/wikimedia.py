@@ -17,7 +17,12 @@ import pyarrow.parquet as pq
 from vasu.data.sources import get_source, load_source_registry
 from vasu.data.sources.validation import validate_manifest_sources
 from vasu.data.mixtures import load_manifest
-from vasu.data.deduplication import FineWebDocumentIndex, MatchDecision, match_text
+from vasu.data.deduplication import (
+    FederatedFineWebDocumentIndex,
+    FineWebDocumentIndex,
+    MatchDecision,
+    match_text,
+)
 
 from .contamination import check_contamination, load_prompt_evidence
 from .chunking import TextChunk, chunk_document
@@ -565,14 +570,18 @@ def prepare_wikimedia_pilot(
     fineweb_status = fineweb_document_index_status(
         Path(repository_root), config.fineweb_index_path
     )
-    if config.fineweb_index_required and fineweb_status["status"] != "available":
+    if config.fineweb_index_required and not fineweb_status.get("training_ready", False):
         raise RuntimeError(
-            "Default factual preparation is blocked until a completed compatible "
-            "FineWeb document index is available"
+            "Default factual preparation is blocked until completed compatible "
+            "FineWeb original and extension document-index coverage is available"
         )
-    fineweb_index: FineWebDocumentIndex | None = None
+    fineweb_index: FineWebDocumentIndex | FederatedFineWebDocumentIndex | None = None
     fineweb_hashes: set[str] = set()
-    if fineweb_status["status"] == "available" and paths["fineweb_index"].is_file():
+    if fineweb_status["status"] == "available" and fineweb_status.get("index_paths"):
+        fineweb_index = FederatedFineWebDocumentIndex(
+            [Path(repository_root) / path for path in fineweb_status["index_paths"]]
+        )
+    elif fineweb_status["status"] == "available" and paths["fineweb_index"].is_file():
         fineweb_index = FineWebDocumentIndex(paths["fineweb_index"])
     elif fineweb_status["status"] == "available":
         # Backward compatibility for a legacy exact-hash-only artifact.
@@ -685,6 +694,18 @@ def prepare_wikimedia_pilot(
                 chunk_warnings = list(filtered.metadata.get("quality_warnings", []))
                 if reference_section and config.reference_section_behavior == "flag":
                     chunk_warnings.append("reference_section")
+                # Chunking is a text transformation boundary of its own. Check
+                # its final output before deduplication, accounting, or writing
+                # so a corrupt chunk cannot contaminate downstream state while
+                # clean siblings from the same article remain eligible.
+                final_warnings, final_rejection = assess_text_quality(chunk.text)
+                if final_rejection:
+                    _increment(progress, final_rejection)
+                    progress.quality_rejections += 1
+                    progress.next_chunk_index = chunk_index + 1
+                    save_progress(progress_path, progress)
+                    continue
+                chunk_warnings.extend(final_warnings)
                 duplicate_reason, fingerprint = deduplicator.classify(chunk.text)
                 if duplicate_reason:
                     if duplicate_reason == "exact_duplicate" and fingerprint in fineweb_hashes:

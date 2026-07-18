@@ -17,10 +17,78 @@ class TextChunk:
     section_title: str | None
 
 
-def _decode(tokenizer: Any, ids: list[int]) -> str:
-    if not hasattr(tokenizer, "decode"):
-        raise TypeError("Tokenizer must expose decode() for token-boundary chunking")
-    return str(tokenizer.decode(ids)).strip()
+def _token_count(tokenizer: Any, text: str) -> int:
+    return len(tokenizer.encode(text))
+
+
+def _largest_prefix_within_limit(
+    text: str,
+    tokenizer: Any,
+    maximum_tokens: int,
+) -> str:
+    """Return a source-text prefix without decoding a partial byte-token slice.
+
+    The tokenizer is byte-level, so decoding an arbitrary token slice can begin
+    or end within a multi-byte Unicode scalar and introduce U+FFFD. Searching
+    source character boundaries keeps every emitted character traceable to the
+    clean input text.
+    """
+    low = 0
+    high = len(text)
+    while low < high:
+        middle = (low + high + 1) // 2
+        if _token_count(tokenizer, text[:middle]) <= maximum_tokens:
+            low = middle
+        else:
+            high = middle - 1
+    if low == 0:
+        raise ValueError("A single Unicode character exceeds the chunk token limit")
+    return text[:low]
+
+
+def _split_at_character_boundaries(
+    text: str,
+    tokenizer: Any,
+    maximum_tokens: int,
+) -> list[str]:
+    pieces: list[str] = []
+    remaining = text
+    while remaining:
+        if _token_count(tokenizer, remaining) <= maximum_tokens:
+            piece = remaining
+            remaining = ""
+        else:
+            piece = _largest_prefix_within_limit(
+                remaining,
+                tokenizer,
+                maximum_tokens,
+            )
+            remaining = remaining[len(piece) :]
+        piece = piece.strip()
+        remaining = remaining.lstrip()
+        if piece:
+            pieces.append(piece)
+    return pieces
+
+
+def _source_suffix_within_limit(
+    text: str,
+    tokenizer: Any,
+    maximum_tokens: int,
+) -> str:
+    """Return a character-aligned overlap suffix bounded by token count."""
+    if maximum_tokens == 0:
+        return ""
+    low = 0
+    high = len(text)
+    while low < high:
+        middle = (low + high + 1) // 2
+        candidate = text[len(text) - middle :]
+        if _token_count(tokenizer, candidate) <= maximum_tokens:
+            low = middle
+        else:
+            high = middle - 1
+    return text[len(text) - low :].strip() if low else ""
 
 
 def _is_heading(paragraph: str) -> bool:
@@ -53,10 +121,12 @@ def _atomic_units(text: str, tokenizer: Any, maximum_tokens: int) -> list[tuple[
             if len(ids) <= maximum_tokens:
                 units.append((sentence, section))
                 continue
-            for start in range(0, len(ids), maximum_tokens):
-                piece = _decode(tokenizer, ids[start : start + maximum_tokens])
-                if piece:
-                    units.append((piece, section))
+            for piece in _split_at_character_boundaries(
+                sentence,
+                tokenizer,
+                maximum_tokens,
+            ):
+                units.append((piece, section))
     return units
 
 
@@ -95,10 +165,14 @@ def chunk_document(
         candidate = unit if not current else f"{current}\n\n{unit}"
         candidate_count = len(tokenizer.encode(candidate))
         if current and (candidate_count > maximum_tokens or len(tokenizer.encode(current)) >= target_tokens):
-            previous_ids = list(tokenizer.encode(current))
+            previous_text = current
             previous_section = current_section
             emit()
-            overlap = _decode(tokenizer, previous_ids[-overlap_tokens:]) if overlap_tokens else ""
+            overlap = _source_suffix_within_limit(
+                previous_text,
+                tokenizer,
+                overlap_tokens,
+            )
             current = overlap
             current_section = previous_section
             candidate = unit if not current else f"{current}\n\n{unit}"

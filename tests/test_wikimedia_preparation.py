@@ -20,7 +20,7 @@ from vasu.data.preparation.contamination import (
     check_contamination,
     load_prompt_evidence,
 )
-from vasu.data.preparation.chunking import chunk_document
+from vasu.data.preparation.chunking import TextChunk, chunk_document
 from vasu.data.preparation.deduplication import (
     PilotDeduplicator,
     fineweb_document_index_status,
@@ -31,7 +31,11 @@ from vasu.data.preparation.filters import (
     comparison_normalize,
     filter_wikimedia_record,
 )
-from vasu.data.preparation.quality import assess_text_quality, repair_mojibake
+from vasu.data.preparation.quality import (
+    _decode_candidate,
+    assess_text_quality,
+    repair_mojibake,
+)
 from vasu.data.preparation.progress import load_progress, save_progress
 from vasu.data.preparation.reporting import sha256_file
 from vasu.data.preparation.reporting import atomic_write_json
@@ -60,6 +64,7 @@ from vasu.data.deduplication.schemas import (
     INDEX_FORMAT_VERSION,
 )
 from vasu.data.deduplication.normalization import NORMALIZATION_VERSION
+from vasu.tokenizer.tokenizer import VASUTokenizer
 
 
 PINNED_REVISION = "e6057dc557255a03c9c3c47ceab0eb44353b1bc5"
@@ -710,6 +715,55 @@ def test_valid_greek_math_and_accents_survive_cleanup() -> None:
     assert not metadata["encoding_repaired"]
 
 
+@pytest.mark.parametrize(
+    "clean",
+    [
+        "al-ʿarabiyyah العربية qāf š ḍād",
+        "14 March 1879\u00a0– 18 April 1955 — biography",
+        "Δv ≈ 5.2 km·s⁻¹ and μm²",
+        "René Descartes, Bahá'í, Enragés, São Paulo",
+    ],
+)
+def test_failed_single_byte_repair_candidates_leave_unicode_untouched(
+    clean: str,
+) -> None:
+    assert _decode_candidate(clean, "cp1252") is None
+    assert _decode_candidate(clean, "latin-1") is None
+    result = repair_mojibake(clean)
+    assert result.text == clean
+    assert not result.repaired
+    assert "\ufffd" not in result.text
+
+
+@pytest.mark.parametrize(
+    "source_style_text",
+    [
+        "Abacus terminology uses suanpan, ṣaḥīfa, and ʾabāq — without loss.",
+        "Albert Einstein lived from 14 March 1879\u00a0– 18 April 1955; E = mc².",
+        "Asteroid motion may use Δv ≈ 5.2 km·s⁻¹ — an orbital quantity.",
+        "Arabic transliteration includes al-ʿarabiyyah, qāf, š, and ḍād.",
+    ],
+)
+def test_source_style_unicode_survives_real_token_chunking(
+    source_style_text: str,
+) -> None:
+    tokenizer = VASUTokenizer()
+    tokenizer.load(str(Path(__file__).resolve().parents[1] / "assets/tokenizer.json"))
+    text = " ".join([source_style_text] * 40)
+    chunks = chunk_document(
+        text,
+        tokenizer,
+        target_tokens=48,
+        maximum_tokens=64,
+        minimum_tokens=8,
+        overlap_tokens=0,
+    )
+    reconstructed = "".join("".join(chunk.text.split()) for chunk in chunks)
+    assert reconstructed == "".join(text.split())
+    assert all("\ufffd" not in chunk.text for chunk in chunks)
+    assert all(chunk.token_count <= 64 for chunk in chunks)
+
+
 def test_chunking_is_deterministic_and_bounded() -> None:
     tokenizer = WordTokenizer()
     text = "\n\n".join(
@@ -831,6 +885,64 @@ def test_token_limit_accounting_uses_chunks(repository: Path) -> None:
     assert manifest["completion_status"] == "token_limit"
     assert manifest["accepted_chunks"] == 1
     assert manifest["total_vasu_tokens"] == 6
+
+
+def test_final_chunk_quality_gate_rejects_replacement_and_keeps_clean_sibling(
+    repository: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    clean = "A clean sibling chunk remains eligible for factual preparation."
+    corrupt = "An introduced replacement \ufffd must be rejected."
+    tokenizer = WordTokenizer()
+    monkeypatch.setattr(
+        "vasu.data.preparation.wikimedia.chunk_document",
+        lambda *args, **kwargs: [
+            TextChunk(corrupt, len(tokenizer.encode(corrupt)), None),
+            TextChunk(clean, len(tokenizer.encode(clean)), None),
+        ],
+    )
+    config = make_config(
+        chunking_enabled=True,
+        contamination_check_enabled=False,
+        exact_deduplication_enabled=False,
+        near_deduplication_enabled=False,
+    )
+    manifest, _, _ = run_pipeline(
+        repository,
+        [article(1)],
+        config,
+    )
+    records = [
+        json.loads(line)
+        for line in resolve_paths(config, repository)["output_jsonl"]
+        .read_text(encoding="utf-8")
+        .splitlines()
+    ]
+    assert manifest["rejection_reasons"]["replacement_character"] == 1
+    assert manifest["quality_rejections"] == 1
+    assert manifest["accepted_chunks"] == 1
+    assert manifest["total_vasu_tokens"] == len(tokenizer.encode(clean))
+    assert [record["cleaned_text"] for record in records] == [clean]
+
+
+def test_source_replacement_character_is_rejected_before_chunking(
+    repository: Path,
+) -> None:
+    clean = "A separate clean source article remains eligible for preparation."
+    config = make_config(
+        chunking_enabled=False,
+        contamination_check_enabled=False,
+        exact_deduplication_enabled=False,
+        near_deduplication_enabled=False,
+    )
+    manifest, _, _ = run_pipeline(
+        repository,
+        [article(1, "Source text containing \ufffd is corrupt."), article(2, clean)],
+        config,
+    )
+    assert manifest["rejection_reasons"]["replacement_character"] == 1
+    assert manifest["quality_rejections"] == 1
+    assert manifest["accepted_chunks"] == 1
 
 
 def test_chunked_resume_is_deterministic(repository: Path) -> None:
