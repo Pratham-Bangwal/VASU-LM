@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 from collections import Counter
 from copy import deepcopy
@@ -20,7 +20,7 @@ from vasu.data.instruction_quality_batch_002 import (
 )
 
 
-CONFIG = Path("config/configs/data/vasu_instruction_quality_v1_batch_002.json")
+CONFIG = Path("configs/data/vasu_instruction_quality_v1_batch_002.json")
 
 
 def records() -> list[dict]:
