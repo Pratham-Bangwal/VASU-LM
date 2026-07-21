@@ -30,7 +30,7 @@ class FineWebSource:
         for name in ("source_id", "source_revision", "source_shard", "path"):
             if not getattr(self, name):
                 raise ValueError(f"FineWeb source {name} must be non-empty")
-        if self.format != "jsonl_text":
+        if self.format not in {"jsonl_text", "jsonl_gzip"}:
             raise ValueError(f"unsupported FineWeb source format: {self.format}")
         if self.provenance_completeness not in {"complete", "incomplete"}:
             raise ValueError("provenance_completeness must be complete or incomplete")

@@ -1,6 +1,10 @@
 """Document-level cross-source deduplication utilities."""
 
-from .fineweb_index import FineWebDocumentIndex, build_fineweb_document_index
+from .fineweb_index import (
+    FederatedFineWebDocumentIndex,
+    FineWebDocumentIndex,
+    build_fineweb_document_index,
+)
 from .extension_recovery import (
     DatasetServerSourceIdClient,
     ExtensionRecoveryAudit,
@@ -22,6 +26,7 @@ from .schemas import FineWebIndexConfig, FineWebSource, IndexRecord
 
 __all__ = [
     "FineWebDocumentIndex",
+    "FederatedFineWebDocumentIndex",
     "ExtensionRecoveryAudit",
     "DatasetServerSourceIdClient",
     "FineWebIndexConfig",

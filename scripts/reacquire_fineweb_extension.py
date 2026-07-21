@@ -12,6 +12,10 @@ import sys
 import time
 from typing import Any, Sequence
 
+REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
+if str(REPOSITORY_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPOSITORY_ROOT))
+
 from vasu.data.deduplication.extension_recovery import (
     DatasetServerSourceIdClient,
     RecoveryError,
@@ -39,10 +43,21 @@ from vasu.data.deduplication.recovery_benchmark import (
     run_strategy,
     validate_strategy_result,
 )
+from vasu.data.deduplication.extension_production import (  # noqa: E402
+    build_extension_index,
+    load_production_config,
+    preflight_production,
+    run_production_recovery,
+    validate_recovered_artifact,
+    write_combined_coverage,
+)
 
 
-REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_CONFIG = REPOSITORY_ROOT / "configs/data/deduplication/fineweb_extension_recovery.json"
+DEFAULT_PRODUCTION_CONFIG = (
+    REPOSITORY_ROOT
+    / "configs/data/deduplication/fineweb_extension_recovery_production.json"
+)
 
 
 def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
@@ -52,7 +67,13 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     mode.add_argument("--dry-run", action="store_true", help="Audit local evidence and probe bounded provider lookup.")
     mode.add_argument("--smoke-test", action="store_true", help="Retrieve exactly the configured deterministic sample.")
     mode.add_argument("--benchmark", action="store_true", help="Benchmark bounded recovery strategies.")
+    mode.add_argument("--production-preflight", action="store_true")
+    mode.add_argument("--production-recovery", action="store_true")
+    mode.add_argument("--validate-production", action="store_true")
+    mode.add_argument("--build-extension-index", action="store_true")
+    mode.add_argument("--write-combined-coverage", action="store_true")
     parser.add_argument("--restart", action="store_true", help="Discard compatible progress and query the sample again.")
+    parser.add_argument("--resume", action="store_true", help="Resume a partial extension index build.")
     parser.add_argument("--sample-count", type=int, default=1_000)
     parser.add_argument(
         "--strategies",
@@ -70,6 +91,13 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--read-timeout", type=float, default=120.0)
     parser.add_argument("--retry-count", type=int, default=4)
     parser.add_argument("--retry-seed", type=int, default=42)
+    parser.add_argument("--production-config", type=Path, default=DEFAULT_PRODUCTION_CONFIG)
+    parser.add_argument(
+        "--stop-after-documents",
+        type=int,
+        default=None,
+        help="Test-only bounded production interruption; omit for complete recovery.",
+    )
     return parser.parse_args(argv)
 
 
@@ -471,6 +499,46 @@ def run_benchmark(
 
 def run(argv: Sequence[str] | None = None) -> int:
     args = parse_args(argv)
+    production_mode = any(
+        (
+            args.production_preflight,
+            args.production_recovery,
+            args.validate_production,
+            args.build_extension_index,
+            args.write_combined_coverage,
+        )
+    )
+    if production_mode:
+        production_config = load_production_config(args.production_config.resolve())
+        if args.production_preflight:
+            report = preflight_production(
+                production_config, repository_root=REPOSITORY_ROOT
+            )
+        elif args.production_recovery:
+            report = preflight_production(
+                production_config, repository_root=REPOSITORY_ROOT
+            )
+            print(json.dumps(report, indent=2), flush=True)
+            report = run_production_recovery(
+                production_config,
+                repository_root=REPOSITORY_ROOT,
+                restart=args.restart,
+                stop_after_documents=args.stop_after_documents,
+            )
+        elif args.validate_production:
+            report = validate_recovered_artifact(
+                production_config, repository_root=REPOSITORY_ROOT
+            )
+        elif args.build_extension_index:
+            report = build_extension_index(
+                production_config,
+                repository_root=REPOSITORY_ROOT,
+                resume=args.resume,
+            )
+        else:
+            report = write_combined_coverage(repository_root=REPOSITORY_ROOT)
+        print(json.dumps(report, indent=2))
+        return 0
     config = load_config(args.config.resolve())
     metadata_path = repository_path(config["metadata_path"])
     database_path = repository_path(config["historical_database_path"])

@@ -177,6 +177,20 @@ def test_permanent_error_is_not_retried() -> None:
     assert client.retry_count == 0
 
 
+def test_dataset_viewer_invalid_query_422_is_retried() -> None:
+    responses = [
+        FakeResponse(422, {"error": "A query parameter is invalid"}),
+        FakeResponse(200, {"ok": True}),
+    ]
+    client = ProviderHttpClient(
+        no_wait_policy(), maximum_response_bytes=1_000,
+        request=lambda *args, **kwargs: responses.pop(0), sleep=lambda _: None,
+    )
+    assert client.get_json("https://example.test").payload == {"ok": True}
+    assert client.retry_count == 1
+    assert client.transient_error_count == 1
+
+
 def test_timeout_classification() -> None:
     def request(*args: object, **kwargs: object) -> Any:
         raise requests.Timeout("timeout")

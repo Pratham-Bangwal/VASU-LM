@@ -254,6 +254,15 @@ class ProviderHttpClient:
                     raise RetryExhaustedError(f"HTTP {status} retries exhausted")
                 self._sleep_before_retry(attempt, response.headers.get("Retry-After"))
                 continue
+            if status == 422 and b"A query parameter is invalid" in body:
+                # Dataset Viewer occasionally emits this for valid pinned filter
+                # queries; retry before treating it as permanent.
+                with self._stats_lock:
+                    self.transient_error_count += 1
+                if attempt >= self.policy.retry_count:
+                    raise PermanentProviderError(f"Permanent provider HTTP {status}: {body[:300]!r}")
+                self._sleep_before_retry(attempt, response.headers.get("Retry-After"))
+                continue
             if 400 <= status < 500:
                 raise PermanentProviderError(f"Permanent provider HTTP {status}: {body[:300]!r}")
             if status >= 500:

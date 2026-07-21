@@ -5,6 +5,7 @@ from __future__ import annotations
 from dataclasses import asdict
 from datetime import datetime, timezone
 import hashlib
+import gzip
 import json
 import os
 from pathlib import Path
@@ -105,8 +106,14 @@ def _parse_signature(value: str) -> tuple[int, ...]:
     return tuple(int(item, 16) for item in value.split(","))
 
 
-def _iter_jsonl(source_path: Path, start_line: int) -> Iterator[tuple[int, dict[str, Any] | None]]:
-    with source_path.open("r", encoding="utf-8") as handle:
+def _iter_jsonl(
+    source_path: Path,
+    start_line: int,
+    *,
+    compressed: bool = False,
+) -> Iterator[tuple[int, dict[str, Any] | None]]:
+    opener = gzip.open if compressed else Path.open
+    with opener(source_path, "rt", encoding="utf-8") as handle:
         for line_number, line in enumerate(handle):
             if line_number < start_line:
                 continue
@@ -199,7 +206,11 @@ def build_fineweb_document_index(
             total_duplicates += duplicates
             continue
         bucket_buffer: list[tuple[str, str]] = []
-        for line_number, payload in _iter_jsonl(path, next_line):
+        for line_number, payload in _iter_jsonl(
+            path,
+            next_line,
+            compressed=source.format == "jsonl_gzip",
+        ):
             if config.maximum_documents is not None and indexed_now >= config.maximum_documents:
                 stopped_by_bound = True
                 break
@@ -343,6 +354,7 @@ def build_fineweb_document_index(
             "SELECT COALESCE(SUM(processed + rejected + duplicate_hashes),0) FROM source_progress"
         ).fetchone()[0]
     )
+    complete = not stopped_by_bound
     if complete and config.expected_document_count is not None and input_documents != config.expected_document_count:
         connection.close()
         raise ValueError(
@@ -363,7 +375,6 @@ def build_fineweb_document_index(
         ).fetchone()[0]
     )
     bucket_count = int(connection.execute("SELECT COUNT(*) FROM buckets").fetchone()[0])
-    complete = not stopped_by_bound
     connection.execute(
         "INSERT OR REPLACE INTO metadata(key,value) VALUES('completion_status',?)",
         ("complete" if complete else "bounded_complete",),
@@ -467,3 +478,30 @@ class FineWebDocumentIndex:
         value = dict(zip(keys, row))
         value["signature"] = _parse_signature(value["signature"])
         return value
+
+
+class FederatedFineWebDocumentIndex:
+    """Read-only lookup across independently validated compatible indexes."""
+
+    def __init__(self, paths: list[Path] | tuple[Path, ...]):
+        if not paths:
+            raise ValueError("A federated FineWeb index needs at least one database")
+        self.indexes = [FineWebDocumentIndex(path) for path in paths]
+
+    def close(self) -> None:
+        for index in self.indexes:
+            index.close()
+
+    def exact(self, fingerprint: str) -> dict[str, Any] | None:
+        for index in self.indexes:
+            result = index.exact(fingerprint)
+            if result is not None:
+                return result
+        return None
+
+    def candidates(self, signature: tuple[int, ...], bands: int = 8) -> list[dict[str, Any]]:
+        combined: dict[tuple[str, str], dict[str, Any]] = {}
+        for index in self.indexes:
+            for result in index.candidates(signature, bands):
+                combined[(result["source_id"], result["document_id"])] = result
+        return [combined[key] for key in sorted(combined)]
