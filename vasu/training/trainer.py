@@ -11,6 +11,7 @@ from vasu.training.checkpoint import (
     save_checkpoint,
     load_checkpoint,
 )
+from vasu.training.accumulation import normalize_partial_accumulation
 
 
 from torch.utils.tensorboard import SummaryWriter
@@ -126,7 +127,14 @@ class Trainer:
 
         self.optimizer.zero_grad(set_to_none=True)
 
-        for step, (x, y) in enumerate(progress):
+        for step, batch in enumerate(progress):
+
+            if len(batch) == 3:
+                x, y, mask = batch
+                mask = mask.to(self.device)
+            else:
+                x, y = batch
+                mask = None
 
             x = x.to(self.device)
             y = y.to(self.device)
@@ -142,6 +150,7 @@ class Trainer:
                 loss = language_model_loss(
                     logits,
                     y,
+                    mask,
                 )
 
                 loss = loss / self.config.gradient_accumulation_steps
@@ -154,6 +163,17 @@ class Trainer:
             ):
 
                 self.scaler.unscale_(self.optimizer)
+
+                accumulated_microbatches = (
+                    step % self.config.gradient_accumulation_steps
+                ) + 1
+                normalize_partial_accumulation(
+                    self.model.parameters(),
+                    accumulated_microbatches=accumulated_microbatches,
+                    target_microbatches=(
+                        self.config.gradient_accumulation_steps
+                    ),
+                )
 
                 torch.nn.utils.clip_grad_norm_(
                     self.model.parameters(),
@@ -184,7 +204,14 @@ class Trainer:
 
         total_loss = 0.0
 
-        for x, y in self.val_loader:
+        for batch in self.val_loader:
+
+            if len(batch) == 3:
+                x, y, mask = batch
+                mask = mask.to(self.device)
+            else:
+                x, y = batch
+                mask = None
 
             x = x.to(self.device)
             y = y.to(self.device)
@@ -199,6 +226,7 @@ class Trainer:
                 loss = language_model_loss(
                     logits,
                     y,
+                    mask,
                 )
 
             total_loss += loss.item()
