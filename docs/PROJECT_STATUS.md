@@ -421,3 +421,26 @@ bounded UTF-8 preview review passed. One malformed date boundary was traced to
 the pinned Parquet source itself, so uncertain factual text was not silently
 rewritten. This artifact is for review, not training; the full pilot remains
 unauthorized.
+
+### Instruction-quality Batch 002 closeout
+
+Batch 002 completed as an isolated masked refinement from the Batch 001 best
+checkpoint. It processed 90 training records in three optimizer updates,
+finishing at global step 201307. Train supervised-token loss was 3.018085 and
+validation supervised-token loss was 3.189959 over 442 validation tokens.
+
+The resulting checkpoint is preserved at
+`checkpoints/vasu_60m/instruction_quality_batch_002_from_batch_001/best.pt`
+with SHA-256
+`5025c1690035f0f0139bb2cff4044fd4a0ef6df0e480eee71d96a12e61272262`.
+
+All automatic safety gates passed. Batch 002 showed small improvements in
+repetition, diversity, controlled-sampling format compliance, and Alpaca
+validation loss, while UltraChat loss remained effectively stable. However,
+the 60-prompt semantic review preferred Batch 001 eight times and Batch 002 six
+times, with 46 ties.
+
+Promotion is rejected because Batch 002 did not demonstrate a clear semantic
+improvement. Batch 001 remains the preferred instruction-quality checkpoint.
+Batch 002 and its evaluation artifacts are retained for reproducibility; no
+additional training is authorized by this result.

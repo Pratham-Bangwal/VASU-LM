@@ -322,3 +322,33 @@ Unknown or unavailable values are explicitly marked rather than inferred.
 - Interpretation: this run measures sampling stability and explicit heuristic checks. It does not validate factuality, semantic quality, safety, or general capability, and it does not override the manually reviewed Alpaca-v3 default selection.
 - Reports: `evaluation/checkpoint_comparison_expanded_40_sampled_5seed.{txt,json}` and `evaluation/checkpoint_score_summary_expanded_40_sampled_5seed.json`.
 - Decision: preserve both checkpoints and current training state; no new training is authorized by this evaluation.
+
+## VASU-60M instruction-quality Batch 002
+
+- Objective: perform a small masked instruction-quality refinement from the
+  preserved Batch 001 best checkpoint and determine whether it produces a clear
+  semantic improvement.
+- Parent checkpoint:
+  `checkpoints/vasu_60m/instruction_quality_batch_001_from_ultrachat_v2/best.pt`,
+  global step 201304, SHA-256
+  `4f377fc49fef2382c531b5bb28731fa9664bac217256b8a76dcf1427f4d39d8e`.
+- Dataset: 500 approved source examples packed into 95 fixed records: 90
+  training records and five validation records. The release contains 24,415
+  tokens and 10,338 supervised response/EOS tokens.
+- Training: one epoch, batch size 2, gradient accumulation 16, learning rate
+  5e-7, weight decay 0.01, AMP, and gradient clipping 1.0.
+- Completion: three optimizer updates, final global step 201307, train
+  supervised-token loss 3.018085, and validation supervised-token loss
+  3.189959 over 442 validation tokens.
+- Selected artifact:
+  `checkpoints/vasu_60m/instruction_quality_batch_002_from_batch_001/best.pt`,
+  SHA-256
+  `5025c1690035f0f0139bb2cff4044fd4a0ef6df0e480eee71d96a12e61272262`.
+- Automatic comparison: format compliance, repetition, diversity, and Alpaca
+  validation loss improved slightly. UltraChat validation loss was effectively
+  unchanged.
+- Human review: Batch 001 was preferred on eight prompts, Batch 002 on six,
+  with 46 ties across the 60-prompt stratified review.
+- Decision: preserve Batch 002 as a completed experiment but do not promote it.
+  Batch 001 remains the preferred instruction-quality checkpoint because Batch
+  002 did not establish a clear semantic improvement.

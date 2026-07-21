@@ -4,6 +4,17 @@
 
 ### Added
 
+- Completed VASU-60M instruction-quality Batch 002 from the Batch 001 best
+  checkpoint. The isolated three-update run finished at global step 201307 with
+  train/validation supervised-token losses of 3.018085/3.189959.
+- Added deterministic Batch 001-versus-Batch 002 evaluation on the frozen
+  216-prompt benchmark and a completed 60-prompt semantic review. Human
+  preferences were eight for Batch 001, six for Batch 002, and 46 ties.
+- Preserved Batch 002 checkpoint SHA-256
+  `5025c1690035f0f0139bb2cff4044fd4a0ef6df0e480eee71d96a12e61272262`
+  as a rejected promotion candidate. Batch 001 remains preferred.
+
+
 - Added a deterministic, resumable, atomic FineWeb-extension source-ID recovery
   smoke using the official Dataset Viewer exact-ID filter with per-request
   pinned-revision enforcement and no full-scan fallback.
