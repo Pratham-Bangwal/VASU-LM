@@ -4,32 +4,19 @@ from vasu.config import ModelConfig
 from vasu.model import MultiHeadAttention
 
 
-config = ModelConfig()
-
-
-def main():
-
-    attention = MultiHeadAttention(
-        config,
+def test_attention_preserves_shape():
+    config = ModelConfig(
+        vocab_size=100,
+        max_seq_len=8,
+        dim=24,
+        n_heads=4,
+        n_layers=2,
+        hidden_dim=48,
     )
 
-    x = torch.randn(
-        2,
-        config.max_seq_len,
-        config.dim,
-    )
+    attention = MultiHeadAttention(config)
+    x = torch.randn(2, config.max_seq_len, config.dim)
 
     y = attention(x)
 
-    print("=" * 50)
-    print("Input :", x.shape)
-    print("Output:", y.shape)
-    print("=" * 50)
-
     assert y.shape == x.shape
-
-    print("✅ MultiHeadAttention works!")
-
-
-if __name__ == "__main__":
-    main()

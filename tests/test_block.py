@@ -4,32 +4,19 @@ from vasu.config import ModelConfig
 from vasu.model import TransformerBlock
 
 
-config = ModelConfig()
-
-
-def main():
-
-    block = TransformerBlock(
-        config,
+def test_transformer_block_preserves_shape():
+    config = ModelConfig(
+        vocab_size=100,
+        max_seq_len=8,
+        dim=24,
+        n_heads=4,
+        n_layers=2,
+        hidden_dim=48,
     )
 
-    x = torch.randn(
-        2,
-        config.max_seq_len,
-        config.dim,
-    )
+    block = TransformerBlock(config)
+    x = torch.randn(2, config.max_seq_len, config.dim)
 
     y = block(x)
 
-    print("=" * 50)
-    print("Input :", x.shape)
-    print("Output:", y.shape)
-    print("=" * 50)
-
     assert y.shape == x.shape
-
-    print("✅ Transformer Block works!")
-
-
-if __name__ == "__main__":
-    main()

@@ -1,27 +1,12 @@
 import torch
 
-from vasu.config import ModelConfig
 from vasu.model import RMSNorm
 
 
-config = ModelConfig()
-
-
-def main():
-
-    x = torch.randn(4, 16, config.dim)
-
-    norm = RMSNorm(config.dim)
+def test_rmsnorm_preserves_shape():
+    x = torch.randn(4, 16, 24)
+    norm = RMSNorm(24)
 
     y = norm(x)
 
-    print("Input :", x.shape)
-    print("Output:", y.shape)
-
-    assert x.shape == y.shape
-
-    print("✅ RMSNorm works!")
-
-
-if __name__ == "__main__":
-    main()
+    assert y.shape == x.shape

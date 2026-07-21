@@ -4,14 +4,9 @@ from vasu.config import ModelConfig
 from vasu.model import TokenEmbedding
 
 
-config = ModelConfig()
-
-
-def main():
-
-    embedding = TokenEmbedding(
-        config,
-    )
+def test_token_embedding_shape():
+    config = ModelConfig(vocab_size=100, max_seq_len=8, dim=24)
+    embedding = TokenEmbedding(config)
 
     input_ids = torch.randint(
         low=0,
@@ -21,15 +16,4 @@ def main():
 
     output = embedding(input_ids)
 
-    print("=" * 50)
-    print("Input Shape :", input_ids.shape)
-    print("Output Shape:", output.shape)
-    print("=" * 50)
-
     assert output.shape == (2, 8, config.dim)
-
-    print("✅ TokenEmbedding is working!")
-
-
-if __name__ == "__main__":
-    main()

@@ -4,12 +4,17 @@ from vasu.config import ModelConfig
 from vasu.model import VASUModel
 
 
-def main():
-
-    config = ModelConfig()
+def test_vasu_model_logits_shape():
+    config = ModelConfig(
+        vocab_size=100,
+        max_seq_len=8,
+        dim=24,
+        n_heads=4,
+        n_layers=2,
+        hidden_dim=48,
+    )
 
     model = VASUModel(config)
-
     x = torch.randint(
         0,
         config.vocab_size,
@@ -18,30 +23,8 @@ def main():
 
     logits = model(x)
 
-    print("=" * 60)
-
-    print("Input :", x.shape)
-
-    print("Output:", logits.shape)
-
-    print()
-
-    total = sum(
-        p.numel() for p in model.parameters()
-    )
-
-    print(f"Parameters: {total:,}")
-
-    print("=" * 60)
-
     assert logits.shape == (
         2,
         config.max_seq_len,
         config.vocab_size,
     )
-
-    print("✅ VASUModel works!")
-
-
-if __name__ == "__main__":
-    main()
