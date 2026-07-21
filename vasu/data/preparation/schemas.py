@@ -61,6 +61,8 @@ class WikimediaPreparationConfig:
     resume_enabled: bool
     fineweb_index_path: str = "data/manifests/pretrain/fineweb_document_index.sqlite3"
     fineweb_index_required: bool = False
+    maximum_list_like_line_ratio: float = 0.8
+    minimum_prose_sentences_for_list_chunk: int = 2
 
     def for_smoke_test(self) -> "WikimediaPreparationConfig":
         base = self.output_paths

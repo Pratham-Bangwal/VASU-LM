@@ -26,7 +26,14 @@ from vasu.data.deduplication import (
 )
 
 from .contamination import check_contamination, load_prompt_evidence
-from .chunking import TextChunk, chunk_document
+from .chunking import (
+    BOUNDARY_TYPES,
+    TextChunk,
+    chunk_document,
+    chunk_document_detailed,
+    contains_reference_section_heading,
+    is_reference_section_heading,
+)
 from .deduplication import (
     PilotDeduplicator,
     fineweb_document_index_status,
@@ -40,7 +47,7 @@ from .progress import (
     save_progress,
     validate_resume_identity,
 )
-from .quality import assess_text_quality
+from .quality import assess_final_chunk, assess_text_quality
 from .reporting import (
     atomic_write_json,
     atomic_write_text,
@@ -65,6 +72,7 @@ REQUIRED_PARQUET_FIELDS = frozenset({"id", "url", "title", "text"})
 CONFIG_FIELDS = frozenset(WikimediaPreparationConfig.__dataclass_fields__)
 LEGACY_CHUNK_LIMIT_FIELD = "max_accepted_documents"
 OUTPUT_PATH_FIELDS = frozenset(PreparationOutputPaths.__dataclass_fields__)
+_DEFAULT_CHUNK_DOCUMENT = chunk_document
 
 
 def utc_now() -> str:
@@ -108,6 +116,8 @@ def load_preparation_config(path: Path) -> WikimediaPreparationConfig:
                 payload["max_accepted_chunks"],
             ),
         )
+    payload.setdefault("maximum_list_like_line_ratio", 0.8)
+    payload.setdefault("minimum_prose_sentences_for_list_chunk", 2)
     missing = sorted(CONFIG_FIELDS - set(payload))
     unknown = sorted(set(payload) - CONFIG_FIELDS)
     if missing:
@@ -217,6 +227,14 @@ def validate_preparation_config(config: WikimediaPreparationConfig) -> None:
         )
     if config.reference_section_behavior not in {"keep", "flag", "exclude"}:
         raise ValueError("reference_section_behavior must be keep, flag, or exclude")
+    if isinstance(config.maximum_list_like_line_ratio, bool) or not isinstance(
+        config.maximum_list_like_line_ratio, (int, float)
+    ) or not 0 < float(config.maximum_list_like_line_ratio) <= 1:
+        raise ValueError("maximum_list_like_line_ratio must be in (0, 1]")
+    _positive_int(
+        config.minimum_prose_sentences_for_list_chunk,
+        "minimum_prose_sentences_for_list_chunk",
+    )
     fineweb_path = Path(config.fineweb_index_path)
     if (
         not config.fineweb_index_path
@@ -351,20 +369,9 @@ def iter_selected_parquet_rows(
             break
 
 
-REFERENCE_SECTION_TITLES = {
-    "references",
-    "external links",
-    "further reading",
-    "bibliography",
-    "see also",
-}
-
-
 def is_reference_section(section_title: str | None) -> bool:
-    if not section_title:
-        return False
-    normalized = " ".join(section_title.casefold().split()).strip(":")
-    return normalized in REFERENCE_SECTION_TITLES
+    """Backward-compatible wrapper around canonical heading matching."""
+    return is_reference_section_heading(section_title)
 
 
 def acquire_pinned_shard(
@@ -717,14 +724,43 @@ def prepare_wikimedia_pilot(
             if not resuming_row and bool(filtered.metadata.get("encoding_repaired")):
                 progress.encoding_repairs += 1
             if config.chunking_enabled:
-                chunks = chunk_document(
-                    filtered.cleaned_text,
-                    tokenizer,
-                    target_tokens=config.target_chunk_tokens,
-                    maximum_tokens=config.maximum_chunk_tokens,
-                    minimum_tokens=config.minimum_chunk_tokens,
-                    overlap_tokens=config.chunk_overlap_tokens,
-                )
+                chunk_arguments = {
+                    "target_tokens": config.target_chunk_tokens,
+                    "maximum_tokens": config.maximum_chunk_tokens,
+                    "minimum_tokens": config.minimum_chunk_tokens,
+                    "overlap_tokens": config.chunk_overlap_tokens,
+                    "reference_section_behavior": config.reference_section_behavior,
+                }
+                if chunk_document is _DEFAULT_CHUNK_DOCUMENT:
+                    chunking_result = chunk_document_detailed(
+                        filtered.cleaned_text,
+                        tokenizer,
+                        **chunk_arguments,
+                    )
+                    chunks = list(chunking_result.chunks)
+                    chunking_rejections = chunking_result.rejection_counts
+                    excluded_reference_sections = (
+                        chunking_result.excluded_reference_sections
+                    )
+                else:
+                    # Preserve the existing focused-test/custom integration
+                    # seam without weakening production's detailed result.
+                    chunks = chunk_document(
+                        filtered.cleaned_text,
+                        tokenizer,
+                        **chunk_arguments,
+                    )
+                    chunking_rejections = {}
+                    excluded_reference_sections = 0
+                if not resuming_row:
+                    for reason, count in chunking_rejections.items():
+                        for _ in range(count):
+                            _increment(progress, reason)
+                    progress.quality_rejections += chunking_rejections.get(
+                        "below_minimum_chunk_tokens",
+                        0,
+                    )
+                    progress.reference_section_detections += excluded_reference_sections
             else:
                 chunks = [
                     TextChunk(
@@ -761,14 +797,25 @@ def prepare_wikimedia_pilot(
                 # its final output before deduplication, accounting, or writing
                 # so a corrupt chunk cannot contaminate downstream state while
                 # clean siblings from the same article remain eligible.
-                final_warnings, final_rejection = assess_text_quality(chunk.text)
-                if final_rejection:
-                    _increment(progress, final_rejection)
+                final_quality = assess_final_chunk(
+                    chunk.text,
+                    token_count=chunk.token_count,
+                    minimum_tokens=config.minimum_chunk_tokens,
+                    maximum_list_like_line_ratio=config.maximum_list_like_line_ratio,
+                    minimum_prose_sentences_for_list_chunk=(
+                        config.minimum_prose_sentences_for_list_chunk
+                    ),
+                    boundary_start_type=chunk.boundary_start_type,
+                    boundary_end_type=chunk.boundary_end_type,
+                    training_mode=config.reference_section_behavior == "exclude",
+                )
+                if final_quality.rejection_reason:
+                    _increment(progress, final_quality.rejection_reason)
                     progress.quality_rejections += 1
                     progress.next_chunk_index = chunk_index + 1
                     save_progress(progress_path, progress)
                     continue
-                chunk_warnings.extend(final_warnings)
+                chunk_warnings.extend(final_quality.warnings)
                 exact_contamination, contamination_matches = check_contamination(
                     chunk.text, chunk_id, prompt_evidence
                 )
@@ -840,13 +887,16 @@ def prepare_wikimedia_pilot(
                     break
                 deduplicator.accept(chunk.text, fingerprint)
                 output_record = {
-                    "format_version": "wikimedia_pilot_document_v2",
+                    "format_version": "wikimedia_pilot_document_v3",
                     "document_id": chunk_id,
                     "parent_document_id": parent_document_id,
                     "chunk_id": chunk_id,
                     "chunk_index": chunk_index,
                     "chunk_count": len(chunks),
                     "section_title": chunk.section_title,
+                    "boundary_start_type": chunk.boundary_start_type,
+                    "boundary_end_type": chunk.boundary_end_type,
+                    "overlap_characters": chunk.overlap_characters,
                     "source_id": config.source_id,
                     "source_revision": config.pinned_revision,
                     "source_shard": config.shard_identifier,
@@ -858,6 +908,7 @@ def prepare_wikimedia_pilot(
                     "encoding_repaired": bool(filtered.metadata.get("encoding_repaired")),
                     "quality_warnings": list(dict.fromkeys(chunk_warnings)),
                     "filtering_metadata": filtered.metadata,
+                    "quality_metrics": final_quality.metrics,
                     "fineweb_overlap": fineweb_overlap,
                     "provenance_metadata": {
                         "dataset_name": config.dataset_name,
@@ -910,7 +961,7 @@ def prepare_wikimedia_pilot(
     )
     rejected = sum((progress.rejection_counts or {}).values())
     manifest = {
-        "format_version": "wikimedia_pilot_v3",
+        "format_version": "wikimedia_pilot_v4",
         "source_registry_id": config.source_id,
         "dataset_name": config.dataset_name,
         "source_revision": config.pinned_revision,
@@ -1040,24 +1091,31 @@ def validate_preparation_output(
     paths = resolve_paths(config, repository_root)
     manifest = json.loads(paths["manifest_json"].read_text(encoding="utf-8"))
     format_version = manifest.get("format_version")
-    if format_version not in {"wikimedia_pilot_v2", "wikimedia_pilot_v3"}:
+    if format_version not in {
+        "wikimedia_pilot_v2",
+        "wikimedia_pilot_v3",
+        "wikimedia_pilot_v4",
+    }:
         raise ValueError(
             "Unsupported preparation output format; expected wikimedia_pilot_v2 "
-            "or wikimedia_pilot_v3"
+            "through wikimedia_pilot_v4"
         )
     resolved_config = config_to_dict(config)
-    if format_version == "wikimedia_pilot_v2":
+    if format_version in {"wikimedia_pilot_v2", "wikimedia_pilot_v3"}:
         stored_config = manifest.get("configuration")
         if not isinstance(stored_config, dict):
             raise ValueError("Legacy output manifest lacks its resolved configuration")
         stored_config = dict(stored_config)
-        legacy_limit = stored_config.pop(LEGACY_CHUNK_LIMIT_FIELD, None)
-        if legacy_limit is not None:
-            stored_config.setdefault("max_accepted_chunks", legacy_limit)
-            stored_config.setdefault(
-                "max_accepted_parent_documents",
-                stored_config.get("max_raw_examples"),
-            )
+        if format_version == "wikimedia_pilot_v2":
+            legacy_limit = stored_config.pop(LEGACY_CHUNK_LIMIT_FIELD, None)
+            if legacy_limit is not None:
+                stored_config.setdefault("max_accepted_chunks", legacy_limit)
+                stored_config.setdefault(
+                    "max_accepted_parent_documents",
+                    stored_config.get("max_raw_examples"),
+                )
+        stored_config.setdefault("maximum_list_like_line_ratio", 0.8)
+        stored_config.setdefault("minimum_prose_sentences_for_list_chunk", 2)
         if stored_config != resolved_config:
             raise ValueError("Output manifest configuration mismatch")
     elif manifest.get("configuration_hash") != canonical_json_hash(resolved_config):
@@ -1086,7 +1144,11 @@ def validate_preparation_output(
             seen_ids.add(document_id)
             seen_hashes.add(fingerprint)
             parent_ids.add(str(record.get("parent_document_id", document_id)))
-            if record.get("format_version") != "wikimedia_pilot_document_v2":
+            record_version = record.get("format_version")
+            if record_version not in {
+                "wikimedia_pilot_document_v2",
+                "wikimedia_pilot_document_v3",
+            }:
                 raise ValueError(f"Unsupported document format at line {line_number}")
             required = (
                 "parent_document_id",
@@ -1101,6 +1163,21 @@ def validate_preparation_output(
             missing = [field for field in required if field not in record]
             if missing:
                 raise ValueError(f"Output JSONL line {line_number} missing fields: {missing}")
+            if record_version == "wikimedia_pilot_document_v3":
+                boundary_fields = (
+                    "boundary_start_type",
+                    "boundary_end_type",
+                    "overlap_characters",
+                    "quality_metrics",
+                )
+                boundary_missing = [
+                    field for field in boundary_fields if field not in record
+                ]
+                if boundary_missing:
+                    raise ValueError(
+                        f"Output JSONL line {line_number} missing boundary fields: "
+                        f"{boundary_missing}"
+                    )
             text = record.get("cleaned_text")
             if not isinstance(text, str) or not text:
                 raise ValueError(f"Output JSONL line {line_number} has invalid text")
@@ -1111,6 +1188,11 @@ def validate_preparation_output(
                 raise ValueError(f"Output JSONL line {line_number} token count mismatch")
             if token_count > config.maximum_chunk_tokens:
                 raise ValueError(f"Output JSONL line {line_number} exceeds chunk maximum")
+            if (
+                record_version == "wikimedia_pilot_document_v3"
+                and token_count < config.minimum_chunk_tokens
+            ):
+                raise ValueError(f"Output JSONL line {line_number} is below chunk minimum")
             if "\ufffd" in text:
                 raise ValueError(f"Output JSONL line {line_number} contains replacement text")
             _, quality_rejection = assess_text_quality(text)
@@ -1119,17 +1201,59 @@ def validate_preparation_output(
                     f"Output JSONL line {line_number} fails quality validation: "
                     f"{quality_rejection}"
                 )
+            if record_version == "wikimedia_pilot_document_v3":
+                start_type = record["boundary_start_type"]
+                end_type = record["boundary_end_type"]
+                if start_type not in BOUNDARY_TYPES or end_type not in BOUNDARY_TYPES:
+                    raise ValueError(
+                        f"Output JSONL line {line_number} has invalid boundary metadata"
+                    )
+                overlap_characters = record["overlap_characters"]
+                if (
+                    isinstance(overlap_characters, bool)
+                    or not isinstance(overlap_characters, int)
+                    or overlap_characters < 0
+                ):
+                    raise ValueError(
+                        f"Output JSONL line {line_number} has invalid overlap metadata"
+                    )
+                if config.reference_section_behavior == "exclude" and (
+                    is_reference_section(record.get("section_title"))
+                    or contains_reference_section_heading(text)
+                ):
+                    raise ValueError(
+                        f"Output JSONL line {line_number} retained a reference section"
+                    )
+                final_quality = assess_final_chunk(
+                    text,
+                    token_count=token_count,
+                    minimum_tokens=config.minimum_chunk_tokens,
+                    maximum_list_like_line_ratio=(
+                        config.maximum_list_like_line_ratio
+                    ),
+                    minimum_prose_sentences_for_list_chunk=(
+                        config.minimum_prose_sentences_for_list_chunk
+                    ),
+                    boundary_start_type=start_type,
+                    boundary_end_type=end_type,
+                    training_mode=config.reference_section_behavior == "exclude",
+                )
+                if final_quality.rejection_reason:
+                    raise ValueError(
+                        f"Output JSONL line {line_number} fails final quality validation: "
+                        f"{final_quality.rejection_reason}"
+                    )
             documents += 1
             tokens += token_count
     manifest_chunks = (
         manifest.get("accepted_chunks")
-        if format_version == "wikimedia_pilot_v3"
+        if format_version in {"wikimedia_pilot_v3", "wikimedia_pilot_v4"}
         else manifest.get("accepted_documents", manifest.get("accepted_chunks"))
     )
     if documents != manifest_chunks or tokens != manifest["total_vasu_tokens"]:
         raise ValueError("Output JSONL counts do not match manifest")
     if (
-        format_version == "wikimedia_pilot_v3"
+        format_version in {"wikimedia_pilot_v3", "wikimedia_pilot_v4"}
         and len(parent_ids) != manifest["accepted_parent_documents"]
     ):
         raise ValueError("Output parent-document count does not match manifest")

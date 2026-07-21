@@ -24,6 +24,8 @@
   "maximum_chunk_tokens": 1024,
   "minimum_chunk_tokens": 128,
   "chunk_overlap_tokens": 32,
+  "maximum_list_like_line_ratio": 0.8,
+  "minimum_prose_sentences_for_list_chunk": 2,
   "review_sampling_enabled": false,
   "reference_section_behavior": "exclude",
   "fineweb_index_path": "data/manifests/pretrain/fineweb_document_index.sqlite3",

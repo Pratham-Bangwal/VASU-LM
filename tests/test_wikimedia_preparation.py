@@ -20,7 +20,12 @@ from vasu.data.preparation.contamination import (
     check_contamination,
     load_prompt_evidence,
 )
-from vasu.data.preparation.chunking import TextChunk, chunk_document
+from vasu.data.preparation.chunking import (
+    TextChunk,
+    chunk_document,
+    chunk_document_detailed,
+    is_reference_section_heading,
+)
 from vasu.data.preparation.deduplication import (
     PilotDeduplicator,
     fineweb_document_index_status,
@@ -33,6 +38,7 @@ from vasu.data.preparation.filters import (
 )
 from vasu.data.preparation.quality import (
     _decode_candidate,
+    assess_final_chunk,
     assess_text_quality,
     repair_mojibake,
 )
@@ -91,6 +97,11 @@ class WordTokenizer:
         return " ".join(self._inverse[token_id] for token_id in ids)
 
 
+class CharacterTokenizer:
+    def encode(self, text: str) -> list[int]:
+        return [ord(character) for character in text]
+
+
 def make_config(**changes: object) -> WikimediaPreparationConfig:
     paths = PreparationOutputPaths(
         raw_directory="data/raw/factual/wikimedia/20231101_en",
@@ -126,8 +137,8 @@ def make_config(**changes: object) -> WikimediaPreparationConfig:
         chunking_enabled=True,
         target_chunk_tokens=768,
         maximum_chunk_tokens=1024,
-        minimum_chunk_tokens=128,
-        chunk_overlap_tokens=32,
+        minimum_chunk_tokens=3,
+        chunk_overlap_tokens=1,
         review_sampling_enabled=False,
         reference_section_behavior="keep",
         quality_warning_threshold=5,
@@ -889,6 +900,44 @@ def test_joined_word_smoke_regressions_are_fixed() -> None:
     assert cleaned == "for authority end of within anarchist from the as distinct"
 
 
+@pytest.mark.parametrize(
+    ("raw", "expected_value"),
+    [
+        ("Ammonia has the formula {{chem2|NH3}}.", "NH3"),
+        ("The rectangle uses {{math|area = base × height}}.", "area = base × height"),
+        ("The aircraft reached {{convert|11850|km/h|mph}}.", "11850 km/h"),
+        (
+            "The commission is {{lang|ca|Comissió de Toponímia}}.",
+            "Comissió de Toponímia",
+        ),
+        ("The text states {{quote|First principle}}.", "First principle"),
+        (
+            "Einstein's ''Zur Elektrodynamik bewegter Körper'' was published.",
+            "Zur Elektrodynamik bewegter Körper",
+        ),
+    ],
+)
+def test_readable_wikimedia_markup_values_are_preserved(
+    raw: str,
+    expected_value: str,
+) -> None:
+    cleaned, metadata, rejection = clean_training_text(raw)
+    assert rejection is None
+    assert expected_value in cleaned
+    if "{{" in raw:
+        assert metadata["templates_preserved"] == 1
+        assert metadata["templates_removed"] == 0
+
+
+def test_structured_enumeration_template_is_preserved_as_lines() -> None:
+    cleaned, metadata, rejection = clean_training_text(
+        "The following principles:\n{{ubl|First principle|Second principle}}"
+    )
+    assert rejection is None
+    assert cleaned == "The following principles:\nFirst principle\nSecond principle"
+    assert metadata["templates_preserved"] == 1
+
+
 def test_valid_greek_math_and_accents_survive_cleanup() -> None:
     raw = "Enragés measured 0.5 μm at 23° and reported m−2."
     cleaned, metadata, rejection = clean_training_text(raw)
@@ -1007,7 +1056,7 @@ def test_chunk_output_provenance_hashes_and_limits(repository: Path) -> None:
         .read_text(encoding="utf-8")
         .splitlines()
     ]
-    assert manifest["format_version"] == "wikimedia_pilot_v3"
+    assert manifest["format_version"] == "wikimedia_pilot_v4"
     assert manifest["accepted_chunks"] == len(records) >= 3
     assert manifest["accepted_parent_documents"] == 1
     assert "accepted_documents" not in manifest
@@ -1017,7 +1066,22 @@ def test_chunk_output_provenance_hashes_and_limits(repository: Path) -> None:
     assert "Accepted parent documents: 1" in summary_text
     assert f"Accepted chunks: {len(records)}" in summary_text
     for index, record in enumerate(records):
-        assert record["format_version"] == "wikimedia_pilot_document_v2"
+        assert record["format_version"] == "wikimedia_pilot_document_v3"
+        assert record["boundary_start_type"] in {
+            "section",
+            "paragraph",
+            "sentence",
+            "word_fallback",
+            "token_fallback",
+        }
+        assert record["boundary_end_type"] in {
+            "section",
+            "paragraph",
+            "sentence",
+            "word_fallback",
+            "token_fallback",
+        }
+        assert record["overlap_characters"] >= 0
         assert record["parent_document_id"] == "7"
         assert record["chunk_id"] == f"7:{index:04d}"
         assert record["chunk_index"] == index
@@ -1202,7 +1266,7 @@ def test_previous_v1_output_is_rejected_clearly(repository: Path) -> None:
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     manifest["format_version"] = "wikimedia_pilot_v1"
     manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
-    with pytest.raises(ValueError, match="expected wikimedia_pilot_v2 or wikimedia_pilot_v3"):
+    with pytest.raises(ValueError, match="expected wikimedia_pilot_v2 through wikimedia_pilot_v4"):
         validate_preparation_output(
             config, repository_root=repository, tokenizer=WordTokenizer()
         )
@@ -1438,3 +1502,952 @@ def test_review_mode_caps_chunks_per_article_for_diversity(repository: Path) -> 
     assert len(counts) == 3
     assert max(counts.values()) == 2
     assert manifest["accepted_chunks"] == 6
+
+
+def test_structured_reference_section_is_excluded() -> None:
+    result = chunk_document_detailed(
+        "Useful factual introduction with complete prose.\n\nReferences\n\nSmith, J. (2020). Book.",
+        WordTokenizer(), target_tokens=20, maximum_tokens=30,
+        minimum_tokens=3, overlap_tokens=1, reference_section_behavior="exclude",
+    )
+    assert result.excluded_reference_sections == 1
+    assert all("Smith" not in chunk.text for chunk in result.chunks)
+
+
+def test_embedded_reference_heading_is_excluded() -> None:
+    result = chunk_document_detailed(
+        "Useful factual introduction with complete prose.\nReferences\nSmith, J. (2020). Book.",
+        WordTokenizer(), target_tokens=20, maximum_tokens=30,
+        minimum_tokens=3, overlap_tokens=1, reference_section_behavior="exclude",
+    )
+    assert result.excluded_reference_sections == 1
+    assert [chunk.text for chunk in result.chunks] == [
+        "Useful factual introduction with complete prose."
+    ]
+
+
+@pytest.mark.parametrize(
+    "heading", ["REFERENCES", "  General-and-cited references: ", "Further Reading!!!"]
+)
+def test_reference_heading_matching_is_case_and_punctuation_insensitive(
+    heading: str,
+) -> None:
+    assert is_reference_section_heading(heading)
+
+
+def test_legitimate_sources_word_in_prose_is_retained() -> None:
+    text = "Scientists compare energy sources in ordinary explanatory prose."
+    chunks = chunk_document(
+        text, WordTokenizer(), target_tokens=20, maximum_tokens=30,
+        minimum_tokens=3, overlap_tokens=1, reference_section_behavior="exclude",
+    )
+    assert [chunk.text for chunk in chunks] == [text]
+
+
+def test_minimum_token_threshold_is_enforced() -> None:
+    result = chunk_document_detailed(
+        "Tiny fragment.", WordTokenizer(), target_tokens=8, maximum_tokens=10,
+        minimum_tokens=3, overlap_tokens=0,
+    )
+    assert not result.chunks
+    assert result.rejection_counts["below_minimum_chunk_tokens"] == 1
+
+
+def test_tiny_trailing_chunk_is_rejected_when_merge_is_unsafe() -> None:
+    result = chunk_document_detailed(
+        "one two three four five six seven eight.\n\nAppendix\n\nsmall bit.",
+        WordTokenizer(), target_tokens=8, maximum_tokens=8,
+        minimum_tokens=3, overlap_tokens=0,
+    )
+    assert [chunk.token_count for chunk in result.chunks] == [8]
+    assert result.rejection_counts["below_minimum_chunk_tokens"] == 1
+
+
+def _final_quality(text: str, token_count: int = 20):
+    return assess_final_chunk(
+        text,
+        token_count=token_count,
+        minimum_tokens=3,
+        maximum_list_like_line_ratio=0.75,
+        minimum_prose_sentences_for_list_chunk=2,
+        boundary_start_type="paragraph",
+        boundary_end_type="paragraph",
+        training_mode=True,
+    )
+
+
+def test_punctuation_only_chunk_is_rejected() -> None:
+    assert _final_quality("--- !!! ???", 3).rejection_reason == "low_information"
+
+
+def test_heading_only_chunk_is_rejected() -> None:
+    assert _final_quality("Important Historical Notes", 3).rejection_reason == "low_information"
+
+
+def test_list_introduction_without_list_is_rejected() -> None:
+    result = _final_quality("The principal examples are as follows:", 6)
+    assert result.rejection_reason == "low_information"
+
+
+def test_chunks_never_begin_or_end_inside_alphanumeric_words() -> None:
+    text = (
+        "AlphaLongWord BetaLongWord GammaLongWord DeltaLongWord "
+        "EpsilonLongWord ZetaLongWord."
+    )
+    chunks = chunk_document(
+        text, CharacterTokenizer(), target_tokens=28, maximum_tokens=32,
+        minimum_tokens=8, overlap_tokens=4,
+    )
+    source_words = {word.rstrip(".") for word in text.split()}
+    assert chunks
+    for chunk in chunks:
+        assert chunk.text.split()[0].rstrip(".") in source_words
+        assert chunk.text.split()[-1].rstrip(".") in source_words
+        assert chunk.boundary_start_type != "token_fallback"
+        assert chunk.boundary_end_type != "token_fallback"
+
+
+def test_sentence_boundary_is_preferred() -> None:
+    text = (
+        "First sentence contains several useful words for context. "
+        "Second sentence also contains several useful words for context. "
+        "Third sentence remains complete and coherent."
+    )
+    chunks = chunk_document(
+        text, WordTokenizer(), target_tokens=10, maximum_tokens=12,
+        minimum_tokens=3, overlap_tokens=2,
+    )
+    assert chunks[1].text.startswith("Second sentence")
+    assert chunks[1].boundary_start_type == "sentence"
+
+
+def test_date_list_dominated_chunk_is_rejected() -> None:
+    text = "\n".join(
+        ["1901 – Alice Example", "1902 – Bob Example", "1903 – Carol Example", "1904 – David Example"]
+    )
+    assert _final_quality(text).rejection_reason == "list_dominated"
+
+
+def test_bibliography_dominated_chunk_is_rejected() -> None:
+    text = "\n".join(
+        [
+            "Smith, John (1999). First Book.", "Doe, Jane (2000). Second Book.",
+            "Brown, Bob (2001). Third Book.", "Jones, Jim (2002). Fourth Book.",
+        ]
+    )
+    assert _final_quality(text).rejection_reason == "list_dominated"
+
+
+def test_names_only_list_is_rejected() -> None:
+    text = "Alice Example\nBob Example\nCarol Example\nDavid Example"
+    assert _final_quality(text).rejection_reason == "list_dominated"
+
+
+def test_unbulleted_calendar_list_is_rejected() -> None:
+    text = "\n".join(
+        [
+            "World Art Day",
+            "Flag Day (Ireland)",
+            "National Panchayati Raj Day (India)",
+            "Teachers' Day (Paraguay)",
+        ]
+    )
+    assert _final_quality(text).rejection_reason == "list_dominated"
+
+
+def test_normal_prose_with_small_list_is_retained() -> None:
+    text = (
+        "The article explains the subject with multiple complete sentences. "
+        "It supplies context before a short list.\n- First useful example\n"
+        "The conclusion returns to ordinary factual prose."
+    )
+    assert _final_quality(text).rejection_reason is None
+
+
+@pytest.mark.parametrize(
+    "text",
+    [
+        "The city is currently about . More context follows.",
+        "The total land area of, according to the source.",
+        "The result is (). Additional prose follows.",
+        "The measured value = . Additional prose follows.",
+    ],
+)
+def test_missing_source_values_are_rejected(text: str) -> None:
+    assert _final_quality(text).rejection_reason == "missing_source_value"
+
+
+WIKIMEDIA_REJECTED_REVIEW_FIXTURES = (
+    (
+        "624:0007 Alaska",
+        "The tanker spilled more than of crude oil over of coastline. "
+        "Relief aircraft later delivered supplies to nearby communities.",
+        "missing_source_value",
+    ),
+    (
+        "675:0001 Affirming the consequent",
+        "The argument uses the consequent, Q, of, to conclude the antecedent. "
+        "It can be summarized formally as or, alternatively,.",
+        "missing_source_value",
+    ),
+    (
+        "787:0001 Alismatales",
+        "The order contains the families listed below.\n"
+        "family Alismataceae\nfamily Aponogetonaceae\nfamily Araceae\n"
+        "family Butomaceae\nfamily Cymodoceaceae\nfamily Hydrocharitaceae\n"
+        "family Juncaginaceae\nfamily Posidoniaceae\nfamily Ruppiaceae",
+        "list_dominated",
+    ),
+    (
+        "903:0000 Arable land",
+        "Arable land is land used to grow crops. The term often has a more "
+        "precise definition:\n\nA later paragraph discusses agricultural statistics.",
+        "missing_source_value",
+    ),
+    (
+        "1016:0011 Achill Island",
+        "The literature includes the following works.\n"
+        "Heinrich Boll: Island Diary, Berlin, 1957\n"
+        "Rosa Meehan: The Story of Mayo, Castlebar, 2003\n"
+        "James Carney: The Yellow Lady, Dublin, 1986\n"
+        "Hugo Hamilton: The Island of Talking, 2007\n"
+        "Kevin Barry: Beatlebone, 2015\n"
+        "Patricia Byrne: The Veiled Woman of Achill, 2012\n"
+        "Mary Murphy: Forgotten Island History, 2011\n"
+        "Michael Gallagher: Stick on Stone, 2013",
+        "list_dominated",
+    ),
+    (
+        "1097:0008 Armed Forces of Armenia",
+        "Military education is provided by several institutions.\n"
+        "National Defense Research University\n"
+        "Vazgen Sargsyan Military University\n"
+        "Monte Melkonian Military Academy\n"
+        "Military Academy of Modena\n"
+        "Hellenic Military Academy\n"
+        "Armenak Khanperyants Military Aviation University\n"
+        "Yerevan State Medical University Military Faculty\n"
+        "Conscription and Mobilization Service",
+        "list_dominated",
+    ),
+    (
+        "1134:0006 Analysis",
+        "The term analysis is used in many fields.\n"
+        "Policy analysis – evaluation of policy choices\n"
+        "Finite element analysis – a simulation technique\n"
+        "Link quality analysis – analysis of signal quality\n"
+        "Cluster analysis – techniques for finding groups\n"
+        "Factor analysis – construction of latent models\n"
+        "Regression analysis – study of predictive relationships\n"
+        "Sensitivity analysis – study of output variation\n"
+        "Spatial analysis – study using geometric properties",
+        "list_dominated",
+    ),
+)
+
+
+@pytest.mark.parametrize(
+    ("fixture_name", "text", "expected_reason"),
+    WIKIMEDIA_REJECTED_REVIEW_FIXTURES,
+)
+def test_completed_review_rejections_are_regression_fixtures(
+    fixture_name: str,
+    text: str,
+    expected_reason: str,
+) -> None:
+    assert fixture_name
+    assert _final_quality(text, len(text.split())).rejection_reason == expected_reason
+
+
+def test_ordinary_scientific_prose_remains_accepted() -> None:
+    text = (
+        "Photosynthesis converts light energy into chemical energy in plants. "
+        "Chlorophyll absorbs light, and the resulting reactions help produce "
+        "sugars while releasing oxygen."
+    )
+    assert _final_quality(text, len(text.split())).rejection_reason is None
+
+
+def test_readable_mathematical_formula_remains_accepted() -> None:
+    text = (
+        "Modus ponens uses the readable propositions P → Q and P to infer Q. "
+        "The expression is complete, and each symbol is explained in the sentence."
+    )
+    assert _final_quality(text, len(text.split())).rejection_reason is None
+
+
+def test_alabama_missing_linguistic_forms_are_rejected() -> None:
+    text = (
+        "The word for a person of this lineage is (or variously or in different "
+        "dialects; the plural form is ). Historical sources use several spellings."
+    )
+    assert _final_quality(text, len(text.split())).rejection_reason == (
+        "missing_source_value"
+    )
+
+
+def test_empty_plural_form_expression_is_rejected() -> None:
+    text = "The singular form remains documented, but the plural form is )."
+    assert _final_quality(text, len(text.split())).rejection_reason == (
+        "missing_source_value"
+    )
+
+
+def test_repeated_connector_from_removed_term_is_rejected() -> None:
+    text = "The term is described in the sources as northern or and southern."
+    assert _final_quality(text, len(text.split())).rejection_reason == (
+        "missing_source_value"
+    )
+
+
+def test_valid_linguistic_explanation_is_retained() -> None:
+    text = (
+        "The singular form is Alabamian, while the plural form is Alabamians. "
+        "Different dialects preserve several documented pronunciations."
+    )
+    assert _final_quality(text, len(text.split())).rejection_reason is None
+
+
+def test_arithmetic_mean_missing_sample_is_rejected() -> None:
+    text = (
+        "For example, consider the data sample. The mean and median would normally "
+        "be calculated from the listed observations."
+    )
+    assert _final_quality(text, len(text.split())).rejection_reason == (
+        "missing_source_value"
+    )
+
+
+def test_missing_mathematical_result_is_rejected() -> None:
+    text = "For the observations shown above, the mean is, as is the median."
+    assert _final_quality(text, len(text.split())).rejection_reason == (
+        "missing_source_value"
+    )
+
+
+def test_missing_example_after_such_as_is_rejected() -> None:
+    text = (
+        "For a sample that cannot be ordered arithmetically, such as, the median "
+        "and arithmetic average may differ."
+    )
+    assert _final_quality(text, len(text.split())).rejection_reason == (
+        "missing_source_value"
+    )
+
+
+def test_valid_mathematical_prose_is_retained() -> None:
+    text = (
+        "The mean is larger than the median, while the value is unknown for the "
+        "unobserved population."
+    )
+    assert _final_quality(text, len(text.split())).rejection_reason is None
+
+
+def test_valid_mathematical_sample_and_formula_are_retained() -> None:
+    text = (
+        "For example, consider the data sample [1, 2, 3]. Its arithmetic mean is "
+        "(1 + 2 + 3) / 3 = 2, and the median is also 2."
+    )
+    assert _final_quality(text, len(text.split())).rejection_reason is None
+
+
+def test_new_missing_expression_rejections_do_not_affect_accounting(
+    repository: Path,
+) -> None:
+    linguistic = (
+        "The lineage term is (or variously or in different dialects; the plural "
+        "form is )."
+    )
+    mathematics = (
+        "For example, consider the data sample. The mean is, as is the median."
+    )
+    good = "A clean factual article contains enough complete explanatory prose."
+    config = make_config(
+        chunking_enabled=False,
+        contamination_check_enabled=False,
+        exact_deduplication_enabled=False,
+        near_deduplication_enabled=False,
+    )
+    manifest, _, _ = run_pipeline(
+        repository,
+        [article(1, linguistic), article(2, mathematics), article(3, good)],
+        config,
+    )
+    assert manifest["rejection_reasons"]["missing_source_value"] == 2
+    assert manifest["accepted_parent_documents"] == 1
+    assert manifest["accepted_chunks"] == 1
+    assert manifest["total_vasu_tokens"] == len(WordTokenizer().encode(good))
+
+
+WIKIMEDIA_EXTRACTION_REVIEW_FIXTURES = (
+    (
+        "600:0018 Andorra",
+        "According to language statistics released in 2018:\n\n"
+        "The official language is Catalan (Catalan: ).",
+        "missing_source_value",
+    ),
+    (
+        "624:0025 Alaska",
+        "Health insurance\n\n, CVS Health and Premera account for most private "
+        "health insurance policies.",
+        "malformed_source_text",
+    ),
+    (
+        "736:0023 Albert Einstein",
+        "Einstein's \"\" (\"On the Electrodynamics of Moving Bodies\") was "
+        "published in 1905.",
+        "missing_source_value",
+    ),
+    (
+        "746:0022 Azerbaijan",
+        "In 2010 broad-gauge and electrified railways stretched for and "
+        "respectively.",
+        "missing_source_value",
+    ),
+    (
+        "849:0008 Aircraft",
+        "The experimental aircraft flew at Mach 9.68 or on 16 November 2004.",
+        "missing_source_value",
+    ),
+    (
+        "909:0006 Anglican Communion",
+        "It establishes four principles with these words:\n\n"
+        "Instruments of communion\nThe next section discusses administration.",
+        "missing_source_value",
+    ),
+    (
+        "1209:0007 Area",
+        "The area of the parallelogram is equal to the rectangle:\n"
+        "(parallelogram).\nThe geometric discussion then continues.",
+        "missing_source_value",
+    ),
+    (
+        "1365:0000 Ammonia",
+        "Ammonia is a compound of nitrogen and hydrogen with the formula. "
+        "It is a colourless gas.",
+        "missing_source_value",
+    ),
+)
+
+
+@pytest.mark.parametrize(
+    ("fixture_name", "text", "expected_reason"),
+    WIKIMEDIA_EXTRACTION_REVIEW_FIXTURES,
+)
+def test_remaining_extraction_review_failures_are_regression_fixtures(
+    fixture_name: str,
+    text: str,
+    expected_reason: str,
+) -> None:
+    assert fixture_name
+    assert _final_quality(text, len(text.split())).rejection_reason == expected_reason
+
+
+def test_valid_chemical_formula_is_retained() -> None:
+    text = "Ammonia is a compound of nitrogen and hydrogen with the formula NH3."
+    assert _final_quality(text, len(text.split())).rejection_reason is None
+
+
+def test_valid_area_formula_is_retained() -> None:
+    text = (
+        "The rectangle has area = base × height, while a triangle has area = "
+        "1/2 × base × height."
+    )
+    assert _final_quality(text, len(text.split())).rejection_reason is None
+
+
+def test_valid_translated_language_term_is_retained() -> None:
+    text = (
+        "The toponymy commission is called Comissió de Toponímia in Catalan."
+    )
+    assert _final_quality(text, len(text.split())).rejection_reason is None
+
+
+def test_valid_converted_measurement_is_retained() -> None:
+    text = "The aircraft reached Mach 9.68, approximately 11,850 km/h."
+    assert _final_quality(text, len(text.split())).rejection_reason is None
+
+
+def test_valid_short_enumeration_after_introduction_is_retained() -> None:
+    text = (
+        "The following principles:\n\n- Preserve complete source values.\n"
+        "- Reject incomplete extracted expressions."
+    )
+    assert _final_quality(text, len(text.split())).rejection_reason is None
+
+
+def test_extraction_failure_rejections_do_not_affect_accounting(
+    repository: Path,
+) -> None:
+    good = "A clean factual article contains enough complete explanatory prose."
+    config = make_config(
+        chunking_enabled=False,
+        contamination_check_enabled=False,
+        exact_deduplication_enabled=False,
+        near_deduplication_enabled=False,
+    )
+    rejected = [
+        article(index, fixture[1])
+        for index, fixture in enumerate(
+            WIKIMEDIA_EXTRACTION_REVIEW_FIXTURES,
+            start=1,
+        )
+    ]
+    manifest, _, _ = run_pipeline(
+        repository,
+        [*rejected, article(100, good)],
+        config,
+    )
+    assert manifest["rejection_reasons"]["missing_source_value"] == 7
+    assert manifest["rejection_reasons"]["malformed_source_text"] == 1
+    assert manifest["accepted_parent_documents"] == 1
+    assert manifest["accepted_chunks"] == 1
+    assert manifest["total_vasu_tokens"] == len(WordTokenizer().encode(good))
+
+
+WIKIMEDIA_FINAL_REVIEW_FIXTURES = (
+    (
+        "690:0000 Aruba",
+        "Aruba (, or, ), officially the Country of Aruba (; ), lies about "
+        "north of the mainland. It measures long and across at its widest point. "
+        "Its area is and it is densely populated.",
+        "missing_source_value",
+    ),
+    (
+        "708:0000 Transport in Angola",
+        "Railways:\nLuanda Railway\nBenguela Railway\nMocamedes Railway\n\n"
+        "The principal routes are operational.\n\nWaterways:\n"
+        "River route\nCanal route\nHarbor route\n\nPipelines:\n"
+        "gas 352 km; liquid petroleum gas 85 km; crude oil 1,065 km",
+        "list_dominated",
+    ),
+    (
+        "803:0000 Arabic",
+        "Arabic (,;, or ) is a Semitic language. One variety is written in "
+        "Latin script (in Senegal).; Maltese also uses a Latin script.",
+        "missing_source_value",
+    ),
+    (
+        "1016:0007 Achill Island",
+        "Thomas's church)\nInnisbiggle Island church\nOther:\n"
+        "House of Prayer, Achill\n\nA prose discussion follows the broken list.",
+        "malformed_source_text",
+    ),
+    (
+        "1291:0000 Antarctic Treaty System",
+        "The countries cooperated during the scientific program., the treaty "
+        "has 56 parties.",
+        "missing_source_value",
+    ),
+    (
+        "1370:0000 Ambrose",
+        "Ambrose of Milan (; 4 April 397) wrote several works, including the "
+        "exegetical (386–390).",
+        "missing_source_value",
+    ),
+)
+
+
+@pytest.mark.parametrize(
+    ("fixture_name", "text", "expected_reason"),
+    WIKIMEDIA_FINAL_REVIEW_FIXTURES,
+)
+def test_six_remaining_review_failures_are_regression_fixtures(
+    fixture_name: str,
+    text: str,
+    expected_reason: str,
+) -> None:
+    assert fixture_name
+    assert _final_quality(text, len(text.split())).rejection_reason == expected_reason
+
+
+def test_missing_geographical_distance_and_area_are_rejected() -> None:
+    text = (
+        "The island lies about north of the peninsula. It measures long from end "
+        "to end and across at its widest point. Its area is and it is populated."
+    )
+    assert _final_quality(text, len(text.split())).rejection_reason == (
+        "missing_source_value"
+    )
+
+
+def test_truncated_numeric_statistic_is_rejected() -> None:
+    text = "Pipelines\ncrude oil 1,\nA later paragraph discusses construction."
+    assert _final_quality(text, len(text.split())).rejection_reason == (
+        "malformed_source_text"
+    )
+
+
+def test_valid_infrastructure_statistic_is_retained() -> None:
+    text = "Pipelines carried crude oil for 1,065 km and gas for 352 km in 2013."
+    assert _final_quality(text, len(text.split())).rejection_reason is None
+
+
+def test_connector_only_pronunciation_parentheses_are_rejected() -> None:
+    text = "The language name is written Arabic (,;, or ) in the source."
+    assert _final_quality(text, len(text.split())).rejection_reason == (
+        "missing_source_value"
+    )
+
+
+def test_malformed_parenthetical_punctuation_is_rejected() -> None:
+    text = "The variety is written in Latin script (in Senegal).; Maltese differs."
+    assert _final_quality(text, len(text.split())).rejection_reason == (
+        "malformed_source_text"
+    )
+
+
+def test_list_fragment_chunk_start_is_rejected() -> None:
+    text = "Thomas's church)\nInnisbiggle Island church\nOther:\nHouse of Prayer"
+    assert _final_quality(text, len(text.split())).rejection_reason == (
+        "malformed_source_text"
+    )
+
+
+def test_multiple_structured_list_blocks_are_rejected() -> None:
+    text = (
+        "Churches:\nNorth Church\nSouth Church\nIsland Church\n\n"
+        "A short note separates the groups.\n\nSchools:\n"
+        "Harbor School\nVillage School\nCommunity School"
+    )
+    assert _final_quality(text, len(text.split())).rejection_reason == "list_dominated"
+
+
+def test_normal_prose_with_short_supporting_list_remains_accepted() -> None:
+    text = (
+        "The report explains two verified examples in context.\n"
+        "- The first example has a complete value.\n"
+        "- The second example has a complete value.\n"
+        "The concluding sentence explains why both examples matter."
+    )
+    assert _final_quality(text, len(text.split())).rejection_reason is None
+
+
+def test_missing_introductory_date_before_comma_is_rejected() -> None:
+    text = "Scientific cooperation was achieved., the treaty has 56 parties."
+    assert _final_quality(text, len(text.split())).rejection_reason == (
+        "missing_source_value"
+    )
+
+
+def test_valid_dated_treaty_statement_is_retained() -> None:
+    text = "As of 2024, the treaty has 56 parties and remains in force."
+    assert _final_quality(text, len(text.split())).rejection_reason is None
+
+
+def test_missing_birth_date_in_biographical_parenthesis_is_rejected() -> None:
+    text = "A historical theologian (; 4 April 397) served as a bishop."
+    assert _final_quality(text, len(text.split())).rejection_reason == (
+        "missing_source_value"
+    )
+
+
+def test_missing_work_title_before_date_range_is_rejected() -> None:
+    text = "The author completed the exegetical (386–390) during this period."
+    assert _final_quality(text, len(text.split())).rejection_reason == (
+        "missing_source_value"
+    )
+
+
+def test_valid_lifespan_and_work_title_prose_is_retained() -> None:
+    text = (
+        "Ambrose of Milan (c. 339–4 April 397) wrote the exegetical work "
+        "Exposition of the Christian Faith (386–390)."
+    )
+    assert _final_quality(text, len(text.split())).rejection_reason is None
+
+
+def test_final_review_rejections_do_not_affect_accounting(repository: Path) -> None:
+    good = "A clean factual article contains enough complete explanatory prose."
+    config = make_config(
+        chunking_enabled=False,
+        contamination_check_enabled=False,
+        exact_deduplication_enabled=False,
+        near_deduplication_enabled=False,
+    )
+    rejected = [
+        article(index, fixture[1])
+        for index, fixture in enumerate(WIKIMEDIA_FINAL_REVIEW_FIXTURES, start=1)
+    ]
+    manifest, _, _ = run_pipeline(
+        repository,
+        [*rejected, article(100, good)],
+        config,
+    )
+    assert manifest["rejection_reasons"]["missing_source_value"] == 4
+    assert manifest["rejection_reasons"]["malformed_source_text"] == 1
+    assert manifest["rejection_reasons"]["list_dominated"] == 1
+    assert manifest["accepted_parent_documents"] == 1
+    assert manifest["accepted_chunks"] == 1
+    assert manifest["total_vasu_tokens"] == len(WordTokenizer().encode(good))
+
+
+@pytest.mark.parametrize(
+    "text",
+    [
+        "The international success of allowed the director to continue.",
+        "His next project,, another epic, entered production.",
+        "After s release the film received attention.",
+    ],
+)
+def test_general_missing_entity_patterns_are_rejected(text: str) -> None:
+    assert _final_quality(text).rejection_reason == "malformed_source_text"
+
+
+def test_quality_rejected_chunks_do_not_affect_accounting(repository: Path) -> None:
+    good = "A clean factual article contains enough complete explanatory prose."
+    config = make_config(
+        chunking_enabled=False, contamination_check_enabled=False,
+        exact_deduplication_enabled=False, near_deduplication_enabled=False,
+    )
+    bad_rows = [
+        article(index, fixture[1])
+        for index, fixture in enumerate(WIKIMEDIA_REJECTED_REVIEW_FIXTURES, start=1)
+    ]
+    manifest, _, _ = run_pipeline(
+        repository,
+        [*bad_rows, article(100, good)],
+        config,
+    )
+    assert manifest["rejection_reasons"]["missing_source_value"] == 3
+    assert manifest["rejection_reasons"]["list_dominated"] == 4
+    assert manifest["accepted_parent_documents"] == 1
+    assert manifest["accepted_chunks"] == 1
+    assert manifest["total_vasu_tokens"] == len(WordTokenizer().encode(good))
+
+
+def test_smoke_and_production_reference_policies_agree() -> None:
+    config = replace(make_config(), reference_section_behavior="exclude")
+    assert config.for_smoke_test().reference_section_behavior == "exclude"
+
+
+def test_broad_review_reference_flagging_remains_available() -> None:
+    result = chunk_document_detailed(
+        "Useful factual introduction.\n\nReferences\n\nSmith, J. (2020). Book.",
+        WordTokenizer(), target_tokens=20, maximum_tokens=30,
+        minimum_tokens=3, overlap_tokens=1, reference_section_behavior="flag",
+    )
+    assert any(chunk.section_title == "References" for chunk in result.chunks)
+    assert result.excluded_reference_sections == 0
+
+
+WIKIMEDIA_EIGHT_REVIEW_FIXTURES = (
+    (
+        "633:0005 Algae",
+        "Symbiotic algae provide photosynthates to their hosts. Examples are:",
+        "missing_source_value",
+    ),
+    (
+        "1140:0002 Amplitude modulation",
+        "The ITU designated the types of amplitude modulation:",
+        "missing_source_value",
+    ),
+    (
+        "1182:0005 Athena",
+        'The epithet is derived either from, meaning "to brandish", or from '
+        'and related words, meaning "young woman".',
+        "missing_source_value",
+    ),
+    (
+        "1210:0005 Astronomical unit",
+        "One astronomer gave a mean solar distance of Earth radii, while "
+        "another used a mean solar distance of Earth radii.",
+        "missing_source_value",
+    ),
+    (
+        "1313:0002 Aromatic compound",
+        "An example is a direct arylation of perfluorobenzenes\n\n"
+        "Hydrogenation\nHydrogenation creates saturated rings.",
+        "missing_source_value",
+    ),
+    (
+        "1335:0001 Associative property",
+        "A product of four elements may be written in five possible ways:\n\n"
+        "If the operation is associative, every expression has the same result.",
+        "missing_source_value",
+    ),
+    (
+        "1370:0019 Ambrose",
+        "First work, translated by A. Editor, vol. 1, (Oxford: Example Press, "
+        "1998) [Contains translations of three works]\n"
+        "Second work, translated by B. Editor, vol. 2, (London: Sample Press, "
+        "1999) [Contains translations of four works]\n"
+        "Third work, edited by C. Scholar, vol. 3, (Paris: Test Press, 2000) "
+        "[Contains the Latin text]\n"
+        "Fourth work, translated by D. Scholar, vol. 4, (Dublin: Demo Press, "
+        "2001) [Contains commentary and notes]",
+        "list_dominated",
+    ),
+    (
+        "1514:0000 Albert, Duke of Prussia",
+        "Albert of Prussia (; 17 May 149020 March 1568) was a German prince.",
+        "missing_source_value",
+    ),
+)
+
+
+@pytest.mark.parametrize(
+    ("fixture_name", "text", "expected_reason"),
+    WIKIMEDIA_EIGHT_REVIEW_FIXTURES,
+)
+def test_eight_latest_review_failures_are_regression_fixtures(
+    fixture_name: str,
+    text: str,
+    expected_reason: str,
+) -> None:
+    assert fixture_name
+    assert _final_quality(text, len(text.split())).rejection_reason == expected_reason
+
+
+def test_missing_enumeration_after_examples_are_is_rejected() -> None:
+    text = "The organisms form several symbioses. Examples are:"
+    assert _final_quality(text, len(text.split())).rejection_reason == (
+        "missing_source_value"
+    )
+
+
+def test_valid_short_enumeration_after_examples_are_is_retained() -> None:
+    text = (
+        "The organisms form several well-described symbioses.\n"
+        "Examples are:\n- lichens\n- corals\n"
+        "Both examples have distinct hosts and complete descriptions."
+    )
+    assert _final_quality(text, len(text.split())).rejection_reason is None
+
+
+def test_missing_classification_after_introductory_colon_is_rejected() -> None:
+    text = "The signal types are classified as:"
+    assert _final_quality(text, len(text.split())).rejection_reason == (
+        "missing_source_value"
+    )
+
+
+def test_missing_etymological_source_terms_are_rejected() -> None:
+    text = 'The term is derived from, meaning "to carry", and from and related words.'
+    assert _final_quality(text, len(text.split())).rejection_reason == (
+        "missing_source_value"
+    )
+
+
+def test_valid_non_latin_etymology_is_retained() -> None:
+    text = 'The epithet derives from Greek πάλλω, meaning "to brandish a weapon".'
+    assert _final_quality(text, len(text.split())).rejection_reason is None
+
+
+def test_missing_numerical_measurement_is_rejected() -> None:
+    text = "The estimate gave a distance of Earth radii and a mass of kilograms."
+    assert _final_quality(text, len(text.split())).rejection_reason == (
+        "missing_source_value"
+    )
+
+
+def test_valid_earth_radii_measurement_is_retained() -> None:
+    text = "The estimate gave a mean solar distance of 1,210 Earth radii."
+    assert _final_quality(text, len(text.split())).rejection_reason is None
+
+
+def test_missing_chemical_reaction_after_colon_is_rejected() -> None:
+    text = (
+        "The enolate reacts with methyl iodide to form the product:\n\n"
+        "Cycloadditions\nOther reactions occur through excimers."
+    )
+    assert _final_quality(text, len(text.split())).rejection_reason == (
+        "missing_source_value"
+    )
+
+
+def test_valid_prose_only_chemical_reaction_is_retained() -> None:
+    text = (
+        "The enolate reacts with methyl iodide and forms "
+        "2-methyl-1,3-cyclohexanedione as the product."
+    )
+    assert _final_quality(text, len(text.split())).rejection_reason is None
+
+
+def test_missing_mathematical_expression_set_is_rejected() -> None:
+    text = (
+        "The product may be grouped in five possible ways:\n\n"
+        "Every grouping has the same value when the operation is associative."
+    )
+    assert _final_quality(text, len(text.split())).rejection_reason == (
+        "missing_source_value"
+    )
+
+
+def test_missing_operands_around_equivalence_are_rejected() -> None:
+    text = "The operation is associative; thus, is equivalent to, but most commonly means, which is not equivalent."
+    assert _final_quality(text, len(text.split())).rejection_reason == (
+        "missing_source_value"
+    )
+
+
+def test_valid_associative_law_formulas_are_retained() -> None:
+    text = "The associative law states (a × b) × c = a × (b × c)."
+    assert _final_quality(text, len(text.split())).rejection_reason is None
+
+
+def test_bibliography_dominated_publication_entries_are_rejected() -> None:
+    text = WIKIMEDIA_EIGHT_REVIEW_FIXTURES[6][1]
+    assert _final_quality(text, len(text.split())).rejection_reason == "list_dominated"
+
+
+def test_normal_prose_with_a_few_citations_is_retained() -> None:
+    text = (
+        "The study explains how the manuscripts changed over time. Smith (1998) "
+        "described the earliest copy, while Jones (2001) compared a later edition. "
+        "Both citations support the historical explanation."
+    )
+    assert _final_quality(text, len(text.split())).rejection_reason is None
+
+
+def test_editions_and_works_cited_are_reference_section_headings() -> None:
+    assert is_reference_section_heading("Editions")
+    assert is_reference_section_heading("Publications")
+    assert is_reference_section_heading("Works cited")
+
+
+def test_malformed_joined_lifespan_dates_are_rejected() -> None:
+    text = "The ruler (17 May 149020 March 1568) governed for many years."
+    assert _final_quality(text, len(text.split())).rejection_reason == (
+        "malformed_source_text"
+    )
+
+
+@pytest.mark.parametrize(
+    "lifespan",
+    ["17 May 1490 – 20 March 1568", "17 May 1490–20 March 1568", "1490–1568"],
+)
+def test_valid_lifespan_dates_are_retained(lifespan: str) -> None:
+    text = f"The ruler ({lifespan}) governed the duchy for many years."
+    assert _final_quality(text, len(text.split())).rejection_reason is None
+
+
+def test_empty_pronunciation_field_before_semicolon_is_rejected() -> None:
+    text = "The ruler (; 17 May 1490 – 20 March 1568) governed the duchy."
+    assert _final_quality(text, len(text.split())).rejection_reason == (
+        "missing_source_value"
+    )
+
+
+def test_latest_review_rejections_do_not_affect_accounting(repository: Path) -> None:
+    good = "A clean factual article contains enough complete explanatory prose."
+    config = make_config(
+        chunking_enabled=False,
+        contamination_check_enabled=False,
+        exact_deduplication_enabled=False,
+        near_deduplication_enabled=False,
+    )
+    rejected = [
+        article(index, fixture[1])
+        for index, fixture in enumerate(WIKIMEDIA_EIGHT_REVIEW_FIXTURES, start=1)
+    ]
+    manifest, _, _ = run_pipeline(
+        repository,
+        [*rejected, article(100, good)],
+        config,
+    )
+    assert manifest["rejection_reasons"]["missing_source_value"] == 7
+    assert manifest["rejection_reasons"]["list_dominated"] == 1
+    assert manifest["accepted_parent_documents"] == 1
+    assert manifest["accepted_chunks"] == 1
+    assert manifest["total_vasu_tokens"] == len(WordTokenizer().encode(good))

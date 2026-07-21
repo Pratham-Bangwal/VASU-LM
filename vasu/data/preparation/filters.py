@@ -19,6 +19,7 @@ REFERENCE_PATTERN = re.compile(
 )
 TEMPLATE_PATTERN = re.compile(r"\{\{[^{}]*\}\}", re.DOTALL)
 COMMENT_PATTERN = re.compile(r"<!--.*?-->", re.DOTALL)
+ITALIC_BOLD_PATTERN = re.compile(r"'{2,5}([^'\n]+?)'{2,5}")
 SPACE_PATTERN = re.compile(r"[ \t]+")
 SPACE_BEFORE_PUNCTUATION = re.compile(r"\s+([,.;:!?])")
 
@@ -29,6 +30,80 @@ class FilterResult:
     reason: str | None
     cleaned_text: str
     metadata: dict[str, Any]
+
+
+def _template_parts(template: str) -> tuple[str, list[str], dict[str, str]]:
+    fields = [field.strip() for field in template[2:-2].split("|")]
+    name = fields[0].casefold().replace("_", " ").strip()
+    positional: list[str] = []
+    named: dict[str, str] = {}
+    for field in fields[1:]:
+        key = field.split("=", 1)[0].casefold().strip() if "=" in field else ""
+        if "=" in field and (
+            key.isdigit()
+            or key
+            in {"text", "quote", "title", "lang", "abbr", "disp", "output"}
+        ):
+            key, value = field.split("=", 1)
+            named[key.casefold().strip()] = value.strip()
+        elif field:
+            positional.append(field)
+    return name, positional, named
+
+
+def _render_readable_template(template: str) -> str | None:
+    """Render only template families with an unambiguous readable value.
+
+    Unknown/maintenance templates still disappear with surrounding whitespace.
+    This deliberately avoids pretending to be a complete MediaWiki expander.
+    """
+    name, positional, named = _template_parts(template)
+    if name in {"chem", "chem2", "chemical formula"}:
+        return "".join(positional) or named.get("1")
+    if name in {"math", "mvar", "var"}:
+        return positional[0] if positional else named.get("1")
+    if name in {"sfrac", "frac"} and len(positional) >= 2:
+        return f"{positional[-2]}/{positional[-1]}"
+    if name in {"convert", "cvt"} and len(positional) >= 2:
+        return f"{positional[0]} {positional[1]}"
+    if name == "lang" or name.startswith("lang-"):
+        if name == "lang" and len(positional) >= 2:
+            return positional[1]
+        return positional[0] if positional else named.get("text")
+    if name in {"transl", "transliteration"}:
+        return positional[-1] if positional else named.get("text")
+    if name in {"quote", "quotation", "blockquote"}:
+        return named.get("text") or named.get("quote") or (
+            positional[0] if positional else None
+        )
+    if name in {"ubl", "unbulleted list", "plainlist", "flatlist"}:
+        return "\n".join(positional) if positional else named.get("1")
+    if name in {"nowrap", "nobr", "italic title", "title"}:
+        return positional[0] if positional else named.get("1")
+    if name.startswith("cite "):
+        return named.get("title")
+    return None
+
+
+def _replace_templates(text: str) -> tuple[str, int, int]:
+    removed = 0
+    preserved = 0
+
+    def replace(match: re.Match[str]) -> str:
+        nonlocal removed, preserved
+        rendered = _render_readable_template(match.group(0))
+        if rendered is None or not rendered.strip():
+            removed += 1
+            return " "
+        preserved += 1
+        return f" {rendered.strip()} "
+
+    current = text
+    while True:
+        current, count = TEMPLATE_PATTERN.subn(replace, current)
+        if count == 0:
+            break
+    return current, removed, preserved
 
 
 def comparison_normalize(text: str) -> str:
@@ -47,12 +122,8 @@ def clean_training_text(text: str) -> tuple[str, dict[str, int | bool | list[str
     normalized = unicodedata.normalize("NFC", encoding.text).replace("\r\n", "\n").replace("\r", "\n")
     cleaned, comments = COMMENT_PATTERN.subn(" ", normalized)
     cleaned, references = REFERENCE_PATTERN.subn(" ", cleaned)
-    templates = 0
-    while True:
-        cleaned, count = TEMPLATE_PATTERN.subn(" ", cleaned)
-        templates += count
-        if count == 0:
-            break
+    cleaned, templates, templates_preserved = _replace_templates(cleaned)
+    cleaned = ITALIC_BOLD_PATTERN.sub(r"\1", cleaned)
     cleaned, citations = CITATION_PATTERN.subn(" ", cleaned)
     paragraphs: list[str] = []
     current: list[str] = []
@@ -76,6 +147,7 @@ def clean_training_text(text: str) -> tuple[str, dict[str, int | bool | list[str
         "citations_removed": citations,
         "references_removed": references,
         "templates_removed": templates,
+        "templates_preserved": templates_preserved,
         "comments_removed": comments,
     }, rejection
 
