@@ -5,7 +5,6 @@ from vasu.model.model import VASUModel
 from vasu.tokenizer.tokenizer import VASUTokenizer
 from vasu.training.dataset import TextDataset
 from vasu.training.trainer import Trainer
-from vasu.training.callbacks.checkpoint import CheckpointCallback
 from vasu.training.callbacks.tensorboard import TensorBoardCallback
 from vasu.training.callbacks.sample_generation import SampleGenerationCallback
 
@@ -91,7 +90,6 @@ def main():
         config=train_config,
         device=device,
         callbacks=[
-            CheckpointCallback(),
             SampleGenerationCallback(),
             TensorBoardCallback()
         ],
