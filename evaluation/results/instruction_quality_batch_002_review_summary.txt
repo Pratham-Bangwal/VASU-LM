@@ -1,0 +1,27 @@
+VASU Instruction-Quality Batch 002 Manual Review Summary
+
+Reviewer: ChatGPT (GPT-5.6 Thinking)
+Date: 2026-07-21
+
+Reviewed comparisons: 60
+Batch 001 preferred: 8
+Batch 002 preferred: 6
+Ties: 46
+Critical issues: 60
+
+Decision: Do not promote Batch 002 over Batch 001.
+
+Rationale:
+- Batch 002 does not show a clear semantic improvement.
+- Batch 001 wins more head-to-head comparisons than Batch 002.
+- Most outputs are identical between checkpoints.
+- All reviewed examples contain a critical failure such as severe off-topic behavior,
+  exact-format failure, fabricated content, incoherence, or complete instruction failure.
+- Automatic metrics show small improvements, but they are not supported by a clear
+  human-level semantic improvement.
+
+Recommended checkpoint:
+checkpoints/vasu_60m/instruction_quality_batch_001_from_ultrachat_v2/best.pt
+
+Retain Batch 002 as an experimental checkpoint for analysis:
+checkpoints/vasu_60m/instruction_quality_batch_002_from_batch_001/best.pt

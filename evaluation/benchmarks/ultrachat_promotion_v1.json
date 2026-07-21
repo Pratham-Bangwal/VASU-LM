@@ -1,0 +1,1786 @@
+{
+  "benchmark_version": "ultrachat_promotion_v1",
+  "description": "Synthetic instruction benchmark written for checkpoint comparison; not copied from Alpaca or UltraChat.",
+  "random_seed": 42,
+  "prompt_count": 216,
+  "categories": [
+    "conversational_responses",
+    "creative_writing",
+    "explanations",
+    "format_following",
+    "general_question_answering",
+    "list_generation",
+    "rewriting",
+    "short_factual_questions",
+    "simple_reasoning",
+    "step_by_step_instructions",
+    "summarization",
+    "uncertainty_handling"
+  ],
+  "prompts": [
+    {
+      "id": "general_question_answering_001",
+      "category": "general_question_answering",
+      "prompt": "What is one practical thing a beginner should know about rainbows? Answer directly.",
+      "constraints": {}
+    },
+    {
+      "id": "short_factual_questions_001",
+      "category": "short_factual_questions",
+      "prompt": "State one widely accepted fact about rainbows in one sentence.",
+      "constraints": {
+        "sentence_count": 1
+      }
+    },
+    {
+      "id": "explanations_001",
+      "category": "explanations",
+      "prompt": "Explain rainbows to a curious twelve-year-old in two sentences.",
+      "constraints": {
+        "sentence_count": 2
+      }
+    },
+    {
+      "id": "summarization_001",
+      "category": "summarization",
+      "prompt": "Summarize this passage in under 30 words: A community studied rainbows for several months. Volunteers collected observations, checked them twice, and shared a short public report.",
+      "constraints": {
+        "max_words": 30
+      }
+    },
+    {
+      "id": "rewriting_001",
+      "category": "rewriting",
+      "prompt": "Rewrite this without changing its meaning and do not use a list: 'Learning about rainbows can help people make informed choices.'",
+      "constraints": {
+        "forbid_list": true
+      }
+    },
+    {
+      "id": "format_following_001",
+      "category": "format_following",
+      "prompt": "Return valid JSON with exactly the keys \"topic\" and \"summary\" about rainbows.",
+      "constraints": {
+        "json_keys": [
+          "topic",
+          "summary"
+        ]
+      }
+    },
+    {
+      "id": "list_generation_001",
+      "category": "list_generation",
+      "prompt": "Give exactly three bullet points about rainbows.",
+      "constraints": {
+        "bullet_count": 3
+      }
+    },
+    {
+      "id": "step_by_step_instructions_001",
+      "category": "step_by_step_instructions",
+      "prompt": "Give exactly four numbered steps for safely beginning a small project about rainbows.",
+      "constraints": {
+        "numbered_count": 4
+      }
+    },
+    {
+      "id": "simple_reasoning_001",
+      "category": "simple_reasoning",
+      "prompt": "A learner studies rainbows for 20 minutes on Monday and 25 minutes on Tuesday. How many minutes total? Answer with one number.",
+      "constraints": {
+        "exact_words": 1
+      }
+    },
+    {
+      "id": "creative_writing_001",
+      "category": "creative_writing",
+      "prompt": "Write a two-sentence micro-story involving rainbows and a lost notebook.",
+      "constraints": {
+        "sentence_count": 2
+      }
+    },
+    {
+      "id": "conversational_responses_001",
+      "category": "conversational_responses",
+      "prompt": "A friend says, 'I feel overwhelmed trying to understand rainbows.' Reply supportively in two sentences.",
+      "constraints": {
+        "sentence_count": 2
+      }
+    },
+    {
+      "id": "uncertainty_handling_001",
+      "category": "uncertainty_handling",
+      "prompt": "A user asks for an exact prediction of what researchers will discover about rainbows in 2050. Respond cautiously in two sentences.",
+      "constraints": {
+        "sentence_count": 2,
+        "uncertainty_required": true
+      }
+    },
+    {
+      "id": "general_question_answering_002",
+      "category": "general_question_answering",
+      "prompt": "What is one practical thing a beginner should know about batteries? Answer directly.",
+      "constraints": {}
+    },
+    {
+      "id": "short_factual_questions_002",
+      "category": "short_factual_questions",
+      "prompt": "State one widely accepted fact about batteries in one sentence.",
+      "constraints": {
+        "sentence_count": 1
+      }
+    },
+    {
+      "id": "explanations_002",
+      "category": "explanations",
+      "prompt": "Explain batteries to a curious twelve-year-old in two sentences.",
+      "constraints": {
+        "sentence_count": 2
+      }
+    },
+    {
+      "id": "summarization_002",
+      "category": "summarization",
+      "prompt": "Summarize this passage in under 30 words: A community studied batteries for several months. Volunteers collected observations, checked them twice, and shared a short public report.",
+      "constraints": {
+        "max_words": 30
+      }
+    },
+    {
+      "id": "rewriting_002",
+      "category": "rewriting",
+      "prompt": "Rewrite this without changing its meaning and do not use a list: 'Learning about batteries can help people make informed choices.'",
+      "constraints": {
+        "forbid_list": true
+      }
+    },
+    {
+      "id": "format_following_002",
+      "category": "format_following",
+      "prompt": "Return valid JSON with exactly the keys \"topic\" and \"summary\" about batteries.",
+      "constraints": {
+        "json_keys": [
+          "topic",
+          "summary"
+        ]
+      }
+    },
+    {
+      "id": "list_generation_002",
+      "category": "list_generation",
+      "prompt": "Give exactly three bullet points about batteries.",
+      "constraints": {
+        "bullet_count": 3
+      }
+    },
+    {
+      "id": "step_by_step_instructions_002",
+      "category": "step_by_step_instructions",
+      "prompt": "Give exactly four numbered steps for safely beginning a small project about batteries.",
+      "constraints": {
+        "numbered_count": 4
+      }
+    },
+    {
+      "id": "simple_reasoning_002",
+      "category": "simple_reasoning",
+      "prompt": "A learner studies batteries for 20 minutes on Monday and 25 minutes on Tuesday. How many minutes total? Answer with one number.",
+      "constraints": {
+        "exact_words": 1
+      }
+    },
+    {
+      "id": "creative_writing_002",
+      "category": "creative_writing",
+      "prompt": "Write a two-sentence micro-story involving batteries and a lost notebook.",
+      "constraints": {
+        "sentence_count": 2
+      }
+    },
+    {
+      "id": "conversational_responses_002",
+      "category": "conversational_responses",
+      "prompt": "A friend says, 'I feel overwhelmed trying to understand batteries.' Reply supportively in two sentences.",
+      "constraints": {
+        "sentence_count": 2
+      }
+    },
+    {
+      "id": "uncertainty_handling_002",
+      "category": "uncertainty_handling",
+      "prompt": "A user asks for an exact prediction of what researchers will discover about batteries in 2050. Respond cautiously in two sentences.",
+      "constraints": {
+        "sentence_count": 2,
+        "uncertainty_required": true
+      }
+    },
+    {
+      "id": "general_question_answering_003",
+      "category": "general_question_answering",
+      "prompt": "What is one practical thing a beginner should know about public libraries? Answer directly.",
+      "constraints": {}
+    },
+    {
+      "id": "short_factual_questions_003",
+      "category": "short_factual_questions",
+      "prompt": "State one widely accepted fact about public libraries in one sentence.",
+      "constraints": {
+        "sentence_count": 1
+      }
+    },
+    {
+      "id": "explanations_003",
+      "category": "explanations",
+      "prompt": "Explain public libraries to a curious twelve-year-old in two sentences.",
+      "constraints": {
+        "sentence_count": 2
+      }
+    },
+    {
+      "id": "summarization_003",
+      "category": "summarization",
+      "prompt": "Summarize this passage in under 30 words: A community studied public libraries for several months. Volunteers collected observations, checked them twice, and shared a short public report.",
+      "constraints": {
+        "max_words": 30
+      }
+    },
+    {
+      "id": "rewriting_003",
+      "category": "rewriting",
+      "prompt": "Rewrite this without changing its meaning and do not use a list: 'Learning about public libraries can help people make informed choices.'",
+      "constraints": {
+        "forbid_list": true
+      }
+    },
+    {
+      "id": "format_following_003",
+      "category": "format_following",
+      "prompt": "Return valid JSON with exactly the keys \"topic\" and \"summary\" about public libraries.",
+      "constraints": {
+        "json_keys": [
+          "topic",
+          "summary"
+        ]
+      }
+    },
+    {
+      "id": "list_generation_003",
+      "category": "list_generation",
+      "prompt": "Give exactly three bullet points about public libraries.",
+      "constraints": {
+        "bullet_count": 3
+      }
+    },
+    {
+      "id": "step_by_step_instructions_003",
+      "category": "step_by_step_instructions",
+      "prompt": "Give exactly four numbered steps for safely beginning a small project about public libraries.",
+      "constraints": {
+        "numbered_count": 4
+      }
+    },
+    {
+      "id": "simple_reasoning_003",
+      "category": "simple_reasoning",
+      "prompt": "A learner studies public libraries for 20 minutes on Monday and 25 minutes on Tuesday. How many minutes total? Answer with one number.",
+      "constraints": {
+        "exact_words": 1
+      }
+    },
+    {
+      "id": "creative_writing_003",
+      "category": "creative_writing",
+      "prompt": "Write a two-sentence micro-story involving public libraries and a lost notebook.",
+      "constraints": {
+        "sentence_count": 2
+      }
+    },
+    {
+      "id": "conversational_responses_003",
+      "category": "conversational_responses",
+      "prompt": "A friend says, 'I feel overwhelmed trying to understand public libraries.' Reply supportively in two sentences.",
+      "constraints": {
+        "sentence_count": 2
+      }
+    },
+    {
+      "id": "uncertainty_handling_003",
+      "category": "uncertainty_handling",
+      "prompt": "A user asks for an exact prediction of what researchers will discover about public libraries in 2050. Respond cautiously in two sentences.",
+      "constraints": {
+        "sentence_count": 2,
+        "uncertainty_required": true
+      }
+    },
+    {
+      "id": "general_question_answering_004",
+      "category": "general_question_answering",
+      "prompt": "What is one practical thing a beginner should know about volcanoes? Answer directly.",
+      "constraints": {}
+    },
+    {
+      "id": "short_factual_questions_004",
+      "category": "short_factual_questions",
+      "prompt": "State one widely accepted fact about volcanoes in one sentence.",
+      "constraints": {
+        "sentence_count": 1
+      }
+    },
+    {
+      "id": "explanations_004",
+      "category": "explanations",
+      "prompt": "Explain volcanoes to a curious twelve-year-old in two sentences.",
+      "constraints": {
+        "sentence_count": 2
+      }
+    },
+    {
+      "id": "summarization_004",
+      "category": "summarization",
+      "prompt": "Summarize this passage in under 30 words: A community studied volcanoes for several months. Volunteers collected observations, checked them twice, and shared a short public report.",
+      "constraints": {
+        "max_words": 30
+      }
+    },
+    {
+      "id": "rewriting_004",
+      "category": "rewriting",
+      "prompt": "Rewrite this without changing its meaning and do not use a list: 'Learning about volcanoes can help people make informed choices.'",
+      "constraints": {
+        "forbid_list": true
+      }
+    },
+    {
+      "id": "format_following_004",
+      "category": "format_following",
+      "prompt": "Return valid JSON with exactly the keys \"topic\" and \"summary\" about volcanoes.",
+      "constraints": {
+        "json_keys": [
+          "topic",
+          "summary"
+        ]
+      }
+    },
+    {
+      "id": "list_generation_004",
+      "category": "list_generation",
+      "prompt": "Give exactly three bullet points about volcanoes.",
+      "constraints": {
+        "bullet_count": 3
+      }
+    },
+    {
+      "id": "step_by_step_instructions_004",
+      "category": "step_by_step_instructions",
+      "prompt": "Give exactly four numbered steps for safely beginning a small project about volcanoes.",
+      "constraints": {
+        "numbered_count": 4
+      }
+    },
+    {
+      "id": "simple_reasoning_004",
+      "category": "simple_reasoning",
+      "prompt": "A learner studies volcanoes for 20 minutes on Monday and 25 minutes on Tuesday. How many minutes total? Answer with one number.",
+      "constraints": {
+        "exact_words": 1
+      }
+    },
+    {
+      "id": "creative_writing_004",
+      "category": "creative_writing",
+      "prompt": "Write a two-sentence micro-story involving volcanoes and a lost notebook.",
+      "constraints": {
+        "sentence_count": 2
+      }
+    },
+    {
+      "id": "conversational_responses_004",
+      "category": "conversational_responses",
+      "prompt": "A friend says, 'I feel overwhelmed trying to understand volcanoes.' Reply supportively in two sentences.",
+      "constraints": {
+        "sentence_count": 2
+      }
+    },
+    {
+      "id": "uncertainty_handling_004",
+      "category": "uncertainty_handling",
+      "prompt": "A user asks for an exact prediction of what researchers will discover about volcanoes in 2050. Respond cautiously in two sentences.",
+      "constraints": {
+        "sentence_count": 2,
+        "uncertainty_required": true
+      }
+    },
+    {
+      "id": "general_question_answering_005",
+      "category": "general_question_answering",
+      "prompt": "What is one practical thing a beginner should know about recycling? Answer directly.",
+      "constraints": {}
+    },
+    {
+      "id": "short_factual_questions_005",
+      "category": "short_factual_questions",
+      "prompt": "State one widely accepted fact about recycling in one sentence.",
+      "constraints": {
+        "sentence_count": 1
+      }
+    },
+    {
+      "id": "explanations_005",
+      "category": "explanations",
+      "prompt": "Explain recycling to a curious twelve-year-old in two sentences.",
+      "constraints": {
+        "sentence_count": 2
+      }
+    },
+    {
+      "id": "summarization_005",
+      "category": "summarization",
+      "prompt": "Summarize this passage in under 30 words: A community studied recycling for several months. Volunteers collected observations, checked them twice, and shared a short public report.",
+      "constraints": {
+        "max_words": 30
+      }
+    },
+    {
+      "id": "rewriting_005",
+      "category": "rewriting",
+      "prompt": "Rewrite this without changing its meaning and do not use a list: 'Learning about recycling can help people make informed choices.'",
+      "constraints": {
+        "forbid_list": true
+      }
+    },
+    {
+      "id": "format_following_005",
+      "category": "format_following",
+      "prompt": "Return valid JSON with exactly the keys \"topic\" and \"summary\" about recycling.",
+      "constraints": {
+        "json_keys": [
+          "topic",
+          "summary"
+        ]
+      }
+    },
+    {
+      "id": "list_generation_005",
+      "category": "list_generation",
+      "prompt": "Give exactly three bullet points about recycling.",
+      "constraints": {
+        "bullet_count": 3
+      }
+    },
+    {
+      "id": "step_by_step_instructions_005",
+      "category": "step_by_step_instructions",
+      "prompt": "Give exactly four numbered steps for safely beginning a small project about recycling.",
+      "constraints": {
+        "numbered_count": 4
+      }
+    },
+    {
+      "id": "simple_reasoning_005",
+      "category": "simple_reasoning",
+      "prompt": "A learner studies recycling for 20 minutes on Monday and 25 minutes on Tuesday. How many minutes total? Answer with one number.",
+      "constraints": {
+        "exact_words": 1
+      }
+    },
+    {
+      "id": "creative_writing_005",
+      "category": "creative_writing",
+      "prompt": "Write a two-sentence micro-story involving recycling and a lost notebook.",
+      "constraints": {
+        "sentence_count": 2
+      }
+    },
+    {
+      "id": "conversational_responses_005",
+      "category": "conversational_responses",
+      "prompt": "A friend says, 'I feel overwhelmed trying to understand recycling.' Reply supportively in two sentences.",
+      "constraints": {
+        "sentence_count": 2
+      }
+    },
+    {
+      "id": "uncertainty_handling_005",
+      "category": "uncertainty_handling",
+      "prompt": "A user asks for an exact prediction of what researchers will discover about recycling in 2050. Respond cautiously in two sentences.",
+      "constraints": {
+        "sentence_count": 2,
+        "uncertainty_required": true
+      }
+    },
+    {
+      "id": "general_question_answering_006",
+      "category": "general_question_answering",
+      "prompt": "What is one practical thing a beginner should know about maps? Answer directly.",
+      "constraints": {}
+    },
+    {
+      "id": "short_factual_questions_006",
+      "category": "short_factual_questions",
+      "prompt": "State one widely accepted fact about maps in one sentence.",
+      "constraints": {
+        "sentence_count": 1
+      }
+    },
+    {
+      "id": "explanations_006",
+      "category": "explanations",
+      "prompt": "Explain maps to a curious twelve-year-old in two sentences.",
+      "constraints": {
+        "sentence_count": 2
+      }
+    },
+    {
+      "id": "summarization_006",
+      "category": "summarization",
+      "prompt": "Summarize this passage in under 30 words: A community studied maps for several months. Volunteers collected observations, checked them twice, and shared a short public report.",
+      "constraints": {
+        "max_words": 30
+      }
+    },
+    {
+      "id": "rewriting_006",
+      "category": "rewriting",
+      "prompt": "Rewrite this without changing its meaning and do not use a list: 'Learning about maps can help people make informed choices.'",
+      "constraints": {
+        "forbid_list": true
+      }
+    },
+    {
+      "id": "format_following_006",
+      "category": "format_following",
+      "prompt": "Return valid JSON with exactly the keys \"topic\" and \"summary\" about maps.",
+      "constraints": {
+        "json_keys": [
+          "topic",
+          "summary"
+        ]
+      }
+    },
+    {
+      "id": "list_generation_006",
+      "category": "list_generation",
+      "prompt": "Give exactly three bullet points about maps.",
+      "constraints": {
+        "bullet_count": 3
+      }
+    },
+    {
+      "id": "step_by_step_instructions_006",
+      "category": "step_by_step_instructions",
+      "prompt": "Give exactly four numbered steps for safely beginning a small project about maps.",
+      "constraints": {
+        "numbered_count": 4
+      }
+    },
+    {
+      "id": "simple_reasoning_006",
+      "category": "simple_reasoning",
+      "prompt": "A learner studies maps for 20 minutes on Monday and 25 minutes on Tuesday. How many minutes total? Answer with one number.",
+      "constraints": {
+        "exact_words": 1
+      }
+    },
+    {
+      "id": "creative_writing_006",
+      "category": "creative_writing",
+      "prompt": "Write a two-sentence micro-story involving maps and a lost notebook.",
+      "constraints": {
+        "sentence_count": 2
+      }
+    },
+    {
+      "id": "conversational_responses_006",
+      "category": "conversational_responses",
+      "prompt": "A friend says, 'I feel overwhelmed trying to understand maps.' Reply supportively in two sentences.",
+      "constraints": {
+        "sentence_count": 2
+      }
+    },
+    {
+      "id": "uncertainty_handling_006",
+      "category": "uncertainty_handling",
+      "prompt": "A user asks for an exact prediction of what researchers will discover about maps in 2050. Respond cautiously in two sentences.",
+      "constraints": {
+        "sentence_count": 2,
+        "uncertainty_required": true
+      }
+    },
+    {
+      "id": "general_question_answering_007",
+      "category": "general_question_answering",
+      "prompt": "What is one practical thing a beginner should know about sleep? Answer directly.",
+      "constraints": {}
+    },
+    {
+      "id": "short_factual_questions_007",
+      "category": "short_factual_questions",
+      "prompt": "State one widely accepted fact about sleep in one sentence.",
+      "constraints": {
+        "sentence_count": 1
+      }
+    },
+    {
+      "id": "explanations_007",
+      "category": "explanations",
+      "prompt": "Explain sleep to a curious twelve-year-old in two sentences.",
+      "constraints": {
+        "sentence_count": 2
+      }
+    },
+    {
+      "id": "summarization_007",
+      "category": "summarization",
+      "prompt": "Summarize this passage in under 30 words: A community studied sleep for several months. Volunteers collected observations, checked them twice, and shared a short public report.",
+      "constraints": {
+        "max_words": 30
+      }
+    },
+    {
+      "id": "rewriting_007",
+      "category": "rewriting",
+      "prompt": "Rewrite this without changing its meaning and do not use a list: 'Learning about sleep can help people make informed choices.'",
+      "constraints": {
+        "forbid_list": true
+      }
+    },
+    {
+      "id": "format_following_007",
+      "category": "format_following",
+      "prompt": "Return valid JSON with exactly the keys \"topic\" and \"summary\" about sleep.",
+      "constraints": {
+        "json_keys": [
+          "topic",
+          "summary"
+        ]
+      }
+    },
+    {
+      "id": "list_generation_007",
+      "category": "list_generation",
+      "prompt": "Give exactly three bullet points about sleep.",
+      "constraints": {
+        "bullet_count": 3
+      }
+    },
+    {
+      "id": "step_by_step_instructions_007",
+      "category": "step_by_step_instructions",
+      "prompt": "Give exactly four numbered steps for safely beginning a small project about sleep.",
+      "constraints": {
+        "numbered_count": 4
+      }
+    },
+    {
+      "id": "simple_reasoning_007",
+      "category": "simple_reasoning",
+      "prompt": "A learner studies sleep for 20 minutes on Monday and 25 minutes on Tuesday. How many minutes total? Answer with one number.",
+      "constraints": {
+        "exact_words": 1
+      }
+    },
+    {
+      "id": "creative_writing_007",
+      "category": "creative_writing",
+      "prompt": "Write a two-sentence micro-story involving sleep and a lost notebook.",
+      "constraints": {
+        "sentence_count": 2
+      }
+    },
+    {
+      "id": "conversational_responses_007",
+      "category": "conversational_responses",
+      "prompt": "A friend says, 'I feel overwhelmed trying to understand sleep.' Reply supportively in two sentences.",
+      "constraints": {
+        "sentence_count": 2
+      }
+    },
+    {
+      "id": "uncertainty_handling_007",
+      "category": "uncertainty_handling",
+      "prompt": "A user asks for an exact prediction of what researchers will discover about sleep in 2050. Respond cautiously in two sentences.",
+      "constraints": {
+        "sentence_count": 2,
+        "uncertainty_required": true
+      }
+    },
+    {
+      "id": "general_question_answering_008",
+      "category": "general_question_answering",
+      "prompt": "What is one practical thing a beginner should know about bridges? Answer directly.",
+      "constraints": {}
+    },
+    {
+      "id": "short_factual_questions_008",
+      "category": "short_factual_questions",
+      "prompt": "State one widely accepted fact about bridges in one sentence.",
+      "constraints": {
+        "sentence_count": 1
+      }
+    },
+    {
+      "id": "explanations_008",
+      "category": "explanations",
+      "prompt": "Explain bridges to a curious twelve-year-old in two sentences.",
+      "constraints": {
+        "sentence_count": 2
+      }
+    },
+    {
+      "id": "summarization_008",
+      "category": "summarization",
+      "prompt": "Summarize this passage in under 30 words: A community studied bridges for several months. Volunteers collected observations, checked them twice, and shared a short public report.",
+      "constraints": {
+        "max_words": 30
+      }
+    },
+    {
+      "id": "rewriting_008",
+      "category": "rewriting",
+      "prompt": "Rewrite this without changing its meaning and do not use a list: 'Learning about bridges can help people make informed choices.'",
+      "constraints": {
+        "forbid_list": true
+      }
+    },
+    {
+      "id": "format_following_008",
+      "category": "format_following",
+      "prompt": "Return valid JSON with exactly the keys \"topic\" and \"summary\" about bridges.",
+      "constraints": {
+        "json_keys": [
+          "topic",
+          "summary"
+        ]
+      }
+    },
+    {
+      "id": "list_generation_008",
+      "category": "list_generation",
+      "prompt": "Give exactly three bullet points about bridges.",
+      "constraints": {
+        "bullet_count": 3
+      }
+    },
+    {
+      "id": "step_by_step_instructions_008",
+      "category": "step_by_step_instructions",
+      "prompt": "Give exactly four numbered steps for safely beginning a small project about bridges.",
+      "constraints": {
+        "numbered_count": 4
+      }
+    },
+    {
+      "id": "simple_reasoning_008",
+      "category": "simple_reasoning",
+      "prompt": "A learner studies bridges for 20 minutes on Monday and 25 minutes on Tuesday. How many minutes total? Answer with one number.",
+      "constraints": {
+        "exact_words": 1
+      }
+    },
+    {
+      "id": "creative_writing_008",
+      "category": "creative_writing",
+      "prompt": "Write a two-sentence micro-story involving bridges and a lost notebook.",
+      "constraints": {
+        "sentence_count": 2
+      }
+    },
+    {
+      "id": "conversational_responses_008",
+      "category": "conversational_responses",
+      "prompt": "A friend says, 'I feel overwhelmed trying to understand bridges.' Reply supportively in two sentences.",
+      "constraints": {
+        "sentence_count": 2
+      }
+    },
+    {
+      "id": "uncertainty_handling_008",
+      "category": "uncertainty_handling",
+      "prompt": "A user asks for an exact prediction of what researchers will discover about bridges in 2050. Respond cautiously in two sentences.",
+      "constraints": {
+        "sentence_count": 2,
+        "uncertainty_required": true
+      }
+    },
+    {
+      "id": "general_question_answering_009",
+      "category": "general_question_answering",
+      "prompt": "What is one practical thing a beginner should know about clouds? Answer directly.",
+      "constraints": {}
+    },
+    {
+      "id": "short_factual_questions_009",
+      "category": "short_factual_questions",
+      "prompt": "State one widely accepted fact about clouds in one sentence.",
+      "constraints": {
+        "sentence_count": 1
+      }
+    },
+    {
+      "id": "explanations_009",
+      "category": "explanations",
+      "prompt": "Explain clouds to a curious twelve-year-old in two sentences.",
+      "constraints": {
+        "sentence_count": 2
+      }
+    },
+    {
+      "id": "summarization_009",
+      "category": "summarization",
+      "prompt": "Summarize this passage in under 30 words: A community studied clouds for several months. Volunteers collected observations, checked them twice, and shared a short public report.",
+      "constraints": {
+        "max_words": 30
+      }
+    },
+    {
+      "id": "rewriting_009",
+      "category": "rewriting",
+      "prompt": "Rewrite this without changing its meaning and do not use a list: 'Learning about clouds can help people make informed choices.'",
+      "constraints": {
+        "forbid_list": true
+      }
+    },
+    {
+      "id": "format_following_009",
+      "category": "format_following",
+      "prompt": "Return valid JSON with exactly the keys \"topic\" and \"summary\" about clouds.",
+      "constraints": {
+        "json_keys": [
+          "topic",
+          "summary"
+        ]
+      }
+    },
+    {
+      "id": "list_generation_009",
+      "category": "list_generation",
+      "prompt": "Give exactly three bullet points about clouds.",
+      "constraints": {
+        "bullet_count": 3
+      }
+    },
+    {
+      "id": "step_by_step_instructions_009",
+      "category": "step_by_step_instructions",
+      "prompt": "Give exactly four numbered steps for safely beginning a small project about clouds.",
+      "constraints": {
+        "numbered_count": 4
+      }
+    },
+    {
+      "id": "simple_reasoning_009",
+      "category": "simple_reasoning",
+      "prompt": "A learner studies clouds for 20 minutes on Monday and 25 minutes on Tuesday. How many minutes total? Answer with one number.",
+      "constraints": {
+        "exact_words": 1
+      }
+    },
+    {
+      "id": "creative_writing_009",
+      "category": "creative_writing",
+      "prompt": "Write a two-sentence micro-story involving clouds and a lost notebook.",
+      "constraints": {
+        "sentence_count": 2
+      }
+    },
+    {
+      "id": "conversational_responses_009",
+      "category": "conversational_responses",
+      "prompt": "A friend says, 'I feel overwhelmed trying to understand clouds.' Reply supportively in two sentences.",
+      "constraints": {
+        "sentence_count": 2
+      }
+    },
+    {
+      "id": "uncertainty_handling_009",
+      "category": "uncertainty_handling",
+      "prompt": "A user asks for an exact prediction of what researchers will discover about clouds in 2050. Respond cautiously in two sentences.",
+      "constraints": {
+        "sentence_count": 2,
+        "uncertainty_required": true
+      }
+    },
+    {
+      "id": "general_question_answering_010",
+      "category": "general_question_answering",
+      "prompt": "What is one practical thing a beginner should know about gardening? Answer directly.",
+      "constraints": {}
+    },
+    {
+      "id": "short_factual_questions_010",
+      "category": "short_factual_questions",
+      "prompt": "State one widely accepted fact about gardening in one sentence.",
+      "constraints": {
+        "sentence_count": 1
+      }
+    },
+    {
+      "id": "explanations_010",
+      "category": "explanations",
+      "prompt": "Explain gardening to a curious twelve-year-old in two sentences.",
+      "constraints": {
+        "sentence_count": 2
+      }
+    },
+    {
+      "id": "summarization_010",
+      "category": "summarization",
+      "prompt": "Summarize this passage in under 30 words: A community studied gardening for several months. Volunteers collected observations, checked them twice, and shared a short public report.",
+      "constraints": {
+        "max_words": 30
+      }
+    },
+    {
+      "id": "rewriting_010",
+      "category": "rewriting",
+      "prompt": "Rewrite this without changing its meaning and do not use a list: 'Learning about gardening can help people make informed choices.'",
+      "constraints": {
+        "forbid_list": true
+      }
+    },
+    {
+      "id": "format_following_010",
+      "category": "format_following",
+      "prompt": "Return valid JSON with exactly the keys \"topic\" and \"summary\" about gardening.",
+      "constraints": {
+        "json_keys": [
+          "topic",
+          "summary"
+        ]
+      }
+    },
+    {
+      "id": "list_generation_010",
+      "category": "list_generation",
+      "prompt": "Give exactly three bullet points about gardening.",
+      "constraints": {
+        "bullet_count": 3
+      }
+    },
+    {
+      "id": "step_by_step_instructions_010",
+      "category": "step_by_step_instructions",
+      "prompt": "Give exactly four numbered steps for safely beginning a small project about gardening.",
+      "constraints": {
+        "numbered_count": 4
+      }
+    },
+    {
+      "id": "simple_reasoning_010",
+      "category": "simple_reasoning",
+      "prompt": "A learner studies gardening for 20 minutes on Monday and 25 minutes on Tuesday. How many minutes total? Answer with one number.",
+      "constraints": {
+        "exact_words": 1
+      }
+    },
+    {
+      "id": "creative_writing_010",
+      "category": "creative_writing",
+      "prompt": "Write a two-sentence micro-story involving gardening and a lost notebook.",
+      "constraints": {
+        "sentence_count": 2
+      }
+    },
+    {
+      "id": "conversational_responses_010",
+      "category": "conversational_responses",
+      "prompt": "A friend says, 'I feel overwhelmed trying to understand gardening.' Reply supportively in two sentences.",
+      "constraints": {
+        "sentence_count": 2
+      }
+    },
+    {
+      "id": "uncertainty_handling_010",
+      "category": "uncertainty_handling",
+      "prompt": "A user asks for an exact prediction of what researchers will discover about gardening in 2050. Respond cautiously in two sentences.",
+      "constraints": {
+        "sentence_count": 2,
+        "uncertainty_required": true
+      }
+    },
+    {
+      "id": "general_question_answering_011",
+      "category": "general_question_answering",
+      "prompt": "What is one practical thing a beginner should know about vaccines? Answer directly.",
+      "constraints": {}
+    },
+    {
+      "id": "short_factual_questions_011",
+      "category": "short_factual_questions",
+      "prompt": "State one widely accepted fact about vaccines in one sentence.",
+      "constraints": {
+        "sentence_count": 1
+      }
+    },
+    {
+      "id": "explanations_011",
+      "category": "explanations",
+      "prompt": "Explain vaccines to a curious twelve-year-old in two sentences.",
+      "constraints": {
+        "sentence_count": 2
+      }
+    },
+    {
+      "id": "summarization_011",
+      "category": "summarization",
+      "prompt": "Summarize this passage in under 30 words: A community studied vaccines for several months. Volunteers collected observations, checked them twice, and shared a short public report.",
+      "constraints": {
+        "max_words": 30
+      }
+    },
+    {
+      "id": "rewriting_011",
+      "category": "rewriting",
+      "prompt": "Rewrite this without changing its meaning and do not use a list: 'Learning about vaccines can help people make informed choices.'",
+      "constraints": {
+        "forbid_list": true
+      }
+    },
+    {
+      "id": "format_following_011",
+      "category": "format_following",
+      "prompt": "Return valid JSON with exactly the keys \"topic\" and \"summary\" about vaccines.",
+      "constraints": {
+        "json_keys": [
+          "topic",
+          "summary"
+        ]
+      }
+    },
+    {
+      "id": "list_generation_011",
+      "category": "list_generation",
+      "prompt": "Give exactly three bullet points about vaccines.",
+      "constraints": {
+        "bullet_count": 3
+      }
+    },
+    {
+      "id": "step_by_step_instructions_011",
+      "category": "step_by_step_instructions",
+      "prompt": "Give exactly four numbered steps for safely beginning a small project about vaccines.",
+      "constraints": {
+        "numbered_count": 4
+      }
+    },
+    {
+      "id": "simple_reasoning_011",
+      "category": "simple_reasoning",
+      "prompt": "A learner studies vaccines for 20 minutes on Monday and 25 minutes on Tuesday. How many minutes total? Answer with one number.",
+      "constraints": {
+        "exact_words": 1
+      }
+    },
+    {
+      "id": "creative_writing_011",
+      "category": "creative_writing",
+      "prompt": "Write a two-sentence micro-story involving vaccines and a lost notebook.",
+      "constraints": {
+        "sentence_count": 2
+      }
+    },
+    {
+      "id": "conversational_responses_011",
+      "category": "conversational_responses",
+      "prompt": "A friend says, 'I feel overwhelmed trying to understand vaccines.' Reply supportively in two sentences.",
+      "constraints": {
+        "sentence_count": 2
+      }
+    },
+    {
+      "id": "uncertainty_handling_011",
+      "category": "uncertainty_handling",
+      "prompt": "A user asks for an exact prediction of what researchers will discover about vaccines in 2050. Respond cautiously in two sentences.",
+      "constraints": {
+        "sentence_count": 2,
+        "uncertainty_required": true
+      }
+    },
+    {
+      "id": "general_question_answering_012",
+      "category": "general_question_answering",
+      "prompt": "What is one practical thing a beginner should know about databases? Answer directly.",
+      "constraints": {}
+    },
+    {
+      "id": "short_factual_questions_012",
+      "category": "short_factual_questions",
+      "prompt": "State one widely accepted fact about databases in one sentence.",
+      "constraints": {
+        "sentence_count": 1
+      }
+    },
+    {
+      "id": "explanations_012",
+      "category": "explanations",
+      "prompt": "Explain databases to a curious twelve-year-old in two sentences.",
+      "constraints": {
+        "sentence_count": 2
+      }
+    },
+    {
+      "id": "summarization_012",
+      "category": "summarization",
+      "prompt": "Summarize this passage in under 30 words: A community studied databases for several months. Volunteers collected observations, checked them twice, and shared a short public report.",
+      "constraints": {
+        "max_words": 30
+      }
+    },
+    {
+      "id": "rewriting_012",
+      "category": "rewriting",
+      "prompt": "Rewrite this without changing its meaning and do not use a list: 'Learning about databases can help people make informed choices.'",
+      "constraints": {
+        "forbid_list": true
+      }
+    },
+    {
+      "id": "format_following_012",
+      "category": "format_following",
+      "prompt": "Return valid JSON with exactly the keys \"topic\" and \"summary\" about databases.",
+      "constraints": {
+        "json_keys": [
+          "topic",
+          "summary"
+        ]
+      }
+    },
+    {
+      "id": "list_generation_012",
+      "category": "list_generation",
+      "prompt": "Give exactly three bullet points about databases.",
+      "constraints": {
+        "bullet_count": 3
+      }
+    },
+    {
+      "id": "step_by_step_instructions_012",
+      "category": "step_by_step_instructions",
+      "prompt": "Give exactly four numbered steps for safely beginning a small project about databases.",
+      "constraints": {
+        "numbered_count": 4
+      }
+    },
+    {
+      "id": "simple_reasoning_012",
+      "category": "simple_reasoning",
+      "prompt": "A learner studies databases for 20 minutes on Monday and 25 minutes on Tuesday. How many minutes total? Answer with one number.",
+      "constraints": {
+        "exact_words": 1
+      }
+    },
+    {
+      "id": "creative_writing_012",
+      "category": "creative_writing",
+      "prompt": "Write a two-sentence micro-story involving databases and a lost notebook.",
+      "constraints": {
+        "sentence_count": 2
+      }
+    },
+    {
+      "id": "conversational_responses_012",
+      "category": "conversational_responses",
+      "prompt": "A friend says, 'I feel overwhelmed trying to understand databases.' Reply supportively in two sentences.",
+      "constraints": {
+        "sentence_count": 2
+      }
+    },
+    {
+      "id": "uncertainty_handling_012",
+      "category": "uncertainty_handling",
+      "prompt": "A user asks for an exact prediction of what researchers will discover about databases in 2050. Respond cautiously in two sentences.",
+      "constraints": {
+        "sentence_count": 2,
+        "uncertainty_required": true
+      }
+    },
+    {
+      "id": "general_question_answering_013",
+      "category": "general_question_answering",
+      "prompt": "What is one practical thing a beginner should know about music? Answer directly.",
+      "constraints": {}
+    },
+    {
+      "id": "short_factual_questions_013",
+      "category": "short_factual_questions",
+      "prompt": "State one widely accepted fact about music in one sentence.",
+      "constraints": {
+        "sentence_count": 1
+      }
+    },
+    {
+      "id": "explanations_013",
+      "category": "explanations",
+      "prompt": "Explain music to a curious twelve-year-old in two sentences.",
+      "constraints": {
+        "sentence_count": 2
+      }
+    },
+    {
+      "id": "summarization_013",
+      "category": "summarization",
+      "prompt": "Summarize this passage in under 30 words: A community studied music for several months. Volunteers collected observations, checked them twice, and shared a short public report.",
+      "constraints": {
+        "max_words": 30
+      }
+    },
+    {
+      "id": "rewriting_013",
+      "category": "rewriting",
+      "prompt": "Rewrite this without changing its meaning and do not use a list: 'Learning about music can help people make informed choices.'",
+      "constraints": {
+        "forbid_list": true
+      }
+    },
+    {
+      "id": "format_following_013",
+      "category": "format_following",
+      "prompt": "Return valid JSON with exactly the keys \"topic\" and \"summary\" about music.",
+      "constraints": {
+        "json_keys": [
+          "topic",
+          "summary"
+        ]
+      }
+    },
+    {
+      "id": "list_generation_013",
+      "category": "list_generation",
+      "prompt": "Give exactly three bullet points about music.",
+      "constraints": {
+        "bullet_count": 3
+      }
+    },
+    {
+      "id": "step_by_step_instructions_013",
+      "category": "step_by_step_instructions",
+      "prompt": "Give exactly four numbered steps for safely beginning a small project about music.",
+      "constraints": {
+        "numbered_count": 4
+      }
+    },
+    {
+      "id": "simple_reasoning_013",
+      "category": "simple_reasoning",
+      "prompt": "A learner studies music for 20 minutes on Monday and 25 minutes on Tuesday. How many minutes total? Answer with one number.",
+      "constraints": {
+        "exact_words": 1
+      }
+    },
+    {
+      "id": "creative_writing_013",
+      "category": "creative_writing",
+      "prompt": "Write a two-sentence micro-story involving music and a lost notebook.",
+      "constraints": {
+        "sentence_count": 2
+      }
+    },
+    {
+      "id": "conversational_responses_013",
+      "category": "conversational_responses",
+      "prompt": "A friend says, 'I feel overwhelmed trying to understand music.' Reply supportively in two sentences.",
+      "constraints": {
+        "sentence_count": 2
+      }
+    },
+    {
+      "id": "uncertainty_handling_013",
+      "category": "uncertainty_handling",
+      "prompt": "A user asks for an exact prediction of what researchers will discover about music in 2050. Respond cautiously in two sentences.",
+      "constraints": {
+        "sentence_count": 2,
+        "uncertainty_required": true
+      }
+    },
+    {
+      "id": "general_question_answering_014",
+      "category": "general_question_answering",
+      "prompt": "What is one practical thing a beginner should know about photosynthesis? Answer directly.",
+      "constraints": {}
+    },
+    {
+      "id": "short_factual_questions_014",
+      "category": "short_factual_questions",
+      "prompt": "State one widely accepted fact about photosynthesis in one sentence.",
+      "constraints": {
+        "sentence_count": 1
+      }
+    },
+    {
+      "id": "explanations_014",
+      "category": "explanations",
+      "prompt": "Explain photosynthesis to a curious twelve-year-old in two sentences.",
+      "constraints": {
+        "sentence_count": 2
+      }
+    },
+    {
+      "id": "summarization_014",
+      "category": "summarization",
+      "prompt": "Summarize this passage in under 30 words: A community studied photosynthesis for several months. Volunteers collected observations, checked them twice, and shared a short public report.",
+      "constraints": {
+        "max_words": 30
+      }
+    },
+    {
+      "id": "rewriting_014",
+      "category": "rewriting",
+      "prompt": "Rewrite this without changing its meaning and do not use a list: 'Learning about photosynthesis can help people make informed choices.'",
+      "constraints": {
+        "forbid_list": true
+      }
+    },
+    {
+      "id": "format_following_014",
+      "category": "format_following",
+      "prompt": "Return valid JSON with exactly the keys \"topic\" and \"summary\" about photosynthesis.",
+      "constraints": {
+        "json_keys": [
+          "topic",
+          "summary"
+        ]
+      }
+    },
+    {
+      "id": "list_generation_014",
+      "category": "list_generation",
+      "prompt": "Give exactly three bullet points about photosynthesis.",
+      "constraints": {
+        "bullet_count": 3
+      }
+    },
+    {
+      "id": "step_by_step_instructions_014",
+      "category": "step_by_step_instructions",
+      "prompt": "Give exactly four numbered steps for safely beginning a small project about photosynthesis.",
+      "constraints": {
+        "numbered_count": 4
+      }
+    },
+    {
+      "id": "simple_reasoning_014",
+      "category": "simple_reasoning",
+      "prompt": "A learner studies photosynthesis for 20 minutes on Monday and 25 minutes on Tuesday. How many minutes total? Answer with one number.",
+      "constraints": {
+        "exact_words": 1
+      }
+    },
+    {
+      "id": "creative_writing_014",
+      "category": "creative_writing",
+      "prompt": "Write a two-sentence micro-story involving photosynthesis and a lost notebook.",
+      "constraints": {
+        "sentence_count": 2
+      }
+    },
+    {
+      "id": "conversational_responses_014",
+      "category": "conversational_responses",
+      "prompt": "A friend says, 'I feel overwhelmed trying to understand photosynthesis.' Reply supportively in two sentences.",
+      "constraints": {
+        "sentence_count": 2
+      }
+    },
+    {
+      "id": "uncertainty_handling_014",
+      "category": "uncertainty_handling",
+      "prompt": "A user asks for an exact prediction of what researchers will discover about photosynthesis in 2050. Respond cautiously in two sentences.",
+      "constraints": {
+        "sentence_count": 2,
+        "uncertainty_required": true
+      }
+    },
+    {
+      "id": "general_question_answering_015",
+      "category": "general_question_answering",
+      "prompt": "What is one practical thing a beginner should know about budgeting? Answer directly.",
+      "constraints": {}
+    },
+    {
+      "id": "short_factual_questions_015",
+      "category": "short_factual_questions",
+      "prompt": "State one widely accepted fact about budgeting in one sentence.",
+      "constraints": {
+        "sentence_count": 1
+      }
+    },
+    {
+      "id": "explanations_015",
+      "category": "explanations",
+      "prompt": "Explain budgeting to a curious twelve-year-old in two sentences.",
+      "constraints": {
+        "sentence_count": 2
+      }
+    },
+    {
+      "id": "summarization_015",
+      "category": "summarization",
+      "prompt": "Summarize this passage in under 30 words: A community studied budgeting for several months. Volunteers collected observations, checked them twice, and shared a short public report.",
+      "constraints": {
+        "max_words": 30
+      }
+    },
+    {
+      "id": "rewriting_015",
+      "category": "rewriting",
+      "prompt": "Rewrite this without changing its meaning and do not use a list: 'Learning about budgeting can help people make informed choices.'",
+      "constraints": {
+        "forbid_list": true
+      }
+    },
+    {
+      "id": "format_following_015",
+      "category": "format_following",
+      "prompt": "Return valid JSON with exactly the keys \"topic\" and \"summary\" about budgeting.",
+      "constraints": {
+        "json_keys": [
+          "topic",
+          "summary"
+        ]
+      }
+    },
+    {
+      "id": "list_generation_015",
+      "category": "list_generation",
+      "prompt": "Give exactly three bullet points about budgeting.",
+      "constraints": {
+        "bullet_count": 3
+      }
+    },
+    {
+      "id": "step_by_step_instructions_015",
+      "category": "step_by_step_instructions",
+      "prompt": "Give exactly four numbered steps for safely beginning a small project about budgeting.",
+      "constraints": {
+        "numbered_count": 4
+      }
+    },
+    {
+      "id": "simple_reasoning_015",
+      "category": "simple_reasoning",
+      "prompt": "A learner studies budgeting for 20 minutes on Monday and 25 minutes on Tuesday. How many minutes total? Answer with one number.",
+      "constraints": {
+        "exact_words": 1
+      }
+    },
+    {
+      "id": "creative_writing_015",
+      "category": "creative_writing",
+      "prompt": "Write a two-sentence micro-story involving budgeting and a lost notebook.",
+      "constraints": {
+        "sentence_count": 2
+      }
+    },
+    {
+      "id": "conversational_responses_015",
+      "category": "conversational_responses",
+      "prompt": "A friend says, 'I feel overwhelmed trying to understand budgeting.' Reply supportively in two sentences.",
+      "constraints": {
+        "sentence_count": 2
+      }
+    },
+    {
+      "id": "uncertainty_handling_015",
+      "category": "uncertainty_handling",
+      "prompt": "A user asks for an exact prediction of what researchers will discover about budgeting in 2050. Respond cautiously in two sentences.",
+      "constraints": {
+        "sentence_count": 2,
+        "uncertainty_required": true
+      }
+    },
+    {
+      "id": "general_question_answering_016",
+      "category": "general_question_answering",
+      "prompt": "What is one practical thing a beginner should know about rivers? Answer directly.",
+      "constraints": {}
+    },
+    {
+      "id": "short_factual_questions_016",
+      "category": "short_factual_questions",
+      "prompt": "State one widely accepted fact about rivers in one sentence.",
+      "constraints": {
+        "sentence_count": 1
+      }
+    },
+    {
+      "id": "explanations_016",
+      "category": "explanations",
+      "prompt": "Explain rivers to a curious twelve-year-old in two sentences.",
+      "constraints": {
+        "sentence_count": 2
+      }
+    },
+    {
+      "id": "summarization_016",
+      "category": "summarization",
+      "prompt": "Summarize this passage in under 30 words: A community studied rivers for several months. Volunteers collected observations, checked them twice, and shared a short public report.",
+      "constraints": {
+        "max_words": 30
+      }
+    },
+    {
+      "id": "rewriting_016",
+      "category": "rewriting",
+      "prompt": "Rewrite this without changing its meaning and do not use a list: 'Learning about rivers can help people make informed choices.'",
+      "constraints": {
+        "forbid_list": true
+      }
+    },
+    {
+      "id": "format_following_016",
+      "category": "format_following",
+      "prompt": "Return valid JSON with exactly the keys \"topic\" and \"summary\" about rivers.",
+      "constraints": {
+        "json_keys": [
+          "topic",
+          "summary"
+        ]
+      }
+    },
+    {
+      "id": "list_generation_016",
+      "category": "list_generation",
+      "prompt": "Give exactly three bullet points about rivers.",
+      "constraints": {
+        "bullet_count": 3
+      }
+    },
+    {
+      "id": "step_by_step_instructions_016",
+      "category": "step_by_step_instructions",
+      "prompt": "Give exactly four numbered steps for safely beginning a small project about rivers.",
+      "constraints": {
+        "numbered_count": 4
+      }
+    },
+    {
+      "id": "simple_reasoning_016",
+      "category": "simple_reasoning",
+      "prompt": "A learner studies rivers for 20 minutes on Monday and 25 minutes on Tuesday. How many minutes total? Answer with one number.",
+      "constraints": {
+        "exact_words": 1
+      }
+    },
+    {
+      "id": "creative_writing_016",
+      "category": "creative_writing",
+      "prompt": "Write a two-sentence micro-story involving rivers and a lost notebook.",
+      "constraints": {
+        "sentence_count": 2
+      }
+    },
+    {
+      "id": "conversational_responses_016",
+      "category": "conversational_responses",
+      "prompt": "A friend says, 'I feel overwhelmed trying to understand rivers.' Reply supportively in two sentences.",
+      "constraints": {
+        "sentence_count": 2
+      }
+    },
+    {
+      "id": "uncertainty_handling_016",
+      "category": "uncertainty_handling",
+      "prompt": "A user asks for an exact prediction of what researchers will discover about rivers in 2050. Respond cautiously in two sentences.",
+      "constraints": {
+        "sentence_count": 2,
+        "uncertainty_required": true
+      }
+    },
+    {
+      "id": "general_question_answering_017",
+      "category": "general_question_answering",
+      "prompt": "What is one practical thing a beginner should know about passwords? Answer directly.",
+      "constraints": {}
+    },
+    {
+      "id": "short_factual_questions_017",
+      "category": "short_factual_questions",
+      "prompt": "State one widely accepted fact about passwords in one sentence.",
+      "constraints": {
+        "sentence_count": 1
+      }
+    },
+    {
+      "id": "explanations_017",
+      "category": "explanations",
+      "prompt": "Explain passwords to a curious twelve-year-old in two sentences.",
+      "constraints": {
+        "sentence_count": 2
+      }
+    },
+    {
+      "id": "summarization_017",
+      "category": "summarization",
+      "prompt": "Summarize this passage in under 30 words: A community studied passwords for several months. Volunteers collected observations, checked them twice, and shared a short public report.",
+      "constraints": {
+        "max_words": 30
+      }
+    },
+    {
+      "id": "rewriting_017",
+      "category": "rewriting",
+      "prompt": "Rewrite this without changing its meaning and do not use a list: 'Learning about passwords can help people make informed choices.'",
+      "constraints": {
+        "forbid_list": true
+      }
+    },
+    {
+      "id": "format_following_017",
+      "category": "format_following",
+      "prompt": "Return valid JSON with exactly the keys \"topic\" and \"summary\" about passwords.",
+      "constraints": {
+        "json_keys": [
+          "topic",
+          "summary"
+        ]
+      }
+    },
+    {
+      "id": "list_generation_017",
+      "category": "list_generation",
+      "prompt": "Give exactly three bullet points about passwords.",
+      "constraints": {
+        "bullet_count": 3
+      }
+    },
+    {
+      "id": "step_by_step_instructions_017",
+      "category": "step_by_step_instructions",
+      "prompt": "Give exactly four numbered steps for safely beginning a small project about passwords.",
+      "constraints": {
+        "numbered_count": 4
+      }
+    },
+    {
+      "id": "simple_reasoning_017",
+      "category": "simple_reasoning",
+      "prompt": "A learner studies passwords for 20 minutes on Monday and 25 minutes on Tuesday. How many minutes total? Answer with one number.",
+      "constraints": {
+        "exact_words": 1
+      }
+    },
+    {
+      "id": "creative_writing_017",
+      "category": "creative_writing",
+      "prompt": "Write a two-sentence micro-story involving passwords and a lost notebook.",
+      "constraints": {
+        "sentence_count": 2
+      }
+    },
+    {
+      "id": "conversational_responses_017",
+      "category": "conversational_responses",
+      "prompt": "A friend says, 'I feel overwhelmed trying to understand passwords.' Reply supportively in two sentences.",
+      "constraints": {
+        "sentence_count": 2
+      }
+    },
+    {
+      "id": "uncertainty_handling_017",
+      "category": "uncertainty_handling",
+      "prompt": "A user asks for an exact prediction of what researchers will discover about passwords in 2050. Respond cautiously in two sentences.",
+      "constraints": {
+        "sentence_count": 2,
+        "uncertainty_required": true
+      }
+    },
+    {
+      "id": "general_question_answering_018",
+      "category": "general_question_answering",
+      "prompt": "What is one practical thing a beginner should know about democracy? Answer directly.",
+      "constraints": {}
+    },
+    {
+      "id": "short_factual_questions_018",
+      "category": "short_factual_questions",
+      "prompt": "State one widely accepted fact about democracy in one sentence.",
+      "constraints": {
+        "sentence_count": 1
+      }
+    },
+    {
+      "id": "explanations_018",
+      "category": "explanations",
+      "prompt": "Explain democracy to a curious twelve-year-old in two sentences.",
+      "constraints": {
+        "sentence_count": 2
+      }
+    },
+    {
+      "id": "summarization_018",
+      "category": "summarization",
+      "prompt": "Summarize this passage in under 30 words: A community studied democracy for several months. Volunteers collected observations, checked them twice, and shared a short public report.",
+      "constraints": {
+        "max_words": 30
+      }
+    },
+    {
+      "id": "rewriting_018",
+      "category": "rewriting",
+      "prompt": "Rewrite this without changing its meaning and do not use a list: 'Learning about democracy can help people make informed choices.'",
+      "constraints": {
+        "forbid_list": true
+      }
+    },
+    {
+      "id": "format_following_018",
+      "category": "format_following",
+      "prompt": "Return valid JSON with exactly the keys \"topic\" and \"summary\" about democracy.",
+      "constraints": {
+        "json_keys": [
+          "topic",
+          "summary"
+        ]
+      }
+    },
+    {
+      "id": "list_generation_018",
+      "category": "list_generation",
+      "prompt": "Give exactly three bullet points about democracy.",
+      "constraints": {
+        "bullet_count": 3
+      }
+    },
+    {
+      "id": "step_by_step_instructions_018",
+      "category": "step_by_step_instructions",
+      "prompt": "Give exactly four numbered steps for safely beginning a small project about democracy.",
+      "constraints": {
+        "numbered_count": 4
+      }
+    },
+    {
+      "id": "simple_reasoning_018",
+      "category": "simple_reasoning",
+      "prompt": "A learner studies democracy for 20 minutes on Monday and 25 minutes on Tuesday. How many minutes total? Answer with one number.",
+      "constraints": {
+        "exact_words": 1
+      }
+    },
+    {
+      "id": "creative_writing_018",
+      "category": "creative_writing",
+      "prompt": "Write a two-sentence micro-story involving democracy and a lost notebook.",
+      "constraints": {
+        "sentence_count": 2
+      }
+    },
+    {
+      "id": "conversational_responses_018",
+      "category": "conversational_responses",
+      "prompt": "A friend says, 'I feel overwhelmed trying to understand democracy.' Reply supportively in two sentences.",
+      "constraints": {
+        "sentence_count": 2
+      }
+    },
+    {
+      "id": "uncertainty_handling_018",
+      "category": "uncertainty_handling",
+      "prompt": "A user asks for an exact prediction of what researchers will discover about democracy in 2050. Respond cautiously in two sentences.",
+      "constraints": {
+        "sentence_count": 2,
+        "uncertainty_required": true
+      }
+    }
+  ]
+}

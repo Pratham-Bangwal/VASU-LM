@@ -18,6 +18,21 @@ class ModelConfig:
     bias: bool = False
 
 
+def get_vasu_60m_config() -> ModelConfig:
+    """Return the opt-in VASU-60M model configuration."""
+    return ModelConfig(
+        vocab_size=32000,
+        max_seq_len=256,
+        dim=512,
+        n_heads=8,
+        n_layers=10,
+        hidden_dim=2048,
+        dropout=0.1,
+        rope_theta=10000.0,
+        bias=False,
+    )
+
+
 @dataclass
 class TrainConfig:
 
