@@ -1,0 +1,192 @@
+{
+  "automatic_approval": false,
+  "category_counts": {
+    "beginner_explanation": 3,
+    "exact_format_following": 3,
+    "json_schema_output": 3,
+    "lists_structured_output": 3,
+    "rewriting_transformation": 3,
+    "short_factual_qa": 3,
+    "uncertainty_honest_fallback": 3
+  },
+  "cross_split_duplicate_findings": [],
+  "dataset_name": "vasu_instruction_quality_v1",
+  "distribution": {
+    "beginner_explanation": {
+      "actual": 0.14285714285714285,
+      "target": 0.2
+    },
+    "exact_format_following": {
+      "actual": 0.14285714285714285,
+      "target": 0.2
+    },
+    "json_schema_output": {
+      "actual": 0.14285714285714285,
+      "target": 0.05
+    },
+    "lists_structured_output": {
+      "actual": 0.14285714285714285,
+      "target": 0.1
+    },
+    "rewriting_transformation": {
+      "actual": 0.14285714285714285,
+      "target": 0.15
+    },
+    "short_factual_qa": {
+      "actual": 0.14285714285714285,
+      "target": 0.25
+    },
+    "uncertainty_honest_fallback": {
+      "actual": 0.14285714285714285,
+      "target": 0.05
+    }
+  },
+  "exact_duplicate_groups": [],
+  "factual_verification_gaps": 0,
+  "finding_counts": {},
+  "findings": [],
+  "format_constraint_failures": 0,
+  "invalid_records": 0,
+  "json_parse_failures": 0,
+  "near_duplicate_candidates": [],
+  "quality_scores": {
+    "viq1_000001": {
+      "automatic_approval": false,
+      "reasons": [
+        {
+          "code": "very_short_response",
+          "points": -10
+        }
+      ],
+      "score": 90
+    },
+    "viq1_000002": {
+      "automatic_approval": false,
+      "reasons": [
+        {
+          "code": "very_short_response",
+          "points": -10
+        }
+      ],
+      "score": 90
+    },
+    "viq1_000003": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_000004": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_000005": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_000006": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_000007": {
+      "automatic_approval": false,
+      "reasons": [
+        {
+          "code": "very_short_response",
+          "points": -10
+        }
+      ],
+      "score": 90
+    },
+    "viq1_000008": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_000009": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_000010": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_000011": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_000012": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_000013": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_000014": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_000015": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_000016": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_000017": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_000018": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_000019": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_000020": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_000021": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    }
+  },
+  "response_repetition_findings": 0,
+  "review_findings": [],
+  "review_path": "data\\reviews\\instruct\\vasu_instruction_quality_v1_review.jsonl",
+  "review_sha256": "ff8c64ba176d76491270e17dcefc9d597a420ece3440c349594ac046f4f768e3",
+  "review_status_counts": {
+    "approved": 21
+  },
+  "schema_version": "vasu_instruction_quality_v1",
+  "source_path": "data\\examples\\instruct\\vasu_instruction_quality_v1_demo.jsonl",
+  "source_sha256": "87e64502e0aefeb91dec8a38cbaec9500024b8041ae9f7c0d1962ff07522cd45",
+  "template_marker_findings": 0,
+  "total_records": 21,
+  "training_authorized": false,
+  "truncated_responses": 0,
+  "unsupported_fields": 0,
+  "valid_records": 21,
+  "very_long_answers": 0,
+  "very_short_answers": 3
+}

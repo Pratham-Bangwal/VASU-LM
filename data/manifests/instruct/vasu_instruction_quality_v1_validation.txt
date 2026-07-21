@@ -1,0 +1,9 @@
+VASU INSTRUCTION QUALITY VALIDATION
+Total records: 21
+Valid records: 21
+Invalid records: 0
+Review statuses: {'approved': 21}
+Category counts: {'short_factual_qa': 3, 'beginner_explanation': 3, 'exact_format_following': 3, 'rewriting_transformation': 3, 'lists_structured_output': 3, 'json_schema_output': 3, 'uncertainty_honest_fallback': 3}
+Exact duplicate groups: 0
+Near-duplicate candidates: 0
+Automatic approval: False

@@ -1,0 +1,9 @@
+{
+  "dataset_name": "vasu_instruction_quality_v1",
+  "records": 21,
+  "schema_version": "vasu_instruction_quality_v1",
+  "source_path": "data\\examples\\instruct\\vasu_instruction_quality_v1_demo.jsonl",
+  "source_sha256": "87e64502e0aefeb91dec8a38cbaec9500024b8041ae9f7c0d1962ff07522cd45",
+  "status": "demonstration fixture; human approval incomplete",
+  "training_authorized": false
+}
