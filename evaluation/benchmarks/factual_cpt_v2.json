@@ -1,0 +1,2365 @@
+{
+  "format_version": "vasu_factual_cpt_benchmark_v2",
+  "benchmark_id": "factual_cpt_v2",
+  "created_at": "2026-07-19T00:00:00+05:30",
+  "seed": 42,
+  "provenance": "Independently written prompts; no Wikimedia sentences copied.",
+  "cloze": [
+    {
+      "id": "cloze_000",
+      "category": "science",
+      "prompt": "Water freezes at zero degrees on the",
+      "target": " Celsius scale."
+    },
+    {
+      "id": "cloze_001",
+      "category": "science",
+      "prompt": "Complete the factual statement: Water freezes at zero degrees on the",
+      "target": " Celsius scale."
+    },
+    {
+      "id": "cloze_002",
+      "category": "science",
+      "prompt": "Earth completes one orbit around the",
+      "target": " Sun."
+    },
+    {
+      "id": "cloze_003",
+      "category": "science",
+      "prompt": "Complete the factual statement: Earth completes one orbit around the",
+      "target": " Sun."
+    },
+    {
+      "id": "cloze_004",
+      "category": "science",
+      "prompt": "The molecule that carries hereditary information is",
+      "target": " DNA."
+    },
+    {
+      "id": "cloze_005",
+      "category": "science",
+      "prompt": "Complete the factual statement: The molecule that carries hereditary information is",
+      "target": " DNA."
+    },
+    {
+      "id": "cloze_006",
+      "category": "science",
+      "prompt": "The planet commonly called the Red Planet is",
+      "target": " Mars."
+    },
+    {
+      "id": "cloze_007",
+      "category": "science",
+      "prompt": "Complete the factual statement: The planet commonly called the Red Planet is",
+      "target": " Mars."
+    },
+    {
+      "id": "cloze_008",
+      "category": "science",
+      "prompt": "The atomic number of carbon is",
+      "target": " six."
+    },
+    {
+      "id": "cloze_009",
+      "category": "science",
+      "prompt": "Complete the factual statement: The atomic number of carbon is",
+      "target": " six."
+    },
+    {
+      "id": "cloze_010",
+      "category": "science",
+      "prompt": "During photosynthesis, plants take in",
+      "target": " carbon dioxide."
+    },
+    {
+      "id": "cloze_011",
+      "category": "science",
+      "prompt": "Complete the factual statement: During photosynthesis, plants take in",
+      "target": " carbon dioxide."
+    },
+    {
+      "id": "cloze_012",
+      "category": "science",
+      "prompt": "The largest organ of the human body is the",
+      "target": " skin."
+    },
+    {
+      "id": "cloze_013",
+      "category": "science",
+      "prompt": "Complete the factual statement: The largest organ of the human body is the",
+      "target": " skin."
+    },
+    {
+      "id": "cloze_014",
+      "category": "science",
+      "prompt": "At standard sea-level pressure, water boils at",
+      "target": " 100 degrees Celsius."
+    },
+    {
+      "id": "cloze_015",
+      "category": "science",
+      "prompt": "Complete the factual statement: At standard sea-level pressure, water boils at",
+      "target": " 100 degrees Celsius."
+    },
+    {
+      "id": "cloze_016",
+      "category": "science",
+      "prompt": "Light in a vacuum travels at about",
+      "target": " 300,000 kilometres per second."
+    },
+    {
+      "id": "cloze_017",
+      "category": "science",
+      "prompt": "Complete the factual statement: Light in a vacuum travels at about",
+      "target": " 300,000 kilometres per second."
+    },
+    {
+      "id": "cloze_018",
+      "category": "science",
+      "prompt": "The green pigment important to photosynthesis is",
+      "target": " chlorophyll."
+    },
+    {
+      "id": "cloze_019",
+      "category": "science",
+      "prompt": "Complete the factual statement: The green pigment important to photosynthesis is",
+      "target": " chlorophyll."
+    },
+    {
+      "id": "cloze_020",
+      "category": "history",
+      "prompt": "Magna Carta was sealed in the year",
+      "target": " 1215."
+    },
+    {
+      "id": "cloze_021",
+      "category": "history",
+      "prompt": "Complete the factual statement: Magna Carta was sealed in the year",
+      "target": " 1215."
+    },
+    {
+      "id": "cloze_022",
+      "category": "history",
+      "prompt": "The Second World War ended in",
+      "target": " 1945."
+    },
+    {
+      "id": "cloze_023",
+      "category": "history",
+      "prompt": "Complete the factual statement: The Second World War ended in",
+      "target": " 1945."
+    },
+    {
+      "id": "cloze_024",
+      "category": "history",
+      "prompt": "The ancient pyramids at Giza were built in",
+      "target": " Egypt."
+    },
+    {
+      "id": "cloze_025",
+      "category": "history",
+      "prompt": "Complete the factual statement: The ancient pyramids at Giza were built in",
+      "target": " Egypt."
+    },
+    {
+      "id": "cloze_026",
+      "category": "history",
+      "prompt": "The main language of ancient Rome was",
+      "target": " Latin."
+    },
+    {
+      "id": "cloze_027",
+      "category": "history",
+      "prompt": "Complete the factual statement: The main language of ancient Rome was",
+      "target": " Latin."
+    },
+    {
+      "id": "cloze_028",
+      "category": "history",
+      "prompt": "Johannes Gutenberg is associated with the movable-type",
+      "target": " printing press."
+    },
+    {
+      "id": "cloze_029",
+      "category": "history",
+      "prompt": "Complete the factual statement: Johannes Gutenberg is associated with the movable-type",
+      "target": " printing press."
+    },
+    {
+      "id": "cloze_030",
+      "category": "history",
+      "prompt": "The French Revolution began in",
+      "target": " 1789."
+    },
+    {
+      "id": "cloze_031",
+      "category": "history",
+      "prompt": "Complete the factual statement: The French Revolution began in",
+      "target": " 1789."
+    },
+    {
+      "id": "cloze_032",
+      "category": "history",
+      "prompt": "The first president of the United States was",
+      "target": " George Washington."
+    },
+    {
+      "id": "cloze_033",
+      "category": "history",
+      "prompt": "Complete the factual statement: The first president of the United States was",
+      "target": " George Washington."
+    },
+    {
+      "id": "cloze_034",
+      "category": "history",
+      "prompt": "The European Renaissance began first in",
+      "target": " Italy."
+    },
+    {
+      "id": "cloze_035",
+      "category": "history",
+      "prompt": "Complete the factual statement: The European Renaissance began first in",
+      "target": " Italy."
+    },
+    {
+      "id": "cloze_036",
+      "category": "geography",
+      "prompt": "The capital city of Japan is",
+      "target": " Tokyo."
+    },
+    {
+      "id": "cloze_037",
+      "category": "geography",
+      "prompt": "Complete the factual statement: The capital city of Japan is",
+      "target": " Tokyo."
+    },
+    {
+      "id": "cloze_038",
+      "category": "geography",
+      "prompt": "The largest ocean on Earth is the",
+      "target": " Pacific Ocean."
+    },
+    {
+      "id": "cloze_039",
+      "category": "geography",
+      "prompt": "Complete the factual statement: The largest ocean on Earth is the",
+      "target": " Pacific Ocean."
+    },
+    {
+      "id": "cloze_040",
+      "category": "geography",
+      "prompt": "The Nile River is located in",
+      "target": " Africa."
+    },
+    {
+      "id": "cloze_041",
+      "category": "geography",
+      "prompt": "Complete the factual statement: The Nile River is located in",
+      "target": " Africa."
+    },
+    {
+      "id": "cloze_042",
+      "category": "geography",
+      "prompt": "Mount Everest belongs to the",
+      "target": " Himalayas."
+    },
+    {
+      "id": "cloze_043",
+      "category": "geography",
+      "prompt": "Complete the factual statement: Mount Everest belongs to the",
+      "target": " Himalayas."
+    },
+    {
+      "id": "cloze_044",
+      "category": "geography",
+      "prompt": "The Sahara Desert lies in",
+      "target": " Africa."
+    },
+    {
+      "id": "cloze_045",
+      "category": "geography",
+      "prompt": "Complete the factual statement: The Sahara Desert lies in",
+      "target": " Africa."
+    },
+    {
+      "id": "cloze_046",
+      "category": "geography",
+      "prompt": "Brazil is part of",
+      "target": " South America."
+    },
+    {
+      "id": "cloze_047",
+      "category": "geography",
+      "prompt": "Complete the factual statement: Brazil is part of",
+      "target": " South America."
+    },
+    {
+      "id": "cloze_048",
+      "category": "geography",
+      "prompt": "The capital of Australia is",
+      "target": " Canberra."
+    },
+    {
+      "id": "cloze_049",
+      "category": "geography",
+      "prompt": "Complete the factual statement: The capital of Australia is",
+      "target": " Canberra."
+    },
+    {
+      "id": "cloze_050",
+      "category": "geography",
+      "prompt": "The equator separates the Northern and",
+      "target": " Southern Hemispheres."
+    },
+    {
+      "id": "cloze_051",
+      "category": "geography",
+      "prompt": "Complete the factual statement: The equator separates the Northern and",
+      "target": " Southern Hemispheres."
+    },
+    {
+      "id": "cloze_052",
+      "category": "technology",
+      "prompt": "Binary notation uses the digits zero and",
+      "target": " one."
+    },
+    {
+      "id": "cloze_053",
+      "category": "technology",
+      "prompt": "Complete the factual statement: Binary notation uses the digits zero and",
+      "target": " one."
+    },
+    {
+      "id": "cloze_054",
+      "category": "technology",
+      "prompt": "The abbreviation CPU means central processing",
+      "target": " unit."
+    },
+    {
+      "id": "cloze_055",
+      "category": "technology",
+      "prompt": "Complete the factual statement: The abbreviation CPU means central processing",
+      "target": " unit."
+    },
+    {
+      "id": "cloze_056",
+      "category": "technology",
+      "prompt": "HTTP is a protocol used to transfer resources on the",
+      "target": " web."
+    },
+    {
+      "id": "cloze_057",
+      "category": "technology",
+      "prompt": "Complete the factual statement: HTTP is a protocol used to transfer resources on the",
+      "target": " web."
+    },
+    {
+      "id": "cloze_058",
+      "category": "technology",
+      "prompt": "RAM normally provides temporary",
+      "target": " working memory."
+    },
+    {
+      "id": "cloze_059",
+      "category": "technology",
+      "prompt": "Complete the factual statement: RAM normally provides temporary",
+      "target": " working memory."
+    },
+    {
+      "id": "cloze_060",
+      "category": "technology",
+      "prompt": "Python is a general-purpose programming",
+      "target": " language."
+    },
+    {
+      "id": "cloze_061",
+      "category": "technology",
+      "prompt": "Complete the factual statement: Python is a general-purpose programming",
+      "target": " language."
+    },
+    {
+      "id": "cloze_062",
+      "category": "technology",
+      "prompt": "TCP and IP are core protocols of the",
+      "target": " internet."
+    },
+    {
+      "id": "cloze_063",
+      "category": "technology",
+      "prompt": "Complete the factual statement: TCP and IP are core protocols of the",
+      "target": " internet."
+    },
+    {
+      "id": "cloze_064",
+      "category": "technology",
+      "prompt": "A transistor can act as an electronic",
+      "target": " switch."
+    },
+    {
+      "id": "cloze_065",
+      "category": "technology",
+      "prompt": "Complete the factual statement: A transistor can act as an electronic",
+      "target": " switch."
+    },
+    {
+      "id": "cloze_066",
+      "category": "technology",
+      "prompt": "A URL identifies the address of an online",
+      "target": " resource."
+    },
+    {
+      "id": "cloze_067",
+      "category": "technology",
+      "prompt": "Complete the factual statement: A URL identifies the address of an online",
+      "target": " resource."
+    },
+    {
+      "id": "cloze_068",
+      "category": "biography",
+      "prompt": "Marie Curie conducted pioneering research on",
+      "target": " radioactivity."
+    },
+    {
+      "id": "cloze_069",
+      "category": "biography",
+      "prompt": "Complete the factual statement: Marie Curie conducted pioneering research on",
+      "target": " radioactivity."
+    },
+    {
+      "id": "cloze_070",
+      "category": "biography",
+      "prompt": "Albert Einstein developed the theory of",
+      "target": " relativity."
+    },
+    {
+      "id": "cloze_071",
+      "category": "biography",
+      "prompt": "Complete the factual statement: Albert Einstein developed the theory of",
+      "target": " relativity."
+    },
+    {
+      "id": "cloze_072",
+      "category": "biography",
+      "prompt": "Charles Darwin explained evolution through natural",
+      "target": " selection."
+    },
+    {
+      "id": "cloze_073",
+      "category": "biography",
+      "prompt": "Complete the factual statement: Charles Darwin explained evolution through natural",
+      "target": " selection."
+    },
+    {
+      "id": "cloze_074",
+      "category": "biography",
+      "prompt": "Isaac Newton formulated laws of motion and",
+      "target": " gravity."
+    },
+    {
+      "id": "cloze_075",
+      "category": "biography",
+      "prompt": "Complete the factual statement: Isaac Newton formulated laws of motion and",
+      "target": " gravity."
+    },
+    {
+      "id": "cloze_076",
+      "category": "biography",
+      "prompt": "Ada Lovelace wrote an early published",
+      "target": " algorithm."
+    },
+    {
+      "id": "cloze_077",
+      "category": "biography",
+      "prompt": "Complete the factual statement: Ada Lovelace wrote an early published",
+      "target": " algorithm."
+    },
+    {
+      "id": "cloze_078",
+      "category": "biography",
+      "prompt": "Alan Turing made foundational contributions to",
+      "target": " computing."
+    },
+    {
+      "id": "cloze_079",
+      "category": "biography",
+      "prompt": "Complete the factual statement: Alan Turing made foundational contributions to",
+      "target": " computing."
+    },
+    {
+      "id": "cloze_080",
+      "category": "biography",
+      "prompt": "Galileo Galilei used telescopic observations in",
+      "target": " astronomy."
+    },
+    {
+      "id": "cloze_081",
+      "category": "biography",
+      "prompt": "Complete the factual statement: Galileo Galilei used telescopic observations in",
+      "target": " astronomy."
+    },
+    {
+      "id": "cloze_082",
+      "category": "biography",
+      "prompt": "Alexander Fleming discovered",
+      "target": " penicillin."
+    },
+    {
+      "id": "cloze_083",
+      "category": "biography",
+      "prompt": "Complete the factual statement: Alexander Fleming discovered",
+      "target": " penicillin."
+    },
+    {
+      "id": "cloze_084",
+      "category": "definitions",
+      "prompt": "A community of organisms interacting with its environment is an",
+      "target": " ecosystem."
+    },
+    {
+      "id": "cloze_085",
+      "category": "definitions",
+      "prompt": "Complete the factual statement: A community of organisms interacting with its environment is an",
+      "target": " ecosystem."
+    },
+    {
+      "id": "cloze_086",
+      "category": "definitions",
+      "prompt": "A system in which citizens exercise political power is a",
+      "target": " democracy."
+    },
+    {
+      "id": "cloze_087",
+      "category": "definitions",
+      "prompt": "Complete the factual statement: A system in which citizens exercise political power is a",
+      "target": " democracy."
+    },
+    {
+      "id": "cloze_088",
+      "category": "definitions",
+      "prompt": "The change of a liquid into a gas is called",
+      "target": " evaporation."
+    },
+    {
+      "id": "cloze_089",
+      "category": "definitions",
+      "prompt": "Complete the factual statement: The change of a liquid into a gas is called",
+      "target": " evaporation."
+    },
+    {
+      "id": "cloze_090",
+      "category": "definitions",
+      "prompt": "A finite sequence of steps for solving a problem is an",
+      "target": " algorithm."
+    },
+    {
+      "id": "cloze_091",
+      "category": "definitions",
+      "prompt": "Complete the factual statement: A finite sequence of steps for solving a problem is an",
+      "target": " algorithm."
+    },
+    {
+      "id": "cloze_092",
+      "category": "definitions",
+      "prompt": "Two or more atoms chemically bonded form a",
+      "target": " molecule."
+    },
+    {
+      "id": "cloze_093",
+      "category": "definitions",
+      "prompt": "Complete the factual statement: Two or more atoms chemically bonded form a",
+      "target": " molecule."
+    },
+    {
+      "id": "cloze_094",
+      "category": "definitions",
+      "prompt": "A broad rise in the general price level is called",
+      "target": " inflation."
+    },
+    {
+      "id": "cloze_095",
+      "category": "definitions",
+      "prompt": "Complete the factual statement: A broad rise in the general price level is called",
+      "target": " inflation."
+    },
+    {
+      "id": "cloze_096",
+      "category": "definitions",
+      "prompt": "The variety of living organisms in an area is its",
+      "target": " biodiversity."
+    },
+    {
+      "id": "cloze_097",
+      "category": "definitions",
+      "prompt": "Complete the factual statement: The variety of living organisms in an area is its",
+      "target": " biodiversity."
+    },
+    {
+      "id": "cloze_098",
+      "category": "definitions",
+      "prompt": "Energy from a naturally replenished source is called",
+      "target": " renewable energy."
+    },
+    {
+      "id": "cloze_099",
+      "category": "definitions",
+      "prompt": "Complete the factual statement: Energy from a naturally replenished source is called",
+      "target": " renewable energy."
+    }
+  ],
+  "multiple_choice": [
+    {
+      "id": "mc_000",
+      "category": "science",
+      "prompt": "Which temperature scale places water's freezing point at zero degrees?",
+      "options": [
+        " Celsius",
+        " Kelvin",
+        " Fahrenheit",
+        " Rankine"
+      ],
+      "answer_index": 0
+    },
+    {
+      "id": "mc_001",
+      "category": "science",
+      "prompt": "Select the correct answer. Which temperature scale places water's freezing point at zero degrees?",
+      "options": [
+        " Kelvin",
+        " Fahrenheit",
+        " Rankine",
+        " Celsius"
+      ],
+      "answer_index": 3
+    },
+    {
+      "id": "mc_002",
+      "category": "science",
+      "prompt": "What body does Earth orbit?",
+      "options": [
+        " Sun",
+        " Moon",
+        " Mars",
+        " Polaris"
+      ],
+      "answer_index": 0
+    },
+    {
+      "id": "mc_003",
+      "category": "science",
+      "prompt": "Select the correct answer. What body does Earth orbit?",
+      "options": [
+        " Moon",
+        " Mars",
+        " Polaris",
+        " Sun"
+      ],
+      "answer_index": 3
+    },
+    {
+      "id": "mc_004",
+      "category": "science",
+      "prompt": "Which molecule carries hereditary information?",
+      "options": [
+        " DNA",
+        " glucose",
+        " water",
+        " oxygen"
+      ],
+      "answer_index": 0
+    },
+    {
+      "id": "mc_005",
+      "category": "science",
+      "prompt": "Select the correct answer. Which molecule carries hereditary information?",
+      "options": [
+        " glucose",
+        " water",
+        " oxygen",
+        " DNA"
+      ],
+      "answer_index": 3
+    },
+    {
+      "id": "mc_006",
+      "category": "science",
+      "prompt": "Which planet is called the Red Planet?",
+      "options": [
+        " Mars",
+        " Venus",
+        " Mercury",
+        " Neptune"
+      ],
+      "answer_index": 0
+    },
+    {
+      "id": "mc_007",
+      "category": "science",
+      "prompt": "Select the correct answer. Which planet is called the Red Planet?",
+      "options": [
+        " Venus",
+        " Mercury",
+        " Neptune",
+        " Mars"
+      ],
+      "answer_index": 3
+    },
+    {
+      "id": "mc_008",
+      "category": "science",
+      "prompt": "What is carbon's atomic number?",
+      "options": [
+        " six",
+        " eight",
+        " twelve",
+        " fourteen"
+      ],
+      "answer_index": 0
+    },
+    {
+      "id": "mc_009",
+      "category": "science",
+      "prompt": "Select the correct answer. What is carbon's atomic number?",
+      "options": [
+        " eight",
+        " twelve",
+        " fourteen",
+        " six"
+      ],
+      "answer_index": 3
+    },
+    {
+      "id": "mc_010",
+      "category": "science",
+      "prompt": "Which gas do plants take in during photosynthesis?",
+      "options": [
+        " carbon dioxide",
+        " helium",
+        " argon",
+        " hydrogen"
+      ],
+      "answer_index": 0
+    },
+    {
+      "id": "mc_011",
+      "category": "science",
+      "prompt": "Select the correct answer. Which gas do plants take in during photosynthesis?",
+      "options": [
+        " helium",
+        " argon",
+        " hydrogen",
+        " carbon dioxide"
+      ],
+      "answer_index": 3
+    },
+    {
+      "id": "mc_012",
+      "category": "science",
+      "prompt": "What is the largest human organ?",
+      "options": [
+        " skin",
+        " heart",
+        " liver",
+        " lung"
+      ],
+      "answer_index": 0
+    },
+    {
+      "id": "mc_013",
+      "category": "science",
+      "prompt": "Select the correct answer. What is the largest human organ?",
+      "options": [
+        " heart",
+        " liver",
+        " lung",
+        " skin"
+      ],
+      "answer_index": 3
+    },
+    {
+      "id": "mc_014",
+      "category": "science",
+      "prompt": "At sea level, at what Celsius temperature does water boil?",
+      "options": [
+        " 100 degrees",
+        " 0 degrees",
+        " 50 degrees",
+        " 212 degrees"
+      ],
+      "answer_index": 0
+    },
+    {
+      "id": "mc_015",
+      "category": "science",
+      "prompt": "Select the correct answer. At sea level, at what Celsius temperature does water boil?",
+      "options": [
+        " 0 degrees",
+        " 50 degrees",
+        " 212 degrees",
+        " 100 degrees"
+      ],
+      "answer_index": 3
+    },
+    {
+      "id": "mc_016",
+      "category": "science",
+      "prompt": "Approximately how fast does light travel in a vacuum?",
+      "options": [
+        " 300,000 kilometres per second",
+        " 300 kilometres per second",
+        " 30,000 kilometres per hour",
+        " 3,000 metres per second"
+      ],
+      "answer_index": 0
+    },
+    {
+      "id": "mc_017",
+      "category": "science",
+      "prompt": "Select the correct answer. Approximately how fast does light travel in a vacuum?",
+      "options": [
+        " 300 kilometres per second",
+        " 30,000 kilometres per hour",
+        " 3,000 metres per second",
+        " 300,000 kilometres per second"
+      ],
+      "answer_index": 3
+    },
+    {
+      "id": "mc_018",
+      "category": "science",
+      "prompt": "Which green pigment is central to photosynthesis?",
+      "options": [
+        " chlorophyll",
+        " melanin",
+        " keratin",
+        " haemoglobin"
+      ],
+      "answer_index": 0
+    },
+    {
+      "id": "mc_019",
+      "category": "science",
+      "prompt": "Select the correct answer. Which green pigment is central to photosynthesis?",
+      "options": [
+        " melanin",
+        " keratin",
+        " haemoglobin",
+        " chlorophyll"
+      ],
+      "answer_index": 3
+    },
+    {
+      "id": "mc_020",
+      "category": "history",
+      "prompt": "In what year was Magna Carta sealed?",
+      "options": [
+        " 1215",
+        " 1066",
+        " 1492",
+        " 1776"
+      ],
+      "answer_index": 0
+    },
+    {
+      "id": "mc_021",
+      "category": "history",
+      "prompt": "Select the correct answer. In what year was Magna Carta sealed?",
+      "options": [
+        " 1066",
+        " 1492",
+        " 1776",
+        " 1215"
+      ],
+      "answer_index": 3
+    },
+    {
+      "id": "mc_022",
+      "category": "history",
+      "prompt": "In which year did the Second World War end?",
+      "options": [
+        " 1945",
+        " 1918",
+        " 1939",
+        " 1963"
+      ],
+      "answer_index": 0
+    },
+    {
+      "id": "mc_023",
+      "category": "history",
+      "prompt": "Select the correct answer. In which year did the Second World War end?",
+      "options": [
+        " 1918",
+        " 1939",
+        " 1963",
+        " 1945"
+      ],
+      "answer_index": 3
+    },
+    {
+      "id": "mc_024",
+      "category": "history",
+      "prompt": "In which country are the pyramids at Giza?",
+      "options": [
+        " Egypt",
+        " Greece",
+        " Mexico",
+        " India"
+      ],
+      "answer_index": 0
+    },
+    {
+      "id": "mc_025",
+      "category": "history",
+      "prompt": "Select the correct answer. In which country are the pyramids at Giza?",
+      "options": [
+        " Greece",
+        " Mexico",
+        " India",
+        " Egypt"
+      ],
+      "answer_index": 3
+    },
+    {
+      "id": "mc_026",
+      "category": "history",
+      "prompt": "Which language was central in ancient Rome?",
+      "options": [
+        " Latin",
+        " Sanskrit",
+        " Mandarin",
+        " Arabic"
+      ],
+      "answer_index": 0
+    },
+    {
+      "id": "mc_027",
+      "category": "history",
+      "prompt": "Select the correct answer. Which language was central in ancient Rome?",
+      "options": [
+        " Sanskrit",
+        " Mandarin",
+        " Arabic",
+        " Latin"
+      ],
+      "answer_index": 3
+    },
+    {
+      "id": "mc_028",
+      "category": "history",
+      "prompt": "Which invention is associated with Johannes Gutenberg?",
+      "options": [
+        " printing press",
+        " steam engine",
+        " telephone",
+        " telescope"
+      ],
+      "answer_index": 0
+    },
+    {
+      "id": "mc_029",
+      "category": "history",
+      "prompt": "Select the correct answer. Which invention is associated with Johannes Gutenberg?",
+      "options": [
+        " steam engine",
+        " telephone",
+        " telescope",
+        " printing press"
+      ],
+      "answer_index": 3
+    },
+    {
+      "id": "mc_030",
+      "category": "history",
+      "prompt": "In what year did the French Revolution begin?",
+      "options": [
+        " 1789",
+        " 1689",
+        " 1815",
+        " 1914"
+      ],
+      "answer_index": 0
+    },
+    {
+      "id": "mc_031",
+      "category": "history",
+      "prompt": "Select the correct answer. In what year did the French Revolution begin?",
+      "options": [
+        " 1689",
+        " 1815",
+        " 1914",
+        " 1789"
+      ],
+      "answer_index": 3
+    },
+    {
+      "id": "mc_032",
+      "category": "history",
+      "prompt": "Who was the first United States president?",
+      "options": [
+        " George Washington",
+        " Abraham Lincoln",
+        " Thomas Edison",
+        " Benjamin Franklin"
+      ],
+      "answer_index": 0
+    },
+    {
+      "id": "mc_033",
+      "category": "history",
+      "prompt": "Select the correct answer. Who was the first United States president?",
+      "options": [
+        " Abraham Lincoln",
+        " Thomas Edison",
+        " Benjamin Franklin",
+        " George Washington"
+      ],
+      "answer_index": 3
+    },
+    {
+      "id": "mc_034",
+      "category": "history",
+      "prompt": "In which country did the European Renaissance begin?",
+      "options": [
+        " Italy",
+        " Norway",
+        " Canada",
+        " Japan"
+      ],
+      "answer_index": 0
+    },
+    {
+      "id": "mc_035",
+      "category": "history",
+      "prompt": "Select the correct answer. In which country did the European Renaissance begin?",
+      "options": [
+        " Norway",
+        " Canada",
+        " Japan",
+        " Italy"
+      ],
+      "answer_index": 3
+    },
+    {
+      "id": "mc_036",
+      "category": "geography",
+      "prompt": "What is Japan's capital?",
+      "options": [
+        " Tokyo",
+        " Kyoto",
+        " Seoul",
+        " Beijing"
+      ],
+      "answer_index": 0
+    },
+    {
+      "id": "mc_037",
+      "category": "geography",
+      "prompt": "Select the correct answer. What is Japan's capital?",
+      "options": [
+        " Kyoto",
+        " Seoul",
+        " Beijing",
+        " Tokyo"
+      ],
+      "answer_index": 3
+    },
+    {
+      "id": "mc_038",
+      "category": "geography",
+      "prompt": "Which is Earth's largest ocean?",
+      "options": [
+        " Pacific Ocean",
+        " Atlantic Ocean",
+        " Indian Ocean",
+        " Arctic Ocean"
+      ],
+      "answer_index": 0
+    },
+    {
+      "id": "mc_039",
+      "category": "geography",
+      "prompt": "Select the correct answer. Which is Earth's largest ocean?",
+      "options": [
+        " Atlantic Ocean",
+        " Indian Ocean",
+        " Arctic Ocean",
+        " Pacific Ocean"
+      ],
+      "answer_index": 3
+    },
+    {
+      "id": "mc_040",
+      "category": "geography",
+      "prompt": "On which continent is the Nile River?",
+      "options": [
+        " Africa",
+        " Europe",
+        " Australia",
+        " South America"
+      ],
+      "answer_index": 0
+    },
+    {
+      "id": "mc_041",
+      "category": "geography",
+      "prompt": "Select the correct answer. On which continent is the Nile River?",
+      "options": [
+        " Europe",
+        " Australia",
+        " South America",
+        " Africa"
+      ],
+      "answer_index": 3
+    },
+    {
+      "id": "mc_042",
+      "category": "geography",
+      "prompt": "Which mountain range contains Mount Everest?",
+      "options": [
+        " Himalayas",
+        " Andes",
+        " Alps",
+        " Rockies"
+      ],
+      "answer_index": 0
+    },
+    {
+      "id": "mc_043",
+      "category": "geography",
+      "prompt": "Select the correct answer. Which mountain range contains Mount Everest?",
+      "options": [
+        " Andes",
+        " Alps",
+        " Rockies",
+        " Himalayas"
+      ],
+      "answer_index": 3
+    },
+    {
+      "id": "mc_044",
+      "category": "geography",
+      "prompt": "On which continent is the Sahara Desert?",
+      "options": [
+        " Africa",
+        " Asia",
+        " Europe",
+        " Antarctica"
+      ],
+      "answer_index": 0
+    },
+    {
+      "id": "mc_045",
+      "category": "geography",
+      "prompt": "Select the correct answer. On which continent is the Sahara Desert?",
+      "options": [
+        " Asia",
+        " Europe",
+        " Antarctica",
+        " Africa"
+      ],
+      "answer_index": 3
+    },
+    {
+      "id": "mc_046",
+      "category": "geography",
+      "prompt": "On which continent is Brazil?",
+      "options": [
+        " South America",
+        " North America",
+        " Africa",
+        " Asia"
+      ],
+      "answer_index": 0
+    },
+    {
+      "id": "mc_047",
+      "category": "geography",
+      "prompt": "Select the correct answer. On which continent is Brazil?",
+      "options": [
+        " North America",
+        " Africa",
+        " Asia",
+        " South America"
+      ],
+      "answer_index": 3
+    },
+    {
+      "id": "mc_048",
+      "category": "geography",
+      "prompt": "What is Australia's capital city?",
+      "options": [
+        " Canberra",
+        " Sydney",
+        " Melbourne",
+        " Perth"
+      ],
+      "answer_index": 0
+    },
+    {
+      "id": "mc_049",
+      "category": "geography",
+      "prompt": "Select the correct answer. What is Australia's capital city?",
+      "options": [
+        " Sydney",
+        " Melbourne",
+        " Perth",
+        " Canberra"
+      ],
+      "answer_index": 3
+    },
+    {
+      "id": "mc_050",
+      "category": "geography",
+      "prompt": "Which two hemispheres are separated by the equator?",
+      "options": [
+        " Northern and Southern",
+        " Eastern and Western",
+        " land and ocean",
+        " polar and tropical"
+      ],
+      "answer_index": 0
+    },
+    {
+      "id": "mc_051",
+      "category": "geography",
+      "prompt": "Select the correct answer. Which two hemispheres are separated by the equator?",
+      "options": [
+        " Eastern and Western",
+        " land and ocean",
+        " polar and tropical",
+        " Northern and Southern"
+      ],
+      "answer_index": 3
+    },
+    {
+      "id": "mc_052",
+      "category": "technology",
+      "prompt": "Which digits are used in binary notation?",
+      "options": [
+        " zero and one",
+        " one and two",
+        " zero through nine",
+        " two and three"
+      ],
+      "answer_index": 0
+    },
+    {
+      "id": "mc_053",
+      "category": "technology",
+      "prompt": "Select the correct answer. Which digits are used in binary notation?",
+      "options": [
+        " one and two",
+        " zero through nine",
+        " two and three",
+        " zero and one"
+      ],
+      "answer_index": 3
+    },
+    {
+      "id": "mc_054",
+      "category": "technology",
+      "prompt": "What does CPU stand for?",
+      "options": [
+        " central processing unit",
+        " computer power utility",
+        " central program user",
+        " coded processing update"
+      ],
+      "answer_index": 0
+    },
+    {
+      "id": "mc_055",
+      "category": "technology",
+      "prompt": "Select the correct answer. What does CPU stand for?",
+      "options": [
+        " computer power utility",
+        " central program user",
+        " coded processing update",
+        " central processing unit"
+      ],
+      "answer_index": 3
+    },
+    {
+      "id": "mc_056",
+      "category": "technology",
+      "prompt": "What is HTTP primarily used for?",
+      "options": [
+        " transferring web resources",
+        " charging batteries",
+        " printing photographs",
+        " measuring temperature"
+      ],
+      "answer_index": 0
+    },
+    {
+      "id": "mc_057",
+      "category": "technology",
+      "prompt": "Select the correct answer. What is HTTP primarily used for?",
+      "options": [
+        " charging batteries",
+        " printing photographs",
+        " measuring temperature",
+        " transferring web resources"
+      ],
+      "answer_index": 3
+    },
+    {
+      "id": "mc_058",
+      "category": "technology",
+      "prompt": "What role does RAM normally serve?",
+      "options": [
+        " temporary working memory",
+        " permanent paper storage",
+        " network cabling",
+        " audio amplification"
+      ],
+      "answer_index": 0
+    },
+    {
+      "id": "mc_059",
+      "category": "technology",
+      "prompt": "Select the correct answer. What role does RAM normally serve?",
+      "options": [
+        " permanent paper storage",
+        " network cabling",
+        " audio amplification",
+        " temporary working memory"
+      ],
+      "answer_index": 3
+    },
+    {
+      "id": "mc_060",
+      "category": "technology",
+      "prompt": "What kind of tool is Python?",
+      "options": [
+        " programming language",
+        " database cable",
+        " image sensor",
+        " battery chemistry"
+      ],
+      "answer_index": 0
+    },
+    {
+      "id": "mc_061",
+      "category": "technology",
+      "prompt": "Select the correct answer. What kind of tool is Python?",
+      "options": [
+        " database cable",
+        " image sensor",
+        " battery chemistry",
+        " programming language"
+      ],
+      "answer_index": 3
+    },
+    {
+      "id": "mc_062",
+      "category": "technology",
+      "prompt": "TCP/IP is most closely associated with what?",
+      "options": [
+        " internet communication",
+        " mechanical engines",
+        " paper publishing",
+        " medical imaging"
+      ],
+      "answer_index": 0
+    },
+    {
+      "id": "mc_063",
+      "category": "technology",
+      "prompt": "Select the correct answer. TCP/IP is most closely associated with what?",
+      "options": [
+        " mechanical engines",
+        " paper publishing",
+        " medical imaging",
+        " internet communication"
+      ],
+      "answer_index": 3
+    },
+    {
+      "id": "mc_064",
+      "category": "technology",
+      "prompt": "What can a transistor act as?",
+      "options": [
+        " electronic switch",
+        " wooden lever",
+        " chemical fuel",
+        " optical lens"
+      ],
+      "answer_index": 0
+    },
+    {
+      "id": "mc_065",
+      "category": "technology",
+      "prompt": "Select the correct answer. What can a transistor act as?",
+      "options": [
+        " wooden lever",
+        " chemical fuel",
+        " optical lens",
+        " electronic switch"
+      ],
+      "answer_index": 3
+    },
+    {
+      "id": "mc_066",
+      "category": "technology",
+      "prompt": "What does a URL identify?",
+      "options": [
+        " online resource",
+        " processor temperature",
+        " battery voltage",
+        " keyboard layout"
+      ],
+      "answer_index": 0
+    },
+    {
+      "id": "mc_067",
+      "category": "technology",
+      "prompt": "Select the correct answer. What does a URL identify?",
+      "options": [
+        " processor temperature",
+        " battery voltage",
+        " keyboard layout",
+        " online resource"
+      ],
+      "answer_index": 3
+    },
+    {
+      "id": "mc_068",
+      "category": "biography",
+      "prompt": "What field is strongly associated with Marie Curie's research?",
+      "options": [
+        " radioactivity",
+        " plate tectonics",
+        " linguistics",
+        " computer graphics"
+      ],
+      "answer_index": 0
+    },
+    {
+      "id": "mc_069",
+      "category": "biography",
+      "prompt": "Select the correct answer. What field is strongly associated with Marie Curie's research?",
+      "options": [
+        " plate tectonics",
+        " linguistics",
+        " computer graphics",
+        " radioactivity"
+      ],
+      "answer_index": 3
+    },
+    {
+      "id": "mc_070",
+      "category": "biography",
+      "prompt": "Which theory is associated with Albert Einstein?",
+      "options": [
+        " relativity",
+        " cell theory",
+        " germ theory",
+        " plate tectonics"
+      ],
+      "answer_index": 0
+    },
+    {
+      "id": "mc_071",
+      "category": "biography",
+      "prompt": "Select the correct answer. Which theory is associated with Albert Einstein?",
+      "options": [
+        " cell theory",
+        " germ theory",
+        " plate tectonics",
+        " relativity"
+      ],
+      "answer_index": 3
+    },
+    {
+      "id": "mc_072",
+      "category": "biography",
+      "prompt": "Which mechanism is central to Darwin's account of evolution?",
+      "options": [
+        " natural selection",
+        " radioactive decay",
+        " continental drift",
+        " electromagnetism"
+      ],
+      "answer_index": 0
+    },
+    {
+      "id": "mc_073",
+      "category": "biography",
+      "prompt": "Select the correct answer. Which mechanism is central to Darwin's account of evolution?",
+      "options": [
+        " radioactive decay",
+        " continental drift",
+        " electromagnetism",
+        " natural selection"
+      ],
+      "answer_index": 3
+    },
+    {
+      "id": "mc_074",
+      "category": "biography",
+      "prompt": "Which subject is associated with Isaac Newton?",
+      "options": [
+        " gravity",
+        " vaccination",
+        " radioactivity",
+        " genetics"
+      ],
+      "answer_index": 0
+    },
+    {
+      "id": "mc_075",
+      "category": "biography",
+      "prompt": "Select the correct answer. Which subject is associated with Isaac Newton?",
+      "options": [
+        " vaccination",
+        " radioactivity",
+        " genetics",
+        " gravity"
+      ],
+      "answer_index": 3
+    },
+    {
+      "id": "mc_076",
+      "category": "biography",
+      "prompt": "What is Ada Lovelace noted for writing?",
+      "options": [
+        " an algorithm",
+        " a symphony",
+        " a constitution",
+        " a medical vaccine"
+      ],
+      "answer_index": 0
+    },
+    {
+      "id": "mc_077",
+      "category": "biography",
+      "prompt": "Select the correct answer. What is Ada Lovelace noted for writing?",
+      "options": [
+        " a symphony",
+        " a constitution",
+        " a medical vaccine",
+        " an algorithm"
+      ],
+      "answer_index": 3
+    },
+    {
+      "id": "mc_078",
+      "category": "biography",
+      "prompt": "Which field received foundational work from Alan Turing?",
+      "options": [
+        " computing",
+        " geology",
+        " botany",
+        " architecture"
+      ],
+      "answer_index": 0
+    },
+    {
+      "id": "mc_079",
+      "category": "biography",
+      "prompt": "Select the correct answer. Which field received foundational work from Alan Turing?",
+      "options": [
+        " geology",
+        " botany",
+        " architecture",
+        " computing"
+      ],
+      "answer_index": 3
+    },
+    {
+      "id": "mc_080",
+      "category": "biography",
+      "prompt": "In which science did Galileo use telescopic observations?",
+      "options": [
+        " astronomy",
+        " ecology",
+        " chemistry",
+        " anatomy"
+      ],
+      "answer_index": 0
+    },
+    {
+      "id": "mc_081",
+      "category": "biography",
+      "prompt": "Select the correct answer. In which science did Galileo use telescopic observations?",
+      "options": [
+        " ecology",
+        " chemistry",
+        " anatomy",
+        " astronomy"
+      ],
+      "answer_index": 3
+    },
+    {
+      "id": "mc_082",
+      "category": "biography",
+      "prompt": "What did Alexander Fleming discover?",
+      "options": [
+        " penicillin",
+        " insulin",
+        " electricity",
+        " helium"
+      ],
+      "answer_index": 0
+    },
+    {
+      "id": "mc_083",
+      "category": "biography",
+      "prompt": "Select the correct answer. What did Alexander Fleming discover?",
+      "options": [
+        " insulin",
+        " electricity",
+        " helium",
+        " penicillin"
+      ],
+      "answer_index": 3
+    },
+    {
+      "id": "mc_084",
+      "category": "definitions",
+      "prompt": "What term describes organisms interacting with their environment?",
+      "options": [
+        " ecosystem",
+        " algorithm",
+        " parliament",
+        " isotope"
+      ],
+      "answer_index": 0
+    },
+    {
+      "id": "mc_085",
+      "category": "definitions",
+      "prompt": "Select the correct answer. What term describes organisms interacting with their environment?",
+      "options": [
+        " algorithm",
+        " parliament",
+        " isotope",
+        " ecosystem"
+      ],
+      "answer_index": 3
+    },
+    {
+      "id": "mc_086",
+      "category": "definitions",
+      "prompt": "What political system gives citizens political power?",
+      "options": [
+        " democracy",
+        " monopoly",
+        " ecosystem",
+        " equation"
+      ],
+      "answer_index": 0
+    },
+    {
+      "id": "mc_087",
+      "category": "definitions",
+      "prompt": "Select the correct answer. What political system gives citizens political power?",
+      "options": [
+        " monopoly",
+        " ecosystem",
+        " equation",
+        " democracy"
+      ],
+      "answer_index": 3
+    },
+    {
+      "id": "mc_088",
+      "category": "definitions",
+      "prompt": "What is the change from liquid to gas called?",
+      "options": [
+        " evaporation",
+        " freezing",
+        " condensation",
+        " melting"
+      ],
+      "answer_index": 0
+    },
+    {
+      "id": "mc_089",
+      "category": "definitions",
+      "prompt": "Select the correct answer. What is the change from liquid to gas called?",
+      "options": [
+        " freezing",
+        " condensation",
+        " melting",
+        " evaporation"
+      ],
+      "answer_index": 3
+    },
+    {
+      "id": "mc_090",
+      "category": "definitions",
+      "prompt": "What is a finite problem-solving procedure called?",
+      "options": [
+        " algorithm",
+        " ecosystem",
+        " molecule",
+        " currency"
+      ],
+      "answer_index": 0
+    },
+    {
+      "id": "mc_091",
+      "category": "definitions",
+      "prompt": "Select the correct answer. What is a finite problem-solving procedure called?",
+      "options": [
+        " ecosystem",
+        " molecule",
+        " currency",
+        " algorithm"
+      ],
+      "answer_index": 3
+    },
+    {
+      "id": "mc_092",
+      "category": "definitions",
+      "prompt": "What can chemically bonded atoms form?",
+      "options": [
+        " molecule",
+        " continent",
+        " protocol",
+        " democracy"
+      ],
+      "answer_index": 0
+    },
+    {
+      "id": "mc_093",
+      "category": "definitions",
+      "prompt": "Select the correct answer. What can chemically bonded atoms form?",
+      "options": [
+        " continent",
+        " protocol",
+        " democracy",
+        " molecule"
+      ],
+      "answer_index": 3
+    },
+    {
+      "id": "mc_094",
+      "category": "definitions",
+      "prompt": "What term describes a broad rise in prices?",
+      "options": [
+        " inflation",
+        " evaporation",
+        " migration",
+        " photosynthesis"
+      ],
+      "answer_index": 0
+    },
+    {
+      "id": "mc_095",
+      "category": "definitions",
+      "prompt": "Select the correct answer. What term describes a broad rise in prices?",
+      "options": [
+        " evaporation",
+        " migration",
+        " photosynthesis",
+        " inflation"
+      ],
+      "answer_index": 3
+    },
+    {
+      "id": "mc_096",
+      "category": "definitions",
+      "prompt": "What term means the variety of living organisms?",
+      "options": [
+        " biodiversity",
+        " velocity",
+        " democracy",
+        " encryption"
+      ],
+      "answer_index": 0
+    },
+    {
+      "id": "mc_097",
+      "category": "definitions",
+      "prompt": "Select the correct answer. What term means the variety of living organisms?",
+      "options": [
+        " velocity",
+        " democracy",
+        " encryption",
+        " biodiversity"
+      ],
+      "answer_index": 3
+    },
+    {
+      "id": "mc_098",
+      "category": "definitions",
+      "prompt": "What is energy from a replenished natural source called?",
+      "options": [
+        " renewable energy",
+        " fossil fuel",
+        " static charge",
+        " thermal waste"
+      ],
+      "answer_index": 0
+    },
+    {
+      "id": "mc_099",
+      "category": "definitions",
+      "prompt": "Select the correct answer. What is energy from a replenished natural source called?",
+      "options": [
+        " fossil fuel",
+        " static charge",
+        " thermal waste",
+        " renewable energy"
+      ],
+      "answer_index": 3
+    }
+  ],
+  "continuations": [
+    {
+      "id": "continuation_000",
+      "category": "science",
+      "prompt": "Careful observation is useful because",
+      "target": " it allows claims to be checked against evidence."
+    },
+    {
+      "id": "continuation_001",
+      "category": "science",
+      "prompt": "In clear prose, careful observation is useful because",
+      "target": " it allows claims to be checked against evidence."
+    },
+    {
+      "id": "continuation_002",
+      "category": "science",
+      "prompt": "When a measurement is repeated,",
+      "target": " the results can be compared for consistency."
+    },
+    {
+      "id": "continuation_003",
+      "category": "science",
+      "prompt": "In clear prose, when a measurement is repeated,",
+      "target": " the results can be compared for consistency."
+    },
+    {
+      "id": "continuation_004",
+      "category": "science",
+      "prompt": "A clear scientific explanation should",
+      "target": " distinguish evidence from speculation."
+    },
+    {
+      "id": "continuation_005",
+      "category": "science",
+      "prompt": "In clear prose, a clear scientific explanation should",
+      "target": " distinguish evidence from speculation."
+    },
+    {
+      "id": "continuation_006",
+      "category": "history",
+      "prompt": "Historical records can disagree, so",
+      "target": " researchers compare sources and their context."
+    },
+    {
+      "id": "continuation_007",
+      "category": "history",
+      "prompt": "In clear prose, historical records can disagree, so",
+      "target": " researchers compare sources and their context."
+    },
+    {
+      "id": "continuation_008",
+      "category": "history",
+      "prompt": "A change in technology may affect society by",
+      "target": " altering work, communication, and daily life."
+    },
+    {
+      "id": "continuation_009",
+      "category": "history",
+      "prompt": "In clear prose, a change in technology may affect society by",
+      "target": " altering work, communication, and daily life."
+    },
+    {
+      "id": "continuation_010",
+      "category": "history",
+      "prompt": "To understand an old document, a reader should",
+      "target": " consider who wrote it and why."
+    },
+    {
+      "id": "continuation_011",
+      "category": "history",
+      "prompt": "In clear prose, to understand an old document, a reader should",
+      "target": " consider who wrote it and why."
+    },
+    {
+      "id": "continuation_012",
+      "category": "geography",
+      "prompt": "Rivers reshape landscapes over time by",
+      "target": " eroding rock and carrying sediment downstream."
+    },
+    {
+      "id": "continuation_013",
+      "category": "geography",
+      "prompt": "In clear prose, rivers reshape landscapes over time by",
+      "target": " eroding rock and carrying sediment downstream."
+    },
+    {
+      "id": "continuation_014",
+      "category": "geography",
+      "prompt": "Climate varies between regions because",
+      "target": " latitude, elevation, oceans, and winds differ."
+    },
+    {
+      "id": "continuation_015",
+      "category": "geography",
+      "prompt": "In clear prose, climate varies between regions because",
+      "target": " latitude, elevation, oceans, and winds differ."
+    },
+    {
+      "id": "continuation_016",
+      "category": "geography",
+      "prompt": "A reliable map should include",
+      "target": " a scale, labels, and a clear legend."
+    },
+    {
+      "id": "continuation_017",
+      "category": "geography",
+      "prompt": "In clear prose, a reliable map should include",
+      "target": " a scale, labels, and a clear legend."
+    },
+    {
+      "id": "continuation_018",
+      "category": "technology",
+      "prompt": "A secure password is stronger when",
+      "target": " it is long, unique, and difficult to guess."
+    },
+    {
+      "id": "continuation_019",
+      "category": "technology",
+      "prompt": "In clear prose, a secure password is stronger when",
+      "target": " it is long, unique, and difficult to guess."
+    },
+    {
+      "id": "continuation_020",
+      "category": "technology",
+      "prompt": "Computers exchange data by",
+      "target": " following agreed rules called protocols."
+    },
+    {
+      "id": "continuation_021",
+      "category": "technology",
+      "prompt": "In clear prose, computers exchange data by",
+      "target": " following agreed rules called protocols."
+    },
+    {
+      "id": "continuation_022",
+      "category": "technology",
+      "prompt": "Before installing software, a user should",
+      "target": " verify its source and review the requested permissions."
+    },
+    {
+      "id": "continuation_023",
+      "category": "technology",
+      "prompt": "In clear prose, before installing software, a user should",
+      "target": " verify its source and review the requested permissions."
+    },
+    {
+      "id": "continuation_024",
+      "category": "definitions",
+      "prompt": "A useful definition identifies",
+      "target": " the essential features that distinguish a concept."
+    },
+    {
+      "id": "continuation_025",
+      "category": "definitions",
+      "prompt": "In clear prose, a useful definition identifies",
+      "target": " the essential features that distinguish a concept."
+    },
+    {
+      "id": "continuation_026",
+      "category": "definitions",
+      "prompt": "An example supports an explanation when",
+      "target": " it clearly illustrates the stated principle."
+    },
+    {
+      "id": "continuation_027",
+      "category": "definitions",
+      "prompt": "In clear prose, an example supports an explanation when",
+      "target": " it clearly illustrates the stated principle."
+    },
+    {
+      "id": "continuation_028",
+      "category": "definitions",
+      "prompt": "A comparison is easiest to follow when",
+      "target": " the same criteria are applied to both subjects."
+    },
+    {
+      "id": "continuation_029",
+      "category": "definitions",
+      "prompt": "In clear prose, a comparison is easiest to follow when",
+      "target": " the same criteria are applied to both subjects."
+    },
+    {
+      "id": "continuation_030",
+      "category": "general language",
+      "prompt": "The library became quiet after",
+      "target": " the final group of students left for the evening."
+    },
+    {
+      "id": "continuation_031",
+      "category": "general language",
+      "prompt": "In clear prose, the library became quiet after",
+      "target": " the final group of students left for the evening."
+    },
+    {
+      "id": "continuation_032",
+      "category": "general language",
+      "prompt": "Although the road was wet,",
+      "target": " the driver slowed down and arrived safely."
+    },
+    {
+      "id": "continuation_033",
+      "category": "general language",
+      "prompt": "In clear prose, although the road was wet,",
+      "target": " the driver slowed down and arrived safely."
+    },
+    {
+      "id": "continuation_034",
+      "category": "general language",
+      "prompt": "The meeting ended with",
+      "target": " a short summary of decisions and next steps."
+    },
+    {
+      "id": "continuation_035",
+      "category": "general language",
+      "prompt": "In clear prose, the meeting ended with",
+      "target": " a short summary of decisions and next steps."
+    },
+    {
+      "id": "continuation_036",
+      "category": "general language",
+      "prompt": "After checking the instructions twice,",
+      "target": " Maya assembled the shelf without difficulty."
+    },
+    {
+      "id": "continuation_037",
+      "category": "general language",
+      "prompt": "In clear prose, after checking the instructions twice,",
+      "target": " Maya assembled the shelf without difficulty."
+    },
+    {
+      "id": "continuation_038",
+      "category": "general language",
+      "prompt": "The gardener covered the young plants because",
+      "target": " a cold night was expected."
+    },
+    {
+      "id": "continuation_039",
+      "category": "general language",
+      "prompt": "In clear prose, the gardener covered the young plants because",
+      "target": " a cold night was expected."
+    },
+    {
+      "id": "continuation_040",
+      "category": "general language",
+      "prompt": "A well-organized report begins with",
+      "target": " a clear statement of its purpose."
+    },
+    {
+      "id": "continuation_041",
+      "category": "general language",
+      "prompt": "In clear prose, a well-organized report begins with",
+      "target": " a clear statement of its purpose."
+    },
+    {
+      "id": "continuation_042",
+      "category": "general language",
+      "prompt": "When the train was delayed,",
+      "target": " passengers waited for an updated departure time."
+    },
+    {
+      "id": "continuation_043",
+      "category": "general language",
+      "prompt": "In clear prose, when the train was delayed,",
+      "target": " passengers waited for an updated departure time."
+    },
+    {
+      "id": "continuation_044",
+      "category": "general language",
+      "prompt": "The teacher asked for evidence, so",
+      "target": " the student cited the results of the experiment."
+    },
+    {
+      "id": "continuation_045",
+      "category": "general language",
+      "prompt": "In clear prose, the teacher asked for evidence, so",
+      "target": " the student cited the results of the experiment."
+    },
+    {
+      "id": "continuation_046",
+      "category": "general language",
+      "prompt": "Because the room was too dark,",
+      "target": " Arun opened the curtains to let in daylight."
+    },
+    {
+      "id": "continuation_047",
+      "category": "general language",
+      "prompt": "In clear prose, because the room was too dark,",
+      "target": " Arun opened the curtains to let in daylight."
+    },
+    {
+      "id": "continuation_048",
+      "category": "general language",
+      "prompt": "The recipe was simple enough that",
+      "target": " a beginner could follow every step."
+    },
+    {
+      "id": "continuation_049",
+      "category": "general language",
+      "prompt": "In clear prose, the recipe was simple enough that",
+      "target": " a beginner could follow every step."
+    }
+  ],
+  "open_ended": [
+    {
+      "id": "open_000",
+      "category": "science",
+      "prompt": "Why do shadows change length during the day?"
+    },
+    {
+      "id": "open_001",
+      "category": "science",
+      "prompt": "Give a brief, cautious response: Why do shadows change length during the day?"
+    },
+    {
+      "id": "open_002",
+      "category": "science",
+      "prompt": "Describe one difference between weather and climate."
+    },
+    {
+      "id": "open_003",
+      "category": "science",
+      "prompt": "Give a brief, cautious response: Describe one difference between weather and climate."
+    },
+    {
+      "id": "open_004",
+      "category": "science",
+      "prompt": "Explain why clean water matters to health."
+    },
+    {
+      "id": "open_005",
+      "category": "science",
+      "prompt": "Give a brief, cautious response: Explain why clean water matters to health."
+    },
+    {
+      "id": "open_006",
+      "category": "science",
+      "prompt": "What is one way evidence can challenge a hypothesis?"
+    },
+    {
+      "id": "open_007",
+      "category": "science",
+      "prompt": "Give a brief, cautious response: What is one way evidence can challenge a hypothesis?"
+    },
+    {
+      "id": "open_008",
+      "category": "history",
+      "prompt": "Why do historians compare several sources?"
+    },
+    {
+      "id": "open_009",
+      "category": "history",
+      "prompt": "Give a brief, cautious response: Why do historians compare several sources?"
+    },
+    {
+      "id": "open_010",
+      "category": "history",
+      "prompt": "Describe one effect printing had on communication."
+    },
+    {
+      "id": "open_011",
+      "category": "history",
+      "prompt": "Give a brief, cautious response: Describe one effect printing had on communication."
+    },
+    {
+      "id": "open_012",
+      "category": "history",
+      "prompt": "What can an old map reveal about its time?"
+    },
+    {
+      "id": "open_013",
+      "category": "history",
+      "prompt": "Give a brief, cautious response: What can an old map reveal about its time?"
+    },
+    {
+      "id": "open_014",
+      "category": "history",
+      "prompt": "Why should dates in a historical claim be checked?"
+    },
+    {
+      "id": "open_015",
+      "category": "history",
+      "prompt": "Give a brief, cautious response: Why should dates in a historical claim be checked?"
+    },
+    {
+      "id": "open_016",
+      "category": "geography",
+      "prompt": "How can a mountain range influence rainfall?"
+    },
+    {
+      "id": "open_017",
+      "category": "geography",
+      "prompt": "Give a brief, cautious response: How can a mountain range influence rainfall?"
+    },
+    {
+      "id": "open_018",
+      "category": "geography",
+      "prompt": "Explain how a river can form a delta."
+    },
+    {
+      "id": "open_019",
+      "category": "geography",
+      "prompt": "Give a brief, cautious response: Explain how a river can form a delta."
+    },
+    {
+      "id": "open_020",
+      "category": "geography",
+      "prompt": "Why are coastal climates often milder?"
+    },
+    {
+      "id": "open_021",
+      "category": "geography",
+      "prompt": "Give a brief, cautious response: Why are coastal climates often milder?"
+    },
+    {
+      "id": "open_022",
+      "category": "geography",
+      "prompt": "What information does a map scale provide?"
+    },
+    {
+      "id": "open_023",
+      "category": "geography",
+      "prompt": "Give a brief, cautious response: What information does a map scale provide?"
+    },
+    {
+      "id": "open_024",
+      "category": "technology",
+      "prompt": "Explain the difference between hardware and software."
+    },
+    {
+      "id": "open_025",
+      "category": "technology",
+      "prompt": "Give a brief, cautious response: Explain the difference between hardware and software."
+    },
+    {
+      "id": "open_026",
+      "category": "technology",
+      "prompt": "Why should important files be backed up?"
+    },
+    {
+      "id": "open_027",
+      "category": "technology",
+      "prompt": "Give a brief, cautious response: Why should important files be backed up?"
+    },
+    {
+      "id": "open_028",
+      "category": "technology",
+      "prompt": "What does a network protocol do?"
+    },
+    {
+      "id": "open_029",
+      "category": "technology",
+      "prompt": "Give a brief, cautious response: What does a network protocol do?"
+    },
+    {
+      "id": "open_030",
+      "category": "technology",
+      "prompt": "Describe one risk of reusing a password."
+    },
+    {
+      "id": "open_031",
+      "category": "technology",
+      "prompt": "Give a brief, cautious response: Describe one risk of reusing a password."
+    },
+    {
+      "id": "open_032",
+      "category": "biography",
+      "prompt": "What makes a scientific biography trustworthy?"
+    },
+    {
+      "id": "open_033",
+      "category": "biography",
+      "prompt": "Give a brief, cautious response: What makes a scientific biography trustworthy?"
+    },
+    {
+      "id": "open_034",
+      "category": "biography",
+      "prompt": "How can a biographer separate evidence from legend?"
+    },
+    {
+      "id": "open_035",
+      "category": "biography",
+      "prompt": "Give a brief, cautious response: How can a biographer separate evidence from legend?"
+    },
+    {
+      "id": "open_036",
+      "category": "biography",
+      "prompt": "Why is historical context useful in a biography?"
+    },
+    {
+      "id": "open_037",
+      "category": "biography",
+      "prompt": "Give a brief, cautious response: Why is historical context useful in a biography?"
+    },
+    {
+      "id": "open_038",
+      "category": "definitions",
+      "prompt": "Define biodiversity in ordinary language."
+    },
+    {
+      "id": "open_039",
+      "category": "definitions",
+      "prompt": "Give a brief, cautious response: Define biodiversity in ordinary language."
+    },
+    {
+      "id": "open_040",
+      "category": "definitions",
+      "prompt": "Explain what an algorithm is with a simple example."
+    },
+    {
+      "id": "open_041",
+      "category": "definitions",
+      "prompt": "Give a brief, cautious response: Explain what an algorithm is with a simple example."
+    },
+    {
+      "id": "open_042",
+      "category": "definitions",
+      "prompt": "What is the difference between observation and inference?"
+    },
+    {
+      "id": "open_043",
+      "category": "definitions",
+      "prompt": "Give a brief, cautious response: What is the difference between observation and inference?"
+    },
+    {
+      "id": "open_044",
+      "category": "general language",
+      "prompt": "Continue a short paragraph about preparing for a storm."
+    },
+    {
+      "id": "open_045",
+      "category": "general language",
+      "prompt": "Give a brief, cautious response: Continue a short paragraph about preparing for a storm."
+    },
+    {
+      "id": "open_046",
+      "category": "general language",
+      "prompt": "Write a coherent continuation about finding a lost key."
+    },
+    {
+      "id": "open_047",
+      "category": "general language",
+      "prompt": "Give a brief, cautious response: Write a coherent continuation about finding a lost key."
+    },
+    {
+      "id": "open_048",
+      "category": "general language",
+      "prompt": "Continue a paragraph about a delayed journey."
+    },
+    {
+      "id": "open_049",
+      "category": "general language",
+      "prompt": "Give a brief, cautious response: Continue a paragraph about a delayed journey."
+    }
+  ]
+}

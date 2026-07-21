@@ -1,0 +1,56 @@
+{
+  "format_version": "vasu_pretraining_mixture_v1",
+  "experiment_id": "vasu_60m_factual_cpt_wikimedia_15pct_from_200k",
+  "description": "Deterministic 85% FineWeb-Edu and 15% held-in Wikimedia continued-pretraining pilot.",
+  "seed": 42,
+  "sequence_length": 256,
+  "token_budget": 10000000,
+  "tokenizer_path": "assets/tokenizer.json",
+  "tokenizer_sha256": "04942e101a4a01f87f7e492ad9e463d299a559e784b650fdedd1763a017d195a",
+  "vocabulary_size": 32000,
+  "sampling_with_replacement": false,
+  "sources": [
+    {
+      "id": "fineweb_edu",
+      "domain": "general",
+      "weight": 0.85,
+      "type": "manifest_token_stream",
+      "manifest": "data/processed/pretrain/fineweb_manifest.json",
+      "manifest_sha256": "d6f1d112fbd0135563c173feaf700162982718a6ced6abd537df0e749c267a00",
+      "logical_start": 1638400000,
+      "available_tokens": 107491730,
+      "dtype": "uint16",
+      "tokenizer_sha256": "04942e101a4a01f87f7e492ad9e463d299a559e784b650fdedd1763a017d195a",
+      "expected_selected_sequences": 33203,
+      "expected_selected_tokens": 8499968,
+      "notes": "Continues sequentially after the parent checkpoint's step-200000 logical position; fixed original validation remains excluded."
+    },
+    {
+      "id": "wikimedia_factual",
+      "domain": "factual",
+      "weight": 0.15,
+      "type": "flat_token_stream",
+      "path": "data/processed/pretrain/factual/wikimedia_release_6aa10d73_train.bin",
+      "sha256": "fee0b88832fc569ce73393bc232e29a80cb981e31779ce4c42129d15a0be876f",
+      "manifest": "data/manifests/factual/wikimedia_release_6aa10d73_tokenized.json",
+      "manifest_sha256": "cec126ae4e804a4f42699f96625752199c73b0caafbc4bf8b6d3bc3f47560a81",
+      "available_tokens": 1915008,
+      "dtype": "uint16",
+      "tokenizer_sha256": "04942e101a4a01f87f7e492ad9e463d299a559e784b650fdedd1763a017d195a",
+      "expected_selected_sequences": 5859,
+      "expected_selected_tokens": 1499904,
+      "notes": "Uses only the seeded 95% training-parent split; no replacement sampling."
+    }
+  ],
+  "output": {
+    "path": "data/processed/pretrain/mixtures/vasu_60m_fineweb_wikimedia_85_15.bin",
+    "metadata": "data/manifests/mixtures/vasu_60m_fineweb_wikimedia_85_15.json",
+    "schedule": "data/manifests/mixtures/vasu_60m_fineweb_wikimedia_85_15.schedule"
+  },
+  "packing": {
+    "format": "fixed uint16 records",
+    "record_width": 257,
+    "supervised_tokens_per_record": 256,
+    "cross_source_target_transitions": false
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "format_version": "vasu_factual_cpt_evaluation_v1",
+  "parent_checkpoint": "checkpoints/vasu_60m/milestones/fineweb_step_200000.pt",
+  "model_configuration": "vasu_60m",
+  "tokenizer_path": "assets/tokenizer.json",
+  "candidate_checkpoint_directory": "checkpoints/vasu_60m/factual_cpt_wikimedia_15pct_from_200k",
+  "prompt_file": "evaluation/prompts_factual_cpt_v1.json",
+  "seed": 42,
+  "validation": {
+    "batch_size": 2,
+    "fineweb_manifest": "data/processed/pretrain/fineweb_manifest.json",
+    "fineweb_samples": 256,
+    "wikimedia_path": "data/processed/pretrain/factual/wikimedia_release_6aa10d73_validation.bin"
+  },
+  "generation": {
+    "prompt_format": "plain",
+    "do_sample": true,
+    "max_new_tokens": 60,
+    "temperature": 0.6,
+    "top_k": 20,
+    "top_p": 0.9,
+    "use_kv_cache": false
+  },
+  "result_path": "evaluation/results/vasu_60m_factual_cpt_parent_200000.json",
+  "text_output_path": "evaluation/results/vasu_60m_factual_cpt_parent_200000.txt",
+  "metrics": [
+    "fineweb_validation_loss",
+    "held_out_wikimedia_validation_loss",
+    "existing_generation_quality",
+    "factual_prompt_quality",
+    "repetition_metrics",
+    "response_length_statistics",
+    "encyclopedic_style_rate"
+  ],
+  "acceptance_criteria": {
+    "wikimedia_validation_loss": "must improve relative to parent checkpoint",
+    "fineweb_validation_loss": "must not materially regress; review any relative increase above 2%",
+    "repetition": "must not materially increase",
+    "generation_quality": "must not collapse on the existing fixed prompt suite",
+    "style": "must not default to article headings or citation-like prose",
+    "factuality": "must improve or remain stable under manual and automatic review"
+  },
+  "contamination_policy": "Prompts are category-level questions and do not copy source-release sentences.",
+  "status": "baseline prepared; no post-training claims"
+}

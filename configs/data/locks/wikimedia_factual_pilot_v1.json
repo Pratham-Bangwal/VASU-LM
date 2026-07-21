@@ -1,0 +1,21 @@
+{
+  "format_version": "vasu_dataset_lock_v1",
+  "dataset_id": "wikimedia_factual_pilot_v1",
+  "dataset_path": "data/processed/pretrain/factual/wikimedia_pilot/documents.jsonl",
+  "dataset_sha256": "cdccaff4d305dc4cfd273c3e94f5376c349773c317c5720227db97745f1d646a",
+  "manifest_path": "data/manifests/factual/wikimedia_pilot.json",
+  "manifest_sha256": "REPLACE_WITH_MANIFEST_HASH",
+  "tokenizer_path": "assets/tokenizer.json",
+  "tokenizer_sha256": "REPLACE_WITH_TOKENIZER_HASH",
+  "starting_checkpoint": "checkpoints/vasu_60m/milestones/fineweb_step_200000.pt",
+  "starting_checkpoint_sha256": "REPLACE_WITH_CHECKPOINT_HASH",
+  "source_dataset": "wikimedia/wikipedia",
+  "source_subset": "20231101.en",
+  "source_revision": "e6057dc557255a03c9c3c47ceab0eb44353b1bc5",
+  "accepted_parent_documents": 262,
+  "accepted_chunks": 3751,
+  "total_vasu_tokens": 1999974,
+  "maximum_chunk_tokens": 1024,
+  "fineweb_cross_deduplication": true,
+  "output_validation": "passed"
+}
