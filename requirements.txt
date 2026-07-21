@@ -1,1 +1,8 @@
+torch
+numpy
+tokenizers
+tqdm
+datasets
+requests
+tensorboard
 pytest>=8.0.0

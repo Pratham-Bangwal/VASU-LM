@@ -9,10 +9,19 @@ description = "VASU project scaffold"
 readme = "README.md"
 requires-python = ">=3.10"
 authors = [{ name = "VASU" }]
-dependencies = []
+dependencies = [
+    "torch",
+    "numpy",
+    "tokenizers",
+    "tqdm",
+    "datasets",
+    "requests",
+    "tensorboard",
+]
 
-[tool.setuptools]
-packages = ["vasu"]
+[tool.setuptools.packages.find]
+include = ["vasu*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+pythonpath = ["."]

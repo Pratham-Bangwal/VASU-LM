@@ -25,7 +25,10 @@ checkpoints/*.pth
 # ===========================
 # Dataset
 # ===========================
-data/raw/
+data/raw/*
+!data/raw/instruct/
+data/raw/instruct/*
+!data/raw/instruct/vasu_instruction_quality_v1_batch_001.jsonl
 data/processed/
 data/interim/
 data/manifests/factual/
