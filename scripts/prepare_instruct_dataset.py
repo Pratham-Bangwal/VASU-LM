@@ -4,6 +4,7 @@ from pathlib import Path
 import numpy as np
 
 from vasu.tokenizer.tokenizer import VASUTokenizer
+from vasu.data.prompt_templates import format_alpaca_example
 
 
 print("Loading tokenizer...")
@@ -29,19 +30,10 @@ with open(
         inp = sample["input"]
         output = sample["output"]
 
-        text = ""
-
-        text += (
-            f"User: {instruction}"
-        )
-
-        if inp.strip():
-            text += (
-                f"\n{inp}"
-            )
-
-        text += (
-            f"\nAssistant: {output}\n"
+        text = format_alpaca_example(
+            instruction=instruction,
+            input_text=inp,
+            response=output,
         )
 
         tokens.extend(
