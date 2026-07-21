@@ -1,27 +1,21 @@
-from vasu.tokenizer.tokenizer import VASUTokenizer
+import numpy as np
+
 from vasu.training.dataset import TextDataset
 
 
-def main():
-
-    tokenizer = VASUTokenizer()
-    tokenizer.load("assets/tokenizer.json")
+def test_text_dataset_returns_shifted_tokens(tmp_path):
+    data_file = tmp_path / "tokens.bin"
+    np.array(
+        [1, 2, 3, 4, 5],
+        dtype=np.uint16,
+    ).tofile(data_file)
 
     dataset = TextDataset(
-        tokenizer=tokenizer,
-        seq_len=32,
+        data_file=str(data_file),
+        seq_len=2,
     )
-
-    print("Dataset size:", len(dataset))
 
     x, y = dataset[0]
 
-    print(x.shape)
-    print(y.shape)
-
-    print(x[:10])
-    print(y[:10])
-
-
-if __name__ == "__main__":
-    main()
+    assert x.tolist() == [1, 2]
+    assert y.tolist() == [2, 3]

@@ -1,13 +1,10 @@
 from vasu.data.loader import VASUDataLoader
 
 
-def main():
-    loader = VASUDataLoader("data/raw")
+def test_data_loader_combines_text_files(tmp_path):
+    (tmp_path / "b.txt").write_text("second", encoding="utf-8")
+    (tmp_path / "a.txt").write_text("first", encoding="utf-8")
 
-    text = loader.load()
+    loader = VASUDataLoader(str(tmp_path))
 
-    print(text)
-
-
-if __name__ == "__main__":
-    main()
+    assert loader.load() == "first\nsecond\n"
