@@ -1,0 +1,9 @@
+{
+  "dataset_name": "vasu_instruction_quality_v1_batch_001",
+  "required_fix_count": 0,
+  "required_fixes": [],
+  "review_passed": true,
+  "schema_version": "vasu_instruction_quality_required_fixes_v1",
+  "source_sha256": "02538e9f4eb5c5f20fffd253733487918440fb35ef890337eeea879ca5b4168e",
+  "training_authorized": false
+}

@@ -1,0 +1,34 @@
+VASU Instruction Quality V1 Batch 001 — 100-Example Gate Review
+Source SHA-256: b0ee16e2067bc1b8d6c8e079de532ff7eb3b809d533f5a37831fba70ce40f20b
+Selection: deterministic stratified SHA-256 ordering, seed 42
+Reviewed: 100
+Approved: 77
+Needs fact check: 15
+Needs rewrite: 8
+
+Needs fact check:
+- viq1_b001_000021: The answer is correct, but the cited NASA Solar System page does not directly support evaporation.
+- viq1_b001_000023: The answer is correct, but the cited NASA Solar System page does not directly support thermometer use.
+- viq1_b001_000034: The answer is plausible, but the generic MedlinePlus anatomy page should be replaced with a kidney-specific source supporting filtration.
+- viq1_b001_000035: The answer is plausible, but the generic MedlinePlus anatomy page should be replaced with a nail-specific source supporting the claim.
+- viq1_b001_000037: The answer is correct, but the generic MedlinePlus anatomy page should be replaced with a skeletal-system source supporting the exact claim.
+- viq1_b001_000071: The answer is reasonable, but the BIPM measurement-units page does not directly verify that a ruler is the expected tool.
+- viq1_b001_000074: The response is nuanced, but the cited BIPM page does not directly support the claim about what a scale measures.
+- viq1_b001_000079: The fact is widely accepted, but the generic Britannica history page is not a direct source for Gutenberg.
+- viq1_b001_000088: The fact is widely accepted, but the generic Britannica history page is not a direct source for Machu Picchu and the Inca.
+- viq1_b001_000094: The answer is correct, but the generic IBM computer-science page should be replaced with a direct algorithm definition.
+- viq1_b001_000096: The answer is correct, but the generic IBM computer-science page should be replaced with a direct operating-system source.
+- viq1_b001_000097: The answer is correct, but the generic IBM computer-science page should be replaced with a direct source defining a software bug.
+- viq1_b001_000117: The answer is acceptable, but the generic Merriam-Webster URL does not point to the biodegradable entry.
+- viq1_b001_000121: The answer is acceptable, but the generic Merriam-Webster URL does not point to the prediction entry.
+- viq1_b001_000124: The answer is acceptable, but the generic Merriam-Webster URL does not point to the summary entry.
+
+Needs rewrite:
+- viq1_b001_000072: The question is ambiguous because angles may be measured in degrees or radians. Specify the intended context.
+- viq1_b001_000177: The instruction is grammatically incorrect (“What does the lungs mean?”). Rewrite it as “What do the lungs do?” or “What are the lungs?”
+- viq1_b001_000228: The fourth bullet, “Store it in a safe place,” is unrelated and unclear for an email-sending checklist.
+- viq1_b001_000232: The fourth bullet, “Store it in a safe place,” is unrelated to focused study.
+- viq1_b001_000237: The fourth and fifth bullets are generic filler and do not meaningfully teach focused-study habits.
+- viq1_b001_000254: The response finds the latest backup but does not verify that it is complete or restorable, so it does not adequately satisfy “checking a backup.”
+- viq1_b001_000379: The rewrite adds “my previous message,” which was not stated in the input. Preserve meaning without inventing message context.
+- viq1_b001_000387: The response adds “See you there!” despite the instruction forbidding new information, and changes an event notice into a personal meeting statement.

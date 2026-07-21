@@ -1,0 +1,53 @@
+{
+  "schema_version": "vasu_instruction_quality_v1",
+  "dataset_name": "vasu_instruction_quality_v1_batch_001",
+  "description": "First 500-record production candidate batch; source authoring and review only.",
+  "training_authorized": false,
+  "source_path": "data/raw/instruct/vasu_instruction_quality_v1_batch_001.jsonl",
+  "review_path": "data/reviews/instruct/vasu_instruction_quality_v1_batch_001_review.jsonl",
+  "demo_path": "data/examples/instruct/vasu_instruction_quality_v1_demo.jsonl",
+  "demo_sha256": "87e64502e0aefeb91dec8a38cbaec9500024b8041ae9f7c0d1962ff07522cd45",
+  "tokenizer_path": "assets/tokenizer.json",
+  "tokenizer_sha256": "04942e101a4a01f87f7e492ad9e463d299a559e784b650fdedd1763a017d195a",
+  "sequence_length": 256,
+  "split_policy": "stratified_stable_hash",
+  "split_seed": 42,
+  "train_ratio": 0.95,
+  "validation_ratio": 0.05,
+  "near_duplicate_threshold": 0.85,
+  "target_distribution": {
+    "short_factual_qa": 0.25,
+    "beginner_explanation": 0.20,
+    "exact_format_following": 0.20,
+    "rewriting_transformation": 0.15,
+    "lists_structured_output": 0.10,
+    "json_schema_output": 0.05,
+    "uncertainty_honest_fallback": 0.05
+  },
+  "expected_category_counts": {
+    "short_factual_qa": 125,
+    "beginner_explanation": 100,
+    "exact_format_following": 100,
+    "rewriting_transformation": 75,
+    "lists_structured_output": 50,
+    "json_schema_output": 25,
+    "uncertainty_honest_fallback": 25
+  },
+  "expected_difficulty_counts": {
+    "easy": 350,
+    "medium": 150,
+    "hard": 0
+  },
+  "creation_method": "deterministic purpose-written static catalogs",
+  "creation_timestamp": "2026-07-19T00:00:00Z",
+  "authoring_version": "vasu_instruction_quality_batch_001_authoring_v1",
+  "source_manifest_path": "data/manifests/instruct/vasu_instruction_quality_v1_batch_001_source.json",
+  "review_manifest_path": "data/reviews/instruct/vasu_instruction_quality_v1_batch_001_review_manifest.json",
+  "validation_report_json": "data/manifests/instruct/vasu_instruction_quality_v1_batch_001_validation.json",
+  "validation_report_text": "data/manifests/instruct/vasu_instruction_quality_v1_batch_001_validation.txt",
+  "review_packet_path": "data/reviews/instruct/vasu_instruction_quality_v1_batch_001_review_packet.txt",
+  "release_path": "data/processed/instruct/vasu_instruction_quality_v1_batch_001_release.jsonl",
+  "token_path": "data/processed/instruct/vasu_instruction_quality_v1_batch_001.bin",
+  "mask_path": "data/processed/instruct/vasu_instruction_quality_v1_batch_001_mask.bin",
+  "release_manifest_path": "data/manifests/instruct/vasu_instruction_quality_v1_batch_001_release.json"
+}

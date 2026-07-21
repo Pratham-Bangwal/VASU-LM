@@ -1,0 +1,10 @@
+{
+  "decisions": 0,
+  "review_path": "data\\reviews\\instruct\\vasu_instruction_quality_v1_batch_001_review.jsonl",
+  "review_sha256": "ff46cbdd0d7c80d873a66efaeec0ea7a26974ad0eac4e5fc7f1ad9515d51b408",
+  "schema_version": "vasu_instruction_quality_review_manifest_v1",
+  "status_counts": {
+    "unreviewed": 500
+  },
+  "training_authorized": false
+}

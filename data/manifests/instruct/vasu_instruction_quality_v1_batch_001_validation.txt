@@ -1,0 +1,15 @@
+VASU INSTRUCTION QUALITY V1 - BATCH 001 VALIDATION
+Total records: 500
+Valid records: 500
+Invalid records: 0
+Review statuses: {'unreviewed': 500}
+Category counts: {'short_factual_qa': 125, 'beginner_explanation': 100, 'exact_format_following': 100, 'rewriting_transformation': 75, 'lists_structured_output': 50, 'json_schema_output': 25, 'uncertainty_honest_fallback': 25}
+Difficulty counts: {'easy': 350, 'medium': 150}
+Language counts: {'en': 500}
+Exact duplicate groups: 0
+Near-duplicate candidates: 0
+Duplicates against demo: exact=0, near=0
+Maximum full-example tokens: 66
+Truncated examples: 0
+Automatic approval: False
+Training authorized: False

@@ -1,0 +1,43 @@
+VASU INSTRUCTION QUALITY BATCH 001 - GATE V2 HUMAN REVIEW
+
+Source SHA-256: 634f516a26df5eb4bef52407dee1ff6c90629adc9d2dcc5700e4045ce62ae698
+Sample size: 100
+Approved: 93
+Needs fact check: 1
+Needs rewrite: 6
+Rejected: 0
+Gate passed: No
+Training authorized: False
+
+Remaining issues:
+- viq1_b001_000055 [needs_fact_check]
+  Field: source_reference/facts[0].verification_source
+  Current: https://www.bipm.org/en/si-base-units/second
+  Suggested: Replace with an authoritative page that explicitly states 1 minute = 60 seconds.
+- viq1_b001_000177 [needs_rewrite]
+  Field: instruction
+  Current: What is meant by the lungs?
+  Suggested: Explain what the lungs do in simple terms.
+- viq1_b001_000379 [needs_rewrite]
+  Field: response
+  Current: I did not attach the document.
+  Suggested: I neglected to attach the document.
+- viq1_b001_000387 [needs_rewrite]
+  Field: response
+  Current: The event is now in the main hall!
+  Suggested: The event has moved to the main hall!
+- viq1_b001_000390 [needs_rewrite]
+  Field: response
+  Current: I've attached the new timetable for you!
+  Suggested: The new timetable is attached for you!
+- viq1_b001_000397 [needs_rewrite]
+  Field: response
+  Current: Close all apps, then start the installation.
+  Suggested: Please close all apps, then start the installation.
+- viq1_b001_000399 [needs_rewrite]
+  Field: response
+  Current: The document does not have enough information to review.
+  Suggested: The document does not have enough information for evaluation.
+
+Decision:
+The repaired batch is substantially improved, but the gate remains blocked until these seven records are corrected, the source is rebuilt, and the changed records receive fresh review hashes.

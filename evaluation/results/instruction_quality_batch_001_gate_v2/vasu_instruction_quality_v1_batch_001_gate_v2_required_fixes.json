@@ -1,0 +1,56 @@
+{
+  "schema_version": "vasu_instruction_quality_gate_v2_required_fixes_v1",
+  "source_sha256": "634f516a26df5eb4bef52407dee1ff6c90629adc9d2dcc5700e4045ce62ae698",
+  "gate_passed": false,
+  "issues": [
+    {
+      "example_id": "viq1_b001_000055",
+      "status": "needs_fact_check",
+      "field": "source_reference/facts[0].verification_source",
+      "current": "https://www.bipm.org/en/si-base-units/second",
+      "suggestion": "Replace with an authoritative page that explicitly states 1 minute = 60 seconds."
+    },
+    {
+      "example_id": "viq1_b001_000177",
+      "status": "needs_rewrite",
+      "field": "instruction",
+      "current": "What is meant by the lungs?",
+      "suggestion": "Explain what the lungs do in simple terms."
+    },
+    {
+      "example_id": "viq1_b001_000379",
+      "status": "needs_rewrite",
+      "field": "response",
+      "current": "I did not attach the document.",
+      "suggestion": "I neglected to attach the document."
+    },
+    {
+      "example_id": "viq1_b001_000387",
+      "status": "needs_rewrite",
+      "field": "response",
+      "current": "The event is now in the main hall!",
+      "suggestion": "The event has moved to the main hall!"
+    },
+    {
+      "example_id": "viq1_b001_000390",
+      "status": "needs_rewrite",
+      "field": "response",
+      "current": "I've attached the new timetable for you!",
+      "suggestion": "The new timetable is attached for you!"
+    },
+    {
+      "example_id": "viq1_b001_000397",
+      "status": "needs_rewrite",
+      "field": "response",
+      "current": "Close all apps, then start the installation.",
+      "suggestion": "Please close all apps, then start the installation."
+    },
+    {
+      "example_id": "viq1_b001_000399",
+      "status": "needs_rewrite",
+      "field": "response",
+      "current": "The document does not have enough information to review.",
+      "suggestion": "The document does not have enough information for evaluation."
+    }
+  ]
+}

@@ -1,0 +1,1306 @@
+{
+  "changed_example_ids": [
+    "viq1_b001_000001",
+    "viq1_b001_000002",
+    "viq1_b001_000003",
+    "viq1_b001_000004",
+    "viq1_b001_000005",
+    "viq1_b001_000006",
+    "viq1_b001_000007",
+    "viq1_b001_000008",
+    "viq1_b001_000009",
+    "viq1_b001_000010",
+    "viq1_b001_000011",
+    "viq1_b001_000012",
+    "viq1_b001_000013",
+    "viq1_b001_000014",
+    "viq1_b001_000015",
+    "viq1_b001_000016",
+    "viq1_b001_000017",
+    "viq1_b001_000018",
+    "viq1_b001_000019",
+    "viq1_b001_000020",
+    "viq1_b001_000021",
+    "viq1_b001_000022",
+    "viq1_b001_000023",
+    "viq1_b001_000024",
+    "viq1_b001_000025",
+    "viq1_b001_000026",
+    "viq1_b001_000027",
+    "viq1_b001_000028",
+    "viq1_b001_000029",
+    "viq1_b001_000030",
+    "viq1_b001_000031",
+    "viq1_b001_000032",
+    "viq1_b001_000033",
+    "viq1_b001_000034",
+    "viq1_b001_000035",
+    "viq1_b001_000036",
+    "viq1_b001_000037",
+    "viq1_b001_000038",
+    "viq1_b001_000039",
+    "viq1_b001_000040",
+    "viq1_b001_000041",
+    "viq1_b001_000042",
+    "viq1_b001_000043",
+    "viq1_b001_000044",
+    "viq1_b001_000045",
+    "viq1_b001_000046",
+    "viq1_b001_000047",
+    "viq1_b001_000048",
+    "viq1_b001_000049",
+    "viq1_b001_000050",
+    "viq1_b001_000051",
+    "viq1_b001_000052",
+    "viq1_b001_000053",
+    "viq1_b001_000054",
+    "viq1_b001_000055",
+    "viq1_b001_000056",
+    "viq1_b001_000057",
+    "viq1_b001_000058",
+    "viq1_b001_000059",
+    "viq1_b001_000060",
+    "viq1_b001_000061",
+    "viq1_b001_000062",
+    "viq1_b001_000063",
+    "viq1_b001_000064",
+    "viq1_b001_000065",
+    "viq1_b001_000066",
+    "viq1_b001_000067",
+    "viq1_b001_000068",
+    "viq1_b001_000069",
+    "viq1_b001_000070",
+    "viq1_b001_000071",
+    "viq1_b001_000072",
+    "viq1_b001_000073",
+    "viq1_b001_000074",
+    "viq1_b001_000075",
+    "viq1_b001_000076",
+    "viq1_b001_000077",
+    "viq1_b001_000078",
+    "viq1_b001_000079",
+    "viq1_b001_000080",
+    "viq1_b001_000081",
+    "viq1_b001_000082",
+    "viq1_b001_000083",
+    "viq1_b001_000084",
+    "viq1_b001_000085",
+    "viq1_b001_000086",
+    "viq1_b001_000087",
+    "viq1_b001_000088",
+    "viq1_b001_000089",
+    "viq1_b001_000090",
+    "viq1_b001_000091",
+    "viq1_b001_000092",
+    "viq1_b001_000093",
+    "viq1_b001_000094",
+    "viq1_b001_000095",
+    "viq1_b001_000096",
+    "viq1_b001_000097",
+    "viq1_b001_000098",
+    "viq1_b001_000099",
+    "viq1_b001_000100",
+    "viq1_b001_000101",
+    "viq1_b001_000102",
+    "viq1_b001_000103",
+    "viq1_b001_000104",
+    "viq1_b001_000105",
+    "viq1_b001_000106",
+    "viq1_b001_000107",
+    "viq1_b001_000108",
+    "viq1_b001_000109",
+    "viq1_b001_000110",
+    "viq1_b001_000111",
+    "viq1_b001_000112",
+    "viq1_b001_000113",
+    "viq1_b001_000114",
+    "viq1_b001_000115",
+    "viq1_b001_000116",
+    "viq1_b001_000117",
+    "viq1_b001_000118",
+    "viq1_b001_000119",
+    "viq1_b001_000120",
+    "viq1_b001_000121",
+    "viq1_b001_000122",
+    "viq1_b001_000123",
+    "viq1_b001_000124",
+    "viq1_b001_000125",
+    "viq1_b001_000127",
+    "viq1_b001_000132",
+    "viq1_b001_000137",
+    "viq1_b001_000142",
+    "viq1_b001_000147",
+    "viq1_b001_000152",
+    "viq1_b001_000157",
+    "viq1_b001_000162",
+    "viq1_b001_000167",
+    "viq1_b001_000172",
+    "viq1_b001_000177",
+    "viq1_b001_000182",
+    "viq1_b001_000187",
+    "viq1_b001_000192",
+    "viq1_b001_000197",
+    "viq1_b001_000202",
+    "viq1_b001_000207",
+    "viq1_b001_000212",
+    "viq1_b001_000217",
+    "viq1_b001_000222",
+    "viq1_b001_000228",
+    "viq1_b001_000229",
+    "viq1_b001_000232",
+    "viq1_b001_000233",
+    "viq1_b001_000236",
+    "viq1_b001_000237",
+    "viq1_b001_000240",
+    "viq1_b001_000241",
+    "viq1_b001_000244",
+    "viq1_b001_000245",
+    "viq1_b001_000254",
+    "viq1_b001_000329",
+    "viq1_b001_000379",
+    "viq1_b001_000387"
+  ],
+  "factual_records_audited": 125,
+  "factual_source_changes": [
+    {
+      "example_id": "viq1_b001_000001",
+      "new_source_reference": "https://www.britannica.com/place/Pacific-Ocean",
+      "old_source_reference": "https://www.britannica.com/science/geography",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000002",
+      "new_source_reference": "https://www.britannica.com/place/Sahara-desert-Africa",
+      "old_source_reference": "https://www.britannica.com/science/geography",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000003",
+      "new_source_reference": "https://www.britannica.com/place/Nile-River",
+      "old_source_reference": "https://www.britannica.com/science/geography",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000004",
+      "new_source_reference": "https://www.britannica.com/place/Ottawa",
+      "old_source_reference": "https://www.britannica.com/science/geography",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000005",
+      "new_source_reference": "https://www.britannica.com/place/Tokyo",
+      "old_source_reference": "https://www.britannica.com/science/geography",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000006",
+      "new_source_reference": "https://www.britannica.com/place/Brazil",
+      "old_source_reference": "https://www.britannica.com/science/geography",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000007",
+      "new_source_reference": "https://www.britannica.com/place/Canberra",
+      "old_source_reference": "https://www.britannica.com/science/geography",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000008",
+      "new_source_reference": "https://www.britannica.com/place/Mount-Everest",
+      "old_source_reference": "https://www.britannica.com/science/geography",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000009",
+      "new_source_reference": "https://www.britannica.com/place/Mediterranean-Sea",
+      "old_source_reference": "https://www.britannica.com/science/geography",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000010",
+      "new_source_reference": "https://www.britannica.com/place/Antarctica",
+      "old_source_reference": "https://www.britannica.com/science/geography",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000011",
+      "new_source_reference": "https://www.britannica.com/place/Rome",
+      "old_source_reference": "https://www.britannica.com/science/geography",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000012",
+      "new_source_reference": "https://www.britannica.com/place/Cairo",
+      "old_source_reference": "https://www.britannica.com/science/geography",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000013",
+      "new_source_reference": "https://www.britannica.com/place/Wellington-New-Zealand",
+      "old_source_reference": "https://www.britannica.com/science/geography",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000014",
+      "new_source_reference": "https://science.nasa.gov/mercury/",
+      "old_source_reference": "https://science.nasa.gov/solar-system/",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000015",
+      "new_source_reference": "https://www.britannica.com/science/photosynthesis",
+      "old_source_reference": "https://science.nasa.gov/solar-system/",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000016",
+      "new_source_reference": "https://www.britannica.com/science/gravity-physics",
+      "old_source_reference": "https://science.nasa.gov/solar-system/",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000017",
+      "new_source_reference": "https://www.britannica.com/science/water",
+      "old_source_reference": "https://science.nasa.gov/solar-system/",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000018",
+      "new_source_reference": "https://science.nasa.gov/sun/",
+      "old_source_reference": "https://science.nasa.gov/solar-system/",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000019",
+      "new_source_reference": "https://www.britannica.com/science/solid-state-of-matter",
+      "old_source_reference": "https://science.nasa.gov/solar-system/",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000020",
+      "new_source_reference": "https://www.britannica.com/science/electron",
+      "old_source_reference": "https://science.nasa.gov/solar-system/",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000021",
+      "new_source_reference": "https://www.britannica.com/science/evaporation",
+      "old_source_reference": "https://science.nasa.gov/solar-system/",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000022",
+      "new_source_reference": "https://science.nasa.gov/saturn/",
+      "old_source_reference": "https://science.nasa.gov/solar-system/",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000023",
+      "new_source_reference": "https://www.britannica.com/technology/thermometer",
+      "old_source_reference": "https://science.nasa.gov/solar-system/",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000024",
+      "new_source_reference": "https://www.britannica.com/science/atomic-nucleus",
+      "old_source_reference": "https://science.nasa.gov/solar-system/",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000025",
+      "new_source_reference": "https://www.energy.gov/eere/wind/how-do-wind-turbines-work",
+      "old_source_reference": "https://science.nasa.gov/solar-system/",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000026",
+      "new_source_reference": "https://science.nasa.gov/moon/",
+      "old_source_reference": "https://science.nasa.gov/solar-system/",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000027",
+      "new_source_reference": "https://www.britannica.com/science/heart",
+      "old_source_reference": "https://medlineplus.gov/anatomy.html",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000028",
+      "new_source_reference": "https://www.britannica.com/science/human-respiratory-system",
+      "old_source_reference": "https://medlineplus.gov/anatomy.html",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000029",
+      "new_source_reference": "https://www.britannica.com/science/human-skin",
+      "old_source_reference": "https://medlineplus.gov/anatomy.html",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000030",
+      "new_source_reference": "https://www.britannica.com/science/skull",
+      "old_source_reference": "https://medlineplus.gov/anatomy.html",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000031",
+      "new_source_reference": "https://www.britannica.com/science/tendon",
+      "old_source_reference": "https://medlineplus.gov/anatomy.html",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000032",
+      "new_source_reference": "https://www.britannica.com/science/stomach",
+      "old_source_reference": "https://medlineplus.gov/anatomy.html",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000033",
+      "new_source_reference": "https://www.britannica.com/science/hemoglobin",
+      "old_source_reference": "https://medlineplus.gov/anatomy.html",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000034",
+      "new_source_reference": "https://www.niddk.nih.gov/health-information/kidney-disease/kidneys-how-they-work",
+      "old_source_reference": "https://medlineplus.gov/anatomy.html",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000035",
+      "new_source_reference": "https://www.britannica.com/science/nail-anatomy",
+      "old_source_reference": "https://medlineplus.gov/anatomy.html",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000036",
+      "new_source_reference": "https://www.britannica.com/science/elbow-anatomy",
+      "old_source_reference": "https://medlineplus.gov/anatomy.html",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000037",
+      "new_source_reference": "https://www.britannica.com/science/human-skeleton",
+      "old_source_reference": "https://medlineplus.gov/anatomy.html",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000038",
+      "new_source_reference": "https://www.nei.nih.gov/learn-about-eye-health/healthy-vision/how-eyes-work",
+      "old_source_reference": "https://medlineplus.gov/anatomy.html",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000039",
+      "new_source_reference": "https://www.britannica.com/science/esophagus",
+      "old_source_reference": "https://medlineplus.gov/anatomy.html",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000040",
+      "new_source_reference": "https://www.cloudflare.com/learning/network-layer/what-is-a-router/",
+      "old_source_reference": "https://developer.mozilla.org/en-US/docs/Glossary",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000041",
+      "new_source_reference": "https://developer.mozilla.org/en-US/docs/Glossary/URL",
+      "old_source_reference": "https://developer.mozilla.org/en-US/docs/Glossary",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000042",
+      "new_source_reference": "https://www.bluetooth.com/learn-about-bluetooth/tech-overview/",
+      "old_source_reference": "https://developer.mozilla.org/en-US/docs/Glossary",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000043",
+      "new_source_reference": "https://oceanservice.noaa.gov/education/tutorial_geodesy/geo09_gps.html",
+      "old_source_reference": "https://developer.mozilla.org/en-US/docs/Glossary",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000044",
+      "new_source_reference": "https://www.cisa.gov/news-events/news/data-backup-options",
+      "old_source_reference": "https://developer.mozilla.org/en-US/docs/Glossary",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000045",
+      "new_source_reference": "https://www.cisa.gov/secure-our-world/use-strong-passwords",
+      "old_source_reference": "https://developer.mozilla.org/en-US/docs/Glossary",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000046",
+      "new_source_reference": "https://www.wi-fi.org/discover-wi-fi",
+      "old_source_reference": "https://developer.mozilla.org/en-US/docs/Glossary",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000047",
+      "new_source_reference": "https://www.cisa.gov/news-events/news/understanding-anti-virus-software",
+      "old_source_reference": "https://developer.mozilla.org/en-US/docs/Glossary",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000048",
+      "new_source_reference": "https://developer.mozilla.org/en-US/docs/Glossary/Hyperlink",
+      "old_source_reference": "https://developer.mozilla.org/en-US/docs/Glossary",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000049",
+      "new_source_reference": "https://www.merriam-webster.com/dictionary/scanner",
+      "old_source_reference": "https://developer.mozilla.org/en-US/docs/Glossary",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000050",
+      "new_source_reference": "https://developer.mozilla.org/en-US/docs/Glossary/Browser",
+      "old_source_reference": "https://developer.mozilla.org/en-US/docs/Glossary",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000051",
+      "new_source_reference": "https://www.ibm.com/think/topics/cloud-storage",
+      "old_source_reference": "https://developer.mozilla.org/en-US/docs/Glossary",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000052",
+      "new_source_reference": "https://www.britannica.com/science/week",
+      "old_source_reference": "https://www.nist.gov/pml/time-and-frequency-division/popular-links/time-frequently-asked-questions-faq",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000053",
+      "new_source_reference": "https://www.britannica.com/science/month",
+      "old_source_reference": "https://www.nist.gov/pml/time-and-frequency-division/popular-links/time-frequently-asked-questions-faq",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000054",
+      "new_source_reference": "https://www.britannica.com/science/hour",
+      "old_source_reference": "https://www.nist.gov/pml/time-and-frequency-division/popular-links/time-frequently-asked-questions-faq",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000055",
+      "new_source_reference": "https://www.bipm.org/en/si-base-units/second",
+      "old_source_reference": "https://www.nist.gov/pml/time-and-frequency-division/popular-links/time-frequently-asked-questions-faq",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000056",
+      "new_source_reference": "https://www.merriam-webster.com/dictionary/April",
+      "old_source_reference": "https://www.nist.gov/pml/time-and-frequency-division/popular-links/time-frequently-asked-questions-faq",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000057",
+      "new_source_reference": "https://www.britannica.com/topic/Saturday-day",
+      "old_source_reference": "https://www.nist.gov/pml/time-and-frequency-division/popular-links/time-frequently-asked-questions-faq",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000058",
+      "new_source_reference": "https://www.britannica.com/science/day",
+      "old_source_reference": "https://www.nist.gov/pml/time-and-frequency-division/popular-links/time-frequently-asked-questions-faq",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000059",
+      "new_source_reference": "https://www.merriam-webster.com/dictionary/decade",
+      "old_source_reference": "https://www.nist.gov/pml/time-and-frequency-division/popular-links/time-frequently-asked-questions-faq",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000060",
+      "new_source_reference": "https://www.merriam-webster.com/dictionary/century",
+      "old_source_reference": "https://www.nist.gov/pml/time-and-frequency-division/popular-links/time-frequently-asked-questions-faq",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000061",
+      "new_source_reference": "https://www.merriam-webster.com/dictionary/January",
+      "old_source_reference": "https://www.nist.gov/pml/time-and-frequency-division/popular-links/time-frequently-asked-questions-faq",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000062",
+      "new_source_reference": "https://www.merriam-webster.com/dictionary/February",
+      "old_source_reference": "https://www.nist.gov/pml/time-and-frequency-division/popular-links/time-frequently-asked-questions-faq",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000063",
+      "new_source_reference": "https://www.merriam-webster.com/dictionary/evening",
+      "old_source_reference": "https://www.nist.gov/pml/time-and-frequency-division/popular-links/time-frequently-asked-questions-faq",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000064",
+      "new_source_reference": "https://www.britannica.com/science/year",
+      "old_source_reference": "https://www.nist.gov/pml/time-and-frequency-division/popular-links/time-frequently-asked-questions-faq",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000065",
+      "new_source_reference": "https://www.bipm.org/en/si-base-units/metre",
+      "old_source_reference": "https://www.bipm.org/en/measurement-units",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000066",
+      "new_source_reference": "https://www.bipm.org/en/si-base-units/kilogram",
+      "old_source_reference": "https://www.bipm.org/en/measurement-units",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000067",
+      "new_source_reference": "https://www.bipm.org/en/si-base-units/second",
+      "old_source_reference": "https://www.bipm.org/en/measurement-units",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000068",
+      "new_source_reference": "https://www.nist.gov/pml/owm/si-units-length",
+      "old_source_reference": "https://www.bipm.org/en/measurement-units",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000069",
+      "new_source_reference": "https://www.nist.gov/pml/owm/si-units-length",
+      "old_source_reference": "https://www.bipm.org/en/measurement-units",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000070",
+      "new_source_reference": "https://www.bipm.org/en/publications/si-brochure",
+      "old_source_reference": "https://www.bipm.org/en/measurement-units",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000071",
+      "new_source_reference": "https://www.merriam-webster.com/dictionary/ruler",
+      "old_source_reference": "https://www.bipm.org/en/measurement-units",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000072",
+      "new_source_reference": "https://www.britannica.com/technology/protractor",
+      "old_source_reference": "https://www.bipm.org/en/measurement-units",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000073",
+      "new_source_reference": "https://www.nist.gov/pml/owm/si-units-length",
+      "old_source_reference": "https://www.bipm.org/en/measurement-units",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000074",
+      "new_source_reference": "https://www.merriam-webster.com/dictionary/scale",
+      "old_source_reference": "https://www.bipm.org/en/measurement-units",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000075",
+      "new_source_reference": "https://www.bipm.org/en/si-base-units/ampere",
+      "old_source_reference": "https://www.bipm.org/en/measurement-units",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000076",
+      "new_source_reference": "https://www.bipm.org/en/si-base-units/kelvin",
+      "old_source_reference": "https://www.bipm.org/en/measurement-units",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000077",
+      "new_source_reference": "https://www.bipm.org/en/si-base-units/mole",
+      "old_source_reference": "https://www.bipm.org/en/measurement-units",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000078",
+      "new_source_reference": "https://www.britannica.com/topic/Pyramids-of-Giza",
+      "old_source_reference": "https://www.britannica.com/topic/history",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000079",
+      "new_source_reference": "https://www.britannica.com/biography/Johannes-Gutenberg",
+      "old_source_reference": "https://www.britannica.com/topic/history",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000080",
+      "new_source_reference": "https://www.britannica.com/place/Pompeii",
+      "old_source_reference": "https://www.britannica.com/topic/history",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000081",
+      "new_source_reference": "https://www.britannica.com/topic/papyrus-writing-material",
+      "old_source_reference": "https://www.britannica.com/topic/history",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000082",
+      "new_source_reference": "https://www.britannica.com/topic/Senate-Roman-history",
+      "old_source_reference": "https://www.britannica.com/topic/history",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000083",
+      "new_source_reference": "https://www.britannica.com/topic/Silk-Road-trade-route",
+      "old_source_reference": "https://www.britannica.com/topic/history",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000084",
+      "new_source_reference": "https://www.britannica.com/topic/democracy/Ancient-Greece",
+      "old_source_reference": "https://www.britannica.com/topic/history",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000085",
+      "new_source_reference": "https://www.britannica.com/biography/William-Shakespeare",
+      "old_source_reference": "https://www.britannica.com/topic/history",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000086",
+      "new_source_reference": "https://www.britannica.com/technology/compass-navigational-instrument",
+      "old_source_reference": "https://www.britannica.com/topic/history",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000087",
+      "new_source_reference": "https://www.nasa.gov/history/sputnik/sputorig.html",
+      "old_source_reference": "https://www.britannica.com/topic/history",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000088",
+      "new_source_reference": "https://www.britannica.com/place/Machu-Picchu",
+      "old_source_reference": "https://www.britannica.com/topic/history",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000089",
+      "new_source_reference": "https://www.britannica.com/topic/Magna-Carta",
+      "old_source_reference": "https://www.britannica.com/topic/history",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000090",
+      "new_source_reference": "https://www.britannica.com/technology/central-processing-unit",
+      "old_source_reference": "https://www.ibm.com/think/topics/computer-science",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000091",
+      "new_source_reference": "https://www.britannica.com/technology/RAM-computing",
+      "old_source_reference": "https://www.ibm.com/think/topics/computer-science",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000092",
+      "new_source_reference": "https://developer.mozilla.org/en-US/docs/Glossary/Variable",
+      "old_source_reference": "https://www.ibm.com/think/topics/computer-science",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000093",
+      "new_source_reference": "https://developer.mozilla.org/en-US/docs/Glossary/Loop",
+      "old_source_reference": "https://www.ibm.com/think/topics/computer-science",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000094",
+      "new_source_reference": "https://www.britannica.com/science/algorithm",
+      "old_source_reference": "https://www.ibm.com/think/topics/computer-science",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000095",
+      "new_source_reference": "https://www.merriam-webster.com/dictionary/bit",
+      "old_source_reference": "https://www.ibm.com/think/topics/computer-science",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000096",
+      "new_source_reference": "https://www.britannica.com/technology/operating-system",
+      "old_source_reference": "https://www.ibm.com/think/topics/computer-science",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000097",
+      "new_source_reference": "https://www.britannica.com/technology/debugging",
+      "old_source_reference": "https://www.ibm.com/think/topics/computer-science",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000098",
+      "new_source_reference": "https://www.britannica.com/technology/compiler",
+      "old_source_reference": "https://www.ibm.com/think/topics/computer-science",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000099",
+      "new_source_reference": "https://www.britannica.com/technology/database",
+      "old_source_reference": "https://www.ibm.com/think/topics/computer-science",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000100",
+      "new_source_reference": "https://developer.mozilla.org/en-US/docs/Glossary/HTML",
+      "old_source_reference": "https://www.ibm.com/think/topics/computer-science",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000101",
+      "new_source_reference": "https://developer.mozilla.org/en-US/docs/Glossary/Function",
+      "old_source_reference": "https://www.ibm.com/think/topics/computer-science",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000102",
+      "new_source_reference": "https://www.epa.gov/recycle/recycling-basics-and-benefits",
+      "old_source_reference": "https://www.epa.gov/environmental-topics",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000103",
+      "new_source_reference": "https://www.epa.gov/ghgemissions/overview-greenhouse-gases",
+      "old_source_reference": "https://www.epa.gov/environmental-topics",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000104",
+      "new_source_reference": "https://www.energy.gov/eere/solar/how-does-solar-work",
+      "old_source_reference": "https://www.epa.gov/environmental-topics",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000105",
+      "new_source_reference": "https://www.nrcs.usda.gov/resources/education-and-teaching-materials/soil-erosion",
+      "old_source_reference": "https://www.epa.gov/environmental-topics",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000106",
+      "new_source_reference": "https://www.noaa.gov/education/resource-collections/weather-atmosphere/water-cycle",
+      "old_source_reference": "https://www.epa.gov/environmental-topics",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000107",
+      "new_source_reference": "https://oceanservice.noaa.gov/education/tutorial_corals/coral01_intro.html",
+      "old_source_reference": "https://www.epa.gov/environmental-topics",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000108",
+      "new_source_reference": "https://www.epa.gov/enviroatlas/biodiversity-conservation",
+      "old_source_reference": "https://www.epa.gov/environmental-topics",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000109",
+      "new_source_reference": "https://www.noaa.gov/jetstream/layers-of-atmosphere",
+      "old_source_reference": "https://www.epa.gov/environmental-topics",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000110",
+      "new_source_reference": "https://www.noaa.gov/education/resource-collections/weather-atmosphere/water-cycle",
+      "old_source_reference": "https://www.epa.gov/environmental-topics",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000111",
+      "new_source_reference": "https://www.energy.gov/eere/renewable-energy",
+      "old_source_reference": "https://www.epa.gov/environmental-topics",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000112",
+      "new_source_reference": "https://www.epa.gov/environmental-topics/air-topics",
+      "old_source_reference": "https://www.epa.gov/environmental-topics",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000113",
+      "new_source_reference": "https://www.epa.gov/watersense/start-saving",
+      "old_source_reference": "https://www.epa.gov/environmental-topics",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000114",
+      "new_source_reference": "https://www.merriam-webster.com/dictionary/transparent",
+      "old_source_reference": "https://www.merriam-webster.com/dictionary/definition",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000115",
+      "new_source_reference": "https://www.merriam-webster.com/dictionary/synonym",
+      "old_source_reference": "https://www.merriam-webster.com/dictionary/definition",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000116",
+      "new_source_reference": "https://www.merriam-webster.com/dictionary/antonym",
+      "old_source_reference": "https://www.merriam-webster.com/dictionary/definition",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000117",
+      "new_source_reference": "https://www.merriam-webster.com/dictionary/biodegradable",
+      "old_source_reference": "https://www.merriam-webster.com/dictionary/definition",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000118",
+      "new_source_reference": "https://www.merriam-webster.com/dictionary/habitat",
+      "old_source_reference": "https://www.merriam-webster.com/dictionary/definition",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000119",
+      "new_source_reference": "https://www.merriam-webster.com/dictionary/evidence",
+      "old_source_reference": "https://www.merriam-webster.com/dictionary/definition",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000120",
+      "new_source_reference": "https://www.merriam-webster.com/dictionary/concise",
+      "old_source_reference": "https://www.merriam-webster.com/dictionary/definition",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000121",
+      "new_source_reference": "https://www.merriam-webster.com/dictionary/prediction",
+      "old_source_reference": "https://www.merriam-webster.com/dictionary/definition",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000122",
+      "new_source_reference": "https://www.merriam-webster.com/dictionary/resource",
+      "old_source_reference": "https://www.merriam-webster.com/dictionary/definition",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000123",
+      "new_source_reference": "https://www.merriam-webster.com/dictionary/optional",
+      "old_source_reference": "https://www.merriam-webster.com/dictionary/definition",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000124",
+      "new_source_reference": "https://www.merriam-webster.com/dictionary/summary",
+      "old_source_reference": "https://www.merriam-webster.com/dictionary/definition",
+      "source_replaced": true
+    },
+    {
+      "example_id": "viq1_b001_000125",
+      "new_source_reference": "https://www.merriam-webster.com/dictionary/durable",
+      "old_source_reference": "https://www.merriam-webster.com/dictionary/definition",
+      "source_replaced": true
+    }
+  ],
+  "gate_v1_decisions_stale": 38,
+  "new_source_sha256": "634f516a26df5eb4bef52407dee1ff6c90629adc9d2dcc5700e4045ce62ae698",
+  "old_source_sha256": "b0ee16e2067bc1b8d6c8e079de532ff7eb3b809d533f5a37831fba70ce40f20b",
+  "production_review_entries": 0,
+  "records_changed": 159,
+  "records_unchanged": 341,
+  "stale_gate_v1_example_ids": [
+    "viq1_b001_000021",
+    "viq1_b001_000022",
+    "viq1_b001_000023",
+    "viq1_b001_000034",
+    "viq1_b001_000035",
+    "viq1_b001_000037",
+    "viq1_b001_000055",
+    "viq1_b001_000058",
+    "viq1_b001_000065",
+    "viq1_b001_000066",
+    "viq1_b001_000067",
+    "viq1_b001_000068",
+    "viq1_b001_000071",
+    "viq1_b001_000072",
+    "viq1_b001_000073",
+    "viq1_b001_000074",
+    "viq1_b001_000076",
+    "viq1_b001_000079",
+    "viq1_b001_000088",
+    "viq1_b001_000094",
+    "viq1_b001_000096",
+    "viq1_b001_000097",
+    "viq1_b001_000117",
+    "viq1_b001_000121",
+    "viq1_b001_000124",
+    "viq1_b001_000132",
+    "viq1_b001_000162",
+    "viq1_b001_000167",
+    "viq1_b001_000177",
+    "viq1_b001_000207",
+    "viq1_b001_000217",
+    "viq1_b001_000222",
+    "viq1_b001_000228",
+    "viq1_b001_000232",
+    "viq1_b001_000237",
+    "viq1_b001_000254",
+    "viq1_b001_000379",
+    "viq1_b001_000387"
+  ],
+  "training_authorized": false,
+  "unchanged_example_ids": [
+    "viq1_b001_000126",
+    "viq1_b001_000128",
+    "viq1_b001_000129",
+    "viq1_b001_000130",
+    "viq1_b001_000131",
+    "viq1_b001_000133",
+    "viq1_b001_000134",
+    "viq1_b001_000135",
+    "viq1_b001_000136",
+    "viq1_b001_000138",
+    "viq1_b001_000139",
+    "viq1_b001_000140",
+    "viq1_b001_000141",
+    "viq1_b001_000143",
+    "viq1_b001_000144",
+    "viq1_b001_000145",
+    "viq1_b001_000146",
+    "viq1_b001_000148",
+    "viq1_b001_000149",
+    "viq1_b001_000150",
+    "viq1_b001_000151",
+    "viq1_b001_000153",
+    "viq1_b001_000154",
+    "viq1_b001_000155",
+    "viq1_b001_000156",
+    "viq1_b001_000158",
+    "viq1_b001_000159",
+    "viq1_b001_000160",
+    "viq1_b001_000161",
+    "viq1_b001_000163",
+    "viq1_b001_000164",
+    "viq1_b001_000165",
+    "viq1_b001_000166",
+    "viq1_b001_000168",
+    "viq1_b001_000169",
+    "viq1_b001_000170",
+    "viq1_b001_000171",
+    "viq1_b001_000173",
+    "viq1_b001_000174",
+    "viq1_b001_000175",
+    "viq1_b001_000176",
+    "viq1_b001_000178",
+    "viq1_b001_000179",
+    "viq1_b001_000180",
+    "viq1_b001_000181",
+    "viq1_b001_000183",
+    "viq1_b001_000184",
+    "viq1_b001_000185",
+    "viq1_b001_000186",
+    "viq1_b001_000188",
+    "viq1_b001_000189",
+    "viq1_b001_000190",
+    "viq1_b001_000191",
+    "viq1_b001_000193",
+    "viq1_b001_000194",
+    "viq1_b001_000195",
+    "viq1_b001_000196",
+    "viq1_b001_000198",
+    "viq1_b001_000199",
+    "viq1_b001_000200",
+    "viq1_b001_000201",
+    "viq1_b001_000203",
+    "viq1_b001_000204",
+    "viq1_b001_000205",
+    "viq1_b001_000206",
+    "viq1_b001_000208",
+    "viq1_b001_000209",
+    "viq1_b001_000210",
+    "viq1_b001_000211",
+    "viq1_b001_000213",
+    "viq1_b001_000214",
+    "viq1_b001_000215",
+    "viq1_b001_000216",
+    "viq1_b001_000218",
+    "viq1_b001_000219",
+    "viq1_b001_000220",
+    "viq1_b001_000221",
+    "viq1_b001_000223",
+    "viq1_b001_000224",
+    "viq1_b001_000225",
+    "viq1_b001_000226",
+    "viq1_b001_000227",
+    "viq1_b001_000230",
+    "viq1_b001_000231",
+    "viq1_b001_000234",
+    "viq1_b001_000235",
+    "viq1_b001_000238",
+    "viq1_b001_000239",
+    "viq1_b001_000242",
+    "viq1_b001_000243",
+    "viq1_b001_000246",
+    "viq1_b001_000247",
+    "viq1_b001_000248",
+    "viq1_b001_000249",
+    "viq1_b001_000250",
+    "viq1_b001_000251",
+    "viq1_b001_000252",
+    "viq1_b001_000253",
+    "viq1_b001_000255",
+    "viq1_b001_000256",
+    "viq1_b001_000257",
+    "viq1_b001_000258",
+    "viq1_b001_000259",
+    "viq1_b001_000260",
+    "viq1_b001_000261",
+    "viq1_b001_000262",
+    "viq1_b001_000263",
+    "viq1_b001_000264",
+    "viq1_b001_000265",
+    "viq1_b001_000266",
+    "viq1_b001_000267",
+    "viq1_b001_000268",
+    "viq1_b001_000269",
+    "viq1_b001_000270",
+    "viq1_b001_000271",
+    "viq1_b001_000272",
+    "viq1_b001_000273",
+    "viq1_b001_000274",
+    "viq1_b001_000275",
+    "viq1_b001_000276",
+    "viq1_b001_000277",
+    "viq1_b001_000278",
+    "viq1_b001_000279",
+    "viq1_b001_000280",
+    "viq1_b001_000281",
+    "viq1_b001_000282",
+    "viq1_b001_000283",
+    "viq1_b001_000284",
+    "viq1_b001_000285",
+    "viq1_b001_000286",
+    "viq1_b001_000287",
+    "viq1_b001_000288",
+    "viq1_b001_000289",
+    "viq1_b001_000290",
+    "viq1_b001_000291",
+    "viq1_b001_000292",
+    "viq1_b001_000293",
+    "viq1_b001_000294",
+    "viq1_b001_000295",
+    "viq1_b001_000296",
+    "viq1_b001_000297",
+    "viq1_b001_000298",
+    "viq1_b001_000299",
+    "viq1_b001_000300",
+    "viq1_b001_000301",
+    "viq1_b001_000302",
+    "viq1_b001_000303",
+    "viq1_b001_000304",
+    "viq1_b001_000305",
+    "viq1_b001_000306",
+    "viq1_b001_000307",
+    "viq1_b001_000308",
+    "viq1_b001_000309",
+    "viq1_b001_000310",
+    "viq1_b001_000311",
+    "viq1_b001_000312",
+    "viq1_b001_000313",
+    "viq1_b001_000314",
+    "viq1_b001_000315",
+    "viq1_b001_000316",
+    "viq1_b001_000317",
+    "viq1_b001_000318",
+    "viq1_b001_000319",
+    "viq1_b001_000320",
+    "viq1_b001_000321",
+    "viq1_b001_000322",
+    "viq1_b001_000323",
+    "viq1_b001_000324",
+    "viq1_b001_000325",
+    "viq1_b001_000326",
+    "viq1_b001_000327",
+    "viq1_b001_000328",
+    "viq1_b001_000330",
+    "viq1_b001_000331",
+    "viq1_b001_000332",
+    "viq1_b001_000333",
+    "viq1_b001_000334",
+    "viq1_b001_000335",
+    "viq1_b001_000336",
+    "viq1_b001_000337",
+    "viq1_b001_000338",
+    "viq1_b001_000339",
+    "viq1_b001_000340",
+    "viq1_b001_000341",
+    "viq1_b001_000342",
+    "viq1_b001_000343",
+    "viq1_b001_000344",
+    "viq1_b001_000345",
+    "viq1_b001_000346",
+    "viq1_b001_000347",
+    "viq1_b001_000348",
+    "viq1_b001_000349",
+    "viq1_b001_000350",
+    "viq1_b001_000351",
+    "viq1_b001_000352",
+    "viq1_b001_000353",
+    "viq1_b001_000354",
+    "viq1_b001_000355",
+    "viq1_b001_000356",
+    "viq1_b001_000357",
+    "viq1_b001_000358",
+    "viq1_b001_000359",
+    "viq1_b001_000360",
+    "viq1_b001_000361",
+    "viq1_b001_000362",
+    "viq1_b001_000363",
+    "viq1_b001_000364",
+    "viq1_b001_000365",
+    "viq1_b001_000366",
+    "viq1_b001_000367",
+    "viq1_b001_000368",
+    "viq1_b001_000369",
+    "viq1_b001_000370",
+    "viq1_b001_000371",
+    "viq1_b001_000372",
+    "viq1_b001_000373",
+    "viq1_b001_000374",
+    "viq1_b001_000375",
+    "viq1_b001_000376",
+    "viq1_b001_000377",
+    "viq1_b001_000378",
+    "viq1_b001_000380",
+    "viq1_b001_000381",
+    "viq1_b001_000382",
+    "viq1_b001_000383",
+    "viq1_b001_000384",
+    "viq1_b001_000385",
+    "viq1_b001_000386",
+    "viq1_b001_000388",
+    "viq1_b001_000389",
+    "viq1_b001_000390",
+    "viq1_b001_000391",
+    "viq1_b001_000392",
+    "viq1_b001_000393",
+    "viq1_b001_000394",
+    "viq1_b001_000395",
+    "viq1_b001_000396",
+    "viq1_b001_000397",
+    "viq1_b001_000398",
+    "viq1_b001_000399",
+    "viq1_b001_000400",
+    "viq1_b001_000401",
+    "viq1_b001_000402",
+    "viq1_b001_000403",
+    "viq1_b001_000404",
+    "viq1_b001_000405",
+    "viq1_b001_000406",
+    "viq1_b001_000407",
+    "viq1_b001_000408",
+    "viq1_b001_000409",
+    "viq1_b001_000410",
+    "viq1_b001_000411",
+    "viq1_b001_000412",
+    "viq1_b001_000413",
+    "viq1_b001_000414",
+    "viq1_b001_000415",
+    "viq1_b001_000416",
+    "viq1_b001_000417",
+    "viq1_b001_000418",
+    "viq1_b001_000419",
+    "viq1_b001_000420",
+    "viq1_b001_000421",
+    "viq1_b001_000422",
+    "viq1_b001_000423",
+    "viq1_b001_000424",
+    "viq1_b001_000425",
+    "viq1_b001_000426",
+    "viq1_b001_000427",
+    "viq1_b001_000428",
+    "viq1_b001_000429",
+    "viq1_b001_000430",
+    "viq1_b001_000431",
+    "viq1_b001_000432",
+    "viq1_b001_000433",
+    "viq1_b001_000434",
+    "viq1_b001_000435",
+    "viq1_b001_000436",
+    "viq1_b001_000437",
+    "viq1_b001_000438",
+    "viq1_b001_000439",
+    "viq1_b001_000440",
+    "viq1_b001_000441",
+    "viq1_b001_000442",
+    "viq1_b001_000443",
+    "viq1_b001_000444",
+    "viq1_b001_000445",
+    "viq1_b001_000446",
+    "viq1_b001_000447",
+    "viq1_b001_000448",
+    "viq1_b001_000449",
+    "viq1_b001_000450",
+    "viq1_b001_000451",
+    "viq1_b001_000452",
+    "viq1_b001_000453",
+    "viq1_b001_000454",
+    "viq1_b001_000455",
+    "viq1_b001_000456",
+    "viq1_b001_000457",
+    "viq1_b001_000458",
+    "viq1_b001_000459",
+    "viq1_b001_000460",
+    "viq1_b001_000461",
+    "viq1_b001_000462",
+    "viq1_b001_000463",
+    "viq1_b001_000464",
+    "viq1_b001_000465",
+    "viq1_b001_000466",
+    "viq1_b001_000467",
+    "viq1_b001_000468",
+    "viq1_b001_000469",
+    "viq1_b001_000470",
+    "viq1_b001_000471",
+    "viq1_b001_000472",
+    "viq1_b001_000473",
+    "viq1_b001_000474",
+    "viq1_b001_000475",
+    "viq1_b001_000476",
+    "viq1_b001_000477",
+    "viq1_b001_000478",
+    "viq1_b001_000479",
+    "viq1_b001_000480",
+    "viq1_b001_000481",
+    "viq1_b001_000482",
+    "viq1_b001_000483",
+    "viq1_b001_000484",
+    "viq1_b001_000485",
+    "viq1_b001_000486",
+    "viq1_b001_000487",
+    "viq1_b001_000488",
+    "viq1_b001_000489",
+    "viq1_b001_000490",
+    "viq1_b001_000491",
+    "viq1_b001_000492",
+    "viq1_b001_000493",
+    "viq1_b001_000494",
+    "viq1_b001_000495",
+    "viq1_b001_000496",
+    "viq1_b001_000497",
+    "viq1_b001_000498",
+    "viq1_b001_000499",
+    "viq1_b001_000500"
+  ]
+}
