@@ -62,12 +62,20 @@ def load_model(
     tokenizer.load(str(TOKENIZER_PATH))
 
     config = get_vasu_60m_config()
-    model = VASUModel(config).to(device)
+    model = VASUModel(config)
 
     checkpoint = torch.load(
         DEFAULT_CHECKPOINT,
-        map_location=device,
+        map_location="cpu",
     )
+
+    model.load_state_dict(
+        checkpoint["model"],
+        strict=True,
+    )
+
+    model = model.to(device)
+    model.eval()
 
     if "model" not in checkpoint:
         raise KeyError(
@@ -97,7 +105,11 @@ def main() -> None:
     print(f"Checkpoint: {DEFAULT_CHECKPOINT}")
 
     while True:
-        prompt = input("\nYou: ").strip()
+        try:
+            prompt = input("\nYou: ").strip()
+        except (KeyboardInterrupt, EOFError):
+            print("\nExiting VASU.")
+            break
 
         if prompt.lower() == "exit":
             break
@@ -105,7 +117,7 @@ def main() -> None:
         if not prompt:
             continue
 
-        start_time = time.time()
+        start_time = time.perf_counter()
 
         with torch.inference_mode():
             response = generate(
@@ -123,7 +135,7 @@ def main() -> None:
 
         response = clean_response(response)
 
-        elapsed = time.time() - start_time
+        elapsed = time.perf_counter() - start_time
 
         print(f"\nGeneration time: {elapsed:.2f}s")
         print("\nVASU:", response)

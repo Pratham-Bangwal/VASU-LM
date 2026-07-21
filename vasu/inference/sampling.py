@@ -8,22 +8,23 @@ def sample_next_token(
     temperature=0.8,
     top_k=40,
     top_p=0.9,
-    repetition_penalty=1.2,
+    repetition_penalty=1.1,
 ):
 
     temperature = max(temperature, 1e-5)
-    
+
     logits = logits[:, -1, :] / temperature
 
-    # repetition penalty
-    for token_id in set(input_ids[0].tolist()):
-        if logits[0, token_id] < 0:
-            logits[0, token_id] *= repetition_penalty
-        else:
-            logits[0, token_id] /= repetition_penalty
+    if input_ids is not None and repetition_penalty is not None:
+        for token_id in set(input_ids[0].tolist()):
+            if logits[0, token_id] < 0:
+                logits[0, token_id] *= repetition_penalty
+            else:
+                logits[0, token_id] /= repetition_penalty
 
     # top-k
     if top_k is not None:
+        top_k = min(top_k, logits.size(-1))
         values, _ = torch.topk(logits, top_k)
         logits = logits.masked_fill(
             logits < values[:, [-1]],

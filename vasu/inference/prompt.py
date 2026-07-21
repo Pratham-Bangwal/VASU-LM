@@ -1,15 +1,9 @@
+from vasu.data.prompt_templates import format_alpaca_prompt
+
+
 def build_prompt(
     user_message: str,
     system_prompt: str | None = None,
 ) -> str:
-
-    if system_prompt is None:
-        system_prompt = (
-            "You are VASU, a helpful AI assistant."
-        )
-
-    return (
-        f"System: {system_prompt}\n\n"
-        f"User: {user_message}\n"
-        "Assistant:"
-    )
+    """Build the legacy chat prompt using the shared Alpaca formatter."""
+    return format_alpaca_prompt(user_message)

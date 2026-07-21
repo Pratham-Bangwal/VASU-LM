@@ -12,6 +12,7 @@ def _select_next_token(
     top_k,
     top_p,
     do_sample,
+    repetition_penalty,
 ):
     if do_sample:
         return sample_next_token(
@@ -20,6 +21,7 @@ def _select_next_token(
             temperature,
             top_k,
             top_p,
+            repetition_penalty,
         )
     return torch.argmax(
         logits[:, -1, :],
@@ -41,6 +43,7 @@ def generate_token_ids(
     do_sample=True,
     prompt_format="alpaca",
     use_kv_cache: bool = False,
+    repetition_penalty: float = 1.1,
 ):
     """Generate token IDs with the reference or explicit cached path."""
 
@@ -73,6 +76,7 @@ def generate_token_ids(
                 top_k,
                 top_p,
                 do_sample,
+                repetition_penalty,
             )
             token_history = torch.cat((token_history, next_token), dim=1)
             if next_token.item() == eos_token:
@@ -100,6 +104,7 @@ def generate_token_ids(
             top_k,
             top_p,
             do_sample,
+            repetition_penalty,
         )
         token_history = torch.cat((token_history, next_token), dim=1)
         if next_token.item() == eos_token:
@@ -119,6 +124,7 @@ def generate(
     do_sample=True,
     prompt_format="alpaca",
     use_kv_cache: bool = False,
+    repetition_penalty: float = 1.1,
 ):
     generated_ids = generate_token_ids(
         model=model,
@@ -132,6 +138,7 @@ def generate(
         do_sample=do_sample,
         prompt_format=prompt_format,
         use_kv_cache=use_kv_cache,
+        repetition_penalty=repetition_penalty,
     )
     return tokenizer.decode(
         generated_ids,
