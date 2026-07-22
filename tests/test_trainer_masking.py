@@ -2,6 +2,7 @@
 from types import SimpleNamespace
 
 import torch
+import pytest
 from torch import nn
 from torch.utils.data import TensorDataset
 
@@ -111,6 +112,25 @@ def test_trainer_passes_masks_to_training_and_validation_loss(
 
     assert len(observed_masks) == 3
     assert all(mask is not None for mask in observed_masks)
+
+
+def test_inference_mode_validation_matches_reference_loss(
+    tmp_path: Path,
+    monkeypatch,
+) -> None:
+    """Validation's faster context must preserve the masked-loss result."""
+
+    trainer = build_trainer(tmp_path, monkeypatch)
+    trainer.model.eval()
+    reference_losses = []
+    with torch.no_grad():
+        for inputs, targets, mask in trainer.val_loader:
+            reference_losses.append(
+                real_language_model_loss(trainer.model(inputs), targets, mask)
+            )
+    reference = torch.stack(reference_losses).mean().item()
+
+    assert trainer.validate_epoch() == pytest.approx(reference, abs=1e-6)
 
 
 def test_trainer_normalizes_partial_accumulation_tail(

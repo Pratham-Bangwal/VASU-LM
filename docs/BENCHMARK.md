@@ -45,3 +45,19 @@ faster than standard AdamW on the RTX 4050: roughly 14.1 ms versus 31.0 ms
 median optimizer time in two short runs. Fused AdamW remains an explicit
 CUDA-only `TrainConfig.optimizer_backend="fused"` option; the default remains
 the historical standard backend pending longer-run and exact-resume validation.
+
+## Pipeline and checkpoint audit
+
+The bounded real-data tool `scripts/profiling/profile_data_pipeline.py` keeps
+its model state ephemeral and reads existing memmap datasets only. On the RTX
+4050, VASU-60M batch-size-2, sequence-length-256 steps were compute-bound:
+FineWeb and factual-mixture loader wait stayed below 0.6% of median step time.
+Windows workers improved isolated loader throughput, but not enough to justify
+changing the safe worker-zero default.
+
+`scripts/profiling/profile_checkpoint_io.py` writes only under
+`tmp/profiling/checkpoints/` and deletes its artifacts by default. A VASU-60M
+standard AdamW optimizer-boundary checkpoint measured about 700 MiB; an exact
+mid-accumulation checkpoint measured about 934 MiB because it must preserve
+roughly 233 MiB of accumulated gradients. This is expected exact-resume cost,
+not redundant metadata.

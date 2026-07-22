@@ -150,6 +150,22 @@ def test_checkpoint_positions_cover_optimizer_and_epoch_boundaries(
     assert before_step.train_sampler.epoch_complete  # Final batch of epoch.
 
 
+def test_optimizer_boundary_checkpoint_omits_empty_gradient_payload(
+    tmp_path: Path, monkeypatch
+) -> None:
+    """Exact-resume metadata must not serialize gradients after an update."""
+
+    trainer = _build_trainer(tmp_path, "boundary.pt", [], monkeypatch)
+    trainer.train_epoch(max_microbatches=2)
+    assert trainer._accumulated_microbatches == 0
+    trainer.save_training_checkpoint(trainer.config.checkpoint_path)
+
+    payload = torch.load(
+        trainer.config.checkpoint_path, map_location="cpu", weights_only=False
+    )
+    assert payload["training_progress"]["gradients"] == {}
+
+
 def test_legacy_checkpoint_warns_and_uses_legacy_next_epoch_resume(
     tmp_path: Path, monkeypatch
 ) -> None:

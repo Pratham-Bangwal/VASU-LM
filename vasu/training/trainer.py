@@ -325,7 +325,7 @@ class Trainer:
             raise RuntimeError("No training batches remain in the current epoch.")
         return total_loss / processed
 
-    @torch.no_grad()
+    @torch.inference_mode()
     def validate_epoch(self) -> float:
         self.model.eval()
         total_loss = 0.0

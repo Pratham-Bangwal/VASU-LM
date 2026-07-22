@@ -440,6 +440,21 @@ Possible causes:
 * Small batch size
 * Disabled AMP
 
+## Bounded pipeline audit (RTX 4050, VASU-60M)
+
+`scripts/profiling/profile_data_pipeline.py` profiles local memmap-backed
+FineWeb, instruction, and factual-mixture data without changing a dataset or
+checkpoint. In a bounded batch-size-2, sequence-length-256 run, VASU-60M was
+compute-bound: FineWeb loading accounted for under 0.6% of the median
+end-to-end microbatch time. Windows worker processes improved raw loader
+throughput but did not produce a material end-to-end gain, so the safe
+worker-zero configuration remains preferred.
+
+Validation in the general `Trainer` uses `torch.inference_mode()` rather than
+`torch.no_grad()`. This preserves validation loss while reducing bounded
+validation overhead; it does not affect model, optimizer, scheduler, sampler,
+or checkpoint state.
+
 ---
 
 # Reproducibility

@@ -61,6 +61,13 @@ write leaves the previous checkpoint intact. Non-finite gradients explicitly
 skip their optimizer update, so neither `global_step` nor the epoch scheduler
 claims progress that did not occur.
 
+Bounded VASU-60M checkpoint profiling on the development RTX 4050 measured
+approximately 700 MiB for an optimizer-boundary checkpoint and 934 MiB for a
+mid-accumulation checkpoint. The difference is the required saved gradient
+state for exact resume. Boundary checkpoints store an empty gradient mapping.
+The profiler writes only to `tmp/profiling/checkpoints/` and removes artifacts
+unless explicitly asked to retain them.
+
 ## Best practices
 
 - Keep milestone checkpoints outside operational retention.
