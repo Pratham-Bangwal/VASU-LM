@@ -28,3 +28,11 @@ Validation in block training uses a small fixed held-out sample and is not a com
 - direct VASU-60M versus VASU-31M comparison after VASU-60M instruction tuning.
 
 No broad benchmark score should be reported until the harness and dataset split are documented and reproducible.
+
+## Bounded KV-cache benchmark
+
+`scripts/profiling/profile_vasu.py` performs synchronized synthetic CUDA
+measurements for VASU-31M and VASU-60M. It compares uncached, dynamic, and
+preallocated-cache greedy generation with exact token-parity checks. On the
+RTX 4050 at 64 and 128 generated tokens, the preallocated implementation did
+not meet the 10% VASU-60M throughput promotion threshold; it remains opt-in.

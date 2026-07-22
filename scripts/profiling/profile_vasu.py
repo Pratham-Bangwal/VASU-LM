@@ -21,7 +21,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from vasu.cache import KVCache  # noqa: E402
+from vasu.cache import KVCache, PreallocatedKVCache  # noqa: E402
 from vasu.config import ModelConfig, get_vasu_60m_config  # noqa: E402
 from vasu.model.model import VASUModel  # noqa: E402
 
@@ -99,7 +99,7 @@ def greedy_generation(
     prompt: torch.Tensor,
     new_tokens: int,
     *,
-    use_kv_cache: bool,
+    cache_implementation: str,
     device: torch.device,
 ) -> dict[str, Any]:
     """Measure greedy generation and retain IDs for exact cache parity."""
@@ -108,8 +108,21 @@ def greedy_generation(
     first_token_seconds: float | None = None
     synchronize(device)
     started = time.perf_counter()
-    if use_kv_cache:
-        cache = KVCache(model.config.n_layers, model.config.max_seq_len)
+    if cache_implementation != "uncached":
+        if cache_implementation == "dynamic":
+            cache = KVCache(model.config.n_layers, model.config.max_seq_len)
+        elif cache_implementation == "preallocated":
+            cache = PreallocatedKVCache(
+                model.config.n_layers,
+                model.config.max_seq_len,
+                prompt.size(0),
+                model.config.n_heads,
+                model.config.dim // model.config.n_heads,
+                device=prompt.device,
+                dtype=next(model.parameters()).dtype,
+            )
+        else:
+            raise ValueError(f"Unsupported cache implementation: {cache_implementation}")
         logits = model(history, kv_cache=cache, cache_mode="prefill")
         synchronize(device)
         first_token_seconds = time.perf_counter() - started
@@ -177,21 +190,32 @@ def profile_model(
     training["memory"] = memory_snapshot(device)
 
     prompt = inputs[:1, : min(DEFAULT_PROMPT_LENGTH, sequence_length)]
-    _ = greedy_generation(model, prompt, 2, use_kv_cache=False, device=device)
-    _ = greedy_generation(model, prompt, 2, use_kv_cache=True, device=device)
+    _ = greedy_generation(model, prompt, 2, cache_implementation="uncached", device=device)
+    _ = greedy_generation(model, prompt, 2, cache_implementation="dynamic", device=device)
+    _ = greedy_generation(model, prompt, 2, cache_implementation="preallocated", device=device)
     if device.type == "cuda":
         torch.cuda.reset_peak_memory_stats(device)
     uncached = greedy_generation(
-        model, prompt, new_tokens, use_kv_cache=False, device=device
+        model, prompt, new_tokens, cache_implementation="uncached", device=device
     )
     uncached["memory"] = memory_snapshot(device)
     if device.type == "cuda":
         torch.cuda.reset_peak_memory_stats(device)
-    cached = greedy_generation(
-        model, prompt, new_tokens, use_kv_cache=True, device=device
+    dynamic = greedy_generation(
+        model, prompt, new_tokens, cache_implementation="dynamic", device=device
     )
-    cached["memory"] = memory_snapshot(device)
-    cached["exact_greedy_parity"] = cached.pop("token_ids") == uncached.pop("token_ids")
+    dynamic["memory"] = memory_snapshot(device)
+    if device.type == "cuda":
+        torch.cuda.reset_peak_memory_stats(device)
+    preallocated = greedy_generation(
+        model, prompt, new_tokens, cache_implementation="preallocated", device=device
+    )
+    preallocated["memory"] = memory_snapshot(device)
+    uncached_ids = uncached.pop("token_ids")
+    dynamic["exact_greedy_parity"] = dynamic.pop("token_ids") == uncached_ids
+    preallocated["exact_greedy_parity"] = (
+        preallocated.pop("token_ids") == uncached_ids
+    )
 
     result = {
         "name": name,
@@ -199,7 +223,8 @@ def profile_model(
         "model_construction_seconds": load_seconds,
         "training": training,
         "inference_uncached": uncached,
-        "inference_cached": cached,
+        "inference_dynamic_cache": dynamic,
+        "inference_preallocated_cache": preallocated,
     }
     del scaler, optimizer, inputs, targets, prompt, model
     if device.type == "cuda":

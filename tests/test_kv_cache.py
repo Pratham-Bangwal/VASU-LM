@@ -4,7 +4,7 @@ import pytest
 import torch
 
 import vasu.inference.generate as generate_module
-from vasu.cache import KVCache
+from vasu.cache import KVCache, PreallocatedKVCache
 from vasu.config import ModelConfig
 from vasu.inference.generate import generate_token_ids
 from vasu.model.model import VASUModel
@@ -52,6 +52,19 @@ def _kv(length: int = 2, *, dtype=torch.float32, device="cpu"):
     return torch.randn(1, 4, length, 4, dtype=dtype, device=device)
 
 
+def _preallocated(model: VASUModel, batch_size: int = 1) -> PreallocatedKVCache:
+    config = model.config
+    return PreallocatedKVCache(
+        config.n_layers,
+        config.max_seq_len,
+        batch_size,
+        config.n_heads,
+        config.dim // config.n_heads,
+        device=next(model.parameters()).device,
+        dtype=next(model.parameters()).dtype,
+    )
+
+
 def test_empty_cache_reports_zero_sequence_length():
     cache = KVCache(n_layers=2, max_seq_len=8)
     assert cache.sequence_length == 0
@@ -76,6 +89,73 @@ def test_cache_reset_clears_every_layer():
     assert cache.sequence_length == 0
     assert cache.get(0) == (None, None)
     assert cache.get(1) == (None, None)
+
+
+def test_preallocated_cache_reset_reuses_storage_and_clears_lengths():
+    model = _model()
+    cache = _preallocated(model)
+    storage = cache.storage
+    key = _kv()
+    cache.update(0, key, key)
+    cache.update(1, key, key)
+    cache.reset()
+    assert cache.storage is storage
+    assert cache.sequence_length == 0
+    assert not cache.storage.requires_grad
+
+
+def test_preallocated_cache_rejects_capacity_and_contract_mismatches():
+    model = _model(max_seq_len=2)
+    cache = _preallocated(model)
+    key = _kv(length=2)
+    cache.update(0, key, key)
+    with pytest.raises(ValueError, match="capacity exceeded"):
+        cache.update(0, _kv(length=1), _kv(length=1))
+    wrong_batch = torch.randn(2, 4, 1, 4)
+    with pytest.raises(ValueError, match="batch/head/head_dim"):
+        _preallocated(_model()).update(0, wrong_batch, wrong_batch)
+
+
+def test_preallocated_cache_logits_and_generation_match_other_modes():
+    model = _model()
+    prompt = torch.tensor([[1, 2, 3]])
+    dynamic = KVCache(model.config.n_layers, model.config.max_seq_len)
+    preallocated = _preallocated(model)
+    uncached_prompt = model(prompt)
+    dynamic_prompt = model(prompt, kv_cache=dynamic, cache_mode="prefill")
+    preallocated_prompt = model(
+        prompt, kv_cache=preallocated, cache_mode="prefill"
+    )
+    torch.testing.assert_close(dynamic_prompt, uncached_prompt)
+    torch.testing.assert_close(preallocated_prompt, uncached_prompt)
+
+    first = torch.tensor([[4]])
+    dynamic_decode = model(first, kv_cache=dynamic, cache_mode="decode")
+    preallocated_decode = model(
+        first, kv_cache=preallocated, cache_mode="decode"
+    )
+    full = model(torch.tensor([[1, 2, 3, 4]]))
+    torch.testing.assert_close(dynamic_decode[:, -1], full[:, -1])
+    torch.testing.assert_close(preallocated_decode[:, -1], full[:, -1])
+
+    tokenizer = _Tokenizer()
+    kwargs = dict(
+        model=model,
+        tokenizer=tokenizer,
+        prompt="test",
+        device="cpu",
+        max_new_tokens=5,
+        do_sample=False,
+        prompt_format="plain",
+        use_kv_cache=True,
+    )
+    dynamic_ids = generate_token_ids(**kwargs)
+    preallocated_ids = generate_token_ids(
+        **kwargs, kv_cache_implementation="preallocated"
+    )
+    uncached_kwargs = {**kwargs, "use_kv_cache": False}
+    uncached_ids = generate_token_ids(**uncached_kwargs)
+    assert preallocated_ids == dynamic_ids == uncached_ids
 
 
 @pytest.mark.parametrize("layer_idx", [-1, 2])

@@ -1,7 +1,7 @@
 import torch
 
 from .sampling import sample_next_token
-from vasu.cache import KVCache
+from vasu.cache import KVCache, PreallocatedKVCache
 from vasu.data.prompt_templates import format_prompt
 
 
@@ -43,6 +43,7 @@ def generate_token_ids(
     do_sample=True,
     prompt_format="alpaca",
     use_kv_cache: bool = False,
+    kv_cache_implementation: str = "dynamic",
     repetition_penalty: float = 1.1,
 ):
     """Generate token IDs with the reference or explicit cached path."""
@@ -63,7 +64,22 @@ def generate_token_ids(
             raise ValueError("cached generation requires model.config")
         if prompt_length > config.max_seq_len:
             raise ValueError("prompt exceeds model maximum sequence length")
-        cache = KVCache(config.n_layers, config.max_seq_len)
+        if kv_cache_implementation == "dynamic":
+            cache = KVCache(config.n_layers, config.max_seq_len)
+        elif kv_cache_implementation == "preallocated":
+            cache = PreallocatedKVCache(
+                config.n_layers,
+                config.max_seq_len,
+                input_ids.size(0),
+                config.n_heads,
+                config.dim // config.n_heads,
+                device=input_ids.device,
+                dtype=next(model.parameters()).dtype,
+            )
+        else:
+            raise ValueError(
+                "kv_cache_implementation must be 'dynamic' or 'preallocated'"
+            )
         logits = model(input_ids, kv_cache=cache, cache_mode="prefill")
         token_history = input_ids
         for _ in range(max_new_tokens):
@@ -124,6 +140,7 @@ def generate(
     do_sample=True,
     prompt_format="alpaca",
     use_kv_cache: bool = False,
+    kv_cache_implementation: str = "dynamic",
     repetition_penalty: float = 1.1,
 ):
     generated_ids = generate_token_ids(
@@ -138,6 +155,7 @@ def generate(
         do_sample=do_sample,
         prompt_format=prompt_format,
         use_kv_cache=use_kv_cache,
+        kv_cache_implementation=kv_cache_implementation,
         repetition_penalty=repetition_penalty,
     )
     return tokenizer.decode(

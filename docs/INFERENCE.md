@@ -461,3 +461,11 @@ Inference should be:
 * Suitable for experimentation
 
 Every generation step in VASU is intentionally transparent so developers can understand exactly how the model turns a prompt into meaningful text.
+
+## KV-cache experiment
+
+VASU keeps dynamic KV caching and the new preallocated KV-cache v2 opt-in.
+Both preserve exact greedy token parity with uncached generation. On the RTX
+4050 bounded 64- and 128-token VASU-60M benchmarks, preallocation did not
+improve total throughput, so `chat.py` continues to use uncached generation by
+default. The cache is inference-only and does not affect model checkpoints.

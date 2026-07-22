@@ -3,7 +3,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from typing import Literal
 
-from vasu.cache import KVCache
+from vasu.cache import KVCache, PreallocatedKVCache
 from vasu.config import ModelConfig
 from .rope import RotaryEmbedding
 from .utils import apply_rotary
@@ -40,7 +40,7 @@ class MultiHeadAttention(nn.Module):
     def forward(
         self,
         x: torch.Tensor,
-        kv_cache: KVCache | None = None,
+        kv_cache: KVCache | PreallocatedKVCache | None = None,
         layer_idx: int | None = None,
         cache_mode: Literal["none", "prefill", "decode"] = "none",
     ) -> torch.Tensor:
@@ -101,14 +101,19 @@ class MultiHeadAttention(nn.Module):
 
         q, k = apply_rotary(q, k, cos, sin)
 
-        if cache_mode == "decode":
+        if cache_mode == "decode" and not isinstance(
+            kv_cache, PreallocatedKVCache
+        ):
             assert past_k is not None and past_v is not None
             k = torch.cat((past_k, k), dim=2)
             v = torch.cat((past_v, v), dim=2)
 
         if cache_mode != "none":
             assert kv_cache is not None and layer_idx is not None
-            kv_cache.update(layer_idx, k, v)
+            if isinstance(kv_cache, PreallocatedKVCache):
+                k, v = kv_cache.update(layer_idx, k, v)
+            else:
+                kv_cache.update(layer_idx, k, v)
 
         y = F.scaled_dot_product_attention(
             q,
