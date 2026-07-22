@@ -8,6 +8,7 @@ from types import SimpleNamespace
 import warnings
 
 import torch
+import pytest
 from torch import nn
 from torch.utils.data import Dataset
 
@@ -246,6 +247,40 @@ def test_final_batch_step_checkpoint_runs_validation_and_scheduler_once(
         assert torch.equal(expected, actual.detach())
 
 
+def test_non_finite_gradients_skip_optimizer_and_scheduler_steps(
+    tmp_path: Path, monkeypatch
+) -> None:
+    torch.manual_seed(29)
+    trainer = _build_trainer(tmp_path, "skipped.pt", [], monkeypatch)
+    initial_scheduler = trainer.scheduler.state_dict()
+    monkeypatch.setattr(trainer_module, "finite_gradients", lambda _: False)
+
+    trainer.fit()
+
+    assert trainer.global_step == 0
+    assert trainer.scheduler.state_dict() == initial_scheduler
+    assert trainer._optimizer_steps_in_epoch == 0
+
+
+def test_changed_epoch_target_retains_checkpoint_scheduler_horizon(
+    tmp_path: Path, monkeypatch
+) -> None:
+    torch.manual_seed(31)
+    original = _build_trainer(tmp_path, "source.pt", [], monkeypatch, epochs=2)
+    original.fit()
+    checkpoint_path = tmp_path / "checkpoints" / "best.pt"
+
+    with warnings.catch_warnings(record=True) as caught:
+        warnings.simplefilter("always")
+        resumed = _build_trainer(
+            tmp_path, "checkpoints/best.pt", [], monkeypatch, epochs=3
+        )
+
+    assert resumed.scheduler.T_max == 2
+    assert any("retains checkpoint T_max=2" in str(item.message) for item in caught)
+    assert checkpoint_path.exists()
+
+
 def test_sampler_state_is_compact_serializable_and_never_repeats() -> None:
     sampler = ResumableBatchSampler(
         num_samples=11,
@@ -271,6 +306,64 @@ def test_sampler_state_is_compact_serializable_and_never_repeats() -> None:
     remaining = [index for batch in restored for index in batch]
     assert set(first).isdisjoint(remaining)
     assert sorted(first + remaining) == list(range(11))
+
+
+def test_sampler_rejects_drop_last_contract_mismatch() -> None:
+    sampler = ResumableBatchSampler(
+        num_samples=8,
+        batch_size=2,
+        shuffle=True,
+        seed=7,
+        drop_last=True,
+    )
+    restored = ResumableBatchSampler(
+        num_samples=8,
+        batch_size=2,
+        shuffle=True,
+        seed=7,
+        drop_last=False,
+    )
+    with pytest.raises(ValueError, match="drop_last"):
+        restored.load_state_dict(sampler.state_dict())
+
+
+def test_trainer_rejects_dataset_that_produces_zero_batches(
+    tmp_path: Path, monkeypatch
+) -> None:
+    monkeypatch.setattr(
+        trainer_module,
+        "build_optimizer",
+        lambda model, config: torch.optim.SGD(model.parameters(), lr=0.05),
+    )
+    dataset = torch.utils.data.TensorDataset(
+        torch.tensor([[1, 2]]), torch.tensor([[2, 3]])
+    )
+    config = _config(tmp_path, "empty.pt")
+    config.batch_size = 2
+    config.drop_last = True
+    with pytest.raises(ValueError, match="zero batches"):
+        Trainer(
+            TinyLanguageModel(),
+            tokenizer=None,
+            train_dataset=dataset,
+            val_dataset=dataset,
+            config=config,
+            device=torch.device("cpu"),
+        )
+
+
+def test_non_finite_validation_does_not_promote_or_advance_scheduler(
+    tmp_path: Path, monkeypatch
+) -> None:
+    trainer = _build_trainer(tmp_path, "nan-validation.pt", [], monkeypatch)
+    initial_scheduler = trainer.scheduler.state_dict()
+    monkeypatch.setattr(trainer, "validate_epoch", lambda: float("nan"))
+
+    with pytest.raises(FloatingPointError, match="non-finite"):
+        trainer.fit()
+
+    assert trainer.scheduler.state_dict() == initial_scheduler
+    assert not (Path(trainer.config.checkpoint_dir) / "best.pt").exists()
 
 
 def test_multiworker_loader_keeps_sampler_order_for_deterministic_dataset() -> None:

@@ -1,7 +1,9 @@
 ﻿from pathlib import Path
 
 import torch
+import pytest
 
+import vasu.training.checkpoint as checkpoint_module
 from vasu.training.checkpoint import (
     load_checkpoint,
     save_checkpoint,
@@ -145,3 +147,21 @@ def test_missing_checkpoint_returns_epoch_zero(
         tmp_path / "missing.pt",
         model,
     ) == 0
+
+
+def test_atomic_save_failure_preserves_existing_checkpoint(
+    tmp_path: Path, monkeypatch
+) -> None:
+    model, optimizer, _ = build_training_state()
+    path = tmp_path / "checkpoint.pt"
+    path.write_bytes(b"previous-valid-checkpoint")
+
+    def failed_save(*args, **kwargs) -> None:
+        raise OSError("injected serialization failure")
+
+    monkeypatch.setattr(checkpoint_module.torch, "save", failed_save)
+    with pytest.raises(OSError, match="serialization failure"):
+        save_checkpoint(model, optimizer, epoch=0, loss=1.0, path=path)
+
+    assert path.read_bytes() == b"previous-valid-checkpoint"
+    assert not path.with_suffix(".pt.tmp").exists()

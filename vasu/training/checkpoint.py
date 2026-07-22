@@ -1,6 +1,7 @@
 ﻿from __future__ import annotations
 
 from os import PathLike
+import os
 from pathlib import Path
 from typing import Any
 
@@ -77,7 +78,14 @@ def save_checkpoint(
         )
 
     payload.update(metadata)
-    torch.save(payload, destination)
+    temporary = destination.with_suffix(destination.suffix + ".tmp")
+    temporary.unlink(missing_ok=True)
+    try:
+        torch.save(payload, temporary)
+        os.replace(temporary, destination)
+    except Exception:
+        temporary.unlink(missing_ok=True)
+        raise
 
 
 def load_checkpoint(

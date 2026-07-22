@@ -321,6 +321,13 @@ Resume phase is explicit rather than inferred from a completed sampler: a
 checkpoint after the final training batch but before validation completes that
 validation once, while best/epoch/latest checkpoints begin at the next epoch.
 
+`global_step` counts successful optimizer updates only. If AMP/non-finite
+gradient handling skips an update, gradients are cleared as a handled failure,
+the step counter does not advance, and the per-epoch scheduler is not advanced
+when no successful update occurred in that epoch. The default cosine scheduler
+steps once per epoch (`T_max=epochs`); resuming with a larger epoch target keeps
+the checkpoint's existing scheduler horizon and emits a warning.
+
 The guarantee requires an unchanged loader contract and deterministic dataset
 behavior. Existing checkpoints without `training_progress` are still valid but
 use the historical next-epoch resume with an explicit warning. Specialized

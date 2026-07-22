@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import math
 from pathlib import Path
 import warnings
 from typing import Any
@@ -16,9 +17,11 @@ from vasu.training.losses import language_model_loss
 from vasu.training.optimizer import build_optimizer
 from vasu.training.resumable_sampler import ResumableBatchSampler
 from vasu.training.resume_state import (
+    FORMAT_VERSION,
     RESUME_PHASES,
     build_training_progress,
     capture_gradient_state,
+    finite_gradients,
     restore_gradient_state,
     restore_rng_state,
     validate_gradient_presence,
@@ -64,6 +67,7 @@ class Trainer:
         self.global_step = 0
         self.start_epoch = 0
         self._accumulated_microbatches = 0
+        self._optimizer_steps_in_epoch = 0
         self._resume_phase = "train"
         self.exact_resume_available = True
         self._build_dataloaders()
@@ -84,8 +88,13 @@ class Trainer:
             self.config.batch_size,
             shuffle=True,
             seed=int(getattr(self.config, "seed", 42)),
-            drop_last=True,
+            drop_last=bool(getattr(self.config, "drop_last", True)),
         )
+        if self.train_sampler.batches_per_epoch == 0:
+            raise ValueError(
+                "Training dataset produces zero batches for the configured "
+                "batch_size and drop_last setting."
+            )
         self.loader = DataLoader(
             self.train_dataset,
             batch_sampler=self.train_sampler,
@@ -116,15 +125,28 @@ class Trainer:
         self.optimizer.load_state_dict(checkpoint["optimizer"])
         if "scheduler" in checkpoint:
             self.scheduler.load_state_dict(checkpoint["scheduler"])
+            if self.scheduler.T_max != self.config.epochs:
+                warnings.warn(
+                    "Configured epochs differs from the checkpoint scheduler "
+                    "horizon; continuation retains checkpoint "
+                    f"T_max={self.scheduler.T_max}.",
+                    RuntimeWarning,
+                    stacklevel=2,
+                )
         self.best_val_loss = checkpoint.get("best_val_loss", float("inf"))
         self.global_step = int(checkpoint.get("global_step", 0))
 
         progress = checkpoint.get("training_progress")
-        if progress is None:
+        if progress is None or progress.get("format_version") != FORMAT_VERSION:
             self.exact_resume_available = False
             self.start_epoch = int(checkpoint.get("epoch", -1)) + 1
+            reason = (
+                "has no training_progress sampler state"
+                if progress is None
+                else "uses an older training_progress format"
+            )
             warnings.warn(
-                "Checkpoint has no training_progress sampler state. Falling back "
+                f"Checkpoint {reason}. Falling back "
                 "to legacy next-epoch resume; exact mid-epoch resume is "
                 "unavailable and a historical mid-epoch checkpoint may skip its "
                 "unprocessed remaining samples.",
@@ -132,8 +154,6 @@ class Trainer:
                 stacklevel=2,
             )
             return
-        if progress.get("format_version") != 1:
-            raise ValueError("Unsupported training_progress checkpoint format.")
         phase = progress.get("phase")
         if phase not in RESUME_PHASES:
             raise ValueError(
@@ -145,6 +165,10 @@ class Trainer:
         self._accumulated_microbatches = int(
             progress["accumulated_microbatches"]
         )
+        optimizer_steps = progress.get("optimizer_steps_in_epoch")
+        if not isinstance(optimizer_steps, int) or optimizer_steps < 0:
+            raise ValueError("Checkpoint optimizer_steps_in_epoch is invalid.")
+        self._optimizer_steps_in_epoch = optimizer_steps
         if not 0 <= self._accumulated_microbatches < self.config.gradient_accumulation_steps:
             raise ValueError("Checkpoint accumulation position is invalid.")
         gradients = progress.get("gradients", {})
@@ -171,6 +195,7 @@ class Trainer:
             sampler_state=self.train_sampler.state_dict(),
             phase=self._resume_phase,
             accumulated_microbatches=self._accumulated_microbatches,
+            optimizer_steps_in_epoch=self._optimizer_steps_in_epoch,
             gradients=capture_gradient_state(self.model),
             scaler_state=self.scaler.state_dict(),
         )
@@ -205,8 +230,23 @@ class Trainer:
         inputs, targets = batch
         return inputs, targets, None
 
-    def _optimizer_step(self) -> None:
+    def _optimizer_step(self) -> bool:
+        """Apply one safe optimizer update and report whether it succeeded."""
+
         self.scaler.unscale_(self.optimizer)
+        if not finite_gradients(self.model.parameters()):
+            # GradScaler would skip this update for non-finite gradients. Make
+            # that branch explicit so scheduler/global-step state cannot claim
+            # an optimizer update that never happened.
+            self.scaler.update()
+            self.optimizer.zero_grad(set_to_none=True)
+            self._accumulated_microbatches = 0
+            warnings.warn(
+                "Skipped optimizer update because gradients were non-finite.",
+                RuntimeWarning,
+                stacklevel=2,
+            )
+            return False
         normalize_partial_accumulation(
             self.model.parameters(),
             accumulated_microbatches=self._accumulated_microbatches,
@@ -218,6 +258,8 @@ class Trainer:
         self.optimizer.zero_grad(set_to_none=True)
         self._accumulated_microbatches = 0
         self.global_step += 1
+        self._optimizer_steps_in_epoch += 1
+        return True
 
     def train_epoch(self, *, max_microbatches: int | None = None) -> float:
         """Train remaining batches in the current epoch.
@@ -263,9 +305,13 @@ class Trainer:
                 == self.config.gradient_accumulation_steps
                 or is_epoch_tail
             ):
-                self._optimizer_step()
+                update_succeeded = self._optimizer_step()
                 save_every = int(getattr(self.config, "save_every_steps", 0))
-                if save_every > 0 and self.global_step % save_every == 0:
+                if (
+                    update_succeeded
+                    and save_every > 0
+                    and self.global_step % save_every == 0
+                ):
                     self.save_training_checkpoint(
                         Path(self.config.checkpoint_dir)
                         / f"step_{self.global_step}.pt",
@@ -320,12 +366,14 @@ class Trainer:
             if not self.train_sampler.epoch_complete:
                 raise RuntimeError("Epoch training ended before the sampler was exhausted.")
             val_loss = self.validate_epoch()
-            for callback in self.callbacks:
-                callback.on_epoch_end(self, epoch, train_loss, val_loss)
-            self.scheduler.step()
+            if not math.isfinite(val_loss):
+                raise FloatingPointError("Validation loss is non-finite; refusing checkpoint promotion.")
+            if self._optimizer_steps_in_epoch > 0:
+                self.scheduler.step()
             self.train_sampler.advance_epoch()
             self.start_epoch = self.train_sampler.position.epoch
             self._resume_phase = "next_epoch"
+            self._optimizer_steps_in_epoch = 0
             if val_loss < self.best_val_loss:
                 self.best_val_loss = val_loss
                 self.save_training_checkpoint(
@@ -343,5 +391,10 @@ class Trainer:
                 epoch=epoch,
                 loss=val_loss,
             )
+            for callback in self.callbacks:
+                callback.on_epoch_end(self, epoch, train_loss, val_loss)
+            # Checkpoints have recorded the completed transition as
+            # ``next_epoch``. The in-memory loop can now begin that epoch.
+            self._resume_phase = "train"
         for callback in self.callbacks:
             callback.on_train_end(self)

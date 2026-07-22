@@ -55,6 +55,12 @@ mid-epoch position. Exact resume also requires an identical dataset size,
 batch size, seed, shuffle setting, and `drop_last` setting; a mismatch fails
 clearly rather than silently approximating the position.
 
+Generic checkpoint writes are atomic: VASU serializes to a sibling `.tmp` file
+and promotes it with `os.replace` only after serialization succeeds. A failed
+write leaves the previous checkpoint intact. Non-finite gradients explicitly
+skip their optimizer update, so neither `global_step` nor the epoch scheduler
+claims progress that did not occur.
+
 ## Best practices
 
 - Keep milestone checkpoints outside operational retention.

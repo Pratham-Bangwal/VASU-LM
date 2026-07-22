@@ -8,6 +8,9 @@
   Additive checkpoint metadata now preserves sampler, partial-gradient, AMP
   scaler, and RNG state; legacy checkpoints remain loadable with an explicit
   non-exact-resume warning.
+- Hardened the general Trainer checkpoint path with atomic saves, explicit
+  non-finite-gradient skip handling, phase-consistent callback timing, and
+  defined scheduler-horizon behavior for extended epoch targets.
 
 - Completed VASU-60M instruction-quality Batch 002 from the Batch 001 best
   checkpoint. The isolated three-update run finished at global step 201307 with

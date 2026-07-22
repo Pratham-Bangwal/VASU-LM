@@ -9,7 +9,7 @@ import numpy as np
 import torch
 
 
-FORMAT_VERSION = 1
+FORMAT_VERSION = 2
 RESUME_PHASES = frozenset({"train", "post_train_pre_validation", "next_epoch"})
 
 
@@ -79,6 +79,7 @@ def build_training_progress(
     sampler_state: dict[str, Any],
     phase: str,
     accumulated_microbatches: int,
+    optimizer_steps_in_epoch: int,
     gradients: dict[str, torch.Tensor],
     scaler_state: dict[str, Any],
 ) -> dict[str, Any]:
@@ -88,11 +89,14 @@ def build_training_progress(
         raise ValueError(f"Unsupported training resume phase: {phase!r}")
     if accumulated_microbatches < 0:
         raise ValueError("accumulated_microbatches must be non-negative.")
+    if optimizer_steps_in_epoch < 0:
+        raise ValueError("optimizer_steps_in_epoch must be non-negative.")
     return {
         "format_version": FORMAT_VERSION,
         "sampler": sampler_state,
         "phase": phase,
         "accumulated_microbatches": accumulated_microbatches,
+        "optimizer_steps_in_epoch": optimizer_steps_in_epoch,
         "gradients": gradients,
         "scaler": scaler_state,
         "rng": capture_rng_state(),
