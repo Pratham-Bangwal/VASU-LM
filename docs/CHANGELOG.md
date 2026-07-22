@@ -15,6 +15,122 @@
   as a rejected promotion candidate. Batch 001 remains preferred.
 
 
+- Repaired instruction-quality batch 001 after its first 100-example human gate
+  failed (77 approved, 15 fact checks, eight rewrites). Replaced all 125 broad
+  factual references with claim-specific sources and corrected list filler,
+  ambiguous wording, beginner grammar, and transformation fidelity.
+- Added a hash-bound repair audit recording 159 changed and 341 unchanged
+  records plus 38 stale gate-v1 decisions. No historical decision was reused or
+  copied into the empty production review file.
+- Added deterministic gate-v2 sampling and a blank 100-example review packet
+  with the original category distribution, old gate hashes where available,
+  new record hashes, changed flags, and automatic findings. Training,
+  tokenization, release building, and automatic approval remain disabled.
+
+- Authored deterministic instruction-quality batch 001 with exactly 500
+  purpose-written, unreviewed production candidates and the configured seven-
+  capability distribution. Added stable batch IDs, source/config manifests,
+  automatic validation and token-length reports, and a complete grouped human-
+  review packet.
+- Extended the existing v1 validator additively for namespaced batch IDs,
+  verified HTTP(S) factual references, exact numbered-item counts, exact word
+  counts, and labelled-field structures. Existing demo IDs and constraints
+  remain compatible.
+- Verified zero invalid records, exact duplicates, near-duplicate candidates,
+  demo collisions, and truncations. No production token, mask, release, model,
+  checkpoint, or training artifact was created; authorization remains false.
+
+- Added the versioned `vasu_instruction_quality_v1` data-engineering pilot:
+  strict source schema, transparent validation and quality scoring, layered
+  exact/near deduplication, hash-bound human decisions, deterministic
+  capability-stratified splitting, and atomic masked-release construction.
+- Added a 21-record demonstration fixture spanning all seven planned
+  capabilities, validation/source/review manifests, a readable review packet,
+  CLI validation/review/release commands, and focused regression tests.
+- Reused the established masked Alpaca-v3 prompt, response/EOS supervision,
+  and padding-mask behavior without changing tokenizer, checkpoints, model, or
+  training code. The fixture remains unreviewed and `training_authorized=false`;
+  no release or training run has been authorized.
+
+- Added the frozen 216-prompt UltraChat promotion benchmark, checkpoint audit,
+  dual held-out masked-loss evaluation, EOS-aware degeneration metrics, strict
+  and relaxed format checks, and a blank 60-prompt stratified review packet.
+- Evaluated the historically completed UltraChat masked-v2 branch without
+  optimizer updates. UltraChat loss improved, but format compliance,
+  repetition, and coherence heuristics regressed; Alpaca v3 remains the main
+  instruction checkpoint and no additional training stage is authorized.
+
+- Closed the completed FineWeb/Wikimedia factual-CPT branch as preserved but
+  rejected: losses improved, while frozen cloze and multiple-choice evidence
+  did not establish a meaningful factual gain. Further CPT and instruction
+  tuning from that candidate are unauthorized.
+- Added a reproducible Alpaca-v3 parent-baseline artifact for the masked
+  UltraChat comparison, derived from the same preserved 40-prompt greedy and
+  sampled reports and recording masked validation loss plus response-level
+  comparison heuristics.
+- Verified that the isolated UltraChat runner strictly names masked Alpaca v3
+  as its parent and contains no factual-CPT parent reference. The already
+  completed UltraChat outputs remain preserved as an experimental branch;
+  future reruns still require explicit `--train` authorization.
+
+- Added the frozen 300-example factual-CPT v2 benchmark: 100 cloze examples,
+  100 direct conditional-likelihood multiple-choice examples, 50 general
+  continuations, and 50 qualitative prompts, with seeded bootstrap intervals.
+- Added parent/best/latest factual-CPT evaluation with benchmark, configuration,
+  tokenizer, and checkpoint hashes plus greedy and controlled-sampling
+  degeneration metrics that respect response boundaries.
+- Completed the approved 1,221-step FineWeb/Wikimedia factual-CPT run. FineWeb
+  validation improved from 3.356130 to 3.317529 and held-out Wikimedia from
+  3.393557 to 3.286295 at the selected checkpoint.
+- Preserved the factual-CPT checkpoint as an evaluation candidate rather than
+  promoting it: exact cloze and MC accuracy did not improve, and the two-point
+  normalized-cloze increase was not distinguishable from benchmark noise.
+
+- Prepared an authorization-gated VASU-60M factual continued-pretraining pilot
+  from FineWeb step 200,000: 85% unseen FineWeb-Edu, 15% approved Wikimedia,
+  seed 42, and a 10-million-token cap. No optimizer update was performed.
+- Added deterministic parent-level Wikimedia splitting and isolated `uint16`
+  train/validation tokenization with exact source/tokenizer hashes. The split
+  contains 382 training and 20 validation parents with zero overlap.
+- Added reusable fixed-record pretraining-mixture preparation. The 39,062-record
+  artifact contains 9,999,872 supervised positions and prevents cross-source
+  target transitions. A clean rebuild reproduced binary SHA-256
+  `60a06cc54f0c77b977db733829584786edbe518eda38eab83964887d9a12bc4b`
+  and schedule SHA-256
+  `f426c1e3a301bad4b451c2b6d8b1bea2fe567dd262d493fadf5c25e368fef6b0`.
+- Added an explicit factual-CPT evaluation plan and six category-level prompts
+  covering science, history, geography, technology, biography, and definitions.
+  The prompts are not copied from the Wikimedia release.
+- Added a versioned, SHA-bound Wikimedia quarantine release transformation.
+  It excludes only the 12 exact chunks rejected by the frozen human gate,
+  preserves retained records byte-for-byte and in order, publishes atomically,
+  and validates source immutability, IDs, provenance, parent counts, chunk
+  counts, and token counts.
+- Published the approved quarantine release at SHA-256
+  `6aa10d73669ca90ad20f867f14a6368d2191b38094f02aa1679ebaf122962de7`:
+  402 parents, 3,597 chunks, and 1,993,564 tokens after quarantining 12 chunks
+  and 6,133 tokens. Existing-policy audit results are zero automatic rejects
+  and zero unexplained findings. No review sample or training run was started.
+- Added a named, dataset-wide Wikimedia defect scanner covering every defect
+  family recorded in completed manual-review archives, with bounded evidence,
+  automatic-versus-review dispositions, and zero-unexplained-match enforcement.
+- Added the immutable Wikimedia release policy: zero automatic precheck
+  failures, zero human critical rejects, noted harmless minor issues, one final
+  remediation cycle, and hash-qualified approved artifacts.
+- Froze the final global-audit candidate at SHA-256
+  `ffcbc25f4863f519744212f809ee600bdc7f4a0d5c2d02a0833e1bc4cec6014d`
+  with 3,609 chunks, 1,999,697 tokens, a zero-unexplained global audit, and an
+  84-item pending deterministic review. No Wikimedia training was started.
+
+- Added deterministic, SHA-bound Wikimedia manual-review tooling with local
+  seeded sampling, overlapping-reason preservation, bounded start/end
+  previews, automatic quality prechecks, atomic status updates, and explicit
+  pending/pass/minor-issue/reject validation.
+- Generated the initial 79-chunk pending review sample across 62 parent
+  articles. It includes all requested bounded sampling groups, 21 forced
+  reference-type sections, 2 suspicious-metadata selections, and 14 removed
+  duplicate selections; no record was automatically approved and no training
+  was started.
 - Added a deterministic, resumable, atomic FineWeb-extension source-ID recovery
   smoke using the official Dataset Viewer exact-ID filter with per-request
   pinned-revision enforcement and no full-scan fallback.
@@ -49,6 +165,19 @@
 
 ### Changed
 
+- The first deterministic Wikimedia manual review failed because it exposed
+  systematic reference appendix leakage, 18 below-minimum samples, malformed
+  overlap boundaries, list-heavy content, and missing source/template values.
+  Its SHA-bound reports remain archived for evidence.
+- Wikimedia v4 preparation now excludes canonical structured and embedded
+  reference headings; merges or rejects subminimum chunks; records boundary
+  types and overlap characters; omits unsafe mid-sentence overlaps; and runs
+  configurable list-density plus conservative malformed-source checks before
+  deduplication and accounting.
+- Regenerated and validated the default pilot at 304 parents, 3,480 chunks,
+  and 1,999,700 tokens, with an observed 128–1,023 token range and zero retained
+  reference headings, replacement/mojibake markers, or token fallbacks. The
+  new 61-chunk review is fully pending and has zero automatic precheck failures.
 - Replaced Wikimedia preparation's ambiguous accepted-document limit with
   independent `max_accepted_parent_documents` and `max_accepted_chunks`
   limits. The legacy key remains a deprecated chunk-limit alias and cannot be

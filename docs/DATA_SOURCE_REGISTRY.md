@@ -279,6 +279,28 @@ documents, 3,751 accepted chunks, and 1,999,974 tokens. The maximum chunk was
 FineWeb near overlap was rejected, and v3 output validation passed. No
 Wikimedia model training has started.
 
+Manual-quality review is tracked separately in
+`data/manifests/factual/wikimedia_pilot_manual_review.json` and its bounded text
+companion. The deterministic seed-42 selection contains 79 unique chunks from
+62 parent articles, including 20 random chunks, size extremes, near-maximum
+chunks, stream-spanning and distinct-parent samples, every warning/reference
+candidate, and suspicious metadata. Fourteen overlapping selections were
+deduplicated without losing their reasons. All classifications are currently
+pending; source approval and structural validation do not yet imply that the
+prepared pilot is training-ready.
+
+The first 79-chunk review failed because it found systematic reference-section
+leakage, subminimum fragments, malformed starts, list-heavy material, and
+missing source/template values. Its reports remain archived under the old
+dataset hash. The corrected v4 preparer now enforces reference appendix
+exclusion, a strict 128-token minimum with safe sibling merging, explicit
+boundary metadata, configurable list-density checks, and conservative
+malformed-source rejection before accounting. The replacement artifact has
+  SHA-256 `4c21e6b54cf747a82769951e97222cbe161296e7c0556ee14125df93cc1a4fd0`,
+  304 parents, 3,480 chunks, and 1,999,700 tokens. The new 61-chunk review has
+zero automatic precheck failures but remains entirely pending human review;
+the source is still not authorized for model training.
+
 ### Broad-review evidence
 
 Review mode deterministically chooses 500 unique, evenly distributed row

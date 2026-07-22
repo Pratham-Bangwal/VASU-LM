@@ -323,6 +323,119 @@ Unknown or unavailable values are explicitly marked rather than inferred.
 - Reports: `evaluation/checkpoint_comparison_expanded_40_sampled_5seed.{txt,json}` and `evaluation/checkpoint_score_summary_expanded_40_sampled_5seed.json`.
 - Decision: preserve both checkpoints and current training state; no new training is authorized by this evaluation.
 
+## VASU-60M 85/15 FineWeb-Wikimedia factual CPT preparation
+
+- Objective: measure whether a small encyclopedic continuation improves held-out factual modeling without catastrophic forgetting, excessive article style, repetition, or evaluation leakage.
+- Parent checkpoint: `checkpoints/vasu_60m/milestones/fineweb_step_200000.pt`, internal global step 200,000, SHA-256 `88688ee85fc880967dafb322277565d4754e049a22c0d8e86060991438436a2f`.
+- Data policy: 85% sequential unseen FineWeb-Edu and 15% approved Wikimedia; seed 42; 10,000,000-token cap; no instruction data and no replacement sampling.
+- Wikimedia source: approved release SHA-256 `6aa10d73669ca90ad20f867f14a6368d2191b38094f02aa1679ebaf122962de7`; tokenizer SHA-256 `04942e101a4a01f87f7e492ad9e463d299a559e784b650fdedd1763a017d195a`.
+- Leakage control: deterministic parent-level 95/5 split gives 382 train parents and 20 validation parents with zero overlap. Train/validation token streams contain 1,915,008/92,944 tokens.
+- Mixture result: 39,062 independent 257-token records and 9,999,872 supervised positions. FineWeb contributes 33,203 sequences / 8,499,968 tokens; Wikimedia contributes 5,859 / 1,499,904, approximately 0.783 effective passes over its training stream.
+- Determinism: mixed binary SHA-256 `60a06cc54f0c77b977db733829584786edbe518eda38eab83964887d9a12bc4b`; schedule SHA-256 `f426c1e3a301bad4b451c2b6d8b1bea2fe567dd262d493fadf5c25e368fef6b0`; a clean temporary rebuild matched both.
+- Optimization plan: batch 2, accumulation 16, context 256, AMP, 1e-5 peak LR, 1e-6 minimum LR, 25-step linear warmup, cosine decay, weight decay 0.1, clipping 1.0, and 1,221 expected optimizer steps.
+- Initialization semantics: load parent model weights strictly, create a new experiment-local optimizer and scheduler, record parent step 200,000, and start experiment step at zero.
+- Evaluation gate: compare held-out Wikimedia and fixed FineWeb losses, existing generation prompts, the new uncontaminated factual prompt set, repetition, response length, and encyclopedic-style rate. Roll back if FineWeb loss materially regresses, repetition/style increases, or general generation quality collapses.
+- Dry run: strict CPU model load and architecture validation passed; two mixture records and both validation datasets loaded; optimizer updates performed: zero.
+- Decision: preparation complete, training incomplete and unauthorized. Do not claim factual improvement.
+- Future command after explicit approval: `python train_vasu_60m_factual_cpt.py --config configs/training/vasu_60m_factual_cpt_wikimedia_15pct.json`.
+
+## VASU-60M factual CPT completion and v2 benchmark
+
+- Training completed: 1,221 optimizer updates, 8,499,968 FineWeb tokens, and 1,499,904 Wikimedia tokens; no OOM, non-finite value, thermal stop, or FineWeb guardrail violation.
+- Checkpoints: `best.pt` is experiment step 1,200, selected by Wikimedia loss with FineWeb as a guardrail; `latest.pt` is final step 1,221.
+- Validation: parent/best FineWeb losses were 3.356130/3.317529 (-1.15%); parent/best Wikimedia losses were 3.393557/3.286295 (-3.16%).
+- Benchmark: `evaluation/benchmarks/factual_cpt_v2.json`, seed 42, SHA-256 `17c356f0b3a5093511402b08f307b770b8cc4443b3ca3e1cceaa0eb7044115b9`; 100 cloze, 100 multiple choice, 50 continuation, and 50 open-ended examples.
+- Factual result: exact cloze stayed 6%; normalized cloze rose 7% to 9%, but its paired 95% bootstrap interval was 0 to +5 points. Mean target-log-likelihood change was indistinguishable from zero. Raw/length-normalized MC stayed 41%/36%.
+- Continuation result: sampled repetition was stable (0.2980 parent versus 0.2959 best), while greedy repetition fell from 0.6942 to 0.6665. Response-boundary-safe sampled distinct-1/2/3 changed only slightly.
+- Qualitative result: sampled open-ended repetition fell from 0.3414 to 0.2786, but empty-output rate rose from 2% to 4% and article-lead style from 14% to 20%. These heuristics do not establish factual correctness.
+- Decision: preserve but do not promote the factual-CPT branch. Loss improved without meaningful cloze/MC evidence. Do not run another CPT stage or begin instruction tuning based on this result.
+- Reports: `evaluation/results/factual_cpt_v2_{parent,best,latest}.{json,txt}` and `evaluation/results/factual_cpt_v2_comparison.json`.
+- Closeout: the selected checkpoint is preserved with a sidecar declaring the experiment complete, promotion rejected, and both further CPT and instruction tuning from this branch not recommended. The training configuration is again authorization-gated. The approved Wikimedia release itself remains immutable and approved.
+- Instruction lineage: masked UltraChat's verified parent is `checkpoints/vasu_60m/alpaca_masked_v3_from_200k/best.pt`, not the factual-CPT candidate. Inspection found no accidental factual-CPT parent reference in the UltraChat configuration.
+- Parent baseline: the preserved 40-prompt Alpaca-v3 greedy and sampled reports use the same prompt IDs and settings as the completed UltraChat comparison. Their reproducible summary is `evaluation/results/vasu_60m_ultrachat_parent_alpaca_v3_baseline.json`; its automatic score is labeled only as a relevance proxy, not semantic correctness.
+
+## VASU-60M UltraChat masked-v2 promotion evaluation
+
+- Objective: decide whether the historically completed UltraChat best checkpoint should replace masked Alpaca v3.
+- Benchmark: 216 synthetic, versioned prompts across 12 categories; SHA-256 `68806800c0b8d524a1cdd4e83ccdd46d388aa9d86f8070a6fbbf3e04a8091bf1`.
+- Modes: greedy and seed-42 controlled sampling, both capped at 128 new tokens with EOS stopping and repetition penalty 1.1.
+- Masked losses: parent/UltraChat best were 2.693622/2.581431 on UltraChat and 2.522585/2.543987 on Alpaca.
+- Format compliance: strict greedy 7.87%/0%; strict sampled 16.20%/4.17% for parent/UltraChat.
+- Repetition: greedy 0.7261/0.7717 and sampled 0.3424/0.3922. Empty and premature-EOS rates were zero for both.
+- Best versus latest: `best.pt` and the historical final `vasu.pt` produced identical losses, generations, and metrics; `latest.pt` does not exist because the runner names its final resumable artifact `vasu.pt`.
+- Manual review: a deterministic 60-prompt stratified side-by-side form was created with blank reviewer fields. No semantic preference is inferred from lexical metrics.
+- Decision: do not promote UltraChat. Keep masked Alpaca v3 as the main checkpoint and do not authorize another instruction-training stage.
+- Reports: `evaluation/results/ultrachat_checkpoint_audit_v1.json`, `evaluation/results/ultrachat_promotion_v1.json`, and `evaluation/results/ultrachat_promotion_v1_manual_review.txt`.
+
+## VASU instruction-quality v1 pipeline pilot
+
+- Objective: establish a reproducible authoring, validation, deduplication,
+  human-review, split, and masked-release workflow before authorizing another
+  instruction-tuning experiment.
+- Diagnosis: inference, tokenizer, prompt template, and masked-loss alignment
+  were verified; instruction-data quality and coverage are the primary current
+  limitation.
+- Scope: 21 demonstration examples (three in each of seven capabilities), not
+  the planned 2,000-5,000-example production dataset.
+- Validation: 21 valid, zero invalid, zero exact duplicate groups, and zero
+  near-duplicate candidates at trigram-Jaccard threshold 0.85.
+- Review: source records remain immutable; all 21 demonstration records were
+  approved through separate hash-bound human decisions. Rule-based quality
+  scores did not approve records.
+- Release policy: only human-approved, constraint-valid, nonduplicate records
+  may enter a deterministic capability-stratified 95/5 split. Cross-split
+  leakage, stale decisions, factual gaps, tokenizer mismatch, or truncation
+  fails the release.
+- Masking: the exact masked Alpaca-v3 User/Assistant prompt is reused; prompt
+  targets are zero, response and EOS targets are one, and padding is zero.
+- Result: pipeline validation and focused tests pass. The demonstration release
+  contains five packed records and 1,285 tokens. This does not authorize model
+  training or automatically approve later production batches.
+
+## VASU instruction-quality v1 batch 001 authoring
+
+- Objective: create the first reviewable 500-example production-candidate
+  tranche for a small 58M-parameter model without tokenizing or training it.
+- Method: deterministic purpose-written static catalogs with stable IDs
+  `viq1_b001_000001` through `viq1_b001_000500`; no external generation API or
+  downloaded instruction dataset was used.
+- Distribution: 125 factual QA, 100 beginner explanations, 100 exact-format,
+  75 rewriting, 50 structured-output, 25 JSON, and 25 uncertainty examples.
+- Difficulty: 350 easy, 150 medium, zero hard.
+- Quality gate: 500 valid, zero invalid, zero exact duplicates, zero trigram-
+  Jaccard candidates at 0.85, and zero duplicates against the frozen demo.
+- Token audit: unchanged tokenizer and Alpaca-v3 prompt; complete examples range
+  from 16 to 65 tokens (mean 38.352), with zero truncations and no binary output.
+- Review state: all 500 records are unreviewed; the decision file is empty and
+  the review packet contains blank human fields. No automatic approval occurs.
+- Decision: candidate authoring is complete, but release and training remain
+  blocked until human review and a subsequent frozen release audit.
+
+### Batch 001 gate-v1 remediation
+
+- Gate-v1 result: 100 reviewed; 77 approved, 15 needed fact checking, eight
+  needed rewriting, and zero were rejected. This failed the production gate.
+- Root causes: factual rows shared broad category pages unrelated to the exact
+  claim; generated exact-format lists used generic filler; one angle question
+  was ambiguous; one beginner prompt was ungrammatical; and two rewrites added
+  or altered context.
+- Factual repair: all 125 factual records were audited and moved to direct
+  topic-, organ-, event-, standards-, documentation-, or dictionary-entry
+  pages. The old broad NASA, MedlinePlus, Britannica history, IBM computing,
+  generic Merriam-Webster, and generic BIPM mappings are absent.
+- Content repair: 20 beginner prompt forms, 11 exact-format/filler records, and
+  three transformations changed. The known eight failures are explicit
+  regression fixtures; urgent wording and unprovided message context are now
+  preserved correctly.
+- Change accounting: 159 records changed, 341 were unchanged, and 38 of the
+  100 prior gate decisions became stale. No decision was transferred to the
+  empty production review file.
+- Revalidation: 500 valid, zero invalid, zero exact/near duplicates, zero demo
+  collisions, and zero truncations. IDs and category counts remain unchanged.
+- Gate v2: a fresh deterministic 100-record sample and blank review packet were
+  generated with the original stratification. Human review, approval, release,
+  tokenization, and training remain pending and unauthorized.
+
 ## VASU-60M instruction-quality Batch 002
 
 - Objective: perform a small masked instruction-quality refinement from the

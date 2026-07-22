@@ -1,5 +1,108 @@
 # FineWeb Extension Recovery Plan
 
+## Production recovery, index, and factual gate result (2026-07-17)
+
+The full retained-extension source recovery completed successfully against the
+official Hugging Face Dataset Viewer exact-ID filter for
+`HuggingFaceFW/fineweb-edu`, configuration `CC-MAIN-2025-26`, split `train`,
+pinned to revision `87f09149ef4734204d70ed1d046ddc9ca3f2b8f9`.
+
+Protected preflight evidence passed before acquisition:
+
+- historical token binary SHA-256:
+  `d62efa0521365fa634d1e8f34bf8c84764a8066a9cc53430f9fc4bb89cabf51e`;
+- historical fingerprint database SHA-256:
+  `de30a1a10ae513bd663fdd7655d6e0251db65b93929efb087071be4754c4b1a1`;
+- historical fingerprint rows, source IDs, and fingerprints: 379,247;
+- SQLite integrity: `ok`;
+- no training process was started by the recovery workflow.
+
+Production acquisition used the benchmark-selected 25-ID OR filter batches,
+concurrency 1, a conservative 2 RPS ceiling, four retries, pinned-revision
+enforcement, atomic progress, and no rolling-revision or full-Parquet fallback.
+One Dataset Viewer behavior was handled explicitly: the exact
+`{"error":"A query parameter is invalid"}` HTTP 422 response sometimes occurred
+transiently for valid single-ID filters and was retried; generic 422 responses
+remain permanent failures.
+
+Final recovery result:
+
+- status: `complete`;
+- accepted records: 379,247;
+- unique source IDs: 379,247;
+- historical exact text-hash matches: 379,247;
+- missing IDs, hash mismatches, duplicate provider IDs, malformed records,
+  duplicate accepted IDs, and unrecovered retrieval errors: zero;
+- accepted text bytes: 2,031,365,373;
+- total characters: 2,021,516,867;
+- provider requests: 15,617;
+- provider retry count: 307;
+- provider status counts: 15,281 HTTP 200, 26 HTTP 422, 289 HTTP 500, and
+  21 HTTP 502;
+- fallback events: 27;
+- full source text is stored only in the compressed recovery artifact, not in
+  the summary reports.
+
+Recovered artifact:
+
+```text
+data/interim/pretrain/fineweb_extension_recovered.jsonl.gz
+```
+
+Artifact size: 797,342,910 bytes.
+
+Artifact SHA-256:
+
+```text
+c90f9e21d9b73324b9165cf1fb7ffbc274fbba5ccba5ac22b7cbe48abb6d7f1e
+```
+
+Reports:
+
+```text
+data/manifests/pretrain/fineweb_extension_recovery_production.json
+data/manifests/pretrain/fineweb_extension_recovery_production.txt
+```
+
+The recovered text was then indexed with normalization version
+`vasu_cross_source_nfc_casefold_ws_v1`.
+
+Extension index result:
+
+- index path:
+  `data/manifests/pretrain/fineweb_extension_document_index.sqlite3`;
+- metadata path:
+  `data/manifests/pretrain/fineweb_extension_document_index_metadata.json`;
+- SHA-256:
+  `d093770179204b45af1a5a824d5a5826a6f0626b3c8825aa81ac8d3557acf16e`;
+- indexed documents: 379,247;
+- rejected records: zero;
+- duplicate hashes: zero;
+- records with complete source IDs: 379,247;
+- LSH bucket count: 3,033,976;
+- SQLite integrity: `ok`.
+
+Combined FineWeb coverage was written to:
+
+```text
+data/manifests/pretrain/fineweb_combined_coverage.json
+```
+
+It covers both `fineweb_original` and `fineweb_extension`, has no missing
+coverage entries, and reports `training_ready: true` for downstream
+cross-source deduplication gates.
+
+The Wikimedia broad-review overlap check was rerun against the original and
+extension indexes together. It found zero overlap candidates and wrote:
+
+```text
+data/manifests/factual/wikimedia_fineweb_combined_overlap.json
+```
+
+The factual pilot dry-run then passed with FineWeb cross-deduplication reported
+as available and without downloading additional data. The default factual pilot
+and any model training remain separately unauthorized.
+
 ## Bounded source-ID smoke result (2026-07-17)
 
 The bounded recovery smoke passed. It selected exactly 100 source IDs by
@@ -29,9 +132,10 @@ revision, plus Dataset Viewer `splits`, `rows`, `filter`, `parquet`, `size`, and
 download them; `statistics` was unavailable. The smoke JSON records every
 revision-check and exact-filter URL used by the executable smoke itself.
 
-No full source text is stored in any report. This evidence authorizes planning
-a broader source-ID reacquisition, but the complete 379,247-record recovery and
-the extension document index have not been run.
+No full source text is stored in any report. This bounded smoke is retained as
+historical evidence and has been superseded by the completed production
+recovery, extension index, combined coverage manifest, and factual-gate dry-run
+recorded above.
 
 ## Provider-friendly 1,000-ID benchmark (2026-07-17)
 
@@ -74,16 +178,18 @@ JSON responses, 2.03 GB of accepted raw text, and 4.06 GB of temporary working
 storage. Plan for roughly 3.9-6 hours and at least 10 GiB free because provider
 latency and rate limits can change. Reports are
 `data/manifests/pretrain/fineweb_extension_recovery_benchmark.json` and `.txt`.
-The complete recovery and extension index remain unstarted.
+This benchmark was later used to run the completed production recovery and
+extension index recorded above.
 
 ## Status and classification
 
-Recovery classification: **`source_id_reacquisition_possible`**.
+Recovery classification: **`exact_source_id_reacquisition_completed`**.
 
-This classification means the retained document IDs and historical hashes are
-sufficient to attempt authoritative reacquisition and verify individual
-documents. It does not claim that exact reconstruction has already been proven.
-No extension data was downloaded or rebuilt during the original-index task.
+This classification means all retained document IDs were authoritatively
+reacquired from the pinned provider revision and every recovered
+`text.strip()` value matched its historical SHA-256 fingerprint. It does not
+claim that the historical token binary was rewritten or replaced; the protected
+binary remains unchanged.
 
 ## Discovered evidence
 
@@ -106,15 +212,18 @@ No extension data was downloaded or rebuilt during the original-index task.
 - Output token binary SHA-256:
   `d62efa0521365fa634d1e8f34bf8c84764a8066a9cc53430f9fc4bb89cabf51e`.
 
-## Missing evidence
+## Historical missing evidence now resolved
 
-- Local raw extension document text.
-- A retained local provider Parquet/Arrow cache.
-- Proof that all 379,247 current provider records reproduce their historical
-  hashes; the bounded trial proves only its 100-record sample.
-- A newly reconstructed token binary matching the historical output hash.
+- Local raw extension document text is now represented by the recovered gzip
+  JSONL artifact above.
+- Proof that all 379,247 provider records reproduce their historical hashes is
+  recorded in the production recovery reports.
+- Compatible document-level normalized exact/near index coverage is now
+  recorded in the extension index metadata and combined coverage manifest.
 
-These gaps prevent classification as `exact_reconstruction_possible`.
+No newly reconstructed token binary was produced, and none is required for the
+document-deduplication gate because the original extension token binary remains
+the protected training artifact.
 
 ## Authoritative reacquisition source
 
