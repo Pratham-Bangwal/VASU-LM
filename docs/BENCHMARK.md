@@ -36,3 +36,12 @@ measurements for VASU-31M and VASU-60M. It compares uncached, dynamic, and
 preallocated-cache greedy generation with exact token-parity checks. On the
 RTX 4050 at 64 and 128 generated tokens, the preallocated implementation did
 not meet the 10% VASU-60M throughput promotion threshold; it remains opt-in.
+
+## AdamW backend benchmark
+
+The bounded VASU-60M AMP benchmark in
+`scripts/profiling/profile_training_backends.py` found fused AdamW materially
+faster than standard AdamW on the RTX 4050: roughly 14.1 ms versus 31.0 ms
+median optimizer time in two short runs. Fused AdamW remains an explicit
+CUDA-only `TrainConfig.optimizer_backend="fused"` option; the default remains
+the historical standard backend pending longer-run and exact-resume validation.

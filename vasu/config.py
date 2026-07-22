@@ -57,3 +57,6 @@ class TrainConfig:
     checkpoint_dir: str = "checkpoints"
 
     save_every_steps: int = 1000
+
+    # Opt-in execution option. "standard" preserves historical AdamW behavior.
+    optimizer_backend: str = "standard"

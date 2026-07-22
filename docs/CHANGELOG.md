@@ -11,6 +11,8 @@
 - Hardened the general Trainer checkpoint path with atomic saves, explicit
   non-finite-gradient skip handling, phase-consistent callback timing, and
   defined scheduler-horizon behavior for extended epoch targets.
+- Added explicit standard, foreach, and CUDA-fused AdamW backend selection plus
+  a bounded synthetic CUDA benchmark. Standard AdamW remains the default.
 
 - Completed VASU-60M instruction-quality Batch 002 from the Batch 001 best
   checkpoint. The isolated three-update run finished at global step 201307 with

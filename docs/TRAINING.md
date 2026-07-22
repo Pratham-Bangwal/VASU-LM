@@ -328,6 +328,14 @@ when no successful update occurred in that epoch. The default cosine scheduler
 steps once per epoch (`T_max=epochs`); resuming with a larger epoch target keeps
 the checkpoint's existing scheduler horizon and emits a warning.
 
+## AdamW execution backends
+
+`TrainConfig.optimizer_backend` accepts `standard` (the default), `foreach`,
+`fused`, and `auto`. The default preserves historical checkpoint behavior.
+`fused` is an explicit CUDA-only opt-in; its optimizer state remains regular
+AdamW state and loads through the normal checkpoint path. Unsupported fused
+requests fail clearly instead of silently selecting a different backend.
+
 The guarantee requires an unchanged loader contract and deterministic dataset
 behavior. Existing checkpoints without `training_progress` are still valid but
 use the historical next-epoch resume with an explicit warning. Specialized
