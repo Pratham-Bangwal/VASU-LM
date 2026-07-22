@@ -1,200 +1,106 @@
-# VASU — Virtual AI System for Understanding
+# VASU-LM
 
-> A modern GPT-style decoder-only language model built completely from scratch in PyTorch.
+VASU-LM (Virtual AI System for Understanding) is an educational, experimental framework for building decoder-only language models from scratch in PyTorch. The repository implements the model, tokenizer integration, data preparation, pretraining, instruction tuning, checkpointing, inference, and evaluation without relying on a pretrained Transformer model.
 
----
+This is a learning and research project. It is not production-ready, safety-aligned, or suitable for high-stakes use.
 
-## Overview
+## Current model families
 
-VASU (Virtual AI System for Understanding) is an open-source project focused on building a production-quality GPT-style large language model from the ground up. Instead of relying on existing model implementations, VASU is being developed by implementing each component independently to gain a deep understanding of modern language model architectures.
+### VASU-31M
 
-The project emphasizes correctness, maintainability, scalability, and clean software engineering while progressively incorporating techniques used in state-of-the-art models.
+VASU-31M completed its experimental cycle: FineWeb pretraining, Alpaca tuning, masked-Alpaca experiments, UltraChat tuning, and manual evaluation. It remains the stable instruction-tuned fallback.
 
----
+- Parameters: approximately 31.17M
+- Context length: 256 tokens
+- Best assistant checkpoint: `checkpoints/ultrachat_fineweb/best.pt`
+- Manual evaluation baseline: 2.225 / 5
 
-## Vision
+### VASU-60M
 
-The long-term goal of VASU is to become a complete conversational AI system capable of:
+VASU-60M is the active model and is still in base pretraining. It is not an instruction-tuned assistant.
 
-* Natural conversations
-* Instruction following
-* Code generation
-* Reasoning
-* Long-context understanding
-* Efficient inference
-* Fine-tuning for specialized tasks
+| Setting | Value |
+| --- | ---: |
+| Parameters | 58,337,792 |
+| Vocabulary size | 32,000 |
+| Context length | 256 |
+| Model dimension | 512 |
+| Layers | 10 |
+| Attention heads | 8 |
+| SwiGLU hidden dimension | 2,048 |
+| Dropout | 0.1 |
+| RoPE theta | 10,000.0 |
+| Linear bias | False |
 
-Every feature is added incrementally with a strong focus on understanding the underlying research rather than simply reproducing existing implementations.
+Current preserved milestone:
 
----
+`checkpoints/vasu_60m/milestones/fineweb_step_54060.pt`
 
-## Current Features
+- Global step: 54,060
+- Train loss: 3.616769
+- Validation loss: 3.613814
+- Next target: 100,000 optimizer steps
+- Instruction tuning: not started
 
-* GPT-style decoder-only Transformer
-* Multi-Head Self-Attention
-* Rotary Positional Embeddings (RoPE)
-* Feed Forward Network (MLP)
-* RMSNorm
-* Causal masking
-* Custom Byte Pair Encoding (BPE) tokenizer
-* Hugging Face Tokenizers integration
-* PyTorch implementation
-* GPU training support (CUDA)
-* Model checkpoint saving/loading
-* Configuration-based model architecture
-* Modular project structure
+## Architecture
 
----
+Both model families use the same decoder-only autoregressive Transformer design:
 
-## Planned Features
+- causal multi-head self-attention through PyTorch scaled-dot-product attention;
+- rotary positional embeddings (RoPE);
+- RMSNorm;
+- SwiGLU feed-forward layers;
+- pre-norm residual blocks;
+- tied token-embedding and LM-head weights;
+- bias-free linear layers;
+- AMP-compatible training.
 
-### Core Model
+The tokenizer and processed token datasets are shared. Model checkpoints are not interchangeable between 31M and 60M because their tensor shapes differ.
 
-* KV Cache
-* Grouped Query Attention (GQA)
-* Flash Attention
-* Sliding Window Attention
-* Mixture of Experts (MoE)
+## Training and evaluation
 
-### Training
+VASU-60M trains on FineWeb in resumable 100-optimizer-step blocks with batch size 2, gradient accumulation 16, sequence length 256, AMP, checkpoints every 10 optimizer steps, an 88°C thermal stop, atomic saves, corrupt-checkpoint filtering, bounded retention, and low-disk protection.
 
-* Mixed Precision (AMP)
-* Gradient Accumulation
-* Gradient Checkpointing
-* Learning Rate Scheduling
-* Distributed Training
-* Better experiment logging
+Base-model milestones are evaluated using raw autoregressive continuations. VASU-31M instruction checkpoints are compared with a fixed prompt suite and manual criteria covering relevance, factuality, instruction following, fluency, and repetition control.
 
-### Inference
+## Hardware used
 
-* Streaming generation
-* Top-k sampling
-* Top-p (Nucleus) sampling
-* Temperature sampling
-* Repetition penalty
-* Beam search
+- NVIDIA RTX 4050 Laptop GPU with 6 GB VRAM
+- Intel Core i5-13420H
+- 16 GB RAM
+- Windows
 
-### Tokenizer
+## Current limitations
 
-* Improved vocabulary training
-* Special token management
-* Faster preprocessing
+- factual hallucinations and limited factual knowledge;
+- repetition loops and incomplete generations;
+- semantic and topic drift;
+- weak reasoning and exact-format instruction following;
+- weak long-range coherence;
+- short 256-token context;
+- no completed VASU-60M instruction or safety tuning;
+- laptop thermal and disk constraints during long training.
 
-### Chat
-
-* Interactive CLI
-* Conversation history
-* System prompts
-* Memory support
-
-### Future
-
-* Instruction tuning
-* Preference optimization
-* Tool calling
-* Function calling
-* API server
-* Web interface
-* Voice interface
-* Agent capabilities
-
----
-
-## Project Structure
+## Repository layout
 
 ```text
-VASU/
-├── configs/
-├── data/
-├── docs/
-├── scripts/
-├── tokenizer/
-├── vasu/
-│   ├── model/
-│   ├── training/
-│   ├── inference/
-│   ├── datasets/
-│   ├── utils/
-│   └── callbacks/
-├── checkpoints/
-├── README.md
-├── ROADMAP.md
-├── PROJECT_STATUS.md
-├── CHANGELOG.md
-└── ARCHITECTURE.md
+vasu/          Model, tokenizer, training, and inference modules
+scripts/       Dataset preparation, diagnostics, and smoke tests
+evaluation/    Fixed prompts, generated reports, and manual scores
+docs/          Architecture, status, training history, and roadmap
+checkpoints/   Local training state and preserved milestones (not for Git)
 ```
 
----
+## Development status
 
-## Technology Stack
+Completed: VASU-31M experiment cycle, VASU-60M planning and smoke tests, resumable thermal-safe block training, atomic checkpointing, retention, and base milestone evaluation.
 
-* Python
-* PyTorch
-* CUDA
-* Hugging Face Tokenizers
+In progress: VASU-60M FineWeb pretraining from step 54,060 toward step 100,000.
 
----
+Pending: step-100,000 evaluation and the decision gate for controlled VASU-60M instruction tuning.
 
-## Development Philosophy
+See [Project Status](docs/PROJECT_STATUS.md), [Architecture](docs/ARCHITECTURE.md), [Training Log](docs/TRAINING_LOG.md), and [Roadmap](docs/ROADMAP.md).
 
-VASU follows several guiding principles:
+## License and use
 
-* Build every major component from scratch.
-* Keep the code modular and maintainable.
-* Prioritize reproducibility.
-* Prefer engineering quality over shortcuts.
-* Learn from research papers before implementing features.
-* Maintain compatibility between tokenizer, datasets, checkpoints, and inference.
-
----
-
-## Roadmap
-
-Development progresses in incremental milestones. Planned areas include:
-
-* Stronger Transformer architecture
-* Faster training
-* Faster inference
-* Improved sampling methods
-* Better conversational abilities
-* Long-context support
-* Instruction tuning
-* Production-ready deployment
-
-Detailed milestones are maintained in `ROADMAP.md`.
-
----
-
-## Contributing
-
-Contributions are welcome.
-
-Before submitting changes:
-
-* Follow the project's coding standards.
-* Keep implementations modular.
-* Update documentation when adding features.
-* Include clear commit messages.
-* Ensure existing functionality remains compatible.
-
----
-
-## License
-
-This project will be released under an open-source license.
-
----
-
-## Acknowledgements
-
-VASU is inspired by modern research in transformer-based language models and aims to provide an educational yet scalable implementation that demonstrates how contemporary GPT-style systems are built.
-
----
-
-## Project Status
-
-VASU is under active development.
-
-The project is evolving incrementally, with each feature being designed, implemented, tested, and documented before moving to the next milestone.
-
-See `PROJECT_STATUS.md` for the latest implementation progress.
+Review the repository license before redistribution. Generated output must be treated as untrusted: neither VASU-31M nor VASU-60M should be used for medical, legal, financial, safety-critical, or production decisions.

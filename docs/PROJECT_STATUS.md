@@ -405,6 +405,65 @@ no factual-pilot model training has started. Cross-FineWeb document
 deduplication uses the combined original-plus-extension coverage manifest and
 indexes.
 
+Deterministic manual-review tooling now verifies the immutable input SHA-256
+before selecting bounded previews. Seed 42 selected 79 unique chunks: 20
+random, 10 shortest, 10 longest, 10 nearest the 1,024-token ceiling, 10 evenly
+spaced, 10 from distinct parents, all 21 reference-type sections, and 2
+suspicious-metadata records; 14 overlapping selections were deduplicated. The
+sample represents 62 parent articles. All 79 classifications remain pending,
+so the factual pilot is not yet manually approved and no training has started.
+
+That first manual-quality gate failed: it exposed 21 retained reference-type
+chunks, 18 below-minimum chunks, malformed overlap starts, list-dominated
+content, and missing source/template values. Its reports are preserved under
+the old `cdccaff4d305dc4` dataset hash.
+
+The corrected v4 pipeline now excludes canonical structured or embedded
+reference appendices, merges or rejects chunks below 128 tokens, records
+paragraph/sentence/word-fallback boundary metadata, omits unsafe mid-sentence
+overlaps, and rejects list-dominated, missing-value, malformed-source, and
+low-information chunks before deduplication or accounting. The regenerated
+  artifact reached `token_limit` with 330 raw examples, 304 parents, 3,480
+  chunks, and 1,999,700 tokens. Its observed range is 128–1,023 tokens,
+  SHA-256 is
+  `4c21e6b54cf747a82769951e97222cbe161296e7c0556ee14125df93cc1a4fd0`,
+and validation found zero retained reference headings, replacement/mojibake
+markers, or token-fallback boundaries.
+
+The regenerated seed-42 review contains 61 pending chunks from 53 parents,
+including one warning-forced record. It has zero reference-forced records,
+zero below-minimum failures, and zero automatic precheck failures. Human
+classification is still required; no Wikimedia training has started.
+
+### Final global-audit release candidate
+
+All defect families recorded across the completed hash-bound reviews are now
+covered by a reusable global scan. The final permitted remediation cycle
+produced 402 parent documents, 3,609 chunks, and 1,999,697 tokens with dataset
+SHA-256
+`ffcbc25f4863f519744212f809ee600bdc7f4a0d5c2d02a0833e1bc4cec6014d`.
+Output validation passed. The final global audit has zero automatic-reject
+findings and zero unexplained matches; its remaining 29 findings are explicitly
+manual-review cases rather than silently accepted defects.
+
+The frozen seed-42 review contains 84 pending chunks and zero automatic
+precheck failures. It is immutable for this candidate and may be replaced only
+if human review finds a critical reject. Promotion follows
+[`WIKIMEDIA_RELEASE_POLICY.md`](WIKIMEDIA_RELEASE_POLICY.md): manual review must
+finish with zero critical rejects, and any harmless minor issue must carry a
+note. The candidate is not approved and Wikimedia training has not started.
+
+The frozen human decisions subsequently identified 12 exact critical rejects.
+They were excluded through a hash-bound quarantine transformation without
+changing the source candidate, review decisions, chunk IDs, ordering, or
+quality heuristics. The approved quarantine release has SHA-256
+`6aa10d73669ca90ad20f867f14a6368d2191b38094f02aa1679ebaf122962de7`,
+402 parents, 3,597 chunks, and 1,993,564 tokens. It quarantines 6,133 tokens
+across 9 parents and removes no parent completely. Deterministic output and
+quality validation passed with zero automatic rejects and zero unexplained
+findings. No new review sample was generated, and no Wikimedia training has
+started or been authorized.
+
 ### Deterministic broad-review sample
 
 A separate review-only mode now selects 500 unique, shard-spanning row indices
@@ -421,6 +480,154 @@ bounded UTF-8 preview review passed. One malformed date boundary was traced to
 the pinned Parquet source itself, so uncertain factual text was not silently
 rewritten. This artifact is for review, not training; the full pilot remains
 unauthorized.
+
+### Wikimedia factual continued-pretraining pilot prepared
+
+An isolated VASU-60M continued-pretraining experiment is prepared from
+`checkpoints/vasu_60m/milestones/fineweb_step_200000.pt`. It uses an immutable
+10,000,000-token cap with 85% sequential FineWeb-Edu and 15% Wikimedia,
+seed 42, and no replacement sampling. The 256-token alignment yields 39,062
+records and 9,999,872 supervised tokens: 8,499,968 FineWeb tokens and
+1,499,904 Wikimedia tokens (about 0.783 of the Wikimedia training split).
+
+Wikimedia was split by parent before tokenization: 382 training parents and 20
+validation parents, with zero overlap. The resulting training and validation
+streams contain 1,915,008 and 92,944 tokens. The mixed binary SHA-256 is
+`60a06cc54f0c77b977db733829584786edbe518eda38eab83964887d9a12bc4b`;
+the source schedule SHA-256 is
+`f426c1e3a301bad4b451c2b6d8b1bea2fe567dd262d493fadf5c25e368fef6b0`.
+A clean temporary rebuild reproduced both hashes.
+
+The experiment uses a new optimizer and cosine scheduler rather than falsely
+resuming the parent's optimizer clock. Provenance remains
+`parent_global_step=200000`, while experiment-local step starts at zero. Batch
+size 2, accumulation 16, AMP, 1e-5 peak learning rate, 1e-6 minimum, 25 warmup
+steps, weight decay 0.1, and clipping 1.0 are configured. Expected duration is
+1,221 optimizer steps. `training_authorized` is false; no optimizer update or
+new checkpoint has been produced.
+
+### Factual CPT completed and evaluated
+
+The experiment later completed all 1,221 optimizer steps and consumed exactly
+9,999,872 supervised tokens. The selected checkpoint is
+`checkpoints/vasu_60m/factual_cpt_wikimedia_15pct_from_200k/best.pt` at
+experiment step 1,200; `latest.pt` records the final partial update at step
+1,221. FineWeb validation improved from 3.356130 to 3.317529 and held-out
+Wikimedia improved from 3.393557 to 3.286295.
+
+The initial six-prompt sampled check was insufficient. The frozen 300-example
+factual-CPT v2 benchmark therefore measures 100 cloze items, 100 direct-
+likelihood multiple-choice items, 50 continuations, and 50 qualitative prompts
+under greedy and seeded sampling. Raw cloze stayed at 6%, normalized cloze
+moved from 7% to 9%, and raw/length-normalized multiple choice remained 41%/
+36%. Bootstrap intervals do not distinguish the factual changes from benchmark
+noise. The branch is preserved as an evaluation candidate but is not promoted.
+No further CPT or instruction tuning is authorized by this result.
+
+Closeout metadata records `completed_experiment=true`,
+`promotion_status=rejected`, `recommended_for_further_cpt=false`,
+`recommended_for_instruction_tuning=false`, and
+`artifact_retention=preserve` beside the selected checkpoint. The experiment
+configuration has been returned to `training_authorized=false`, preventing an
+accidental repeat while preserving every checkpoint and evaluation artifact.
+
+The approved Wikimedia quarantine release remains an immutable data artifact;
+rejecting this training branch does not revoke or alter that dataset approval.
+The authoritative instruction lineage remains
+`checkpoints/vasu_60m/alpaca_masked_v3_from_200k/best.pt` (SHA-256
+`c5da8e1f95f84ad391338548ab777d2aabf3f931f7f6c5aff54c040caef63c43`).
+It does not use the factual-CPT checkpoint.
+
+## Instruction-quality pilot pipeline
+
+The interactive-quality audit found inference, tokenizer round-tripping,
+prompt alignment, and response-mask alignment correct. The primary limitation
+is instruction-data quality and coverage; model capacity and limited factual
+knowledge remain secondary constraints. Immediate retraining is not
+authorized.
+
+The `vasu_instruction_quality_v1` engineering pipeline is implemented with a
+21-example demonstration fixture covering all seven planned capabilities. All
+21 records pass automatic schema and constraint validation, with zero exact
+duplicate groups and zero near-duplicate candidates at threshold 0.85. Human
+review subsequently approved all 21, and the demonstration release produced
+five packed records containing 1,285 tokens. Automatic scoring did not approve
+any example; the preserved human decisions remain hash-bound to source records.
+
+The planned production pilot remains 2,000-5,000 human-approved examples with
+the configured capability distribution. The source and review manifests are
+hash-bound, `training_authorized` remains `false`, and no training or optimizer
+update has occurred. Existing Alpaca, UltraChat, FineWeb, Wikimedia, tokenizer,
+checkpoint, and training artifacts remain unchanged by this pilot.
+
+### Instruction-quality production batch 001
+
+The 21-example demonstration completed human review and release successfully:
+21 approved examples, five packed records, and 1,285 packed tokens. Its source,
+decisions, and release are frozen and were not modified by batch 001.
+
+Batch 001 is the first production-candidate authoring tranche. It contains 500
+purpose-written, unreviewed records: 125 short factual answers, 100 beginner
+explanations, 100 exact-format examples, 75 rewrites, 50 structured lists, 25
+strict JSON examples, and 25 uncertainty fallbacks. The difficulty mix is 350
+easy and 150 medium, with no hard examples.
+
+All 500 records pass the existing schema and format validator. Exact duplicate,
+near-duplicate, demo-leakage, prompt-marker, truncation, JSON, format, and
+factual-verification findings are zero. The longest complete token audit is 65
+tokens under the unchanged 257-token record capacity. All records remain
+`unreviewed`, the separate review file is empty, no production `.bin` or mask
+exists, and `training_authorized` remains `false`. The next gate is human review.
+
+The first deterministic 100-example human gate did not pass: 77 examples were
+approved for that gate, 15 needed fact checking, and eight needed rewriting.
+Reviewers identified broad factual pages that did not bind directly to claims,
+generic list filler, one ambiguous measurement question, one awkward beginner
+prompt, and two transformation-fidelity failures.
+
+Batch 001 has therefore been rebuilt without transferring any gate decision.
+All 125 factual records now cite claim-specific pages; all source URLs were
+replaced. Twenty beginner prompts, eleven exact-format/filler examples, and
+three rewriting examples were also corrected. In total, 159 source records
+changed and 341 remained byte-equivalent at the canonical record level. Of the
+100 gate-v1 decisions, 38 are stale because their underlying records changed.
+
+The repaired source again validates at 500/500 with zero exact or near
+duplicates, zero demo collisions, and zero truncations. A fresh deterministic
+gate-v2 packet contains the same 25/20/20/15/10/5/5 category distribution and
+no decisions. Human review remains pending; training is still unauthorized.
+
+The masked UltraChat experiment had already completed before this closeout, so
+the historical “blocked pending baseline” gate is no longer a current-state
+description. Its preserved output directory is therefore intentionally not
+clean. The parent baseline is now recorded reproducibly at
+`evaluation/results/vasu_60m_ultrachat_parent_alpaca_v3_baseline.json`, derived
+from the identical 40-prompt greedy and sampled reports used after UltraChat.
+Any future rerun is unauthorized unless explicitly launched with the isolated
+runner's `--train` flag.
+
+### UltraChat promotion evaluation
+
+The completed UltraChat branch has now been evaluated against masked Alpaca v3
+with a frozen 216-prompt benchmark, identical greedy and controlled-sampling
+settings, and the held-out UltraChat and Alpaca masks. UltraChat validation loss
+improved from 2.693622 to 2.581431, while Alpaca validation loss moved from
+2.522585 to 2.543987 (+0.85%). Empty-output and premature-EOS rates remained
+zero.
+
+Promotion is rejected. UltraChat reduced strict format compliance from 7.87%
+to 0% under greedy decoding and from 16.20% to 4.17% under controlled sampling.
+Mean repetition increased from 0.7261 to 0.7717 greedy and from 0.3424 to
+0.3922 sampled; the obvious-incoherence heuristic also worsened in both modes.
+The 60-prompt stratified human-review form remains blank, so no clear semantic
+or conversational improvement has been established. Masked Alpaca v3 remains
+the main instruction-tuned VASU-60M checkpoint. No new training stage is
+authorized.
+
+Artifacts: `evaluation/benchmarks/ultrachat_promotion_v1.json`,
+`evaluation/results/ultrachat_checkpoint_audit_v1.json`,
+`evaluation/results/ultrachat_promotion_v1.json`, and
+`evaluation/results/ultrachat_promotion_v1_manual_review.txt`.
 
 ### Instruction-quality Batch 002 closeout
 
