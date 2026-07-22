@@ -412,6 +412,25 @@ and extension indexing are complete, and
 cross-FineWeb deduplication is available through the combined coverage
 manifest.
 
+A deterministic manual-quality gate is now prepared for the finalized pilot.
+It verifies the authoritative JSONL SHA-256 and stores only bounded previews.
+The seed-42 selection contains 79 unique chunks representing 62 parents,
+combining random, shortest, longest, near-maximum, evenly spaced,
+distinct-parent, warning-forced, reference-forced, and suspicious-metadata
+groups. Fourteen overlapping selections were deduplicated while retaining all
+selection reasons. Every record remains pending human classification; this
+review does not authorize training.
+
+The initial 79-chunk gate subsequently failed due to systematic reference
+appendices, subminimum fragments, malformed overlap starts, list-dominated
+material, and missing source/template values. Those reports are archived under
+the old dataset hash. The corrected v4 preparation policy regenerated a
+  1,999,700-token artifact with 304 parents and 3,480 chunks, all within the
+  observed 128–1,023 token range. Structural validation found no retained reference headings,
+  replacement/mojibake markers, or token-fallback boundaries. Its replacement
+  manual sample contains 61 pending chunks from 53 parents with zero automatic
+precheck failures. Training remains unauthorized until human review completes.
+
 The subsequent deterministic broad review selected 500 shard-spanning row
 indices and stopped after inspecting 15 rows and retaining 50 chunks from 14
 articles. It measured 26,435 tokens, a 938-token maximum, and 10% largest-parent

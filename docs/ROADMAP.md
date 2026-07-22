@@ -37,7 +37,7 @@ The completed VASU-60M cycle is now followed by a planning gate rather than imme
 
 Planned sequence (not implemented):
 
-1. Specify a provenance-aware multi-domain mixture manifest and deterministic resumeable sampler.
+1. Specify a provenance-aware multi-domain mixture manifest and deterministic resumable sampler.
 2. Prepare only small licensed pilot shards for factual, math, permissive-code, and verified synthetic reasoning data.
 3. Run matched 20M–50M-token continuation ablations from `fineweb_step_200000.pt`.
 4. If the gate passes, continue the existing VASU-60M base for approximately 1.2B new tokens using broad replay and staged domain emphasis.
@@ -63,8 +63,19 @@ Source-governance progress:
   parent-document and chunk limits, then regenerate the default pilot to
   1,999,974 tokens with zero replacement characters and one rejected FineWeb
   near overlap;
-- next: review the validated default pilot and decide whether to authorize a
-  controlled factual continuation experiment;
+- completed: add deterministic SHA-bound manual-review sampling with bounded
+  previews; the current 79-chunk sample covers random, size-extreme,
+  near-maximum, evenly spaced, distinct-parent, warning, reference, and
+  suspicious-metadata groups;
+- completed: treat the first 79-chunk review as failed evidence, then correct
+  reference appendix leakage, tiny fragments, malformed boundaries,
+  list-dominated content, and missing source values before regenerating the
+  pilot under the v4 schema;
+- completed: validate the corrected 1,999,700-token artifact and regenerate a
+  61-chunk pending review with zero reference, below-minimum, or automatic
+  precheck failures;
+- next: manually classify all 61 corrected samples and decide whether the
+  pilot can support a controlled factual continuation experiment;
 - unchanged: factual-pilot model training has not started;
 - available: cross-FineWeb document deduplication through the combined
   original-plus-extension coverage manifest and compatible indexes;
@@ -118,7 +129,7 @@ VASU-60M instruction tuning has not started.
 
 ## Guiding principle
 
-Promote a checkpoint only through reproducible evaluation. Keep the VASU-31M assistant checkpoint as the stable fallback until a VASU-60M instruction checkpoint measurably exceeds it.
+Promote a checkpoint only through reproducible evaluation. The current preferred assistant remains the evaluated VASU-60M Alpaca v3 checkpoint; experimental branches must exceed it through matched evaluation before promotion.
 
 
 KV-cache v1:
