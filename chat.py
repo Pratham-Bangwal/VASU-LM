@@ -69,14 +69,6 @@ def load_model(
         map_location="cpu",
     )
 
-    model.load_state_dict(
-        checkpoint["model"],
-        strict=True,
-    )
-
-    model = model.to(device)
-    model.eval()
-
     if "model" not in checkpoint:
         raise KeyError(
             "Checkpoint does not contain the required 'model' state."
@@ -86,6 +78,8 @@ def load_model(
         checkpoint["model"],
         strict=True,
     )
+
+    model = model.to(device)
     model.eval()
 
     return model, tokenizer
