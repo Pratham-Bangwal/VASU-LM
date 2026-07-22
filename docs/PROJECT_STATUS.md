@@ -651,3 +651,12 @@ Promotion is rejected because Batch 002 did not demonstrate a clear semantic
 improvement. Batch 001 remains the preferred instruction-quality checkpoint.
 Batch 002 and its evaluation artifacts are retained for reproducibility; no
 additional training is authorized by this result.
+
+### Training-system reliability: exact general Trainer resume
+
+The general shuffled `Trainer` now supports deterministic mid-epoch resume.
+New additive checkpoint metadata preserves the sampler seed/epoch/next-batch
+position, partial gradient-accumulation state, AMP scaler state, and process
+RNG states. Older checkpoints remain loadable with an explicit warning because
+they cannot establish an exact mid-epoch position. No model, tokenizer,
+processed dataset, or existing checkpoint tensor key changed.

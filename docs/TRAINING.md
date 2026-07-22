@@ -309,6 +309,24 @@ exists.
 
 No additional command is required.
 
+## Exact mid-epoch resume
+
+The general `Trainer` supports deterministic shuffled DataLoader resumes. It
+stores the next batch after every completed backward pass, plus accumulation,
+gradient, AMP-scaler, and RNG state when a checkpoint is written. A checkpoint
+taken between optimizer updates can therefore continue without replaying or
+dropping samples.
+
+Resume phase is explicit rather than inferred from a completed sampler: a
+checkpoint after the final training batch but before validation completes that
+validation once, while best/epoch/latest checkpoints begin at the next epoch.
+
+The guarantee requires an unchanged loader contract and deterministic dataset
+behavior. Existing checkpoints without `training_progress` are still valid but
+use the historical next-epoch resume with an explicit warning. Specialized
+VASU-60M operational runners retain their existing sequential
+global-step-to-data-offset behavior and are not retroactively converted.
+
 ---
 
 # Best Model

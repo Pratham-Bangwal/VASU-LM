@@ -4,6 +4,11 @@
 
 ### Added
 
+- Added compact deterministic mid-epoch resume support to the general Trainer.
+  Additive checkpoint metadata now preserves sampler, partial-gradient, AMP
+  scaler, and RNG state; legacy checkpoints remain loadable with an explicit
+  non-exact-resume warning.
+
 - Completed VASU-60M instruction-quality Batch 002 from the Batch 001 best
   checkpoint. The isolated three-update run finished at global step 201307 with
   train/validation supervised-token losses of 3.018085/3.189959.

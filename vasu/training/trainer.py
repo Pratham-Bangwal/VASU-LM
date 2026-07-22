@@ -1,33 +1,49 @@
-# pyright: reportPrivateImportUsage=false
+"""General-purpose VASU trainer with exact deterministic mid-epoch resume."""
+
+from __future__ import annotations
+
+from pathlib import Path
+import warnings
+from typing import Any
 
 import torch
-from pathlib import Path
 from torch.utils.data import DataLoader
 from tqdm import tqdm
 
+from vasu.training.accumulation import normalize_partial_accumulation
+from vasu.training.checkpoint import save_checkpoint
 from vasu.training.losses import language_model_loss
 from vasu.training.optimizer import build_optimizer
-from vasu.training.checkpoint import (
-    save_checkpoint,
-    load_checkpoint,
+from vasu.training.resumable_sampler import ResumableBatchSampler
+from vasu.training.resume_state import (
+    RESUME_PHASES,
+    build_training_progress,
+    capture_gradient_state,
+    restore_gradient_state,
+    restore_rng_state,
+    validate_gradient_presence,
 )
-from vasu.training.accumulation import normalize_partial_accumulation
 
-
-from torch.utils.tensorboard import SummaryWriter
 
 class Trainer:
+    """Train VASU models with additive exact-resume checkpoint metadata.
+
+    Exact continuation is guaranteed for deterministic datasets and model
+    execution.  With worker-side random transforms, callers must make those
+    transforms stateless/deterministic; the sampler still restores the exact
+    sample order even when DataLoader workers prefetch batches.
+    """
 
     def __init__(
         self,
-        model,
-        tokenizer,
-        train_dataset,
-        val_dataset,
-        config,
-        device,
-        callbacks=None,
-    ):
+        model: torch.nn.Module,
+        tokenizer: Any,
+        train_dataset: Any,
+        val_dataset: Any,
+        config: Any,
+        device: torch.device,
+        callbacks: list[Any] | None = None,
+    ) -> None:
         self.model = model.to(device)
         self.tokenizer = tokenizer
         self.train_dataset = train_dataset
@@ -35,290 +51,297 @@ class Trainer:
         self.config = config
         self.device = device
         self.callbacks = callbacks or []
-
-
-        self.optimizer = build_optimizer(
-            self.model,
-            config,
-        )
-
+        self.optimizer = build_optimizer(self.model, config)
         self.scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
             self.optimizer,
             T_max=config.epochs,
         )
-
         self.scaler = torch.amp.GradScaler(
             self.device.type,
             enabled=self.config.use_amp,
         )
-
         self.best_val_loss = float("inf")
-        
-        self._build_dataloaders()
-
-        self._load_checkpoint()
-    
-    def _load_checkpoint(self):
-
-        checkpoint = Path(self.config.checkpoint_path)
-
+        self.global_step = 0
         self.start_epoch = 0
-        self.best_val_loss = float("inf")
+        self._accumulated_microbatches = 0
+        self._resume_phase = "train"
+        self.exact_resume_available = True
+        self._build_dataloaders()
+        self._load_checkpoint()
 
-        if not checkpoint.exists():
-            return
-
-        ckpt = torch.load(
-            checkpoint,
-            map_location=self.device,
+    def _build_dataloaders(self) -> None:
+        workers = int(getattr(self.config, "num_workers", 0))
+        persistent_workers = bool(
+            getattr(self.config, "persistent_workers", False)
         )
-
-        self.model.load_state_dict(ckpt["model"])
-        self.optimizer.load_state_dict(ckpt["optimizer"])
-
-        if "scheduler" in ckpt:
-            self.scheduler.load_state_dict(
-                ckpt["scheduler"]
+        if persistent_workers:
+            raise ValueError(
+                "persistent_workers=True is not supported by exact resume; use "
+                "stateless dataset transforms with persistent_workers=False."
             )
-
-        self.start_epoch = ckpt["epoch"] + 1
-        self.best_val_loss = ckpt.get(
-            "best_val_loss",
-            float("inf"),
+        self.train_sampler = ResumableBatchSampler(
+            len(self.train_dataset),
+            self.config.batch_size,
+            shuffle=True,
+            seed=int(getattr(self.config, "seed", 42)),
+            drop_last=True,
         )
-
-        print(
-            f"\n✅ Resuming from epoch {self.start_epoch}\n"
-        )
-
-    def _build_dataloaders(self):
-
         self.loader = DataLoader(
             self.train_dataset,
-            batch_size=self.config.batch_size,
-            shuffle=True,
-            drop_last=True,
+            batch_sampler=self.train_sampler,
             pin_memory=True,
-            num_workers=0,
+            num_workers=workers,
             persistent_workers=False,
         )
-
         self.val_loader = DataLoader(
             self.val_dataset,
             batch_size=self.config.batch_size,
             shuffle=False,
             drop_last=False,
             pin_memory=True,
-            num_workers=0,
+            num_workers=workers,
             persistent_workers=False,
         )
 
-    def train_epoch(self):
-
-        self.model.train()
-
-        total_loss = 0.0
-
-        progress = tqdm(
-            self.loader,
-            desc="Training",
-            leave=False,
+    def _load_checkpoint(self) -> None:
+        checkpoint_path = Path(self.config.checkpoint_path)
+        if not checkpoint_path.exists():
+            return
+        checkpoint = torch.load(
+            checkpoint_path,
+            map_location=self.device,
+            weights_only=False,
         )
+        self.model.load_state_dict(checkpoint["model"])
+        self.optimizer.load_state_dict(checkpoint["optimizer"])
+        if "scheduler" in checkpoint:
+            self.scheduler.load_state_dict(checkpoint["scheduler"])
+        self.best_val_loss = checkpoint.get("best_val_loss", float("inf"))
+        self.global_step = int(checkpoint.get("global_step", 0))
 
-        self.optimizer.zero_grad(set_to_none=True)
-
-        for step, batch in enumerate(progress):
-
-            if len(batch) == 3:
-                x, y, mask = batch
-                mask = mask.to(self.device)
-            else:
-                x, y = batch
-                mask = None
-
-            x = x.to(self.device)
-            y = y.to(self.device)
-
-
-            with torch.amp.autocast(
-                self.device.type,
-                enabled=self.config.use_amp,
-            ):
-
-                logits = self.model(x)
-
-                loss = language_model_loss(
-                    logits,
-                    y,
-                    mask,
-                )
-
-                loss = loss / self.config.gradient_accumulation_steps
-
-            self.scaler.scale(loss).backward()
-
-            if (
-                (step + 1) % self.config.gradient_accumulation_steps == 0
-                or (step + 1) == len(self.loader)
-            ):
-
-                self.scaler.unscale_(self.optimizer)
-
-                accumulated_microbatches = (
-                    step % self.config.gradient_accumulation_steps
-                ) + 1
-                normalize_partial_accumulation(
-                    self.model.parameters(),
-                    accumulated_microbatches=accumulated_microbatches,
-                    target_microbatches=(
-                        self.config.gradient_accumulation_steps
-                    ),
-                )
-
-                torch.nn.utils.clip_grad_norm_(
-                    self.model.parameters(),
-                    self.config.grad_clip,
-                )
-
-                self.scaler.step(self.optimizer)
-                self.scaler.update()
-
-                self.optimizer.zero_grad(set_to_none=True)
-
-            total_loss += (
-                loss.item()
-                * self.config.gradient_accumulation_steps
-        )
-
-            progress.set_postfix({
-                "loss": f"{loss.item() * self.config.gradient_accumulation_steps:.4f}"
-            })
-            
-
-        return total_loss / len(self.loader)
-
-    @torch.no_grad()
-    def validate_epoch(self):
-
-        self.model.eval()
-
-        total_loss = 0.0
-
-        for batch in self.val_loader:
-
-            if len(batch) == 3:
-                x, y, mask = batch
-                mask = mask.to(self.device)
-            else:
-                x, y = batch
-                mask = None
-
-            x = x.to(self.device)
-            y = y.to(self.device)
-
-            with torch.amp.autocast(
-                self.device.type,
-                enabled=self.config.use_amp,
-            ):
-
-                logits = self.model(x)
-
-                loss = language_model_loss(
-                    logits,
-                    y,
-                    mask,
-                )
-
-            total_loss += loss.item()
-
-        return total_loss / len(self.val_loader)
-
-    def fit(self):
-        if self.start_epoch >= self.config.epochs:
-            print(
-                "Training already completed. \n"
-                "Increase TrainConfig.epochs to continue."
+        progress = checkpoint.get("training_progress")
+        if progress is None:
+            self.exact_resume_available = False
+            self.start_epoch = int(checkpoint.get("epoch", -1)) + 1
+            warnings.warn(
+                "Checkpoint has no training_progress sampler state. Falling back "
+                "to legacy next-epoch resume; exact mid-epoch resume is "
+                "unavailable and a historical mid-epoch checkpoint may skip its "
+                "unprocessed remaining samples.",
+                RuntimeWarning,
+                stacklevel=2,
             )
             return
+        if progress.get("format_version") != 1:
+            raise ValueError("Unsupported training_progress checkpoint format.")
+        phase = progress.get("phase")
+        if phase not in RESUME_PHASES:
+            raise ValueError(
+                "Checkpoint training_progress has no unambiguous resume phase; "
+                "exact resume is unsafe."
+            )
+        self.train_sampler.load_state_dict(progress["sampler"])
+        self._resume_phase = phase
+        self._accumulated_microbatches = int(
+            progress["accumulated_microbatches"]
+        )
+        if not 0 <= self._accumulated_microbatches < self.config.gradient_accumulation_steps:
+            raise ValueError("Checkpoint accumulation position is invalid.")
+        gradients = progress.get("gradients", {})
+        validate_gradient_presence(gradients, self._accumulated_microbatches)
+        restore_gradient_state(self.model, gradients)
+        if "scaler" in progress:
+            self.scaler.load_state_dict(progress["scaler"])
+        restore_rng_state(progress["rng"])
+        self.start_epoch = self.train_sampler.position.epoch
+        if self._resume_phase == "next_epoch":
+            # The checkpoint is already positioned at the first batch of the
+            # next epoch, so its active runtime phase is ordinary training.
+            self._resume_phase = "train"
+        print(
+            "Exact resume: "
+            f"epoch={self.start_epoch}, "
+            f"next_batch={self.train_sampler.position.next_batch_index}, "
+            f"phase={self._resume_phase}, "
+            f"global_step={self.global_step}."
+        )
 
-        Path(
-            self.config.checkpoint_dir
-        ).mkdir(
-            parents=True,
-            exist_ok=True,
-    )
+    def _training_progress(self) -> dict[str, Any]:
+        return build_training_progress(
+            sampler_state=self.train_sampler.state_dict(),
+            phase=self._resume_phase,
+            accumulated_microbatches=self._accumulated_microbatches,
+            gradients=capture_gradient_state(self.model),
+            scaler_state=self.scaler.state_dict(),
+        )
 
+    def save_training_checkpoint(
+        self,
+        path: str | Path,
+        *,
+        epoch: int | None = None,
+        loss: float | None = None,
+    ) -> None:
+        """Save an additive exact-resume checkpoint at any microbatch boundary."""
+
+        save_checkpoint(
+            model=self.model,
+            optimizer=self.optimizer,
+            scheduler=self.scheduler,
+            epoch=self.start_epoch if epoch is None else epoch,
+            loss=loss,
+            path=path,
+            global_step=self.global_step,
+            best_val_loss=self.best_val_loss,
+            training_progress=self._training_progress(),
+        )
+
+    def _unpack_batch(
+        self, batch: Any
+    ) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor | None]:
+        if len(batch) == 3:
+            inputs, targets, mask = batch
+            return inputs, targets, mask.to(self.device)
+        inputs, targets = batch
+        return inputs, targets, None
+
+    def _optimizer_step(self) -> None:
+        self.scaler.unscale_(self.optimizer)
+        normalize_partial_accumulation(
+            self.model.parameters(),
+            accumulated_microbatches=self._accumulated_microbatches,
+            target_microbatches=self.config.gradient_accumulation_steps,
+        )
+        torch.nn.utils.clip_grad_norm_(self.model.parameters(), self.config.grad_clip)
+        self.scaler.step(self.optimizer)
+        self.scaler.update()
+        self.optimizer.zero_grad(set_to_none=True)
+        self._accumulated_microbatches = 0
+        self.global_step += 1
+
+    def train_epoch(self, *, max_microbatches: int | None = None) -> float:
+        """Train remaining batches in the current epoch.
+
+        ``max_microbatches`` is intentionally useful for controlled tests and
+        interruptions.  A caller may save with :meth:`save_training_checkpoint`
+        immediately afterward, including midway through gradient accumulation.
+        """
+
+        if max_microbatches is not None and max_microbatches <= 0:
+            raise ValueError("max_microbatches must be positive when provided.")
+        if self._resume_phase != "train":
+            raise RuntimeError(
+                "train_epoch is only valid during the train phase; current phase "
+                f"is {self._resume_phase!r}."
+            )
+        self.model.train()
+        total_loss = 0.0
+        processed = 0
+        progress = tqdm(self.loader, desc="Training", leave=False)
+        if self._accumulated_microbatches == 0:
+            self.optimizer.zero_grad(set_to_none=True)
+
+        for batch in progress:
+            inputs, targets, mask = self._unpack_batch(batch)
+            inputs = inputs.to(self.device)
+            targets = targets.to(self.device)
+            with torch.amp.autocast(self.device.type, enabled=self.config.use_amp):
+                logits = self.model(inputs)
+                raw_loss = language_model_loss(logits, targets, mask)
+                scaled_loss = raw_loss / self.config.gradient_accumulation_steps
+            self.scaler.scale(scaled_loss).backward()
+            self.train_sampler.mark_batch_consumed()
+            self._accumulated_microbatches += 1
+            processed += 1
+            total_loss += raw_loss.item()
+
+            is_epoch_tail = self.train_sampler.epoch_complete
+            if is_epoch_tail:
+                self._resume_phase = "post_train_pre_validation"
+            if (
+                self._accumulated_microbatches
+                == self.config.gradient_accumulation_steps
+                or is_epoch_tail
+            ):
+                self._optimizer_step()
+                save_every = int(getattr(self.config, "save_every_steps", 0))
+                if save_every > 0 and self.global_step % save_every == 0:
+                    self.save_training_checkpoint(
+                        Path(self.config.checkpoint_dir)
+                        / f"step_{self.global_step}.pt",
+                        loss=raw_loss.item(),
+                    )
+            progress.set_postfix(loss=f"{raw_loss.item():.4f}")
+            if max_microbatches is not None and processed >= max_microbatches:
+                break
+        progress.close()
+        if processed == 0:
+            raise RuntimeError("No training batches remain in the current epoch.")
+        return total_loss / processed
+
+    @torch.no_grad()
+    def validate_epoch(self) -> float:
+        self.model.eval()
+        total_loss = 0.0
+        for batch in self.val_loader:
+            inputs, targets, mask = self._unpack_batch(batch)
+            inputs = inputs.to(self.device)
+            targets = targets.to(self.device)
+            with torch.amp.autocast(self.device.type, enabled=self.config.use_amp):
+                loss = language_model_loss(self.model(inputs), targets, mask)
+            total_loss += loss.item()
+        return total_loss / len(self.val_loader)
+
+    def fit(self) -> None:
+        if self.start_epoch >= self.config.epochs:
+            print("Training already completed. Increase TrainConfig.epochs to continue.")
+            return
+        Path(self.config.checkpoint_dir).mkdir(parents=True, exist_ok=True)
         for callback in self.callbacks:
             callback.on_train_begin(self)
-
-        print(f"start_epoch = {self.start_epoch}")
-        print(f"epochs = {self.config.epochs}")
-
-        for epoch in range(
-            self.start_epoch,
-            self.config.epochs,
-        ):
-
+        for epoch in range(self.start_epoch, self.config.epochs):
             for callback in self.callbacks:
-                callback.on_epoch_begin(
-                    self,
-                    epoch,
+                callback.on_epoch_begin(self, epoch)
+            if self._resume_phase == "post_train_pre_validation":
+                if not self.train_sampler.epoch_complete:
+                    raise RuntimeError(
+                        "post_train_pre_validation requires an exhausted sampler."
+                    )
+                train_loss = float("nan")
+            elif self._resume_phase == "train":
+                train_loss = self.train_epoch()
+            elif self._resume_phase == "next_epoch":
+                raise RuntimeError(
+                    "next_epoch phase must use the sampler's next epoch before "
+                    "entering fit."
                 )
-
-            train_loss = self.train_epoch()
-
+            else:  # Defensive guard for future checkpoint formats.
+                raise RuntimeError(f"Unsupported resume phase: {self._resume_phase!r}")
+            if not self.train_sampler.epoch_complete:
+                raise RuntimeError("Epoch training ended before the sampler was exhausted.")
             val_loss = self.validate_epoch()
-
             for callback in self.callbacks:
-                callback.on_epoch_end(
-                    self,
-                    epoch,
-                    train_loss,
-                    val_loss,
-                )
-
-
+                callback.on_epoch_end(self, epoch, train_loss, val_loss)
             self.scheduler.step()
-
-            print(
-                f"Epoch {epoch+1} | "
-                f"Train: {train_loss:.6f} | "
-                f"Val: {val_loss:.6f}"
-            )
-
+            self.train_sampler.advance_epoch()
+            self.start_epoch = self.train_sampler.position.epoch
+            self._resume_phase = "next_epoch"
             if val_loss < self.best_val_loss:
-
                 self.best_val_loss = val_loss
-
-                torch.save(
-                    {
-                        "epoch": epoch,
-                        "model": self.model.state_dict(),
-                        "optimizer": self.optimizer.state_dict(),
-                        "best_val_loss": self.best_val_loss,
-                    },
-                    f"{self.config.checkpoint_dir}/best.pt"
+                self.save_training_checkpoint(
+                    Path(self.config.checkpoint_dir) / "best.pt",
+                    epoch=epoch,
+                    loss=val_loss,
                 )
-
-                print("⭐ New best model saved!")
-
-            # after each epoch
-            
-            save_checkpoint(
-                self.model,
-                self.optimizer,
-                epoch,
-                val_loss,
-                f"{self.config.checkpoint_dir}/epoch_{epoch+1}.pt"
+            self.save_training_checkpoint(
+                Path(self.config.checkpoint_dir) / f"epoch_{epoch + 1}.pt",
+                epoch=epoch,
+                loss=val_loss,
             )
-
-            save_checkpoint(
-                self.model,
-                self.optimizer,
-                epoch,
-                val_loss,
+            self.save_training_checkpoint(
                 self.config.checkpoint_path,
+                epoch=epoch,
+                loss=val_loss,
             )
-
         for callback in self.callbacks:
             callback.on_train_end(self)

@@ -34,6 +34,27 @@ The block trainer resumes from the highest valid internal `global_step`. Operati
 
 Always construct the matching model configuration. VASU-31M and VASU-60M use the same checkpoint container convention but incompatible model tensor shapes. The shared tokenizer does not make model weights interchangeable.
 
+## Exact mid-epoch resume
+
+New checkpoints written through the general `Trainer` add a
+`training_progress` metadata field. It records compact sampler state (seed,
+epoch, next batch), partial accumulated gradients, AMP scaler state, and
+process RNG states. This continues from the exact next training batch without
+serializing the shuffled permutation.
+
+The field also records an explicit phase: `train`,
+`post_train_pre_validation`, or `next_epoch`. A final-batch step checkpoint
+uses `post_train_pre_validation`, so a restart performs the pending validation
+and scheduler step exactly once. Best, epoch, and latest checkpoints are saved
+with `next_epoch` only after validation, scheduler stepping, and sampler
+advancement are complete.
+
+Older checkpoints remain loadable. They emit a `RuntimeWarning` and use legacy
+next-epoch behavior because they do not contain enough state to prove an exact
+mid-epoch position. Exact resume also requires an identical dataset size,
+batch size, seed, shuffle setting, and `drop_last` setting; a mismatch fails
+clearly rather than silently approximating the position.
+
 ## Best practices
 
 - Keep milestone checkpoints outside operational retention.

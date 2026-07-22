@@ -1,0 +1,291 @@
+"""Regression tests for deterministic sampler and mid-accumulation resume."""
+
+from __future__ import annotations
+
+import json
+from pathlib import Path
+from types import SimpleNamespace
+import warnings
+
+import torch
+from torch import nn
+from torch.utils.data import Dataset
+
+import vasu.training.trainer as trainer_module
+from vasu.training.resumable_sampler import ResumableBatchSampler
+from vasu.training.trainer import Trainer
+
+
+class RecordingLanguageDataset(Dataset[tuple[torch.Tensor, torch.Tensor]]):
+    def __init__(self, seen: list[int]) -> None:
+        self.seen = seen
+        self.inputs = torch.tensor([[index, index + 1] for index in range(8)])
+        self.targets = torch.tensor([[index + 1, index + 2] for index in range(8)])
+
+    def __len__(self) -> int:
+        return len(self.inputs)
+
+    def __getitem__(self, index: int) -> tuple[torch.Tensor, torch.Tensor]:
+        self.seen.append(index)
+        return self.inputs[index] % 12, self.targets[index] % 12
+
+
+class TinyLanguageModel(nn.Module):
+    def __init__(self) -> None:
+        super().__init__()
+        self.embedding = nn.Embedding(12, 12)
+
+    def forward(self, token_ids: torch.Tensor) -> torch.Tensor:
+        return self.embedding(token_ids)
+
+
+def _config(
+    tmp_path: Path, checkpoint_name: str, *, epochs: int = 1
+) -> SimpleNamespace:
+    return SimpleNamespace(
+        batch_size=1,
+        gradient_accumulation_steps=2,
+        grad_clip=1.0,
+        epochs=epochs,
+        use_amp=False,
+        seed=314159,
+        save_every_steps=0,
+        checkpoint_path=str(tmp_path / checkpoint_name),
+        checkpoint_dir=str(tmp_path / "checkpoints"),
+        num_workers=0,
+        persistent_workers=False,
+    )
+
+
+def _build_trainer(
+    tmp_path: Path,
+    checkpoint_name: str,
+    seen: list[int],
+    monkeypatch,
+    *,
+    epochs: int = 1,
+) -> Trainer:
+    monkeypatch.setattr(
+        trainer_module,
+        "build_optimizer",
+        lambda model, config: torch.optim.SGD(model.parameters(), lr=0.05),
+    )
+    dataset = RecordingLanguageDataset(seen)
+    return Trainer(
+        TinyLanguageModel(),
+        tokenizer=None,
+        train_dataset=dataset,
+        val_dataset=dataset,
+        config=_config(tmp_path, checkpoint_name, epochs=epochs),
+        device=torch.device("cpu"),
+    )
+
+
+def _parameters(model: nn.Module) -> list[torch.Tensor]:
+    return [parameter.detach().clone() for parameter in model.parameters()]
+
+
+def test_uninterrupted_and_mid_accumulation_resume_match(
+    tmp_path: Path, monkeypatch
+) -> None:
+    original_loss = trainer_module.language_model_loss
+    loss_sequences: dict[str, list[float]] = {"uninterrupted": [], "resumed": []}
+    active_sequence = "uninterrupted"
+
+    def recording_loss(logits, targets, mask=None):
+        value = original_loss(logits, targets, mask)
+        loss_sequences[active_sequence].append(float(value.detach()))
+        return value
+
+    monkeypatch.setattr(trainer_module, "language_model_loss", recording_loss)
+    torch.manual_seed(17)
+    uninterrupted_seen: list[int] = []
+    uninterrupted = _build_trainer(
+        tmp_path, "uninterrupted.pt", uninterrupted_seen, monkeypatch
+    )
+    uninterrupted.train_epoch()
+    expected_parameters = _parameters(uninterrupted.model)
+
+    active_sequence = "resumed"
+    torch.manual_seed(17)
+    resumed_seen: list[int] = []
+    interrupted = _build_trainer(
+        tmp_path, "interrupted.pt", resumed_seen, monkeypatch
+    )
+    interrupted.train_epoch(max_microbatches=3)
+    assert interrupted.global_step == 1
+    assert interrupted._accumulated_microbatches == 1
+    interrupted.save_training_checkpoint(interrupted.config.checkpoint_path)
+
+    resumed = _build_trainer(
+        tmp_path, "interrupted.pt", resumed_seen, monkeypatch
+    )
+    assert resumed.exact_resume_available
+    assert resumed.global_step == 1
+    assert resumed._accumulated_microbatches == 1
+    resumed.train_epoch()
+
+    assert resumed_seen == uninterrupted_seen
+    assert loss_sequences["resumed"] == loss_sequences["uninterrupted"]
+    assert resumed.global_step == uninterrupted.global_step == 4
+    assert resumed.scheduler.state_dict() == uninterrupted.scheduler.state_dict()
+    for expected, actual in zip(expected_parameters, resumed.model.parameters(), strict=True):
+        assert torch.equal(expected, actual.detach())
+
+
+def test_checkpoint_positions_cover_optimizer_and_epoch_boundaries(
+    tmp_path: Path, monkeypatch
+) -> None:
+    torch.manual_seed(3)
+    seen: list[int] = []
+    trainer = _build_trainer(tmp_path, "positions.pt", seen, monkeypatch)
+    trainer.train_epoch(max_microbatches=1)
+    assert trainer._accumulated_microbatches == 1  # Immediately before a step.
+    trainer.save_training_checkpoint(trainer.config.checkpoint_path)
+    before_step = _build_trainer(tmp_path, "positions.pt", seen, monkeypatch)
+    before_step.train_epoch(max_microbatches=1)
+    assert before_step.global_step == 1  # Immediately after a step.
+    before_step.train_epoch()
+    assert before_step.train_sampler.epoch_complete  # Final batch of epoch.
+
+
+def test_legacy_checkpoint_warns_and_uses_legacy_next_epoch_resume(
+    tmp_path: Path, monkeypatch
+) -> None:
+    torch.manual_seed(8)
+    path = tmp_path / "legacy.pt"
+    model = TinyLanguageModel()
+    optimizer = torch.optim.SGD(model.parameters(), lr=0.05)
+    torch.save(
+        {
+            "epoch": 2,
+            "global_step": 9,
+            "model": model.state_dict(),
+            "optimizer": optimizer.state_dict(),
+        },
+        path,
+    )
+    with warnings.catch_warnings(record=True) as caught:
+        warnings.simplefilter("always")
+        trainer = _build_trainer(tmp_path, "legacy.pt", [], monkeypatch)
+    assert not trainer.exact_resume_available
+    assert trainer.start_epoch == 3
+    assert any(
+        "may skip its unprocessed remaining samples" in str(item.message)
+        for item in caught
+    )
+
+
+def test_resume_from_best_checkpoint_does_not_repeat_validation_or_scheduler(
+    tmp_path: Path, monkeypatch
+) -> None:
+    torch.manual_seed(21)
+    uninterrupted = _build_trainer(
+        tmp_path, "uninterrupted.pt", [], monkeypatch
+    )
+    uninterrupted.fit()
+    expected_parameters = _parameters(uninterrupted.model)
+    expected_scheduler = uninterrupted.scheduler.state_dict()
+
+    torch.manual_seed(21)
+    resumed = _build_trainer(
+        tmp_path, "checkpoints/best.pt", [], monkeypatch
+    )
+    validation_calls = 0
+    original_validate = resumed.validate_epoch
+
+    def counted_validate() -> float:
+        nonlocal validation_calls
+        validation_calls += 1
+        return original_validate()
+
+    monkeypatch.setattr(resumed, "validate_epoch", counted_validate)
+    resumed.fit()
+
+    assert validation_calls == 0
+    assert resumed.scheduler.state_dict() == expected_scheduler
+    for expected, actual in zip(expected_parameters, resumed.model.parameters(), strict=True):
+        assert torch.equal(expected, actual.detach())
+
+
+def test_final_batch_step_checkpoint_runs_validation_and_scheduler_once(
+    tmp_path: Path, monkeypatch
+) -> None:
+    torch.manual_seed(23)
+    uninterrupted = _build_trainer(
+        tmp_path, "uninterrupted.pt", [], monkeypatch
+    )
+    uninterrupted.fit()
+    expected_parameters = _parameters(uninterrupted.model)
+    expected_scheduler = uninterrupted.scheduler.state_dict()
+
+    torch.manual_seed(23)
+    interrupted = _build_trainer(
+        tmp_path, "final-step.pt", [], monkeypatch
+    )
+    interrupted.train_epoch()
+    assert interrupted.train_sampler.epoch_complete
+    assert interrupted._resume_phase == "post_train_pre_validation"
+    interrupted.save_training_checkpoint(interrupted.config.checkpoint_path)
+
+    resumed = _build_trainer(tmp_path, "final-step.pt", [], monkeypatch)
+    validation_calls = 0
+    original_validate = resumed.validate_epoch
+
+    def counted_validate() -> float:
+        nonlocal validation_calls
+        validation_calls += 1
+        return original_validate()
+
+    monkeypatch.setattr(resumed, "validate_epoch", counted_validate)
+    resumed.fit()
+
+    assert validation_calls == 1
+    assert resumed.scheduler.state_dict() == expected_scheduler
+    for expected, actual in zip(expected_parameters, resumed.model.parameters(), strict=True):
+        assert torch.equal(expected, actual.detach())
+
+
+def test_sampler_state_is_compact_serializable_and_never_repeats() -> None:
+    sampler = ResumableBatchSampler(
+        num_samples=11,
+        batch_size=3,
+        shuffle=True,
+        seed=7,
+        drop_last=False,
+    )
+    first = next(iter(sampler))
+    sampler.mark_batch_consumed()
+    state = sampler.state_dict()
+    assert "permutation" not in state
+    assert len(json.dumps(state)) < 300
+
+    restored = ResumableBatchSampler(
+        num_samples=11,
+        batch_size=3,
+        shuffle=True,
+        seed=7,
+        drop_last=False,
+    )
+    restored.load_state_dict(state)
+    remaining = [index for batch in restored for index in batch]
+    assert set(first).isdisjoint(remaining)
+    assert sorted(first + remaining) == list(range(11))
+
+
+def test_multiworker_loader_keeps_sampler_order_for_deterministic_dataset() -> None:
+    sampler = ResumableBatchSampler(
+        num_samples=12,
+        batch_size=2,
+        shuffle=True,
+        seed=99,
+        drop_last=True,
+    )
+    dataset = torch.utils.data.TensorDataset(torch.arange(12))
+    loader = torch.utils.data.DataLoader(dataset, batch_sampler=sampler, num_workers=2)
+    observed: list[int] = []
+    for (batch,) in loader:
+        observed.extend(batch.tolist())
+        sampler.mark_batch_consumed()
+    expected = torch.randperm(12, generator=torch.Generator().manual_seed(99)).tolist()
+    assert observed == expected

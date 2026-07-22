@@ -176,3 +176,20 @@ assistant response and terminating EOS targets are supervised with one; and
 padding targets are masked with zero. Train and validation are packed
 separately, and any truncated approved response blocks release. This data
 pipeline changes no model, tokenizer, checkpoint, or trainer behavior.
+
+## Deterministic mid-epoch resume
+
+The general `Trainer` now uses `ResumableBatchSampler` for shuffled training.
+Each epoch permutation is regenerated from a fixed seed and epoch number; the
+checkpoint stores only the loader contract, seed, epoch, and next unconsumed
+batch index rather than a full sample-order list. The trainer advances that
+position after backward processing, so DataLoader prefetching cannot cause a
+saved position to skip untrained samples.
+
+New `training_progress` checkpoint metadata also preserves partial gradients,
+gradient-accumulation position, AMP scaler state, and Python/NumPy/PyTorch/CUDA
+RNG states. It is additive: model tensor keys, tokenizer IDs, processed
+datasets, and existing checkpoint fields remain unchanged. Exact parameter
+reproducibility requires deterministic dataset/model execution; worker-side
+random transforms must be stateless or deterministic and
+`persistent_workers=True` is rejected.
