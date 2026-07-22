@@ -1,0 +1,33 @@
+{
+  "approved_count": 500,
+  "automatic_approval": false,
+  "category_counts": {
+    "beginner_explanation": 100,
+    "exact_format_following": 100,
+    "json_schema_output": 25,
+    "lists_structured_output": 50,
+    "rewriting_transformation": 75,
+    "short_factual_qa": 125,
+    "uncertainty_honest_fallback": 25
+  },
+  "dataset_name": "vasu_instruction_quality_v1_batch_002",
+  "decision_path": "data/reviews/instruct/vasu_instruction_quality_v1_batch_002_final_full_review_decisions.jsonl",
+  "decision_sha256": "00a42eee2911183825beffbd9c3939262bf309909043ab13fd52ab2a263cbb23",
+  "difficulty_counts": {
+    "easy": 300,
+    "hard": 25,
+    "medium": 175
+  },
+  "full_review_passed": true,
+  "next_required_gate": "release_manifest_and_token_mask_validation",
+  "rejected_count": 0,
+  "release_authorized": false,
+  "review_status": "passed",
+  "reviewed_at": "2026-07-20T15:48:33.866476+00:00",
+  "reviewer": "ChatGPT",
+  "schema_version": "vasu_instruction_quality_full_review_manifest_v1",
+  "source_path": "data/raw/instruct/vasu_instruction_quality_v1_batch_002.jsonl",
+  "source_record_count": 500,
+  "source_sha256": "e62bac5680362164a0b898c8356d700363de024f05bfcd3bdf981c36f737b241",
+  "training_authorized": false
+}

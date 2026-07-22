@@ -1,0 +1,2937 @@
+{
+  "automatic_approval": false,
+  "category_counts": {
+    "beginner_explanation": 100,
+    "exact_format_following": 100,
+    "json_schema_output": 25,
+    "lists_structured_output": 50,
+    "rewriting_transformation": 75,
+    "short_factual_qa": 125,
+    "uncertainty_honest_fallback": 25
+  },
+  "configuration_path": "config\\configs\\data\\vasu_instruction_quality_v1_batch_002.json",
+  "configuration_sha256": "47a772a41897bac6e9abbcbe33f1d44c01176f43f80fc0f04a29078b7682a13f",
+  "dataset_name": "vasu_instruction_quality_v1_batch_002",
+  "difficulty_counts": {
+    "easy": 300,
+    "hard": 25,
+    "medium": 175
+  },
+  "duplicates_against_demo": {
+    "exact_duplicate_groups": [],
+    "near_duplicate_candidates": []
+  },
+  "exact_duplicate_groups": [],
+  "findings": [],
+  "format_constraint_counts": {
+    "exact_bullets": 50,
+    "exact_numbered_items": 50,
+    "exact_sentences": 25,
+    "exact_words": 25,
+    "json_object": 25,
+    "none": 325
+  },
+  "invalid_records": 0,
+  "language_counts": {
+    "en": 500
+  },
+  "near_duplicate_candidates": [],
+  "quality_scores": {
+    "viq1_b002_000001": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000002": {
+      "automatic_approval": false,
+      "reasons": [
+        {
+          "code": "very_short_response",
+          "points": -10
+        }
+      ],
+      "score": 90
+    },
+    "viq1_b002_000003": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000004": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000005": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000006": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000007": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000008": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000009": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000010": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000011": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000012": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000013": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000014": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000015": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000016": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000017": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000018": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000019": {
+      "automatic_approval": false,
+      "reasons": [
+        {
+          "code": "very_short_response",
+          "points": -10
+        }
+      ],
+      "score": 90
+    },
+    "viq1_b002_000020": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000021": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000022": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000023": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000024": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000025": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000026": {
+      "automatic_approval": false,
+      "reasons": [
+        {
+          "code": "very_short_response",
+          "points": -10
+        }
+      ],
+      "score": 90
+    },
+    "viq1_b002_000027": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000028": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000029": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000030": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000031": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000032": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000033": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000034": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000035": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000036": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000037": {
+      "automatic_approval": false,
+      "reasons": [
+        {
+          "code": "very_short_response",
+          "points": -10
+        }
+      ],
+      "score": 90
+    },
+    "viq1_b002_000038": {
+      "automatic_approval": false,
+      "reasons": [
+        {
+          "code": "very_short_response",
+          "points": -10
+        }
+      ],
+      "score": 90
+    },
+    "viq1_b002_000039": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000040": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000041": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000042": {
+      "automatic_approval": false,
+      "reasons": [
+        {
+          "code": "very_short_response",
+          "points": -10
+        }
+      ],
+      "score": 90
+    },
+    "viq1_b002_000043": {
+      "automatic_approval": false,
+      "reasons": [
+        {
+          "code": "very_short_response",
+          "points": -10
+        }
+      ],
+      "score": 90
+    },
+    "viq1_b002_000044": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000045": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000046": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000047": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000048": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000049": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000050": {
+      "automatic_approval": false,
+      "reasons": [
+        {
+          "code": "very_short_response",
+          "points": -10
+        }
+      ],
+      "score": 90
+    },
+    "viq1_b002_000051": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000052": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000053": {
+      "automatic_approval": false,
+      "reasons": [
+        {
+          "code": "very_short_response",
+          "points": -10
+        }
+      ],
+      "score": 90
+    },
+    "viq1_b002_000054": {
+      "automatic_approval": false,
+      "reasons": [
+        {
+          "code": "very_short_response",
+          "points": -10
+        }
+      ],
+      "score": 90
+    },
+    "viq1_b002_000055": {
+      "automatic_approval": false,
+      "reasons": [
+        {
+          "code": "very_short_response",
+          "points": -10
+        }
+      ],
+      "score": 90
+    },
+    "viq1_b002_000056": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000057": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000058": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000059": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000060": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000061": {
+      "automatic_approval": false,
+      "reasons": [
+        {
+          "code": "very_short_response",
+          "points": -10
+        }
+      ],
+      "score": 90
+    },
+    "viq1_b002_000062": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000063": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000064": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000065": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000066": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000067": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000068": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000069": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000070": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000071": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000072": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000073": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000074": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000075": {
+      "automatic_approval": false,
+      "reasons": [
+        {
+          "code": "very_short_response",
+          "points": -10
+        }
+      ],
+      "score": 90
+    },
+    "viq1_b002_000076": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000077": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000078": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000079": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000080": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000081": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000082": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000083": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000084": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000085": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000086": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000087": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000088": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000089": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000090": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000091": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000092": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000093": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000094": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000095": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000096": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000097": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000098": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000099": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000100": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000101": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000102": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000103": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000104": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000105": {
+      "automatic_approval": false,
+      "reasons": [
+        {
+          "code": "very_short_response",
+          "points": -10
+        }
+      ],
+      "score": 90
+    },
+    "viq1_b002_000106": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000107": {
+      "automatic_approval": false,
+      "reasons": [
+        {
+          "code": "very_short_response",
+          "points": -10
+        }
+      ],
+      "score": 90
+    },
+    "viq1_b002_000108": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000109": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000110": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000111": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000112": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000113": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000114": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000115": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000116": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000117": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000118": {
+      "automatic_approval": false,
+      "reasons": [
+        {
+          "code": "very_short_response",
+          "points": -10
+        }
+      ],
+      "score": 90
+    },
+    "viq1_b002_000119": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000120": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000121": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000122": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000123": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000124": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000125": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000126": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000127": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000128": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000129": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000130": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000131": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000132": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000133": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000134": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000135": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000136": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000137": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000138": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000139": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000140": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000141": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000142": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000143": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000144": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000145": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000146": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000147": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000148": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000149": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000150": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000151": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000152": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000153": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000154": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000155": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000156": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000157": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000158": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000159": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000160": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000161": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000162": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000163": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000164": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000165": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000166": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000167": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000168": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000169": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000170": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000171": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000172": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000173": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000174": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000175": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000176": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000177": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000178": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000179": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000180": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000181": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000182": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000183": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000184": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000185": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000186": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000187": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000188": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000189": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000190": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000191": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000192": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000193": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000194": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000195": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000196": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000197": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000198": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000199": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000200": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000201": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000202": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000203": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000204": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000205": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000206": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000207": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000208": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000209": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000210": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000211": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000212": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000213": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000214": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000215": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000216": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000217": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000218": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000219": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000220": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000221": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000222": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000223": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000224": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000225": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000226": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000227": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000228": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000229": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000230": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000231": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000232": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000233": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000234": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000235": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000236": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000237": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000238": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000239": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000240": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000241": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000242": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000243": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000244": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000245": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000246": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000247": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000248": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000249": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000250": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000251": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000252": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000253": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000254": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000255": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000256": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000257": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000258": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000259": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000260": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000261": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000262": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000263": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000264": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000265": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000266": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000267": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000268": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000269": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000270": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000271": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000272": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000273": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000274": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000275": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000276": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000277": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000278": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000279": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000280": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000281": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000282": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000283": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000284": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000285": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000286": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000287": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000288": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000289": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000290": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000291": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000292": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000293": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000294": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000295": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000296": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000297": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000298": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000299": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000300": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000301": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000302": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000303": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000304": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000305": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000306": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000307": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000308": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000309": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000310": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000311": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000312": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000313": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000314": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000315": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000316": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000317": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000318": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000319": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000320": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000321": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000322": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000323": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000324": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000325": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000326": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000327": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000328": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000329": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000330": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000331": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000332": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000333": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000334": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000335": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000336": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000337": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000338": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000339": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000340": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000341": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000342": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000343": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000344": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000345": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000346": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000347": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000348": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000349": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000350": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000351": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000352": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000353": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000354": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000355": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000356": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000357": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000358": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000359": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000360": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000361": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000362": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000363": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000364": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000365": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000366": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000367": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000368": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000369": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000370": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000371": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000372": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000373": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000374": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000375": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000376": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000377": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000378": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000379": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000380": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000381": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000382": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000383": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000384": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000385": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000386": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000387": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000388": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000389": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000390": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000391": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000392": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000393": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000394": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000395": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000396": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000397": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000398": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000399": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000400": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000401": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000402": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000403": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000404": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000405": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000406": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000407": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000408": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000409": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000410": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000411": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000412": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000413": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000414": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000415": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000416": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000417": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000418": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000419": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000420": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000421": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000422": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000423": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000424": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000425": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000426": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000427": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000428": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000429": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000430": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000431": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000432": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000433": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000434": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000435": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000436": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000437": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000438": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000439": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000440": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000441": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000442": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000443": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000444": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000445": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000446": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000447": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000448": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000449": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000450": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000451": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000452": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000453": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000454": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000455": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000456": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000457": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000458": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000459": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000460": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000461": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000462": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000463": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000464": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000465": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000466": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000467": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000468": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000469": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000470": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000471": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000472": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000473": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000474": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000475": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000476": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000477": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000478": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000479": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000480": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000481": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000482": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000483": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000484": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000485": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000486": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000487": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000488": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000489": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000490": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000491": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000492": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000493": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000494": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000495": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000496": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000497": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000498": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000499": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    },
+    "viq1_b002_000500": {
+      "automatic_approval": false,
+      "reasons": [],
+      "score": 100
+    }
+  },
+  "records_with_facts": 125,
+  "records_with_input": 75,
+  "records_without_facts": 375,
+  "records_without_input": 425,
+  "response_word_counts": {
+    "maximum": 37,
+    "mean": 12.1,
+    "median": 11.0,
+    "minimum": 1,
+    "p90": 23,
+    "p95": 28,
+    "shortest_responses": [
+      {
+        "example_id": "viq1_b002_000002",
+        "words": 1
+      },
+      {
+        "example_id": "viq1_b002_000019",
+        "words": 1
+      },
+      {
+        "example_id": "viq1_b002_000026",
+        "words": 1
+      },
+      {
+        "example_id": "viq1_b002_000037",
+        "words": 1
+      },
+      {
+        "example_id": "viq1_b002_000038",
+        "words": 1
+      },
+      {
+        "example_id": "viq1_b002_000042",
+        "words": 1
+      },
+      {
+        "example_id": "viq1_b002_000043",
+        "words": 1
+      },
+      {
+        "example_id": "viq1_b002_000050",
+        "words": 1
+      },
+      {
+        "example_id": "viq1_b002_000053",
+        "words": 1
+      },
+      {
+        "example_id": "viq1_b002_000054",
+        "words": 1
+      }
+    ]
+  },
+  "review_path": "data\\reviews\\instruct\\vasu_instruction_quality_v1_batch_002_review.jsonl",
+  "review_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "review_status_counts": {
+    "unreviewed": 500
+  },
+  "source_path": "data\\raw\\instruct\\vasu_instruction_quality_v1_batch_002.jsonl",
+  "source_reference_domains": {
+    "developer.mozilla.org": 24,
+    "gml.noaa.gov": 1,
+    "oceanservice.noaa.gov": 1,
+    "oceantoday.noaa.gov": 1,
+    "science.nasa.gov": 23,
+    "www.bipm.org": 5,
+    "www.bluetooth.com": 1,
+    "www.britannica.com": 15,
+    "www.cisa.gov": 5,
+    "www.cloudflare.com": 1,
+    "www.energy.gov": 1,
+    "www.epa.gov": 1,
+    "www.ibm.com": 1,
+    "www.jpl.nasa.gov": 1,
+    "www.merriam-webster.com": 2,
+    "www.nasa.gov": 1,
+    "www.ncbi.nlm.nih.gov": 2,
+    "www.nesdis.noaa.gov": 2,
+    "www.niddk.nih.gov": 5,
+    "www.nist.gov": 7,
+    "www.noaa.gov": 1,
+    "www.nrcs.usda.gov": 1,
+    "www.usgs.gov": 22,
+    "www.wi-fi.org": 1
+  },
+  "source_sha256": "e62bac5680362164a0b898c8356d700363de024f05bfcd3bdf981c36f737b241",
+  "structural_errors": [],
+  "template_family_counts": {
+    "batch_002_activation_function_basics": 1,
+    "batch_002_algorithm_basics": 1,
+    "batch_002_api_basics": 1,
+    "batch_002_attention_basics": 1,
+    "batch_002_backup_basics": 1,
+    "batch_002_batch_size_basics": 1,
+    "batch_002_blood_pressure_basics": 1,
+    "batch_002_bluetooth_basics": 1,
+    "batch_002_browser_basics": 1,
+    "batch_002_calorie_basics": 1,
+    "batch_002_cell_biology_basics": 1,
+    "batch_002_checkpoint_basics": 1,
+    "batch_002_chromosome_basics": 1,
+    "batch_002_climate_change_basics": 1,
+    "batch_002_cloud_storage_basics": 1,
+    "batch_002_compiler_basics": 1,
+    "batch_002_condensation_basics": 1,
+    "batch_002_conditional_basics": 1,
+    "batch_002_cpu_basics": 1,
+    "batch_002_css_basics": 1,
+    "batch_002_database_basics": 1,
+    "batch_002_day_night_basics": 1,
+    "batch_002_debugging_basics": 1,
+    "batch_002_digestion_basics": 1,
+    "batch_002_dna_basics": 1,
+    "batch_002_dns_basics": 1,
+    "batch_002_earthquake_basics": 1,
+    "batch_002_ecosystem_basics": 1,
+    "batch_002_embedding_basics": 1,
+    "batch_002_encryption_basics": 1,
+    "batch_002_epoch_basics": 1,
+    "batch_002_erosion_basics": 1,
+    "batch_002_error_message_basics": 1,
+    "batch_002_evaporation_basics": 1,
+    "batch_002_exact_bullets": 25,
+    "batch_002_exact_numbered": 25,
+    "batch_002_exact_sentences": 25,
+    "batch_002_exact_words": 25,
+    "batch_002_factual_part_01": 125,
+    "batch_002_file_basics": 1,
+    "batch_002_fine_tuning_basics": 1,
+    "batch_002_folder_basics": 1,
+    "batch_002_fossil_fuels_basics": 1,
+    "batch_002_function_basics": 1,
+    "batch_002_galaxy_basics": 1,
+    "batch_002_gene_basics": 1,
+    "batch_002_gpu_training_basics": 1,
+    "batch_002_gradient_descent_basics": 1,
+    "batch_002_gravity_child": 1,
+    "batch_002_greenhouse_effect_basics": 1,
+    "batch_002_heart_basics": 1,
+    "batch_002_hormone_basics": 1,
+    "batch_002_html_basics": 1,
+    "batch_002_immune_system_basics": 1,
+    "batch_002_inference_basics": 1,
+    "batch_002_insulin_basics": 1,
+    "batch_002_internet_basics": 1,
+    "batch_002_internet_web_difference": 1,
+    "batch_002_interpreter_basics": 1,
+    "batch_002_ip_address_basics": 1,
+    "batch_002_json_archive": 1,
+    "batch_002_json_artifact": 1,
+    "batch_002_json_branch": 1,
+    "batch_002_json_checkpoint": 1,
+    "batch_002_json_commit": 1,
+    "batch_002_json_config": 1,
+    "batch_002_json_dataset": 1,
+    "batch_002_json_device": 1,
+    "batch_002_json_evaluation": 1,
+    "batch_002_json_experiment": 1,
+    "batch_002_json_mask": 1,
+    "batch_002_json_metric": 1,
+    "batch_002_json_model": 1,
+    "batch_002_json_prompt": 1,
+    "batch_002_json_release": 1,
+    "batch_002_json_report": 1,
+    "batch_002_json_response": 1,
+    "batch_002_json_review": 1,
+    "batch_002_json_run": 1,
+    "batch_002_json_sample": 1,
+    "batch_002_json_schedule": 1,
+    "batch_002_json_split": 1,
+    "batch_002_json_status": 1,
+    "batch_002_json_tokenizer": 1,
+    "batch_002_json_training": 1,
+    "batch_002_language_model_prediction": 1,
+    "batch_002_learning_rate_basics": 1,
+    "batch_002_light_year_basics": 1,
+    "batch_002_list_basics": 1,
+    "batch_002_loop_basics": 1,
+    "batch_002_lungs_basics": 1,
+    "batch_002_machine_learning_basics": 1,
+    "batch_002_malware_basics": 1,
+    "batch_002_matrix_multiplication_basics": 1,
+    "batch_002_metabolism_basics": 1,
+    "batch_002_ml_model_basics": 1,
+    "batch_002_model_evaluation_basics": 1,
+    "batch_002_model_parameters_basics": 1,
+    "batch_002_network_basics": 1,
+    "batch_002_neural_network_layer_basics": 1,
+    "batch_002_operating_system_basics": 1,
+    "batch_002_orbit_basics": 1,
+    "batch_002_overfitting_basics": 1,
+    "batch_002_phishing_basics": 1,
+    "batch_002_photosynthesis_basics": 1,
+    "batch_002_planet_basics": 1,
+    "batch_002_protein_basics": 1,
+    "batch_002_ram_basics": 1,
+    "batch_002_ram_storage_difference": 1,
+    "batch_002_recycling_basics": 1,
+    "batch_002_renewable_energy_basics": 1,
+    "batch_002_rewrite_active": 25,
+    "batch_002_rewrite_concise": 25,
+    "batch_002_rewrite_polite": 25,
+    "batch_002_router_basics": 1,
+    "batch_002_source_code_basics": 1,
+    "batch_002_star_basics": 1,
+    "batch_002_storage_basics": 1,
+    "batch_002_structured_bullets": 25,
+    "batch_002_structured_numbered": 25,
+    "batch_002_syntax_basics": 1,
+    "batch_002_tensor_basics": 1,
+    "batch_002_token_basics": 1,
+    "batch_002_tokenization_basics": 1,
+    "batch_002_training_data_basics": 1,
+    "batch_002_training_loss_basics": 1,
+    "batch_002_two_factor_authentication": 1,
+    "batch_002_uncertainty_01": 1,
+    "batch_002_uncertainty_02": 1,
+    "batch_002_uncertainty_03": 1,
+    "batch_002_uncertainty_04": 1,
+    "batch_002_uncertainty_05": 1,
+    "batch_002_uncertainty_06": 1,
+    "batch_002_uncertainty_07": 1,
+    "batch_002_uncertainty_08": 1,
+    "batch_002_uncertainty_09": 1,
+    "batch_002_uncertainty_10": 1,
+    "batch_002_uncertainty_11": 1,
+    "batch_002_uncertainty_12": 1,
+    "batch_002_uncertainty_13": 1,
+    "batch_002_uncertainty_14": 1,
+    "batch_002_uncertainty_15": 1,
+    "batch_002_uncertainty_16": 1,
+    "batch_002_uncertainty_17": 1,
+    "batch_002_uncertainty_18": 1,
+    "batch_002_uncertainty_19": 1,
+    "batch_002_uncertainty_20": 1,
+    "batch_002_uncertainty_21": 1,
+    "batch_002_uncertainty_22": 1,
+    "batch_002_uncertainty_23": 1,
+    "batch_002_uncertainty_24": 1,
+    "batch_002_uncertainty_25": 1,
+    "batch_002_url_basics": 1,
+    "batch_002_vaccine_basics": 1,
+    "batch_002_validation_data_basics": 1,
+    "batch_002_variable_basics": 1,
+    "batch_002_volcano_basics": 1,
+    "batch_002_water_cycle_basics": 1,
+    "batch_002_web_server_basics": 1,
+    "batch_002_wifi_basics": 1
+  },
+  "token_length_audit": {
+    "full_example_tokens": {
+      "maximum": 83,
+      "mean": 44.162,
+      "median": 44.0,
+      "minimum": 19,
+      "p90": 62,
+      "p95": 67,
+      "p99": 76
+    },
+    "longest_examples": [
+      {
+        "example_id": "viq1_b002_000401",
+        "tokens": 83
+      },
+      {
+        "example_id": "viq1_b002_000427",
+        "tokens": 80
+      },
+      {
+        "example_id": "viq1_b002_000407",
+        "tokens": 79
+      },
+      {
+        "example_id": "viq1_b002_000425",
+        "tokens": 78
+      },
+      {
+        "example_id": "viq1_b002_000429",
+        "tokens": 77
+      },
+      {
+        "example_id": "viq1_b002_000403",
+        "tokens": 76
+      },
+      {
+        "example_id": "viq1_b002_000405",
+        "tokens": 76
+      },
+      {
+        "example_id": "viq1_b002_000435",
+        "tokens": 76
+      },
+      {
+        "example_id": "viq1_b002_000419",
+        "tokens": 74
+      },
+      {
+        "example_id": "viq1_b002_000431",
+        "tokens": 74
+      }
+    ],
+    "maximum_token_id": 31994,
+    "prompt_tokens": {
+      "maximum": 54,
+      "mean": 23.486,
+      "median": 20.0,
+      "minimum": 14
+    },
+    "truncated_example_ids": []
+  },
+  "tokenizer_path": "assets\\tokenizer.json",
+  "tokenizer_sha256": "04942e101a4a01f87f7e492ad9e463d299a559e784b650fdedd1763a017d195a",
+  "total_records": 500,
+  "training_authorized": false,
+  "valid_records": 500
+}

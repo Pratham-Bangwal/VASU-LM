@@ -1,0 +1,18 @@
+{
+  "dataset_name": "vasu_instruction_quality_v1_batch_002",
+  "full_review_manifest_path": "data/reviews/instruct/vasu_instruction_quality_v1_batch_002_final_full_review_manifest.json",
+  "full_review_manifest_sha256": "2c177607cca5cb14350c9c23ceb66f7665d828b05a7366a6d63d7c0b2e563353",
+  "immutable": true,
+  "next_required_gate": "tokenization_and_response_mask_validation",
+  "release_authorized": true,
+  "release_path": "data/released/instruct/vasu_instruction_quality_v1_batch_002/vasu_instruction_quality_v1_batch_002.jsonl",
+  "release_record_count": 500,
+  "release_sha256": "e62bac5680362164a0b898c8356d700363de024f05bfcd3bdf981c36f737b241",
+  "released_at": "2026-07-20T16:00:37.891940+00:00",
+  "schema_version": "vasu_instruction_quality_release_manifest_v1",
+  "source_path": "data/raw/instruct/vasu_instruction_quality_v1_batch_002.jsonl",
+  "source_record_count": 500,
+  "source_sha256": "e62bac5680362164a0b898c8356d700363de024f05bfcd3bdf981c36f737b241",
+  "tokenization_authorized": true,
+  "training_authorized": false
+}
