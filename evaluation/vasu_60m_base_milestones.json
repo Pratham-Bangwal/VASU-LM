@@ -1,0 +1,39 @@
+{
+  "step_5000": {
+    "checkpoint_path": "checkpoints/vasu_60m/milestones/fineweb_step_5000.pt",
+    "global_step": 5000,
+    "train_loss": 4.771692,
+    "validation_loss": 4.876656,
+    "generation_settings": {
+      "max_new_tokens": 60,
+      "temperature": 0.6,
+      "top_k": 20,
+      "seed": 42
+    },
+    "prompts": [
+      "Artificial intelligence is",
+      "Machine learning allows computers to",
+      "India is a country",
+      "The purpose of education is",
+      "Once upon a time"
+    ],
+    "output_file": "evaluation/vasu_60m_base_step_5000.txt",
+    "status": "base pretraining milestone",
+    "notes": "Compare coherence, repetition, topic retention, grammar, and factuality against later base pretraining milestones. No manual or invented scores are recorded for this milestone."
+  },
+  "step_54060": {
+    "checkpoint": "checkpoints/vasu_60m/milestones/fineweb_step_54060.pt",
+    "global_step": 54060,
+    "train_loss": 3.616769,
+    "validation_loss": 3.613814,
+    "generation_settings": {
+      "max_new_tokens": 60,
+      "temperature": 0.6,
+      "top_k": 20,
+      "seed": 42
+    },
+    "output_file": "evaluation/vasu_60m_base_step_54060.txt",
+    "status": "base pretraining milestone",
+    "notes": "Improved grammar and sentence structure, but repetition, factuality, semantic consistency, and long-range coherence remain weak."
+  }
+}

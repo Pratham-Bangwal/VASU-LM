@@ -1,0 +1,50 @@
+[
+  {
+    "id": "ai_3_sentences",
+    "prompt": "What is artificial intelligence? Answer in 3 simple sentences.",
+    "category": "definition",
+    "expected_behavior": "Defines AI clearly in about 3 simple sentences."
+  },
+  {
+    "id": "ml_simple",
+    "prompt": "Explain machine learning in simple words.",
+    "category": "definition",
+    "expected_behavior": "Explains that machines learn patterns from data."
+  },
+  {
+    "id": "education_3_benefits",
+    "prompt": "Give exactly 3 benefits of education.",
+    "category": "instruction_following",
+    "expected_behavior": "Returns exactly 3 education-related benefits."
+  },
+  {
+    "id": "india_4_lines",
+    "prompt": "Write 4 lines about India.",
+    "category": "factual_generation",
+    "expected_behavior": "Writes 4 short lines about India without major factual errors."
+  },
+  {
+    "id": "gravity_child",
+    "prompt": "Explain gravity to a 10-year-old.",
+    "category": "simple_explanation",
+    "expected_behavior": "Explains gravity as the force that pulls things toward Earth or other objects."
+  },
+  {
+    "id": "python_study_plan",
+    "prompt": "Give me a simple 3-step study plan for learning Python.",
+    "category": "planning",
+    "expected_behavior": "Returns exactly 3 practical steps for learning Python."
+  },
+  {
+    "id": "short_story",
+    "prompt": "Write a short 5-line story about a robot learning to help humans.",
+    "category": "creative",
+    "expected_behavior": "Writes a coherent short story in about 5 lines."
+  },
+  {
+    "id": "math_explanation",
+    "prompt": "Explain what a variable is in programming.",
+    "category": "programming",
+    "expected_behavior": "Explains that a variable stores a value that can be used or changed."
+  }
+]

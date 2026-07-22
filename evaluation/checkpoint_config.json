@@ -1,0 +1,44 @@
+{
+  "checkpoints": {
+    "fineweb_1m": "checkpoints/fineweb_1m/best.pt",
+    "instruct_fineweb": "checkpoints/instruct_fineweb/best.pt",
+    "instruct_fineweb_masked_v2": "checkpoints/instruct_fineweb_masked_v2/best.pt",
+    "ultrachat_fineweb": "checkpoints/ultrachat_fineweb/best.pt",
+    "vasu_60m_fineweb_150k": {
+      "path": "checkpoints/vasu_60m/milestones/fineweb_step_150000.pt",
+      "model_config": "vasu_60m",
+      "prompt_format": "plain"
+    },
+    "vasu_60m_alpaca": {
+      "path": "checkpoints/vasu_60m/alpaca/best.pt",
+      "model_config": "vasu_60m",
+      "prompt_format": "alpaca"
+    },
+    "vasu_60m_alpaca_masked_v2": {
+      "path": "checkpoints/vasu_60m/alpaca_masked_v2/best.pt",
+      "model_config": "vasu_60m",
+      "prompt_format": "alpaca"
+    },
+    "vasu_60m_fineweb_200k": {
+      "path": "checkpoints/vasu_60m/milestones/fineweb_step_200000.pt",
+      "model_config": "vasu_60m",
+      "prompt_format": "plain"
+    },
+    "vasu_60m_alpaca_masked_v3_from_200k": {
+      "path": "checkpoints/vasu_60m/alpaca_masked_v3_from_200k/best.pt",
+      "model_config": "vasu_60m",
+      "prompt_format": "alpaca"
+    },
+    "vasu_60m_ultrachat_masked_v2_from_alpaca_v3": {
+      "path": "checkpoints/vasu_60m/ultrachat_masked_v2_from_alpaca_v3/best.pt",
+      "model_config": "vasu_60m",
+      "prompt_format": "alpaca"
+    }
+  },
+  "generation": {
+    "max_new_tokens": 60,
+    "temperature": 0.45,
+    "top_k": 20,
+    "top_p": 0.8
+  }
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "id": "science_seasons",
+    "category": "science",
+    "prompt": "Explain why Earth has seasons in simple terms.",
+    "expected_behavior": "Connects seasons to axial tilt and Earth's orbit without claiming distance from the Sun is the main cause."
+  },
+  {
+    "id": "history_industrial_revolution",
+    "category": "history",
+    "prompt": "What was the Industrial Revolution, and why was it important?",
+    "expected_behavior": "Describes mechanized production and broad economic or social change without invented precision."
+  },
+  {
+    "id": "geography_river_delta",
+    "category": "geography",
+    "prompt": "What is a river delta and how does it form?",
+    "expected_behavior": "Explains sediment deposition where a river slows near its mouth."
+  },
+  {
+    "id": "technology_internet",
+    "category": "technology",
+    "prompt": "Describe how the internet lets computers exchange information.",
+    "expected_behavior": "Mentions connected networks, protocols, and data exchange in clear language."
+  },
+  {
+    "id": "biography_scientist",
+    "category": "biography",
+    "prompt": "Give a short, careful biography of Marie Curie.",
+    "expected_behavior": "Provides high-level verified facts and avoids unsupported personal details."
+  },
+  {
+    "id": "definition_ecosystem",
+    "category": "definitions",
+    "prompt": "Define an ecosystem and give one ordinary example.",
+    "expected_behavior": "Defines interactions among organisms and environment and gives a plausible example."
+  }
+]
