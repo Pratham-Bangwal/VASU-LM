@@ -1,0 +1,54 @@
+{
+  "bounded_schema_inspection_documents": 10000,
+  "bounded_schema_malformed_records": 0,
+  "build_completed_at": "2026-07-17T10:39:59.664634+00:00",
+  "build_started_at": "2026-07-17T10:00:11+00:00",
+  "completion_status": "complete",
+  "configuration_hash": "be9b2cfb08d75e2240e1ad1db06d6e1ef1eb34232c60e85d2c45bbf293e159c2",
+  "coverage": "configured_sources_only",
+  "coverage_sources": [
+    "fineweb_original"
+  ],
+  "created_at": "2026-07-17T10:39:59.664634+00:00",
+  "duplicate_hashes": 8,
+  "elapsed_seconds": 2051.649,
+  "final_resume_elapsed_seconds": 2051.649,
+  "format_version": "fineweb_document_index_v1",
+  "full_scan_malformed_records": 0,
+  "indexed_documents": 999992,
+  "input_documents": 1000000,
+  "input_json_schema": {
+    "id_fields": [],
+    "observed_fields": [
+      "text"
+    ],
+    "required_text_field": "text",
+    "url_fields": []
+  },
+  "lsh_bucket_count": 7999936,
+  "missing_coverage": [
+    "fineweb_extension"
+  ],
+  "normalization_version": "vasu_cross_source_nfc_casefold_ws_v1",
+  "observed_total_wall_clock_seconds": 2388.665,
+  "output_path": "data/manifests/pretrain/fineweb_document_index.sqlite3",
+  "output_sha256": "07508a0fe83023cfe0a624ae1af21cba4c2e6dffe62f83b7078656bb168888cd",
+  "overlap_report": "data/manifests/factual/wikimedia_fineweb_original_overlap.json",
+  "records_with_complete_ids": 0,
+  "records_with_incomplete_provenance": 999992,
+  "records_with_urls": 0,
+  "rejected_records": 0,
+  "resume_performed": true,
+  "source_files": [
+    {
+      "path": "data/raw/pretrain/fineweb_1m.jsonl",
+      "sha256": "0748f0871487b95f7bccc84515ab9fe590422b8903e8ef8bcfc069517c00ca55",
+      "source_id": "fineweb_edu_original_train"
+    }
+  ],
+  "training_ready": false,
+  "wikimedia_ambiguous_matches": 0,
+  "wikimedia_exact_matches": 0,
+  "wikimedia_high_confidence_near_matches": 0,
+  "wikimedia_review_chunks_checked": 50
+}

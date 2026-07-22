@@ -1,0 +1,17 @@
+FineWeb Extension Recovery Smoke
+========================================
+Source: HuggingFaceFW/fineweb-edu / CC-MAIN-2025-26 / train
+Pinned revision: 87f09149ef4734204d70ed1d046ddc9ca3f2b8f9
+Smoke IDs selected: 100
+Exact matches: 100
+Hash mismatches: 0
+Missing IDs: 0
+Duplicate provider IDs: 0
+Malformed records: 0
+Retrieval errors: 0
+Downloaded response bytes: 645735
+Accepted text bytes: 498312
+Scalability: bounded_filter_available
+Full reacquisition authorized: True
+
+No source text is stored in this report.

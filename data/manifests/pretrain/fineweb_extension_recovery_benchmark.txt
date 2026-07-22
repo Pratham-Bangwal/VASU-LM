@@ -1,0 +1,52 @@
+FineWeb Extension Recovery Benchmark
+==========================================
+Sample IDs: 1000
+Pinned revision: 87f09149ef4734204d70ed1d046ddc9ca3f2b8f9
+Requests per second limit: 4.0
+
+serial:
+  cold duration: 2277.460s
+  warm local-cache duration: 0.409s
+  network requests: 1005
+  exact matches: 1000
+  errors: 0
+concurrent-2:
+  cold duration: 512.342s
+  warm local-cache duration: 0.277s
+  network requests: 1001
+  exact matches: 1000
+  errors: 0
+concurrent-4:
+  cold duration: 334.964s
+  warm local-cache duration: 0.266s
+  network requests: 1001
+  exact matches: 1000
+  errors: 0
+concurrent-8:
+  cold duration: 257.713s
+  warm local-cache duration: 0.264s
+  network requests: 1002
+  exact matches: 1000
+  errors: 0
+batch-5:
+  cold duration: 172.667s
+  warm local-cache duration: 0.138s
+  network requests: 200
+  exact matches: 1000
+  errors: 0
+batch-10:
+  cold duration: 86.458s
+  warm local-cache duration: 0.081s
+  network requests: 100
+  exact matches: 1000
+  errors: 0
+batch-25:
+  cold duration: 37.330s
+  warm local-cache duration: 0.064s
+  network requests: 40
+  exact matches: 1000
+  errors: 0
+
+Recommended strategy: batch-25
+Warm timings are local-cache measurements and are not provider throughput.
+No source text is stored in this report.

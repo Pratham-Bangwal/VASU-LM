@@ -1,0 +1,46 @@
+{
+  "format_version": 1,
+  "status": "complete",
+  "normalization_version": "vasu_cross_source_nfc_casefold_ws_v1",
+  "coverage_sources": [
+    "fineweb_original",
+    "fineweb_extension"
+  ],
+  "missing_coverage": [],
+  "training_ready": true,
+  "indexes": [
+    {
+      "source_identity": "fineweb_original",
+      "index_path": "data/manifests/pretrain/fineweb_document_index.sqlite3",
+      "metadata_path": "data/manifests/pretrain/fineweb_document_index_metadata.json",
+      "index_sha256": "07508a0fe83023cfe0a624ae1af21cba4c2e6dffe62f83b7078656bb168888cd",
+      "normalization_version": "vasu_cross_source_nfc_casefold_ws_v1",
+      "completion_status": "complete",
+      "indexed_documents": 999992,
+      "validated_source_hashes": [
+        {
+          "path": "data/raw/pretrain/fineweb_1m.jsonl",
+          "sha256": "0748f0871487b95f7bccc84515ab9fe590422b8903e8ef8bcfc069517c00ca55",
+          "source_id": "fineweb_edu_original_train"
+        }
+      ]
+    },
+    {
+      "source_identity": "fineweb_extension",
+      "index_path": "data/manifests/pretrain/fineweb_extension_document_index.sqlite3",
+      "metadata_path": "data/manifests/pretrain/fineweb_extension_document_index_metadata.json",
+      "index_sha256": "d093770179204b45af1a5a824d5a5826a6f0626b3c8825aa81ac8d3557acf16e",
+      "normalization_version": "vasu_cross_source_nfc_casefold_ws_v1",
+      "completion_status": "complete",
+      "indexed_documents": 379247,
+      "validated_source_hashes": [
+        {
+          "source_id": "fineweb_edu_extension_train",
+          "path": "data/interim/pretrain/fineweb_extension_recovered.jsonl.gz",
+          "sha256": "c90f9e21d9b73324b9165cf1fb7ffbc274fbba5ccba5ac22b7cbe48abb6d7f1e"
+        }
+      ]
+    }
+  ],
+  "created_at": "2026-07-17T21:03:30.912239+00:00"
+}

@@ -1,0 +1,36 @@
+{
+  "format_version": "fineweb_document_index_v1",
+  "normalization_version": "vasu_cross_source_nfc_casefold_ws_v1",
+  "configuration_hash": "009424dbb54e14b67556c1bf020f7f23ea11cbf927a24b9aaff391f867aa47f0",
+  "completion_status": "complete",
+  "coverage": "configured_sources_only",
+  "coverage_sources": [
+    "fineweb_extension"
+  ],
+  "missing_coverage": [
+    "fineweb_original"
+  ],
+  "training_ready": false,
+  "input_documents": 379247,
+  "indexed_documents": 379247,
+  "rejected_records": 0,
+  "duplicate_hashes": 0,
+  "records_with_complete_ids": 379247,
+  "records_with_urls": 0,
+  "records_with_incomplete_provenance": 0,
+  "lsh_bucket_count": 3033976,
+  "source_files": [
+    {
+      "source_id": "fineweb_edu_extension_train",
+      "path": "data/interim/pretrain/fineweb_extension_recovered.jsonl.gz",
+      "sha256": "c90f9e21d9b73324b9165cf1fb7ffbc274fbba5ccba5ac22b7cbe48abb6d7f1e"
+    }
+  ],
+  "output_path": "data/manifests/pretrain/fineweb_extension_document_index.sqlite3",
+  "output_sha256": "d093770179204b45af1a5a824d5a5826a6f0626b3c8825aa81ac8d3557acf16e",
+  "elapsed_seconds": 793.028,
+  "created_at": "2026-07-17T21:02:16.927144+00:00",
+  "sqlite_integrity": "ok",
+  "validated_source_artifact_sha256": "c90f9e21d9b73324b9165cf1fb7ffbc274fbba5ccba5ac22b7cbe48abb6d7f1e",
+  "expected_source_identity": "fineweb_extension"
+}

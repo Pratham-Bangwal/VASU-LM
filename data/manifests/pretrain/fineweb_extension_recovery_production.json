@@ -1,0 +1,235 @@
+{
+  "format_version": 1,
+  "status": "complete",
+  "repository": "HuggingFaceFW/fineweb-edu",
+  "dataset_config": "CC-MAIN-2025-26",
+  "split": "train",
+  "revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9",
+  "configuration_hash": "140c655f557597923f0f619c1eb8e44934ac392ba7fc9b6b286054cca72a7f8a",
+  "historical_source_ids": 379247,
+  "accepted_records": 379247,
+  "unique_source_ids": 379247,
+  "counts": {
+    "duplicate_source_id_in_provider": 0,
+    "exact_match": 379247,
+    "malformed_source_record": 0,
+    "retrieval_error": 0,
+    "source_id_found_hash_mismatch": 0,
+    "source_id_not_found": 0
+  },
+  "malformed_artifact_records": 0,
+  "duplicate_artifact_source_ids": 0,
+  "accepted_text_bytes": 2031365373,
+  "total_characters": 2021516867,
+  "provider_statistics": {
+    "network_requests": 15617,
+    "retry_count": 307,
+    "transient_error_count": 310,
+    "timeout_count": 0,
+    "http_status_counts": {
+      "200": 15281,
+      "422": 26,
+      "500": 289,
+      "502": 21
+    },
+    "downloaded_response_bytes": 2250491206,
+    "fallback_events": [
+      {
+        "batch_identifier": "batch-001152",
+        "failed_size": 25,
+        "fallback_size": 10,
+        "reason": "PermanentProviderError: Permanent provider HTTP 422: b'{\"error\":\"A query parameter is invalid\"}'",
+        "timestamp": "2026-07-17T15:35:32.512639+00:00"
+      },
+      {
+        "batch_identifier": "batch-002206",
+        "failed_size": 25,
+        "fallback_size": 10,
+        "reason": "PermanentProviderError: Permanent provider HTTP 422: b'{\"error\":\"A query parameter is invalid\"}'",
+        "timestamp": "2026-07-17T15:56:19.427112+00:00"
+      },
+      {
+        "batch_identifier": "batch-002209",
+        "failed_size": 25,
+        "fallback_size": 10,
+        "reason": "PermanentProviderError: Permanent provider HTTP 422: b'{\"error\":\"A query parameter is invalid\"}'",
+        "timestamp": "2026-07-17T15:56:24.163400+00:00"
+      },
+      {
+        "batch_identifier": "batch-005578",
+        "failed_size": 25,
+        "fallback_size": 10,
+        "reason": "PermanentProviderError: Permanent provider HTTP 422: b'{\"error\":\"A query parameter is invalid\"}'",
+        "timestamp": "2026-07-17T16:56:21.026137+00:00"
+      },
+      {
+        "batch_identifier": "batch-005579",
+        "failed_size": 25,
+        "fallback_size": 10,
+        "reason": "PermanentProviderError: Permanent provider HTTP 422: b'{\"error\":\"A query parameter is invalid\"}'",
+        "timestamp": "2026-07-17T16:56:27.789748+00:00"
+      },
+      {
+        "batch_identifier": "batch-005661",
+        "failed_size": 25,
+        "fallback_size": 10,
+        "reason": "PermanentProviderError: Permanent provider HTTP 422: b'{\"error\":\"A query parameter is invalid\"}'",
+        "timestamp": "2026-07-17T17:01:50.246120+00:00"
+      },
+      {
+        "batch_identifier": "batch-005840",
+        "failed_size": 25,
+        "fallback_size": 10,
+        "reason": "PermanentProviderError: Permanent provider HTTP 422: b'{\"error\":\"A query parameter is invalid\"}'",
+        "timestamp": "2026-07-17T17:10:57.624112+00:00"
+      },
+      {
+        "batch_identifier": "batch-005914",
+        "failed_size": 25,
+        "fallback_size": 10,
+        "reason": "RetryExhaustedError: HTTP 500 retries exhausted",
+        "timestamp": "2026-07-17T17:13:19.313986+00:00"
+      },
+      {
+        "batch_identifier": "batch-005996",
+        "failed_size": 25,
+        "fallback_size": 10,
+        "reason": "PermanentProviderError: Permanent provider HTTP 422: b'{\"error\":\"A query parameter is invalid\"}'",
+        "timestamp": "2026-07-17T17:16:04.758378+00:00"
+      },
+      {
+        "batch_identifier": "batch-006079",
+        "failed_size": 25,
+        "fallback_size": 10,
+        "reason": "PermanentProviderError: Permanent provider HTTP 422: b'{\"error\":\"A query parameter is invalid\"}'",
+        "timestamp": "2026-07-17T17:19:17.955994+00:00"
+      },
+      {
+        "batch_identifier": "batch-006079.fallback-10-0",
+        "failed_size": 10,
+        "fallback_size": 5,
+        "reason": "PermanentProviderError: Permanent provider HTTP 422: b'{\"error\":\"A query parameter is invalid\"}'",
+        "timestamp": "2026-07-17T17:19:19.902426+00:00"
+      },
+      {
+        "batch_identifier": "batch-006079.fallback-10-2",
+        "failed_size": 5,
+        "fallback_size": 1,
+        "reason": "PermanentProviderError: Permanent provider HTTP 422: b'{\"error\":\"A query parameter is invalid\"}'",
+        "timestamp": "2026-07-17T17:19:27.823754+00:00"
+      },
+      {
+        "batch_identifier": "batch-006175",
+        "failed_size": 25,
+        "fallback_size": 10,
+        "reason": "RetryExhaustedError: HTTP 500 retries exhausted",
+        "timestamp": "2026-07-17T17:23:50.428181+00:00"
+      },
+      {
+        "batch_identifier": "batch-006178",
+        "failed_size": 25,
+        "fallback_size": 10,
+        "reason": "PermanentProviderError: Permanent provider HTTP 422: b'{\"error\":\"A query parameter is invalid\"}'",
+        "timestamp": "2026-07-17T17:24:24.365677+00:00"
+      },
+      {
+        "batch_identifier": "batch-006178.fallback-10-2",
+        "failed_size": 5,
+        "fallback_size": 1,
+        "reason": "PermanentProviderError: Permanent provider HTTP 422: b'{\"error\":\"A query parameter is invalid\"}'",
+        "timestamp": "2026-07-17T17:24:26.400863+00:00"
+      },
+      {
+        "batch_identifier": "batch-006795",
+        "failed_size": 25,
+        "fallback_size": 10,
+        "reason": "PermanentProviderError: Permanent provider HTTP 422: b'{\"error\":\"A query parameter is invalid\"}'",
+        "timestamp": "2026-07-17T17:45:13.277452+00:00"
+      },
+      {
+        "batch_identifier": "batch-007563",
+        "failed_size": 25,
+        "fallback_size": 10,
+        "reason": "RetryExhaustedError: HTTP 500 retries exhausted",
+        "timestamp": "2026-07-17T18:07:39.974805+00:00"
+      },
+      {
+        "batch_identifier": "batch-007570",
+        "failed_size": 25,
+        "fallback_size": 10,
+        "reason": "PermanentProviderError: Permanent provider HTTP 422: b'{\"error\":\"A query parameter is invalid\"}'",
+        "timestamp": "2026-07-17T18:08:21.618395+00:00"
+      },
+      {
+        "batch_identifier": "batch-007570.fallback-10-1",
+        "failed_size": 10,
+        "fallback_size": 5,
+        "reason": "PermanentProviderError: Permanent provider HTTP 422: b'{\"error\":\"A query parameter is invalid\"}'",
+        "timestamp": "2026-07-17T18:08:23.109370+00:00"
+      },
+      {
+        "batch_identifier": "batch-009032",
+        "failed_size": 25,
+        "fallback_size": 10,
+        "reason": "PermanentProviderError: Permanent provider HTTP 422: b'{\"error\":\"A query parameter is invalid\"}'",
+        "timestamp": "2026-07-17T18:36:47.075949+00:00"
+      },
+      {
+        "batch_identifier": "batch-009032.fallback-10-1",
+        "failed_size": 10,
+        "fallback_size": 5,
+        "reason": "PermanentProviderError: Permanent provider HTTP 422: b'{\"error\":\"A query parameter is invalid\"}'",
+        "timestamp": "2026-07-17T18:36:48.469234+00:00"
+      },
+      {
+        "batch_identifier": "batch-009032.fallback-10-1.fallback-5-0",
+        "failed_size": 5,
+        "fallback_size": 1,
+        "reason": "PermanentProviderError: Permanent provider HTTP 422: b'{\"error\":\"A query parameter is invalid\"}'",
+        "timestamp": "2026-07-17T18:36:48.992227+00:00"
+      },
+      {
+        "batch_identifier": "batch-009280",
+        "failed_size": 25,
+        "fallback_size": 10,
+        "reason": "PermanentProviderError: Permanent provider HTTP 422: b'{\"error\":\"A query parameter is invalid\"}'",
+        "timestamp": "2026-07-17T18:50:39.007073+00:00"
+      },
+      {
+        "batch_identifier": "batch-009280.fallback-10-2",
+        "failed_size": 5,
+        "fallback_size": 1,
+        "reason": "PermanentProviderError: Permanent provider HTTP 422: b'{\"error\":\"A query parameter is invalid\"}'",
+        "timestamp": "2026-07-17T18:50:41.802452+00:00"
+      },
+      {
+        "batch_identifier": "batch-009373",
+        "failed_size": 25,
+        "fallback_size": 10,
+        "reason": "PermanentProviderError: Permanent provider HTTP 422: b'{\"error\":\"A query parameter is invalid\"}'",
+        "timestamp": "2026-07-17T18:55:40.341818+00:00"
+      },
+      {
+        "batch_identifier": "batch-009373.fallback-10-1",
+        "failed_size": 10,
+        "fallback_size": 5,
+        "reason": "PermanentProviderError: Permanent provider HTTP 422: b'{\"error\":\"A query parameter is invalid\"}'",
+        "timestamp": "2026-07-17T18:55:43.585356+00:00"
+      },
+      {
+        "batch_identifier": "batch-009373.fallback-10-1.fallback-5-0",
+        "failed_size": 5,
+        "fallback_size": 1,
+        "reason": "PermanentProviderError: Permanent provider HTTP 422: b'{\"error\":\"A query parameter is invalid\"}'",
+        "timestamp": "2026-07-17T18:55:47.946632+00:00"
+      }
+    ]
+  },
+  "artifact_path": "data/interim/pretrain/fineweb_extension_recovered.jsonl.gz",
+  "artifact_size_bytes": 797342910,
+  "artifact_sha256": "c90f9e21d9b73324b9165cf1fb7ffbc274fbba5ccba5ac22b7cbe48abb6d7f1e",
+  "started_at": "2026-07-17T15:15:35.714492+00:00",
+  "completed_at": "2026-07-17T20:48:51.571021+00:00",
+  "full_text_in_report": false,
+  "training_started": false
+}

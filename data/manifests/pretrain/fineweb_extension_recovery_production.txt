@@ -1,0 +1,20 @@
+FineWeb Extension Production Recovery
+==========================================
+Status: complete
+Pinned revision: 87f09149ef4734204d70ed1d046ddc9ca3f2b8f9
+Historical IDs: 379,247
+Exact matches: 379,247
+Hash mismatches: 0
+Missing IDs: 0
+Duplicate provider IDs: 0
+Malformed records: 0
+Retrieval errors: 0
+Provider requests: 15,617
+Retries: 307
+Fallback batches: 27
+Downloaded response bytes: 2,250,491,206
+Accepted text bytes: 2,031,365,373
+Artifact size: 797,342,910
+Artifact SHA-256: c90f9e21d9b73324b9165cf1fb7ffbc274fbba5ccba5ac22b7cbe48abb6d7f1e
+
+No source text is stored in this report.
