@@ -115,6 +115,10 @@ VASU-60M instruction tuning has not started.
 5. Evaluate before any controlled UltraChat tuning.
 6. Compare the resulting VASU-60M instruction model against the VASU-31M baseline of 2.225 / 5.
 7. Expand evaluation coverage and investigate generation repetition controls.
+8. Complete the blocked VASU-60M capability-CPT readiness gate: tokenize the
+   verified arithmetic corpus, add a validated three-source fixed-record
+   mixture builder, then run matched 20M-token candidates only after explicit
+   authorization.
 
 ## Later
 

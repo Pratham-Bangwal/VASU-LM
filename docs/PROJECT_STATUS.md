@@ -669,3 +669,12 @@ position, partial gradient-accumulation state, AMP scaler state, and process
 RNG states. Older checkpoints remain loadable with an explicit warning because
 they cannot establish an exact mid-epoch position. No model, tokenizer,
 processed dataset, or existing checkpoint tensor key changed.
+
+### Capability CPT ablation preparation
+
+Three matched, unauthorized 20M-nominal capability-CPT plans are prepared in
+`configs/data/mixtures/`. They retain the step-200k parent, use no replacement
+sampling, and cap the approved Wikimedia share at 9% because the release has
+only 1,915,008 train tokens. A deterministic arithmetic smoke generator and
+split manifest are available, but no large arithmetic token artifact or
+three-source fixed-record builder exists yet. Training remains blocked.

@@ -478,3 +478,16 @@ Unknown or unavailable values are explicitly marked rather than inferred.
 - Decision: preserve Batch 002 as a completed experiment but do not promote it.
   Batch 001 remains the preferred instruction-quality checkpoint because Batch
   002 did not establish a clear semantic improvement.
+
+## VASU-60M capability CPT ablation preparation
+
+- Objective: design matched 20M-nominal continued-pretraining candidates from
+  the FineWeb-200k parent without authorizing training.
+- Evidence: capability-v1 found no arithmetic, factual, or uncertainty
+  objective passes for the base or preferred assistant checkpoints.
+- Data: validated FineWeb replay, the approved hash-bound Wikimedia release,
+  and a deterministic verified-arithmetic generator.
+- Decision: keep three plans unauthorized. Wikimedia is limited to 9% because
+  1,915,008 train tokens cannot support the requested 15--25% without replay.
+- Blocker: arithmetic must be tokenized and a three-source record builder must
+  pass deterministic DataLoader/resume validation before any candidate runs.

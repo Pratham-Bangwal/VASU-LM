@@ -12,6 +12,10 @@
   pretraining, instruction, and conversation comparisons. Promotion reports
   now preserve category-level calculations, explicit blockers, structured
   human-review decisions, and gate hashes for resume compatibility.
+- Added unauthorized VASU-60M capability-CPT A/B/C mixture plans and a
+  deterministic verified-arithmetic smoke generator. The plans cap the
+  approved Wikimedia release at its no-replacement capacity; no training data
+  mixture or model run was created.
 
 - Added compact deterministic mid-epoch resume support to the general Trainer.
   Additive checkpoint metadata now preserves sampler, partial-gradient, AMP

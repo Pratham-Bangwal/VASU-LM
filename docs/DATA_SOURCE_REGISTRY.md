@@ -316,3 +316,13 @@ contamination match, or duplicate was recorded, and output validation passed.
 One malformed date boundary was present in the source Parquet itself; it was
 left unchanged because an automatic factual reconstruction would be unsafe.
 The review artifact is not approved training data.
+
+## Capability-CPT source use
+
+The approved quarantined Wikimedia release `6aa10d73` is eligible for bounded
+data planning, with license, attribution, source revision, contamination, and
+hash evidence preserved. Its 1,915,008-token train split is insufficient for a
+20M-token run at 15% or more without replacement; current capability-CPT plans
+therefore cap it at 9%. The internally generated arithmetic source remains a
+deterministic, un-tokenized planning artifact until its future tokenized split
+has a preparation manifest and hash.

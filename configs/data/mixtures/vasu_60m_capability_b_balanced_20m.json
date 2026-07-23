@@ -1,0 +1,17 @@
+{
+  "manifest_version": "1.0",
+  "experiment_id": "vasu_60m_capability_b_balanced_20m",
+  "description": "Unauthorized 20M-token capability CPT plan: balanced replay, factual material, and verified arithmetic.",
+  "tokenizer_path": "assets/tokenizer.json",
+  "target_tokens": 20004864,
+  "random_seed": 42,
+  "sampling_with_replacement": false,
+  "allow_duplicate_paths": false,
+  "sources": [
+    {"id":"fineweb_replay_after_200k","domain":"general","path":"data/processed/pretrain/fineweb_extension_500m.bin","format":"token_bin","tokenizer_path":"assets/tokenizer.json","token_count":107491730,"weight":0.76,"license":"ODC-By-1.0","source_url":"https://huggingface.co/datasets/HuggingFaceFW/fineweb-edu","dataset_revision":"87f09149ef4734204d70ed1d046ddc9ca3f2b8f9:logical offset 1638400000","attribution_required":true,"commercial_use_allowed":true,"split":"train","content_hash":"d62efa0521365fa634d1e8f34bf8c84764a8066a9cc53430f9fc4bb89cabf51e","deduplication_status":"validated FineWeb extension; fixed validation excluded","quality_filters":["FineWeb-Edu upstream filtering","manifest validation isolation"],"notes":"15,203,584 planned tokens."},
+    {"id":"wikimedia_factual_release_6aa10d73","domain":"factual","path":"data/processed/pretrain/factual/wikimedia_release_6aa10d73_train.bin","format":"token_bin","tokenizer_path":"assets/tokenizer.json","token_count":1915008,"weight":0.09,"license":"CC-BY-SA-3.0 AND GFDL (unversioned)","source_url":"https://huggingface.co/datasets/wikimedia/wikipedia","dataset_revision":"e6057dc557255a03c9c3c47ceab0eb44353b1bc5:20231101.en","attribution_required":true,"commercial_use_allowed":true,"split":"train","content_hash":"fee0b88832fc569ce73393bc232e29a80cb981e31779ce4c42129d15a0be876f","deduplication_status":"approved quarantined release; fixed parent-level validation split excluded","quality_filters":["approved frozen review","quarantine release validation"],"notes":"1,800,448 planned tokens; 9% is the highest safe rounded share without replacement."},
+    {"id":"vasu_verified_arithmetic_v1_planned","domain":"mathematics","path":"data/processed/pretrain/capability/vasu_verified_arithmetic_v1_train.bin","format":"token_bin","tokenizer_path":"assets/tokenizer.json","token_count":3000729,"weight":0.15,"license":"MIT","source_url":"https://github.com/Pratham-Bangwal/VASU-LM","dataset_revision":"vasu_verified_arithmetic_v1","attribution_required":false,"commercial_use_allowed":true,"split":"train","content_hash":null,"deduplication_status":"planned deterministic exact-record deduplication","quality_filters":["programmatically verified exact answer","held-out split ranges","capability-v1 leakage exclusion"],"notes":"Future tokenized artifact; high-quality educational prose was omitted because no separate approved source exists."}
+  ],
+  "created_at": "2026-07-23T00:00:00+00:00",
+  "notes": "Nominal 20M budget aligned to 78,144 records / 2,442 full optimizer updates. training_authorized=false."
+}
