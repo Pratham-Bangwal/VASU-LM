@@ -1,5 +1,14 @@
 # VASU Project Status
 
+## Capability evaluation framework
+
+The additive `evaluation.framework` internal capability suite is available for
+checkpoint-comparable greedy or fixed-seed sampled evaluation. It records
+versioned suite, checkpoint, tokenizer, and generation metadata while keeping
+objective structural metrics, heuristic signals, and human-review requirements
+separate. It does not authorize further training or promote a checkpoint by
+itself.
+
 ## FineWeb extension recovery and coverage
 
 The 2026-07-17 bounded source-ID smoke selected 100 evenly spread historical

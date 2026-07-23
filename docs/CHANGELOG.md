@@ -4,6 +4,15 @@
 
 ### Added
 
+- Added the versioned, reproducible VASU internal capability-evaluation
+  framework with canonical checkpoint loading, greedy/seeded generation,
+  atomic resumable result files, objective structural scorers, explicitly
+  labelled heuristic metrics, and human-review promotion blocking.
+- Added deterministic, versioned promotion-gate enforcement for continued
+  pretraining, instruction, and conversation comparisons. Promotion reports
+  now preserve category-level calculations, explicit blockers, structured
+  human-review decisions, and gate hashes for resume compatibility.
+
 - Added compact deterministic mid-epoch resume support to the general Trainer.
   Additive checkpoint metadata now preserves sampler, partial-gradient, AMP
   scaler, and RNG state; legacy checkpoints remain loadable with an explicit

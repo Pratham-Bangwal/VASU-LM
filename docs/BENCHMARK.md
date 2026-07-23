@@ -1,5 +1,10 @@
 # Evaluation and Benchmarks
 
+The additive VASU internal capability suite is documented in
+[`EVALUATION.md`](EVALUATION.md). It keeps objective structural/factual
+results, heuristic concept/repetition signals, and incomplete human-review
+fields separate rather than presenting an opaque quality score.
+
 ## Current evaluation
 
 VASU-31M instruction checkpoints are compared on fixed prompts using manual scores for relevance, factuality, instruction following, fluency, and repetition control. The current `ultrachat_fineweb` baseline is **2.225 / 5**.

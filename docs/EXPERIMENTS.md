@@ -2,6 +2,19 @@
 
 Unknown or unavailable values are explicitly marked rather than inferred.
 
+## VASU internal capability-suite smoke evaluation
+
+- Objective: validate reproducible checkpoint loading, greedy generation,
+  atomic result writing, and transparent objective scoring without training.
+- Checkpoint: `checkpoints/vasu_60m/alpaca_masked_v3_from_200k/best.pt`.
+- Suite: `evaluation/suites/vasu_capability_v1.json`.
+- Smoke task: `arith_add_1`, greedy, eight-token limit, CUDA.
+- Result: objective arithmetic score 0/1; the response repeated the expression
+  rather than returning the required numeric answer.
+- Conclusion: the framework records a real failure without conflating it with
+  heuristic or human-review dimensions. This is not a broad quality claim.
+- Training or optimizer updates: none.
+
 ## VASU-60M manifest-aware FineWeb loader validation
 
 - Objective: prove safe sequential continuation from the original FineWeb training slice into the validated 500M-token extension without concatenating files or entering validation data.
