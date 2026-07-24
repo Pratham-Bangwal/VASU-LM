@@ -6,6 +6,22 @@ Arithmetic v2 resume identity includes the arithmetic manifest SHA-256 in
 addition to token/mask and schedule hashes. A changed schedule or regenerated
 source manifest blocks exact continuation rather than silently changing data.
 
+## Capability-CPT checkpoint roles
+
+The production Candidate C runtime writes `latest.pt` for recovery,
+`final.pt` after schedule completion, and separate `best_fineweb.pt`,
+`best_wikimedia.pt`, and `best_arithmetic.pt` files. It does not use an opaque
+mixed best score. The step-200 milestone and two newest other periodic
+checkpoints are retained; protected final/latest/domain-best files are never
+removed by periodic retention.
+
+Each save is serialized to a sibling temporary file, flushed, reloaded on CPU,
+checked for its required keys and internal step, then atomically promoted.
+A SHA-256/size sidecar is written after promotion. Explicit resume rejects
+temporary, truncated, corrupt, wrong-architecture, and identity-mismatched
+files before model allocation. Capability validation events and best-domain
+state are checkpointed, so an interval event is not repeated after resume.
+
 ## Scheduled-mixture identity
 
 For scheduled-mixture training, additive `training_progress.dataset_identity`

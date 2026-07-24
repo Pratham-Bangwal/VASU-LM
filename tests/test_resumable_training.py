@@ -320,9 +320,15 @@ def test_final_batch_step_checkpoint_runs_validation_and_scheduler_once(
         return original_validate()
 
     monkeypatch.setattr(resumed, "validate_epoch", counted_validate)
-    resumed.fit()
+    with warnings.catch_warnings(record=True) as caught:
+        warnings.simplefilter("always")
+        resumed.fit()
 
     assert validation_calls == 1
+    assert not any(
+        "lr_scheduler.step() before optimizer.step()" in str(item.message)
+        for item in caught
+    )
     assert resumed.scheduler.state_dict() == expected_scheduler
     for expected, actual in zip(expected_parameters, resumed.model.parameters(), strict=True):
         assert torch.equal(expected, actual.detach())

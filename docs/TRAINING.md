@@ -7,12 +7,20 @@ V2 candidates require `replay_safety`, `cuda_smoke`, and
 tokenizer, sources, source manifests, masks, and schedule. These technical
 gates passed, but `training_authorized` remains false, so launch is blocked.
 
+Candidate C additionally uses the opt-in production capability runtime.
+Validation runs after every 100 successful optimizer updates (and at the final
+update), recording FineWeb loss, Wikimedia loss, and a deterministic
+arithmetic-v2 development proxy separately. Checkpoints are written every 200
+updates with atomic verification, sidecar hashes, bounded retention, disk
+checks, and explicit exact resume. Authorized launch also requires a clean Git
+tree and working GPU-temperature monitoring.
+
 ## Unauthorized capability-CPT candidates
 
 Validate a candidate without training:
 
 ```powershell
-python train_vasu_60m_capability_cpt.py --config configs/training/capability_cpt_a_factual_20m_v1.json --validate-only
+python train_vasu_60m_capability_cpt.py --config configs/training/capability_cpt_c_control_20m_v2.json --validate-only
 ```
 
 Omitting `--validate-only` stops at the authorization gate with
@@ -20,6 +28,19 @@ Omitting `--validate-only` stops at the authorization gate with
 use sequential schedule order (`shuffle: false`), batch size 2, accumulation
 16, context 256, and 2,442 complete optimizer groups over 20,004,864 tokens.
 Generated schedules are ignored by Git.
+
+There is no implicit resume discovery:
+
+```powershell
+python train_vasu_60m_capability_cpt.py `
+  --config configs/training/capability_cpt_c_control_20m_v2.json `
+  --resume-from checkpoints/vasu_60m/capability_cpt_c_control_20m_v2/latest.pt
+```
+
+The checkpoint must match the candidate identity, including the parent,
+tokenizer, schedule, source hashes, validation configuration, optimizer,
+scheduler, accumulation settings, and dataset progress. `final.pt` is
+evaluation-only.
 
 > Complete guide to training models with VASU.
 

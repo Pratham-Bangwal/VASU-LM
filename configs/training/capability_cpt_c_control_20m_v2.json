@@ -19,6 +19,90 @@
   "learning_rate": 1e-5, "optimizer_backend": "standard", "weight_decay": 0.1, "warmup_fraction": 0.02,
   "scheduler": {"name": "cosine", "total_steps": 2442, "warmup_steps": 49, "minimum_learning_rate": 1e-6},
   "seed": 42, "shuffle": false, "validation_interval": 100, "checkpoint_interval": 200, "exact_resume": true,
+  "production_runtime": {
+    "format_version": "vasu_capability_runtime_v1",
+    "require_clean_git_for_authorized_launch": true,
+    "record_git_commit": true,
+    "explicit_resume_only": true
+  },
+  "validation": {
+    "fineweb": {
+      "manifest": "data/processed/pretrain/fineweb_manifest.json",
+      "split": "validation",
+      "maximum_records": 512
+    },
+    "wikimedia": {
+      "path": "data/processed/pretrain/factual/wikimedia_release_6aa10d73_validation.bin",
+      "sha256": "d36d149a74d2ba4f0ad3476b1f5fd55bf5770d30622764803c8a5ac647770b55",
+      "maximum_records": 179
+    },
+    "arithmetic_proxy": {
+      "manifest": "data/processed/capability/verified_arithmetic_v2/manifest.json",
+      "manifest_sha256": "8da3a1acfb2d2481c295b0d226c4695613b56670989d001fa27e65bed366115c",
+      "split": "dev",
+      "selection": "deterministic_even_spread_v1",
+      "record_count": 64,
+      "max_new_tokens": 16,
+      "do_sample": false
+    }
+  },
+  "best_checkpoint_policy": {
+    "mixed_score": false,
+    "primary_evaluation_checkpoint": "final.pt",
+    "domain_checkpoints": [
+      "best_fineweb.pt",
+      "best_wikimedia.pt",
+      "best_arithmetic.pt"
+    ],
+    "arithmetic_tie_breakers": [
+      "lower_malformed_rate",
+      "lower_generation_duration"
+    ]
+  },
+  "checkpoint_retention": {
+    "periodic_keep": 2,
+    "milestone_steps": [200],
+    "protected_names": [
+      "latest.pt",
+      "final.pt",
+      "best_fineweb.pt",
+      "best_wikimedia.pt",
+      "best_arithmetic.pt"
+    ]
+  },
+  "disk_safety": {
+    "estimated_boundary_checkpoint_bytes": 700175393,
+    "estimated_mid_accumulation_checkpoint_bytes": 979369984,
+    "minimum_free_space_margin_gib": 10.0,
+    "check_before_launch": true,
+    "check_before_every_checkpoint": true
+  },
+  "thermal_safety": {
+    "monitor_interval_steps": 10,
+    "warning_celsius": 82,
+    "abort_celsius": 87,
+    "critical_celsius": 90,
+    "consecutive_abort_readings": 2,
+    "required_for_authorized_run": true
+  },
+  "abort_policy": {
+    "maximum_optimizer_skips_consecutive": 2,
+    "maximum_optimizer_skips_total": 3,
+    "fineweb_baseline_loss": 3.356130,
+    "fineweb_max_relative_regression": 0.03,
+    "wikimedia_baseline_loss": 3.393544,
+    "wikimedia_catastrophic_relative_regression": 0.10,
+    "abort_on_cuda_oom": true,
+    "abort_on_checkpoint_failure": true,
+    "abort_on_validation_failure": true,
+    "abort_on_resume_divergence": true
+  },
+  "evaluation": {
+    "arithmetic_full_dev": "data/processed/capability/verified_arithmetic_v2/dev.jsonl",
+    "arithmetic_full_eval": "data/processed/capability/verified_arithmetic_v2/eval.jsonl",
+    "capability_suite": "evaluation/suites/vasu_capability_v1.json",
+    "promotion_type": "continued_pretraining"
+  },
   "checkpoint_directory": "checkpoints/vasu_60m/capability_cpt_c_control_20m_v2/",
   "log_directory": "logs/capability_cpt_c_control_20m_v2/",
   "validation_sources": {

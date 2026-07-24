@@ -533,3 +533,22 @@ Unknown or unavailable values are explicitly marked rather than inferred.
 - Decision: serialization is complete, but training remains blocked until a
   three-source scheduled-mixture builder passes deterministic DataLoader and
   resume validation and receives explicit authorization.
+
+### Candidate C production-readiness closure
+
+- Parent: immutable FineWeb step-200,000 checkpoint.
+- Accounting: 78,144 schedule records, 39,072 batch-size-2 microbatches,
+  accumulation 16, exactly 2,442 optimizer updates, and 20,004,864 target
+  tokens with no partial final group.
+- Runtime: validation after every 100 successful updates and at completion;
+  separate FineWeb, Wikimedia, and deterministic 64-example arithmetic-dev
+  metrics; checkpoints every 200 updates.
+- Safeguards: explicit exact resume, hash-bound capability identity, atomic
+  verified saves, corruption rejection, two-newest periodic retention plus the
+  step-200 milestone, disk preflight/checkpoint checks, and 82/87/90 C thermal
+  warning/sustained-abort/critical-abort thresholds.
+- Evaluation: full logical arithmetic-v2 development/evaluation scoring is
+  deterministic, hash-bound, and resumable per completed example.
+- Decision: technically ready for a separate explicit authorization review
+  after a clean commit. Candidate C, A, and B remain unauthorized, and no
+  capability-CPT training has started.

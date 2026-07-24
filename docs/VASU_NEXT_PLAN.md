@@ -217,3 +217,17 @@ Canonical artifact SHA-256 values:
 .venv\Scripts\python.exe scripts\validate_vasu_verified_arithmetic_v1.py `
   --manifest data\processed\capability\verified_arithmetic_v1\manifest.json
 ```
+
+## Candidate C authorization readiness
+
+The deterministic A/B/C v2 schedules supersede the early v1 pilot artifact for
+the proposed 20M-token ablation. Candidate C now has an opt-in production
+runtime with exact schedule resume, successful-update validation every 100
+steps, checkpoints every 200 steps, separate domain-best selection, bounded
+retention, disk and thermal guards, and full arithmetic-v2 evaluation.
+
+The next action is review—not training: commit the verified implementation,
+complete a Candidate C authorization record, and change only Candidate C's
+`training_authorized` boolean if approved. Evaluate C against the parent before
+considering a separately authorized Candidate A. Candidate B remains blocked
+until A's evidence and human review satisfy its preregistered gate.

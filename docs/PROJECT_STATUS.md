@@ -7,6 +7,16 @@ Replay safety, CUDA smoke, and CUDA exact-resume gates passed, while
 `training_authorized` remains false. Scientific selection and explicit
 authorization remain blockers; no 20M-token candidate run has started.
 
+Candidate C's production blockers are implemented and covered by focused
+tests: successful-update interval validation, separate domain checkpoint
+selection, durable validation-event resume, explicit checkpoint selection,
+atomic verified saves, corruption filtering, bounded retention, disk
+preflight, and thermal monitoring. Full arithmetic-v2 dev/eval evaluation is
+also available. Candidate C is ready for explicit authorization review after
+these uncommitted changes are reviewed and committed cleanly. Candidate A
+requires its own later authorization; Candidate B remains conditionally
+blocked. No authorization boolean changed and no training started.
+
 ## Capability-CPT schedule status
 
 The generalized deterministic N-source schedule layer and Candidates A/B/C

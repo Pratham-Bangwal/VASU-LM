@@ -4,6 +4,18 @@
 
 ### Added
 
+- Added the opt-in production Candidate C capability-CPT runtime with
+  successful-update interval validation, separate FineWeb/Wikimedia/arithmetic
+  best checkpoints, durable validation-event resume, explicit recovery
+  selection, atomic verified checkpointing, corruption filtering, bounded
+  retention, disk guards, and thermal abort monitoring.
+- Added deterministic, hash-bound, resumable full verified-arithmetic-v2
+  development/evaluation tooling with strict exact-answer outcome categories
+  and per-example atomic progress.
+- Added a scientific authorization packet, authorization-record template, and
+  human-readable launch/resume/evaluation/rollback runbook. Authorization
+  remains false and no capability-CPT training was started.
+
 - Added deterministic verified arithmetic v2 with 34,000 exact-answer logical
   examples, 3,261 unique packed training records, held-out templates/ranges,
   split-contamination checks, transactional serialization, and standalone

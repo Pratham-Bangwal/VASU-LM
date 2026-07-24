@@ -14,6 +14,11 @@ from vasu.data.scheduled_mixture import (
     validate_schedule_release,
 )
 from vasu.training.accumulation import build_accumulation_plan
+from vasu.training.capability_runtime import (
+    CAPABILITY_RUNTIME_VERSION,
+    build_capability_identity,
+    sha256_file as runtime_sha256_file,
+)
 
 
 CONFIG_FORMAT = "vasu_capability_cpt_experiment_v1"
@@ -165,6 +170,51 @@ def validate_capability_config(path: Path) -> dict[str, Any]:
     ):
         raise ValueError("candidate parent checkpoint identity mismatch")
 
+    runtime = config.get("production_runtime")
+    capability_identity = None
+    if runtime is not None:
+        if runtime.get("format_version") != CAPABILITY_RUNTIME_VERSION:
+            raise ValueError("unsupported capability production runtime")
+        if runtime.get("explicit_resume_only") is not True:
+            raise ValueError("capability runtime requires explicit resume selection")
+        if runtime.get("require_clean_git_for_authorized_launch") is not True:
+            raise ValueError("authorized capability runs must require a clean Git tree")
+        validation = config.get("validation")
+        if not isinstance(validation, dict):
+            raise ValueError("production capability runtime requires validation config")
+        wiki = validation.get("wikimedia", {})
+        wiki_path = Path(wiki.get("path", ""))
+        if (
+            not wiki_path.is_file()
+            or runtime_sha256_file(wiki_path) != wiki.get("sha256")
+        ):
+            raise ValueError("Wikimedia validation identity mismatch")
+        arithmetic = validation.get("arithmetic_proxy", {})
+        arithmetic_manifest = Path(arithmetic.get("manifest", ""))
+        if (
+            not arithmetic_manifest.is_file()
+            or runtime_sha256_file(arithmetic_manifest)
+            != arithmetic.get("manifest_sha256")
+        ):
+            raise ValueError("arithmetic proxy manifest identity mismatch")
+        if arithmetic.get("split") != "dev":
+            raise ValueError("interval arithmetic validation must use development")
+        if arithmetic.get("do_sample") is not False:
+            raise ValueError("arithmetic proxy validation must be deterministic")
+        if not 1 <= int(arithmetic.get("record_count", 0)) <= 1000:
+            raise ValueError("arithmetic proxy record_count is invalid")
+        if config.get("best_checkpoint_policy", {}).get("mixed_score") is not False:
+            raise ValueError("opaque mixed best-checkpoint score is forbidden")
+        retention = config.get("checkpoint_retention", {})
+        if int(retention.get("periodic_keep", 0)) < 2:
+            raise ValueError("checkpoint retention must keep two periodic files")
+        thermal = config.get("thermal_safety", {})
+        if thermal.get("required_for_authorized_run") is not True:
+            raise ValueError("authorized capability runtime requires thermal monitoring")
+        if config.get("disk_safety", {}).get("check_before_every_checkpoint") is not True:
+            raise ValueError("runtime disk check must run before every checkpoint")
+        capability_identity = build_capability_identity(config)
+
     dataset = ScheduledPretrainingDataset.from_resolved_manifest(resolved_path)
     if len(dataset) != config["total_records"]:
         raise ValueError("scheduled dataset length differs from candidate config")
@@ -173,6 +223,7 @@ def validate_capability_config(path: Path) -> dict[str, Any]:
         "resolved_manifest": manifest,
         "step_accounting": asdict(accounting),
         "dataset": dataset,
+        "capability_identity": capability_identity,
     }
 
 
@@ -189,4 +240,8 @@ def require_training_authorization(config: dict[str, Any]) -> None:
         raise PermissionError(
             "Training is blocked because technical gates are incomplete: "
             + ", ".join(incomplete)
+        )
+    if config.get("production_runtime") is None:
+        raise PermissionError(
+            "Training is blocked because the production runtime is not configured."
         )

@@ -1,5 +1,33 @@
 # VASU Internal Capability Evaluation
 
+## Verified arithmetic v2 references
+
+The authoritative exact-answer development and evaluation sets remain logical
+JSONL artifacts under
+`data/processed/capability/verified_arithmetic_v2/`; they are never training
+schedule inputs. Evaluation should use their canonical answers directly and
+retain the artifact hashes from the arithmetic manifest.
+
+Full checkpoint evaluation is available through the hash-bound, resumable
+evaluator:
+
+```powershell
+python -m evaluation.evaluate_verified_arithmetic_v2 `
+  --checkpoint <checkpoint> `
+  --split dev `
+  --output-dir <versioned-output> `
+  --device cuda
+```
+
+Run `dev` and `eval` separately. The evaluator uses greedy decoding from the
+exact `Question: ...\nAnswer:` boundary and strict integer, reduced-fraction,
+comparison-symbol, or boolean scoring. It reports correct, incorrect,
+malformed, unanswered, prompt-leakage, truncation, repetition, duration, and
+token-throughput dimensions overall and by operation, difficulty, template,
+and answer type. Identity includes checkpoint, tokenizer, manifest, split, and
+generation hashes. Every completed example is atomically persisted; `--resume`
+continues at the exact next example and rejects changed identity.
+
 `evaluation.framework` is a reproducible internal evaluation system. It is not
 MMLU, GSM8K, TruthfulQA, or any other external benchmark.
 

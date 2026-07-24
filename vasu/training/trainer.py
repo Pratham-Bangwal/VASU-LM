@@ -216,6 +216,12 @@ class Trainer:
         if not isinstance(optimizer_steps, int) or optimizer_steps < 0:
             raise ValueError("Checkpoint optimizer_steps_in_epoch is invalid.")
         self._optimizer_steps_in_epoch = optimizer_steps
+        if optimizer_steps > 0:
+            # PyTorch's scheduler wrapper records successful optimizer use in
+            # this process with ``_opt_called``. That private marker is not in
+            # optimizer.state_dict(), so reconstruct it from exact checkpoint
+            # progress before a pending epoch-level scheduler step.
+            self.optimizer._opt_called = True
         if not 0 <= self._accumulated_microbatches < self.config.gradient_accumulation_steps:
             raise ValueError("Checkpoint accumulation position is invalid.")
         gradients = progress.get("gradients", {})
