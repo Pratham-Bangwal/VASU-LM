@@ -80,7 +80,7 @@ latest, and step-200 checkpoints. A 50M extension is allowed only after the
 Training commands are intentionally deferred. Before a launch, VASU needs:
 
 1. hash-bound tokenization of the arithmetic train/development/evaluation
-   corpus at the exact planned capacities;
+corpus at the exact planned capacities;
 2. a generalized manifest-aware fixed-record builder for three sources (the
    existing production builder is intentionally limited to FineWeb plus
    Wikimedia);
@@ -94,3 +94,33 @@ continuation prompts, and separate degeneration/repetition statistics. A
 candidate may proceed to 50M only if targeted objective accuracy improves,
 FineWeb loss and repetition remain within the configured limits, no new empty
 or degeneration failure appears, and the continued-pretraining gate passes.
+
+## Arithmetic fixed-record contract (implemented, serialization deferred)
+
+Verified arithmetic capability data uses independent fixed records of 257
+tokens for VASU's 256-token context. Each tokenized logical example ends with
+the tokenizer EOS token. The packer greedily adds complete examples in a
+deterministic replay order; it never splits or truncates an example. The
+exact-fill-only policy was rejected because arbitrary variable-length examples
+cannot reliably tile a fixed record width.
+
+After the final complete example in a record, the remaining positions contain
+the existing tokenizer PAD token. No example appears after the first PAD.
+Every record records its example IDs and spans, replay epoch, used-token count,
+padding-token count, and utilization ratio; aggregate statistics report real
+and padding tokens plus mean/minimum/maximum utilization. An optional warning
+threshold makes low utilization visible without silently rejecting a corpus.
+
+A record yields `x = tokens[:256]`, `y = tokens[1:257]`, and an authoritative
+target-aligned loss mask of 256 positions. Normal within-example targets,
+including final-answer-to-EOS, are supervised. EOS-to-first-token transitions
+between examples are masked. EOS-to-PAD and PAD-to-PAD transitions are masked,
+and any position with PAD as either input or target has mask zero. A derived
+257-position storage mask preserves compatibility with the existing
+`PackedInstructionDataset`, which exposes its `[1:]` target-aligned view.
+
+The pure packing implementation is `vasu.data.arithmetic_packing`. Record
+indexes are immutable: resuming at a record index returns the same stored
+tokens and mask independent of earlier records. This is not yet a production
+multi-source serializer or a training authorization; tokenization, artifact
+metadata, and hash-bound source scheduling remain readiness blockers.
