@@ -55,10 +55,40 @@ class Trainer:
         self.device = device
         self.callbacks = callbacks or []
         self.optimizer = build_optimizer(self.model, config)
-        self.scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
-            self.optimizer,
-            T_max=config.epochs,
-        )
+        scheduler_total_steps = getattr(config, "scheduler_total_steps", None)
+        if scheduler_total_steps is None:
+            self.scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
+                self.optimizer,
+                T_max=config.epochs,
+            )
+            self._scheduler_step_unit = "epoch"
+        else:
+            total_steps = int(scheduler_total_steps)
+            warmup_steps = int(getattr(config, "warmup_steps", 0))
+            minimum_lr = float(getattr(config, "minimum_learning_rate", 0.0))
+            base_lr = float(config.learning_rate)
+            if not 0 <= warmup_steps < total_steps:
+                raise ValueError("warmup_steps must be within scheduler horizon")
+            if not 0.0 <= minimum_lr <= base_lr:
+                raise ValueError("minimum learning rate must be within base LR")
+
+            def lr_multiplier(step: int) -> float:
+                if warmup_steps and step < warmup_steps:
+                    return (step + 1) / warmup_steps
+                decay_steps = max(total_steps - warmup_steps, 1)
+                progress = min(
+                    max(step - warmup_steps, 0) / decay_steps,
+                    1.0,
+                )
+                minimum_ratio = minimum_lr / base_lr
+                cosine = 0.5 * (1.0 + math.cos(math.pi * progress))
+                return minimum_ratio + (1.0 - minimum_ratio) * cosine
+
+            self.scheduler = torch.optim.lr_scheduler.LambdaLR(
+                self.optimizer,
+                lr_lambda=lr_multiplier,
+            )
+            self._scheduler_step_unit = "optimizer"
         self.scaler = torch.amp.GradScaler(
             self.device.type,
             enabled=self.config.use_amp,
@@ -86,7 +116,7 @@ class Trainer:
         self.train_sampler = ResumableBatchSampler(
             len(self.train_dataset),
             self.config.batch_size,
-            shuffle=True,
+            shuffle=bool(getattr(self.config, "shuffle", True)),
             seed=int(getattr(self.config, "seed", 42)),
             drop_last=bool(getattr(self.config, "drop_last", True)),
         )
@@ -125,7 +155,10 @@ class Trainer:
         self.optimizer.load_state_dict(checkpoint["optimizer"])
         if "scheduler" in checkpoint:
             self.scheduler.load_state_dict(checkpoint["scheduler"])
-            if self.scheduler.T_max != self.config.epochs:
+            if (
+                self._scheduler_step_unit == "epoch"
+                and self.scheduler.T_max != self.config.epochs
+            ):
                 warnings.warn(
                     "Configured epochs differs from the checkpoint scheduler "
                     "horizon; continuation retains checkpoint "
@@ -160,6 +193,20 @@ class Trainer:
                 "Checkpoint training_progress has no unambiguous resume phase; "
                 "exact resume is unsafe."
             )
+        active_identity_getter = getattr(
+            self.train_dataset, "resume_identity", None
+        )
+        active_identity = (
+            active_identity_getter()
+            if callable(active_identity_getter)
+            else None
+        )
+        saved_identity = progress.get("dataset_identity")
+        if active_identity is not None and saved_identity != active_identity:
+            raise ValueError(
+                "Checkpoint dataset/schedule identity does not match the active "
+                "training dataset; exact resume is unsafe."
+            )
         self.train_sampler.load_state_dict(progress["sampler"])
         self._resume_phase = phase
         self._accumulated_microbatches = int(
@@ -191,7 +238,7 @@ class Trainer:
         )
 
     def _training_progress(self) -> dict[str, Any]:
-        return build_training_progress(
+        progress = build_training_progress(
             sampler_state=self.train_sampler.state_dict(),
             phase=self._resume_phase,
             accumulated_microbatches=self._accumulated_microbatches,
@@ -199,6 +246,10 @@ class Trainer:
             gradients=capture_gradient_state(self.model),
             scaler_state=self.scaler.state_dict(),
         )
+        identity_getter = getattr(self.train_dataset, "resume_identity", None)
+        if callable(identity_getter):
+            progress["dataset_identity"] = identity_getter()
+        return progress
 
     def save_training_checkpoint(
         self,
@@ -259,6 +310,8 @@ class Trainer:
         self._accumulated_microbatches = 0
         self.global_step += 1
         self._optimizer_steps_in_epoch += 1
+        if self._scheduler_step_unit == "optimizer":
+            self.scheduler.step()
         return True
 
     def train_epoch(self, *, max_microbatches: int | None = None) -> float:
@@ -368,7 +421,10 @@ class Trainer:
             val_loss = self.validate_epoch()
             if not math.isfinite(val_loss):
                 raise FloatingPointError("Validation loss is non-finite; refusing checkpoint promotion.")
-            if self._optimizer_steps_in_epoch > 0:
+            if (
+                self._optimizer_steps_in_epoch > 0
+                and self._scheduler_step_unit == "epoch"
+            ):
                 self.scheduler.step()
             self.train_sampler.advance_epoch()
             self.start_epoch = self.train_sampler.position.epoch

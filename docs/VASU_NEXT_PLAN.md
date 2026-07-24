@@ -1,5 +1,21 @@
 # VASU-60M capability CPT ablation plan
 
+## Scheduled-mixture implementation status
+
+The candidate data plane is additive: compact `schedule.bin` files map each
+logical record to a hash-bound source and local record without concatenating
+sources. Standard sources receive an all-ones target mask; verified arithmetic
+uses its canonical target-aligned mask. Candidate C contains no arithmetic.
+Validation sources remain isolated.
+
+Schedule hashes:
+
+- A: `6a0baafd12e0dd4c59089abeeb81342d1ac327276f3180fdacaa7c18c7699fe8`
+- B: `055e35c3579cf25fa7bc5030f3fe02fdf68d0e6bc785382fbae77dcd3f91e679`
+- C: `92f8675a6160c18e18a0e99cbb3fedccb1c4bc4b322055d5cd5b49602f54d381`
+
+All launch configurations remain unauthorized.
+
 ## Purpose and evidence
 
 Capability v1 found zero greedy arithmetic, factual, and uncertainty passes for

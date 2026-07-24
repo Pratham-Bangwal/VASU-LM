@@ -1,5 +1,15 @@
 # VASU Roadmap
 
+## Capability continuation candidates
+
+- **Completed:** canonical verified-arithmetic release and deterministic
+  N-source schedules for factual A, balanced B, and non-arithmetic control C.
+- **Completed:** bounded non-optimizing model smoke checks and schedule/config
+  integrity validation.
+- **Blocked:** authorization and scientific review of arithmetic replay.
+- **Pending:** separately authorize at most one candidate, train in an
+  isolated directory, and evaluate against the parent with versioned gates.
+
 ## FineWeb extension document recovery
 
 - [x] Audit 379,247 retained source IDs and historical fingerprints.

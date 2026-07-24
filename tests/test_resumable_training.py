@@ -31,6 +31,15 @@ class RecordingLanguageDataset(Dataset[tuple[torch.Tensor, torch.Tensor]]):
         return self.inputs[index] % 12, self.targets[index] % 12
 
 
+class IdentityRecordingDataset(RecordingLanguageDataset):
+    def __init__(self, seen: list[int], identity: str) -> None:
+        super().__init__(seen)
+        self.identity = identity
+
+    def resume_identity(self) -> dict[str, str]:
+        return {"schedule_sha256": self.identity}
+
+
 class TinyLanguageModel(nn.Module):
     def __init__(self) -> None:
         super().__init__()
@@ -84,6 +93,62 @@ def _build_trainer(
 
 def _parameters(model: nn.Module) -> list[torch.Tensor]:
     return [parameter.detach().clone() for parameter in model.parameters()]
+
+
+def test_changed_dataset_identity_blocks_exact_resume(
+    tmp_path: Path, monkeypatch
+) -> None:
+    monkeypatch.setattr(
+        trainer_module,
+        "build_optimizer",
+        lambda model, config: torch.optim.SGD(model.parameters(), lr=0.05),
+    )
+    config = _config(tmp_path, "identity.pt")
+    first = Trainer(
+        TinyLanguageModel(),
+        tokenizer=None,
+        train_dataset=IdentityRecordingDataset([], "schedule-a"),
+        val_dataset=RecordingLanguageDataset([]),
+        config=config,
+        device=torch.device("cpu"),
+    )
+    first.train_epoch(max_microbatches=1)
+    first.save_training_checkpoint(config.checkpoint_path)
+
+    with pytest.raises(ValueError, match="dataset/schedule identity"):
+        Trainer(
+            TinyLanguageModel(),
+            tokenizer=None,
+            train_dataset=IdentityRecordingDataset([], "schedule-b"),
+            val_dataset=RecordingLanguageDataset([]),
+            config=config,
+            device=torch.device("cpu"),
+        )
+
+
+def test_opt_in_optimizer_step_scheduler_preserves_legacy_default(
+    tmp_path: Path, monkeypatch
+) -> None:
+    legacy = _build_trainer(tmp_path, "legacy-scheduler.pt", [], monkeypatch)
+    assert legacy._scheduler_step_unit == "epoch"
+
+    config = _config(tmp_path, "step-scheduler.pt")
+    config.scheduler_total_steps = 4
+    config.warmup_steps = 1
+    config.minimum_learning_rate = 0.005
+    config.learning_rate = 0.05
+    step_based = Trainer(
+        TinyLanguageModel(),
+        tokenizer=None,
+        train_dataset=RecordingLanguageDataset([]),
+        val_dataset=RecordingLanguageDataset([]),
+        config=config,
+        device=torch.device("cpu"),
+    )
+    assert step_based._scheduler_step_unit == "optimizer"
+    step_based.train_epoch(max_microbatches=2)
+    assert step_based.global_step == 1
+    assert step_based.scheduler.last_epoch == 1
 
 
 def test_uninterrupted_and_mid_accumulation_resume_match(

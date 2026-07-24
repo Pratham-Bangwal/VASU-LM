@@ -1,5 +1,14 @@
 # VASU Data Source Registry
 
+## Capability-CPT scheduled sources
+
+The additive capability-CPT path resolves three hash-bound training sources:
+the post-step-200k FineWeb extension region, the approved Wikimedia factual
+training split, and the canonical `verified_arithmetic_v1` packed training
+records. FineWeb/Wikimedia validation and arithmetic development/evaluation
+artifacts are references only and are rejected as schedule inputs. The legacy
+physical FineWeb/Wikimedia 85/15 artifact is unchanged.
+
 ## FineWeb document recovery and index readiness
 
 The versioned SQLite index supports normalized SHA-256 exact

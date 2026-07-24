@@ -1,5 +1,21 @@
 # VASU Experiments
 
+## Capability-CPT A/B/C schedule preparation
+
+Three unauthorized 20,004,864-token experiments were resolved into compact
+logical schedules (78,144 records each):
+
+- A factual: 67,204 FineWeb, 7,033 Wikimedia, 3,907 arithmetic records.
+- B balanced: 59,389 FineWeb, 7,033 Wikimedia, 11,722 arithmetic records.
+- C control: 71,111 FineWeb and 7,033 Wikimedia records.
+
+Arithmetic has only nine unique packed records. A therefore represents
+434.111 effective passes (3,898 reused records), while B represents 1,302.444
+effective passes (11,713 reused records). This severe replay is explicit and
+must be considered before authorization. Bounded parent-model
+forward/backward checks were finite for all three candidates; no optimizer
+update or training run occurred.
+
 Unknown or unavailable values are explicitly marked rather than inferred.
 
 ## VASU internal capability-suite smoke evaluation

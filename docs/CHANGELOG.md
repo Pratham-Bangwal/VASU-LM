@@ -4,6 +4,12 @@
 
 ### Added
 
+- Added the generalized deterministic N-source scheduled-mixture layer,
+  transactional A/B/C schedule releases, packed-mask and standard-source
+  batching, schedule-aware resume identity, launch-config validation, and
+  bounded non-optimizing real-model smoke tooling. The legacy 85/15 mixture is
+  unchanged and all new training configurations remain unauthorized.
+
 - Added the canonical hash-bound `verified_arithmetic_v1` serializer and
   standalone validator. The release preserves deterministic logical
   train/development/evaluation splits, uses the unchanged VASU tokenizer,

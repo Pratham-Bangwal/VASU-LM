@@ -1,5 +1,14 @@
 # VASU Project Status
 
+## Capability-CPT schedule status
+
+The generalized deterministic N-source schedule layer and Candidates A/B/C
+are prepared and hash-bound. Each configuration remains
+`training_authorized: false`; the launch gate blocks training with an explicit
+error. Source validation, mixed masked/unmasked batches, validation isolation,
+schedule-aware exact-resume metadata, and 2,442-update accounting have been
+verified. No capability-CPT model training has started.
+
 ## Capability evaluation framework
 
 The additive `evaluation.framework` internal capability suite is available for

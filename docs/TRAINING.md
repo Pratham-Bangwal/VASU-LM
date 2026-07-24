@@ -1,5 +1,19 @@
 # Training Guide
 
+## Unauthorized capability-CPT candidates
+
+Validate a candidate without training:
+
+```powershell
+python train_vasu_60m_capability_cpt.py --config configs/training/capability_cpt_a_factual_20m_v1.json --validate-only
+```
+
+Omitting `--validate-only` stops at the authorization gate with
+`Training is blocked because training_authorized is false.` Candidate configs
+use sequential schedule order (`shuffle: false`), batch size 2, accumulation
+16, context 256, and 2,442 complete optimizer groups over 20,004,864 tokens.
+Generated schedules are ignored by Git.
+
 > Complete guide to training models with VASU.
 
 ---

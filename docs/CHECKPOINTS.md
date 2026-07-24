@@ -1,5 +1,13 @@
 # Checkpoints Guide
 
+## Scheduled-mixture identity
+
+For scheduled-mixture training, additive `training_progress.dataset_identity`
+stores the schedule SHA-256 and ordered source token/mask hashes. Exact resume
+is rejected if the active schedule or source identity differs. Existing
+checkpoints without this field retain their existing compatibility behavior;
+no checkpoint tensor or container key was changed.
+
 ## Checkpoint roles
 
 VASU checkpoints preserve model weights and, for resumable training checkpoints, optimizer, scheduler, epoch, loss, and `global_step` state.
