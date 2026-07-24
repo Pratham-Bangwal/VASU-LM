@@ -181,6 +181,40 @@ def summarize_packed_records(
     )
 
 
+def unique_pass_record_count(
+    examples: Sequence[TokenizedArithmeticExample],
+    *,
+    eos_token_id: int,
+    pad_token_id: int,
+    sequence_length: int = DEFAULT_SEQUENCE_LENGTH,
+    seed: int = 0,
+) -> int:
+    """Return the records required to emit each source example exactly once."""
+
+    if sequence_length < 1:
+        raise ValueError("sequence_length must be positive")
+    record_length = sequence_length + 1
+    _validate_examples(
+        examples,
+        eos_token_id=eos_token_id,
+        pad_token_id=pad_token_id,
+        record_length=record_length,
+    )
+    order = _permutation(examples, seed=seed, replay_epoch=0)
+    records = 0
+    used = 0
+    for index in order:
+        length = len(examples[index].token_ids)
+        if used and used + length > record_length:
+            records += 1
+            used = 0
+        used += length
+        if used == record_length:
+            records += 1
+            used = 0
+    return records + int(used > 0)
+
+
 def pack_arithmetic_examples(
     examples: Sequence[TokenizedArithmeticExample],
     *,
@@ -296,4 +330,42 @@ def pack_arithmetic_examples(
         if strict_utilization:
             raise ValueError(message)
         warnings.warn(message, RuntimeWarning, stacklevel=2)
+    return records
+
+
+def pack_arithmetic_unique_pass(
+    examples: Sequence[TokenizedArithmeticExample],
+    *,
+    eos_token_id: int,
+    pad_token_id: int,
+    sequence_length: int = DEFAULT_SEQUENCE_LENGTH,
+    seed: int = 0,
+    utilization_warning_threshold: float | None = None,
+    strict_utilization: bool = False,
+) -> list[PackedArithmeticRecord]:
+    """Pack every unique source example once, without serializer-time replay."""
+
+    record_count = unique_pass_record_count(
+        examples,
+        eos_token_id=eos_token_id,
+        pad_token_id=pad_token_id,
+        sequence_length=sequence_length,
+        seed=seed,
+    )
+    records = pack_arithmetic_examples(
+        examples,
+        record_count=record_count,
+        eos_token_id=eos_token_id,
+        pad_token_id=pad_token_id,
+        sequence_length=sequence_length,
+        seed=seed,
+        utilization_warning_threshold=utilization_warning_threshold,
+        strict_utilization=strict_utilization,
+    )
+    consumed = [source_id for record in records for source_id in record.example_ids]
+    expected = {example.source_id for example in examples}
+    if len(consumed) != len(examples) or set(consumed) != expected:
+        raise RuntimeError("unique-pass packing repeated or omitted source examples")
+    if any(record.replay_epoch != 0 for record in records):
+        raise RuntimeError("unique-pass packing unexpectedly entered a replay epoch")
     return records

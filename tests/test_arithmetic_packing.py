@@ -8,7 +8,9 @@ from vasu.data.arithmetic_packing import (
     DEFAULT_SEQUENCE_LENGTH,
     TokenizedArithmeticExample,
     pack_arithmetic_examples,
+    pack_arithmetic_unique_pass,
     summarize_packed_records,
+    unique_pass_record_count,
 )
 from vasu.training.instruction_dataset import PackedInstructionDataset
 from vasu.training.losses import language_model_loss
@@ -128,6 +130,33 @@ def test_determinism_replay_and_requested_record_count() -> None:
     assert [record.replay_epoch for record in first] == [0, 0, 1, 1, 2]
     assert first[0].example_ids != ()
     assert first[0].padding_token_count > 0
+
+
+def test_unique_pass_emits_every_example_once_without_replay() -> None:
+    examples = [
+        _example("a", 150, 10),
+        _example("b", 120, 200),
+        _example("c", 80, 400),
+    ]
+    count = unique_pass_record_count(
+        examples,
+        eos_token_id=EOS,
+        pad_token_id=PAD,
+        seed=19,
+    )
+    records = pack_arithmetic_unique_pass(
+        examples,
+        eos_token_id=EOS,
+        pad_token_id=PAD,
+        seed=19,
+    )
+    consumed = [
+        example_id for record in records for example_id in record.example_ids
+    ]
+    assert len(records) == count
+    assert len(consumed) == len(examples)
+    assert set(consumed) == {"a", "b", "c"}
+    assert all(record.replay_epoch == 0 for record in records)
 
 
 def test_utilization_statistics_and_optional_warning() -> None:

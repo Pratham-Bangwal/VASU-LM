@@ -675,6 +675,9 @@ processed dataset, or existing checkpoint tensor key changed.
 Three matched, unauthorized 20M-nominal capability-CPT plans are prepared in
 `configs/data/mixtures/`. They retain the step-200k parent, use no replacement
 sampling, and cap the approved Wikimedia share at 9% because the release has
-only 1,915,008 train tokens. A deterministic arithmetic smoke generator and
-split manifest are available, but no large arithmetic token artifact or
-three-source fixed-record builder exists yet. Training remains blocked.
+only 1,915,008 train tokens. Canonical verified-arithmetic v1 is now tokenized
+and validated: 80 unique training examples, nine fixed records, 2,081 real
+tokens, 232 PAD tokens, and isolated 20-example development and evaluation
+splits. It remains ignored generated data with `training_authorized=false`.
+The generalized three-source scheduled-mixture builder remains absent, so
+Candidates A/B/C are not executable.

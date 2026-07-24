@@ -4,6 +4,17 @@
 
 ### Added
 
+- Added the canonical hash-bound `verified_arithmetic_v1` serializer and
+  standalone validator. The release preserves deterministic logical
+  train/development/evaluation splits, uses the unchanged VASU tokenizer,
+  packs one unique training pass into fixed 257-token records, and validates
+  exact answers, terminal EOS, PAD-tail masks, cross-example boundaries,
+  artifact hashes, split isolation, and capability-v1 exclusion.
+- Added transactional staging and overwrite protection, dry-run and compact
+  JSON summaries, strict utilization gating, deterministic second-build
+  checks, and direct `PackedInstructionDataset` compatibility tests. Generated
+  binaries remain ignored and training remains unauthorized.
+
 - Added the versioned, reproducible VASU internal capability-evaluation
   framework with canonical checkpoint loading, greedy/seeded generation,
   atomic resumable result files, objective structural scorers, explicitly

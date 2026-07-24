@@ -1,7 +1,7 @@
-"""Build a deterministic, exactly verifiable arithmetic JSONL smoke corpus.
+"""Build deterministic, exactly verifiable arithmetic logical examples.
 
-This creates text records only. It does not tokenize data, build a training
-mixture, or start training.
+This creates logical text records only. It does not tokenize data, build a
+training mixture, or start training.
 """
 
 from __future__ import annotations
@@ -16,6 +16,7 @@ from typing import Any
 
 
 FORMAT_VERSION = "vasu_verified_arithmetic_v1"
+TEMPLATE_ID = "question_answer_v1"
 SPLITS = {
     "train": (100, 999),
     "development": (1_000, 1_499),
@@ -43,36 +44,56 @@ def _record(split: str, index: int, rng: random.Random) -> dict[str, Any]:
     operation = OPERATIONS[index % len(OPERATIONS)]
     left = rng.randint(lower, upper)
     right = rng.randint(lower, upper)
+    operands: dict[str, Any] = {"left": left, "right": right}
     if operation == "addition":
         expression, answer = f"{left} + {right}", str(left + right)
     elif operation == "subtraction":
         expression, answer = f"{left} - {right}", str(left - right)
     elif operation == "multiplication":
         right = rng.randint(2, 12)
+        operands["right"] = right
         expression, answer = f"{left} * {right}", str(left * right)
     elif operation == "division":
         divisor = rng.randint(2, 12)
         quotient = rng.randint(lower, upper)
+        operands = {"divisor": divisor, "quotient": quotient}
         expression, answer = f"{divisor * quotient} / {divisor}", str(quotient)
     elif operation == "comparison":
         expression = f"{left} compared with {right}"
         answer = "greater" if left > right else "less" if left < right else "equal"
     elif operation == "sequence":
         step = rng.randint(2, 12)
+        operands = {"start": left, "step": step, "terms": 4}
         expression = f"{left}, {left + step}, {left + 2 * step}, {left + 3 * step}, next"
         answer = str(left + 4 * step)
     else:
         denominator = rng.randint(2, 12)
         numerator = rng.randint(1, denominator - 1)
+        operands = {
+            "denominator": denominator,
+            "first_numerator": numerator,
+            "second_numerator": denominator - numerator,
+        }
         expression, answer = f"{numerator}/{denominator} + {denominator - numerator}/{denominator}", "1"
-    text = f"Arithmetic exercise: {expression} = {answer}.\n[EOS]\n"
+    prompt = f"Solve this arithmetic exercise: {expression}"
+    text = f"Question: {prompt}\nAnswer: {answer}"
+    difficulty = {
+        "train": "tier_1",
+        "development": "tier_2",
+        "evaluation": "tier_3",
+    }[split]
     return {
         "id": f"{split}:{index:06d}",
         "split": split,
         "operation": operation,
+        "difficulty_tier": difficulty,
+        "prompt": prompt,
         "expression": expression,
         "answer": answer,
         "text": text,
+        "generator_version": FORMAT_VERSION,
+        "template_id": TEMPLATE_ID,
+        "operand_metadata": operands,
         "provenance": "synthetic_verified_v1",
     }
 
@@ -119,6 +140,20 @@ def verify_record(record: dict[str, Any]) -> bool:
     return False
 
 
+def generate_records(split: str, count: int, seed: int) -> list[dict[str, Any]]:
+    """Generate one deterministic logical split and verify every answer."""
+
+    if split not in SPLITS:
+        raise ValueError(f"unknown arithmetic split: {split!r}")
+    if count < 1:
+        raise ValueError("split count must be positive")
+    rng = random.Random(f"{seed}:{split}")
+    records = [_record(split, index, rng) for index in range(count)]
+    if not all(verify_record(record) for record in records):
+        raise AssertionError("arithmetic generator produced an invalid record")
+    return records
+
+
 def build_corpus(output_dir: Path, counts: dict[str, int], seed: int) -> dict[str, Any]:
     """Create deterministic non-overlapping splits and a hash-bound manifest."""
 
@@ -126,10 +161,7 @@ def build_corpus(output_dir: Path, counts: dict[str, int], seed: int) -> dict[st
         raise ValueError("counts must provide a positive value for every split")
     files: dict[str, dict[str, Any]] = {}
     for split, count in counts.items():
-        rng = random.Random(f"{seed}:{split}")
-        records = [_record(split, index, rng) for index in range(count)]
-        if not all(verify_record(record) for record in records):
-            raise AssertionError("arithmetic generator produced an invalid record")
+        records = generate_records(split, count, seed)
         path = output_dir / f"{split}.jsonl"
         _write_atomic(
             path,
@@ -141,6 +173,8 @@ def build_corpus(output_dir: Path, counts: dict[str, int], seed: int) -> dict[st
         "seed": seed,
         "splits": files,
         "operation_types": list(OPERATIONS),
+        "template_id": TEMPLATE_ID,
+        "training_text_format": "Question: {prompt}\nAnswer: {answer}",
         "operand_ranges": {name: list(bounds) for name, bounds in SPLITS.items()},
         "leakage_policy": "No capability-v1 prompt wording or its 7+8 / 12*3 fixtures are emitted.",
         "training_authorized": False,

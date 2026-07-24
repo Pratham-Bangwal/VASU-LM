@@ -323,6 +323,12 @@ The approved quarantined Wikimedia release `6aa10d73` is eligible for bounded
 data planning, with license, attribution, source revision, contamination, and
 hash evidence preserved. Its 1,915,008-token train split is insufficient for a
 20M-token run at 15% or more without replacement; current capability-CPT plans
-therefore cap it at 9%. The internally generated arithmetic source remains a
-deterministic, un-tokenized planning artifact until its future tokenized split
-has a preparation manifest and hash.
+therefore cap it at 9%. The internally generated arithmetic source now has a
+canonical, validated tokenized release at
+`data/processed/capability/verified_arithmetic_v1/`. It contains one unique
+training pass (80 logical examples packed into nine records) plus isolated
+20-example development and evaluation JSONL splits. Its manifest binds the
+unchanged tokenizer, generator/configuration, serializer, logical splits, and
+artifacts by SHA-256. The release is eligible as a future scheduled-mixture
+source, but `training_authorized=false`; no candidate is executable until the
+N-source scheduler is implemented and separately authorized.

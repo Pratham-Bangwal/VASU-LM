@@ -23,6 +23,19 @@ def test_arithmetic_corpus_is_deterministic_and_split_safe(tmp_path: Path) -> No
         first_ids.update(record["id"] for record in records)
         assert all("7 + 8" not in str(record["text"]) for record in records)
         assert all("12 * 3" not in str(record["text"]) for record in records)
+        lower, upper = {
+            "train": (100, 999),
+            "development": (1_000, 1_499),
+            "evaluation": (1_500, 1_999),
+        }[split]
+        for record in records:
+            operands = record["operand_metadata"]
+            primary = operands.get("left", operands.get("start", operands.get("quotient")))
+            if primary is not None:
+                assert lower <= primary <= upper
+        assert {record["template_id"] for record in records} == {
+            "question_answer_v1"
+        }
 
 
 def test_arithmetic_answers_are_exactly_verifiable(tmp_path: Path) -> None:
@@ -30,7 +43,14 @@ def test_arithmetic_answers_are_exactly_verifiable(tmp_path: Path) -> None:
     records = _records(Path(manifest["splits"]["train"]["path"]))
     for record in records:
         assert verify_record(record)
-        assert str(record["text"]).endswith("\n[EOS]\n")
+        assert record["text"] == (
+            f"Question: {record['prompt']}\nAnswer: {record['answer']}"
+        )
+        assert "[EOS]" not in str(record["text"])
+        assert record["generator_version"] == "vasu_verified_arithmetic_v1"
+        assert record["template_id"] == "question_answer_v1"
+        assert record["difficulty_tier"] == "tier_1"
+        assert record["operand_metadata"]
 
 
 def test_capability_mixture_plans_have_exact_budgets_and_safe_factual_shares() -> None:

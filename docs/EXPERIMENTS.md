@@ -489,5 +489,15 @@ Unknown or unavailable values are explicitly marked rather than inferred.
   and a deterministic verified-arithmetic generator.
 - Decision: keep three plans unauthorized. Wikimedia is limited to 9% because
   1,915,008 train tokens cannot support the requested 15--25% without replay.
-- Blocker: arithmetic must be tokenized and a three-source record builder must
-  pass deterministic DataLoader/resume validation before any candidate runs.
+- Arithmetic release: canonical `verified_arithmetic_v1` uses the unchanged
+  tokenizer and one versioned Question/Answer template. Eighty unique training
+  examples form nine fixed records with 2,081 real and 232 PAD tokens (89.97%
+  mean utilization); isolated development/evaluation splits retain 20 exact-
+  answer examples each.
+- Validation: terminal EOS, PAD-tail masks, answer-to-EOS supervision,
+  cross-example masking, hashes, split isolation, exact answers, and
+  capability-v1 fixture exclusion pass. A deterministic second build matched
+  every data, configuration, and logical hash.
+- Decision: serialization is complete, but training remains blocked until a
+  three-source scheduled-mixture builder passes deterministic DataLoader and
+  resume validation and receives explicit authorization.
