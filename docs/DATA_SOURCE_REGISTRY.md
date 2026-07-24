@@ -1,5 +1,18 @@
 # VASU Data Source Registry
 
+## Verified arithmetic v2
+
+`verified_arithmetic_v2` is a deterministic synthetic source containing
+32,000 train, 1,000 development, and 1,000 evaluation examples across eleven
+programmatically verified categories. Its one-pass training artifact has
+3,261 packed records and uses the unchanged tokenizer. Development/evaluation
+templates and operand ranges are held out, normalized expressions are
+split-isolated, and known capability/evaluation fixtures are excluded.
+
+Canonical manifest SHA-256:
+`8da3a1acfb2d2481c295b0d226c4695613b56670989d001fa27e65bed366115c`.
+The release remains unauthorized for training.
+
 ## Capability-CPT scheduled sources
 
 The additive capability-CPT path resolves three hash-bound training sources:

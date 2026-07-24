@@ -133,6 +133,37 @@ def validate_capability_config(path: Path) -> dict[str, Any]:
         raise ValueError("scheduler warmup steps are inconsistent")
     if config["validation_sources"] != manifest["validation_sources"]:
         raise ValueError("candidate validation references changed")
+    required_replay = config.get("replay_safety")
+    if required_replay is not None:
+        if manifest.get("replay_safety") != required_replay:
+            raise ValueError("candidate replay-safety configuration changed")
+        failed = [
+            item["source_id"]
+            for item in manifest["allocations"]
+            if item.get("replay_safety_status") not in {"pass", "override"}
+        ]
+        if failed:
+            raise ValueError(
+                "candidate replay-safety gate failed: " + ", ".join(failed)
+            )
+    gates = config.get("technical_gates", {})
+    if gates:
+        for name in ("replay_safety", "cuda_smoke", "cuda_exact_resume"):
+            if gates.get(name) not in {"passed", "not_completed", "failed"}:
+                raise ValueError(f"invalid technical gate status: {name}")
+        artifact = config.get("technical_validation_artifact", {})
+        artifact_path = Path(artifact.get("path", ""))
+        if (
+            not artifact_path.is_file()
+            or sha256_file(artifact_path) != artifact.get("sha256")
+        ):
+            raise ValueError("technical validation artifact identity mismatch")
+    parent = config.get("parent_checkpoint", {})
+    parent_path = Path(parent.get("path", ""))
+    if not parent_path.is_file() or sha256_file(parent_path) != parent.get(
+        "sha256"
+    ):
+        raise ValueError("candidate parent checkpoint identity mismatch")
 
     dataset = ScheduledPretrainingDataset.from_resolved_manifest(resolved_path)
     if len(dataset) != config["total_records"]:
@@ -148,3 +179,14 @@ def validate_capability_config(path: Path) -> dict[str, Any]:
 def require_training_authorization(config: dict[str, Any]) -> None:
     if config.get("training_authorized") is not True:
         raise PermissionError(BLOCKED_MESSAGE)
+    gates = config.get("technical_gates", {})
+    incomplete = [
+        name
+        for name in ("replay_safety", "cuda_smoke", "cuda_exact_resume")
+        if gates.get(name) != "passed"
+    ]
+    if incomplete:
+        raise PermissionError(
+            "Training is blocked because technical gates are incomplete: "
+            + ", ".join(incomplete)
+        )

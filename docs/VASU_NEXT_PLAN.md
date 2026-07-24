@@ -1,5 +1,23 @@
 # VASU-60M capability CPT ablation plan
 
+## Arithmetic v2 decision data
+
+The v2 release covers addition, subtraction, multiplication, exact division,
+comparison, sequences, fractions, percentages, short word problems,
+parenthesized mixed expressions, and numeric properties. Answers are canonical
+integers, reduced fractions, comparison symbols, or yes/no values and are
+recomputed from structured metadata.
+
+V2 schedule hashes:
+
+- A: `cc9cd9b7d2a2cd55a91c805691ce1c872fac82cd6295c5626383f8aea2ca15ce`
+- B: `bcc53510589a3332dc0611bc2c5faf57c7d086c62f9fb988a490808d930cff97`
+- C: `92f8675a6160c18e18a0e99cbb3fedccb1c4bc4b322055d5cd5b49602f54d381`
+
+The warning threshold is greater than five effective passes; the hard limit
+is greater than ten. Overrides are source-specific, disabled by default, and
+require an approved maximum plus written justification.
+
 ## Scheduled-mixture implementation status
 
 The candidate data plane is additive: compact `schedule.bin` files map each

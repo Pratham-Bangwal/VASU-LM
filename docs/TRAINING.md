@@ -1,5 +1,12 @@
 # Training Guide
 
+## Capability-CPT v2 authorization gates
+
+V2 candidates require `replay_safety`, `cuda_smoke`, and
+`cuda_exact_resume` to be `passed`. Hash validation covers the parent,
+tokenizer, sources, source manifests, masks, and schedule. These technical
+gates passed, but `training_authorized` remains false, so launch is blocked.
+
 ## Unauthorized capability-CPT candidates
 
 Validate a candidate without training:

@@ -1,0 +1,31 @@
+{
+  "format_version": "vasu_capability_cpt_experiment_v1",
+  "experiment_id": "capability_cpt_c_control_20m_v2",
+  "training_authorized": false,
+  "parent_checkpoint": {"path": "checkpoints/vasu_60m/milestones/fineweb_step_200000.pt", "sha256": "88688ee85fc880967dafb322277565d4754e049a22c0d8e86060991438436a2f"},
+  "model_configuration": "vasu_60m",
+  "tokenizer": {"path": "assets/tokenizer.json", "sha256": "04942e101a4a01f87f7e492ad9e463d299a559e784b650fdedd1763a017d195a"},
+  "resolved_mixture_manifest": "data/processed/capability/mixtures/capability_cpt_c_control_20m_v2/resolved_manifest.json",
+  "resolved_mixture_manifest_sha256": "e1279efbf30996c4742471484b7636633cc67fbddf715ee7d113b396349391e7",
+  "expected_schedule_sha256": "92f8675a6160c18e18a0e99cbb3fedccb1c4bc4b322055d5cd5b49602f54d381",
+  "expected_source_hashes": {
+    "fineweb_replay_after_200k": {"token_sha256": "d62efa0521365fa634d1e8f34bf8c84764a8066a9cc53430f9fc4bb89cabf51e", "mask_sha256": null, "manifest_sha256": "d6f1d112fbd0135563c173feaf700162982718a6ced6abd537df0e749c267a00"},
+    "wikimedia_factual_release_6aa10d73": {"token_sha256": "fee0b88832fc569ce73393bc232e29a80cb981e31779ce4c42129d15a0be876f", "mask_sha256": null, "manifest_sha256": "cec126ae4e804a4f42699f96625752199c73b0caafbc4bf8b6d3bc3f47560a81"}
+  },
+  "replay_safety": {"version": "vasu_replay_safety_v1", "warning_threshold": 5.0, "hard_limit": 10.0, "overrides": []},
+  "technical_gates": {"replay_safety": "passed", "cuda_smoke": "passed", "cuda_exact_resume": "passed"},
+  "technical_validation_artifact": {"path": "evaluation/results/capability_cpt_v2_cuda_validation.json", "sha256": "3555983cc9bcd58e6df70592f21c6b6c0ff064208b342bbc6f4cdc88eab05268"},
+  "total_records": 78144, "total_tokens": 20004864, "sequence_length": 256, "batch_size": 2, "gradient_accumulation_steps": 16,
+  "learning_rate": 1e-5, "optimizer_backend": "standard", "weight_decay": 0.1, "warmup_fraction": 0.02,
+  "scheduler": {"name": "cosine", "total_steps": 2442, "warmup_steps": 49, "minimum_learning_rate": 1e-6},
+  "seed": 42, "shuffle": false, "validation_interval": 100, "checkpoint_interval": 200, "exact_resume": true,
+  "checkpoint_directory": "checkpoints/vasu_60m/capability_cpt_c_control_20m_v2/",
+  "log_directory": "logs/capability_cpt_c_control_20m_v2/",
+  "validation_sources": {
+    "fineweb_validation": {"manifest": "data/processed/pretrain/fineweb_manifest.json", "role": "fixed_original_validation"},
+    "wikimedia_validation": {"manifest": "data/manifests/factual/wikimedia_release_6aa10d73_tokenized.json", "role": "validation"},
+    "arithmetic_development": {"path": "data/processed/capability/verified_arithmetic_v2/dev.jsonl", "sha256": "e3130b9584d052bdf6848b0d394e8515d522fd5f682ab9b6c9795535b7a903d0", "role": "development"},
+    "arithmetic_evaluation": {"path": "data/processed/capability/verified_arithmetic_v2/eval.jsonl", "sha256": "5d3fe19e950af146f1c345e6164e7bbd56618e38d8cc76df328e40eca8da6dd2", "role": "evaluation"}
+  },
+  "step_accounting": {"records": 78144, "dataloader_microbatches": 39072, "records_per_microbatch": 2, "tokens_per_microbatch": 512, "accumulation_steps": 16, "optimizer_updates": 2442, "final_group_complete": true, "processed_tokens": 20004864, "warmup_updates": 49, "scheduler_total_steps": 2442}
+}

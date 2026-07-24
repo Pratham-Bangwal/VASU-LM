@@ -110,6 +110,121 @@ class SourceAllocation:
     replay_epochs: int
     reused_records: int
     effective_source_passes: float
+    unique_coverage_ratio: float
+    maximum_reuse_count: int
+    minimum_reuse_count: int
+    mean_reuse_count: float
+    reuse_count_distribution: dict[str, int]
+    replay_safety_status: str
+    replay_override: dict[str, Any] | None
+
+
+@dataclass(frozen=True)
+class ReplayOverride:
+    """One explicit, source-scoped replay-limit exception."""
+
+    source_id: str
+    approved_maximum_passes: float
+    justification: str
+
+
+@dataclass(frozen=True)
+class ReplaySafetyPolicy:
+    """Versioned per-source effective-pass limits."""
+
+    version: str = "vasu_replay_safety_v1"
+    warning_threshold: float = 5.0
+    hard_limit: float = 10.0
+    overrides: tuple[ReplayOverride, ...] = ()
+
+    def to_manifest_dict(self) -> dict[str, Any]:
+        return {
+            "version": self.version,
+            "warning_threshold": self.warning_threshold,
+            "hard_limit": self.hard_limit,
+            "overrides": [asdict(item) for item in self.overrides],
+        }
+
+
+def validate_replay_policy(policy: ReplaySafetyPolicy) -> None:
+    if policy.version != "vasu_replay_safety_v1":
+        raise ValueError("unsupported replay-safety policy version")
+    if (
+        not math.isfinite(policy.warning_threshold)
+        or not math.isfinite(policy.hard_limit)
+        or policy.warning_threshold <= 0
+        or policy.hard_limit <= 0
+        or policy.warning_threshold > policy.hard_limit
+    ):
+        raise ValueError("replay thresholds must be finite, positive, and ordered")
+    seen: set[str] = set()
+    for override in policy.overrides:
+        if not override.source_id or override.source_id in seen:
+            raise ValueError("replay overrides require unique source IDs")
+        seen.add(override.source_id)
+        if (
+            not math.isfinite(override.approved_maximum_passes)
+            or override.approved_maximum_passes <= policy.hard_limit
+        ):
+            raise ValueError("replay override maximum must exceed the hard limit")
+        if not override.justification.strip():
+            raise ValueError("replay override requires a written justification")
+
+
+def replay_metrics(
+    local_records: Sequence[int],
+    *,
+    available_records: int,
+    policy: ReplaySafetyPolicy | None,
+    source_id: str,
+) -> dict[str, Any]:
+    """Calculate exact packed-record reuse and enforce an opt-in policy."""
+
+    counts = np.bincount(
+        np.asarray(local_records, dtype=np.int64),
+        minlength=available_records,
+    )
+    allocated = len(local_records)
+    effective = allocated / available_records
+    values, frequencies = np.unique(counts, return_counts=True)
+    distribution = {
+        str(int(value)): int(frequency)
+        for value, frequency in zip(values, frequencies, strict=True)
+    }
+    override_payload: dict[str, Any] | None = None
+    status = "not_configured"
+    if policy is not None:
+        validate_replay_policy(policy)
+        override = next(
+            (item for item in policy.overrides if item.source_id == source_id),
+            None,
+        )
+        allowed = (
+            override.approved_maximum_passes
+            if override is not None
+            else policy.hard_limit
+        )
+        if effective > allowed:
+            raise ValueError(
+                f"replay hard limit exceeded for {source_id}: "
+                f"{effective:.6f} effective passes > {allowed:.6f}"
+            )
+        if override is not None:
+            override_payload = asdict(override)
+            status = "override"
+        elif effective > policy.warning_threshold:
+            status = "warning"
+        else:
+            status = "pass"
+    return {
+        "unique_coverage_ratio": int(np.count_nonzero(counts)) / available_records,
+        "maximum_reuse_count": int(counts.max()),
+        "minimum_reuse_count": int(counts.min()),
+        "mean_reuse_count": float(counts.mean()),
+        "reuse_count_distribution": distribution,
+        "replay_safety_status": status,
+        "replay_override": override_payload,
+    }
 
 
 def _validate_hash(value: str, field: str) -> None:
@@ -295,6 +410,8 @@ def build_schedule(
     sources: Sequence[ScheduledSource],
     total_records: int,
     seed: int,
+    *,
+    replay_policy: ReplaySafetyPolicy | None = None,
 ) -> tuple[np.ndarray, list[SourceAllocation]]:
     """Build a deterministic interleaved source/local-record schedule."""
 
@@ -316,6 +433,12 @@ def build_schedule(
             selected.extend(order[:take])
             replay_epoch += 1
         entries.extend((source_index, local) for local in selected)
+        metrics = replay_metrics(
+            selected,
+            available_records=source.available_records,
+            policy=replay_policy,
+            source_id=source.identifier,
+        )
         accounting.append(
             SourceAllocation(
                 source_id=source.identifier,
@@ -329,6 +452,7 @@ def build_schedule(
                 replay_epochs=replay_epoch,
                 reused_records=max(count - source.available_records, 0),
                 effective_source_passes=count / source.available_records,
+                **metrics,
             )
         )
     random.Random(f"{seed}:global_schedule").shuffle(entries)
@@ -368,6 +492,7 @@ def build_resolved_manifest(
     tokenizer_sha256: str,
     validation_sources: Mapping[str, Any],
     created_at: str,
+    replay_policy: ReplaySafetyPolicy | None,
 ) -> dict[str, Any]:
     return {
         "schema_version": SCHEDULE_FORMAT,
@@ -395,6 +520,11 @@ def build_resolved_manifest(
             "sha256": tokenizer_sha256,
         },
         "validation_sources": dict(validation_sources),
+        "replay_safety": (
+            None
+            if replay_policy is None
+            else replay_policy.to_manifest_dict()
+        ),
         "generator": {
             "path": "vasu/data/scheduled_mixture.py",
             "sha256": sha256_file(Path("vasu/data/scheduled_mixture.py")),
@@ -472,6 +602,7 @@ def write_schedule_release(
     tokenizer_path: Path,
     tokenizer_sha256: str,
     validation_sources: Mapping[str, Any],
+    replay_policy: ReplaySafetyPolicy | None = None,
     overwrite: bool = False,
     dry_run: bool = False,
     created_at: str | None = None,
@@ -483,7 +614,12 @@ def write_schedule_release(
         raise ValueError("scheduled-mixture tokenizer hash mismatch")
     if output_dir.exists() and not overwrite and not dry_run:
         raise FileExistsError(f"{output_dir} exists; pass overwrite explicitly")
-    schedule, accounting = build_schedule(sources, total_records, seed)
+    schedule, accounting = build_schedule(
+        sources,
+        total_records,
+        seed,
+        replay_policy=replay_policy,
+    )
     output_dir.parent.mkdir(parents=True, exist_ok=True)
     staging = Path(
         tempfile.mkdtemp(
@@ -506,6 +642,7 @@ def write_schedule_release(
             tokenizer_sha256=tokenizer_sha256,
             validation_sources=validation_sources,
             created_at=created_at or datetime.now(timezone.utc).isoformat(),
+            replay_policy=replay_policy,
         )
         _write_json(staging / "resolved_manifest.json", manifest)
         validate_schedule_release(staging)
@@ -667,5 +804,8 @@ class ScheduledPretrainingDataset(
             ],
             "source_mask_sha256": [
                 source.mask_sha256 for source in self.sources
+            ],
+            "source_manifest_sha256": [
+                source.manifest_sha256 for source in self.sources
             ],
         }

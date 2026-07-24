@@ -1,5 +1,21 @@
 # VASU Experiments
 
+## Capability-CPT v2 replay remediation
+
+Arithmetic v1's nine records caused 434.111 effective passes in A and
+1,302.444 in B, exceeding the new hard limit of 10. Arithmetic v2 expands the
+canonical source to 3,261 unique records at 95.096% mean utilization:
+
+- A v2: 1.198 passes, 646 reused records, maximum reuse 2.
+- B v2: 3.595 passes, 8,461 reused records, maximum reuse 4.
+- C v2: no arithmetic; unchanged source schedule bytes.
+
+All three pass the per-source replay policy. CUDA AMP smoke checks completed
+one bounded 16-microbatch accumulation per candidate with finite values and
+about 1162.21 MiB peak allocated memory. CUDA exact-resume tests passed at
+optimizer, mid-accumulation, source-transition, and replay boundaries. These
+checks do not authorize the 20M-token experiments.
+
 ## Capability-CPT A/B/C schedule preparation
 
 Three unauthorized 20,004,864-token experiments were resolved into compact

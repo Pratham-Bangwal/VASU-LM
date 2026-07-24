@@ -1,5 +1,11 @@
 # VASU Roadmap
 
+## Capability-CPT v2 decision gate
+
+Arithmetic diversity remediation and CUDA validation are complete. The next
+decision is experimental authorization—not additional source replay or an
+automatic launch.
+
 ## Capability continuation candidates
 
 - **Completed:** canonical verified-arithmetic release and deterministic

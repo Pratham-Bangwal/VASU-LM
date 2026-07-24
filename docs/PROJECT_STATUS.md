@@ -1,5 +1,12 @@
 # VASU Project Status
 
+## Capability-CPT v2 status
+
+Arithmetic v2 and versioned A/B/C v2 schedules are technically prepared.
+Replay safety, CUDA smoke, and CUDA exact-resume gates passed, while
+`training_authorized` remains false. Scientific selection and explicit
+authorization remain blockers; no 20M-token candidate run has started.
+
 ## Capability-CPT schedule status
 
 The generalized deterministic N-source schedule layer and Candidates A/B/C

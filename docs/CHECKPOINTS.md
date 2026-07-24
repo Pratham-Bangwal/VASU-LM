@@ -1,5 +1,11 @@
 # Checkpoints Guide
 
+## Arithmetic v2 schedule identity
+
+Arithmetic v2 resume identity includes the arithmetic manifest SHA-256 in
+addition to token/mask and schedule hashes. A changed schedule or regenerated
+source manifest blocks exact continuation rather than silently changing data.
+
 ## Scheduled-mixture identity
 
 For scheduled-mixture training, additive `training_progress.dataset_identity`

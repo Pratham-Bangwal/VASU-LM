@@ -4,6 +4,14 @@
 
 ### Added
 
+- Added deterministic verified arithmetic v2 with 34,000 exact-answer logical
+  examples, 3,261 unique packed training records, held-out templates/ranges,
+  split-contamination checks, transactional serialization, and standalone
+  validation.
+- Added versioned per-source replay-safety gates, scoped justified overrides,
+  A/B/C v2 schedules, CUDA AMP scheduled-mixture smoke validation, and CUDA
+  exact-resume coverage across accumulation, source, and replay boundaries.
+
 - Added the generalized deterministic N-source scheduled-mixture layer,
   transactional A/B/C schedule releases, packed-mask and standard-source
   batching, schedule-aware resume identity, launch-config validation, and

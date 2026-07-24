@@ -13,6 +13,7 @@ if __package__ in {None, ""}:
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from vasu.data.scheduled_mixture import (
+    ReplaySafetyPolicy,
     ScheduledSource,
     validate_schedule_release,
     write_schedule_release,
@@ -37,6 +38,8 @@ class Candidate:
     output_dir: Path
     weights: tuple[float, ...]
     include_arithmetic: bool
+    arithmetic_release: str = "v1"
+    replay_safety_enabled: bool = False
 
 
 CANDIDATES = {
@@ -72,6 +75,48 @@ CANDIDATES = {
         ),
         (0.91, 0.09),
         False,
+    ),
+}
+
+CANDIDATES_V2 = {
+    "a": Candidate(
+        "a",
+        "capability_cpt_a_factual_20m_v2",
+        Path("configs/data/mixtures/vasu_60m_capability_a_factual_20m_v2.json"),
+        Path(
+            "data/processed/capability/mixtures/"
+            "capability_cpt_a_factual_20m_v2"
+        ),
+        (0.86, 0.09, 0.05),
+        True,
+        "v2",
+        True,
+    ),
+    "b": Candidate(
+        "b",
+        "capability_cpt_b_balanced_20m_v2",
+        Path("configs/data/mixtures/vasu_60m_capability_b_balanced_20m_v2.json"),
+        Path(
+            "data/processed/capability/mixtures/"
+            "capability_cpt_b_balanced_20m_v2"
+        ),
+        (0.76, 0.09, 0.15),
+        True,
+        "v2",
+        True,
+    ),
+    "c": Candidate(
+        "c",
+        "capability_cpt_c_control_20m_v2",
+        Path("configs/data/mixtures/vasu_60m_capability_c_control_20m_v2.json"),
+        Path(
+            "data/processed/capability/mixtures/"
+            "capability_cpt_c_control_20m_v2"
+        ),
+        (0.91, 0.09),
+        False,
+        "none",
+        True,
     ),
 }
 
@@ -185,37 +230,46 @@ def candidate_sources(candidate: Candidate) -> list[ScheduledSource]:
         ),
     ]
     if candidate.include_arithmetic:
+        arithmetic_version = candidate.arithmetic_release
         arithmetic_path = Path(
-            "data/processed/capability/verified_arithmetic_v1/train_tokens.bin"
+            f"data/processed/capability/verified_arithmetic_{arithmetic_version}/"
+            "train_tokens.bin"
         )
+        arithmetic_v2 = arithmetic_version == "v2"
         sources.append(
             ScheduledSource(
-                identifier="verified_arithmetic_v1",
+                identifier=f"verified_arithmetic_{arithmetic_version}",
                 source_kind="packed_masked",
                 token_path=arithmetic_path,
                 mask_path=Path(
-                    "data/processed/capability/verified_arithmetic_v1/"
+                    f"data/processed/capability/verified_arithmetic_{arithmetic_version}/"
                     "train_loss_mask.bin"
                 ),
                 manifest_path=Path(
-                    "data/processed/capability/verified_arithmetic_v1/"
+                    f"data/processed/capability/verified_arithmetic_{arithmetic_version}/"
                     "manifest.json"
                 ),
                 token_sha256=(
-                    "341e575dab8a001ac30155cf674c5bd4b25d687048114d36a4578673ac72d141"
+                    "9abbab5e6a3d6d1121d47a89e9e829a3b51b072af2dc3a9daed5bae5d6fe474a"
+                    if arithmetic_v2
+                    else "341e575dab8a001ac30155cf674c5bd4b25d687048114d36a4578673ac72d141"
                 ),
                 mask_sha256=(
-                    "2ddf37b626e3d6c6b92a28f6a885b99c2d995524949fbca4db1424b1cf71789d"
+                    "beaf4d1f5dc325d1fc2a37cf8adc6677738e009fdf68d87fbf1bb032013098c4"
+                    if arithmetic_v2
+                    else "2ddf37b626e3d6c6b92a28f6a885b99c2d995524949fbca4db1424b1cf71789d"
                 ),
                 manifest_sha256=(
-                    "85e749f9e08e3908a2bb0f77791e6b7a824ac47ea3d499f7a38c80d940b62fea"
+                    "8da3a1acfb2d2481c295b0d226c4695613b56670989d001fa27e65bed366115c"
+                    if arithmetic_v2
+                    else "85e749f9e08e3908a2bb0f77791e6b7a824ac47ea3d499f7a38c80d940b62fea"
                 ),
                 split_role="train",
                 record_width=RECORD_WIDTH,
                 context_length=CONTEXT_LENGTH,
                 token_dtype="uint16",
                 mask_dtype="uint8",
-                available_records=9,
+                available_records=3261 if arithmetic_v2 else 9,
                 weight=candidate.weights[2],
                 order=2,
                 replay_policy="deterministic_permutation_epochs",
@@ -227,7 +281,21 @@ def candidate_sources(candidate: Candidate) -> list[ScheduledSource]:
     return sources
 
 
-def validation_sources() -> dict[str, Any]:
+def validation_sources(arithmetic_version: str = "v1") -> dict[str, Any]:
+    if arithmetic_version == "v2":
+        development_hash = (
+            "e3130b9584d052bdf6848b0d394e8515d522fd5f682ab9b6c9795535b7a903d0"
+        )
+        evaluation_hash = (
+            "5d3fe19e950af146f1c345e6164e7bbd56618e38d8cc76df328e40eca8da6dd2"
+        )
+    else:
+        development_hash = (
+            "da988af5dca386fe98d4a07f87a2eff6b14ef867853b0918dcac12aa52df306c"
+        )
+        evaluation_hash = (
+            "f10a8bf0e668f02c0b70cabb279dfd98353cbc2d8a7cb495bea25a640d318ceb"
+        )
     return {
         "fineweb_validation": {
             "manifest": "data/processed/pretrain/fineweb_manifest.json",
@@ -242,20 +310,18 @@ def validation_sources() -> dict[str, Any]:
         },
         "arithmetic_development": {
             "path": (
-                "data/processed/capability/verified_arithmetic_v1/dev.jsonl"
+                "data/processed/capability/"
+                f"verified_arithmetic_{arithmetic_version}/dev.jsonl"
             ),
-            "sha256": (
-                "da988af5dca386fe98d4a07f87a2eff6b14ef867853b0918dcac12aa52df306c"
-            ),
+            "sha256": development_hash,
             "role": "development",
         },
         "arithmetic_evaluation": {
             "path": (
-                "data/processed/capability/verified_arithmetic_v1/eval.jsonl"
+                "data/processed/capability/"
+                f"verified_arithmetic_{arithmetic_version}/eval.jsonl"
             ),
-            "sha256": (
-                "f10a8bf0e668f02c0b70cabb279dfd98353cbc2d8a7cb495bea25a640d318ceb"
-            ),
+            "sha256": evaluation_hash,
             "role": "evaluation",
         },
     }
@@ -277,7 +343,14 @@ def build_candidate(
         seed=42,
         tokenizer_path=TOKENIZER_PATH,
         tokenizer_sha256=TOKENIZER_SHA256,
-        validation_sources=validation_sources(),
+        validation_sources=validation_sources(
+            "v2" if candidate.replay_safety_enabled else "v1"
+        ),
+        replay_policy=(
+            ReplaySafetyPolicy()
+            if candidate.replay_safety_enabled
+            else None
+        ),
         overwrite=overwrite,
         dry_run=dry_run,
         created_at=created_at,
@@ -291,6 +364,7 @@ def parse_args() -> argparse.Namespace:
         choices=("a", "b", "c", "all"),
         default="all",
     )
+    parser.add_argument("--version", choices=("v1", "v2"), default="v1")
     parser.add_argument("--overwrite", action="store_true")
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--validate-only", action="store_true")
@@ -301,10 +375,11 @@ def main() -> None:
     args = parse_args()
     if args.dry_run and args.validate_only:
         raise SystemExit("--dry-run and --validate-only are mutually exclusive")
-    keys = tuple(CANDIDATES) if args.candidate == "all" else (args.candidate,)
+    candidates = CANDIDATES_V2 if args.version == "v2" else CANDIDATES
+    keys = tuple(candidates) if args.candidate == "all" else (args.candidate,)
     results = {}
     for key in keys:
-        candidate = CANDIDATES[key]
+        candidate = candidates[key]
         if args.validate_only:
             result = validate_schedule_release(candidate.output_dir)
         else:

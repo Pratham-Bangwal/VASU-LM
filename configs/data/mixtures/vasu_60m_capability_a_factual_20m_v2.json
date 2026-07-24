@@ -1,0 +1,14 @@
+{
+  "manifest_version": "2.0",
+  "experiment_id": "capability_cpt_a_factual_20m_v2",
+  "description": "Unauthorized factual capability-CPT plan using verified arithmetic v2.",
+  "target_tokens": 20004864,
+  "random_seed": 42,
+  "replay_safety": {"version": "vasu_replay_safety_v1", "warning_threshold": 5.0, "hard_limit": 10.0, "overrides": []},
+  "sources": [
+    {"id": "fineweb_replay_after_200k", "domain": "general", "weight": 0.86},
+    {"id": "wikimedia_factual_release_6aa10d73", "domain": "factual", "weight": 0.09},
+    {"id": "verified_arithmetic_v2", "domain": "mathematics", "weight": 0.05}
+  ],
+  "training_authorized": false
+}
