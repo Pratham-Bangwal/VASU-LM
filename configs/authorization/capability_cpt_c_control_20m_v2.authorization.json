@@ -1,0 +1,63 @@
+{
+  "format_version": "vasu_capability_cpt_authorization_v1",
+  "status": "approved",
+  "decision": "authorized",
+  "candidate_id": "capability_cpt_c_control_20m_v2",
+  "approver": "Pratham Sharma",
+  "authorized_at": "2026-07-25",
+  "repository_commit": "34fbf1f455652c09e14f9531264fe04f86690ef6",
+  "repository_clean": true,
+  "experiment_config": {
+    "path": "configs/training/capability_cpt_c_control_20m_v2.json",
+    "preauthorization_sha256": "e757d675f57e1cf26ede65aaf4c5c41fc61f26f374dd4ff9216692c2d61cae31",
+    "expected_authorized_sha256_after_single_boolean_edit": "ba9d9b0d84c1c625b7ad1fc226dc242fea35c400e5d4e540b24c78f8d0274779"
+  },
+  "parent_checkpoint": {
+    "path": "checkpoints/vasu_60m/milestones/fineweb_step_200000.pt",
+    "sha256": "88688ee85fc880967dafb322277565d4754e049a22c0d8e86060991438436a2f"
+  },
+  "tokenizer": {
+    "path": "assets/tokenizer.json",
+    "sha256": "04942e101a4a01f87f7e492ad9e463d299a559e784b650fdedd1763a017d195a"
+  },
+  "resolved_manifest": {
+    "path": "data/processed/capability/mixtures/capability_cpt_c_control_20m_v2/resolved_manifest.json",
+    "sha256": "e1279efbf30996c4742471484b7636633cc67fbddf715ee7d113b396349391e7"
+  },
+  "schedule": {
+    "path": "data/processed/capability/mixtures/capability_cpt_c_control_20m_v2/schedule.bin",
+    "sha256": "92f8675a6160c18e18a0e99cbb3fedccb1c4bc4b322055d5cd5b49602f54d381"
+  },
+  "sources": {
+    "fineweb_replay_after_200k": {
+      "token_sha256": "d62efa0521365fa634d1e8f34bf8c84764a8066a9cc53430f9fc4bb89cabf51e",
+      "manifest_sha256": "d6f1d112fbd0135563c173feaf700162982718a6ced6abd537df0e749c267a00"
+    },
+    "wikimedia_factual_release_6aa10d73": {
+      "token_sha256": "fee0b88832fc569ce73393bc232e29a80cb981e31779ce4c42129d15a0be876f",
+      "manifest_sha256": "cec126ae4e804a4f42699f96625752199c73b0caafbc4bf8b6d3bc3f47560a81"
+    }
+  },
+  "cuda_validation": {
+    "path": "evaluation/results/capability_cpt_v2_cuda_validation.json",
+    "sha256": "3555983cc9bcd58e6df70592f21c6b6c0ff064208b342bbc6f4cdc88eab05268"
+  },
+  "scientific_rationale": "Candidate C is authorized as the conservative 20M-token control continuation experiment. It preserves 91% broad FineWeb replay while adding 9% approved, hash-bound Wikimedia factual data. The run establishes whether factual continued pretraining improves Wikimedia-domain validation and stable factual capability without arithmetic-specific training. All source, tokenizer, parent-checkpoint, schedule, replay-safety, CUDA smoke, exact-resume, checkpoint-integrity, validation, thermal, disk-space, and retention gates have passed. Candidate C will be evaluated against the FineWeb step-200k parent using separate FineWeb, Wikimedia, arithmetic, capability, repetition, degeneration, and human-review dimensions. Candidate A and Candidate B remain unauthorized pending Candidate C results and separate written decisions.",
+  "blocking_issues": [],
+  "required_authorization_edit": {
+    "file": "configs/training/capability_cpt_c_control_20m_v2.json",
+    "field": "training_authorized",
+    "current_value": true,
+    "requested_value_after_all_blockers_close": true
+  },
+  "authorization_scope": {
+    "authorized_candidate": "capability_cpt_c_control_20m_v2",
+    "candidate_a_authorized": false,
+    "candidate_b_authorized": false,
+    "authorized_token_budget": 20004864,
+    "authorized_optimizer_updates": 2442,
+    "authorized_parent_checkpoint": "checkpoints/vasu_60m/milestones/fineweb_step_200000.pt",
+    "authorization_excludes_hyperparameter_changes": true
+  },
+  "notes": "Authorization applies only to Candidate C using the exact hash-bound configuration, schedule, sources, tokenizer, parent checkpoint, safeguards, and 20,004,864-token budget recorded here. Any change to these identities or training parameters requires a new authorization review."
+}

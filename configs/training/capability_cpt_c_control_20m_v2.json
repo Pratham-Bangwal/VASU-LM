@@ -1,7 +1,7 @@
 {
   "format_version": "vasu_capability_cpt_experiment_v1",
   "experiment_id": "capability_cpt_c_control_20m_v2",
-  "training_authorized": false,
+  "training_authorized": true,
   "parent_checkpoint": {"path": "checkpoints/vasu_60m/milestones/fineweb_step_200000.pt", "sha256": "88688ee85fc880967dafb322277565d4754e049a22c0d8e86060991438436a2f"},
   "model_configuration": "vasu_60m",
   "tokenizer": {"path": "assets/tokenizer.json", "sha256": "04942e101a4a01f87f7e492ad9e463d299a559e784b650fdedd1763a017d195a"},
