@@ -67,11 +67,14 @@ def restore_rng_state(state: dict[str, Any]) -> None:
         raise ValueError(f"Checkpoint RNG state is incomplete: {sorted(missing)}")
     random.setstate(state["python"])
     np.random.set_state(state["numpy"])
-    torch.set_rng_state(state["torch"])
+    # ``torch.load(..., map_location="cuda")`` also moves this CPU-generator
+    # state to CUDA.  Both generator APIs require CPU ByteTensors, so normalize
+    # device placement without changing the serialized checkpoint payload.
+    torch.set_rng_state(state["torch"].cpu())
     if "cuda" in state:
         if not torch.cuda.is_available():
             raise RuntimeError("Checkpoint contains CUDA RNG state but CUDA is unavailable.")
-        torch.cuda.set_rng_state_all(state["cuda"])
+        torch.cuda.set_rng_state_all([item.cpu() for item in state["cuda"]])
 
 
 def build_training_progress(

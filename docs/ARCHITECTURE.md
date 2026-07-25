@@ -1,5 +1,22 @@
 # VASU Architecture
 
+## Capability-CPT production orchestration
+
+Candidate C uses the unchanged VASU-60M model and checkpoint schema through an
+opt-in `CapabilityTrainer` subclass. The separation is deliberate: model,
+tokenizer, scheduled dataset, loss, optimizer, and general Trainer semantics
+remain unchanged, while capability-specific orchestration owns multi-domain
+validation, domain-best selection, disk/thermal guards, checkpoint retention,
+and abort reporting.
+
+Its compact checkpoint metadata binds the experiment, parent, tokenizer,
+source/schedule hashes, validation configuration, optimizer/scheduler, batch,
+accumulation, and sequence settings. The saved capability state records
+completed validation events, best-domain metrics, optimizer skips, retention,
+thermal history, and abort reason. This additive metadata preserves the
+existing tensor/container format and prevents a checkpoint from resuming under
+a scientifically different validation or data configuration.
+
 ## Overview
 
 VASU is a decoder-only autoregressive Transformer implemented from scratch in PyTorch. VASU-31M and VASU-60M share the same module design and tokenizer, while using different tensor dimensions.

@@ -20,6 +20,8 @@ def save_checkpoint(
     loss=None,
     path=None,
     global_step=0,
+    verify_after_write: bool = False,
+    fsync: bool = False,
     **metadata: Any,
 ) -> None:
     """Save a training checkpoint while preserving the legacy call format.
@@ -82,6 +84,27 @@ def save_checkpoint(
     temporary.unlink(missing_ok=True)
     try:
         torch.save(payload, temporary)
+        if fsync:
+            # Windows requires a writable file descriptor for ``fsync``.
+            with temporary.open("r+b") as handle:
+                os.fsync(handle.fileno())
+        if verify_after_write:
+            restored = torch.load(
+                temporary,
+                map_location="cpu",
+                mmap=True,
+                weights_only=False,
+            )
+            if not isinstance(restored, dict):
+                raise ValueError("temporary checkpoint payload is not a mapping")
+            missing = payload.keys() - restored.keys()
+            if missing:
+                raise ValueError(
+                    "temporary checkpoint is missing keys: "
+                    + ", ".join(sorted(missing))
+                )
+            if int(restored["global_step"]) != int(global_step):
+                raise ValueError("temporary checkpoint global_step mismatch")
         os.replace(temporary, destination)
     except Exception:
         temporary.unlink(missing_ok=True)
