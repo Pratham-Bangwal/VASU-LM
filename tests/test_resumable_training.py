@@ -342,7 +342,8 @@ def test_non_finite_gradients_skip_optimizer_and_scheduler_steps(
     initial_scheduler = trainer.scheduler.state_dict()
     monkeypatch.setattr(trainer_module, "finite_gradients", lambda _: False)
 
-    trainer.fit()
+    with pytest.warns(RuntimeWarning, match="gradients were non-finite"):
+        trainer.fit()
 
     assert trainer.global_step == 0
     assert trainer.scheduler.state_dict() == initial_scheduler
