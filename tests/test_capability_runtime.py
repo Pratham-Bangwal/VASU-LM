@@ -12,7 +12,10 @@ from torch.utils.data import DataLoader, Dataset
 
 import vasu.training.capability_runtime as runtime
 from train_vasu_60m_capability_cpt import parse_args
-from vasu.training.capability_cpt import require_training_authorization
+from vasu.training.capability_cpt import (
+    require_training_authorization,
+    validate_capability_config,
+)
 from vasu.training.capability_runtime import (
     CapabilityTrainer,
     ThermalMonitor,
@@ -407,6 +410,40 @@ def test_candidate_c_missing_authorization_record_is_rejected(monkeypatch: pytes
             require_training_authorization(config)
     finally:
         backup.rename(authorization)
+
+
+def test_candidate_a_uses_hardened_runtime_but_remains_unauthorized() -> None:
+    """Candidate A must retain Candidate C's runtime safeguards before review."""
+
+    candidate_a = validate_capability_config(
+        Path("configs/training/capability_cpt_a_factual_20m_v2.json")
+    )
+    candidate_c = validate_capability_config(
+        Path("configs/training/capability_cpt_c_control_20m_v2.json")
+    )
+    config_a = candidate_a["config"]
+    config_c = candidate_c["config"]
+
+    assert candidate_a["capability_identity"] is not None
+    assert config_a["training_authorized"] is False
+    for field in (
+        "production_runtime",
+        "validation",
+        "best_checkpoint_policy",
+        "checkpoint_retention",
+        "disk_safety",
+        "thermal_safety",
+        "abort_policy",
+        "evaluation",
+    ):
+        assert config_a[field] == config_c[field]
+
+    config_a["training_authorized"] = True
+    config_a["_authorization_config_path"] = (
+        "configs/training/capability_cpt_a_factual_20m_v2.json"
+    )
+    with pytest.raises(PermissionError, match="authorization record is missing"):
+        require_training_authorization(config_a)
 
 
 def test_launcher_accepts_only_explicit_named_resume_argument() -> None:

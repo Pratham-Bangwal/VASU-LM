@@ -9,13 +9,15 @@ Candidate B also remains unauthorized.
 
 ## Current decision
 
-**Parent decision resolved; not approved for authorization.**
+**Runtime safeguards verified; ready for final authorization preparation, but
+not approved for authorization.**
 
 The current artifact is internally valid as an unauthorized schedule release,
-but it is not ready for a final authorization record. The parent-checkpoint
-blocker is resolved in favor of the FineWeb step-200,000 checkpoint. The
-remaining blocker is the absence of the hardened production-runtime, thermal,
-disk, retention, and authorization metadata required for a real launch.
+and its parent-checkpoint blocker is resolved in favor of the FineWeb
+step-200,000 checkpoint. The Candidate C-equivalent hardened production-runtime
+configuration is now present and validated. Candidate A remains blocked from
+launch until a separate candidate-specific final authorization record is
+created and approved.
 
 ## Mixture and training accounting
 
@@ -73,7 +75,7 @@ size 2, and gradient accumulation 16.
 
 | Artifact | SHA-256 |
 | --- | --- |
-| Candidate A config | `11744b55fa40d234e5c0e0e49b5f853ffdbb5791eceea64204f9106a1ce494ea` |
+| Candidate A config | `32e589bce495ac4d70c4da52cd69c31f4f575d323a8f8b4f6490819af68b5b79` |
 | Current parent checkpoint | `88688ee85fc880967dafb322277565d4754e049a22c0d8e86060991438436a2f` |
 | Tokenizer | `04942e101a4a01f87f7e492ad9e463d299a559e784b650fdedd1763a017d195a` |
 | Resolved mixture manifest | `bda898d742d44123f647cd318aedc2bf28dedb24986da688716aee2778cb0ba9` |
@@ -95,37 +97,68 @@ artifact hashes. The arithmetic mask is target-aligned by the existing v2
 tests; PAD tails and cross-record masking are covered by the packed-source
 tests. No train/evaluation split overlap was introduced.
 
-## Safety and resume review
+## Hardened production-runtime review
 
-Deterministic schedule replay and exact-resume behavior are covered by the
-scheduled-mixture and resumable-training tests. The authorization gate now
-requires an approved, candidate-specific, hash-bound authorization record for
-any `training_authorized: true` launch; changing the config, parent,
-tokenizer, mixture, schedule, token budget, or update budget invalidates the
-authorization. Candidate A remains blocked by its false flag, and Candidate B
-remains blocked independently.
+Candidate A now uses the same `vasu_capability_runtime_v1` production runtime
+configuration as the successfully completed Candidate C run. This targeted
+configuration correction adds production validation, explicit-resume, atomic
+checkpoint, retention, disk, thermal, abort, and domain-best policies without
+changing Candidate A's parent, sources, schedule, masks, mixture identity,
+token budget, optimizer/scheduler hyperparameters, or authorization state.
 
-The current A config does not contain the production runtime section that
-declares thermal monitoring, disk checks, retention, explicit resume, and
-interval runtime policy. It therefore cannot satisfy the hardened launch
-requirements without a separately reviewed config update. The current output
-directory is not treated as an authorization target.
+| Safeguard | Result |
+| --- | --- |
+| Exact mid-epoch resume, optimizer/scheduler/warmup/RNG restoration | Passed by capability-runtime and resumable-training coverage |
+| Schedule position and partial accumulation recovery; no repeated/skipped records | Passed by deterministic scheduled-mixture exact-resume coverage |
+| Atomic checkpointing and corruption detection | Passed |
+| Checkpoint experiment-identity validation | Passed; identity binds parent, tokenizer, schedule, sources, validation, optimizer, and scheduler |
+| Explicit resume only; isolated A output directory | Passed |
+| Periodic retention; `latest.pt`, `final.pt`, and domain-best behavior | Passed; dry-run reported no removals from the empty isolated directory |
+| Disk-space and thermal safeguards | Passed by runtime validation and focused tests; 10 GiB margin and 82/87/90 C policy are configured |
+| Non-finite loss/gradient detection and optimizer-skip accounting | Passed by capability-runtime coverage |
+| Validation intervals and graceful interruption | Passed by capability-runtime coverage |
+| Authorization-record and hash-bound config validation | Passed; candidate-specific approved record remains required |
+| Unauthorized launch rejection | Passed before model training |
+
+The production identity binds the exact Candidate A parent, tokenizer, resolved
+manifest, schedule, source hashes, validation configuration, standard AdamW
+backend, cosine scheduler, 2,442 total scheduler steps, and 49 warmup updates.
+It rejects a mismatched Candidate C or Candidate B checkpoint, an altered
+Candidate A config, or a checkpoint with mismatched tokenizer, schedule,
+source, parent, optimizer, scheduler, or experiment identity.
+
+Candidate A retains `training_authorized: false`. A temporary in-memory copy
+with only that flag changed to `true` was rejected because the exact
+candidate-specific authorization record does not exist. Candidate B remains
+blocked independently.
 
 ## Preflight and validation results
 
-- Candidate A validate-only workflow: passed; it performed no optimizer update.
-- Schedule replay/source integrity: passed through resolved-manifest validation.
-- Arithmetic mask alignment and v2 release tests: passed.
-- Exact-resume and corruption/retention/disk/thermal unit tests: passed.
-- Live CUDA smoke: not run because CUDA is unavailable in this environment;
-  the recorded CUDA validation artifact was hash-verified.
+- Candidate A validate-only workflow: passed with the full production identity;
+  it performed no optimizer update.
+- Retention dry-run: passed with no deletion candidates in Candidate A's empty,
+  isolated checkpoint directory.
+- Normal launch attempt: rejected before model training with
+  `Training is blocked because training_authorized is false.`
+- Source integrity: passed for the 86% FineWeb, 9% Wikimedia, and 5% verified
+  arithmetic-v2 schedule; schedule SHA-256 is
+  `cc9cd9b7d2a2cd55a91c805691ce1c872fac82cd6295c5626383f8aea2ca15ce`.
+  Arithmetic token/mask equality, shifted-target alignment, PAD tails,
+  cross-record masking, development/evaluation exclusion, and deterministic
+  schedule replay passed through the focused tests.
+- Production accounting: passed: 78,144 records, 39,072 microbatches, batch
+  size 2, sequence length 256, accumulation 16, 2,442 updates, 20,004,864
+  target tokens, 49 warmup updates, a 2,442-step scheduler, and a complete
+  final accumulation group.
+- Live CUDA smoke: not run because CUDA is unavailable in this environment.
+  The Candidate-A-compatible CUDA artifact hash was verified as
+  `3555983cc9bcd58e6df70592f21c6b6c0ff064208b342bbc6f4cdc88eab05268`.
 - Candidate A training: not started.
 
 ## Prepared authorization material
 
-No final authorization record was created. After the runtime safeguards are
-added and separately reviewed, the future packet must bind the exact config
-SHA above (or a newly generated SHA), parent SHA, tokenizer SHA,
+No final authorization record was created. The remaining final-authorization
+task must bind the exact config SHA above, parent SHA, tokenizer SHA,
 resolved-manifest SHA, schedule SHA, all source token/mask/manifest hashes,
 the 20,004,864-token budget, 2,442-update budget, and the exact launch command:
 
@@ -139,6 +172,8 @@ Any resumed run must provide an explicit, identity-checked checkpoint with
 
 ## Compatibility
 
-No model architecture, tokenizer, checkpoint, dataset, schedule, or
-hyperparameter was changed. Candidate C and the Alpaca v3 assistant remain
-unaffected. Candidate A is not trained or authorized.
+No model architecture, tokenizer, checkpoint, dataset, schedule, mask,
+mixture identity, or training hyperparameter was changed. The Candidate A
+runtime-safeguard configuration is additive and matches Candidate C's hardened
+runtime policy. Candidate C and the Alpaca v3 assistant remain unaffected.
+Candidate A is not trained or authorized.
