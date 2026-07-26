@@ -413,8 +413,8 @@ def test_candidate_c_missing_authorization_record_is_rejected(monkeypatch: pytes
         backup.rename(authorization)
 
 
-def test_candidate_a_uses_hardened_runtime_but_remains_unauthorized() -> None:
-    """Candidate A must retain Candidate C's runtime safeguards before review."""
+def test_candidate_a_uses_hardened_runtime_and_exact_authorization() -> None:
+    """Candidate A requires its own exact approved authorization record."""
 
     candidate_a = validate_capability_config(
         Path("configs/training/capability_cpt_a_factual_20m_v2.json")
@@ -426,7 +426,7 @@ def test_candidate_a_uses_hardened_runtime_but_remains_unauthorized() -> None:
     config_c = candidate_c["config"]
 
     assert candidate_a["capability_identity"] is not None
-    assert config_a["training_authorized"] is False
+    assert config_a["training_authorized"] is True
     for field in (
         "production_runtime",
         "validation",
@@ -439,12 +439,26 @@ def test_candidate_a_uses_hardened_runtime_but_remains_unauthorized() -> None:
     ):
         assert config_a[field] == config_c[field]
 
-    config_a["training_authorized"] = True
     config_a["_authorization_config_path"] = (
         "configs/training/capability_cpt_a_factual_20m_v2.json"
     )
-    with pytest.raises(PermissionError, match="authorization record is missing"):
-        require_training_authorization(config_a)
+    require_training_authorization(config_a)
+
+    mutated = deepcopy(config_a)
+    mutated["scheduler"]["total_steps"] += 1
+    with pytest.raises(PermissionError, match="in-memory config differs from disk"):
+        require_training_authorization(mutated)
+
+    authorization = Path(
+        "configs/authorization/capability_cpt_a_factual_20m_v2.authorization.json"
+    )
+    backup = authorization.with_suffix(".json.test-backup")
+    authorization.rename(backup)
+    try:
+        with pytest.raises(PermissionError, match="authorization record is missing"):
+            require_training_authorization(config_a)
+    finally:
+        backup.rename(authorization)
 
 
 def test_candidate_a_authorization_template_is_pending_and_hash_bound() -> None:
@@ -460,16 +474,16 @@ def test_candidate_a_authorization_template_is_pending_and_hash_bound() -> None:
     assert template["decision"] == "pending"
     assert template["authorization_scope"]["candidate_a_authorized"] is False
     assert template["authorization_scope"]["candidate_b_authorized"] is False
+    assert raw.count(b'"training_authorized": true,') == 1
     assert hashlib.sha256(raw).hexdigest() == template["experiment_config"][
-        "preauthorization_sha256"
+        "expected_authorized_sha256_after_single_boolean_edit"
     ]
-    assert raw.count(b'"training_authorized": false,') == 1
-    authorized = raw.replace(
-        b'"training_authorized": false,', b'"training_authorized": true,'
+    unauthorized = raw.replace(
+        b'"training_authorized": true,', b'"training_authorized": false,'
     )
-    assert hashlib.sha256(authorized).hexdigest() == template[
+    assert hashlib.sha256(unauthorized).hexdigest() == template[
         "experiment_config"
-    ]["expected_authorized_sha256_after_single_boolean_edit"]
+    ]["preauthorization_sha256"]
 
 
 def test_launcher_accepts_only_explicit_named_resume_argument() -> None:

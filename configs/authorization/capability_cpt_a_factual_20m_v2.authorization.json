@@ -1,0 +1,102 @@
+{
+  "format_version": "vasu_capability_cpt_authorization_v1",
+  "status": "approved",
+  "decision": "authorized",
+  "candidate_id": "capability_cpt_a_factual_20m_v2",
+  "approver": "Pratham Sharma",
+  "authorized_at": "2026-07-26",
+  "repository_commit": "d99b4e7abe8b491ce774ee372e27ad761cb3c762",
+  "repository_clean": true,
+  "clean_tree_requirement": true,
+  "experiment_config": {
+    "path": "configs/training/capability_cpt_a_factual_20m_v2.json",
+    "preauthorization_sha256": "32e589bce495ac4d70c4da52cd69c31f4f575d323a8f8b4f6490819af68b5b79",
+    "expected_authorized_sha256_after_single_boolean_edit": "fd67bbed2212bcae4fbadcba15b59b2d6ccf6dff4ee009fd31ec0a5db7d24261"
+  },
+  "parent_checkpoint": {
+    "path": "checkpoints/vasu_60m/milestones/fineweb_step_200000.pt",
+    "sha256": "88688ee85fc880967dafb322277565d4754e049a22c0d8e86060991438436a2f"
+  },
+  "tokenizer": {
+    "path": "assets/tokenizer.json",
+    "sha256": "04942e101a4a01f87f7e492ad9e463d299a559e784b650fdedd1763a017d195a"
+  },
+  "resolved_manifest": {
+    "path": "data/processed/capability/mixtures/capability_cpt_a_factual_20m_v2/resolved_manifest.json",
+    "sha256": "bda898d742d44123f647cd318aedc2bf28dedb24986da688716aee2778cb0ba9"
+  },
+  "schedule": {
+    "path": "data/processed/capability/mixtures/capability_cpt_a_factual_20m_v2/schedule.bin",
+    "sha256": "cc9cd9b7d2a2cd55a91c805691ce1c872fac82cd6295c5626383f8aea2ca15ce"
+  },
+  "sources": {
+    "fineweb_replay_after_200k": {
+      "token_sha256": "d62efa0521365fa634d1e8f34bf8c84764a8066a9cc53430f9fc4bb89cabf51e",
+      "mask_sha256": null,
+      "manifest_sha256": "d6f1d112fbd0135563c173feaf700162982718a6ced6abd537df0e749c267a00"
+    },
+    "wikimedia_factual_release_6aa10d73": {
+      "token_sha256": "fee0b88832fc569ce73393bc232e29a80cb981e31779ce4c42129d15a0be876f",
+      "mask_sha256": null,
+      "manifest_sha256": "cec126ae4e804a4f42699f96625752199c73b0caafbc4bf8b6d3bc3f47560a81"
+    },
+    "verified_arithmetic_v2": {
+      "token_sha256": "9abbab5e6a3d6d1121d47a89e9e829a3b51b072af2dc3a9daed5bae5d6fe474a",
+      "mask_sha256": "beaf4d1f5dc325d1fc2a37cf8adc6677738e009fdf68d87fbf1bb032013098c4",
+      "manifest_sha256": "8da3a1acfb2d2481c295b0d226c4695613b56670989d001fa27e65bed366115c"
+    }
+  },
+  "validation_configuration": {
+    "sha256": "1c12401ac4d6d396b13ffede345d2253780eff33118ac341b60cbe1d70ba349e"
+  },
+  "cuda_validation": {
+    "path": "evaluation/results/capability_cpt_v2_cuda_validation.json",
+    "sha256": "3555983cc9bcd58e6df70592f21c6b6c0ff064208b342bbc6f4cdc88eab05268"
+  },
+  "capability_runtime_identity": {
+    "runtime_version": "vasu_capability_runtime_v1",
+    "sha256": "510e04a3a5b5fd76efb279101b01a291c6c0b13c8996791431191dc08fbdec1e"
+  },
+  "scientific_rationale": "Candidate A is the controlled treatment branch against Candidate C. Both candidates start from the same FineWeb step-200,000 parent and use the same 20,004,864-token budget, 2,442 optimizer updates, scheduler length, warmup, batch size, sequence length, and gradient accumulation. Candidate C uses 91% FineWeb, 9% Wikimedia, and 0% arithmetic; Candidate A uses 86% FineWeb, 9% Wikimedia, and 5% verified arithmetic v2. The primary experimental variable is the 5% verified arithmetic source. Candidate A is authorized to test arithmetic improvement while preserving broad-language and factual performance. Candidate C remains the preferred practical continued-pretraining base until a separate Candidate A evaluation and promotion decision; masked Alpaca v3 remains the preferred instruction-tuned assistant. Candidate B remains unauthorized and conditional.",
+  "step_accounting": {
+    "records": 78144,
+    "dataloader_microbatches": 39072,
+    "records_per_microbatch": 2,
+    "tokens_per_microbatch": 512,
+    "batch_size": 2,
+    "sequence_length": 256,
+    "gradient_accumulation_steps": 16,
+    "optimizer_updates": 2442,
+    "processed_tokens": 20004864,
+    "warmup_updates": 49,
+    "scheduler_total_steps": 2442,
+    "final_accumulation_group_complete": true
+  },
+  "training_configuration": {
+    "model_configuration": "vasu_60m",
+    "learning_rate": 1e-5,
+    "weight_decay": 0.1,
+    "optimizer_backend": "standard",
+    "scheduler": "cosine",
+    "minimum_learning_rate": 1e-6
+  },
+  "required_authorization_edit": {
+    "file": "configs/training/capability_cpt_a_factual_20m_v2.json",
+    "field": "training_authorized",
+    "current_value": true,
+    "requested_value_after_all_blockers_close": true,
+    "constraint": "This was the sole config edit; the resulting file SHA-256 must equal expected_authorized_sha256_after_single_boolean_edit."
+  },
+  "authorization_scope": {
+    "authorized_candidate": "capability_cpt_a_factual_20m_v2",
+    "candidate_a_authorized": true,
+    "candidate_b_authorized": false,
+    "authorized_token_budget": 20004864,
+    "authorized_optimizer_updates": 2442,
+    "authorized_parent_checkpoint": "checkpoints/vasu_60m/milestones/fineweb_step_200000.pt",
+    "authorization_excludes_hyperparameter_changes": true,
+    "identity_changes_require_new_review": true
+  },
+  "blocking_issues": [],
+  "notes": "Authorization applies only to Candidate A using this exact config, parent, tokenizer, resolved manifest, schedule, source and mask identities, validation configuration, capability runtime identity, and token/update budget. Any identity or hyperparameter change requires a new review and authorization record. Candidate B remains unauthorized."
+}

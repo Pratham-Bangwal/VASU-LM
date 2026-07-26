@@ -301,7 +301,13 @@ def require_training_authorization(config: dict[str, Any]) -> None:
     scope = record.get("authorization_scope", {})
     if scope.get("authorized_candidate") != config.get("experiment_id"):
         raise PermissionError("Training is blocked because the authorization scope differs.")
-    if scope.get("candidate_a_authorized") is not False or scope.get("candidate_b_authorized") is not False:
+    expected_candidate_a_authorized = config.get("experiment_id") == (
+        "capability_cpt_a_factual_20m_v2"
+    )
+    if (
+        scope.get("candidate_a_authorized") is not expected_candidate_a_authorized
+        or scope.get("candidate_b_authorized") is not False
+    ):
         raise PermissionError("Training is blocked because the authorization scope is unsafe.")
     if scope.get("authorized_token_budget") != config.get("total_tokens"):
         raise PermissionError("Training is blocked because the token budget differs.")
