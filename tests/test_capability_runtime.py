@@ -12,6 +12,7 @@ from torch.utils.data import DataLoader, Dataset
 
 import vasu.training.capability_runtime as runtime
 from train_vasu_60m_capability_cpt import parse_args
+from vasu.training.capability_cpt import require_training_authorization
 from vasu.training.capability_runtime import (
     CapabilityTrainer,
     ThermalMonitor,
@@ -368,13 +369,44 @@ def test_corrupt_temporary_and_identity_mismatch_rejected(tmp_path: Path) -> Non
         inspect_capability_checkpoint(corrupt, identity)
 
 
-def test_candidate_c_authorization_remains_false() -> None:
+def test_candidate_c_authorized_state_is_hash_bound() -> None:
+    config_path = Path("configs/training/capability_cpt_c_control_20m_v2.json")
     config = json.loads(
+        config_path.read_text(encoding="utf-8")
+    )
+    record = json.loads(
         Path(
-            "configs/training/capability_cpt_c_control_20m_v2.json"
+            "configs/authorization/capability_cpt_c_control_20m_v2.authorization.json"
         ).read_text(encoding="utf-8")
     )
-    assert config["training_authorized"] is False
+    assert config["training_authorized"] is True
+    assert record["decision"] == "authorized"
+    config["_authorization_config_path"] = str(config_path)
+    require_training_authorization(config)
+
+
+def test_candidate_c_mutated_config_is_rejected() -> None:
+    config_path = Path("configs/training/capability_cpt_c_control_20m_v2.json")
+    config = json.loads(config_path.read_text(encoding="utf-8"))
+    config["learning_rate"] = 2e-5
+    config["_authorization_config_path"] = str(config_path)
+    with pytest.raises(PermissionError, match="differs from disk"):
+        require_training_authorization(config)
+
+
+def test_candidate_c_missing_authorization_record_is_rejected(monkeypatch: pytest.MonkeyPatch) -> None:
+    config_path = Path("configs/training/capability_cpt_c_control_20m_v2.json")
+    config = json.loads(config_path.read_text(encoding="utf-8"))
+    config["_authorization_config_path"] = str(config_path)
+    monkeypatch.chdir(config_path.parent.parent.parent)
+    authorization = Path("configs/authorization/capability_cpt_c_control_20m_v2.authorization.json")
+    backup = authorization.with_suffix(".json.test-backup")
+    authorization.rename(backup)
+    try:
+        with pytest.raises(PermissionError, match="authorization record is missing"):
+            require_training_authorization(config)
+    finally:
+        backup.rename(authorization)
 
 
 def test_launcher_accepts_only_explicit_named_resume_argument() -> None:

@@ -245,3 +245,65 @@ def require_training_authorization(config: dict[str, Any]) -> None:
         raise PermissionError(
             "Training is blocked because the production runtime is not configured."
         )
+
+    config_path_value = config.get("_authorization_config_path")
+    if not config_path_value:
+        raise PermissionError(
+            "Training is blocked because the authorization-bound config path "
+            "was not provided."
+        )
+    config_path = Path(config_path_value)
+    authorization_path = Path("configs/authorization") / (
+        f"{config['experiment_id']}.authorization.json"
+    )
+    if not authorization_path.is_file():
+        raise PermissionError(
+            "Training is blocked because the authorization record is missing: "
+            f"{authorization_path}"
+        )
+    try:
+        record = json.loads(authorization_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as error:
+        raise PermissionError(
+            "Training is blocked because the authorization record is invalid."
+        ) from error
+    if record.get("status") != "approved" or record.get("decision") != "authorized":
+        raise PermissionError(
+            "Training is blocked because the authorization record is not approved."
+        )
+    if record.get("candidate_id") != config.get("experiment_id"):
+        raise PermissionError("Training is blocked because the authorization candidate differs.")
+    experiment_config = record.get("experiment_config", {})
+    expected_path = str(experiment_config.get("path", "")).replace("\\", "/")
+    try:
+        actual_path = config_path.resolve().relative_to(Path.cwd().resolve()).as_posix()
+    except ValueError:
+        actual_path = config_path.as_posix()
+    if expected_path != actual_path:
+        raise PermissionError("Training is blocked because the authorization config path differs.")
+    try:
+        on_disk = json.loads(config_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as error:
+        raise PermissionError("Training is blocked because the config cannot be read.") from error
+    if on_disk != {key: value for key, value in config.items() if not key.startswith("_")}:
+        raise PermissionError("Training is blocked because the in-memory config differs from disk.")
+    expected_hash = experiment_config.get("expected_authorized_sha256_after_single_boolean_edit")
+    if sha256_file(config_path) != expected_hash:
+        raise PermissionError("Training is blocked because the authorized config hash differs.")
+    if record.get("parent_checkpoint", {}).get("sha256") != config.get("parent_checkpoint", {}).get("sha256"):
+        raise PermissionError("Training is blocked because the parent checkpoint identity differs.")
+    if record.get("tokenizer", {}).get("sha256") != config.get("tokenizer", {}).get("sha256"):
+        raise PermissionError("Training is blocked because the tokenizer identity differs.")
+    if record.get("resolved_manifest", {}).get("sha256") != config.get("resolved_mixture_manifest_sha256"):
+        raise PermissionError("Training is blocked because the mixture identity differs.")
+    if record.get("schedule", {}).get("sha256") != config.get("expected_schedule_sha256"):
+        raise PermissionError("Training is blocked because the schedule identity differs.")
+    scope = record.get("authorization_scope", {})
+    if scope.get("authorized_candidate") != config.get("experiment_id"):
+        raise PermissionError("Training is blocked because the authorization scope differs.")
+    if scope.get("candidate_a_authorized") is not False or scope.get("candidate_b_authorized") is not False:
+        raise PermissionError("Training is blocked because the authorization scope is unsafe.")
+    if scope.get("authorized_token_budget") != config.get("total_tokens"):
+        raise PermissionError("Training is blocked because the token budget differs.")
+    if scope.get("authorized_optimizer_updates") != config.get("step_accounting", {}).get("optimizer_updates"):
+        raise PermissionError("Training is blocked because the optimizer budget differs.")

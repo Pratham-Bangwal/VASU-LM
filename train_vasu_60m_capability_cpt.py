@@ -92,6 +92,7 @@ def main() -> None:
             print("WARNING: validation ran with a dirty Git working tree.")
         return
     try:
+        config["_authorization_config_path"] = str(args.config)
         require_training_authorization(config)
     except PermissionError as error:
         raise SystemExit(BLOCKED_MESSAGE) from error

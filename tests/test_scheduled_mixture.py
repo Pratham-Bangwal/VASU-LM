@@ -397,11 +397,18 @@ def test_v2_control_is_arithmetic_free_and_valid() -> None:
     assert all(item.replay_safety_status == "pass" for item in accounting)
 
 
-def test_v2_launch_configs_validate_but_remain_unauthorized() -> None:
+def test_candidate_c_authorized_and_candidates_a_b_remain_unauthorized() -> None:
+    candidate_c = validate_capability_config(
+        Path("configs/training/capability_cpt_c_control_20m_v2.json")
+    )
+    candidate_c["config"]["_authorization_config_path"] = (
+        "configs/training/capability_cpt_c_control_20m_v2.json"
+    )
+    require_training_authorization(candidate_c["config"])
+
     for name in (
         "capability_cpt_a_factual_20m_v2.json",
         "capability_cpt_b_balanced_20m_v2.json",
-        "capability_cpt_c_control_20m_v2.json",
     ):
         result = validate_capability_config(Path("configs/training") / name)
         assert result["config"]["technical_gates"] == {
@@ -411,6 +418,16 @@ def test_v2_launch_configs_validate_but_remain_unauthorized() -> None:
         }
         with pytest.raises(PermissionError, match=BLOCKED_MESSAGE):
             require_training_authorization(result["config"])
+
+
+def test_authorization_template_is_not_authorizing() -> None:
+    template = json.loads(
+        Path(
+            "configs/authorization/capability_cpt_c_control_20m_v2.authorization.template.json"
+        ).read_text(encoding="utf-8")
+    )
+    assert template["status"] != "approved"
+    assert template["decision"] != "authorized"
 
 
 def test_true_authorization_still_requires_complete_technical_gates() -> None:
