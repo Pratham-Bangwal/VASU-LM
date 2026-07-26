@@ -24,6 +24,11 @@
       "model_config": "vasu_60m",
       "prompt_format": "plain"
     },
+    "vasu_60m_capability_cpt_c_control_20m_v2": {
+      "path": "checkpoints/vasu_60m/capability_cpt_c_control_20m_v2/final.pt",
+      "model_config": "vasu_60m",
+      "prompt_format": "plain"
+    },
     "vasu_60m_alpaca_masked_v3_from_200k": {
       "path": "checkpoints/vasu_60m/alpaca_masked_v3_from_200k/best.pt",
       "model_config": "vasu_60m",
