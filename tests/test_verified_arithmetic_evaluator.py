@@ -183,6 +183,75 @@ def test_cli_persists_each_example_and_resumes_after_interruption(
     assert [item["id"] for item in saved] == ["a", "b"]
 
 
+def test_atomic_jsonl_creation_replacement_and_cleanup(tmp_path: Path) -> None:
+    path = tmp_path / "per_example.jsonl"
+    evaluator_cli._atomic_jsonl(path, [{"id": "a"}, {"id": "b"}])
+    evaluator_cli._atomic_jsonl(path, [{"id": "c"}])
+
+    assert json.loads(path.read_text(encoding="utf-8")) == {"id": "c"}
+    assert list(tmp_path.glob("*.tmp")) == []
+
+
+def test_atomic_jsonl_replaces_only_after_handles_close(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    path = tmp_path / "per_example.jsonl"
+    path.write_text('{"id": "old"}\n', encoding="utf-8")
+    real_replace = evaluator_cli.os.replace
+    observed: dict[str, bool] = {}
+
+    def checked_replace(source: Path, destination: Path) -> None:
+        with source.open("rb"):
+            observed["temporary_readable"] = True
+        with destination.open("rb"):
+            observed["destination_readable"] = True
+        real_replace(source, destination)
+
+    monkeypatch.setattr(evaluator_cli.os, "replace", checked_replace)
+    evaluator_cli._atomic_jsonl(path, [{"id": "new"}])
+
+    assert observed == {
+        "temporary_readable": True,
+        "destination_readable": True,
+    }
+    assert json.loads(path.read_text(encoding="utf-8")) == {"id": "new"}
+    assert list(tmp_path.glob("*.tmp")) == []
+
+
+def test_atomic_jsonl_failure_preserves_destination_and_cleans_temp(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    path = tmp_path / "per_example.jsonl"
+    path.write_text('{"id": "valid"}\n', encoding="utf-8")
+
+    def fail_replace(source: Path, destination: Path) -> None:
+        raise PermissionError("simulated replacement failure")
+
+    monkeypatch.setattr(evaluator_cli.os, "replace", fail_replace)
+    with pytest.raises(PermissionError, match="simulated"):
+        evaluator_cli._atomic_jsonl(path, [{"id": "new"}])
+
+    assert path.read_text(encoding="utf-8") == '{"id": "valid"}\n'
+    assert list(tmp_path.glob(".per_example.jsonl.*.tmp")) == []
+
+
+def test_atomic_jsonl_retry_ignores_corrupt_partial_temp_and_repeated_writes(
+    tmp_path: Path,
+) -> None:
+    path = tmp_path / "per_example.jsonl"
+    stale = path.with_suffix(path.suffix + ".tmp")
+    stale.write_bytes(b"incomplete")
+
+    for identifier in ("a", "b", "c"):
+        evaluator_cli._atomic_jsonl(path, [{"id": identifier}])
+
+    assert json.loads(path.read_text(encoding="utf-8")) == {"id": "c"}
+    assert stale.exists()  # Unowned stale files are not touched by a new writer.
+    assert list(tmp_path.glob(".per_example.jsonl.*.tmp")) == []
+
+
 def test_manifest_hash_and_split_validation(tmp_path: Path) -> None:
     split = tmp_path / "dev.jsonl"
     row = _record()

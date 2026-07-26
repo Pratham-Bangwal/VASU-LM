@@ -9,6 +9,7 @@ import json
 import os
 from pathlib import Path
 import subprocess
+import tempfile
 from typing import Any
 
 import torch
@@ -32,23 +33,52 @@ DEFAULT_MANIFEST = Path(
 DEFAULT_TOKENIZER = Path("assets/tokenizer.json")
 
 
-def _atomic_json(path: Path, payload: object) -> None:
+def _atomic_text(path: Path, text: str) -> None:
+    """Write text through a closed, fsynced, unique sibling temporary file."""
+
     path.parent.mkdir(parents=True, exist_ok=True)
-    temporary = path.with_suffix(path.suffix + ".tmp")
-    temporary.write_text(
-        json.dumps(payload, indent=2, ensure_ascii=False) + "\n",
-        encoding="utf-8",
+    descriptor, temporary_name = tempfile.mkstemp(
+        prefix=f".{path.name}.",
+        suffix=".tmp",
+        dir=path.parent,
     )
-    os.replace(temporary, path)
+    temporary = Path(temporary_name)
+    try:
+        with os.fdopen(
+            descriptor,
+            "w",
+            encoding="utf-8",
+            newline="\n",
+        ) as handle:
+            handle.write(text)
+            handle.flush()
+            os.fsync(handle.fileno())
+        # The writer is closed before Windows is asked to replace the target.
+        os.replace(temporary, path)
+    finally:
+        if temporary.exists():
+            temporary.unlink()
+
+
+def _atomic_json(path: Path, payload: object) -> None:
+    _atomic_text(
+        path,
+        json.dumps(payload, indent=2, ensure_ascii=False) + "\n",
+    )
 
 
 def _atomic_jsonl(path: Path, records: list[dict[str, Any]]) -> None:
-    temporary = path.with_suffix(path.suffix + ".tmp")
-    temporary.write_text(
-        "".join(json.dumps(item, ensure_ascii=False) + "\n" for item in records),
-        encoding="utf-8",
+    # Materialize callers' iterables before opening the destination. This
+    # prevents a resume reader/generator from retaining an open handle while
+    # the atomic replacement is attempted.
+    materialized = list(records)
+    _atomic_text(
+        path,
+        "".join(
+            json.dumps(item, ensure_ascii=False) + "\n"
+            for item in materialized
+        ),
     )
-    os.replace(temporary, path)
 
 
 def _git_commit() -> str | None:
@@ -65,11 +95,12 @@ def _git_commit() -> str | None:
 def _load_existing(path: Path) -> list[dict[str, Any]]:
     if not path.exists():
         return []
-    return [
-        json.loads(line)
-        for line in path.read_text(encoding="utf-8").splitlines()
-        if line.strip()
-    ]
+    with path.open("r", encoding="utf-8", newline="") as handle:
+        return [
+            json.loads(line)
+            for line in handle
+            if line.strip()
+        ]
 
 
 def run(args: argparse.Namespace) -> dict[str, Any]:
