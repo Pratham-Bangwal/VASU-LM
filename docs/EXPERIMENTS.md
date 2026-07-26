@@ -534,7 +534,7 @@ Unknown or unavailable values are explicitly marked rather than inferred.
   three-source scheduled-mixture builder passes deterministic DataLoader and
   resume validation and receives explicit authorization.
 
-### Candidate C production-readiness closure
+### Candidate C completed scientific decision
 
 - Parent: immutable FineWeb step-200,000 checkpoint.
 - Accounting: 78,144 schedule records, 39,072 batch-size-2 microbatches,
@@ -549,6 +549,22 @@ Unknown or unavailable values are explicitly marked rather than inferred.
   warning/sustained-abort/critical-abort thresholds.
 - Evaluation: full logical arithmetic-v2 development/evaluation scoring is
   deterministic, hash-bound, and resumable per completed example.
-- Decision: technically ready for a separate explicit authorization review
-  after a clean commit. Candidate C, A, and B remain unauthorized, and no
-  capability-CPT training has started.
+- Result: Candidate C completed successfully with 20,004,864 processed tokens
+  and 2,442 optimizer updates. The selected checkpoint is
+  `checkpoints/vasu_60m/capability_cpt_c_control_20m_v2/final.pt`.
+- Factual result: FineWeb loss improved from 3.356130 to 3.302959 and
+  Wikimedia loss improved from 3.393557 to 3.274323. Normalized cloze improved
+  by 0.04 with CI95 [+0.01, +0.08], distinguishable from zero.
+- Arithmetic result: exact accuracy remained 0/1000; no arithmetic improvement
+  or regression was measured.
+- Capability-v1: continued-pretraining gate passed, with no blocking reasons;
+  both models scored zero on all objective categories, so this is a
+  no-regression result rather than capability evidence.
+- Repetition: concept-explanation repetition worsened while general-language
+  repetition improved. The behavior is mixed.
+- Decision: Candidate C is scientifically successful as the conservative
+  continued-pretraining control and eligible as the preferred CPT base
+  candidate. It does not replace the instruction-tuned Alpaca v3 assistant.
+  Candidate A may proceed to separate authorization review; Candidate B
+  remains unauthorized and conditional.
+- Full decision record: `docs/CAPABILITY_CPT_C_CONTROL_20M_V2_DECISION.md`.

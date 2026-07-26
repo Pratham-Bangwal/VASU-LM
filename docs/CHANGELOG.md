@@ -4,6 +4,14 @@
 
 ### Added
 
+- Added the formal Candidate C scientific decision record. Candidate C's
+  completed 20M-token control improved FineWeb and Wikimedia validation loss
+  and normalized cloze performance, while arithmetic remained neutral and
+  repetition behavior remained mixed. Candidate C is a continued-pretraining
+  base candidate, not an automatic replacement for the Alpaca v3 assistant.
+  Candidate A remains eligible for separate authorization review and Candidate
+  B remains unauthorized.
+
 - Added the opt-in production Candidate C capability-CPT runtime with
   successful-update interval validation, separate FineWeb/Wikimedia/arithmetic
   best checkpoints, durable validation-event resume, explicit recovery
@@ -13,8 +21,8 @@
   development/evaluation tooling with strict exact-answer outcome categories
   and per-example atomic progress.
 - Added a scientific authorization packet, authorization-record template, and
-  human-readable launch/resume/evaluation/rollback runbook. Authorization
-  remains false and no capability-CPT training was started.
+  human-readable launch/resume/evaluation/rollback runbook. Candidate C's
+  authorized run is complete; Candidate A and Candidate B remain unauthorized.
 
 - Added deterministic verified arithmetic v2 with 34,000 exact-answer logical
   examples, 3,261 unique packed training records, held-out templates/ranges,

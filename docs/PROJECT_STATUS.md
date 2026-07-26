@@ -2,29 +2,29 @@
 
 ## Capability-CPT v2 status
 
-Arithmetic v2 and versioned A/B/C v2 schedules are technically prepared.
-Replay safety, CUDA smoke, and CUDA exact-resume gates passed, while
-`training_authorized` remains false. Scientific selection and explicit
-authorization remain blockers; no 20M-token candidate run has started.
+Candidate C (`capability_cpt_c_control_20m_v2`) completed its authorized
+20,004,864-token, 2,442-update control run from the FineWeb step-200,000
+parent. It used 91% FineWeb replay and 9% approved Wikimedia factual data,
+with no arithmetic training.
 
-Candidate C's production blockers are implemented and covered by focused
-tests: successful-update interval validation, separate domain checkpoint
-selection, durable validation-event resume, explicit checkpoint selection,
-atomic verified saves, corruption filtering, bounded retention, disk
-preflight, and thermal monitoring. Full arithmetic-v2 dev/eval evaluation is
-also available. Candidate C is ready for explicit authorization review after
-these uncommitted changes are reviewed and committed cleanly. Candidate A
-requires its own later authorization; Candidate B remains conditionally
-blocked. No authorization boolean changed and no training started.
+Candidate C improved FineWeb and Wikimedia validation loss and produced a
+statistically distinguishable normalized cloze improvement. Arithmetic exact
+accuracy remained 0/1000, capability-v1 showed no measurable objective
+regression, and repetition behavior was mixed. The formal decision is recorded
+in `docs/CAPABILITY_CPT_C_CONTROL_20M_V2_DECISION.md`.
+
+Candidate C is eligible as a continued-pretraining base candidate. It is not
+the preferred interactive assistant; the instruction-tuned Alpaca v3
+checkpoint remains assistant-specific. Candidate A may proceed to a separate
+authorization review. Candidate B remains unauthorized and conditional.
 
 ## Capability-CPT schedule status
 
 The generalized deterministic N-source schedule layer and Candidates A/B/C
-are prepared and hash-bound. Each configuration remains
-`training_authorized: false`; the launch gate blocks training with an explicit
-error. Source validation, mixed masked/unmasked batches, validation isolation,
-schedule-aware exact-resume metadata, and 2,442-update accounting have been
-verified. No capability-CPT model training has started.
+remain hash-bound. Candidate C is complete; Candidate A and Candidate B remain
+unauthorized. Source validation, mixed masked/unmasked batches, validation
+isolation, schedule-aware exact-resume metadata, and 2,442-update accounting
+remain preserved.
 
 ## Capability evaluation framework
 
