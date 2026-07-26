@@ -13,18 +13,27 @@ accuracy remained 0/1000, capability-v1 showed no measurable objective
 regression, and repetition behavior was mixed. The formal decision is recorded
 in `docs/CAPABILITY_CPT_C_CONTROL_20M_V2_DECISION.md`.
 
-Candidate C is eligible as a continued-pretraining base candidate. It is not
-the preferred interactive assistant; the instruction-tuned Alpaca v3
-checkpoint remains assistant-specific. Candidate A may proceed to a separate
-authorization review. Candidate B remains unauthorized and conditional.
+Candidate C is eligible as the preferred practical continued-pretraining base
+candidate. It is not the preferred interactive assistant; the instruction-tuned
+Alpaca v3 checkpoint remains assistant-specific. Candidate A's parent decision
+is resolved: it remains a parallel controlled treatment from the FineWeb
+step-200,000 parent, not a sequential continuation from Candidate C `final.pt`.
+Candidate A remains unauthorized pending hardened runtime safeguards and a
+separate final authorization record. Candidate B remains unauthorized and
+conditional. The parent decision is recorded in
+`docs/CAPABILITY_CPT_A_FACTUAL_20M_V2_PARENT_CHECKPOINT_DECISION.md`.
 
 ## Capability-CPT schedule status
 
 The generalized deterministic N-source schedule layer and Candidates A/B/C
 remain hash-bound. Candidate C is complete; Candidate A and Candidate B remain
-unauthorized. Source validation, mixed masked/unmasked batches, validation
-isolation, schedule-aware exact-resume metadata, and 2,442-update accounting
-remain preserved.
+unauthorized. Candidate A and Candidate C share the FineWeb step-200,000
+parent, 20,004,864-token budget, 78,144 records, 39,072 microbatches, 2,442
+updates, 2,442-step scheduler, 49-update warmup, 256-token sequence length,
+batch size 2, and accumulation 16; their intended experimental difference is
+Candidate A's 5% verified-arithmetic-v2 allocation. Source validation, mixed
+masked/unmasked batches, validation isolation, schedule-aware exact-resume
+metadata, and 2,442-update accounting remain preserved.
 
 ## Capability evaluation framework
 

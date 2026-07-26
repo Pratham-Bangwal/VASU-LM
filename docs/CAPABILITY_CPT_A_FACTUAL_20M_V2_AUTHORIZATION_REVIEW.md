@@ -9,13 +9,13 @@ Candidate B also remains unauthorized.
 
 ## Current decision
 
-**Blocked pending corrections; not approved for authorization.**
+**Parent decision resolved; not approved for authorization.**
 
 The current artifact is internally valid as an unauthorized schedule release,
-but it is not ready for a final authorization record. The principal blockers
-are the unresolved parent-checkpoint decision and the absence of the hardened
-production-runtime, thermal, disk, retention, and authorization metadata that
-are required for a real launch.
+but it is not ready for a final authorization record. The parent-checkpoint
+blocker is resolved in favor of the FineWeb step-200,000 checkpoint. The
+remaining blocker is the absence of the hardened production-runtime, thermal,
+disk, retention, and authorization metadata required for a real launch.
 
 ## Mixture and training accounting
 
@@ -39,33 +39,35 @@ The arithmetic source is used only through its training records. Its `dev`
 and `eval` JSONL splits are separately referenced as development/evaluation
 only and are not scheduled training sources.
 
-## Parent checkpoint challenge
+## Resolved parent-checkpoint decision
 
 The current config uses:
 
 `checkpoints/vasu_60m/milestones/fineweb_step_200000.pt`
 
-This is the cleanest parent for isolating Candidate A against the original
-Candidate C control design: both branches would start from the same weights,
-so arithmetic effects are easier to attribute and total exposure remains
-comparable. Its drawback is that Candidate A does not inherit Candidate C's
-measured Wikimedia improvement.
+Candidate A must retain the FineWeb step-200,000 parent. Candidate A and
+Candidate C are matched approximately 20M-token branches from the same
+weights: C is the 91% FineWeb / 9% Wikimedia / 0% arithmetic control, and A
+is the 86% FineWeb / 9% Wikimedia / 5% verified-arithmetic-v2 treatment. The
+5% arithmetic allocation is the main experimental variable.
 
-The completed Candidate C checkpoint,
-`checkpoints/vasu_60m/capability_cpt_c_control_20m_v2/final.pt`, is the better
-parent if the scientific question is specifically whether arithmetic can be
-added while retaining Candidate C's factual gains. Its drawback is sequential
-confounding: Candidate A would include Candidate C's 20M-token update plus its
-own 20M-token update, so arithmetic and continued exposure cannot be
-attributed as cleanly to the A-vs-C comparison.
+Starting Candidate A from Candidate C `final.pt` would append a second 20M
+stage, creating unequal total token exposure, sequential-curriculum effects,
+confounded attribution, altered lineage, and weaker A-versus-C comparability.
+Candidate C `final.pt` remains eligible as the preferred practical
+continued-pretraining base; it is not the parent for the controlled Candidate
+A treatment branch. A later sequential Candidate-C-parented experiment would
+require a separate candidate identity.
 
-**Recommendation:** use the Candidate C final checkpoint for the intended
-"preserve Candidate C improvements" experiment, but only after an explicit
-new review updates the parent identity, regenerated schedule/config hashes,
-and authorization packet. If strict A-vs-C causal isolation is the priority,
-retain the current step-200,000 parent and describe A as a parallel ablation.
-The current config must not be silently changed; this review does not choose
-or apply that edit.
+The current config already uses the selected parent path and hash. No config,
+resolved-manifest, schedule, dataset, tokenizer, mask, checkpoint, or
+hyperparameter change is required. The formal record is
+`docs/CAPABILITY_CPT_A_FACTUAL_20M_V2_PARENT_CHECKPOINT_DECISION.md`.
+
+Candidate A and Candidate C remain directly comparable in parent checkpoint,
+20,004,864-token budget, 78,144 records, 39,072 microbatches, 2,442 optimizer
+updates, 2,442-step scheduler, 49-update warmup, sequence length 256, batch
+size 2, and gradient accumulation 16.
 
 ## Hash-bound identities verified
 
@@ -121,9 +123,9 @@ directory is not treated as an authorization target.
 
 ## Prepared authorization material
 
-No final authorization record was created. If the parent decision is resolved
-and the runtime safeguards are added, the future packet must bind the exact
-config SHA above (or a newly generated SHA), parent SHA, tokenizer SHA,
+No final authorization record was created. After the runtime safeguards are
+added and separately reviewed, the future packet must bind the exact config
+SHA above (or a newly generated SHA), parent SHA, tokenizer SHA,
 resolved-manifest SHA, schedule SHA, all source token/mask/manifest hashes,
 the 20,004,864-token budget, 2,442-update budget, and the exact launch command:
 

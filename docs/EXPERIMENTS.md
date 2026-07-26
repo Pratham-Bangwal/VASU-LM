@@ -568,3 +568,25 @@ Unknown or unavailable values are explicitly marked rather than inferred.
   Candidate A may proceed to separate authorization review; Candidate B
   remains unauthorized and conditional.
 - Full decision record: `docs/CAPABILITY_CPT_C_CONTROL_20M_V2_DECISION.md`.
+
+### Candidate A parent-checkpoint scientific decision
+
+- Decision: Candidate A remains a parallel controlled treatment from the
+  immutable FineWeb step-200,000 checkpoint, not a sequential continuation
+  from Candidate C `final.pt`.
+- Rationale: Candidate C is the 91% FineWeb / 9% Wikimedia / 0% arithmetic
+  control and Candidate A is the 86% FineWeb / 9% Wikimedia / 5% verified
+  arithmetic v2 treatment. A shared parent and matched approximately 20M-token
+  budget isolate the 5% arithmetic source as the main experimental variable.
+- Comparability: both candidates use 78,144 records, 39,072 batch-size-2
+  microbatches, accumulation 16, 2,442 optimizer updates, a 2,442-step
+  scheduler, 49-update warmup, and 256-token sequences.
+- Scope: Candidate C `final.pt` remains eligible as the preferred practical
+  continued-pretraining base, while masked Alpaca v3 remains the preferred
+  instruction-tuned assistant. A Candidate-C-parented sequential experiment
+  would require a new candidate identity.
+- Authorization: Candidate A remains unauthorized pending hardened production
+  runtime safeguards and a separate final authorization record; Candidate B
+  remains unauthorized and conditional.
+- Full decision record:
+  `docs/CAPABILITY_CPT_A_FACTUAL_20M_V2_PARENT_CHECKPOINT_DECISION.md`.

@@ -4,6 +4,14 @@
 
 ### Added
 
+- Added the formal Candidate A parent-checkpoint scientific decision record.
+  Candidate A remains the parallel FineWeb-step-200,000 treatment branch for
+  the Candidate C control comparison, preserving the matched approximately
+  20M-token design and isolating the 5% verified-arithmetic-v2 source.
+  Candidate C `final.pt` remains the preferred practical continued-pretraining
+  base; Candidate A and Candidate B remain unauthorized. The record is
+  `docs/CAPABILITY_CPT_A_FACTUAL_20M_V2_PARENT_CHECKPOINT_DECISION.md`.
+
 - Added the formal Candidate C scientific decision record. Candidate C's
   completed 20M-token control improved FineWeb and Wikimedia validation loss
   and normalized cloze performance, while arithmetic remained neutral and
