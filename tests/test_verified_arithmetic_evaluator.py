@@ -219,6 +219,50 @@ def test_atomic_jsonl_replaces_only_after_handles_close(
     assert list(tmp_path.glob("*.tmp")) == []
 
 
+def test_atomic_jsonl_closes_descriptor_and_resolves_paths_before_replace(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    path = tmp_path / "nested" / "per_example.jsonl"
+    real_mkstemp = evaluator_cli.tempfile.mkstemp
+    real_close = evaluator_cli.os.close
+    real_replace = evaluator_cli.os.replace
+    observed: dict[str, object] = {}
+
+    def tracked_mkstemp(*args, **kwargs):
+        descriptor, name = real_mkstemp(*args, **kwargs)
+        observed["descriptor"] = descriptor
+        return descriptor, name
+
+    def tracked_close(descriptor: int) -> None:
+        observed["closed_descriptor"] = descriptor
+        real_close(descriptor)
+
+    def checked_replace(source: Path, destination: Path) -> None:
+        assert observed["closed_descriptor"] == observed["descriptor"]
+        assert source.is_absolute()
+        assert destination.is_absolute()
+        real_replace(source, destination)
+
+    monkeypatch.setattr(evaluator_cli.tempfile, "mkstemp", tracked_mkstemp)
+    monkeypatch.setattr(evaluator_cli.os, "close", tracked_close)
+    monkeypatch.setattr(evaluator_cli.os, "replace", checked_replace)
+    evaluator_cli._atomic_jsonl(path, [{"id": "closed"}])
+
+    assert json.loads(path.read_text(encoding="utf-8")) == {"id": "closed"}
+    assert list(path.parent.glob(".per_example.jsonl.*.tmp")) == []
+
+
+def test_atomic_jsonl_persists_thousand_records(tmp_path: Path) -> None:
+    path = tmp_path / "per_example.jsonl"
+    records = [{"id": str(index), "value": index} for index in range(1_000)]
+    evaluator_cli._atomic_jsonl(path, records)
+
+    loaded = evaluator_cli._load_existing(path)
+    assert loaded == records
+    assert len({item["id"] for item in loaded}) == 1_000
+
+
 def test_atomic_jsonl_failure_preserves_destination_and_cleans_temp(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,

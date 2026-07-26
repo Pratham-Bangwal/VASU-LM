@@ -36,28 +36,25 @@ DEFAULT_TOKENIZER = Path("assets/tokenizer.json")
 def _atomic_text(path: Path, text: str) -> None:
     """Write text through a closed, fsynced, unique sibling temporary file."""
 
+    path = path.resolve()
     path.parent.mkdir(parents=True, exist_ok=True)
     descriptor, temporary_name = tempfile.mkstemp(
         prefix=f".{path.name}.",
         suffix=".tmp",
-        dir=path.parent,
+        dir=str(path.parent),
     )
-    temporary = Path(temporary_name)
+    os.close(descriptor)
+    temporary = Path(temporary_name).resolve()
     try:
-        with os.fdopen(
-            descriptor,
-            "w",
-            encoding="utf-8",
-            newline="\n",
-        ) as handle:
+        with temporary.open("w", encoding="utf-8", newline="\n") as handle:
             handle.write(text)
             handle.flush()
             os.fsync(handle.fileno())
-        # The writer is closed before Windows is asked to replace the target.
+        # The mkstemp descriptor and writer handle are both closed before
+        # Windows is asked to replace the resolved destination.
         os.replace(temporary, path)
     finally:
-        if temporary.exists():
-            temporary.unlink()
+        temporary.unlink(missing_ok=True)
 
 
 def _atomic_json(path: Path, payload: object) -> None:
