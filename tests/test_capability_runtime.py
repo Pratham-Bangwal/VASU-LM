@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from copy import deepcopy
+import hashlib
 import json
 from pathlib import Path
 from types import SimpleNamespace
@@ -444,6 +445,31 @@ def test_candidate_a_uses_hardened_runtime_but_remains_unauthorized() -> None:
     )
     with pytest.raises(PermissionError, match="authorization record is missing"):
         require_training_authorization(config_a)
+
+
+def test_candidate_a_authorization_template_is_pending_and_hash_bound() -> None:
+    template = json.loads(
+        Path(
+            "configs/authorization/"
+            "capability_cpt_a_factual_20m_v2.authorization.template.json"
+        ).read_text(encoding="utf-8")
+    )
+    config_path = Path("configs/training/capability_cpt_a_factual_20m_v2.json")
+    raw = config_path.read_bytes()
+    assert template["status"] == "pending_approver_signature"
+    assert template["decision"] == "pending"
+    assert template["authorization_scope"]["candidate_a_authorized"] is False
+    assert template["authorization_scope"]["candidate_b_authorized"] is False
+    assert hashlib.sha256(raw).hexdigest() == template["experiment_config"][
+        "preauthorization_sha256"
+    ]
+    assert raw.count(b'"training_authorized": false,') == 1
+    authorized = raw.replace(
+        b'"training_authorized": false,', b'"training_authorized": true,'
+    )
+    assert hashlib.sha256(authorized).hexdigest() == template[
+        "experiment_config"
+    ]["expected_authorized_sha256_after_single_boolean_edit"]
 
 
 def test_launcher_accepts_only_explicit_named_resume_argument() -> None:

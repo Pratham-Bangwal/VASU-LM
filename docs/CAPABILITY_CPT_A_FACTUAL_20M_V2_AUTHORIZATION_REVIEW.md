@@ -157,6 +157,12 @@ blocked independently.
 
 ## Prepared authorization material
 
+The non-authorizing pending template is
+`configs/authorization/capability_cpt_a_factual_20m_v2.authorization.template.json`.
+It records **Candidate A authorization package prepared; awaiting explicit
+approval.** Its `pending_approver_signature` status, pending decision, and
+false Candidate A/Candidate B authorization scope do not authorize training.
+
 No final authorization record was created. The remaining final-authorization
 task must bind the exact config SHA above, parent SHA, tokenizer SHA,
 resolved-manifest SHA, schedule SHA, all source token/mask/manifest hashes,

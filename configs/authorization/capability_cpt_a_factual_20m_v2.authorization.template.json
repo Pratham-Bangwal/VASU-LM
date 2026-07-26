@@ -1,0 +1,95 @@
+{
+  "format_version": "vasu_capability_cpt_authorization_v1",
+  "status": "pending_approver_signature",
+  "decision": "pending",
+  "candidate_id": "capability_cpt_a_factual_20m_v2",
+  "approver": "pending_explicit_approver_signature",
+  "authorized_at": null,
+  "repository_commit": "01431a732a9f9d97e97e0bdd5ea93fefabbd7e0f",
+  "repository_clean": false,
+  "clean_tree_requirement": true,
+  "experiment_config": {
+    "path": "configs/training/capability_cpt_a_factual_20m_v2.json",
+    "preauthorization_sha256": "32e589bce495ac4d70c4da52cd69c31f4f575d323a8f8b4f6490819af68b5b79",
+    "expected_authorized_sha256_after_single_boolean_edit": "fd67bbed2212bcae4fbadcba15b59b2d6ccf6dff4ee009fd31ec0a5db7d24261"
+  },
+  "parent_checkpoint": {
+    "path": "checkpoints/vasu_60m/milestones/fineweb_step_200000.pt",
+    "sha256": "88688ee85fc880967dafb322277565d4754e049a22c0d8e86060991438436a2f"
+  },
+  "tokenizer": {
+    "path": "assets/tokenizer.json",
+    "sha256": "04942e101a4a01f87f7e492ad9e463d299a559e784b650fdedd1763a017d195a"
+  },
+  "resolved_manifest": {
+    "path": "data/processed/capability/mixtures/capability_cpt_a_factual_20m_v2/resolved_manifest.json",
+    "sha256": "bda898d742d44123f647cd318aedc2bf28dedb24986da688716aee2778cb0ba9"
+  },
+  "schedule": {
+    "path": "data/processed/capability/mixtures/capability_cpt_a_factual_20m_v2/schedule.bin",
+    "sha256": "cc9cd9b7d2a2cd55a91c805691ce1c872fac82cd6295c5626383f8aea2ca15ce"
+  },
+  "sources": {
+    "fineweb_replay_after_200k": {
+      "token_sha256": "d62efa0521365fa634d1e8f34bf8c84764a8066a9cc53430f9fc4bb89cabf51e",
+      "mask_sha256": null,
+      "manifest_sha256": "d6f1d112fbd0135563c173feaf700162982718a6ced6abd537df0e749c267a00"
+    },
+    "wikimedia_factual_release_6aa10d73": {
+      "token_sha256": "fee0b88832fc569ce73393bc232e29a80cb981e31779ce4c42129d15a0be876f",
+      "mask_sha256": null,
+      "manifest_sha256": "cec126ae4e804a4f42699f96625752199c73b0caafbc4bf8b6d3bc3f47560a81"
+    },
+    "verified_arithmetic_v2": {
+      "token_sha256": "9abbab5e6a3d6d1121d47a89e9e829a3b51b072af2dc3a9daed5bae5d6fe474a",
+      "mask_sha256": "beaf4d1f5dc325d1fc2a37cf8adc6677738e009fdf68d87fbf1bb032013098c4",
+      "manifest_sha256": "8da3a1acfb2d2481c295b0d226c4695613b56670989d001fa27e65bed366115c"
+    }
+  },
+  "validation_configuration": {
+    "sha256": "1c12401ac4d6d396b13ffede345d2253780eff33118ac341b60cbe1d70ba349e"
+  },
+  "cuda_validation": {
+    "path": "evaluation/results/capability_cpt_v2_cuda_validation.json",
+    "sha256": "3555983cc9bcd58e6df70592f21c6b6c0ff064208b342bbc6f4cdc88eab05268"
+  },
+  "capability_runtime_identity": {
+    "runtime_version": "vasu_capability_runtime_v1",
+    "sha256": "510e04a3a5b5fd76efb279101b01a291c6c0b13c8996791431191dc08fbdec1e"
+  },
+  "scientific_rationale": "Candidate A is the matched controlled treatment branch from the FineWeb step-200,000 parent. It holds the Candidate C approximately 20M-token budget and 9% Wikimedia share constant while reallocating 5% of FineWeb replay to verified arithmetic v2 (86% FineWeb, 9% Wikimedia, 5% arithmetic). This isolates the arithmetic source as the primary experimental variable. Candidate C final remains the preferred practical continued-pretraining base; masked Alpaca v3 remains the preferred instruction-tuned assistant.",
+  "step_accounting": {
+    "records": 78144,
+    "dataloader_microbatches": 39072,
+    "batch_size": 2,
+    "sequence_length": 256,
+    "gradient_accumulation_steps": 16,
+    "optimizer_updates": 2442,
+    "processed_tokens": 20004864,
+    "warmup_updates": 49,
+    "scheduler_total_steps": 2442,
+    "final_accumulation_group_complete": true
+  },
+  "required_authorization_edit": {
+    "file": "configs/training/capability_cpt_a_factual_20m_v2.json",
+    "field": "training_authorized",
+    "current_value": false,
+    "requested_value_after_approval": true,
+    "constraint": "Change this boolean only; the resulting file SHA-256 must equal expected_authorized_sha256_after_single_boolean_edit."
+  },
+  "authorization_scope": {
+    "authorized_candidate": "capability_cpt_a_factual_20m_v2",
+    "candidate_a_authorized": false,
+    "candidate_b_authorized": false,
+    "authorized_token_budget": 20004864,
+    "authorized_optimizer_updates": 2442,
+    "authorized_parent_checkpoint": "checkpoints/vasu_60m/milestones/fineweb_step_200000.pt",
+    "authorization_excludes_hyperparameter_changes": true
+  },
+  "blocking_issues": [
+    "Explicit approver signature and authorization date are required.",
+    "The working tree must be clean at authorization and immediately before launch.",
+    "This pending template must be reviewed and converted to a separate approved Candidate A authorization record before changing training_authorized."
+  ],
+  "notes": "This is a non-authorizing template. Candidate A and Candidate B remain unauthorized. Any change to the config, parent, tokenizer, resolved manifest, schedule, source or mask identity, validation configuration, capability runtime identity, token/update budget, optimizer, scheduler, batch size, sequence length, gradient accumulation, or other hyperparameter requires a new review and authorization package."
+}
