@@ -6,7 +6,9 @@ from dataclasses import asdict, dataclass
 import json
 import math
 from pathlib import Path
+import re
 from typing import Any
+from types import MappingProxyType
 
 from vasu.data.scheduled_mixture import (
     ScheduledPretrainingDataset,
@@ -17,12 +19,53 @@ from vasu.training.accumulation import build_accumulation_plan
 from vasu.training.capability_runtime import (
     CAPABILITY_RUNTIME_VERSION,
     build_capability_identity,
+    git_state,
     sha256_file as runtime_sha256_file,
+    validation_configuration_hash,
 )
 
 
 CONFIG_FORMAT = "vasu_capability_cpt_experiment_v1"
 BLOCKED_MESSAGE = "Training is blocked because training_authorized is false."
+AUTHORIZATION_FORMAT = "vasu_capability_cpt_authorization_v1"
+
+
+@dataclass(frozen=True)
+class AuthorizationScope:
+    """Fail-closed launch scope; possessing a config never registers it."""
+
+    experiment_id: str
+    config_path: str
+    candidate_a_authorized: bool
+    sequential_control_decision: str | None = None
+    enforce_current_git_state: bool = False
+
+
+AUTHORIZATION_SCOPES = MappingProxyType({
+    "capability_cpt_a_factual_20m_v2": AuthorizationScope(
+        "capability_cpt_a_factual_20m_v2",
+        "configs/training/capability_cpt_a_factual_20m_v2.json",
+        True,
+    ),
+    "capability_cpt_c_control_20m_v2": AuthorizationScope(
+        "capability_cpt_c_control_20m_v2",
+        "configs/training/capability_cpt_c_control_20m_v2.json",
+        False,
+    ),
+    "capability_cpt_d_control_10m_from_a_v1": AuthorizationScope(
+        "capability_cpt_d_control_10m_from_a_v1",
+        "configs/training/capability_cpt_d_control_10m_from_a_v1.json",
+        False,
+        enforce_current_git_state=True,
+    ),
+    "capability_cpt_d_arithmetic_10m_from_a_v1": AuthorizationScope(
+        "capability_cpt_d_arithmetic_10m_from_a_v1",
+        "configs/training/capability_cpt_d_arithmetic_10m_from_a_v1.json",
+        False,
+        "docs/CAPABILITY_CPT_D_CONTROL_10M_FROM_A_V1_DECISION.md",
+        True,
+    ),
+})
 
 
 @dataclass(frozen=True)
@@ -246,6 +289,10 @@ def require_training_authorization(config: dict[str, Any]) -> None:
             "Training is blocked because the production runtime is not configured."
         )
 
+    scope_definition = AUTHORIZATION_SCOPES.get(str(config.get("experiment_id")))
+    if scope_definition is None:
+        raise PermissionError("Training is blocked because the experiment is unsupported.")
+
     config_path_value = config.get("_authorization_config_path")
     if not config_path_value:
         raise PermissionError(
@@ -267,6 +314,10 @@ def require_training_authorization(config: dict[str, Any]) -> None:
         raise PermissionError(
             "Training is blocked because the authorization record is invalid."
         ) from error
+    if record.get("format_version") != AUTHORIZATION_FORMAT:
+        raise PermissionError("Training is blocked because the authorization schema is unsupported.")
+    if not record.get("approver") or not record.get("authorized_at"):
+        raise PermissionError("Training is blocked because the approver signature is incomplete.")
     if record.get("status") != "approved" or record.get("decision") != "authorized":
         raise PermissionError(
             "Training is blocked because the authorization record is not approved."
@@ -279,7 +330,7 @@ def require_training_authorization(config: dict[str, Any]) -> None:
         actual_path = config_path.resolve().relative_to(Path.cwd().resolve()).as_posix()
     except ValueError:
         actual_path = config_path.as_posix()
-    if expected_path != actual_path:
+    if expected_path != actual_path or expected_path != scope_definition.config_path:
         raise PermissionError("Training is blocked because the authorization config path differs.")
     try:
         on_disk = json.loads(config_path.read_text(encoding="utf-8"))
@@ -290,6 +341,17 @@ def require_training_authorization(config: dict[str, Any]) -> None:
     expected_hash = experiment_config.get("expected_authorized_sha256_after_single_boolean_edit")
     if sha256_file(config_path) != expected_hash:
         raise PermissionError("Training is blocked because the authorized config hash differs.")
+    raw_config = config_path.read_text(encoding="utf-8")
+    unauthorized_text, transitions = re.subn(
+        r'("training_authorized"\s*:\s*)true', r"\1false", raw_config
+    )
+    if transitions != 1:
+        raise PermissionError("Training is blocked because the authorization transition is invalid.")
+    unauthorized_hash = sha256_file_from_text(
+        unauthorized_text
+    )
+    if experiment_config.get("preauthorization_sha256") != unauthorized_hash:
+        raise PermissionError("Training is blocked because the unauthorized config hash differs.")
     if record.get("parent_checkpoint", {}).get("sha256") != config.get("parent_checkpoint", {}).get("sha256"):
         raise PermissionError("Training is blocked because the parent checkpoint identity differs.")
     if record.get("tokenizer", {}).get("sha256") != config.get("tokenizer", {}).get("sha256"):
@@ -298,14 +360,18 @@ def require_training_authorization(config: dict[str, Any]) -> None:
         raise PermissionError("Training is blocked because the mixture identity differs.")
     if record.get("schedule", {}).get("sha256") != config.get("expected_schedule_sha256"):
         raise PermissionError("Training is blocked because the schedule identity differs.")
+    if scope_definition.enforce_current_git_state or "validation_configuration" in record:
+        if record.get("validation_configuration", {}).get("sha256") != validation_configuration_hash(config):
+            raise PermissionError("Training is blocked because the validation identity differs.")
+    if scope_definition.enforce_current_git_state or "capability_runtime_identity" in record:
+        identity = build_capability_identity(config)
+        if record.get("capability_runtime_identity", {}).get("sha256") != identity["sha256"]:
+            raise PermissionError("Training is blocked because the runtime identity differs.")
     scope = record.get("authorization_scope", {})
     if scope.get("authorized_candidate") != config.get("experiment_id"):
         raise PermissionError("Training is blocked because the authorization scope differs.")
-    expected_candidate_a_authorized = config.get("experiment_id") == (
-        "capability_cpt_a_factual_20m_v2"
-    )
     if (
-        scope.get("candidate_a_authorized") is not expected_candidate_a_authorized
+        scope.get("candidate_a_authorized") is not scope_definition.candidate_a_authorized
         or scope.get("candidate_b_authorized") is not False
     ):
         raise PermissionError("Training is blocked because the authorization scope is unsafe.")
@@ -313,3 +379,37 @@ def require_training_authorization(config: dict[str, Any]) -> None:
         raise PermissionError("Training is blocked because the token budget differs.")
     if scope.get("authorized_optimizer_updates") != config.get("step_accounting", {}).get("optimizer_updates"):
         raise PermissionError("Training is blocked because the optimizer budget differs.")
+    if scope_definition.enforce_current_git_state:
+        state = git_state()
+        if record.get("repository_commit") != state["commit"]:
+            raise PermissionError("Training is blocked because the repository commit differs.")
+        if record.get("clean_tree_requirement") is not True or not state["clean"]:
+            raise PermissionError("Training is blocked because the working tree is not clean.")
+    if scope_definition.sequential_control_decision is not None:
+        decision_path = Path(scope_definition.sequential_control_decision)
+        try:
+            decision = json.loads(decision_path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError) as error:
+            raise PermissionError("Training is blocked because the control prerequisite is missing.") from error
+        required = {
+            "control_experiment_id": "capability_cpt_d_control_10m_from_a_v1",
+            "completion_status": "completed",
+            "evaluation_status": "reviewed",
+            "status": "approved",
+            "decision": "approved",
+        }
+        if any(decision.get(key) != value for key, value in required.items()):
+            raise PermissionError("Training is blocked because the control prerequisite is not approved.")
+        selected = decision.get("selected_checkpoint", {})
+        if not selected.get("path") or not selected.get("sha256"):
+            raise PermissionError("Training is blocked because the control checkpoint is unbound.")
+        if not decision.get("approver") or not decision.get("decision_date"):
+            raise PermissionError("Training is blocked because the control decision is unsigned.")
+
+
+def sha256_file_from_text(value: str) -> str:
+    """Hash an exact prospective config serialization without writing it."""
+
+    import hashlib
+
+    return hashlib.sha256(value.encode("utf-8")).hexdigest()
