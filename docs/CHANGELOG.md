@@ -4,6 +4,14 @@
 
 ### Added
 
+- Added the formal Candidate A scientific decision record. Candidate A's final
+  arithmetic treatment checkpoint is the preferred continued-pretraining base:
+  it achieved 117/1000 development and 124/1000 held-out arithmetic exact
+  accuracy while retaining broad-language and factual gains. Its arithmetic
+  capability is narrow and repetition remains a limitation; masked Alpaca v3
+  remains the preferred instruction-tuned assistant, Candidate C remains the
+  successful control, and Candidate B remains unauthorized.
+
 - Added the formal Candidate A parent-checkpoint scientific decision record.
   Candidate A remains the parallel FineWeb-step-200,000 treatment branch for
   the Candidate C control comparison, preserving the matched approximately

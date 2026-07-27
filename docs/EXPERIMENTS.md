@@ -590,3 +590,29 @@ Unknown or unavailable values are explicitly marked rather than inferred.
   remains unauthorized and conditional.
 - Full decision record:
   `docs/CAPABILITY_CPT_A_FACTUAL_20M_V2_PARENT_CHECKPOINT_DECISION.md`.
+
+### Candidate A completed scientific decision
+
+- Result: Candidate A completed the matched 20,004,864-token, 2,442-update
+  arithmetic treatment from FineWeb step-200,000. The selected checkpoint is
+  `checkpoints/vasu_60m/capability_cpt_a_factual_20m_v2/final.pt`.
+- Arithmetic: final reached 117/1000 development and 124/1000 held-out exact
+  accuracy; the parent and Candidate C control each had 0/1000 development
+  accuracy. `final.pt` is preferred over `best_arithmetic.pt` (113/1000
+  development).
+- Retention: versus the parent, FineWeb and Wikimedia losses improved by about
+  1.51% and 3.46%; normalized cloze improved by +0.04 with CI95 [+0.01,
+  +0.08]. Candidate A's likelihood costs versus Candidate C were operationally
+  very small.
+- Limitations: arithmetic gains are concentrated in comparison and numeric
+  property formats; most arithmetic operations and word problems remain at or
+  near zero. Concept-explanation repetition worsened and general-language
+  repetition was approximately unchanged. Capability-v1 establishes no
+  measurable regression, not objective capability improvement, because both
+  models score zero across its objective categories.
+- Decision: Candidate A `final.pt` is the preferred continued-pretraining base
+  checkpoint. It does not replace masked Alpaca v3 as the preferred
+  instruction-tuned assistant. Candidate C is retained as the successful
+  control and historical comparison checkpoint; Candidate B remains
+  unauthorized and conditional.
+- Full decision record: `docs/CAPABILITY_CPT_A_FACTUAL_20M_V2_DECISION.md`.

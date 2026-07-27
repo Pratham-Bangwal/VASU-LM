@@ -13,21 +13,28 @@ accuracy remained 0/1000, capability-v1 showed no measurable objective
 regression, and repetition behavior was mixed. The formal decision is recorded
 in `docs/CAPABILITY_CPT_C_CONTROL_20M_V2_DECISION.md`.
 
-Candidate C is eligible as the preferred practical continued-pretraining base
-candidate. It is not the preferred interactive assistant; the instruction-tuned
-Alpaca v3 checkpoint remains assistant-specific. Candidate A's parent decision
-is resolved: it remains a parallel controlled treatment from the FineWeb
-step-200,000 parent, not a sequential continuation from Candidate C `final.pt`.
-Candidate A remains unauthorized pending hardened runtime safeguards and a
-separate final authorization record. Candidate B remains unauthorized and
-conditional. The parent decision is recorded in
-`docs/CAPABILITY_CPT_A_FACTUAL_20M_V2_PARENT_CHECKPOINT_DECISION.md`.
+Candidate A (`capability_cpt_a_factual_20m_v2`) completed its matched
+20,004,864-token, 2,442-update arithmetic treatment from the FineWeb
+step-200,000 parent. It used 86% FineWeb replay, 9% approved Wikimedia factual
+data, and 5% verified arithmetic v2. Candidate A achieved 117/1000 arithmetic
+development and 124/1000 held-out exact accuracy, while Candidate C and the
+parent both scored 0/1000 on development.
+
+Candidate A `final.pt` is the preferred continued-pretraining base checkpoint.
+It retains the broad-language and factual gains relative to the parent with
+only operationally very small likelihood costs relative to Candidate C. Its
+arithmetic improvement is narrow, concentrated in comparisons and numeric
+properties; repetition remains a limitation. Candidate A is not the preferred
+interactive assistant: masked Alpaca v3 remains assistant-specific. Candidate
+C remains the successful control and historical comparison checkpoint. Candidate
+B remains unauthorized and conditional. The formal decision is recorded in
+`docs/CAPABILITY_CPT_A_FACTUAL_20M_V2_DECISION.md`.
 
 ## Capability-CPT schedule status
 
 The generalized deterministic N-source schedule layer and Candidates A/B/C
-remain hash-bound. Candidate C is complete; Candidate A and Candidate B remain
-unauthorized. Candidate A and Candidate C share the FineWeb step-200,000
+remain hash-bound. Candidate C and Candidate A are complete; Candidate B
+remains unauthorized. Candidate A and Candidate C share the FineWeb step-200,000
 parent, 20,004,864-token budget, 78,144 records, 39,072 microbatches, 2,442
 updates, 2,442-step scheduler, 49-update warmup, 256-token sequence length,
 batch size 2, and accumulation 16; their intended experimental difference is

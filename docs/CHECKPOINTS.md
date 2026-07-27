@@ -8,6 +8,13 @@ source manifest blocks exact continuation rather than silently changing data.
 
 ## Capability-CPT checkpoint roles
 
+Candidate A `final.pt` at
+`checkpoints/vasu_60m/capability_cpt_a_factual_20m_v2/final.pt` is the preferred
+continued-pretraining base checkpoint. It is a VASU-60M base checkpoint, not
+the preferred interactive assistant; masked Alpaca v3 remains the
+instruction-tuned assistant. Candidate C `final.pt` remains the successful
+control and historical comparison checkpoint.
+
 The production Candidate C runtime writes `latest.pt` for recovery,
 `final.pt` after schedule completion, and separate `best_fineweb.pt`,
 `best_wikimedia.pt`, and `best_arithmetic.pt` files. It does not use an opaque
