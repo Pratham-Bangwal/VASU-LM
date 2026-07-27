@@ -435,8 +435,11 @@ def build_operation_schedule(
         .splitlines()
     ]
     pools: dict[str, list[int]] = defaultdict(list)
+    record_rows: dict[int, Mapping[str, Any]] = {}
     for row in rows:
-        pools[row["operation"]].append(int(row["record_index"]))
+        record_index = int(row["record_index"])
+        pools[row["operation"]].append(record_index)
+        record_rows[record_index] = row
     counts = _largest_remainder(total_records, operation_weights)
     selected: list[tuple[int, int]] = []
     used_by_operation: dict[str, set[int]] = defaultdict(set)
@@ -466,7 +469,14 @@ def build_operation_schedule(
         for operation, amount in local.items():
             amount = min(amount, remaining[operation])
             remaining[operation] -= amount
-            pool = list(pools[operation])
+            permitted_tiers = stage.get("difficulty_tiers")
+            pool = [
+                record for record in pools[operation]
+                if permitted_tiers is None
+                or record_rows[record]["difficulty_tier"] in permitted_tiers
+            ]
+            if not pool:
+                raise ValueError("stage has no records for its operation/tier constraints")
             random.Random(f"{seed}:{stage_index}:{operation}").shuffle(pool)
             available = pool if with_replacement else [item for item in pool if item not in used_by_operation[operation]]
             if not with_replacement and amount > len(available):
@@ -488,7 +498,14 @@ def build_operation_schedule(
                 raise ValueError(
                     "stage constraints cannot satisfy requested operation allocation"
                 )
-            pool = list(pools[operation])
+            permitted_tiers = stage_rows[-1].get("difficulty_tiers")
+            pool = [
+                record for record in pools[operation]
+                if permitted_tiers is None
+                or record_rows[record]["difficulty_tier"] in permitted_tiers
+            ]
+            if not pool:
+                raise ValueError("final stage has no records for its tier constraints")
             random.Random(f"{seed}:remainder:{operation}").shuffle(pool)
             available = pool if with_replacement else [item for item in pool if item not in used_by_operation[operation]]
             if not with_replacement and amount > len(available):

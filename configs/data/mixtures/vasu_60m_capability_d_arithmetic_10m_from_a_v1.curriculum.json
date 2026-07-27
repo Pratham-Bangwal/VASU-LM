@@ -1,0 +1,11 @@
+{
+  "format_version": "vasu_operation_curriculum_v1",
+  "replacement": true,
+  "stages": [
+    {"id": "direct_lower_tier", "weight": 0.35, "operations": ["addition", "subtraction", "multiplication", "exact_division"], "difficulty_tiers": ["tier_1", "tier_2"]},
+    {"id": "wider_direct_fraction_percentage", "weight": 0.25, "operations": ["addition", "subtraction", "multiplication", "exact_division", "percentage", "fraction"], "difficulty_tiers": ["tier_2", "tier_3", "tier_4"]},
+    {"id": "compositional", "weight": 0.20, "operations": ["mixed_expression", "sequence"], "difficulty_tiers": ["tier_2", "tier_3", "tier_4"]},
+    {"id": "balanced_review", "weight": 0.20, "operations": ["addition", "subtraction", "multiplication", "exact_division", "percentage", "fraction", "mixed_expression", "sequence", "word_problem", "comparison", "numeric_property"], "difficulty_tiers": ["tier_1", "tier_2", "tier_3", "tier_4"]}
+  ],
+  "training_authorized": false
+}
