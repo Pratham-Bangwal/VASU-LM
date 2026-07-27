@@ -1,0 +1,48 @@
+{
+    "format_version":  "vasu_factual_cpt_evaluation_v2",
+    "benchmark_path":  "evaluation/benchmarks/factual_cpt_v2.json",
+    "tokenizer_path":  "assets/tokenizer.json",
+    "seed":  42,
+    "bootstrap_samples":  1000,
+    "checkpoints":  {
+                        "parent":  {
+                                       "path":  "checkpoints/vasu_60m/milestones/fineweb_step_200000.pt",
+                                       "sha256":  "88688ee85fc880967dafb322277565d4754e049a22c0d8e86060991438436a2f"
+                                   },
+                        "best":  {
+                                     "path":  "checkpoints/vasu_60m/capability_cpt_a_factual_20m_v2/best_wikimedia.pt",
+                                     "sha256":  "d754a78a7a4837e3b8d38578651c2738269341112a7205cc5aa9733d206a9e0c"
+                                 },
+                        "latest":  {
+                                       "path":  "checkpoints/vasu_60m/capability_cpt_a_factual_20m_v2/final.pt",
+                                       "sha256":  "8a54ff13ca3ca3dac385270b2160c34e639a9ca8178603df33d30d54f0bd6103"
+                                   }
+                    },
+    "validation":  {
+                       "batch_size":  2,
+                       "fineweb_manifest":  "data/processed/pretrain/fineweb_manifest.json",
+                       "fineweb_samples":  256,
+                       "wikimedia_path":  "data/processed/pretrain/factual/wikimedia_release_6aa10d73_validation.bin"
+                   },
+    "generation":  {
+                       "greedy":  {
+                                      "do_sample":  false,
+                                      "max_new_tokens":  60,
+                                      "temperature":  null,
+                                      "top_k":  null,
+                                      "top_p":  null,
+                                      "repetition_penalty":  1.1,
+                                      "eos_handling":  "stop on [EOS]"
+                                  },
+                       "sampling":  {
+                                        "do_sample":  true,
+                                        "max_new_tokens":  60,
+                                        "temperature":  0.6,
+                                        "top_k":  20,
+                                        "top_p":  0.9,
+                                        "repetition_penalty":  1.1,
+                                        "eos_handling":  "stop on [EOS]"
+                                    }
+                   },
+    "results_directory":  "evaluation/results/capability_cpt_a_factual_20m_v2"
+}

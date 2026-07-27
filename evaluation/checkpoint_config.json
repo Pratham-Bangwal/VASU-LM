@@ -38,6 +38,11 @@
       "path": "checkpoints/vasu_60m/ultrachat_masked_v2_from_alpaca_v3/best.pt",
       "model_config": "vasu_60m",
       "prompt_format": "alpaca"
+    },
+    "vasu_60m_capability_cpt_a_factual_20m_v2": {
+      "path": "checkpoints/vasu_60m/capability_cpt_a_factual_20m_v2/final.pt",
+      "model_config": "vasu_60m",
+      "prompt_format": "plain"
     }
   },
   "generation": {
