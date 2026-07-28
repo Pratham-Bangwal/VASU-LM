@@ -10,6 +10,7 @@ import os
 from pathlib import Path
 import subprocess
 import tempfile
+import time
 from typing import Any
 
 import torch
@@ -31,12 +32,57 @@ DEFAULT_MANIFEST = Path(
     "data/processed/capability/verified_arithmetic_v2/manifest.json"
 )
 DEFAULT_TOKENIZER = Path("assets/tokenizer.json")
+WINDOWS_REPLACE_ATTEMPTS = 5
+WINDOWS_REPLACE_INITIAL_DELAY_SECONDS = 0.02
+
+
+def _content_sha256(content: bytes) -> str:
+    """Return the identity of the exact bytes intended for replacement."""
+
+    return hashlib.sha256(content).hexdigest()
+
+
+def _destination_matches(path: Path, intended_sha256: str) -> bool:
+    """Return true only when the existing destination is the intended bytes."""
+
+    try:
+        return path.is_file() and sha256_file(path) == intended_sha256
+    except OSError:
+        # An unreadable destination cannot prove that replacement succeeded.
+        return False
+
+
+def _replace_closed_temporary(
+    temporary: Path,
+    destination: Path,
+    intended_sha256: str,
+) -> None:
+    """Replace through a closed temporary file, with fail-closed Windows handling."""
+
+    attempts = WINDOWS_REPLACE_ATTEMPTS if os.name == "nt" else 1
+    for attempt in range(attempts):
+        try:
+            os.replace(temporary, destination)
+            return
+        except PermissionError:
+            if os.name != "nt":
+                raise
+            # Windows may report a sharing violation after a replacement has
+            # become visible. Destination existence alone is not evidence:
+            # accept only the exact bytes that were fsynced to the temporary.
+            if _destination_matches(destination, intended_sha256):
+                return
+            if attempt == attempts - 1:
+                raise
+            time.sleep(WINDOWS_REPLACE_INITIAL_DELAY_SECONDS * (2**attempt))
 
 
 def _atomic_text(path: Path, text: str) -> None:
     """Write text through a closed, fsynced, unique sibling temporary file."""
 
     path = path.resolve()
+    content = text.encode("utf-8")
+    intended_sha256 = _content_sha256(content)
     path.parent.mkdir(parents=True, exist_ok=True)
     descriptor, temporary_name = tempfile.mkstemp(
         prefix=f".{path.name}.",
@@ -46,13 +92,13 @@ def _atomic_text(path: Path, text: str) -> None:
     os.close(descriptor)
     temporary = Path(temporary_name).resolve()
     try:
-        with temporary.open("w", encoding="utf-8", newline="\n") as handle:
-            handle.write(text)
+        with temporary.open("wb") as handle:
+            handle.write(content)
             handle.flush()
             os.fsync(handle.fileno())
         # The mkstemp descriptor and writer handle are both closed before
         # Windows is asked to replace the resolved destination.
-        os.replace(temporary, path)
+        _replace_closed_temporary(temporary, path, intended_sha256)
     finally:
         temporary.unlink(missing_ok=True)
 
@@ -132,12 +178,17 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     output = args.output_dir
     manifest_path = output / "run_manifest.json"
     results_path = output / "per_example.jsonl"
-    if output.exists() and not args.resume:
-        raise FileExistsError("output exists; use --resume or a new output directory")
-    if args.resume:
+    resume = args.resume
+    if output.exists():
         previous = json.loads(manifest_path.read_text(encoding="utf-8"))
         if previous.get("identity_sha256") != identity_hash:
             raise ValueError("evaluation resume identity mismatch")
+        if not resume and previous.get("status") != "in_progress":
+            raise FileExistsError("output exists; use --resume or a new output directory")
+        # A matching, interrupted run is safe to continue by default. This
+        # makes the normal command recover evidence after a write interruption
+        # without allowing a completed or mismatched run to be overwritten.
+        resume = True
     else:
         output.mkdir(parents=True)
         _atomic_json(

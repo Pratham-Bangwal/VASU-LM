@@ -183,6 +183,120 @@ def test_cli_persists_each_example_and_resumes_after_interruption(
     assert [item["id"] for item in saved] == ["a", "b"]
 
 
+def test_cli_auto_resumes_660_records_to_exactly_1000_without_duplicates(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    manifest_path = tmp_path / "manifest.json"
+    tokenizer_path = tmp_path / "tokenizer.json"
+    checkpoint_path = tmp_path / "checkpoint.pt"
+    split_path = tmp_path / "dev.jsonl"
+    for path in (manifest_path, tokenizer_path, checkpoint_path, split_path):
+        path.write_text("fixture", encoding="utf-8")
+    records = [_record(str(index)) for index in range(1_000)]
+    manifest_payload = {"tokenizer": {"sha256": "fixture-sha"}}
+    monkeypatch.setattr(
+        evaluator_cli,
+        "load_verified_split",
+        lambda manifest, split: (manifest_payload, records, split_path),
+    )
+    monkeypatch.setattr(evaluator_cli, "sha256_file", lambda path: "fixture-sha")
+    monkeypatch.setattr(evaluator_cli.torch, "load", lambda *args, **kwargs: {"model": {}})
+
+    class DummyModel:
+        def load_state_dict(self, state, strict=True):
+            return None
+
+        def to(self, device):
+            return self
+
+        def eval(self):
+            return self
+
+    class DummyTokenizer:
+        def load(self, path):
+            return None
+
+    monkeypatch.setattr(evaluator_cli, "VASUModel", lambda config: DummyModel())
+    monkeypatch.setattr(evaluator_cli, "VASUTokenizer", DummyTokenizer)
+
+    def result_for(record: dict[str, object]) -> dict[str, object]:
+        return {
+            "id": record["id"],
+            "operation": "addition",
+            "difficulty_tier": "tier_1",
+            "template_family": "heldout_exact",
+            "answer_type": "integer",
+            "outcome": "correct",
+            "correct": True,
+            "malformed": False,
+            "unanswered": False,
+            "prompt_leakage": False,
+            "truncated": False,
+            "repetition_ratio": 0.0,
+            "duration_seconds": 0.1,
+            "generated_tokens": 1,
+        }
+
+    output = tmp_path / "candidate_d_control_final_arithmetic_dev"
+    output.mkdir()
+    identity = {
+        "evaluator_version": evaluator_cli.EVALUATOR_VERSION,
+        "split": "dev",
+        "split_path": split_path.as_posix(),
+        "split_sha256": "fixture-sha",
+        "manifest_path": manifest_path.as_posix(),
+        "manifest_sha256": "fixture-sha",
+        "checkpoint_path": checkpoint_path.as_posix(),
+        "checkpoint_sha256": "fixture-sha",
+        "tokenizer_path": tokenizer_path.as_posix(),
+        "tokenizer_sha256": "fixture-sha",
+        "generation": {
+            "mode": "greedy",
+            "do_sample": False,
+            "max_new_tokens": 16,
+            "prompt_format": "plain",
+            "serialization": "Question: {prompt}\\nAnswer:",
+        },
+    }
+    identity_hash = evaluator_cli.hashlib.sha256(
+        json.dumps(identity, sort_keys=True, separators=(",", ":")).encode()
+    ).hexdigest()
+    evaluator_cli._atomic_json(
+        output / "run_manifest.json",
+        {**identity, "identity_sha256": identity_hash, "status": "in_progress"},
+    )
+    evaluator_cli._atomic_jsonl(
+        output / "per_example.jsonl",
+        [result_for(record) for record in records[:660]],
+    )
+    generated: list[str] = []
+
+    def evaluate_remaining(items, generate, completed_ids=None):
+        generated.append(str(items[0]["id"]))
+        return [result_for(items[0])]
+
+    monkeypatch.setattr(evaluator_cli, "evaluate_records", evaluate_remaining)
+    evaluator_cli.run(
+        SimpleNamespace(
+            manifest=manifest_path,
+            split="dev",
+            tokenizer=tokenizer_path,
+            checkpoint=checkpoint_path,
+            max_new_tokens=16,
+            output_dir=output,
+            resume=False,
+            device="cpu",
+        )
+    )
+
+    saved = evaluator_cli._load_existing(output / "per_example.jsonl")
+    assert len(saved) == 1_000
+    assert len({item["id"] for item in saved}) == 1_000
+    assert generated == [str(index) for index in range(660, 1_000)]
+    assert json.loads((output / "run_manifest.json").read_text(encoding="utf-8"))["status"] == "complete"
+
+
 def test_atomic_jsonl_creation_replacement_and_cleanup(tmp_path: Path) -> None:
     path = tmp_path / "per_example.jsonl"
     evaluator_cli._atomic_jsonl(path, [{"id": "a"}, {"id": "b"}])
@@ -278,6 +392,81 @@ def test_atomic_jsonl_failure_preserves_destination_and_cleans_temp(
         evaluator_cli._atomic_jsonl(path, [{"id": "new"}])
 
     assert path.read_text(encoding="utf-8") == '{"id": "valid"}\n'
+    assert list(tmp_path.glob(".per_example.jsonl.*.tmp")) == []
+
+
+def test_atomic_jsonl_retries_windows_permission_error_until_success(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    path = tmp_path / "per_example.jsonl"
+    path.write_text('{"id": "old"}\n', encoding="utf-8")
+    real_replace = evaluator_cli.os.replace
+    calls = 0
+
+    def transient_replace(source: Path, destination: Path) -> None:
+        nonlocal calls
+        calls += 1
+        if calls == 1:
+            raise PermissionError("simulated transient sharing violation")
+        real_replace(source, destination)
+
+    monkeypatch.setattr(evaluator_cli.os, "replace", transient_replace)
+    monkeypatch.setattr(evaluator_cli.os, "name", "nt")
+    monkeypatch.setattr(evaluator_cli.time, "sleep", lambda _: None)
+    evaluator_cli._atomic_jsonl(path, [{"id": "new"}])
+
+    assert calls == 2
+    assert path.read_text(encoding="utf-8") == '{"id": "new"}\n'
+    assert list(tmp_path.glob(".per_example.jsonl.*.tmp")) == []
+
+
+def test_atomic_jsonl_accepts_only_exact_destination_after_permission_error(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    path = tmp_path / "per_example.jsonl"
+    real_replace = evaluator_cli.os.replace
+    calls = 0
+
+    def replace_then_report_permission(source: Path, destination: Path) -> None:
+        nonlocal calls
+        calls += 1
+        real_replace(source, destination)
+        raise PermissionError("replacement became visible before error reporting")
+
+    monkeypatch.setattr(evaluator_cli.os, "replace", replace_then_report_permission)
+    monkeypatch.setattr(evaluator_cli.os, "name", "nt")
+    monkeypatch.setattr(evaluator_cli.time, "sleep", lambda _: None)
+    evaluator_cli._atomic_jsonl(path, [{"id": "intended"}])
+
+    assert calls == 1
+    assert path.read_text(encoding="utf-8") == '{"id": "intended"}\n'
+    assert list(tmp_path.glob(".per_example.jsonl.*.tmp")) == []
+
+
+def test_atomic_jsonl_persistent_permission_error_preserves_old_destination(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    path = tmp_path / "per_example.jsonl"
+    path.write_text('{"id": "old"}\n', encoding="utf-8")
+    calls = 0
+
+    def fail_replace(source: Path, destination: Path) -> None:
+        nonlocal calls
+        calls += 1
+        raise PermissionError("persistent sharing violation")
+
+    monkeypatch.setattr(evaluator_cli.os, "replace", fail_replace)
+    monkeypatch.setattr(evaluator_cli.os, "name", "nt")
+    monkeypatch.setattr(evaluator_cli.time, "sleep", lambda _: None)
+    monkeypatch.setattr(evaluator_cli, "WINDOWS_REPLACE_ATTEMPTS", 3)
+    with pytest.raises(PermissionError, match="persistent"):
+        evaluator_cli._atomic_jsonl(path, [{"id": "new"}])
+
+    assert calls == 3
+    assert path.read_text(encoding="utf-8") == '{"id": "old"}\n'
     assert list(tmp_path.glob(".per_example.jsonl.*.tmp")) == []
 
 
