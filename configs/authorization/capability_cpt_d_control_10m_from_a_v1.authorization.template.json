@@ -1,0 +1,33 @@
+{
+  "format_version": "vasu_capability_cpt_authorization_v1",
+  "status": "pending_approver_signature",
+  "decision": "pending",
+  "candidate_id": "capability_cpt_d_control_10m_from_a_v1",
+  "approver": null,
+  "authorized_at": null,
+  "repository_commit": "e298c9562c17d193eeb42734c55c372ca39e8b06",
+  "repository_clean": true,
+  "clean_tree_requirement": true,
+  "experiment_config": {
+    "path": "configs/training/capability_cpt_d_control_10m_from_a_v1.json",
+    "preauthorization_sha256": "6944febd992f1613800a2cfa6d102cf7da15a8d82f79e5708ed69bec96a98b5b",
+    "expected_authorized_sha256_after_single_boolean_edit": "b0cf05d159d9e1893c999bb5572daaf94d640128a14b07b8898bcd501f7ab62c"
+  },
+  "parent_checkpoint": {"path": "checkpoints/vasu_60m/capability_cpt_a_factual_20m_v2/final.pt", "sha256": "8a54ff13ca3ca3dac385270b2160c34e639a9ca8178603df33d30d54f0bd6103"},
+  "tokenizer": {"path": "assets/tokenizer.json", "sha256": "04942e101a4a01f87f7e492ad9e463d299a559e784b650fdedd1763a017d195a"},
+  "resolved_manifest": {"path": "data/processed/capability/mixtures/capability_cpt_d_control_10m_from_a_v1/resolved_manifest.json", "sha256": "71841372687fe6308902bae8a248cf64abd0f33f998cae27a3bbe5536b32d515"},
+  "schedule": {"path": "data/processed/capability/mixtures/capability_cpt_d_control_10m_from_a_v1/schedule.bin", "sha256": "ff4820b6ebd5f73d9c7ce50698f557d9a4c8f91002a7c4f4301650afa5329844"},
+  "sources": {
+    "fineweb_replay_after_200k": {"token_sha256": "d62efa0521365fa634d1e8f34bf8c84764a8066a9cc53430f9fc4bb89cabf51e", "mask_sha256": null, "manifest_sha256": "d6f1d112fbd0135563c173feaf700162982718a6ced6abd537df0e749c267a00"},
+    "wikimedia_factual_release_6aa10d73": {"token_sha256": "fee0b88832fc569ce73393bc232e29a80cb981e31779ce4c42129d15a0be876f", "mask_sha256": null, "manifest_sha256": "cec126ae4e804a4f42699f96625752199c73b0caafbc4bf8b6d3bc3f47560a81"}
+  },
+  "validation_configuration": {"path": "configs/training/capability_cpt_d_control_10m_from_a_v1.json#validation", "sha256": "1c12401ac4d6d396b13ffede345d2253780eff33118ac341b60cbe1d70ba349e"},
+  "cuda_validation": {"path": "evaluation/results/capability_cpt_v2_cuda_validation.json", "sha256": "3555983cc9bcd58e6df70592f21c6b6c0ff064208b342bbc6f4cdc88eab05268"},
+  "capability_runtime_identity": {"path": "vasu/training/capability_runtime.py", "runtime_version": "vasu_capability_runtime_v1", "sha256": "92fe78f95007f70b71384255e1f7e1e0b70611d973c7cb64bbba3975be2eb2e2"},
+  "step_accounting": {"records": 39072, "dataloader_microbatches": 19536, "batch_size": 2, "sequence_length": 256, "gradient_accumulation_steps": 16, "optimizer_updates": 1221, "processed_tokens": 10002432, "warmup_updates": 25, "scheduler_total_steps": 1221, "final_accumulation_group_complete": true},
+  "required_authorization_edit": {"file": "configs/training/capability_cpt_d_control_10m_from_a_v1.json", "field": "training_authorized", "current_value": false, "requested_value_after_approval": true, "constraint": "Change this boolean only; the resulting file SHA-256 must equal expected_authorized_sha256_after_single_boolean_edit."},
+  "authorization_scope": {"authorized_candidate": "capability_cpt_d_control_10m_from_a_v1", "candidate_a_authorized": false, "candidate_b_authorized": false, "authorized_token_budget": 10002432, "authorized_optimizer_updates": 1221, "authorized_parent_checkpoint": "checkpoints/vasu_60m/capability_cpt_a_factual_20m_v2/final.pt", "authorization_excludes_hyperparameter_changes": true},
+  "scientific_rationale": "Candidate D control is the sequential 10M-token no-arithmetic control from Candidate A final. It uses 91% FineWeb replay and 9% Wikimedia, matching Candidate D treatment accounting and runtime while excluding arithmetic.",
+  "blocking_issues": ["Explicit human approver and authorization date are required.", "Convert this template into a separate approved authorization record only after explicit approval.", "The repository must be clean and at the recorded commit immediately before launch."],
+  "notes": "This pending template is non-authorizing. Candidate D treatment and Candidate B remain unauthorized. Any bound identity or hyperparameter change requires a new authorization package."
+}
