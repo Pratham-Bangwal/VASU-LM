@@ -6,6 +6,7 @@ from types import MappingProxyType
 
 import pytest
 
+import train_vasu_60m_capability_cpt as launcher
 import vasu.training.capability_cpt as cpt
 from vasu.data.scheduled_mixture import sha256_file
 from vasu.training.capability_runtime import build_capability_identity, validation_configuration_hash
@@ -91,3 +92,48 @@ def test_real_a_and_c_legacy_authorizations_remain_valid() -> None:
         config = json.loads((Path("configs/training") / f"{name}.json").read_text())
         config["_authorization_config_path"] = f"configs/training/{name}.json"
         cpt.require_training_authorization(config)
+
+
+def test_launch_path_preserves_registry_authorization_failure(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
+    config_path = tmp_path / "control.json"
+    config_path.write_text("{}", encoding="utf-8")
+    config = {"experiment_id": "capability_cpt_d_control_10m_from_a_v1", "training_authorized": True, "checkpoint_directory": str(tmp_path / "checkpoints")}
+    monkeypatch.setattr(
+        launcher,
+        "validate_capability_config",
+        lambda _: {"config": config, "resolved_manifest": {"schedule": {"sha256": "x"}}, "step_accounting": {}, "capability_identity": {}},
+    )
+    monkeypatch.setattr(launcher, "git_state", lambda: {"clean": True})
+    monkeypatch.setattr(
+        launcher,
+        "require_training_authorization",
+        lambda _: (_ for _ in ()).throw(PermissionError("registry-specific failure")),
+    )
+    monkeypatch.setattr("sys.argv", ["launcher", "--config", str(config_path)])
+    with pytest.raises(SystemExit, match="registry-specific failure"):
+        launcher.main()
+
+
+def test_launch_path_never_relabels_registry_failure_as_boolean(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
+    config_path = tmp_path / "control.json"
+    config_path.write_text("{}", encoding="utf-8")
+    config = {"experiment_id": "capability_cpt_d_control_10m_from_a_v1", "training_authorized": True, "checkpoint_directory": str(tmp_path / "checkpoints")}
+    monkeypatch.setattr(
+        launcher,
+        "validate_capability_config",
+        lambda _: {"config": config, "resolved_manifest": {"schedule": {"sha256": "x"}}, "step_accounting": {}, "capability_identity": {}},
+    )
+    monkeypatch.setattr(launcher, "git_state", lambda: {"clean": True})
+    monkeypatch.setattr(
+        launcher,
+        "require_training_authorization",
+        lambda _: (_ for _ in ()).throw(PermissionError("authorization record is missing")),
+    )
+    monkeypatch.setattr("sys.argv", ["launcher", "--config", str(config_path)])
+    with pytest.raises(SystemExit, match="authorization record is missing") as error:
+        launcher.main()
+    assert "training_authorized is false" not in str(error.value)

@@ -17,7 +17,6 @@ from evaluation.verified_arithmetic import load_verified_split, select_proxy_rec
 from vasu.model.model import VASUModel
 from vasu.training.dataset import ManifestTokenDataset
 from vasu.training.capability_cpt import (
-    BLOCKED_MESSAGE,
     require_training_authorization,
     validate_capability_config,
 )
@@ -95,7 +94,10 @@ def main() -> None:
         config["_authorization_config_path"] = str(args.config)
         require_training_authorization(config)
     except PermissionError as error:
-        raise SystemExit(BLOCKED_MESSAGE) from error
+        # The registry is the sole authorization authority.  Preserve its
+        # fail-closed diagnostic rather than relabeling every rejection as a
+        # stale boolean failure.
+        raise SystemExit(str(error)) from error
     if not repository["clean"]:
         raise SystemExit(
             "Authorized capability training requires a clean Git working tree."
