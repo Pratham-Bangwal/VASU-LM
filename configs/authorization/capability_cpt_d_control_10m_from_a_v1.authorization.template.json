@@ -5,7 +5,7 @@
   "candidate_id": "capability_cpt_d_control_10m_from_a_v1",
   "approver": null,
   "authorized_at": null,
-  "repository_commit": "d51cf57cd41e169f9ddf7e28388aaece05d10305",
+  "repository_commit": "e7c99569aba7c53cdddc55255e21bd1eb7c44826",
   "repository_clean": true,
   "clean_tree_requirement": true,
   "experiment_config": {
