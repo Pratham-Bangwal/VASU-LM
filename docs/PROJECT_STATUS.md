@@ -30,6 +30,24 @@ C remains the successful control and historical comparison checkpoint. Candidate
 B remains unauthorized and conditional. The formal decision is recorded in
 `docs/CAPABILITY_CPT_A_FACTUAL_20M_V2_DECISION.md`.
 
+Candidate D control (`capability_cpt_d_control_10m_from_a_v1`) completed its
+matched 10,002,432-token non-arithmetic continuation from Candidate A `final.pt`.
+Its selected `final.pt` has SHA-256
+`3f513727ed0ea63a9b4aaf963c736f30b409e6901caddb50bf85c1db6922c384`.
+It processed 39,072 records in 19,536 microbatches and 1,221 optimizer updates
+with 91% FineWeb, 9% Wikimedia, and 0% arithmetic. It reached 112/1000
+arithmetic development exact accuracy versus Candidate A's 117/1000, consistent
+with no meaningful arithmetic improvement from non-arithmetic continuation.
+FineWeb/Wikimedia losses improved to 3.299042/3.264998 and normalized cloze
+rose to 0.120. The control is scientifically accepted as the matched-control
+comparison checkpoint, not the preferred production base. It supports
+consideration of, but does not authorize, Candidate D treatment; Candidate D
+treatment remains `training_authorized: false` and Candidate B remains
+unauthorized. Candidate A final remains the preferred continued-pretraining
+base until treatment evaluation is complete, and masked Alpaca v3 remains the
+preferred instruction-tuned assistant. See
+`docs/CAPABILITY_CPT_D_CONTROL_10M_FROM_A_V1_DECISION.md`.
+
 ## Capability-CPT schedule status
 
 The generalized deterministic N-source schedule layer and Candidates A/B/C

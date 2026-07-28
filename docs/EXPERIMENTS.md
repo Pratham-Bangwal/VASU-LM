@@ -616,3 +616,30 @@ Unknown or unavailable values are explicitly marked rather than inferred.
   control and historical comparison checkpoint; Candidate B remains
   unauthorized and conditional.
 - Full decision record: `docs/CAPABILITY_CPT_A_FACTUAL_20M_V2_DECISION.md`.
+
+### Candidate D matched-control scientific decision
+
+- Result: `capability_cpt_d_control_10m_from_a_v1` completed successfully from
+  Candidate A `final.pt` with 39,072 records, 10,002,432 processed tokens,
+  19,536 microbatches, and 1,221 optimizer updates. The mixture was 35,556
+  FineWeb records (91%), 3,516 Wikimedia records (9%), and zero arithmetic
+  records. The selected checkpoint is
+  `checkpoints/vasu_60m/capability_cpt_d_control_10m_from_a_v1/final.pt`
+  (SHA-256 `3f513727ed0ea63a9b4aaf963c736f30b409e6901caddb50bf85c1db6922c384`).
+- Arithmetic: full verified-arithmetic-v2 development accuracy is 112/1000
+  (0.112), compared with Candidate A's 117/1000 (0.117). This -0.005 absolute
+  change is consistent with no meaningful arithmetic improvement from the
+  additional non-arithmetic continuation; no significance claim is made.
+- Retention: FineWeb and Wikimedia validation losses are 3.299042 and 3.264998;
+  normalized cloze is 0.120 with a parent difference of +0.05, CI95
+  [+0.01, +0.09]. Multiple choice is 0.440; its parent comparison CI crosses
+  zero. Broad-language and factual quality are preserved and slightly improved.
+- Decision: the control is scientifically acceptable as the matched-control
+  comparison checkpoint. It supports consideration of Candidate D treatment
+  authorization but does not authorize or start it. Candidate D treatment
+  remains `training_authorized: false`; Candidate B remains unauthorized.
+  Candidate A final remains the preferred continued-pretraining base until
+  treatment evaluation completes, while masked Alpaca v3 remains the preferred
+  instruction-tuned assistant.
+- Full decision record:
+  `docs/CAPABILITY_CPT_D_CONTROL_10M_FROM_A_V1_DECISION.md`.

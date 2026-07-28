@@ -15,6 +15,14 @@ the preferred interactive assistant; masked Alpaca v3 remains the
 instruction-tuned assistant. Candidate C `final.pt` remains the successful
 control and historical comparison checkpoint.
 
+Candidate D control `final.pt` at
+`checkpoints/vasu_60m/capability_cpt_d_control_10m_from_a_v1/final.pt` (SHA-256
+`3f513727ed0ea63a9b4aaf963c736f30b409e6901caddb50bf85c1db6922c384`) is the
+completed matched non-arithmetic comparison checkpoint from Candidate A final.
+It is not a preferred production base and does not authorize the Candidate D
+treatment. Candidate A final remains the preferred continued-pretraining base
+until treatment evaluation is complete.
+
 The production Candidate C runtime writes `latest.pt` for recovery,
 `final.pt` after schedule completion, and separate `best_fineweb.pt`,
 `best_wikimedia.pt`, and `best_arithmetic.pt` files. It does not use an opaque

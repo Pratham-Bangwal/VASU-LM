@@ -4,6 +4,15 @@
 
 ### Added
 
+- Added the formal Candidate D matched-control scientific decision record.
+  Candidate D control completed its 10M-token non-arithmetic continuation from
+  Candidate A final, reached 112/1000 arithmetic development exact accuracy
+  versus Candidate A's 117/1000, and preserved/slightly improved broad-language
+  and factual measures. It is accepted as the matched-control comparison
+  checkpoint only; Candidate D treatment remains unauthorized, Candidate A
+  final remains the preferred continued-pretraining base, and masked Alpaca v3
+  remains the preferred instruction-tuned assistant.
+
 - Added the formal Candidate A scientific decision record. Candidate A's final
   arithmetic treatment checkpoint is the preferred continued-pretraining base:
   it achieved 117/1000 development and 124/1000 held-out arithmetic exact
