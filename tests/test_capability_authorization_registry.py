@@ -175,6 +175,52 @@ def test_real_candidate_d_authorization_commit_is_accepted() -> None:
     )
 
 
+def test_d_treatment_authorization_allowlist_is_experiment_specific() -> None:
+    control = cpt.AUTHORIZATION_SCOPES["capability_cpt_d_control_10m_from_a_v1"]
+    treatment = cpt.AUTHORIZATION_SCOPES["capability_cpt_d_arithmetic_10m_from_a_v1"]
+    assert treatment.authorization_commit_files == (
+        "configs/authorization/capability_cpt_d_arithmetic_10m_from_a_v1.authorization.json",
+        "configs/authorization/capability_cpt_d_arithmetic_10m_from_a_v1.authorization.template.json",
+        "configs/training/capability_cpt_d_arithmetic_10m_from_a_v1.json",
+    )
+    assert set(control.authorization_commit_files).isdisjoint(
+        treatment.authorization_commit_files
+    )
+
+
+@pytest.mark.parametrize(
+    "changed, expected",
+    [
+        (
+            "configs/authorization/capability_cpt_d_arithmetic_10m_from_a_v1.authorization.json",
+            None,
+        ),
+        (
+            "configs/training/capability_cpt_d_control_10m_from_a_v1.json",
+            "unapproved files",
+        ),
+    ],
+)
+def test_d_treatment_commit_allowlist_rejects_wrong_files(
+    monkeypatch: pytest.MonkeyPatch, changed: str, expected: str | None
+) -> None:
+    scope = cpt.AUTHORIZATION_SCOPES["capability_cpt_d_arithmetic_10m_from_a_v1"]
+    monkeypatch.setattr(
+        cpt, "_git", lambda *args: "parent" if args[0] == "show" else changed
+    )
+    if expected is None:
+        cpt._require_repository_binding(
+            reviewed_commit="parent", current_commit="child", scope=scope,
+            config_record={},
+        )
+    else:
+        with pytest.raises(PermissionError, match=expected):
+            cpt._require_repository_binding(
+                reviewed_commit="parent", current_commit="child", scope=scope,
+                config_record={},
+            )
+
+
 def _d_treatment_control_binding() -> dict:
     return json.loads(
         Path(

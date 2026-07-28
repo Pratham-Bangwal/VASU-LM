@@ -71,6 +71,11 @@ AUTHORIZATION_SCOPES = MappingProxyType({
         False,
         "docs/CAPABILITY_CPT_D_CONTROL_10M_FROM_A_V1_DECISION.md",
         True,
+        (
+            "configs/authorization/capability_cpt_d_arithmetic_10m_from_a_v1.authorization.json",
+            "configs/authorization/capability_cpt_d_arithmetic_10m_from_a_v1.authorization.template.json",
+            "configs/training/capability_cpt_d_arithmetic_10m_from_a_v1.json",
+        ),
     ),
 })
 
