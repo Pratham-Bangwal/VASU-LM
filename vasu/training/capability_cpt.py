@@ -397,25 +397,44 @@ def require_training_authorization(config: dict[str, Any]) -> None:
             config_record=experiment_config,
         )
     if scope_definition.sequential_control_decision is not None:
-        decision_path = Path(scope_definition.sequential_control_decision)
-        try:
-            decision = json.loads(decision_path.read_text(encoding="utf-8"))
-        except (OSError, json.JSONDecodeError) as error:
-            raise PermissionError("Training is blocked because the control prerequisite is missing.") from error
-        required = {
-            "control_experiment_id": "capability_cpt_d_control_10m_from_a_v1",
-            "completion_status": "completed",
-            "evaluation_status": "reviewed",
-            "status": "approved",
-            "decision": "approved",
-        }
-        if any(decision.get(key) != value for key, value in required.items()):
-            raise PermissionError("Training is blocked because the control prerequisite is not approved.")
-        selected = decision.get("selected_checkpoint", {})
-        if not selected.get("path") or not selected.get("sha256"):
-            raise PermissionError("Training is blocked because the control checkpoint is unbound.")
-        if not decision.get("approver") or not decision.get("decision_date"):
-            raise PermissionError("Training is blocked because the control decision is unsigned.")
+        _require_control_decision_binding(record, scope_definition)
+
+
+def _require_control_decision_binding(
+    record: dict[str, Any], scope: AuthorizationScope
+) -> None:
+    """Validate the immutable matched-control decision before treatment launch."""
+
+    binding = record.get("control_decision")
+    if not isinstance(binding, dict):
+        raise PermissionError("Training is blocked because the control decision is unbound.")
+    expected_path = str(scope.sequential_control_decision).replace("\\", "/")
+    path_value = str(binding.get("path", "")).replace("\\", "/")
+    if path_value != expected_path:
+        raise PermissionError("Training is blocked because the control decision path differs.")
+    decision_path = Path(expected_path)
+    if not decision_path.is_file():
+        raise PermissionError("Training is blocked because the control prerequisite is missing.")
+    if binding.get("sha256") != sha256_file(decision_path):
+        raise PermissionError("Training is blocked because the control decision identity differs.")
+    required = {
+        "control_experiment_id": "capability_cpt_d_control_10m_from_a_v1",
+        "completion_status": "completed",
+        "evaluation_status": "reviewed",
+        "decision_status": "accepted",
+    }
+    if any(binding.get(key) != value for key, value in required.items()):
+        raise PermissionError("Training is blocked because the control prerequisite is not accepted.")
+    selected = binding.get("selected_checkpoint", {})
+    if selected != {
+        "path": "checkpoints/vasu_60m/capability_cpt_d_control_10m_from_a_v1/final.pt",
+        "sha256": "3f513727ed0ea63a9b4aaf963c736f30b409e6901caddb50bf85c1db6922c384",
+    }:
+        raise PermissionError("Training is blocked because the control checkpoint identity differs.")
+    if not binding.get("reviewer") or not binding.get("decision_date"):
+        raise PermissionError("Training is blocked because the control decision is unsigned.")
+    if not binding.get("reviewed_repository_commit"):
+        raise PermissionError("Training is blocked because the control decision commit is unbound.")
 
 
 def sha256_file_from_text(value: str) -> str:

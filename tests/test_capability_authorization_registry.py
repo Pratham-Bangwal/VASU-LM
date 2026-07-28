@@ -173,3 +173,35 @@ def test_real_candidate_d_authorization_commit_is_accepted() -> None:
         scope=scope,
         config_record={"expected_authorized_sha256_after_single_boolean_edit": "b0cf05d159d9e1893c999bb5572daaf94d640128a14b07b8898bcd501f7ab62c"},
     )
+
+
+def _d_treatment_control_binding() -> dict:
+    return json.loads(
+        Path(
+            "configs/authorization/"
+            "capability_cpt_d_arithmetic_10m_from_a_v1.authorization.template.json"
+        ).read_text(encoding="utf-8")
+    )
+
+
+def test_d_treatment_control_decision_binding_is_valid() -> None:
+    cpt._require_control_decision_binding(
+        _d_treatment_control_binding(),
+        cpt.AUTHORIZATION_SCOPES["capability_cpt_d_arithmetic_10m_from_a_v1"],
+    )
+
+
+@pytest.mark.parametrize("mutation", ["sha256", "checkpoint", "missing"])
+def test_d_treatment_rejects_invalid_control_decision_binding(mutation: str) -> None:
+    record = _d_treatment_control_binding()
+    if mutation == "sha256":
+        record["control_decision"]["sha256"] = "0" * 64
+    elif mutation == "checkpoint":
+        record["control_decision"]["selected_checkpoint"]["sha256"] = "0" * 64
+    else:
+        del record["control_decision"]
+    with pytest.raises(PermissionError):
+        cpt._require_control_decision_binding(
+            record,
+            cpt.AUTHORIZATION_SCOPES["capability_cpt_d_arithmetic_10m_from_a_v1"],
+        )
