@@ -7,6 +7,7 @@ import json
 import math
 from pathlib import Path
 import re
+import subprocess
 from typing import Any
 from types import MappingProxyType
 
@@ -39,6 +40,7 @@ class AuthorizationScope:
     candidate_a_authorized: bool
     sequential_control_decision: str | None = None
     enforce_current_git_state: bool = False
+    authorization_commit_files: tuple[str, ...] = ()
 
 
 AUTHORIZATION_SCOPES = MappingProxyType({
@@ -57,6 +59,11 @@ AUTHORIZATION_SCOPES = MappingProxyType({
         "configs/training/capability_cpt_d_control_10m_from_a_v1.json",
         False,
         enforce_current_git_state=True,
+        authorization_commit_files=(
+            "configs/authorization/capability_cpt_d_control_10m_from_a_v1.authorization.json",
+            "configs/authorization/capability_cpt_d_control_10m_from_a_v1.authorization.template.json",
+            "configs/training/capability_cpt_d_control_10m_from_a_v1.json",
+        ),
     ),
     "capability_cpt_d_arithmetic_10m_from_a_v1": AuthorizationScope(
         "capability_cpt_d_arithmetic_10m_from_a_v1",
@@ -381,10 +388,14 @@ def require_training_authorization(config: dict[str, Any]) -> None:
         raise PermissionError("Training is blocked because the optimizer budget differs.")
     if scope_definition.enforce_current_git_state:
         state = git_state()
-        if record.get("repository_commit") != state["commit"]:
-            raise PermissionError("Training is blocked because the repository commit differs.")
         if record.get("clean_tree_requirement") is not True or not state["clean"]:
             raise PermissionError("Training is blocked because the working tree is not clean.")
+        _require_repository_binding(
+            reviewed_commit=str(record.get("repository_commit", "")),
+            current_commit=str(state["commit"]),
+            scope=scope_definition,
+            config_record=experiment_config,
+        )
     if scope_definition.sequential_control_decision is not None:
         decision_path = Path(scope_definition.sequential_control_decision)
         try:
@@ -413,3 +424,52 @@ def sha256_file_from_text(value: str) -> str:
     import hashlib
 
     return hashlib.sha256(value.encode("utf-8")).hexdigest()
+
+
+def _git(*args: str) -> str:
+    try:
+        return subprocess.check_output(
+            ["git", *args], text=True, stderr=subprocess.DEVNULL
+        ).strip()
+    except (OSError, subprocess.CalledProcessError) as error:
+        raise PermissionError(
+            "Training is blocked because repository history is unavailable."
+        ) from error
+
+
+def _require_repository_binding(
+    *, reviewed_commit: str, current_commit: str, scope: AuthorizationScope,
+    config_record: dict[str, Any],
+) -> None:
+    """Accept exact review or one single-parent, authorization-only commit."""
+
+    if current_commit == reviewed_commit:
+        return
+    parents = _git("show", "-s", "--format=%P", current_commit).split()
+    if parents != [reviewed_commit]:
+        raise PermissionError("Training is blocked because the repository commit differs.")
+    changed = set(
+        filter(None, _git("diff", "--name-only", reviewed_commit, current_commit).splitlines())
+    )
+    allowed = set(scope.authorization_commit_files)
+    if not changed or not changed <= allowed:
+        raise PermissionError(
+            "Training is blocked because the authorization commit changes unapproved files."
+        )
+    config_path = scope.config_path
+    if config_path in changed:
+        before = _git("show", f"{reviewed_commit}:{config_path}")
+        after = _git("show", f"{current_commit}:{config_path}")
+        transitioned, count = re.subn(
+            r'("training_authorized"\s*:\s*)false', r"\1true", before
+        )
+        if count != 1 or transitioned != after:
+            raise PermissionError(
+                "Training is blocked because the authorization commit mutates the config."
+            )
+        if sha256_file_from_text(after) != config_record.get(
+            "expected_authorized_sha256_after_single_boolean_edit"
+        ):
+            raise PermissionError(
+                "Training is blocked because the authorization commit config hash differs."
+            )

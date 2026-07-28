@@ -137,3 +137,39 @@ def test_launch_path_never_relabels_registry_failure_as_boolean(
     with pytest.raises(SystemExit, match="authorization record is missing") as error:
         launcher.main()
     assert "training_authorized is false" not in str(error.value)
+
+
+def test_exact_reviewed_repository_commit_passes() -> None:
+    scope = cpt.AuthorizationScope("x", "config.json", False, enforce_current_git_state=True)
+    cpt._require_repository_binding(reviewed_commit="same", current_commit="same", scope=scope, config_record={})
+
+
+def test_direct_authorization_child_passes(monkeypatch: pytest.MonkeyPatch) -> None:
+    scope = cpt.AuthorizationScope("x", "config.json", False, enforce_current_git_state=True, authorization_commit_files=("auth.json",))
+    monkeypatch.setattr(cpt, "_git", lambda *args: "parent" if args[0] == "show" else "auth.json")
+    cpt._require_repository_binding(reviewed_commit="parent", current_commit="child", scope=scope, config_record={})
+
+
+@pytest.mark.parametrize("parents", ["other", "parent other", "parent\nignored"])
+def test_unrelated_grandchild_or_merge_fails(monkeypatch: pytest.MonkeyPatch, parents: str) -> None:
+    scope = cpt.AuthorizationScope("x", "config.json", False, enforce_current_git_state=True, authorization_commit_files=("auth.json",))
+    monkeypatch.setattr(cpt, "_git", lambda *args: parents)
+    with pytest.raises(PermissionError, match="repository commit differs"):
+        cpt._require_repository_binding(reviewed_commit="parent", current_commit="child", scope=scope, config_record={})
+
+
+def test_authorization_child_with_extra_file_fails(monkeypatch: pytest.MonkeyPatch) -> None:
+    scope = cpt.AuthorizationScope("x", "config.json", False, enforce_current_git_state=True, authorization_commit_files=("auth.json",))
+    monkeypatch.setattr(cpt, "_git", lambda *args: "parent" if args[0] == "show" else "auth.json\ncode.py")
+    with pytest.raises(PermissionError, match="unapproved files"):
+        cpt._require_repository_binding(reviewed_commit="parent", current_commit="child", scope=scope, config_record={})
+
+
+def test_real_candidate_d_authorization_commit_is_accepted() -> None:
+    scope = cpt.AUTHORIZATION_SCOPES["capability_cpt_d_control_10m_from_a_v1"]
+    cpt._require_repository_binding(
+        reviewed_commit="26137492bd6a52a08ea7e19b18d09932ecbfbbec",
+        current_commit="f7deff3dca38ea438a2e6aa988f838b0b1018490",
+        scope=scope,
+        config_record={"expected_authorized_sha256_after_single_boolean_edit": "b0cf05d159d9e1893c999bb5572daaf94d640128a14b07b8898bcd501f7ab62c"},
+    )
