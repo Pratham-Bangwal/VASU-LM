@@ -23,9 +23,13 @@ Exit criterion: an approved data-review record, not a training authorization.
 2. Add versioned output taxonomy: exact, incorrect, malformed, prompt leakage,
    truncation, and unanswered.
 3. Freeze cross-domain retention and repetition snapshots with hashes before
-   any future experiment.
+   any future experiment. A versioned, non-overwriting snapshot contract now
+   binds explicitly selected scalar metrics to source-report hashes and a
+   declared evaluation identity.
 4. Publish a human-readable dashboard summary derived from the read-only JSON
-   dashboard.
+   dashboard. Compatible frozen snapshots can now be rendered as a
+   deterministic text summary; it remains descriptive and cannot select or
+   promote a checkpoint.
 
 Exit criterion: one reproducible report can compare any two frozen evaluation
 snapshots without checkpoint selection or promotion logic.
@@ -40,6 +44,23 @@ python evaluation/compare_verified_arithmetic_runs.py `
 
 It rejects mismatched evaluator, split, manifest, tokenizer, generation, and
 per-example identity before calculating a deterministic bootstrap interval.
+
+Freeze and compare a cross-domain snapshot only after the evaluation suite,
+split, parser, and generation identity have been declared:
+
+```powershell
+python evaluation/freeze_evaluation_snapshot.py `
+  --label <checkpoint-label> `
+  --source <name>=<versioned-result.json> `
+  --metric <metric-name>=<name>:<dot.path.to.numeric.metric> `
+  --identity suite=<suite-id> --identity split=<split-id> `
+  --identity generation=<generation-id> --identity parser=<parser-id> `
+  --output <new-snapshot.json>
+
+python evaluation/compare_frozen_evaluation_snapshots.py `
+  --baseline <baseline-snapshot.json> `
+  --candidate <candidate-snapshot.json>
+```
 
 ## Phase 3 — Measured performance work
 
