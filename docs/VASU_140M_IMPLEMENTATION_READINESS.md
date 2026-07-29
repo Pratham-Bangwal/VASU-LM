@@ -1,0 +1,91 @@
+# VASU-140M Implementation Readiness
+
+Status: configuration and identity contract complete; execution, data,
+experiment, and training gates remain closed.
+
+## Why this layer exists
+
+The VASU-140M proposal changes model width, depth, and context length. Treating
+it as another informal `ModelConfig` literal would allow config drift,
+ambiguous checkpoint selection, and accidental reuse of incompatible 60M
+artifacts. The additive family layer gives the proposed model a strict,
+versioned identity without changing any existing persistent interface.
+
+## Implemented contract
+
+`vasu_140m_v1` is bound to:
+
+| Field | Value |
+|---|---:|
+| Vocabulary | 32,000 |
+| Context | 512 |
+| Width | 768 |
+| Heads | 12 |
+| Layers | 12 |
+| SwiGLU hidden width | 3,072 |
+| Dropout | 0.1 |
+| RoPE theta | 10,000.0 |
+| Linear bias | false |
+| Exact parameters | 137,841,408 |
+| Config SHA-256 | `29e9bafdffbbc632b1b6f006818b1470e6dbc20f21841aa33e625a0f04159059` |
+| Family SHA-256 | `72f5a98d7d3f307c8bebf4fd6c21b1b8642262a37f59070d436c0de54a3af99b` |
+
+The config digest covers every `ModelConfig` field in canonical JSON. The
+family digest additionally covers identity schema
+`vasu.model-family-identity.v1` and the exact family ID. Config validation
+rejects non-positive dimensions, non-divisible attention shapes, invalid
+dropout/RoPE values, and non-boolean bias.
+
+The registry also records the unchanged `vasu_31m_v1` and `vasu_60m_v1`
+contracts. It exposes immutable family entries and returns fresh mutable
+configs, preventing caller mutation from changing a registered identity.
+
+## Read-only preflight
+
+Run:
+
+```powershell
+python scripts/preflight_vasu_140m.py
+```
+
+The command creates the model on PyTorch's meta device, so it allocates no
+parameter storage and performs no forward, backward, optimizer, dataset,
+checkpoint, or training operation. It verifies:
+
+- exact config and family identity;
+- exact parameter count;
+- 64-dimensional attention heads;
+- tied token-embedding/output weights;
+- complete meta-device construction.
+
+Its JSON always reports `training_authorized: false` and lists every remaining
+gate.
+
+## Compatibility
+
+- Existing VASU-31M and VASU-60M factories and defaults are unchanged.
+- Existing checkpoint state keys and checkpoint containers are unchanged.
+- Existing checkpoints remain loadable by their matching configurations.
+- No VASU-31M/60M checkpoint or optimizer state is loadable into VASU-140M.
+- The existing 32k tokenizer and raw token IDs remain compatible.
+- Existing 257-token records and masks remain valid for current workflows but
+  are not a 512-context VASU-140M release.
+- Exact-resume evidence for existing workflows is unchanged; it does not
+  qualify VASU-140M.
+
+## Remaining fail-closed gates
+
+1. Bounded CPU forward/backward and cache-parity qualification.
+2. Matched CUDA memory, throughput, thermal, and checkpoint-I/O evidence.
+3. VASU-140M checkpoint round-trip and explicit wrong-family rejection.
+4. Exact mid-epoch resume equivalence for the new family.
+5. Independently reviewed, deterministic 513-token data and shifted-mask
+   releases with hashes and split isolation.
+6. Frozen pretraining, factual, repetition, arithmetic, and robustness
+   evaluation baselines.
+7. A written scientific plan, control, promotion/rejection criteria, clean
+   reviewed commit, successful full preflight, and exact hash-bound human
+   authorization.
+
+None of this work authorizes data generation, training configuration creation,
+checkpoint conversion, or an optimizer update.

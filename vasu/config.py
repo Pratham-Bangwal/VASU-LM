@@ -33,6 +33,21 @@ def get_vasu_60m_config() -> ModelConfig:
     )
 
 
+def get_vasu_140m_config() -> ModelConfig:
+    """Return the isolated VASU-140M-v1 model configuration."""
+    return ModelConfig(
+        vocab_size=32000,
+        max_seq_len=512,
+        dim=768,
+        n_heads=12,
+        n_layers=12,
+        hidden_dim=3072,
+        dropout=0.1,
+        rope_theta=10000.0,
+        bias=False,
+    )
+
+
 @dataclass
 class TrainConfig:
 

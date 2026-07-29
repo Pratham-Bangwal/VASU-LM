@@ -234,6 +234,18 @@ variant, and defer KV-cache adoption pending a matched CUDA benchmark. See
 
 Compatibility remains unchanged: KV cache does not alter architecture parameters, trained weights, tokenizer, prompt templates, datasets, training behavior, model-state keys, or checkpoint schema.
 
+The Phase 4 architecture decision and implementation-readiness boundary are
+documented in `docs/VASU_140M_FAMILY_PROPOSAL.md` and
+`docs/VASU_140M_IMPLEMENTATION_READINESS.md`. The isolated
+`vasu_140m_v1` configuration (768 width, 12 layers, 12 heads, 3072 SwiGLU
+width, 512-token context) is now registered under a canonical config/family
+fingerprint and its exact 137,841,408-parameter contract passes meta-device
+construction. VASU-31M/60M defaults, checkpoint containers, tokenizer, data,
+masks, training, and resume behavior are unchanged. Existing checkpoints are
+not tensor-compatible with this family. CPU/CUDA execution, cache,
+checkpoint/resume, 513-token data, and frozen evaluation gates remain open;
+training is not authorized.
+
 Verified completed work:
 
 - architecture planning completed;

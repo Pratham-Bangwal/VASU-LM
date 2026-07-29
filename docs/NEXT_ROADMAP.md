@@ -84,14 +84,27 @@ Exit criterion: a measured improvement or a documented rejection with evidence.
 
 ## Phase 4 — Next model-family proposal
 
-1. Use evaluation and performance evidence to decide whether the current 60M
-   architecture should continue or a new family is justified.
-2. If a new family is proposed, specify parameter budget, context length,
-   tokenizer compatibility, initialization, memory estimate, migration plan,
-   and fresh smoke/resume/evaluation gates.
-3. Do not alter VASU-60M checkpoint-facing architecture in place.
+The initial recommendation is documented in
+[`VASU_140M_FAMILY_PROPOSAL.md`](VASU_140M_FAMILY_PROPOSAL.md). It proposes an
+isolated 140M family. The additive configuration, immutable family identity,
+exact parameter contract, and meta-device construction preflight are complete;
+training remains unauthorized. See
+[`VASU_140M_IMPLEMENTATION_READINESS.md`](VASU_140M_IMPLEMENTATION_READINESS.md).
 
-Exit criterion: a reviewed architecture proposal; no training is implied.
+1. **Complete:** use evaluation and performance evidence to select an isolated
+   capacity/context family rather than changing VASU-60M in place.
+2. **Complete:** freeze its dimensions, parameter budget, context length,
+   tokenizer boundary, memory estimate, migration plan, identity fingerprint,
+   and remaining gates.
+3. **Next:** run bounded CPU forward/backward and cache-parity qualification.
+4. **CUDA-gated:** measure peak memory, throughput, thermals, checkpoint I/O,
+   serialization, and exact resume before any experiment plan.
+5. **Data-gated:** independently specify and review isolated 513-token releases;
+   do not repack or generate them as part of architecture readiness.
+
+Exit criterion: the implementation-readiness contract is complete. Promotion
+to training planning requires every remaining gate and a separate decision;
+no training is implied.
 
 ## Phase 5 — Open-source maturity
 

@@ -19,25 +19,35 @@ a scientifically different validation or data configuration.
 
 ## Overview
 
-VASU is a decoder-only autoregressive Transformer implemented from scratch in PyTorch. VASU-31M and VASU-60M share the same module design and tokenizer, while using different tensor dimensions.
+VASU is a decoder-only autoregressive Transformer implemented from scratch in
+PyTorch. VASU-31M, VASU-60M, and the implementation-readiness-only VASU-140M-v1
+family share the same module design and tokenizer while using different tensor
+dimensions. VASU-140M-v1 is not training-authorized.
 
 ## Model configurations
 
-| Setting | VASU-31M | VASU-60M |
-| --- | ---: | ---: |
-| Vocabulary size | 32,000 | 32,000 |
-| Maximum sequence length | 256 | 256 |
-| Model dimension | 384 | 512 |
-| Layers | 8 | 10 |
-| Attention heads | 6 | 8 |
-| Head dimension | 64 | 64 |
-| SwiGLU hidden dimension | 1,536 | 2,048 |
-| Dropout | 0.1 | 0.1 |
-| RoPE theta | 10,000.0 | 10,000.0 |
-| Linear bias | False | False |
-| Parameter count | approximately 31.17M | 58,337,792 |
+| Setting | VASU-31M | VASU-60M | VASU-140M-v1 |
+| --- | ---: | ---: | ---: |
+| Vocabulary size | 32,000 | 32,000 | 32,000 |
+| Maximum sequence length | 256 | 256 | 512 |
+| Model dimension | 384 | 512 | 768 |
+| Layers | 8 | 10 | 12 |
+| Attention heads | 6 | 8 | 12 |
+| Head dimension | 64 | 64 | 64 |
+| SwiGLU hidden dimension | 1,536 | 2,048 | 3,072 |
+| Dropout | 0.1 | 0.1 | 0.1 |
+| RoPE theta | 10,000.0 | 10,000.0 | 10,000.0 |
+| Linear bias | False | False | False |
+| Parameter count | 31,168,896 | 58,337,792 | 137,841,408 |
 
-The VASU-31M default configuration remains unchanged. VASU-60M is selected through an opt-in configuration factory.
+The VASU-31M default configuration remains unchanged. VASU-60M and VASU-140M
+are selected through separate opt-in configuration factories.
+
+The immutable `vasu.model.families` registry binds each versioned family ID to
+all `ModelConfig` fields, an exact expected parameter count, a canonical
+configuration SHA-256, and a family SHA-256. Callers receive a fresh config;
+mutating it cannot change the registry. Declaring one family with another
+family's config fails closed before model or checkpoint work.
 
 ## Shared architectural features
 
@@ -60,7 +70,9 @@ x = x + swiglu_mlp(rmsnorm(x))
 
 ### Causal self-attention
 
-Attention uses PyTorch scaled-dot-product attention with causal behavior. VASU-31M uses six 64-dimensional heads; VASU-60M uses eight 64-dimensional heads.
+Attention uses PyTorch scaled-dot-product attention with causal behavior.
+VASU-31M uses six 64-dimensional heads, VASU-60M uses eight, and VASU-140M-v1
+uses twelve.
 
 ### Rotary positional embeddings
 
@@ -116,7 +128,11 @@ KV cache is ephemeral inference state. It is not registered as a module, buffer,
 
 ### Tokenizer and datasets
 
-Both models use the same 32,000-token tokenizer. Existing processed FineWeb, Alpaca, and UltraChat token IDs remain compatible because changing model width and depth does not change token IDs. Response-mask files also remain compatible with the dataset pipeline.
+All families use the same 32,000-token tokenizer, so token IDs remain
+compatible. Existing 257-token processed records and response masks remain
+compatible with VASU-31M/60M but do not satisfy VASU-140M-v1's proposed
+512-token training contract. Any future 140M release must use isolated
+513-token records and newly aligned shifted-target masks.
 
 ### Changes that break direct loading
 
