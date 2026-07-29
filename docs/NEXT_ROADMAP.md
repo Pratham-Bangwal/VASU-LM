@@ -1,0 +1,60 @@
+# VASU Next Roadmap
+
+Status: planning only. This roadmap does not authorize data generation,
+training configuration, checkpoint resume, or model training.
+
+## Phase 1 — Candidate E decision gate
+
+1. Obtain an independent decision on
+   `CANDIDATE_E_INDEPENDENT_REVIEW_DECISION.md`.
+2. If accepted, implement and review the new logical-data generator against
+   the frozen ID/range/template specification.
+3. Run deterministic regeneration, split-isolation, tokenizer-boundary,
+   mask-alignment, and replay-accounting checks.
+4. Require a separate immutable-release review before creating a production
+   Candidate E release.
+
+Exit criterion: an approved data-review record, not a training authorization.
+
+## Phase 2 — Evaluation v3
+
+1. Integrate paired bootstrap intervals into arithmetic treatment/control
+   reports.
+2. Add versioned output taxonomy: exact, incorrect, malformed, prompt leakage,
+   truncation, and unanswered.
+3. Freeze cross-domain retention and repetition snapshots with hashes before
+   any future experiment.
+4. Publish a human-readable dashboard summary derived from the read-only JSON
+   dashboard.
+
+Exit criterion: one reproducible report can compare any two frozen evaluation
+snapshots without checkpoint selection or promotion logic.
+
+## Phase 3 — Measured performance work
+
+1. Benchmark preallocated KV cache versus uncached and dynamic-cache decoding
+   on the existing parity prompts.
+2. Profile data-loader, packing, host-to-device transfer, and model-step time
+   separately using no-update benchmarks.
+3. Apply only improvements that preserve outputs, checkpoint keys, tokenizer,
+   and schedule identity; re-run parity and regression tests after each.
+
+Exit criterion: a measured improvement or a documented rejection with evidence.
+
+## Phase 4 — Next model-family proposal
+
+1. Use evaluation and performance evidence to decide whether the current 60M
+   architecture should continue or a new family is justified.
+2. If a new family is proposed, specify parameter budget, context length,
+   tokenizer compatibility, initialization, memory estimate, migration plan,
+   and fresh smoke/resume/evaluation gates.
+3. Do not alter VASU-60M checkpoint-facing architecture in place.
+
+Exit criterion: a reviewed architecture proposal; no training is implied.
+
+## Phase 5 — Open-source maturity
+
+1. Add contributor guidance, reproducibility checklist, and release notes.
+2. Keep CI green across supported Python versions.
+3. Maintain status, architecture, dataset lineage, and experiment decisions as
+   changes land.
