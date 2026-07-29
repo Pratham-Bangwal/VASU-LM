@@ -1,8 +1,10 @@
 # Candidate D matched sequential pair
 
-Status: prepared and unauthorized. Control must complete, pass integrity and
-evaluation review, and receive its own decision before treatment can be
-considered for authorization.
+Status: completed; treatment rejected for promotion. The control completed,
+passed integrity and evaluation review, and was accepted as the matched
+comparison checkpoint. The treatment then completed and was rejected under the
+predeclared arithmetic-promotion criteria; see
+`CAPABILITY_CPT_D_ARITHMETIC_10M_FROM_A_V1_DECISION.md`.
 
 Both experiments start from Candidate A final:
 `checkpoints/vasu_60m/capability_cpt_a_factual_20m_v2/final.pt`, SHA-256
@@ -38,5 +40,5 @@ raise at least one of addition/subtraction/multiplication/exact-division above
 the matched control, within 2 points factual accuracy, and within 2 points of
 the control repetition rate. Malformed-rate reduction alone is insufficient.
 
-Candidate B remains unauthorized. This plan neither authorizes training nor
-promotes a checkpoint.
+Candidate B remains unauthorized. This completed plan authorizes neither a
+follow-on training run nor promotion of the treatment checkpoint.
