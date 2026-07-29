@@ -43,6 +43,11 @@
       "path": "checkpoints/vasu_60m/capability_cpt_a_factual_20m_v2/final.pt",
       "model_config": "vasu_60m",
       "prompt_format": "plain"
+    },
+    "vasu_60m_capability_cpt_d_arithmetic_10m_from_a_v1": {
+      "path": "checkpoints/vasu_60m/capability_cpt_d_arithmetic_10m_from_a_v1/final.pt",
+      "model_config": "vasu_60m",
+      "prompt_format": "plain"
     }
   },
   "generation": {

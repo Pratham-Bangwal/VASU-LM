@@ -48,6 +48,22 @@ base until treatment evaluation is complete, and masked Alpaca v3 remains the
 preferred instruction-tuned assistant. See
 `docs/CAPABILITY_CPT_D_CONTROL_10M_FROM_A_V1_DECISION.md`.
 
+Candidate D treatment (`capability_cpt_d_arithmetic_10m_from_a_v1`) completed
+its matched 10,002,432-token continuation from Candidate A final, including
+explicit safe resumes after disk and thermal safeguards. Its final checkpoint
+is `checkpoints/vasu_60m/capability_cpt_d_arithmetic_10m_from_a_v1/final.pt`
+with SHA-256 `c17f9a481d6ae235f4264cbe9ca2775529291da303ff1e38a2d1d3ac8258aaa2`.
+Promotion is rejected: arithmetic development was 112/1000 and held-out
+arithmetic was 121/1000, below Candidate A's 124/1000 and far below the
+predeclared +5-point requirement. Core arithmetic operations remained at 0%
+held-out exact accuracy. FineWeb/Wikimedia retention stayed within the
+matched-control limits, but retention cannot compensate for the failed primary
+capability objective. Candidate A final remains the preferred continued-
+pretraining base; Candidate D treatment artifacts are retained only as a
+rejected experimental record. `training_authorized` is false and Candidate B
+remains unauthorized. See
+`docs/CAPABILITY_CPT_D_ARITHMETIC_10M_FROM_A_V1_DECISION.md`.
+
 ## Capability-CPT schedule status
 
 The generalized deterministic N-source schedule layer and Candidates A/B/C
