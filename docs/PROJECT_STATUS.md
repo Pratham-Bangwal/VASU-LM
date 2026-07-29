@@ -69,6 +69,13 @@ The subsequent read-only training-signal audit and non-authorizing next
 hypothesis are recorded in
 `docs/CANDIDATE_D_TRAINING_SIGNAL_AUDIT_AND_NEXT_HYPOTHESIS.md`.
 
+Candidate E is the proposed matched step-supervision follow-up. Its
+non-authorizing preparation package includes paired target/mask compilation,
+immutable release tooling, split and budget validation, frozen evaluation
+gates, and an independent-review packet. No Candidate E production dataset,
+schedule, training configuration, authorization, checkpoint, or training run
+exists. See `docs/CANDIDATE_E_INDEPENDENT_REVIEW_PACKET.md`.
+
 ## Capability-CPT schedule status
 
 The generalized deterministic N-source schedule layer and Candidates A/B/C
