@@ -63,6 +63,8 @@ pretraining base; Candidate D treatment artifacts are retained only as a
 rejected experimental record. `training_authorized` is false and Candidate B
 remains unauthorized. See
 `docs/CAPABILITY_CPT_D_ARITHMETIC_10M_FROM_A_V1_DECISION.md`.
+The follow-up read-only operation-family analysis is recorded in
+`docs/CANDIDATE_D_ARITHMETIC_TREATMENT_ERROR_ANALYSIS.md`.
 
 ## Capability-CPT schedule status
 
