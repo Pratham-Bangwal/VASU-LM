@@ -65,6 +65,9 @@ remains unauthorized. See
 `docs/CAPABILITY_CPT_D_ARITHMETIC_10M_FROM_A_V1_DECISION.md`.
 The follow-up read-only operation-family analysis is recorded in
 `docs/CANDIDATE_D_ARITHMETIC_TREATMENT_ERROR_ANALYSIS.md`.
+The subsequent read-only training-signal audit and non-authorizing next
+hypothesis are recorded in
+`docs/CANDIDATE_D_TRAINING_SIGNAL_AUDIT_AND_NEXT_HYPOTHESIS.md`.
 
 ## Capability-CPT schedule status
 
