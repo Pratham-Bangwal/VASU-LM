@@ -23,7 +23,7 @@ training run.
 | No implicit data creation | The release constructor has no generator/default source paths; repository scan found no Candidate E processed release | Pass |
 | No Candidate E schedule/config/training | Repository scan found no Candidate E configuration; all manifests written by the constructor set `training_authorized: false` | Pass |
 | Tokenizer boundary and record capacity | [reference tokenizer audit](CANDIDATE_E_REFERENCE_TOKENIZER_AUDIT.md): 34,000 reference records compiled; maximum treatment length 59 of 257 | Pass (reference envelope only) |
-| Matched budget and evaluation/safety gates | [budget and evaluation protocol](CANDIDATE_E_BUDGET_AND_EVALUATION_PROTOCOL.md) | Pass |
+| Matched budget and evaluation/safety gates | [budget and evaluation protocol](CANDIDATE_E_BUDGET_AND_EVALUATION_PROTOCOL.md) plus `validate_matched_budget` and focused tests | Pass |
 
 Automated evidence: after the release constructor was added, the full
 repository test suite completed with **1032 passed, 8 skipped**. Focused tests
