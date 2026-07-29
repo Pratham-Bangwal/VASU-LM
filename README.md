@@ -17,7 +17,11 @@ VASU-31M completed its experimental cycle: FineWeb pretraining, Alpaca tuning, m
 
 ### VASU-60M
 
-VASU-60M is the active model and is still in base pretraining. It is not an instruction-tuned assistant.
+VASU-60M base training is complete. Candidate A final is the preferred
+continued-pretraining research base; masked Alpaca v3 is the preferred
+instruction-tuned assistant checkpoint. Candidate D's arithmetic treatment was
+evaluated and rejected for promotion. Candidate E is preparation-only and has
+no production data release or training authorization.
 
 | Setting | Value |
 | --- | ---: |
@@ -32,15 +36,8 @@ VASU-60M is the active model and is still in base pretraining. It is not an inst
 | RoPE theta | 10,000.0 |
 | Linear bias | False |
 
-Current preserved milestone:
-
-`checkpoints/vasu_60m/milestones/fineweb_step_54060.pt`
-
-- Global step: 54,060
-- Train loss: 3.616769
-- Validation loss: 3.613814
-- Next target: 100,000 optimizer steps
-- Instruction tuning: not started
+See [Project Status](docs/PROJECT_STATUS.md) for checkpoint identities and
+experiment decisions.
 
 ## Architecture
 
@@ -91,15 +88,21 @@ docs/          Architecture, status, training history, and roadmap
 checkpoints/   Local training state and preserved milestones (not for Git)
 ```
 
-## Development status
+## Reproducibility and development
 
-Completed: VASU-31M experiment cycle, VASU-60M planning and smoke tests, resumable thermal-safe block training, atomic checkpointing, retention, and base milestone evaluation.
+The repository includes a read-only research platform for artifact lineage,
+evaluation comparison, configuration preflight, Candidate E review evidence,
+and a repository dashboard. It never authorizes or starts training.
 
-In progress: VASU-60M FineWeb pretraining from step 54,060 toward step 100,000.
+```powershell
+python scripts/build_vasu_lineage_index.py
+python scripts/report_vasu_research_dashboard.py
+python scripts/report_candidate_e_governance_preflight.py
+python -m pytest -q
+```
 
-Pending: step-100,000 evaluation and the decision gate for controlled VASU-60M instruction tuning.
-
-See [Project Status](docs/PROJECT_STATUS.md), [Architecture](docs/ARCHITECTURE.md), [Training Log](docs/TRAINING_LOG.md), and [Roadmap](docs/ROADMAP.md).
+GitHub Actions runs Ruff and the full test suite on pushes and pull requests.
+See [Project Status](docs/PROJECT_STATUS.md), [Engineering Program](docs/ENGINEERING_PROGRAM.md), [Research Platform](docs/RESEARCH_PLATFORM.md), [Architecture](docs/ARCHITECTURE.md), and [Roadmap](docs/ROADMAP.md).
 
 ## License and use
 
