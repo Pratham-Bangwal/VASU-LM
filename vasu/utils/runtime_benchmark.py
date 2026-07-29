@@ -65,6 +65,7 @@ def create_runtime_benchmark(
     raw_report: Path,
     workload_identity: Mapping[str, str],
     environment_identity: Mapping[str, str],
+    variant_identity: Mapping[str, str],
     metrics: Mapping[str, str],
 ) -> dict[str, Any]:
     """Bind selected raw-report metrics to workload and environment identity."""
@@ -88,6 +89,7 @@ def create_runtime_benchmark(
         "environment_identity": _require_identity(
             "environment identity", environment_identity
         ),
+        "variant_identity": _require_identity("variant identity", variant_identity),
         "metrics": {
             name: {"path": path, "value": _numeric_path(raw_payload, path)}
             for name, path in sorted(metrics.items())
@@ -95,27 +97,33 @@ def create_runtime_benchmark(
     }
 
 
-def write_runtime_benchmark(*, output: Path, benchmark: Mapping[str, Any]) -> None:
-    """Atomically create a benchmark artifact without replacing existing evidence."""
+def _write_new_json(*, output: Path, payload: Mapping[str, Any], artifact: str) -> None:
+    """Atomically create a JSON artifact without replacing existing evidence."""
 
     if output.exists():
-        raise FileExistsError(f"refusing to overwrite existing benchmark: {output}")
+        raise FileExistsError(f"refusing to overwrite existing {artifact}: {output}")
     output.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.NamedTemporaryFile(
         mode="w", encoding="utf-8", dir=output.parent, delete=False
     ) as handle:
         temporary_path = Path(handle.name)
-        handle.write(json.dumps(benchmark, indent=2, sort_keys=True) + "\n")
+        handle.write(json.dumps(payload, indent=2, sort_keys=True) + "\n")
         handle.flush()
         os.fsync(handle.fileno())
     try:
         os.link(temporary_path, output)
     except FileExistsError as error:
         raise FileExistsError(
-            f"refusing to overwrite existing benchmark: {output}"
+            f"refusing to overwrite existing {artifact}: {output}"
         ) from error
     finally:
         temporary_path.unlink(missing_ok=True)
+
+
+def write_runtime_benchmark(*, output: Path, benchmark: Mapping[str, Any]) -> None:
+    """Atomically create a benchmark artifact without replacing existing evidence."""
+
+    _write_new_json(output=output, payload=benchmark, artifact="benchmark")
 
 
 def _read_benchmark(path: Path) -> dict[str, Any]:
@@ -124,6 +132,10 @@ def _read_benchmark(path: Path) -> dict[str, Any]:
         raise ValueError(f"not a supported runtime benchmark: {path}")
     if benchmark.get("read_only") is not True:
         raise ValueError(f"runtime benchmark must declare read_only=true: {path}")
+    if not isinstance(benchmark.get("variant_identity"), dict) or not benchmark[
+        "variant_identity"
+    ]:
+        raise ValueError(f"runtime benchmark has no variant identity: {path}")
     if not isinstance(benchmark.get("metrics"), dict) or not benchmark["metrics"]:
         raise ValueError(f"runtime benchmark has no metrics: {path}")
     return benchmark
@@ -182,10 +194,12 @@ def compare_runtime_benchmarks(*, baseline: Path, candidate: Path) -> dict[str, 
         "baseline": {
             "label": baseline_report["label"],
             "sha256": sha256_file(baseline),
+            "variant_identity": baseline_report.get("variant_identity"),
         },
         "candidate": {
             "label": candidate_report["label"],
             "sha256": sha256_file(candidate),
+            "variant_identity": candidate_report.get("variant_identity"),
         },
         "metrics": comparisons,
     }
@@ -210,6 +224,12 @@ def render_runtime_comparison(report: Mapping[str, Any]) -> str:
     lines.extend(
         f"  {key}: {value}" for key, value in report["environment_identity"].items()
     )
+    lines.append("Measured variants:")
+    for name in ("baseline", "candidate"):
+        variant = report[name]["variant_identity"]
+        lines.append(
+            f"  {name}: " + ", ".join(f"{key}={value}" for key, value in variant.items())
+        )
     lines.append("Metrics:")
     for metric in report["metrics"]:
         relative = (
@@ -227,3 +247,11 @@ def render_runtime_comparison(report: Mapping[str, Any]) -> str:
         "authorize training or select a checkpoint."
     )
     return "\n".join(lines)
+
+
+def write_runtime_comparison(*, output: Path, comparison: Mapping[str, Any]) -> None:
+    """Atomically persist a derived comparison without overwriting evidence."""
+
+    if comparison.get("format_version") != RUNTIME_COMPARISON_FORMAT_VERSION:
+        raise ValueError("unsupported runtime benchmark comparison report")
+    _write_new_json(output=output, payload=comparison, artifact="comparison")

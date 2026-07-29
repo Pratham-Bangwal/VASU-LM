@@ -14,6 +14,7 @@ from vasu.utils.runtime_benchmark import (
     create_runtime_benchmark,
     render_runtime_comparison,
     write_runtime_benchmark,
+    write_runtime_comparison,
 )
 
 
@@ -35,10 +36,16 @@ def test_runtime_benchmarks_are_identity_bound_and_non_overwriting(tmp_path: Pat
         "environment_identity": {"device": "cuda:0", "torch": "2.x"},
     }
     baseline = create_runtime_benchmark(
-        label="baseline", raw_report=baseline_raw, **common
+        label="baseline",
+        raw_report=baseline_raw,
+        variant_identity={"workers": "0"},
+        **common,
     )
     candidate = create_runtime_benchmark(
-        label="candidate", raw_report=candidate_raw, **common
+        label="candidate",
+        raw_report=candidate_raw,
+        variant_identity={"workers": "2"},
+        **common,
     )
     baseline_path, candidate_path = tmp_path / "baseline.json", tmp_path / "candidate.json"
     write_runtime_benchmark(output=baseline_path, benchmark=baseline)
@@ -47,6 +54,11 @@ def test_runtime_benchmarks_are_identity_bound_and_non_overwriting(tmp_path: Pat
     assert report["metrics"][0]["delta"] == -0.5
     assert report["metrics"][0]["relative_delta"] == -0.25
     assert "(-25.00%)" in render_runtime_comparison(report)
+    assert report["candidate"]["variant_identity"] == {"workers": "2"}
+    comparison_path = tmp_path / "comparison.json"
+    write_runtime_comparison(output=comparison_path, comparison=report)
+    with pytest.raises(FileExistsError, match="overwrite"):
+        write_runtime_comparison(output=comparison_path, comparison=report)
     with pytest.raises(FileExistsError, match="overwrite"):
         write_runtime_benchmark(output=baseline_path, benchmark=baseline)
 
@@ -59,6 +71,7 @@ def test_runtime_benchmark_rejects_environment_mismatch(tmp_path: Path) -> None:
         "raw_report": raw,
         "metrics": {"step_seconds": "timing.seconds"},
         "workload_identity": {"batch_size": "2"},
+        "variant_identity": {"optimizer": "standard"},
     }
     baseline = create_runtime_benchmark(
         label="baseline", environment_identity={"device": "cpu"}, **common
@@ -90,6 +103,8 @@ def test_runtime_benchmark_commands_support_direct_invocation(tmp_path: Path) ->
         "batch=1",
         "--environment",
         "device=cpu",
+        "--variant",
+        "workers=0",
     ]
     for label, output in (("baseline", baseline), ("candidate", candidate)):
         subprocess.run(
@@ -106,9 +121,12 @@ def test_runtime_benchmark_commands_support_direct_invocation(tmp_path: Path) ->
             str(baseline),
             "--candidate",
             str(candidate),
+            "--output",
+            str(tmp_path / "comparison.json"),
         ],
         check=True,
         capture_output=True,
         text=True,
     )
     assert "VASU runtime benchmark comparison" in result.stdout
+    assert (tmp_path / "comparison.json").is_file()

@@ -70,9 +70,13 @@ raw-report hashes; comparisons fail closed across incompatible workloads or
 hardware.
 
 1. Benchmark preallocated KV cache versus uncached and dynamic-cache decoding
-   on the existing parity prompts.
+   on the existing parity prompts. This remains CUDA-gated; do not infer a
+   throughput decision from CPU-only evidence.
 2. Profile data-loader, packing, host-to-device transfer, and model-step time
-   separately using no-update benchmarks.
+   separately using no-update benchmarks. The CPU FineWeb loader subtask is
+   complete: `workers=0` was retained, `workers=2` was rejected locally, and
+   requested pinning showed no meaningful CPU-only effect. See
+   [`PERFORMANCE_PHASE3_CPU_LOADER_20260730.md`](PERFORMANCE_PHASE3_CPU_LOADER_20260730.md).
 3. Apply only improvements that preserve outputs, checkpoint keys, tokenizer,
    and schedule identity; re-run parity and regression tests after each.
 

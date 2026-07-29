@@ -14,12 +14,18 @@ Every `vasu_runtime_benchmark_v1` artifact binds its raw report SHA-256 to:
   implementation, data-source identity, and iteration count);
 - environment identity (for example device, PyTorch version, CUDA version, and
   operating-system/runtime setting); and
+- a measured variant (the intentionally changed setting, such as worker count,
+  pinned memory, cache implementation, or optimizer backend); and
 - explicitly named numeric metrics.
 
 The comparison command fails closed when benchmark kind, workload identity,
 environment identity, metric names, or metric paths differ. This prevents a
 CPU timing, different batch shape, or different generation workload from being
 reported as a performance regression or improvement.
+
+The variant is reported for each side but is not required to match. This is
+what permits a controlled comparison of one explicitly declared performance
+setting while preserving the workload and environment contract.
 
 ## Workflow
 
@@ -41,11 +47,13 @@ python scripts/profiling/create_runtime_benchmark.py `
   --workload dataset=<dataset-id> --workload batch_size=<batch-size> `
   --workload sequence_length=<sequence-length> `
   --environment device=<device> --environment torch=<torch-version> `
+  --variant workers=<worker-count> --variant pin_memory=<true-or-false> `
   --output evaluation/results/<new-runtime-benchmark>.json
 
 python scripts/profiling/compare_runtime_benchmarks.py `
   --baseline <baseline-runtime-benchmark>.json `
-  --candidate <candidate-runtime-benchmark>.json
+  --candidate <candidate-runtime-benchmark>.json `
+  --output evaluation/results/<new-runtime-comparison>.json
 ```
 
 The comparison output is descriptive only. A performance change must still be

@@ -14,6 +14,7 @@ if str(PROJECT_ROOT) not in sys.path:
 from vasu.utils.runtime_benchmark import (  # noqa: E402
     compare_runtime_benchmarks,
     render_runtime_comparison,
+    write_runtime_comparison,
 )
 
 
@@ -22,6 +23,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--baseline", type=Path, required=True)
     parser.add_argument("--candidate", type=Path, required=True)
     parser.add_argument("--format", choices=("text", "json"), default="text")
+    parser.add_argument("--output", type=Path)
     return parser.parse_args()
 
 
@@ -30,6 +32,8 @@ def main() -> None:
     report = compare_runtime_benchmarks(
         baseline=args.baseline, candidate=args.candidate
     )
+    if args.output is not None:
+        write_runtime_comparison(output=args.output, comparison=report)
     if args.format == "json":
         print(json.dumps(report, indent=2, sort_keys=True))
     else:

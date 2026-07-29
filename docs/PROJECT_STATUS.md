@@ -222,6 +222,16 @@ Current phase: stabilization, evaluation, documentation, and next-generation pla
 
 Measured CUDA performance showed lower cached peak allocation but no throughput improvement yet. At a 100-token limit, cached generation averaged 119.87 tokens/s versus 120.94 tokens/s uncached and used 236.89 MiB versus 258.86 MiB average peak allocation. A preallocated cache is the likely next optimization.
 
+The 2026-07-30 read-only CPU FineWeb loader measurement used three matched
+replicates, batch size 2, sequence length 256, eight warm-up batches, and 40
+measured iterations. `workers=0` without pinning had median throughput
+12,711,994 tokens/s. Requested pinning had no meaningful CPU-only effect
+(-0.88%; CUDA was unavailable), while `workers=2` reduced median throughput by
+86.10%. The local CPU decision is to retain `workers=0`, reject the two-worker
+variant, and defer KV-cache adoption pending a matched CUDA benchmark. See
+`docs/PERFORMANCE_PHASE3_CPU_LOADER_20260730.md` and the retained artifacts in
+`evaluation/results/performance_phase3_cpu_loader_20260730/`.
+
 Compatibility remains unchanged: KV cache does not alter architecture parameters, trained weights, tokenizer, prompt templates, datasets, training behavior, model-state keys, or checkpoint schema.
 
 Verified completed work:

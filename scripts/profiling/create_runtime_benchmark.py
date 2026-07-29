@@ -36,6 +36,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--metric", action="append", required=True, metavar="NAME=DOT.PATH")
     parser.add_argument("--workload", action="append", required=True, metavar="NAME=VALUE")
     parser.add_argument("--environment", action="append", required=True, metavar="NAME=VALUE")
+    parser.add_argument("--variant", action="append", required=True, metavar="NAME=VALUE")
     parser.add_argument("--output", type=Path, required=True)
     return parser.parse_args()
 
@@ -49,6 +50,7 @@ def main() -> None:
         metrics=_pairs(args.metric, option="--metric"),
         workload_identity=_pairs(args.workload, option="--workload"),
         environment_identity=_pairs(args.environment, option="--environment"),
+        variant_identity=_pairs(args.variant, option="--variant"),
     )
     write_runtime_benchmark(output=args.output, benchmark=benchmark)
 
