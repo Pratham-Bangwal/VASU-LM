@@ -22,6 +22,9 @@ non-authorizing unless an experiment receives a separate reviewed authorization.
   split/mask/budget validators, evaluation protocol, and review packet.
 - The research platform has read-only lineage indexing, snapshot comparison,
   governance reports, and configuration preflight checks.
+- The platform dashboard, paired-bootstrap evaluator statistic, proposed-config
+  schema validator, Candidate E fixture smoke, architecture audit, data-pipeline
+  audit, and push/PR regression workflow are implemented and tested.
 
 ## Sequencing
 
