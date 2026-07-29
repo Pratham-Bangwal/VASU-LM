@@ -29,7 +29,10 @@ Neither selection authorizes data generation, a schedule, configuration,
 checkpoint, training, or promotion. Each requires a separate evidence-bound
 review and explicit authorization record.
 
-Reviewer: _pending_  
-Date: _pending_  
-Decision: _pending_  
+Reviewer: _pending_
+
+Date: _pending_
+
+Decision: _pending_
+
 Rationale: _pending_
