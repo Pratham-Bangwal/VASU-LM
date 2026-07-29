@@ -30,6 +30,17 @@ Exit criterion: an approved data-review record, not a training authorization.
 Exit criterion: one reproducible report can compare any two frozen evaluation
 snapshots without checkpoint selection or promotion logic.
 
+The read-only paired arithmetic comparison utility is:
+
+```powershell
+python evaluation/compare_verified_arithmetic_runs.py `
+  --baseline-dir <completed-baseline-run> `
+  --candidate-dir <completed-candidate-run>
+```
+
+It rejects mismatched evaluator, split, manifest, tokenizer, generation, and
+per-example identity before calculating a deterministic bootstrap interval.
+
 ## Phase 3 — Measured performance work
 
 1. Benchmark preallocated KV cache versus uncached and dynamic-cache decoding
