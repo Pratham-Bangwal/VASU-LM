@@ -3,7 +3,11 @@ from pathlib import Path
 import pytest
 
 from vasu.data.arithmetic_v2 import generate_records
-from vasu.data.candidate_e_release import build_paired_release, validate_paired_release
+from vasu.data.candidate_e_release import (
+    build_paired_release,
+    validate_matched_budget,
+    validate_paired_release,
+)
 
 
 def _splits():
@@ -32,4 +36,27 @@ def test_builds_and_validates_paired_immutable_release(tmp_path: Path) -> None:
             logical_splits=_splits(),
             tokenizer_path=Path("assets/tokenizer.json"),
             output_dir=output,
+        )
+
+
+def test_matched_budget_requires_equal_records_and_updates() -> None:
+    assert (
+        validate_matched_budget(
+            control_scheduled_records=128,
+            treatment_scheduled_records=128,
+            sequence_length=256,
+            microbatch_size=2,
+            gradient_accumulation=16,
+            optimizer_updates=4,
+        )["processed_tokens_per_arm"]
+        == 32_768
+    )
+    with pytest.raises(ValueError, match="scheduled record counts"):
+        validate_matched_budget(
+            control_scheduled_records=128,
+            treatment_scheduled_records=127,
+            sequence_length=256,
+            microbatch_size=2,
+            gradient_accumulation=16,
+            optimizer_updates=4,
         )

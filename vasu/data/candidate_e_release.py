@@ -35,6 +35,39 @@ MASK_DTYPE = np.dtype(np.uint8)
 VARIANTS = ("final_answer", "verified_steps")
 
 
+def validate_matched_budget(
+    *,
+    control_scheduled_records: int,
+    treatment_scheduled_records: int,
+    sequence_length: int,
+    microbatch_size: int,
+    gradient_accumulation: int,
+    optimizer_updates: int,
+) -> dict[str, int]:
+    """Validate Candidate E's equal processed-token/update contract."""
+
+    values = (
+        control_scheduled_records,
+        treatment_scheduled_records,
+        sequence_length,
+        microbatch_size,
+        gradient_accumulation,
+        optimizer_updates,
+    )
+    if any(not isinstance(value, int) or value < 1 for value in values):
+        raise ValueError("matched-budget quantities must be positive integers")
+    if control_scheduled_records != treatment_scheduled_records:
+        raise ValueError("control and treatment scheduled record counts differ")
+    expected_records = microbatch_size * gradient_accumulation * optimizer_updates
+    if control_scheduled_records != expected_records:
+        raise ValueError("scheduled records do not match batch/update accounting")
+    return {
+        "scheduled_records_per_arm": control_scheduled_records,
+        "processed_tokens_per_arm": control_scheduled_records * sequence_length,
+        "optimizer_updates": optimizer_updates,
+    }
+
+
 def sha256_file(path: Path) -> str:
     digest = hashlib.sha256()
     with path.open("rb") as handle:
