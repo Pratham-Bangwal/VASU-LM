@@ -245,7 +245,15 @@ def summarize_results(results: Sequence[Mapping[str, Any]]) -> dict[str, Any]:
             "unanswered": outcomes["unanswered"],
             "unanswered_rate": outcomes["unanswered"] / count if count else None,
             "truncated": sum(bool(item["truncated"]) for item in items),
+            "truncated_rate": (
+                sum(bool(item["truncated"]) for item in items) / count
+                if count
+                else None
+            ),
             "prompt_leakage": outcomes["prompt_leakage"],
+            "prompt_leakage_rate": (
+                outcomes["prompt_leakage"] / count if count else None
+            ),
             "generated_tokens": sum(int(item["generated_tokens"]) for item in items),
             "duration_seconds": sum(float(item["duration_seconds"]) for item in items),
         }
@@ -269,4 +277,3 @@ def summarize_results(results: Sequence[Mapping[str, Any]]) -> dict[str, Any]:
         float(overall["generated_tokens"]) / duration if duration > 0 else None
     )
     return {"overall": overall, "by": dimensions}
-
