@@ -64,6 +64,11 @@ python evaluation/compare_frozen_evaluation_snapshots.py `
 
 ## Phase 3 — Measured performance work
 
+The runtime-benchmarking contract is now available for all existing raw
+profilers. It freezes selected measurements with workload, environment, and
+raw-report hashes; comparisons fail closed across incompatible workloads or
+hardware.
+
 1. Benchmark preallocated KV cache versus uncached and dynamic-cache decoding
    on the existing parity prompts.
 2. Profile data-loader, packing, host-to-device transfer, and model-step time
