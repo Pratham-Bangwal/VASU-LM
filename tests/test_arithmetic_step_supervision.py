@@ -5,6 +5,7 @@ import pytest
 from vasu.data.arithmetic_step_supervision import (
     compile_supervised_example,
     pack_supervised_examples,
+    validate_matched_logical_splits,
 )
 from vasu.data.arithmetic_v2 import generate_records
 
@@ -67,3 +68,21 @@ def test_compiler_rejects_merged_prompt_response_boundary() -> None:
             eos_token_id=3,
             variant="final_answer",
         )
+
+
+def test_matched_split_validator_requires_pairing_and_isolation() -> None:
+    splits = {
+        "train": generate_records("train", 220, 42)[:3],
+        "development": generate_records("development", 220, 43)[:3],
+        "evaluation": generate_records("evaluation", 220, 44)[:3],
+    }
+    assert validate_matched_logical_splits(splits, splits) == {
+        "train": 3,
+        "development": 3,
+        "evaluation": 3,
+    }
+
+    mismatched = {split: list(records) for split, records in splits.items()}
+    mismatched["evaluation"] = mismatched["evaluation"][1:]
+    with pytest.raises(ValueError, match="source IDs differ"):
+        validate_matched_logical_splits(splits, mismatched)
