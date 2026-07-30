@@ -1,0 +1,84 @@
+{
+  "artifact_evidence": {
+    "development.mask.bin": {
+      "bytes": 2052,
+      "sha256": "b55bcad2b097c5935b9cdd3ed23c37038d14b6ff5ce1a83a3f29e1337ee1b99a"
+    },
+    "development.tokens.bin": {
+      "bytes": 4104,
+      "sha256": "f648721b94b3b59dd60b2b777ca5ba6c8a0e2733449b29bfd88f1c149fa9610c"
+    },
+    "evaluation.mask.bin": {
+      "bytes": 2565,
+      "sha256": "56c9937d3d4741ece4cda79ae1aa30c2ed50b1381736d93f7bdb8bfa5270c6cf"
+    },
+    "evaluation.tokens.bin": {
+      "bytes": 5130,
+      "sha256": "bb4ebee650f2630f77959991b433bf5b7608113dc44508b9cc33d1189f16ee05"
+    },
+    "internal_manifest.json": {
+      "bytes": 4180,
+      "sha256": "36dce578d407b44e98c8279bba116eb7ba5436a4638c48b540a0682a1a029c08"
+    },
+    "logical_records.jsonl": {
+      "bytes": 287990,
+      "sha256": "95ec1692e229a8b1288d985cceff5dad4c8b1ac5df1e62975740b071721a140b"
+    },
+    "train.mask.bin": {
+      "bytes": 38988,
+      "sha256": "bafe1b658aedb96e2c5c698a59cd62d4ca78df725155b5ff7084b043180a40fe"
+    },
+    "train.tokens.bin": {
+      "bytes": 77976,
+      "sha256": "f0a7f73847c234e3b63819dd752e0626c261fe3ef196d16a2b33bcb77e30d1f2"
+    }
+  },
+  "assignment_sha256": "59481237acd2164f96dbbdc2b837ca8cabb00c496b1b6c42cb260b44bbd2b394",
+  "decision_identities": {
+    "design_decision_sha256": "c067cb691564b2108c18ebac763b10c1ee0c5044fa89abff43cdc47c01304013",
+    "fixture_decision_sha256": "96f517d54e6808fb380454506353db21199fd2b5655a344e74da00e240e520fb",
+    "plan_decision_sha256": "4522d1c36a73700da9f3eec7cdd87561fded1a8f8661fa0ef88ab18a89058890"
+  },
+  "external_manifest_template_sha256": "eb72f0602431a7ab47ba4392e47b61315766a7efc689d85e836e81cf8bb47717",
+  "implementation_sha256": "0efb0189b4b0c5a8621da9053d56db57d95ebf5b0f1bb59753952ec8afa5d1e2",
+  "plan_id": "vasu_140m_instruction_seed_v1",
+  "plan_sha256": "8da8cc92ef913bb567c96ec47986f849b84eb85ac2d11f3ad245fb1639361e16",
+  "production_release_created": false,
+  "qualification_sha256": "ed6f64b9d5cb97925bc68186b4ec403de6e25dc484e33cb103ed05ee977f5cd6",
+  "release_build_permitted": false,
+  "repository_commit": "c014716ec38ef8f08842356fc016359dc5a233d7",
+  "schema_id": "vasu.production-release-qualification.v1",
+  "source_audit": {
+    "capability_split_counts": {
+      "beginner_explanation:development": 10,
+      "beginner_explanation:evaluation": 10,
+      "beginner_explanation:train": 179,
+      "exact_format_following:development": 10,
+      "exact_format_following:evaluation": 10,
+      "exact_format_following:train": 180,
+      "json_schema_output:development": 2,
+      "json_schema_output:evaluation": 2,
+      "json_schema_output:train": 46,
+      "lists_structured_output:development": 4,
+      "lists_structured_output:evaluation": 6,
+      "lists_structured_output:train": 90,
+      "rewriting_transformation:development": 8,
+      "rewriting_transformation:evaluation": 8,
+      "rewriting_transformation:train": 134,
+      "short_factual_qa:development": 12,
+      "short_factual_qa:evaluation": 12,
+      "short_factual_qa:train": 223,
+      "uncertainty_honest_fallback:development": 2,
+      "uncertainty_honest_fallback:evaluation": 2,
+      "uncertainty_honest_fallback:train": 46
+    },
+    "decoded_round_trip_count": 996,
+    "mode": "complete_production_source_audit"
+  },
+  "split_counts": {
+    "development": 48,
+    "evaluation": 50,
+    "train": 898
+  },
+  "training_authorized": false
+}

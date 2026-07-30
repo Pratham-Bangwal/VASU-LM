@@ -154,6 +154,16 @@ is committed, qualification must be regenerated against that exact clean
 commit and independently identity-reviewed. No authorization record or
 production output exists.
 
+The accepted implementation is committed as `c014716`. A clean-commit,
+read-only qualification reproduced twice and preserves the exact source,
+assignment, logical-record, token, and mask identities. Its new qualification
+SHA-256 is
+`ed6f64b9d5cb97925bc68186b4ec403de6e25dc484e33cb103ed05ee977f5cd6`.
+Only commit-bound manifest and qualification identities changed. GPT-5.5
+independently accepted the exact transition on 2026-07-30. This acceptance is
+non-authorizing: no authorization record exists, and publication and training
+remain prohibited.
+
 ## Capability-CPT schedule status
 
 The generalized deterministic N-source schedule layer and Candidates A/B/C

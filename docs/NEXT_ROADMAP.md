@@ -135,9 +135,11 @@ training remains unauthorized. See
     qualifier, authorization validator, transactional publisher, frozen
     read-only qualification evidence, and adversarial tests passed GPT-5.5
     review. This does not authorize publication.
-12. **Next identity gate:** after the accepted implementation commit, regenerate
-    qualification against the exact clean commit and independently review the
-    final identities before considering a one-build authorization package.
+12. **Complete; independently identity-accepted:** clean commit `c014716`
+    reproduced the same source, assignment, logical, token, and mask evidence
+    with new commit-bound manifest identities, and GPT-5.5 accepted the exact
+    transition. A separate authorization-package design and review are next;
+    no authorization record exists.
 
 Exit criterion: the implementation-readiness contract is complete. Promotion
 to training planning requires every remaining gate and a separate decision;
