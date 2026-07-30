@@ -22,9 +22,12 @@
   VASU-60M artifacts are explicitly rejected as wrong-family checkpoints.
 - Completed: GPT-5.5 independently accepted the fail-closed selection
   decision; no VASU-140M instruction-stage parent is selected.
-- Next: prepare a separately reviewed VASU-140M base-pretraining readiness
-  package. Training remains blocked pending a qualified 140M base checkpoint
-  and separate authorization.
+- Completed: GPT-5.5 independently accepted the non-authorizing VASU-140M
+  base-pretraining readiness protocol with CUDA, data, evaluation, resume,
+  review, and authorization gates.
+- Next: separately design and review the bounded CUDA/AMP operational
+  qualification. Training remains blocked pending every readiness gate, a
+  qualified 140M base checkpoint, and separate authorization.
 
 ## Capability-CPT v2 decision gate
 

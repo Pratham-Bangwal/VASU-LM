@@ -4,6 +4,16 @@
 
 ### Added
 
+- Added a VASU-140M base-pretraining readiness protocol, audit, and independent
+  review packet. It orders CUDA/AMP qualification, a new provenance-bound
+  base-data release, frozen evaluations, real-data resume, scientific review,
+  and authorization without selecting data, a configuration, or a checkpoint.
+  GPT-5.5 independently accepted the protocol.
+
+- Corrected stale VASU-140M dataset documentation: the instruction seed v1
+  release was published once with a consumed, non-training authorization; it
+  remains excluded from base-pretraining input.
+
 - Added a read-only VASU-140M base-checkpoint selection audit and independent
   review packet. The audit rejects every existing VASU-31M/60M artifact as an
   incompatible parent and records the correct fail-closed outcome: no

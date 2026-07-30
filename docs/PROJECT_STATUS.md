@@ -221,6 +221,14 @@ not an instruction-stage training plan. See
 independently accepted this conclusion on 2026-07-31; the decision remains
 non-authorizing. Training is still unauthorized.
 
+The next VASU-140M artifact is a planning-only base-pretraining readiness
+protocol. It separates CUDA/AMP qualification, a new provenance-bound
+base-data release, frozen base-model evaluations, real-data exact-resume, an
+immutable experiment plan, and final authorization. It selects none of those
+artifacts and does not alter the published instruction release. GPT-5.5
+independently accepted the protocol on 2026-07-31; the acceptance remains
+non-authorizing.
+
 ## Capability-CPT schedule status
 
 The generalized deterministic N-source schedule layer and Candidates A/B/C

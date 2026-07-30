@@ -70,23 +70,21 @@ Only assistant responses contribute to loss computation.
 ## VASU-140M specification-only instruction plan
 
 The VASU-140M instruction seed plan is metadata and read-only qualification,
-not a dataset release. It references two existing reviewed CC0 instruction
+not base-pretraining data. It references two existing reviewed CC0 instruction
 batches and excludes four examples that exactly match frozen evaluation
-questions. The remaining 996 examples have deterministic planned
-train/development/evaluation membership, but no 513-token binary, stored mask,
-logical manifest, or training authorization exists.
+questions. The subsequently authorized one-time production publication created
+the immutable 996-example 513-token release with deterministic 898/48/50
+train/development/evaluation membership; its consumed receipt and publication
+audit remain separate from training authorization.
 
 This plan is compatible only with the response-masked instruction contract. It
 must not be presented as VASU-140M base-pretraining data.
 
-The associated transactional constructor is currently fixture-only. It rejects
-the planned production locations and more than 30 examples, so it cannot build
-the 996-example release. Its purpose is to prove deterministic token/mask
-publication, integrity validation, and failure recovery before production
-construction is separately designed and reviewed.
+The associated fixture-only transactional constructor remains a bounded test
+layer. The separately reviewed production builder performed the one authorized
+publication with deterministic token/mask validation and failure recovery.
 
-The production-builder implementation proposal remains review-gated. Its
-qualifier compiles the accepted sources only in memory and freezes expected
-hashes and counts. Publication is unreachable without a separate exact,
-expiring one-build authorization and a clean reviewed commit. No such
-authorization or production artifact currently exists.
+The production builder remains fail closed: a future publication would require
+a new exact, expiring one-build authorization and a clean reviewed commit. The
+existing authorization was consumed and cannot authorize another publication
+or any training.
