@@ -4,6 +4,15 @@
 
 ### Added
 
+- Added the frozen, source-agnostic VASU-140M 513-token record and shifted-mask
+  contract. It validates the unchanged tokenizer, complete-example packing,
+  prompt/PAD/EOS/cross-example mask behavior, split isolation, fixed
+  `uint16[513]`/`uint8[513]` layouts, record-local training views,
+  deterministic fixture rebuild, lineage-report tamper rejection, and exact
+  frozen-report identity pinning. GPT-5.5 independently accepted the remediated
+  contract for reference by a future, separately reviewed source-specific
+  release plan. No production dataset or training authorization was created.
+
 - Added VASU-140M family-aware exact-resume qualification. The first immutable
   run exposed DataLoader iterator consumption of global PyTorch RNG, which
   shifted dropout after resume. Dedicated loader generators now isolate model

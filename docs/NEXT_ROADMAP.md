@@ -101,8 +101,12 @@ training remains unauthorized. See
    [`VASU_140M_CPU_QUALIFICATION_20260730.md`](VASU_140M_CPU_QUALIFICATION_20260730.md).
 4. **CUDA-gated:** measure peak memory, throughput, thermals, checkpoint I/O,
    serialization, and exact resume before any experiment plan.
-5. **Data-gated:** independently specify and review isolated 513-token releases;
-   do not repack or generate them as part of architecture readiness.
+5. **Independent-review-gated:** the generic 513-token record and shifted-mask
+   specification is frozen and fixture-qualified. A first review finding about
+   exact frozen-report identity enforcement was remediated with canonical hash
+   pinning and adversarial regression coverage. GPT-5.5 independently accepted
+   the remediated contract on 2026-07-30. Every source-specific production
+   release remains separately review-gated; no production data was generated.
 6. **Complete:** additive model-only checkpoint round-trip and explicit
    wrong-family rejection passed without changing legacy checkpoint
    containers. See
@@ -111,8 +115,8 @@ training remains unauthorized. See
    sampler, scaler, partial gradients, sample order, and RNG state. The failed
    v1 evidence and loader-RNG root cause are preserved in
    [`VASU_140M_EXACT_RESUME_QUALIFICATION_20260730.md`](VASU_140M_EXACT_RESUME_QUALIFICATION_20260730.md).
-8. **Next non-CUDA gate:** independently specify and review the isolated
-   513-token data/mask contract without generating a release.
+8. **Next non-CUDA gate:** define a source-specific immutable release plan,
+   then obtain a separate review decision before constructing production data.
 
 Exit criterion: the implementation-readiness contract is complete. Promotion
 to training planning requires every remaining gate and a separate decision;

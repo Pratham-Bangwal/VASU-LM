@@ -134,6 +134,14 @@ compatible with VASU-31M/60M but do not satisfy VASU-140M-v1's proposed
 512-token training contract. Any future 140M release must use isolated
 513-token records and newly aligned shifted-target masks.
 
+The additive VASU-140M record contract stores `uint16[513]` tokens and
+`uint8[513]` masks. It derives training tensors as `x=tokens[:-1]`,
+`y=tokens[1:]`, and `loss_mask=stored_mask[1:]`. Complete examples are packed
+independently within train, development, and evaluation splits. Each example
+begins with stored mask zero, preventing supervision of synthetic
+EOS-to-next-prompt transitions. The module has no production source discovery
+or training entry point.
+
 ### Changes that break direct loading
 
 Changing vocabulary size, model dimension, layer count, projection layout, MLP hidden dimension, bias settings, parameter names, or weight-tying behavior breaks or changes direct checkpoint loading. Any future architectural change requires an explicit compatibility review.

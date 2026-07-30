@@ -76,6 +76,29 @@ gates, and an independent-review packet. No Candidate E production dataset,
 schedule, training configuration, authorization, checkpoint, or training run
 exists. See `docs/CANDIDATE_E_INDEPENDENT_REVIEW_PACKET.md`.
 
+## VASU-140M 513-token data contract
+
+The generic VASU-140M fixed-record and shifted-mask contract is frozen and
+fixture-qualified. It binds the exact family/configuration, unchanged
+32,000-token tokenizer, `uint16[513]` records, `uint8[513]` stored masks, and
+trainer derivation `tokens[:-1]`, `tokens[1:]`, `stored_mask[1:]`. Validators
+fail closed on boundary merges, truncation, PAD content, wrong EOS
+supervision, cross-example targets, split/semantic leakage, invalid dtypes,
+and nondeterministic rebuilds.
+
+The frozen fixture report is
+`evaluation/fixtures/vasu_140m_513_record_spec_v1.json`. Primary engineering
+review is complete. A first independent pass found that the generic validator
+did not pin the exact frozen report identity; engineering added an exact
+canonical-identity gate and a modified-and-rehashed regression test. The
+remediated contract was independently accepted by GPT-5.5 on 2026-07-30 for
+use by a future, separately reviewed source-specific release plan. No
+production VASU-140M dataset, source selection, schedule, training config,
+authorization, checkpoint, or training run exists. See
+`docs/VASU_140M_513_TOKEN_DATA_MASK_SPECIFICATION.md`. The requirement-level
+completion audit is
+`docs/VASU_140M_513_TOKEN_MILESTONE_AUDIT_20260730.md`.
+
 ## Capability-CPT schedule status
 
 The generalized deterministic N-source schedule layer and Candidates A/B/C

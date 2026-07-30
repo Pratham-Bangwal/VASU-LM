@@ -354,3 +354,19 @@ Different datasets can significantly affect tokenizer quality.
 The tokenizer is the first stage of understanding language.
 
 VASU's tokenizer is intentionally simple, transparent, and easy to study so that developers can understand exactly how text becomes tokens and how tokens become meaning inside the model.
+
+---
+
+# VASU-140M Frozen Tokenizer Boundary
+
+The VASU-140M 513-token specification retains `assets/tokenizer.json`
+unchanged:
+
+- SHA-256: `04942e101a4a01f87f7e492ad9e463d299a559e784b650fdedd1763a017d195a`;
+- vocabulary: 32,000;
+- PAD / UNK / BOS / EOS IDs: 0 / 1 / 2 / 3.
+
+Fixture compilation encodes both the prompt and prompt-plus-response and
+requires the former to be an exact token prefix of the latter. A boundary
+merge is rejected instead of shifting supervision. No token or vocabulary
+entry changed, so existing checkpoint and dataset token IDs remain valid.

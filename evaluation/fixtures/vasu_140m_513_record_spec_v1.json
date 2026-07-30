@@ -1,0 +1,48 @@
+{
+  "checks": {
+    "cross_example_masking": true,
+    "cross_record_isolation": true,
+    "deterministic_rebuild": true,
+    "pad_tail_masking": true,
+    "shifted_mask_alignment": true,
+    "split_isolation": true,
+    "tokenizer_boundary": true
+  },
+  "family_id": "vasu_140m_v1",
+  "fixture_only": true,
+  "logical_input_sha256": "7e8ff8cad9367d7bbb1b52858fb6e42837ee7e4f9d14c79a3607b03499ec35f4",
+  "model_config_sha256": "29e9bafdffbbc632b1b6f006818b1470e6dbc20f21841aa33e625a0f04159059",
+  "production_release_created": false,
+  "record_width": 513,
+  "report_sha256": "7329698aefc3ab4593b1bfba246487a83ed0210b4e3fbe96f72c8bb7b8c8e7e3",
+  "schema_id": "vasu.model-family-record-fixture-report.v1",
+  "specification_sha256": "1bbbeafe836104dc4326a3a00e0dfcef21a965bbc02f56408be4305ae16ce7e5",
+  "splits": {
+    "development": {
+      "logical_example_count": 1,
+      "logical_sha256": "1fa004426e1bb92869c3f5314711bee40eeedece8e844583b53d01c99e66337f",
+      "packed_record_count": 1,
+      "stored_mask_sha256": "124bfb289d957677336be3eb48b83832d90deca35f4b3b5fb867b28dece0a0b0",
+      "token_sha256": "0f99bdfd56efcc152ad1282558be1fef9d71ca3b3ee291cc74fcdd8f87ead1cf",
+      "used_token_count": 23
+    },
+    "evaluation": {
+      "logical_example_count": 1,
+      "logical_sha256": "1b1dd5055247e51d4ba460952fd520031cfa8172dfbcdccda6515b6eae74b76e",
+      "packed_record_count": 1,
+      "stored_mask_sha256": "7b9555dad475ef4cc14e946296a5c5708e76e7492e554cf1c646b061c0c58086",
+      "token_sha256": "44e2923ab7779e9dabaf38e75239e07ad16ff936057c2a546f559deadfd16a20",
+      "used_token_count": 19
+    },
+    "train": {
+      "logical_example_count": 2,
+      "logical_sha256": "0ba480a388f411385776cf351a7c096fcbe030b3649c9e9c731ee192ff755f55",
+      "packed_record_count": 1,
+      "stored_mask_sha256": "0ae4e60aaf8efbf66ef8935609ba93a72537266c17f7384a228561960c13c645",
+      "token_sha256": "64c4b2a15a5f8113217665cb1d809b7bb798c72c1cf832c76c2ceefb14aea961",
+      "used_token_count": 38
+    }
+  },
+  "tokenizer_sha256": "04942e101a4a01f87f7e492ad9e463d299a559e784b650fdedd1763a017d195a",
+  "training_authorized": false
+}
