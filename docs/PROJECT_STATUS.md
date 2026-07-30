@@ -192,6 +192,10 @@ GPT-5.5 independently accepted that exact transition on 2026-07-30. The
 implementation creates no envelope and grants no publication or training
 authority.
 
+The v2 post-commit identity smoke is documentation-descendant-safe: it requires
+`050d1fa` in ancestry, rechecks exact gate/test/smoke hashes, and compares the
+normalized commit-bound report to the accepted frozen identity.
+
 ## Capability-CPT schedule status
 
 The generalized deterministic N-source schedule layer and Candidates A/B/C

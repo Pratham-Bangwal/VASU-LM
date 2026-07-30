@@ -27,3 +27,9 @@ No envelope was created. Publication and training remain unauthorized.
 
 GPT-5.5 independently accepted the exact post-commit identity on 2026-07-30.
 The acceptance does not create or imply publication or training authority.
+
+After committing the accepted evidence, `HEAD` advanced through a
+documentation-only descendant. The smoke therefore requires `050d1fa` in
+ancestry and separately pins the gate, test, and original-smoke hashes. It
+normalizes only the current descendant commit before recomputing the
+commit-bound qualification identity and comparing the frozen `050d1fa` report.

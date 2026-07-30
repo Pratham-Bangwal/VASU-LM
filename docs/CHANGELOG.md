@@ -14,6 +14,10 @@
   updating only commit-bound fields. GPT-5.5 independently accepted the exact
   transition. No envelope or protected production artifact was created.
 
+- Corrected the v2 post-commit identity smoke to remain valid on
+  documentation-only descendants while pinning the accepted gate, test,
+  original-smoke, and frozen qualification identities.
+
 - Added the specification-only VASU-140M one-build authorization protocol and
   independent review packet. The selected design separates the accepted
   implementation anchor from an exact clean runtime commit and uses a detached,
