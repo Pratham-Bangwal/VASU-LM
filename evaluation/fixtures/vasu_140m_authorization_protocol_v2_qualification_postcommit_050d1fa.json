@@ -1,0 +1,21 @@
+{
+  "assignment_sha256": "59481237acd2164f96dbbdc2b837ca8cabb00c496b1b6c42cb260b44bbd2b394",
+  "authorization_envelope_created": false,
+  "authorization_protocol_path": "vasu/data/vasu_140m_authorization_protocol.py",
+  "authorization_protocol_sha256": "d135889b89b424e7a3253adddec0b1cfd09b49efdb6831f048934f2468d9acac",
+  "authorization_schema_id": "vasu.production-release-authorization.v2",
+  "detached_envelope_required": true,
+  "implementation_anchor_commit": "c014716ec38ef8f08842356fc016359dc5a233d7",
+  "implementation_sha256": "0efb0189b4b0c5a8621da9053d56db57d95ebf5b0f1bb59753952ec8afa5d1e2",
+  "production_release_created": false,
+  "protected_paths_absent": [
+    "data/processed/vasu_140m/instruction_seed_v1",
+    "data/manifests/vasu_140m/instruction_seed_v1.json",
+    "data/manifests/vasu_140m/authorization_receipts"
+  ],
+  "publication_authorized": false,
+  "qualification_sha256": "9f99bd1a8ee61144d80a903a9039a2459196c0fef151f956949a1c061a0f0306",
+  "repository_commit": "050d1fa39ee288d6be2c1edc2acca5cb1ddab81f",
+  "schema_id": "vasu.production-release-authorization-qualification.v1",
+  "training_authorized": false
+}

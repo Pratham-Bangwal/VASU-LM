@@ -9,8 +9,10 @@
   canonical external-envelope loading, exact runtime/gate binding, exclusive
   locking, conservative stale-lock recovery, direct v2 receipt provenance, and
   adversarial transaction coverage. GPT-5.5 independently accepted the exact
-  pre-commit implementation; post-commit identity review remains pending. No
-  envelope or protected production artifact was created.
+  pre-commit implementation, now committed as `050d1fa`. Clean post-commit
+  qualification evidence preserves every code and release identity while
+  updating only commit-bound fields. GPT-5.5 independently accepted the exact
+  transition. No envelope or protected production artifact was created.
 
 - Added the specification-only VASU-140M one-build authorization protocol and
   independent review packet. The selected design separates the accepted

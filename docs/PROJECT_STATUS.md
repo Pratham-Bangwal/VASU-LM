@@ -185,8 +185,12 @@ single-use locking, conservative stale-lock recovery, direct v2 receipt
 binding, and adversarial transaction tests. The accepted production builder
 remains byte-identical. GPT-5.5 independently accepted the exact pre-commit
 implementation on 2026-07-30. A clean post-commit qualification and independent
-identity review remain mandatory. The implementation creates no envelope and
-grants no publication or training authority.
+identity review remain mandatory. The accepted implementation is committed as
+`050d1fa`; its clean post-commit qualification preserves all code and release
+identities, with only the expected commit-bound qualification transition.
+GPT-5.5 independently accepted that exact transition on 2026-07-30. The
+implementation creates no envelope and grants no publication or training
+authority.
 
 ## Capability-CPT schedule status
 

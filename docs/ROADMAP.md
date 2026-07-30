@@ -9,8 +9,9 @@
 - Completed: pre-commit protocol loader, exact runtime identity gate, exclusive
   lock, stale-lock policy, direct v2 receipt binding, and adversarial evidence.
 - Completed: independent acceptance of the exact pre-commit implementation.
-- Next: commit the accepted package and independently review its clean
-  post-commit identity.
+- Completed: commit the accepted package as `050d1fa` and freeze its clean
+  post-commit qualification.
+- Completed: independent acceptance of the post-commit identity.
 - Blocked: authorization-envelope creation and one-time production publication.
 - Unchanged: no compatible base checkpoint is selected and training remains
   unauthorized.
