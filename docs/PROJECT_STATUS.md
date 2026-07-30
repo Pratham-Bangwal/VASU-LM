@@ -122,6 +122,17 @@ release construction and training remain unauthorized. GPT-5.5 independently
 accepted the exact plan for future release construction review; the next gate
 is a separately reviewed, non-overwriting construction implementation.
 
+The next gate now has an engineering-complete fixture-only implementation. It
+accepts at most 30 caller-supplied logical examples, rejects the planned
+production paths, writes token/mask/manifest files into an isolated staging
+directory, and atomically publishes only the complete directory. Tests prove
+deterministic replay, mask layout, overwrite rejection, identity rejection,
+tamper detection, and cleanup after injected failure. No production data was
+constructed. GPT-5.5 independently accepted the exact fixture layer as
+construction evidence on 2026-07-30. The acceptance is non-authorizing; a
+separately designed and reviewed production builder remains required before
+any production release construction.
+
 ## Capability-CPT schedule status
 
 The generalized deterministic N-source schedule layer and Candidates A/B/C

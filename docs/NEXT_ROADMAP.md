@@ -121,6 +121,11 @@ training remains unauthorized. See
    freezes deterministic 898/48/50
    train/development/evaluation assignments. Implement and independently
    review non-overwriting release construction before any production release.
+9. **Complete; independently accepted as fixture evidence:** the fixture-only
+   transactional constructor proves deterministic packing, mask integrity,
+   non-overwrite behavior, atomic publication, recovery, and artifact
+   validation while hard-rejecting production paths and fixtures above 30
+   examples. A separate production-builder design and review remain required.
 
 Exit criterion: the implementation-readiness contract is complete. Promotion
 to training planning requires every remaining gate and a separate decision;

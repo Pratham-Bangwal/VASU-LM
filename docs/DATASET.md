@@ -78,3 +78,9 @@ logical manifest, or training authorization exists.
 
 This plan is compatible only with the response-masked instruction contract. It
 must not be presented as VASU-140M base-pretraining data.
+
+The associated transactional constructor is currently fixture-only. It rejects
+the planned production locations and more than 30 examples, so it cannot build
+the 996-example release. Its purpose is to prove deterministic token/mask
+publication, integrity validation, and failure recovery before production
+construction is separately designed and reviewed.

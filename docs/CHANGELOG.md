@@ -4,6 +4,14 @@
 
 ### Added
 
+- Added a fixture-only VASU-140M transactional release constructor. It binds
+  the accepted plan and independent decision, reuses the frozen 513-token
+  contract, rejects production paths and fixtures above 30 examples, publishes
+  complete directories atomically, removes failed staging attempts, and
+  validates every artifact hash and layout. GPT-5.5 independently accepted the
+  exact layer as fixture-only construction evidence. This is test
+  infrastructure only; it creates no production release or training authority.
+
 - Added the specification-only VASU-140M instruction seed release plan. It
   binds 1,000 human-approved CC0 examples from instruction-quality Batches 001
   and 002, performs global review/deduplication checks, pins 2,618 evaluation
