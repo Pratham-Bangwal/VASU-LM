@@ -84,3 +84,9 @@ the planned production locations and more than 30 examples, so it cannot build
 the 996-example release. Its purpose is to prove deterministic token/mask
 publication, integrity validation, and failure recovery before production
 construction is separately designed and reviewed.
+
+The production-builder implementation proposal remains review-gated. Its
+qualifier compiles the accepted sources only in memory and freezes expected
+hashes and counts. Publication is unreachable without a separate exact,
+expiring one-build authorization and a clean reviewed commit. No such
+authorization or production artifact currently exists.

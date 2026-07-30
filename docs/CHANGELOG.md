@@ -4,6 +4,15 @@
 
 ### Added
 
+- Added the implementation proposal for the VASU-140M two-phase production
+  release builder. It provides read-only full-source qualification, complete
+  serialized mask audits, exact expiring one-build authorization validation,
+  atomic publication, incomplete-publication quarantine, consumed receipts,
+  and adversarial Windows/path/disk/mutation/reuse coverage. Frozen evidence
+  contains hashes and counts only. GPT-5.5 independently accepted the exact
+  implementation; post-commit qualification identity review remains required.
+  No production release or authorization was created.
+
 - Added the specification-only VASU-140M production release-builder design and
   independent review packet. The recommended architecture separates read-only
   full-source qualification from exact, one-build-authorized publication and

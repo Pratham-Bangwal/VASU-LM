@@ -131,6 +131,13 @@ training remains unauthorized. See
     and independently review its fail-closed qualifier and publisher without
     constructing production data; a later exact one-build authorization is
     still mandatory.
+11. **Complete; independently accepted:** the implemented
+    qualifier, authorization validator, transactional publisher, frozen
+    read-only qualification evidence, and adversarial tests passed GPT-5.5
+    review. This does not authorize publication.
+12. **Next identity gate:** after the accepted implementation commit, regenerate
+    qualification against the exact clean commit and independently review the
+    final identities before considering a one-build authorization package.
 
 Exit criterion: the implementation-readiness contract is complete. Promotion
 to training planning requires every remaining gate and a separate decision;

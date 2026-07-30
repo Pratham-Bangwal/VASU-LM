@@ -141,6 +141,19 @@ runs, and complete mask audits. GPT-5.5 independently accepted the design on
 2026-07-30 for a separately reviewed implementation proposal. The decision is
 not production release or training authority.
 
+The accepted design now has an engineering-complete implementation proposal.
+Read-only qualification compiled and decoded all 996 eligible examples twice
+with identical evidence, reproduced the frozen 898/48/50 assignment, and
+performed complete serialized mask and boundary audits. The publisher requires
+an exact self-hashed, expiring one-build authorization plus a clean reviewed
+commit, and its temporary-root tests cover disk, Windows junction/open-handle,
+mutation, atomicity, incomplete publication, receipt, and reuse failures.
+GPT-5.5 independently accepted the implementation on 2026-07-30. The reviewed
+qualification is intentionally pre-commit evidence; after the accepted package
+is committed, qualification must be regenerated against that exact clean
+commit and independently identity-reviewed. No authorization record or
+production output exists.
+
 ## Capability-CPT schedule status
 
 The generalized deterministic N-source schedule layer and Candidates A/B/C
