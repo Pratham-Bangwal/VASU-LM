@@ -212,6 +212,15 @@ GPT-5.5 independently accepted the completed publication on 2026-07-31. The
 review packet date-path erratum is documented in the publication audit. No
 checkpoint or training plan is selected.
 
+A subsequent read-only parent-selection audit found no VASU-140M checkpoint in
+the repository. Candidate A and every other preserved VASU-60M artifact are
+wrong-family checkpoints and are explicitly rejected rather than converted or
+partially loaded. The documented outcome is a fail-closed empty candidate set,
+not an instruction-stage training plan. See
+`docs/VASU_140M_BASE_CHECKPOINT_SELECTION_AND_TRAINING_PLAN.md`. GPT-5.5
+independently accepted this conclusion on 2026-07-31; the decision remains
+non-authorizing. Training is still unauthorized.
+
 ## Capability-CPT schedule status
 
 The generalized deterministic N-source schedule layer and Candidates A/B/C

@@ -18,10 +18,13 @@
   and one transactional production publication.
 - Completed: independent validation of the published release and consumed
   receipt.
-- Next: select a compatible base checkpoint and prepare a separately reviewed
-  training plan; training remains blocked pending separate authorization.
-- Unchanged: no compatible base checkpoint is selected and training remains
-  unauthorized.
+- Completed: checkpoint-selection audit found no compatible VASU-140M parent;
+  VASU-60M artifacts are explicitly rejected as wrong-family checkpoints.
+- Completed: GPT-5.5 independently accepted the fail-closed selection
+  decision; no VASU-140M instruction-stage parent is selected.
+- Next: prepare a separately reviewed VASU-140M base-pretraining readiness
+  package. Training remains blocked pending a qualified 140M base checkpoint
+  and separate authorization.
 
 ## Capability-CPT v2 decision gate
 

@@ -4,6 +4,13 @@
 
 ### Added
 
+- Added a read-only VASU-140M base-checkpoint selection audit and independent
+  review packet. The audit rejects every existing VASU-31M/60M artifact as an
+  incompatible parent and records the correct fail-closed outcome: no
+  VASU-140M base checkpoint is currently available. GPT-5.5 independently
+  accepted the result. It creates no training configuration, schedule,
+  authorization, optimizer state, or training run.
+
 - Added the pre-commit implementation proposal for the VASU-140M detached v2
   authorization gate. It preserves the accepted builder identity while adding
   canonical external-envelope loading, exact runtime/gate binding, exclusive
