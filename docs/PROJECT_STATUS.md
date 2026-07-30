@@ -164,6 +164,11 @@ independently accepted the exact transition on 2026-07-30. This acceptance is
 non-authorizing: no authorization record exists, and publication and training
 remain prohibited.
 
+The post-commit smoke remains valid on documentation-only descendants: it
+requires `c014716` to be an ancestor and independently rechecks the exact
+implementation-file SHA-256. This avoids invalidating reviewed code merely by
+committing its accepted evidence.
+
 ## Capability-CPT schedule status
 
 The generalized deterministic N-source schedule layer and Candidates A/B/C

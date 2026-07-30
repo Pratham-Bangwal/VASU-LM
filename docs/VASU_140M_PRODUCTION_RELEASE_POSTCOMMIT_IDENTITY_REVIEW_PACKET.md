@@ -53,3 +53,8 @@ push, or train. Record the independent decision in a new versioned document.
 
 GPT-5.5 independently accepted the exact transition on 2026-07-30. See
 [the decision record](VASU_140M_PRODUCTION_RELEASE_POSTCOMMIT_IDENTITY_INDEPENDENT_REVIEW_DECISION_20260730.md).
+
+After this evidence was committed, `HEAD` advanced through documentation-only
+descendants. The smoke therefore requires `c014716` to remain an ancestor and
+the implementation file SHA-256 to remain exact; it does not incorrectly
+require documentation commits to keep `HEAD` equal to `c014716`.

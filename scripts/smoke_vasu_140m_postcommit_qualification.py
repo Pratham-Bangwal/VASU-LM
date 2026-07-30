@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import hashlib
 from pathlib import Path
 import subprocess
 import sys
@@ -19,6 +20,9 @@ from vasu.data.vasu_140m_production_release import (  # noqa: E402
 
 
 IMPLEMENTATION_COMMIT = "c014716ec38ef8f08842356fc016359dc5a233d7"
+IMPLEMENTATION_SHA256 = (
+    "0efb0189b4b0c5a8621da9053d56db57d95ebf5b0f1bb59753952ec8afa5d1e2"
+)
 FROZEN_REPORT = (
     REPOSITORY_ROOT
     / "evaluation/fixtures/"
@@ -28,15 +32,22 @@ FROZEN_REPORT = (
 
 
 def main() -> None:
-    observed_commit = subprocess.run(
-        ["git", "rev-parse", "HEAD"],
+    ancestry = subprocess.run(
+        ["git", "merge-base", "--is-ancestor", IMPLEMENTATION_COMMIT, "HEAD"],
         cwd=REPOSITORY_ROOT,
-        check=True,
         capture_output=True,
         text=True,
-    ).stdout.strip()
-    if observed_commit != IMPLEMENTATION_COMMIT:
-        raise ValueError("HEAD does not match the reviewed implementation commit")
+    )
+    if ancestry.returncode != 0:
+        raise ValueError("HEAD does not descend from the reviewed implementation")
+    implementation_path = (
+        REPOSITORY_ROOT / "vasu/data/vasu_140m_production_release.py"
+    )
+    observed_implementation_sha256 = hashlib.sha256(
+        implementation_path.read_bytes()
+    ).hexdigest()
+    if observed_implementation_sha256 != IMPLEMENTATION_SHA256:
+        raise ValueError("reviewed implementation file identity changed")
     expected = json.loads(FROZEN_REPORT.read_text(encoding="utf-8"))
     observed = qualify_production_release(
         repository_root=REPOSITORY_ROOT,

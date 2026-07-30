@@ -19,6 +19,10 @@
   changed. GPT-5.5 independently accepted the exact transition. The evidence
   remains non-authorizing.
 
+- Corrected the post-commit qualification smoke to accept documentation-only
+  descendants of `c014716` while still pinning the exact implementation-file
+  SHA-256. This changes no builder or qualification identity.
+
 - Added the specification-only VASU-140M production release-builder design and
   independent review packet. The recommended architecture separates read-only
   full-source qualification from exact, one-build-authorized publication and
