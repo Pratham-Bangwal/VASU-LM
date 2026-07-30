@@ -4,6 +4,15 @@
 
 ### Added
 
+- Added the specification-only VASU-140M one-build authorization protocol and
+  independent review packet. The selected design separates the accepted
+  implementation anchor from an exact clean runtime commit and uses a detached,
+  self-hashed, single-use envelope to avoid circular Git identity. It defines
+  fail-closed validation, concurrency, crash, review, and human-approval
+  boundaries. GPT-5.5 independently accepted the design. Its audit records a
+  non-blocking fixture-path typo without changing the hash-bound review packet.
+  No envelope, publication, or training authority was created.
+
 - Added the implementation proposal for the VASU-140M two-phase production
   release builder. It provides read-only full-source qualification, complete
   serialized mask audits, exact expiring one-build authorization validation,

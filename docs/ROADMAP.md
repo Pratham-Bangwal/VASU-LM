@@ -1,5 +1,19 @@
 # VASU Roadmap
 
+## VASU-140M instruction-seed release
+
+- Completed: accepted record contract, release plan, fixture constructor,
+  production-builder design, implementation, and post-commit identity review.
+- Completed: independently accepted detached two-identity one-build
+  authorization protocol.
+- Next: implement the protocol loader, exact runtime identity gate, exclusive
+  lock, stale-lock policy, and adversarial evidence without creating an
+  authorization envelope.
+- Pending: independent acceptance of that implementation.
+- Blocked: authorization-envelope creation and one-time production publication.
+- Unchanged: no compatible base checkpoint is selected and training remains
+  unauthorized.
+
 ## Capability-CPT v2 decision gate
 
 Arithmetic diversity remediation and CUDA validation are complete. The next

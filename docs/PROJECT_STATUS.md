@@ -169,6 +169,16 @@ requires `c014716` to be an ancestor and independently rechecks the exact
 implementation-file SHA-256. This avoids invalidating reviewed code merely by
 committing its accepted evidence.
 
+The VASU-140M one-build protocol was independently accepted on 2026-07-30. The
+one-build protocol uses a detached, self-hashed authorization envelope that
+separately binds the accepted implementation anchor and an exact clean runtime
+commit. This removes Git self-reference while preserving fail-closed,
+single-use publication. It still requires a separately reviewed implementation,
+a future explicit human approval, and a separate explicit publication
+instruction. The accepted review packet contains a non-blocking fixture-path
+typo documented in its audit; the reviewed packet remains immutable. No
+envelope or production artifact exists.
+
 ## Capability-CPT schedule status
 
 The generalized deterministic N-source schedule layer and Candidates A/B/C
