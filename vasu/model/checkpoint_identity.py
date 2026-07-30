@@ -79,8 +79,24 @@ def load_family_model_state(
         checkpoint,
         expected_family_id,
     )
+    validate_family_model(model, family.family_id)
+    return model.load_state_dict(checkpoint["model"], strict=True)
+
+
+def validate_family_model(
+    model: Any,
+    expected_family_id: str,
+) -> ModelFamilySpec:
+    """Validate a live model's config and unique parameter count."""
+    family = get_model_family(expected_family_id)
     config = getattr(model, "config", None)
     if not isinstance(config, ModelConfig):
         raise TypeError("destination model must expose a ModelConfig")
     validate_family_config(family.family_id, config)
-    return model.load_state_dict(checkpoint["model"], strict=True)
+    parameter_count = sum(parameter.numel() for parameter in model.parameters())
+    if parameter_count != family.expected_parameter_count:
+        raise ValueError(
+            f"model parameter count does not match family {family.family_id}: "
+            f"expected {family.expected_parameter_count}, got {parameter_count}"
+        )
+    return family

@@ -8,6 +8,7 @@ from vasu.model import (
     build_model_family_identity,
     load_family_model_state,
     validate_checkpoint_family_identity,
+    validate_family_model,
 )
 
 
@@ -89,6 +90,14 @@ class _RecordingModel:
         self.config = config
         self.load_calls = 0
 
+    def parameters(self):
+        class _Count:
+            @staticmethod
+            def numel() -> int:
+                return 137_841_408
+
+        return iter((_Count(),))
+
     def load_state_dict(self, state, strict):
         self.load_calls += 1
         return state, strict
@@ -123,3 +132,11 @@ def test_identity_builder_rejects_config_drift() -> None:
 
     with pytest.raises(ValueError, match="does not match family"):
         build_model_family_identity("vasu_140m_v1", config)
+
+
+def test_live_model_parameter_count_is_part_of_family_contract() -> None:
+    model = _RecordingModel(get_vasu_140m_config())
+    model.parameters = lambda: iter(())
+
+    with pytest.raises(ValueError, match="parameter count"):
+        validate_family_model(model, "vasu_140m_v1")

@@ -71,8 +71,8 @@ gate.
 - The existing 32k tokenizer and raw token IDs remain compatible.
 - Existing 257-token records and masks remain valid for current workflows but
   are not a 512-context VASU-140M release.
-- Exact-resume evidence for existing workflows is unchanged; it does not
-  qualify VASU-140M.
+- CPU FP32 exact-resume equivalence is qualified for the frozen synthetic
+  VASU-140M workload; CUDA/AMP and real-data execution remain unqualified.
 
 ## Remaining fail-closed gates
 
@@ -81,14 +81,16 @@ The bounded FP32 CPU forward/backward and cache-parity gate passed on
 The additive model-only checkpoint round trip and explicit wrong-family
 rejection gate also passed. See
 `VASU_140M_CHECKPOINT_QUALIFICATION_20260730.md`.
+The corrected synthetic exact-resume v2 gate passed after isolating DataLoader
+iterator RNG from model RNG. See
+`VASU_140M_EXACT_RESUME_QUALIFICATION_20260730.md`.
 
 1. Matched CUDA memory, throughput, thermal, and checkpoint-I/O evidence.
-2. Exact mid-epoch resume equivalence for the new family.
-3. Independently reviewed, deterministic 513-token data and shifted-mask
+2. Independently reviewed, deterministic 513-token data and shifted-mask
    releases with hashes and split isolation.
-4. Frozen pretraining, factual, repetition, arithmetic, and robustness
+3. Frozen pretraining, factual, repetition, arithmetic, and robustness
    evaluation baselines.
-5. A written scientific plan, control, promotion/rejection criteria, clean
+4. A written scientific plan, control, promotion/rejection criteria, clean
    reviewed commit, successful full preflight, and exact hash-bound human
    authorization.
 

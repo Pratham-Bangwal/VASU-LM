@@ -19,6 +19,14 @@ temporary checkpoint was deleted. See
 This qualifies model-only round trip, not optimizer/scheduler state, exact
 resume, CUDA checkpoint I/O, or training.
 
+The subsequent VASU-140M synthetic exact-resume gate found and corrected a
+DataLoader iterator RNG-isolation defect. The passing v2 run matched model,
+AdamW, scheduler, scaler, sampler, sample order, progress, partial gradients,
+and Python/NumPy/PyTorch RNG state after a mid-accumulation interruption. See
+`VASU_140M_EXACT_RESUME_QUALIFICATION_20260730.md`. This qualifies the frozen
+CPU synthetic workload only; CUDA/AMP and real-data training remain
+unauthorized.
+
 ## Arithmetic v2 schedule identity
 
 Arithmetic v2 resume identity includes the arithmetic manifest SHA-256 in

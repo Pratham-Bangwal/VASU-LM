@@ -107,8 +107,12 @@ training remains unauthorized. See
    wrong-family rejection passed without changing legacy checkpoint
    containers. See
    [`VASU_140M_CHECKPOINT_QUALIFICATION_20260730.md`](VASU_140M_CHECKPOINT_QUALIFICATION_20260730.md).
-7. **Next non-training gate:** prove exact resume for optimizer, scheduler,
-   sampler, RNG, and partial accumulation using only isolated synthetic state.
+7. **Complete:** corrected v2 exact resume matched model, AdamW, scheduler,
+   sampler, scaler, partial gradients, sample order, and RNG state. The failed
+   v1 evidence and loader-RNG root cause are preserved in
+   [`VASU_140M_EXACT_RESUME_QUALIFICATION_20260730.md`](VASU_140M_EXACT_RESUME_QUALIFICATION_20260730.md).
+8. **Next non-CUDA gate:** independently specify and review the isolated
+   513-token data/mask contract without generating a release.
 
 Exit criterion: the implementation-readiness contract is complete. Promotion
 to training planning requires every remaining gate and a separate decision;

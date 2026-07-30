@@ -226,3 +226,10 @@ datasets, and existing checkpoint fields remain unchanged. Exact parameter
 reproducibility requires deterministic dataset/model execution; worker-side
 random transforms must be stateless or deterministic and
 `persistent_workers=True` is rejected.
+
+DataLoader iterator construction consumes a base seed even with zero workers.
+Training and validation loaders therefore use dedicated deterministically
+seeded generators, isolating loader bookkeeping from the global PyTorch RNG
+used by dropout and other stochastic model operations. This prevents a newly
+constructed resume iterator from shifting model randomness. Worker-side
+random transforms must still be stateless or deterministic.

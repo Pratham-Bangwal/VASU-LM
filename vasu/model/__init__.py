@@ -8,6 +8,7 @@ from .checkpoint_identity import (
     build_model_family_identity,
     load_family_model_state,
     validate_checkpoint_family_identity,
+    validate_family_model,
 )
 from .embedding import TokenEmbedding
 from .families import (
@@ -45,4 +46,5 @@ __all__ = [
     "build_model_family_identity",
     "load_family_model_state",
     "validate_checkpoint_family_identity",
+    "validate_family_model",
 ]

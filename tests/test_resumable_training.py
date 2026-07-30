@@ -49,6 +49,16 @@ class TinyLanguageModel(nn.Module):
         return self.embedding(token_ids)
 
 
+class DropoutLanguageModel(nn.Module):
+    def __init__(self) -> None:
+        super().__init__()
+        self.embedding = nn.Embedding(12, 12)
+        self.dropout = nn.Dropout(0.25)
+
+    def forward(self, token_ids: torch.Tensor) -> torch.Tensor:
+        return self.dropout(self.embedding(token_ids))
+
+
 def _config(
     tmp_path: Path, checkpoint_name: str, *, epochs: int = 1
 ) -> SimpleNamespace:
@@ -196,6 +206,59 @@ def test_uninterrupted_and_mid_accumulation_resume_match(
     assert resumed.global_step == uninterrupted.global_step == 4
     assert resumed.scheduler.state_dict() == uninterrupted.scheduler.state_dict()
     for expected, actual in zip(expected_parameters, resumed.model.parameters(), strict=True):
+        assert torch.equal(expected, actual.detach())
+
+
+def test_resume_iterator_does_not_advance_model_rng(
+    tmp_path: Path, monkeypatch
+) -> None:
+    monkeypatch.setattr(
+        trainer_module,
+        "build_optimizer",
+        lambda model, config: torch.optim.SGD(model.parameters(), lr=0.05),
+    )
+    config = _config(tmp_path, "dropout-resume.pt")
+
+    torch.manual_seed(73)
+    uninterrupted = Trainer(
+        DropoutLanguageModel(),
+        tokenizer=None,
+        train_dataset=RecordingLanguageDataset([]),
+        val_dataset=RecordingLanguageDataset([]),
+        config=config,
+        device=torch.device("cpu"),
+    )
+    uninterrupted.train_epoch()
+    expected_parameters = _parameters(uninterrupted.model)
+    expected_rng = torch.get_rng_state().clone()
+
+    torch.manual_seed(73)
+    interrupted = Trainer(
+        DropoutLanguageModel(),
+        tokenizer=None,
+        train_dataset=RecordingLanguageDataset([]),
+        val_dataset=RecordingLanguageDataset([]),
+        config=config,
+        device=torch.device("cpu"),
+    )
+    interrupted.train_epoch(max_microbatches=3)
+    interrupted.save_training_checkpoint(config.checkpoint_path)
+    resumed = Trainer(
+        DropoutLanguageModel(),
+        tokenizer=None,
+        train_dataset=RecordingLanguageDataset([]),
+        val_dataset=RecordingLanguageDataset([]),
+        config=config,
+        device=torch.device("cpu"),
+    )
+    resumed.train_epoch()
+
+    assert torch.equal(torch.get_rng_state(), expected_rng)
+    for expected, actual in zip(
+        expected_parameters,
+        resumed.model.parameters(),
+        strict=True,
+    ):
         assert torch.equal(expected, actual.detach())
 
 

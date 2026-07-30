@@ -4,6 +4,13 @@
 
 ### Added
 
+- Added VASU-140M family-aware exact-resume qualification. The first immutable
+  run exposed DataLoader iterator consumption of global PyTorch RNG, which
+  shifted dropout after resume. Dedicated loader generators now isolate model
+  RNG. The corrected v2 synthetic CPU run matched model, AdamW, scheduler,
+  scaler, sampler, partial gradients, sample order, progress, and RNG state;
+  real training remains unauthorized.
+
 - Added the formal Candidate D matched-control scientific decision record.
   Candidate D control completed its 10M-token non-arithmetic continuation from
   Candidate A final, reached 112/1000 arithmetic development exact accuracy

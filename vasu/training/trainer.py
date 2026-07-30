@@ -12,6 +12,11 @@ from torch.utils.data import DataLoader
 from tqdm import tqdm
 
 from vasu.training.accumulation import normalize_partial_accumulation
+from vasu.model import (
+    build_model_family_identity,
+    load_family_model_state,
+    validate_family_model,
+)
 from vasu.training.checkpoint import save_checkpoint
 from vasu.training.losses import language_model_loss
 from vasu.training.optimizer import build_optimizer
@@ -48,6 +53,14 @@ class Trainer:
         callbacks: list[Any] | None = None,
     ) -> None:
         self.model = model.to(device)
+        model_family_id = getattr(config, "model_family_id", None)
+        if model_family_id is not None and (
+            not isinstance(model_family_id, str) or not model_family_id
+        ):
+            raise ValueError("model_family_id must be a non-empty string")
+        self.model_family_id = model_family_id
+        if self.model_family_id is not None:
+            validate_family_model(self.model, self.model_family_id)
         self.tokenizer = tokenizer
         self.train_dataset = train_dataset
         self.val_dataset = val_dataset
@@ -125,12 +138,24 @@ class Trainer:
                 "Training dataset produces zero batches for the configured "
                 "batch_size and drop_last setting."
             )
+        # DataLoader iterator construction draws a base seed even with zero
+        # workers. Keep those implementation draws isolated from the model RNG
+        # so recreating an iterator after exact resume cannot change dropout or
+        # other model-side stochastic execution.
+        loader_seed = int(getattr(self.config, "seed", 42))
+        self._train_loader_generator = torch.Generator().manual_seed(
+            loader_seed + 1_000_003
+        )
+        self._val_loader_generator = torch.Generator().manual_seed(
+            loader_seed + 2_000_003
+        )
         self.loader = DataLoader(
             self.train_dataset,
             batch_sampler=self.train_sampler,
             pin_memory=True,
             num_workers=workers,
             persistent_workers=False,
+            generator=self._train_loader_generator,
         )
         self.val_loader = DataLoader(
             self.val_dataset,
@@ -140,6 +165,7 @@ class Trainer:
             pin_memory=True,
             num_workers=workers,
             persistent_workers=False,
+            generator=self._val_loader_generator,
         )
 
     def _load_checkpoint(self) -> None:
@@ -151,7 +177,14 @@ class Trainer:
             map_location=self.device,
             weights_only=False,
         )
-        self.model.load_state_dict(checkpoint["model"])
+        if self.model_family_id is None:
+            self.model.load_state_dict(checkpoint["model"])
+        else:
+            load_family_model_state(
+                self.model,
+                checkpoint,
+                self.model_family_id,
+            )
         self.optimizer.load_state_dict(checkpoint["optimizer"])
         if "scheduler" in checkpoint:
             self.scheduler.load_state_dict(checkpoint["scheduler"])
@@ -266,6 +299,18 @@ class Trainer:
     ) -> None:
         """Save an additive exact-resume checkpoint at any microbatch boundary."""
 
+        metadata: dict[str, Any] = {
+            "best_val_loss": self.best_val_loss,
+            "training_progress": self._training_progress(),
+        }
+        if self.model_family_id is not None:
+            validate_family_model(self.model, self.model_family_id)
+            metadata["model_family_identity"] = (
+                build_model_family_identity(
+                    self.model_family_id,
+                    self.model.config,
+                )
+            )
         save_checkpoint(
             model=self.model,
             optimizer=self.optimizer,
@@ -274,8 +319,7 @@ class Trainer:
             loss=loss,
             path=path,
             global_step=self.global_step,
-            best_val_loss=self.best_val_loss,
-            training_progress=self._training_progress(),
+            **metadata,
         )
 
     def _unpack_batch(

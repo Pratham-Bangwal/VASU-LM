@@ -261,6 +261,19 @@ restored. Legacy checkpoint containers are unchanged. See
 `docs/VASU_140M_CHECKPOINT_QUALIFICATION_20260730.md`. Exact resume and CUDA
 checkpoint I/O remain unqualified; training remains unauthorized.
 
+The first VASU-140M synthetic exact-resume run then exposed a real stochastic
+resume defect: recreating a DataLoader iterator consumed global PyTorch RNG,
+so dropout caused model and AdamW divergence despite correct sampler and
+partial-gradient restoration. The failed artifact is preserved. Training and
+validation loaders now use dedicated generators, isolating loader bookkeeping
+from model RNG. The corrected v2 run matched model, AdamW, scheduler, scaler,
+sampler, sample order, progress, partial gradients, and Python/NumPy/PyTorch
+RNG state after resuming a 1,102,823,453-byte mid-accumulation checkpoint.
+All temporary artifacts were removed. See
+`docs/VASU_140M_EXACT_RESUME_QUALIFICATION_20260730.md`. This qualifies only
+the frozen synthetic CPU workload; CUDA/AMP, data, evaluation, and training
+authorization gates remain closed.
+
 Verified completed work:
 
 - architecture planning completed;
