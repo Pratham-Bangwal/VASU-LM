@@ -179,6 +179,15 @@ instruction. The accepted review packet contains a non-blocking fixture-path
 typo documented in its audit; the reviewed packet remains immutable. No
 envelope or production artifact exists.
 
+The separately isolated v2 authorization gate is now implemented with canonical
+detached-envelope loading, exact runtime and code identities, exclusive
+single-use locking, conservative stale-lock recovery, direct v2 receipt
+binding, and adversarial transaction tests. The accepted production builder
+remains byte-identical. GPT-5.5 independently accepted the exact pre-commit
+implementation on 2026-07-30. A clean post-commit qualification and independent
+identity review remain mandatory. The implementation creates no envelope and
+grants no publication or training authority.
+
 ## Capability-CPT schedule status
 
 The generalized deterministic N-source schedule layer and Candidates A/B/C

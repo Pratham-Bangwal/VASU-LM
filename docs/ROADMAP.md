@@ -6,10 +6,11 @@
   production-builder design, implementation, and post-commit identity review.
 - Completed: independently accepted detached two-identity one-build
   authorization protocol.
-- Next: implement the protocol loader, exact runtime identity gate, exclusive
-  lock, stale-lock policy, and adversarial evidence without creating an
-  authorization envelope.
-- Pending: independent acceptance of that implementation.
+- Completed: pre-commit protocol loader, exact runtime identity gate, exclusive
+  lock, stale-lock policy, direct v2 receipt binding, and adversarial evidence.
+- Completed: independent acceptance of the exact pre-commit implementation.
+- Next: commit the accepted package and independently review its clean
+  post-commit identity.
 - Blocked: authorization-envelope creation and one-time production publication.
 - Unchanged: no compatible base checkpoint is selected and training remains
   unauthorized.

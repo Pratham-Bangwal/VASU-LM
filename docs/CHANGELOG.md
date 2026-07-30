@@ -4,6 +4,14 @@
 
 ### Added
 
+- Added the pre-commit implementation proposal for the VASU-140M detached v2
+  authorization gate. It preserves the accepted builder identity while adding
+  canonical external-envelope loading, exact runtime/gate binding, exclusive
+  locking, conservative stale-lock recovery, direct v2 receipt provenance, and
+  adversarial transaction coverage. GPT-5.5 independently accepted the exact
+  pre-commit implementation; post-commit identity review remains pending. No
+  envelope or protected production artifact was created.
+
 - Added the specification-only VASU-140M one-build authorization protocol and
   independent review packet. The selected design separates the accepted
   implementation anchor from an exact clean runtime commit and uses a detached,
