@@ -1,7 +1,8 @@
 # VASU-140M Implementation Readiness
 
-Status: configuration and identity contract complete; execution, data,
-experiment, and training gates remain closed.
+Status: configuration, identity, bounded CPU execution, and model-only
+checkpoint contracts complete; CUDA, exact resume, data, experiment, and
+training gates remain closed.
 
 ## Why this layer exists
 
@@ -75,15 +76,19 @@ gate.
 
 ## Remaining fail-closed gates
 
-1. Bounded CPU forward/backward and cache-parity qualification.
-2. Matched CUDA memory, throughput, thermal, and checkpoint-I/O evidence.
-3. VASU-140M checkpoint round-trip and explicit wrong-family rejection.
-4. Exact mid-epoch resume equivalence for the new family.
-5. Independently reviewed, deterministic 513-token data and shifted-mask
+The bounded FP32 CPU forward/backward and cache-parity gate passed on
+2026-07-30. See `VASU_140M_CPU_QUALIFICATION_20260730.md`.
+The additive model-only checkpoint round trip and explicit wrong-family
+rejection gate also passed. See
+`VASU_140M_CHECKPOINT_QUALIFICATION_20260730.md`.
+
+1. Matched CUDA memory, throughput, thermal, and checkpoint-I/O evidence.
+2. Exact mid-epoch resume equivalence for the new family.
+3. Independently reviewed, deterministic 513-token data and shifted-mask
    releases with hashes and split isolation.
-6. Frozen pretraining, factual, repetition, arithmetic, and robustness
+4. Frozen pretraining, factual, repetition, arithmetic, and robustness
    evaluation baselines.
-7. A written scientific plan, control, promotion/rejection criteria, clean
+5. A written scientific plan, control, promotion/rejection criteria, clean
    reviewed commit, successful full preflight, and exact hash-bound human
    authorization.
 

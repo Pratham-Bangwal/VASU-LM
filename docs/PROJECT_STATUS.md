@@ -242,9 +242,24 @@ width, 512-token context) is now registered under a canonical config/family
 fingerprint and its exact 137,841,408-parameter contract passes meta-device
 construction. VASU-31M/60M defaults, checkpoint containers, tokenizer, data,
 masks, training, and resume behavior are unchanged. Existing checkpoints are
-not tensor-compatible with this family. CPU/CUDA execution, cache,
-checkpoint/resume, 513-token data, and frozen evaluation gates remain open;
-training is not authorized.
+not tensor-compatible with this family.
+
+The bounded VASU-140M CPU qualification passed on 2026-07-30. One synthetic
+FP32 batch of shape `[1, 8]` produced finite logits, loss, and gradients for
+all 110 parameter tensors without creating an optimizer or updating weights.
+Dynamic and preallocated KV caches matched uncached logits across prompt
+prefill and three decode steps with maximum absolute error `5.72e-06`. See
+`docs/VASU_140M_CPU_QUALIFICATION_20260730.md`. CUDA,
+exact-resume, 513-token data, and frozen evaluation gates remain open.
+
+The additive VASU-140M model-only checkpoint gate also passed on 2026-07-30.
+An atomic 551,408,411-byte temporary checkpoint strictly restored all 111
+state tensors bit-for-bit into a fresh model and preserved weight tying.
+Wrong declared-family and wrong destination-config cases were rejected before
+state loading, and the temporary checkpoint was removed with disk space fully
+restored. Legacy checkpoint containers are unchanged. See
+`docs/VASU_140M_CHECKPOINT_QUALIFICATION_20260730.md`. Exact resume and CUDA
+checkpoint I/O remain unqualified; training remains unauthorized.
 
 Verified completed work:
 

@@ -1,5 +1,24 @@
 # Checkpoints Guide
 
+## VASU-140M family identity
+
+The opt-in VASU-140M checkpoint contract adds a
+`model_family_identity` mapping containing the versioned family ID, family
+SHA-256, complete config SHA-256, and exact parameter count. It validates both
+checkpoint metadata and the destination model config before strict state
+loading. The established VASU-31M/60M checkpoint writer, loader, and container
+requirements remain unchanged.
+
+The 2026-07-30 disposable CPU qualification atomically saved a 551,408,411-byte
+VASU-140M model-only checkpoint, verified it after writing, strictly restored
+all 111 state tensors bit-for-bit, preserved weight tying, and rejected both a
+wrong declared family and a wrong destination config before state loading. The
+temporary checkpoint was deleted. See
+`VASU_140M_CHECKPOINT_QUALIFICATION_20260730.md`.
+
+This qualifies model-only round trip, not optimizer/scheduler state, exact
+resume, CUDA checkpoint I/O, or training.
+
 ## Arithmetic v2 schedule identity
 
 Arithmetic v2 resume identity includes the arithmetic manifest SHA-256 in

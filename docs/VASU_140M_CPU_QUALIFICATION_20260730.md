@@ -77,5 +77,7 @@ It does not establish:
 - 513-token data or mask readiness;
 - model quality or a scientific reason to train.
 
-The next non-training engineering gate is checkpoint round-trip with explicit
-wrong-family rejection. CUDA qualification remains separately hardware-gated.
+The subsequent checkpoint round-trip and wrong-family gate passed; see
+`VASU_140M_CHECKPOINT_QUALIFICATION_20260730.md`. Exact resume is the next
+non-training engineering gate. CUDA qualification remains separately
+hardware-gated.

@@ -96,11 +96,19 @@ training remains unauthorized. See
 2. **Complete:** freeze its dimensions, parameter budget, context length,
    tokenizer boundary, memory estimate, migration plan, identity fingerprint,
    and remaining gates.
-3. **Next:** run bounded CPU forward/backward and cache-parity qualification.
+3. **Complete:** bounded FP32 CPU forward/backward and dynamic/preallocated
+   cache-parity qualification passed. See
+   [`VASU_140M_CPU_QUALIFICATION_20260730.md`](VASU_140M_CPU_QUALIFICATION_20260730.md).
 4. **CUDA-gated:** measure peak memory, throughput, thermals, checkpoint I/O,
    serialization, and exact resume before any experiment plan.
 5. **Data-gated:** independently specify and review isolated 513-token releases;
    do not repack or generate them as part of architecture readiness.
+6. **Complete:** additive model-only checkpoint round-trip and explicit
+   wrong-family rejection passed without changing legacy checkpoint
+   containers. See
+   [`VASU_140M_CHECKPOINT_QUALIFICATION_20260730.md`](VASU_140M_CHECKPOINT_QUALIFICATION_20260730.md).
+7. **Next non-training gate:** prove exact resume for optimizer, scheduler,
+   sampler, RNG, and partial accumulation using only isolated synthetic state.
 
 Exit criterion: the implementation-readiness contract is complete. Promotion
 to training planning requires every remaining gate and a separate decision;
