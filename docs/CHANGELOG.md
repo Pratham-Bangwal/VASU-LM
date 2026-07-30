@@ -4,6 +4,14 @@
 
 ### Added
 
+- Added the specification-only VASU-140M production release-builder design and
+  independent review packet. The recommended architecture separates read-only
+  full-source qualification from exact, one-build-authorized publication and
+  defines atomicity, recovery, path, lineage, reproducibility, and mask gates.
+  GPT-5.5 independently accepted the design for a separately reviewed
+  implementation proposal. No production builder, release artifact, or
+  training authority was created by the design milestone.
+
 - Added a fixture-only VASU-140M transactional release constructor. It binds
   the accepted plan and independent decision, reuses the frozen 513-token
   contract, rejects production paths and fixtures above 30 examples, publishes

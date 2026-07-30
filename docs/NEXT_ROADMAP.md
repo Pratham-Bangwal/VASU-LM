@@ -126,6 +126,11 @@ training remains unauthorized. See
    non-overwrite behavior, atomic publication, recovery, and artifact
    validation while hard-rejecting production paths and fixtures above 30
    examples. A separate production-builder design and review remain required.
+10. **Complete; independently accepted for implementation review:** the
+    two-phase production-builder specification passed GPT-5.5 review. Implement
+    and independently review its fail-closed qualifier and publisher without
+    constructing production data; a later exact one-build authorization is
+    still mandatory.
 
 Exit criterion: the implementation-readiness contract is complete. Promotion
 to training planning requires every remaining gate and a separate decision;

@@ -133,6 +133,14 @@ construction evidence on 2026-07-30. The acceptance is non-authorizing; a
 separately designed and reviewed production builder remains required before
 any production release construction.
 
+A specification-only production-builder design now proposes separate read-only
+qualification and explicitly authorized publication phases. It defines
+immutable lineage, one-build authorization, atomic staging, incomplete-
+publication quarantine, Windows path defenses, deterministic full-source dry
+runs, and complete mask audits. GPT-5.5 independently accepted the design on
+2026-07-30 for a separately reviewed implementation proposal. The decision is
+not production release or training authority.
+
 ## Capability-CPT schedule status
 
 The generalized deterministic N-source schedule layer and Candidates A/B/C
