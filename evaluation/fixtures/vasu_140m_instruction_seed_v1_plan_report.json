@@ -1,0 +1,148 @@
+{
+  "assignment_sha256": "59481237acd2164f96dbbdc2b837ca8cabb00c496b1b6c42cb260b44bbd2b394",
+  "capability_counts": {
+    "beginner_explanation": 199,
+    "exact_format_following": 200,
+    "json_schema_output": 50,
+    "lists_structured_output": 100,
+    "rewriting_transformation": 150,
+    "short_factual_qa": 247,
+    "uncertainty_honest_fallback": 50
+  },
+  "combined_exact_duplicate_groups": 0,
+  "combined_near_duplicate_candidates": 0,
+  "eligible_contamination_findings": 0,
+  "eligible_example_count": 996,
+  "exact_contamination_findings": [
+    {
+      "benchmark_path": "evaluation/benchmarks/factual_cpt_v2.json",
+      "example_id": "viq1_b001_000006",
+      "matching_method": "full_prompt",
+      "prompt_id": "mc_046"
+    },
+    {
+      "benchmark_path": "evaluation/benchmarks/factual_cpt_v2.json",
+      "example_id": "viq1_b001_000090",
+      "matching_method": "full_prompt",
+      "prompt_id": "mc_054"
+    },
+    {
+      "benchmark_path": "evaluation/benchmarks/factual_cpt_v2.json",
+      "example_id": "viq1_b002_000008",
+      "matching_method": "full_prompt",
+      "prompt_id": "mc_066"
+    },
+    {
+      "benchmark_path": "evaluation/prompts.json",
+      "example_id": "viq1_b002_000132",
+      "matching_method": "full_prompt",
+      "prompt_id": "loop_simple"
+    }
+  ],
+  "ngram_only_contamination_findings": [],
+  "plan_id": "vasu_140m_instruction_seed_v1",
+  "plan_sha256": "8da8cc92ef913bb567c96ec47986f849b84eb85ac2d11f3ad245fb1639361e16",
+  "planned_output_paths": {
+    "development_mask_path": "data/processed/vasu_140m/instruction_seed_v1/development.mask.bin",
+    "development_token_path": "data/processed/vasu_140m/instruction_seed_v1/development.tokens.bin",
+    "evaluation_mask_path": "data/processed/vasu_140m/instruction_seed_v1/evaluation.mask.bin",
+    "evaluation_token_path": "data/processed/vasu_140m/instruction_seed_v1/evaluation.tokens.bin",
+    "logical_manifest_path": "data/manifests/vasu_140m/instruction_seed_v1.json",
+    "release_directory": "data/processed/vasu_140m/instruction_seed_v1",
+    "train_mask_path": "data/processed/vasu_140m/instruction_seed_v1/train.mask.bin",
+    "train_token_path": "data/processed/vasu_140m/instruction_seed_v1/train.tokens.bin"
+  },
+  "planned_outputs_absent": true,
+  "production_release_created": false,
+  "prompt_count": 2618,
+  "prompt_inventories": [
+    {
+      "path": "evaluation/suites/vasu_capability_v1.json",
+      "prompt_count": 8,
+      "sha256": "bc11576e5fd5ba5f3e900190d5d47ba4c9f64ca2fc04252ddb500043e50faca4"
+    },
+    {
+      "path": "evaluation/benchmarks/factual_cpt_v2.json",
+      "prompt_count": 300,
+      "sha256": "17c356f0b3a5093511402b08f307b770b8cc4443b3ca3e1cceaa0eb7044115b9"
+    },
+    {
+      "path": "evaluation/benchmarks/ultrachat_promotion_v1.json",
+      "prompt_count": 216,
+      "sha256": "68806800c0b8d524a1cdd4e83ccdd46d388aa9d86f8070a6fbbf3e04a8091bf1"
+    },
+    {
+      "path": "evaluation/prompts.json",
+      "prompt_count": 40,
+      "sha256": "400ea665af9f12ffa17c0e121a1d10d3e8e01ac81363b5130ba8d8fca7ca8673"
+    },
+    {
+      "path": "evaluation/prompts_8_original.json",
+      "prompt_count": 8,
+      "sha256": "5b3a494ebdbb24f9a9419eb7bacd6c269161e6abc91ee73db983ecf0292f50dc"
+    },
+    {
+      "path": "evaluation/prompts_factual_cpt_v1.json",
+      "prompt_count": 6,
+      "sha256": "33d43126b411d944d78b8f62ee56dd18de688fe52d4f6a9cc8f1dfc932bfde8c"
+    },
+    {
+      "path": "data/processed/capability/verified_arithmetic_v1/dev.jsonl",
+      "prompt_count": 20,
+      "sha256": "da988af5dca386fe98d4a07f87a2eff6b14ef867853b0918dcac12aa52df306c"
+    },
+    {
+      "path": "data/processed/capability/verified_arithmetic_v1/eval.jsonl",
+      "prompt_count": 20,
+      "sha256": "f10a8bf0e668f02c0b70cabb279dfd98353cbc2d8a7cb495bea25a640d318ceb"
+    },
+    {
+      "path": "data/processed/capability/verified_arithmetic_v2/dev.jsonl",
+      "prompt_count": 1000,
+      "sha256": "e3130b9584d052bdf6848b0d394e8515d522fd5f682ab9b6c9795535b7a903d0"
+    },
+    {
+      "path": "data/processed/capability/verified_arithmetic_v2/eval.jsonl",
+      "prompt_count": 1000,
+      "sha256": "5d3fe19e950af146f1c345e6164e7bbd56618e38d8cc76df328e40eca8da6dd2"
+    }
+  ],
+  "quarantined_example_ids": [
+    "viq1_b001_000006",
+    "viq1_b001_000090",
+    "viq1_b002_000008",
+    "viq1_b002_000132"
+  ],
+  "release_build_permitted": false,
+  "report_sha256": "8147215c2f58044aa60374f39e772e13fce3913090ea5c2d8acc915aeeca6fcb",
+  "schema_id": "vasu.model-family-release-plan-report.v1",
+  "source_evidence": [
+    {
+      "all_human_approved": true,
+      "license": "CC0-1.0",
+      "manifest_sha256": "5a9060222f07c8977d6ac0e741a22aaedf08af76bfe1b4b1e33b764b0fce8a86",
+      "record_count": 500,
+      "review_sha256": "ff46cbdd0d7c80d873a66efaeec0ea7a26974ad0eac4e5fc7f1ad9515d51b408",
+      "source_id": "vasu_instruction_quality_v1_batch_001",
+      "source_sha256": "02538e9f4eb5c5f20fffd253733487918440fb35ef890337eeea879ca5b4168e"
+    },
+    {
+      "all_human_approved": true,
+      "license": "CC0-1.0",
+      "manifest_sha256": "c38f208e4bb1bd6e608fa19e285ed2357b7160eed67354422560314911f117f0",
+      "record_count": 500,
+      "review_sha256": "0af78e4ecaa4714934136c8f03bad091f5009002ec55c6c72148d4dcb10b0deb",
+      "source_id": "vasu_instruction_quality_v1_batch_002",
+      "source_sha256": "e62bac5680362164a0b898c8356d700363de024f05bfcd3bdf981c36f737b241"
+    }
+  ],
+  "source_example_count": 1000,
+  "specification_only": true,
+  "split_counts": {
+    "development": 48,
+    "evaluation": 50,
+    "train": 898
+  },
+  "training_authorized": false,
+  "training_permitted": false
+}

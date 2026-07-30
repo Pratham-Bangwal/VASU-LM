@@ -1,0 +1,209 @@
+{
+  "schema_id": "vasu.model-family-release-plan.v1",
+  "plan_id": "vasu_140m_instruction_seed_v1",
+  "plan_status": "specification_only",
+  "created_date": "2026-07-30",
+  "family": {
+    "family_id": "vasu_140m_v1",
+    "model_config_sha256": "29e9bafdffbbc632b1b6f006818b1470e6dbc20f21841aa33e625a0f04159059",
+    "tokenizer_sha256": "04942e101a4a01f87f7e492ad9e463d299a559e784b650fdedd1763a017d195a",
+    "record_width": 513,
+    "record_specification_sha256": "1bbbeafe836104dc4326a3a00e0dfcef21a965bbc02f56408be4305ae16ce7e5"
+  },
+  "accepted_contract": {
+    "fixture_report_path": "evaluation/fixtures/vasu_140m_513_record_spec_v1.json",
+    "fixture_file_sha256": "b451731a7f4ff72859c0041797348daf879f357b65dd8d47c6a72ccb1c0c74fc",
+    "fixture_report_sha256": "7329698aefc3ab4593b1bfba246487a83ed0210b4e3fbe96f72c8bb7b8c8e7e3",
+    "decision_path": "docs/VASU_140M_513_TOKEN_INDEPENDENT_REVIEW_DECISION.md",
+    "decision_sha256": "4427793ef0833d85b7e7e665c3f31d43ea0a80e17d6b63cda9545f5bcf31ffe2",
+    "decision": "accepted",
+    "reviewer": "GPT-5.5 independent review",
+    "review_date": "2026-07-30"
+  },
+  "release_scope": {
+    "training_stage": "instruction_supervised",
+    "prompt_format": "alpaca_user_assistant_v1",
+    "response_prefix": " ",
+    "language": "en",
+    "expected_source_examples": 1000,
+    "quarantined_example_ids": [
+      "viq1_b001_000006",
+      "viq1_b001_000090",
+      "viq1_b002_000008",
+      "viq1_b002_000132"
+    ],
+    "eligible_example_count": 996,
+    "capability_counts": {
+      "short_factual_qa": 247,
+      "beginner_explanation": 199,
+      "exact_format_following": 200,
+      "rewriting_transformation": 150,
+      "lists_structured_output": 100,
+      "json_schema_output": 50,
+      "uncertainty_honest_fallback": 50
+    },
+    "requires_compatible_base_checkpoint": true,
+    "base_checkpoint_selected": false
+  },
+  "sources": [
+    {
+      "source_id": "vasu_instruction_quality_v1_batch_001",
+      "manifest_path": "data/manifests/instruct/vasu_instruction_quality_v1_batch_001_release.json",
+      "manifest_sha256": "5a9060222f07c8977d6ac0e741a22aaedf08af76bfe1b4b1e33b764b0fce8a86",
+      "source_path": "data/raw/instruct/vasu_instruction_quality_v1_batch_001.jsonl",
+      "source_sha256": "02538e9f4eb5c5f20fffd253733487918440fb35ef890337eeea879ca5b4168e",
+      "review_path": "data/reviews/instruct/vasu_instruction_quality_v1_batch_001_review.jsonl",
+      "review_sha256": "ff46cbdd0d7c80d873a66efaeec0ea7a26974ad0eac4e5fc7f1ad9515d51b408",
+      "approved_example_count": 500,
+      "license": "CC0-1.0",
+      "provenance": "purpose-written VASU instruction-quality batch 001"
+    },
+    {
+      "source_id": "vasu_instruction_quality_v1_batch_002",
+      "manifest_path": "data/manifests/instruct/vasu_instruction_quality_v1_batch_002_release.json",
+      "manifest_sha256": "c38f208e4bb1bd6e608fa19e285ed2357b7160eed67354422560314911f117f0",
+      "source_path": "data/raw/instruct/vasu_instruction_quality_v1_batch_002.jsonl",
+      "source_sha256": "e62bac5680362164a0b898c8356d700363de024f05bfcd3bdf981c36f737b241",
+      "review_path": "data/reviews/instruct/vasu_instruction_quality_v1_batch_002_review.jsonl",
+      "review_sha256": "0af78e4ecaa4714934136c8f03bad091f5009002ec55c6c72148d4dcb10b0deb",
+      "approved_example_count": 500,
+      "license": "CC0-1.0",
+      "provenance": "purpose-written VASU instruction-quality batch 002"
+    }
+  ],
+  "split_policy": {
+    "algorithm": "preserve-source-validation-then-sha256-source-capability-largest-remainder-v1",
+    "seed": 140513,
+    "preserve_source_validation_as": "development",
+    "evaluation_count": 50,
+    "expected_counts": {
+      "train": 898,
+      "development": 48,
+      "evaluation": 50
+    },
+    "assignment_sha256": "59481237acd2164f96dbbdc2b837ca8cabb00c496b1b6c42cb260b44bbd2b394",
+    "stratification_keys": [
+      "source_id",
+      "capability"
+    ],
+    "isolation_keys": [
+      "example_id",
+      "normalized_semantic_sha256"
+    ]
+  },
+  "deduplication_policy": {
+    "normalization_version": "vasu_cross_source_nfc_casefold_ws_v1",
+    "exact_fields": [
+      "instruction",
+      "input",
+      "response",
+      "instruction_input",
+      "instruction_input_response"
+    ],
+    "near_duplicate_algorithm": "normalized-trigram-jaccard-v1",
+    "near_duplicate_threshold": 0.85,
+    "cross_source_required": true,
+    "cross_split_required": true
+  },
+  "contamination_policy": {
+    "algorithm": "normalized-full-prompt-and-word-ngram-v1",
+    "normalization_version": "vasu_cross_source_nfc_casefold_ws_v1",
+    "ngram_words": 8,
+    "prompt_inventories": [
+      {
+        "path": "evaluation/suites/vasu_capability_v1.json",
+        "sha256": "bc11576e5fd5ba5f3e900190d5d47ba4c9f64ca2fc04252ddb500043e50faca4"
+      },
+      {
+        "path": "evaluation/benchmarks/factual_cpt_v2.json",
+        "sha256": "17c356f0b3a5093511402b08f307b770b8cc4443b3ca3e1cceaa0eb7044115b9"
+      },
+      {
+        "path": "evaluation/benchmarks/ultrachat_promotion_v1.json",
+        "sha256": "68806800c0b8d524a1cdd4e83ccdd46d388aa9d86f8070a6fbbf3e04a8091bf1"
+      },
+      {
+        "path": "evaluation/prompts.json",
+        "sha256": "400ea665af9f12ffa17c0e121a1d10d3e8e01ac81363b5130ba8d8fca7ca8673"
+      },
+      {
+        "path": "evaluation/prompts_8_original.json",
+        "sha256": "5b3a494ebdbb24f9a9419eb7bacd6c269161e6abc91ee73db983ecf0292f50dc"
+      },
+      {
+        "path": "evaluation/prompts_factual_cpt_v1.json",
+        "sha256": "33d43126b411d944d78b8f62ee56dd18de688fe52d4f6a9cc8f1dfc932bfde8c"
+      },
+      {
+        "path": "data/processed/capability/verified_arithmetic_v1/dev.jsonl",
+        "sha256": "da988af5dca386fe98d4a07f87a2eff6b14ef867853b0918dcac12aa52df306c"
+      },
+      {
+        "path": "data/processed/capability/verified_arithmetic_v1/eval.jsonl",
+        "sha256": "f10a8bf0e668f02c0b70cabb279dfd98353cbc2d8a7cb495bea25a640d318ceb"
+      },
+      {
+        "path": "data/processed/capability/verified_arithmetic_v2/dev.jsonl",
+        "sha256": "e3130b9584d052bdf6848b0d394e8515d522fd5f682ab9b6c9795535b7a903d0"
+      },
+      {
+        "path": "data/processed/capability/verified_arithmetic_v2/eval.jsonl",
+        "sha256": "5d3fe19e950af146f1c345e6164e7bbd56618e38d8cc76df328e40eca8da6dd2"
+      }
+    ],
+    "expected_prompt_count": 2618,
+    "expected_exact_matches": [
+      {
+        "example_id": "viq1_b001_000006",
+        "benchmark_path": "evaluation/benchmarks/factual_cpt_v2.json",
+        "prompt_id": "mc_046",
+        "matching_method": "full_prompt"
+      },
+      {
+        "example_id": "viq1_b001_000090",
+        "benchmark_path": "evaluation/benchmarks/factual_cpt_v2.json",
+        "prompt_id": "mc_054",
+        "matching_method": "full_prompt"
+      },
+      {
+        "example_id": "viq1_b002_000008",
+        "benchmark_path": "evaluation/benchmarks/factual_cpt_v2.json",
+        "prompt_id": "mc_066",
+        "matching_method": "full_prompt"
+      },
+      {
+        "example_id": "viq1_b002_000132",
+        "benchmark_path": "evaluation/prompts.json",
+        "prompt_id": "loop_simple",
+        "matching_method": "full_prompt"
+      }
+    ],
+    "expected_ngram_only_matches": 0,
+    "eligible_exact_matches": 0,
+    "eligible_ngram_only_matches": 0
+  },
+  "output_contract": {
+    "release_directory": "data/processed/vasu_140m/instruction_seed_v1",
+    "logical_manifest_path": "data/manifests/vasu_140m/instruction_seed_v1.json",
+    "train_token_path": "data/processed/vasu_140m/instruction_seed_v1/train.tokens.bin",
+    "train_mask_path": "data/processed/vasu_140m/instruction_seed_v1/train.mask.bin",
+    "development_token_path": "data/processed/vasu_140m/instruction_seed_v1/development.tokens.bin",
+    "development_mask_path": "data/processed/vasu_140m/instruction_seed_v1/development.mask.bin",
+    "evaluation_token_path": "data/processed/vasu_140m/instruction_seed_v1/evaluation.tokens.bin",
+    "evaluation_mask_path": "data/processed/vasu_140m/instruction_seed_v1/evaluation.mask.bin",
+    "overwrite_allowed": false
+  },
+  "gates": {
+    "record_contract_accepted": true,
+    "source_reviews_complete": true,
+    "combined_deduplication_passed": true,
+    "contamination_quarantine_specified": true,
+    "production_release_review_accepted": false,
+    "compatible_base_checkpoint_selected": false,
+    "training_plan_accepted": false,
+    "training_authorized": false
+  },
+  "production_release_created": false,
+  "training_authorized": false,
+  "plan_sha256": "8da8cc92ef913bb567c96ec47986f849b84eb85ac2d11f3ad245fb1639361e16"
+}

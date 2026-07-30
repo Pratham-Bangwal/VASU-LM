@@ -115,8 +115,12 @@ training remains unauthorized. See
    sampler, scaler, partial gradients, sample order, and RNG state. The failed
    v1 evidence and loader-RNG root cause are preserved in
    [`VASU_140M_EXACT_RESUME_QUALIFICATION_20260730.md`](VASU_140M_EXACT_RESUME_QUALIFICATION_20260730.md).
-8. **Next non-CUDA gate:** define a source-specific immutable release plan,
-   then obtain a separate review decision before constructing production data.
+8. **Complete; independently accepted for construction review:** the source-specific
+   instruction seed plan binds two reviewed CC0 batches, quarantines four
+   exact evaluation-prompt matches after expanded engineering review, and
+   freezes deterministic 898/48/50
+   train/development/evaluation assignments. Implement and independently
+   review non-overwriting release construction before any production release.
 
 Exit criterion: the implementation-readiness contract is complete. Promotion
 to training planning requires every remaining gate and a separate decision;

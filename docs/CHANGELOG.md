@@ -4,6 +4,16 @@
 
 ### Added
 
+- Added the specification-only VASU-140M instruction seed release plan. It
+  binds 1,000 human-approved CC0 examples from instruction-quality Batches 001
+  and 002, performs global review/deduplication checks, pins 2,618 evaluation
+  prompts across ten authoritative files, quarantines four exact overlaps, and
+  freezes 996 eligible examples into deterministic 898/48/50 planned splits.
+  GPT-5.5 independently accepted the exact plan for future release
+  construction review. Qualification is read-only:
+  every planned production output is absent, no compatible base checkpoint is
+  selected, and release construction and training remain unauthorized.
+
 - Added the frozen, source-agnostic VASU-140M 513-token record and shifted-mask
   contract. It validates the unchanged tokenizer, complete-example packing,
   prompt/PAD/EOS/cross-example mask behavior, split isolation, fixed

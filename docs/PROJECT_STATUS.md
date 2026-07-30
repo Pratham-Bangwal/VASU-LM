@@ -99,6 +99,29 @@ authorization, checkpoint, or training run exists. See
 completion audit is
 `docs/VASU_140M_513_TOKEN_MILESTONE_AUDIT_20260730.md`.
 
+## VASU-140M instruction seed release plan
+
+The first source-specific plan is frozen and engineering-qualified without
+constructing a release. It references the two existing human-approved,
+purpose-written CC0 instruction-quality batches: 1,000 examples across seven
+capabilities. Global source review and deduplication checks pass.
+
+An initial three-file contamination inventory was rejected during engineering
+review as incomplete. The remediated comparison covers 2,618 prompts across
+ten hash-pinned evaluation files and found four exact question overlaps. The
+plan quarantines those IDs, leaving 996 eligible
+examples with zero remaining full-prompt or eight-word-fragment matches. It
+preserves all 48 source-native validation examples as development, selects 50
+evaluation examples deterministically by source/capability strata and seed
+140513, and leaves 898 training examples. The assignment SHA-256 is
+`59481237acd2164f96dbbdc2b837ca8cabb00c496b1b6c42cb260b44bbd2b394`.
+
+This is an instruction-stage plan, not a base-pretraining corpus. No compatible
+VASU-140M base checkpoint is selected, all planned outputs are absent, and
+release construction and training remain unauthorized. GPT-5.5 independently
+accepted the exact plan for future release construction review; the next gate
+is a separately reviewed, non-overwriting construction implementation.
+
 ## Capability-CPT schedule status
 
 The generalized deterministic N-source schedule layer and Candidates A/B/C
