@@ -196,6 +196,12 @@ The v2 post-commit identity smoke is documentation-descendant-safe: it requires
 `050d1fa` in ancestry, rechecks exact gate/test/smoke hashes, and compares the
 normalized commit-bound report to the accepted frozen identity.
 
+The final runtime-eligibility procedure is now prepared. Its read-only smoke
+requires a clean worktree and index, emits the exact runtime commit plus all
+accepted identities, and creates no repository artifact. The independent
+runtime decision must remain detached from Git to avoid changing the commit it
+reviews.
+
 ## Capability-CPT schedule status
 
 The generalized deterministic N-source schedule layer and Candidates A/B/C

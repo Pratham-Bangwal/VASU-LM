@@ -12,6 +12,8 @@
 - Completed: commit the accepted package as `050d1fa` and freeze its clean
   post-commit qualification.
 - Completed: independent acceptance of the post-commit identity.
+- Next: commit the read-only runtime-eligibility tooling, emit the exact clean
+  runtime report, and obtain a detached GPT-5.5 decision.
 - Blocked: authorization-envelope creation and one-time production publication.
 - Unchanged: no compatible base checkpoint is selected and training remains
   unauthorized.

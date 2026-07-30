@@ -18,6 +18,11 @@
   documentation-only descendants while pinning the accepted gate, test,
   original-smoke, and frozen qualification identities.
 
+- Added a read-only clean-runtime eligibility smoke and detached-review
+  protocol. The report binds exact `HEAD`, accepted code/test identities,
+  protected-path absence, and non-authorization flags without writing a
+  self-invalidating review artifact into Git.
+
 - Added the specification-only VASU-140M one-build authorization protocol and
   independent review packet. The selected design separates the accepted
   implementation anchor from an exact clean runtime commit and uses a detached,
