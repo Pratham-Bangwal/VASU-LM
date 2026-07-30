@@ -23,6 +23,13 @@
   protected-path absence, and non-authorization flags without writing a
   self-invalidating review artifact into Git.
 
+- Published the one-build-authorized VASU-140M instruction seed v1 release from
+  runtime commit `5cf4188`. The consumed authorization produced 996 examples in
+  deterministic 898/48/50 splits, exact token/mask manifests, and a v2-bound
+  receipt. GPT-5.5 independently accepted the completed publication; a
+  non-blocking review-packet date-path erratum is documented in its audit.
+  Training remains unauthorized.
+
 - Added the specification-only VASU-140M one-build authorization protocol and
   independent review packet. The selected design separates the accepted
   implementation anchor from an exact clean runtime commit and uses a detached,

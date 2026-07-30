@@ -1,0 +1,17 @@
+{
+  "authorization_id": "vasu-140m-instruction-seed-v1-20260730-001",
+  "implementation_sha256": "0efb0189b4b0c5a8621da9053d56db57d95ebf5b0f1bb59753952ec8afa5d1e2",
+  "internal_manifest": {
+    "bytes": 4180,
+    "path": "data/processed/vasu_140m/instruction_seed_v1/internal_manifest.json",
+    "sha256": "80895494b16882327509863067424e1d564a2e817ed86d94bdaf63622e04aaa8"
+  },
+  "manifest_sha256": "0eaec0131cb644e8eddf8ccedbcec3a42d7c1fa2754750b887aa1b9a443ce390",
+  "plan_id": "vasu_140m_instruction_seed_v1",
+  "plan_sha256": "8da8cc92ef913bb567c96ec47986f849b84eb85ac2d11f3ad245fb1639361e16",
+  "qualification_sha256": "60399e56ba30cc9904dfab9009194f424ea75d386f85598fa6b5a297815f7321",
+  "release_directory": "data/processed/vasu_140m/instruction_seed_v1",
+  "repository_commit": "5cf41881aed610c075f01d24efe57799a5dabb60",
+  "schema_id": "vasu.production-release-manifest.v1",
+  "training_authorized": false
+}

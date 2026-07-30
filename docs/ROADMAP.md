@@ -14,7 +14,12 @@
 - Completed: independent acceptance of the post-commit identity.
 - Next: commit the read-only runtime-eligibility tooling, emit the exact clean
   runtime report, and obtain a detached GPT-5.5 decision.
-- Blocked: authorization-envelope creation and one-time production publication.
+- Completed: detached runtime acceptance, one exact human-approved envelope,
+  and one transactional production publication.
+- Completed: independent validation of the published release and consumed
+  receipt.
+- Next: select a compatible base checkpoint and prepare a separately reviewed
+  training plan; training remains blocked pending separate authorization.
 - Unchanged: no compatible base checkpoint is selected and training remains
   unauthorized.
 

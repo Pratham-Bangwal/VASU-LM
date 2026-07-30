@@ -1,0 +1,13 @@
+{
+  "authorization_id": "vasu-140m-instruction-seed-v1-20260730-001",
+  "authorization_protocol_sha256": "d135889b89b424e7a3253adddec0b1cfd09b49efdb6831f048934f2468d9acac",
+  "authorization_sha256": "9eaf4dce720b11a3389ef373556c899ca2559c3e0bbe95993c058ebf9bad09fd",
+  "external_manifest_sha256": "0eaec0131cb644e8eddf8ccedbcec3a42d7c1fa2754750b887aa1b9a443ce390",
+  "implementation_sha256": "0efb0189b4b0c5a8621da9053d56db57d95ebf5b0f1bb59753952ec8afa5d1e2",
+  "qualification_sha256": "60399e56ba30cc9904dfab9009194f424ea75d386f85598fa6b5a297815f7321",
+  "receipt_sha256": "6a03032d5d3613f0bcdbff6219686e994a4993d3028a02f273fb242ac22bcdbf",
+  "release_complete": true,
+  "repository_commit": "5cf41881aed610c075f01d24efe57799a5dabb60",
+  "schema_id": "vasu.production-release-authorization-receipt.v1",
+  "training_authorized": false
+}

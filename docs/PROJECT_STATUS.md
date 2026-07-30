@@ -202,6 +202,16 @@ accepted identities, and creates no repository artifact. The independent
 runtime decision must remain detached from Git to avoid changing the commit it
 reviews.
 
+Pratham Sharma subsequently authorized one production publication through the
+detached envelope
+`vasu-140m-instruction-seed-v1-20260730-001`. The transactional publication
+completed once from runtime commit `5cf4188`: 996 examples in exact 898/48/50
+splits, with a consumed receipt and `training_authorized=false`.
+`validate_published_release` passes and publication status is `complete`.
+GPT-5.5 independently accepted the completed publication on 2026-07-31. The
+review packet date-path erratum is documented in the publication audit. No
+checkpoint or training plan is selected.
+
 ## Capability-CPT schedule status
 
 The generalized deterministic N-source schedule layer and Candidates A/B/C
