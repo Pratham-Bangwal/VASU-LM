@@ -1,0 +1,71 @@
+{
+  "checks": {
+    "chunk_boundary_masking": true,
+    "cross_record_isolation": true,
+    "deterministic_rebuild": true,
+    "document_split_isolation": true,
+    "full_loss_after_chunk_boundary": true,
+    "pad_tail_masking": true,
+    "source_revision_consistency": true
+  },
+  "data_acquired": false,
+  "family_id": "vasu_140m_v1",
+  "fixture_only": true,
+  "logical_input_sha256": "1dc92af1992417b8a45efa6500e0ee0b3a045c2fad7744226de2697b335fc7da",
+  "masking_contract": "full_loss_except_chunk_boundary_pad_v1",
+  "model_config_sha256": "29e9bafdffbbc632b1b6f006818b1470e6dbc20f21841aa33e625a0f04159059",
+  "packing_contract": "complete_chunk_sequential_per_source_split_v1",
+  "production_release_created": false,
+  "record_specification_sha256": "1bbbeafe836104dc4326a3a00e0dfcef21a965bbc02f56408be4305ae16ce7e5",
+  "record_width": 513,
+  "report_sha256": "7c4e4710cc70bb39124f8b1445516aac801401bc2c263175b6472dba125aa578",
+  "schema_id": "vasu_140m_base_text_record_fixture_report_v1",
+  "source_discovered": false,
+  "splits": {
+    "development": {
+      "chunk_count": 1,
+      "masked_chunk_boundary_count": 1,
+      "packed_record_count": 1,
+      "padding_token_count": 501,
+      "parent_document_count": 1,
+      "real_token_count": 12,
+      "source_chunk_counts": {
+        "fixture-web": 1
+      },
+      "stored_mask_sha256": "553429e74bcbd246ec88ecc637793339e1a959ed3a2bae6270ebf5d61235bf0e",
+      "supervised_target_count": 11,
+      "token_sha256": "59f1e4dcbe48f2f736c57cb07949a38dfcf00e5be47f06c616a976c42d4666ca"
+    },
+    "evaluation": {
+      "chunk_count": 1,
+      "masked_chunk_boundary_count": 1,
+      "packed_record_count": 1,
+      "padding_token_count": 501,
+      "parent_document_count": 1,
+      "real_token_count": 12,
+      "source_chunk_counts": {
+        "fixture-wiki": 1
+      },
+      "stored_mask_sha256": "553429e74bcbd246ec88ecc637793339e1a959ed3a2bae6270ebf5d61235bf0e",
+      "supervised_target_count": 11,
+      "token_sha256": "64f37386b2f020f2472d047a8e9c16037441fb23df75e21ba4dfa078f49cc3f2"
+    },
+    "train": {
+      "chunk_count": 2,
+      "masked_chunk_boundary_count": 2,
+      "packed_record_count": 1,
+      "padding_token_count": 483,
+      "parent_document_count": 2,
+      "real_token_count": 30,
+      "source_chunk_counts": {
+        "fixture-web": 1,
+        "fixture-wiki": 1
+      },
+      "stored_mask_sha256": "685a73011ddfc6ac54161167bc36125122c1db5c28ffe08981b4518f778cff4e",
+      "supervised_target_count": 28,
+      "token_sha256": "f103b2360a49316b4ef9e3ecf029004a24d1f477b1ba6486ce816718aeeba734"
+    }
+  },
+  "tokenizer_sha256": "04942e101a4a01f87f7e492ad9e463d299a559e784b650fdedd1763a017d195a",
+  "training_authorized": false
+}

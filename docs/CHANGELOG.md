@@ -4,6 +4,12 @@
 
 ### Added
 
+- Added a fixture-qualified VASU-140M full-loss base-text record layer and a
+  design-only source-separated production builder contract. It masks only
+  artificial chunk/PAD boundaries, validates global lineage incrementally,
+  streams packed records in one pass, and creates no production data. GPT-5.5
+  independently accepted the foundation.
+
 - Added a design-only VASU-140M real-data exact-resume qualification package.
   It requires the future 513-token release, source schedule, CUDA/AMP state,
   partial gradients, RNG, source-boundary continuity, atomic checkpoints, and

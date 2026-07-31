@@ -289,6 +289,19 @@ fields, approval-state rules, and adversarial tests. It creates no candidate
 source. GPT-5.5 independently accepted the implementation on 2026-08-01;
 acquisition, data construction, and training remain unauthorized.
 
+A separate VASU-140M full-loss base-text layer now closes the semantic gap
+between response-masked instruction records and base-pretraining text. It
+retains source/document/chunk lineage, masks only artificial chunk/PAD
+boundaries, reuses the accepted 513-token packer, and preserves a
+real-tokenizer frozen fixture. Stateful global isolation and single-pass
+record generation avoid corpus-wide packed-record materialization; the
+foundation passes 34 tests. Its production-builder design requires
+source-separated streaming artifacts, two independent scratch rebuilds,
+complete audits, atomic publication, and detached two-person one-build
+authorization. GPT-5.5 independently accepted the foundation on 2026-08-01
+for an isolated commit and later production-builder implementation review. No
+source data was acquired or published.
+
 In parallel, a design-only VASU-140M base-model evaluation v2 contract now
 specifies likelihood, factual, arithmetic, repetition/degeneration, robustness,
 and manual-review dimensions under raw-continuation interfaces. It requires

@@ -65,6 +65,10 @@
 - Independently accepted candidate source plan: prepare separate admission
   packages for recovered FineWeb-Edu extension text plus a bounded 10%
   Wikipedia allocation. Both still require admission and acquisition gates.
+- Independently accepted foundation: a fixture-qualified full-loss base-record
+  layer and source-separated, two-pass, atomic release-builder design now
+  define the missing 513-token base-data construction boundary without data.
+  Production-builder implementation remains separately review-gated.
 - Independently accepted design: real-data exact-resume binds the future
   513-token release, masks, two-source schedule, CUDA/AMP, source-boundary and
   partial-accumulation interruptions, atomicity, and adversarial failures.
