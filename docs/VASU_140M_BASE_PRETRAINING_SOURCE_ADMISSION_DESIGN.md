@@ -22,11 +22,14 @@ authorize construction.
 
 ## Admission record
 
-Each candidate must first be a `pending` VASU-140M source-registry record.
-It must bind provider, dataset card and homepage URLs, immutable revision,
-subset/split, access method, license URL/name, commercial/attribution/
-redistribution/access policy, expected size/counts, local raw and processed
-path plans, intended domain, and known quality/contamination risks.
+Each candidate must bind one exact record from the generic source registry.
+The generic registry status and the VASU-140M admission decision are separate
+facts: a generically `approved` source can remain `pending`, `blocked`, or
+`rejected` for this model and release. The package must bind provider, dataset
+card and homepage URLs, immutable revision, subset/split, access method,
+license URL/name, commercial/attribution/redistribution/access policy,
+expected size/counts, local raw and processed path plans, intended domain,
+and known quality/contamination risks.
 
 In addition, the candidate review package must contain:
 
@@ -51,9 +54,11 @@ unresolvable evaluation-contamination risk is rejected rather than deferred.
 ## State transitions
 
 `pending` → `approved` is permitted only after a human reviewer records a
-timezone-aware decision and the package resolves every required item. Approved
-means eligible only for a separately authorized bounded acquisition/preparation
-proposal. It does not mean bytes may be downloaded or used in a release.
+timezone-aware decision, the bound generic registry record is already
+`approved`, and the package resolves every required item. Generic approval
+alone never implies VASU-140M approval. VASU-140M approval means eligible only
+for a separately authorized bounded acquisition/preparation proposal. It does
+not mean bytes may be downloaded or used in a release.
 
 `pending` → `blocked` records a remediable access, revision, policy, or
 evidence gap. `pending`/`blocked` → `rejected` records an incompatible license,
@@ -74,6 +79,7 @@ content, hashes, filtered counts, or deduplication results before acquisition.
 | Alternative | Decision |
 | --- | --- |
 | Reuse the generic source registry | Recommended; preserves one provenance authority. |
+| Treat generic approval as VASU-140M approval | Rejected; model/release-specific gates remain separate. |
 | Make an unreviewed source record `approved` | Rejected; approval must be evidence-backed. |
 | Download to discover whether a source is admissible | Rejected; admission precedes acquisition. |
 | Reuse legacy binaries as a shortcut | Rejected; wrong VASU-140M record lineage. |

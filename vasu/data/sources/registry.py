@@ -61,7 +61,9 @@ def load_source_record(path: Path) -> DataSourceRecord:
     return _record_from_mapping(payload, str(path))
 
 
-def _load_records(path: Path) -> tuple[DataSourceRecord, ...]:
+def load_source_records(path: Path) -> tuple[DataSourceRecord, ...]:
+    """Load every record from one single-record or bundled registry file."""
+
     payload = _read_json(path)
     if isinstance(payload, Mapping) and set(payload) == {"records"}:
         records = payload["records"]
@@ -87,7 +89,7 @@ def load_source_registry(directory: Path) -> SourceRegistry:
     paths = sorted(registry_directory.glob("*.json"), key=lambda path: path.name)
     if not paths:
         raise ValueError(f"Source registry contains no JSON records: {registry_directory}")
-    records = tuple(record for path in paths for record in _load_records(path))
+    records = tuple(record for path in paths for record in load_source_records(path))
     registry = SourceRegistry(records=records)
     validate_registry(registry)
     return registry

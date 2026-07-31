@@ -8,6 +8,7 @@ import pytest
 
 from vasu.data.vasu_140m_source_admission import (
     FAMILY_ID,
+    LEGACY_SCHEMA_ID,
     MODEL_CONFIG_SHA256,
     SCHEMA_ID,
     TOKENIZER_SHA256,
@@ -27,7 +28,7 @@ def package() -> dict[str, object]:
         "family_id": FAMILY_ID,
         "model_config_sha256": MODEL_CONFIG_SHA256,
         "tokenizer_sha256": TOKENIZER_SHA256,
-        "source_record": {"path": "configs/data/sources/synthetic.json", "sha256": "a" * 64, "source_id": "synthetic", "approval_status": "pending"},
+        "source_record": {"path": "configs/data/sources/synthetic.json", "sha256": "a" * 64, "source_id": "synthetic", "registry_approval_status": "approved"},
         "legal_evidence": {"license_name": "CC0-1.0", "license_url": "https://example.test/license", "terms_url": "https://example.test/terms", "terms_revision": "v1", "obligations": ["retain provenance"], "unresolved_items": ["independent review pending"]},
         "acquisition": {"immutable_revision": "revision-1", "access_method": "HTTPS", "shard_inventory_sha256": "b" * 64, "raw_hash_algorithm": "sha256", "authorized": False},
         "document_lineage": {"stable_id_fields": ["document_id"], "revision_field": "revision", "shard_field": "shard", "transformation_id": "source_filter_v1"},
@@ -51,6 +52,29 @@ def test_pending_package_is_valid_and_non_authorizing() -> None:
     validate_admission_package(value)
     assert value["training_authorized"] is False
     assert value["acquisition"]["authorized"] is False
+    assert value["source_record"]["registry_approval_status"] == "approved"
+    assert value["decision"]["state"] == "pending"
+
+
+def test_legacy_schema_and_registry_state_substitution_fail_closed() -> None:
+    value = package()
+    value["schema_id"] = LEGACY_SCHEMA_ID
+    rehash(value)
+    with pytest.raises(ValueError, match="schema identity mismatch"):
+        validate_admission_package(value)
+
+    value = package()
+    value["source_record"]["registry_approval_status"] = "pending"
+    value["decision"] = {
+        "state": "approved",
+        "reviewed_by": "Reviewer",
+        "reviewed_at": "2026-08-01T12:00:00+05:30",
+        "notes": "Synthetic invalid approval.",
+    }
+    value["legal_evidence"]["unresolved_items"] = []
+    rehash(value)
+    with pytest.raises(ValueError, match="approved generic source record"):
+        validate_admission_package(value)
 
 
 @pytest.mark.parametrize("field", ["family_id", "model_config_sha256", "tokenizer_sha256"])
@@ -114,7 +138,6 @@ def test_split_ordering_and_deduplication_policy_fail_closed() -> None:
 
 def test_approved_package_requires_review_and_resolved_legal_items() -> None:
     value = package()
-    value["source_record"]["approval_status"] = "approved"
     value["decision"]["state"] = "approved"
     rehash(value)
     with pytest.raises(ValueError, match="reviewed_by"):
@@ -135,13 +158,13 @@ def test_approved_package_requires_review_and_resolved_legal_items() -> None:
 
 def test_repository_bound_evidence_is_verified() -> None:
     value = package()
-    source_path = ROOT / "configs/data/sources/wikimedia.json"
+    source_path = ROOT / "configs/data/sources/fineweb_edu.json"
     inventory_path = ROOT / "evaluation/benchmarks/ultrachat_promotion_v1.json"
     value["source_record"] = {
         "path": source_path.relative_to(ROOT).as_posix(),
         "sha256": hashlib.sha256(source_path.read_bytes()).hexdigest(),
-        "source_id": "wikipedia_en_20231101_planned",
-        "approval_status": "approved",
+        "source_id": "fineweb_edu_extension_2025_26",
+        "registry_approval_status": "approved",
     }
     value["evaluation_isolation"]["inventories"] = [
         {
@@ -149,6 +172,9 @@ def test_repository_bound_evidence_is_verified() -> None:
             "sha256": hashlib.sha256(inventory_path.read_bytes()).hexdigest(),
         }
     ]
+    rehash(value)
+    validate_admission_package_files(value, ROOT)
+
     value["legal_evidence"]["unresolved_items"] = []
     value["decision"] = {
         "state": "approved",

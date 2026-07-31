@@ -20,6 +20,12 @@ def load_source_record(path: Path) -> DataSourceRecord:
     return implementation(path)
 
 
+def load_source_records(path: Path) -> tuple[DataSourceRecord, ...]:
+    from .registry import load_source_records as implementation
+
+    return implementation(path)
+
+
 def load_source_registry(directory: Path) -> SourceRegistry:
     from .registry import load_source_registry as implementation
 
@@ -44,6 +50,7 @@ __all__ = [
     "SourceRegistryValidationError",
     "get_source",
     "load_source_record",
+    "load_source_records",
     "load_source_registry",
     "source_record_to_dict",
     "validate_manifest_sources",

@@ -9,10 +9,11 @@ from datetime import datetime
 from pathlib import Path
 from urllib.parse import urlparse
 
-from vasu.data.sources import load_source_record
+from vasu.data.sources import load_source_records
 
 
-SCHEMA_ID = "vasu_140m_base_source_admission_v1"
+SCHEMA_ID = "vasu_140m_base_source_admission_v2"
+LEGACY_SCHEMA_ID = "vasu_140m_base_source_admission_v1"
 FAMILY_ID = "vasu_140m_v1"
 MODEL_CONFIG_SHA256 = (
     "29e9bafdffbbc632b1b6f006818b1470e6dbc20f21841aa33e625a0f04159059"
@@ -105,7 +106,7 @@ def _safe_repository_path(value: object, label: str) -> str:
 
 
 def validate_admission_package(package: Mapping[str, object]) -> None:
-    """Fail closed unless a source-admission package satisfies the v1 contract."""
+    """Fail closed unless a source-admission package satisfies the v2 contract."""
 
     _exact_keys(
         package,
@@ -127,14 +128,18 @@ def validate_admission_package(package: Mapping[str, object]) -> None:
     _false(package["training_authorized"], "training_authorized")
 
     source = _mapping(package["source_record"], "source_record")
-    _exact_keys(source, {"path", "sha256", "source_id", "approval_status"}, "source_record")
+    _exact_keys(
+        source,
+        {"path", "sha256", "source_id", "registry_approval_status"},
+        "source_record",
+    )
     source_path = _safe_repository_path(source["path"], "source_record.path")
     if not source_path.startswith("configs/data/sources/") or not source_path.endswith(".json"):
         raise ValueError("source_record.path must be a source-registry JSON path")
     _sha256(source["sha256"], "source_record.sha256")
     _string(source["source_id"], "source_record.source_id")
-    if source["approval_status"] not in STATES:
-        raise ValueError("source_record.approval_status is unsupported")
+    if source["registry_approval_status"] not in STATES:
+        raise ValueError("source_record.registry_approval_status is unsupported")
 
     legal = _mapping(package["legal_evidence"], "legal_evidence")
     _exact_keys(
@@ -208,10 +213,14 @@ def validate_admission_package(package: Mapping[str, object]) -> None:
     decision = _mapping(package["decision"], "decision")
     _exact_keys(decision, {"state", "reviewed_by", "reviewed_at", "notes"}, "decision")
     state = decision["state"]
-    if state not in STATES or state != source["approval_status"]:
-        raise ValueError("decision state must match a supported source approval state")
+    if state not in STATES:
+        raise ValueError("decision state is unsupported")
     _string(decision["notes"], "decision.notes")
     if state == "approved":
+        if source["registry_approval_status"] != "approved":
+            raise ValueError(
+                "VASU-140M approval requires an approved generic source record"
+            )
         _string(decision["reviewed_by"], "decision.reviewed_by")
         _timezone_timestamp(decision["reviewed_at"], "decision.reviewed_at")
         if unresolved:
@@ -240,10 +249,15 @@ def validate_admission_package_files(
     observed_source_hash = hashlib.sha256(source_path.read_bytes()).hexdigest()
     if observed_source_hash != source["sha256"]:
         raise ValueError("source registry file identity mismatch")
-    record = load_source_record(source_path)
-    if record.source_id != source["source_id"]:
-        raise ValueError("source record ID mismatch")
-    if record.approval_status != source["approval_status"]:
+    matches = [
+        record
+        for record in load_source_records(source_path)
+        if record.source_id == source["source_id"]
+    ]
+    if len(matches) != 1:
+        raise ValueError("source record ID does not resolve exactly once")
+    record = matches[0]
+    if record.approval_status != source["registry_approval_status"]:
         raise ValueError("source record approval state mismatch")
 
     isolation = _mapping(package["evaluation_isolation"], "evaluation_isolation")
