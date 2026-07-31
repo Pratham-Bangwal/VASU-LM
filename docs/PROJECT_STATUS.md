@@ -236,6 +236,11 @@ model-only checkpoint for I/O measurement. Its implementation and runtime
 execution remain separately review-gated. GPT-5.5 independently accepted the
 design on 2026-07-31; that acceptance remains non-authorizing.
 
+An isolated CUDA/AMP qualification implementation now exists with
+hardware-independent unit tests. It remains pre-review implementation evidence:
+GPT-5.5 independently accepted it on 2026-07-31. The actual CUDA workload has
+not been invoked and remains unauthorized.
+
 ## Capability-CPT schedule status
 
 The generalized deterministic N-source schedule layer and Candidates A/B/C

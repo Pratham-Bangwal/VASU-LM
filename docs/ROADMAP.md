@@ -28,9 +28,12 @@
 - Completed: GPT-5.5 independently accepted the bounded VASU-140M CUDA/AMP
   operational-qualification design with synthetic workload, telemetry, disk,
   temporary-I/O, and immutability requirements.
-- Next: implement the isolated testable qualification tool, then obtain a
-  separate independent implementation review. Training remains blocked pending
-  every readiness gate, a qualified 140M base checkpoint, and authorization.
+- Completed: implemented the isolated testable CUDA/AMP qualification tool;
+  GPT-5.5 independently accepted the implementation; actual CUDA execution
+  remains uninvoked.
+- Next: commit the accepted implementation and prepare a clean-commit
+  execution-identity package. Training remains blocked pending every readiness
+  gate, a qualified 140M base checkpoint, and authorization.
 
 ## Capability-CPT v2 decision gate
 

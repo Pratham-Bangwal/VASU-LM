@@ -4,6 +4,11 @@
 
 ### Added
 
+- Added the isolated VASU-140M CUDA/AMP qualification implementation and
+  hardware-independent tests. It uses synthetic inputs and a temporary
+  model-only I/O check; no CUDA workload was run. GPT-5.5 independently
+  accepted the implementation.
+
 - Added a design-only VASU-140M CUDA/AMP operational qualification package.
   It specifies a synthetic batch-one 512-token no-update workload, measured
   memory/throughput/telemetry, isolated temporary checkpoint I/O, and
