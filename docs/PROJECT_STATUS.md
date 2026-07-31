@@ -283,6 +283,12 @@ No source record is selected or modified. GPT-5.5 independently accepted the
 design on 2026-08-01; acquisition, release construction, and training remain
 unauthorized.
 
+An additive v1 source-admission package validator is now implemented with
+strict canonical identity, legal/acquisition/lineage/quality/evaluation/dedup
+fields, approval-state rules, and adversarial tests. It creates no candidate
+source. GPT-5.5 independently accepted the implementation on 2026-08-01;
+acquisition, data construction, and training remain unauthorized.
+
 ## Capability-CPT schedule status
 
 The generalized deterministic N-source schedule layer and Candidates A/B/C

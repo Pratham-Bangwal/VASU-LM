@@ -4,6 +4,12 @@
 
 ### Added
 
+- Added a strict metadata-only VASU-140M source-admission package validator and
+  adversarial tests. It freezes family/config/tokenizer identity, legal,
+  acquisition, lineage, evaluation-isolation, deduplication, review, and hash
+  fields while keeping acquisition and training authorization false. GPT-5.5
+  independently accepted the implementation.
+
 - Added a VASU-140M base-pretraining source-admission design, audit, and
   independent-review packet. It reuses the existing source registry and
   requires immutable source, license, acquisition, document-lineage,

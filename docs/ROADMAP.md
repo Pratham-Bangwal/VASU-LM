@@ -54,9 +54,11 @@
   reuses the
   existing provenance registry and adds immutable license, acquisition,
   document-lineage, evaluation-isolation, and deduplication requirements.
-- Next: specify the source-admission record and review-package schema without
-  adding a candidate source. Training remains blocked pending every readiness
-  gate, a qualified 140M base checkpoint, and authorization.
+- Completed: GPT-5.5 independently accepted the strict metadata-only
+  source-admission package schema and adversarial tests without adding a
+  candidate source.
+- Next: compare candidate source strategies. Training remains blocked pending
+  every readiness gate, a qualified 140M base checkpoint, and authorization.
 
 ## Capability-CPT v2 decision gate
 
