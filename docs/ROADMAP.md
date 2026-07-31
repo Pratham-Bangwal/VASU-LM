@@ -34,8 +34,9 @@
 - Completed: committed the accepted CUDA/AMP qualification implementation as
   `0d3ac30` and prepared a read-only clean-commit execution-identity package.
 - Completed: GPT-5.5 independently accepted the execution-identity package.
-- Next: commit it and reproduce the clean-commit identity report before a
-  separately reviewed bounded CUDA execution package is considered. Training
+- Completed: committed and independently accepted clean-commit identity report
+  `601b3bcc…`; CUDA and checkpoint fields remain false.
+- Next: prepare a separately reviewed bounded CUDA execution package. Training
   remains blocked pending every readiness gate, a qualified 140M base
   checkpoint, and authorization.
 
