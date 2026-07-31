@@ -4,6 +4,12 @@
 
 ### Added
 
+- Added a design-only VASU-140M real-data exact-resume qualification package.
+  It requires the future 513-token release, source schedule, CUDA/AMP state,
+  partial gradients, RNG, source-boundary continuity, atomic checkpoints, and
+  adversarial integrity evidence under a separately approved two-update run.
+  GPT-5.5 independently accepted the design.
+
 - Added a non-authorizing VASU-140M candidate source plan recommending recovered
   FineWeb-Edu extension text plus a bounded Wikipedia allocation. It rejects
   legacy binary reuse and incomplete original-source lineage, and retains

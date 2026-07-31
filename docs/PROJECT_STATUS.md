@@ -304,6 +304,14 @@ binaries are excluded. GPT-5 independently accepted the plan on 2026-08-01.
 Both candidates remain unadmitted and no acquisition occurred; the next gate
 is a separate source-specific admission package for each candidate.
 
+A design-only real-data exact-resume qualification now closes the accepted
+synthetic CPU gate's remaining scope: future 513-token release identities,
+loss masks, source-boundary schedules, CUDA/AMP state, atomic checkpoint
+integrity, and adversarial mutation. GPT-5.5 independently accepted the design
+on 2026-08-01 for later implementation review. It remains ineligible until the
+base-data release exists; no CUDA workload, optimizer update, or training was
+authorized.
+
 ## Capability-CPT schedule status
 
 The generalized deterministic N-source schedule layer and Candidates A/B/C
