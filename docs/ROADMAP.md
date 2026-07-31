@@ -46,10 +46,12 @@
   it advances only the CUDA/AMP readiness sub-gate.
 - Completed: GPT-5.5 independently accepted the source-agnostic VASU-140M
   base-pretraining data-release plan; no source is selected.
-- Next: repair the post-publication instruction-release-plan regression tests
-  without weakening no-overwrite safety, then continue source-admission design.
-  Training remains blocked pending every readiness gate, a qualified 140M base
-  checkpoint, and authorization.
+- Completed: GPT-5.5 independently accepted the repaired post-publication
+  instruction-release-plan regression tests. Default qualification still
+  rejects existing outputs; an explicit read-only historical-evidence replay
+  reproduces the frozen pre-publication report.
+- Next: define a source-admission design. Training remains blocked pending
+  every readiness gate, a qualified 140M base checkpoint, and authorization.
 
 ## Capability-CPT v2 decision gate
 

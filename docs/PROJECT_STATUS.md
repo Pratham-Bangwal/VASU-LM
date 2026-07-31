@@ -267,10 +267,13 @@ binaries and the published instruction seed, and requires separate source
 admission, provenance, contamination, deduplication, split, and 513-token
 full-loss release evidence.
 
-GPT-5.5 independently accepted the source-agnostic plan on 2026-07-31. Its
-only low finding is five historical release-plan tests that still require the
-now-published instruction path to be absent; repair must preserve their
-no-overwrite safety rather than weaken the release checks.
+GPT-5.5 independently accepted the source-agnostic plan on 2026-07-31. The
+post-publication instruction-plan regression tests now distinguish default
+fail-closed qualification from explicit replay of immutable pre-publication
+evidence: a second build is still rejected, while the historic qualification
+can be inspected without changing release authority. GPT-5.5 independently
+accepted the repair on 2026-07-31; it does not authorize any source, data
+release, or training action.
 
 ## Capability-CPT schedule status
 

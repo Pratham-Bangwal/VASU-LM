@@ -4,6 +4,12 @@
 
 ### Added
 
+- Added explicit post-publication replay coverage for the VASU-140M
+  instruction-seed release-plan evidence. Normal qualification remains
+  fail-closed on existing outputs; the opt-in read-only path is limited to
+  reproducing immutable pre-publication evidence and cannot authorize or
+  perform another publication. GPT-5.5 independently accepted the repair.
+
 - Added a source-agnostic VASU-140M base-pretraining data-release plan, audit,
   and independent-review packet. It selects no source and requires separate
   provenance, licensing, contamination, deduplication, split, and 513-token

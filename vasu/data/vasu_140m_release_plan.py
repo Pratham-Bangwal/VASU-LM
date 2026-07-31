@@ -609,7 +609,13 @@ def validate_release_plan(
     *,
     require_outputs_absent: bool = True,
 ) -> dict[str, object]:
-    """Validate the plan and return deterministic, read-only qualification evidence."""
+    """Validate a release plan and return deterministic qualification evidence.
+
+    By default, an existing planned output is rejected.  Set
+    ``require_outputs_absent`` to ``False`` only to inspect immutable
+    pre-publication evidence after a separately authorized publication; this
+    does not permit a rebuild, overwrite, or any other state change.
+    """
 
     _validate_plan_structure(plan)
     root = repository_root.resolve()

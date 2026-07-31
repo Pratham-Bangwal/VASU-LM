@@ -37,12 +37,29 @@ FROZEN_REPORT = (
 def run(
     plan_path: Path = DEFAULT_PLAN,
     repository_root: Path = REPOSITORY_ROOT,
+    *,
+    allow_existing_planned_outputs: bool = False,
 ) -> dict[str, object]:
-    """Validate twice, compare frozen evidence, and create no output."""
+    """Replay frozen qualification evidence without creating an output.
+
+    The default remains fail-closed: planned release paths must be absent.
+    ``allow_existing_planned_outputs`` is only for replaying the immutable
+    pre-publication evidence after its one authorized publication.  It does
+    not make publication permissible and does not change the report's
+    historical, pre-publication meaning.
+    """
 
     plan = load_release_plan(plan_path)
-    first = validate_release_plan(plan, repository_root)
-    second = validate_release_plan(plan, repository_root)
+    first = validate_release_plan(
+        plan,
+        repository_root,
+        require_outputs_absent=not allow_existing_planned_outputs,
+    )
+    second = validate_release_plan(
+        plan,
+        repository_root,
+        require_outputs_absent=not allow_existing_planned_outputs,
+    )
     if first != second:
         raise RuntimeError("release-plan qualification is not deterministic")
     frozen = json.loads(FROZEN_REPORT.read_text(encoding="utf-8"))
@@ -56,8 +73,26 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--plan", type=Path, default=DEFAULT_PLAN)
     parser.add_argument("--repository-root", type=Path, default=REPOSITORY_ROOT)
+    parser.add_argument(
+        "--allow-existing-planned-outputs",
+        action="store_true",
+        help=(
+            "replay frozen pre-publication evidence after an authorized "
+            "publication; this does not authorize another publication"
+        ),
+    )
     args = parser.parse_args()
-    print(json.dumps(run(args.plan, args.repository_root), indent=2, sort_keys=True))
+    print(
+        json.dumps(
+            run(
+                args.plan,
+                args.repository_root,
+                allow_existing_planned_outputs=args.allow_existing_planned_outputs,
+            ),
+            indent=2,
+            sort_keys=True,
+        )
+    )
 
 
 if __name__ == "__main__":
