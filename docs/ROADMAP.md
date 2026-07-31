@@ -50,8 +50,13 @@
   instruction-release-plan regression tests. Default qualification still
   rejects existing outputs; an explicit read-only historical-evidence replay
   reproduces the frozen pre-publication report.
-- Next: define a source-admission design. Training remains blocked pending
-  every readiness gate, a qualified 140M base checkpoint, and authorization.
+- Completed: GPT-5.5 independently accepted the source-admission design. It
+  reuses the
+  existing provenance registry and adds immutable license, acquisition,
+  document-lineage, evaluation-isolation, and deduplication requirements.
+- Next: specify the source-admission record and review-package schema without
+  adding a candidate source. Training remains blocked pending every readiness
+  gate, a qualified 140M base checkpoint, and authorization.
 
 ## Capability-CPT v2 decision gate
 

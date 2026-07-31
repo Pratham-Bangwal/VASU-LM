@@ -275,6 +275,14 @@ can be inspected without changing release authority. GPT-5.5 independently
 accepted the repair on 2026-07-31; it does not authorize any source, data
 release, or training action.
 
+The next design binds future VASU-140M base-data candidates to the existing
+source registry rather than creating a second provenance system. It requires a
+source-specific immutable-license, acquisition, document-lineage, quality,
+evaluation-isolation, and cross-source-deduplication package before approval.
+No source record is selected or modified. GPT-5.5 independently accepted the
+design on 2026-08-01; acquisition, release construction, and training remain
+unauthorized.
+
 ## Capability-CPT schedule status
 
 The generalized deterministic N-source schedule layer and Candidates A/B/C

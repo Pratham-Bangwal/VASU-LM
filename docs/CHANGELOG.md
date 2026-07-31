@@ -4,6 +4,12 @@
 
 ### Added
 
+- Added a VASU-140M base-pretraining source-admission design, audit, and
+  independent-review packet. It reuses the existing source registry and
+  requires immutable source, license, acquisition, document-lineage,
+  evaluation-isolation, and deduplication evidence before approval; it selects
+  and acquires no source. GPT-5.5 independently accepted the design.
+
 - Added explicit post-publication replay coverage for the VASU-140M
   instruction-seed release-plan evidence. Normal qualification remains
   fail-closed on existing outputs; the opt-in read-only path is limited to
