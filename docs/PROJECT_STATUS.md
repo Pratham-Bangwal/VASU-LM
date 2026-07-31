@@ -257,8 +257,9 @@ The one-shot CUDA/AMP qualification was then explicitly authorized and passed:
 BF16 synthetic batch-one 512-token execution on the RTX 4050 recorded 1.29 GiB
 peak allocation, 52°C maximum telemetry, finite gradients, strict temporary
 checkpoint reload, cleanup, and zero optimizer updates. The immutable result
-remains `training_authorized=false`; corrected independent execution review is
-pending after an initial review-request hash typo was rejected.
+remains `training_authorized=false`; GPT-5.5 independently accepted the
+completed execution on 2026-07-31. This advances only the CUDA/AMP readiness
+sub-gate.
 
 ## Capability-CPT schedule status
 

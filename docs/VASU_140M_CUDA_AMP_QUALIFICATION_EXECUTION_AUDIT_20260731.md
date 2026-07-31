@@ -42,6 +42,9 @@ The qualification did not modify VASU model architecture, tokenizer, datasets,
 masks, production release, checkpoints under `checkpoints/`, schedules, or
 authorization records. `training_authorized=false` remains in the result.
 
+GPT-5.5 independently accepted the completed execution in
+`VASU_140M_CUDA_AMP_QUALIFICATION_EXECUTION_INDEPENDENT_REVIEW_DECISION_20260731.md`.
+
 ## Remaining gates
 
 1. Separately reviewed VASU-140M base-pretraining data release.

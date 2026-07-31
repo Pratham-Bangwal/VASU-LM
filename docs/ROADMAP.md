@@ -42,9 +42,11 @@
 - Completed: explicitly authorized one-shot CUDA/AMP qualification passed with
   finite BF16 execution, 1.29 GiB peak allocation, 52°C maximum telemetry,
   strict temporary checkpoint reload, cleanup, and zero optimizer updates.
-- Next: independently review the execution evidence. Training remains blocked
-  pending every readiness gate, a qualified 140M base checkpoint, and
-  authorization.
+- Completed: GPT-5.5 independently accepted the completed CUDA/AMP evidence;
+  it advances only the CUDA/AMP readiness sub-gate.
+- Next: prepare a separately reviewed VASU-140M base-pretraining data-release
+  plan. Training remains blocked pending every readiness gate, a qualified
+  140M base checkpoint, and authorization.
 
 ## Capability-CPT v2 decision gate
 
