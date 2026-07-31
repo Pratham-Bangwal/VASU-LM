@@ -4,6 +4,11 @@
 
 ### Added
 
+- Added a non-authorizing VASU-140M candidate source plan recommending recovered
+  FineWeb-Edu extension text plus a bounded Wikipedia allocation. It rejects
+  legacy binary reuse and incomplete original-source lineage, and retains
+  separate legal, admission, acquisition, deduplication, and release gates.
+
 - Added a design-only VASU-140M base-model evaluation v2 package covering
   likelihood, factuality, arithmetic, repetition/degeneration, robustness, and
   manual review with raw-continuation interfaces, held-out isolation, complete

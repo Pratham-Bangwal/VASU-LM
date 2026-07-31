@@ -296,6 +296,14 @@ hash-bound development/held-out isolation and statistical uncertainty. No
 suite, held-out inventory, or model result is frozen. GPT-5 independently
 accepted the design on 2026-08-01; implementation remains review-gated.
 
+A candidate source strategy now proposes the recovered 500M-token FineWeb-Edu
+extension as the broad primary and a bounded 10% Wikipedia allocation as the
+factual secondary. Exact shares remain conditional on post-filter token counts.
+Original FineWeb text with incomplete provider IDs and all legacy 257-token
+binaries are excluded. GPT-5 independently accepted the plan on 2026-08-01.
+Both candidates remain unadmitted and no acquisition occurred; the next gate
+is a separate source-specific admission package for each candidate.
+
 ## Capability-CPT schedule status
 
 The generalized deterministic N-source schedule layer and Candidates A/B/C

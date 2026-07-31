@@ -62,6 +62,9 @@
 - Independently accepted design: implement the VASU-140M base-model
   evaluation v2 contract across likelihood, factuality, arithmetic,
   degeneration, robustness, and manual review before freezing any prompts.
+- Independently accepted candidate source plan: prepare separate admission
+  packages for recovered FineWeb-Edu extension text plus a bounded 10%
+  Wikipedia allocation. Both still require admission and acquisition gates.
 
 ## Capability-CPT v2 decision gate
 
