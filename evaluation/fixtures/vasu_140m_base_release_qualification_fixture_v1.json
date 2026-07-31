@@ -1,0 +1,110 @@
+{
+  "builder_implementation_sha256": "5d90b394231d509741bcaabd38b935b0cb909615b98b24ca5268b20521952ecf",
+  "expected_external_template_sha256": "b5ada0b694a0dcc6f45b0cbd69b03f930cda5785abdebbebb5eea9b96c65f8dd",
+  "expected_internal_manifest_sha256": "469dc5e8045ae521f947b75ba94ec6f0c4ca753318e8bade8195b59a12c87643",
+  "expected_production_artifacts": {
+    "fixture-web/development.lineage.jsonl": {
+      "bytes": 517,
+      "sha256": "cb55db2b056e05e16fd521b4626126304289fb43b3433bfae28b19e2c181da1f"
+    },
+    "fixture-web/development.mask.bin": {
+      "bytes": 513,
+      "sha256": "8e53107cbe58bb68ce0d85431f9e6ba72e3428ba28cfcd61317e83c060ed690a"
+    },
+    "fixture-web/development.tokens.bin": {
+      "bytes": 1026,
+      "sha256": "c53dd6e809bacd8c9f4803d38cada5e5b7b7621fcdc24ee057d715d0d040368d"
+    },
+    "fixture-web/evaluation.lineage.jsonl": {
+      "bytes": 514,
+      "sha256": "e7dab28cf238c69c9be2870080bfae8ba2c4e57aef8f15334f13bb3e8f6a8fbf"
+    },
+    "fixture-web/evaluation.mask.bin": {
+      "bytes": 513,
+      "sha256": "ee20751f539c59eebd895e50762759aeb06bb04aef05f65619b28bf4d0e6b42b"
+    },
+    "fixture-web/evaluation.tokens.bin": {
+      "bytes": 1026,
+      "sha256": "51de705a983d9d76ad7234fb7fc25dc910723b2a217702528b51ce400be30749"
+    },
+    "fixture-web/train.lineage.jsonl": {
+      "bytes": 1000,
+      "sha256": "a62b7ce3fa9954f4621f8b2876d701716e1cd77ef286ba2f6391f949f6e7b2ff"
+    },
+    "fixture-web/train.mask.bin": {
+      "bytes": 513,
+      "sha256": "bfb9a4d19fad2dd5bb92daec994153217e9d00e6bf3e9ea08a7b8b61ef826b8b"
+    },
+    "fixture-web/train.tokens.bin": {
+      "bytes": 1026,
+      "sha256": "e324a6ea49bddad5f8e663ec2666d6b016ffe767cb26c94a2d3e8cea1d163aec"
+    },
+    "fixture-wiki/development.lineage.jsonl": {
+      "bytes": 520,
+      "sha256": "d11c34df650409a5a6263fdb05260a39e0dc6ce23a1838caf4e0cd979ea18079"
+    },
+    "fixture-wiki/development.mask.bin": {
+      "bytes": 513,
+      "sha256": "cab2788e26dce3b9188fbd832649092f0a3af503f96ab654d61c83efe862c091"
+    },
+    "fixture-wiki/development.tokens.bin": {
+      "bytes": 1026,
+      "sha256": "707b50f53eabad2e7e82207187eca75855ec3f93bcce31662da637734d4bd5ba"
+    },
+    "fixture-wiki/evaluation.lineage.jsonl": {
+      "bytes": 517,
+      "sha256": "8b119c668331a6b5b5b08444d7a4fd1ddeb727f3924cb6d04aa7dedbb33ae190"
+    },
+    "fixture-wiki/evaluation.mask.bin": {
+      "bytes": 513,
+      "sha256": "8e53107cbe58bb68ce0d85431f9e6ba72e3428ba28cfcd61317e83c060ed690a"
+    },
+    "fixture-wiki/evaluation.tokens.bin": {
+      "bytes": 1026,
+      "sha256": "934e32590cd3c9c296279dc911ef15d4711f37d100f31016a632e58be508dee6"
+    },
+    "fixture-wiki/train.lineage.jsonl": {
+      "bytes": 1006,
+      "sha256": "ee564a6b75dc9f72bbb9e65171646301b22219189d102dcd5d80e607213268e9"
+    },
+    "fixture-wiki/train.mask.bin": {
+      "bytes": 513,
+      "sha256": "c5bd6e65e7ee23219f35298c8bf015911936f6b32eb0b989e441ae03c5ec4d04"
+    },
+    "fixture-wiki/train.tokens.bin": {
+      "bytes": 1026,
+      "sha256": "0755500ed55b1ed527359382e4c0fb647a04996cea110fd75fe610924121f06d"
+    },
+    "release.internal.json": {
+      "bytes": 13675,
+      "sha256": "0578eae8e643c8675440f7ca0be632e1ec99bcc25213d7c2a16f0b6392131770"
+    }
+  },
+  "pass_count": 2,
+  "passes": [
+    {
+      "external_template_sha256": "b5ada0b694a0dcc6f45b0cbd69b03f930cda5785abdebbebb5eea9b96c65f8dd",
+      "internal_manifest_sha256": "469dc5e8045ae521f947b75ba94ec6f0c4ca753318e8bade8195b59a12c87643",
+      "pass_sha256": "e686195cb9f8352f76bec2eee1550612fdfa7147d91e8e3cc6e5eaa51dfe900b"
+    },
+    {
+      "external_template_sha256": "b5ada0b694a0dcc6f45b0cbd69b03f930cda5785abdebbebb5eea9b96c65f8dd",
+      "internal_manifest_sha256": "469dc5e8045ae521f947b75ba94ec6f0c4ca753318e8bade8195b59a12c87643",
+      "pass_sha256": "e686195cb9f8352f76bec2eee1550612fdfa7147d91e8e3cc6e5eaa51dfe900b"
+    }
+  ],
+  "post_validation_mutation_check": true,
+  "production_input_evidence_validated": false,
+  "production_release_created": false,
+  "publication_authorized": false,
+  "qualification_scope": "fixture",
+  "qualification_sha256": "dc54bf95522018ec46b5541247280d5784ebce4587179b07822f604207af0200",
+  "record_implementation_sha256": "56dadc8d958ce2b0ca5c6bf4ccdc10f231502d3207b2e118734a944e0adfd6bb",
+  "release_id": "vasu-140m-base-release-qualification-fixture-v1",
+  "repository_commit": "561666f06d81bf2710098c3b84220cdda6026650",
+  "round_trip_complete": true,
+  "schema_id": "vasu_140m_base_release_qualification_v1",
+  "scratch_cleaned": true,
+  "specification_sha256": "9266dbe5c042b80ed42762cd15e58a50e3945a0410269c596282e8460b092f3b",
+  "training_authorized": false
+}

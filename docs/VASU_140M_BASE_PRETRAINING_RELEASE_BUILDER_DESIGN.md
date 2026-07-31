@@ -1,7 +1,8 @@
 # VASU-140M Base-Pretraining Release Builder Design
 
-Status: design plus fixture-qualified full-loss record foundation;
-production construction unauthorized.
+Status: design plus fixture-qualified full-loss record foundation and
+two-pass qualification-core implementation; production construction and
+publication remain unauthorized.
 
 ## Root cause and scope
 
@@ -19,6 +20,16 @@ the accepted 513-token packer. A stateful isolation validator and generator
 support one-pass record construction without retaining packed corpus bytes in
 memory. The module performs no source discovery, acquisition, normalization,
 deduplication, publication, scheduling, or training.
+
+The additive `vasu/data/vasu_140m_base_release.py` implementation now covers
+the deterministic qualification core. It validates a strict release
+specification, recursively hash-binds semantic source-evidence envelopes,
+streams source-separated token/mask/lineage artifacts through two independent
+scratch builds, audits every serialized record, and returns a non-authorizing
+qualification report. Fixture and production evidence are explicit, mutually
+exclusive scopes; fixture evidence can never claim production eligibility.
+The publication transaction and detached one-build authorization remain a
+later implementation gate.
 
 ## Alternatives
 
