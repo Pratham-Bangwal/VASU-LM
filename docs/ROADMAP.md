@@ -59,6 +59,9 @@
   candidate source.
 - Next: compare candidate source strategies. Training remains blocked pending
   every readiness gate, a qualified 140M base checkpoint, and authorization.
+- Independently accepted design: implement the VASU-140M base-model
+  evaluation v2 contract across likelihood, factuality, arithmetic,
+  degeneration, robustness, and manual review before freezing any prompts.
 
 ## Capability-CPT v2 decision gate
 

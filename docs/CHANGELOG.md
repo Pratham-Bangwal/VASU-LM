@@ -4,6 +4,11 @@
 
 ### Added
 
+- Added a design-only VASU-140M base-model evaluation v2 package covering
+  likelihood, factuality, arithmetic, repetition/degeneration, robustness, and
+  manual review with raw-continuation interfaces, held-out isolation, complete
+  identities, and confidence intervals. No suite or result was frozen.
+
 - Added a strict metadata-only VASU-140M source-admission package validator and
   adversarial tests. It freezes family/config/tokenizer identity, legal,
   acquisition, lineage, evaluation-isolation, deduplication, review, and hash

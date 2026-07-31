@@ -289,6 +289,13 @@ fields, approval-state rules, and adversarial tests. It creates no candidate
 source. GPT-5.5 independently accepted the implementation on 2026-08-01;
 acquisition, data construction, and training remain unauthorized.
 
+In parallel, a design-only VASU-140M base-model evaluation v2 contract now
+specifies likelihood, factual, arithmetic, repetition/degeneration, robustness,
+and manual-review dimensions under raw-continuation interfaces. It requires
+hash-bound development/held-out isolation and statistical uncertainty. No
+suite, held-out inventory, or model result is frozen. GPT-5 independently
+accepted the design on 2026-08-01; implementation remains review-gated.
+
 ## Capability-CPT schedule status
 
 The generalized deterministic N-source schedule layer and Candidates A/B/C
