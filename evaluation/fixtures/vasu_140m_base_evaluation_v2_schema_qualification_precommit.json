@@ -1,0 +1,25 @@
+{
+  "checkpoint_opened": false,
+  "development_files_verified": true,
+  "dimensions": [
+    "arithmetic",
+    "factuality",
+    "likelihood",
+    "manual_review",
+    "repetition",
+    "robustness"
+  ],
+  "held_out_files_opened": false,
+  "model_invoked": false,
+  "module_sha256": "b3d889168196b3c880eb99f9868f14105d6b4b3b5cc84010add96ffb77997c49",
+  "qualification_sha256": "d82bb1408d5b28ff9599a535c4a94c6b0a9c8e6db638bc03be48556787e178d8",
+  "real_prompts_frozen": false,
+  "repository_commit": "51943a7a326b836755b2edaa7b7fd26ba0da366d",
+  "result_published": false,
+  "schema_id": "vasu_140m_base_evaluation_v2_schema_qualification_v1",
+  "smoke_sha256": "e675ab631742377f1c457dd73ffb22ca98e5b34ecd3497c98e06c998b1ae5fb0",
+  "synthetic_result_sha256": "df62dfc9407abf2598de1632144e4ab93e69cd0257000d0f467372cd44a20285",
+  "synthetic_suite_sha256": "1f977b37b68249967164ac8cc0faeded0d8b999a6dca1dd11d7622198fd8e79a",
+  "test_sha256": "313126c35430372832a9f19f463d15e01a3b054ad0a7f6c15027cf7813174319",
+  "training_authorized": false
+}
