@@ -261,6 +261,17 @@ remains `training_authorized=false`; GPT-5.5 independently accepted the
 completed execution on 2026-07-31. This advances only the CUDA/AMP readiness
 sub-gate.
 
+The next VASU-140M readiness artifact is a source-agnostic base-pretraining
+data-release plan. It explicitly rejects automatic reuse of VASU-60M FineWeb
+binaries and the published instruction seed, and requires separate source
+admission, provenance, contamination, deduplication, split, and 513-token
+full-loss release evidence.
+
+GPT-5.5 independently accepted the source-agnostic plan on 2026-07-31. Its
+only low finding is five historical release-plan tests that still require the
+now-published instruction path to be absent; repair must preserve their
+no-overwrite safety rather than weaken the release checks.
+
 ## Capability-CPT schedule status
 
 The generalized deterministic N-source schedule layer and Candidates A/B/C

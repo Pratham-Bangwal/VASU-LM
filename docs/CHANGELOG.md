@@ -4,6 +4,12 @@
 
 ### Added
 
+- Added a source-agnostic VASU-140M base-pretraining data-release plan, audit,
+  and independent-review packet. It selects no source and requires separate
+  provenance, licensing, contamination, deduplication, split, and 513-token
+  full-loss release evidence before construction. GPT-5.5 independently
+  accepted the plan.
+
 - Added the isolated VASU-140M CUDA/AMP qualification implementation and
   hardware-independent tests. It uses synthetic inputs and a temporary
   model-only I/O check; no CUDA workload was run. GPT-5.5 independently
