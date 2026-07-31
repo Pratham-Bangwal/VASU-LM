@@ -241,6 +241,11 @@ hardware-independent unit tests. It remains pre-review implementation evidence:
 GPT-5.5 independently accepted it on 2026-07-31. The actual CUDA workload has
 not been invoked and remains unauthorized.
 
+A read-only execution-identity smoke now pins the accepted CUDA implementation
+and test bytes to commit `0d3ac30` and requires a clean worktree before a
+future execution package can be considered. GPT-5.5 independently accepted
+the identity package on 2026-07-31. It does not invoke CUDA.
+
 ## Capability-CPT schedule status
 
 The generalized deterministic N-source schedule layer and Candidates A/B/C
