@@ -25,9 +25,12 @@
 - Completed: GPT-5.5 independently accepted the non-authorizing VASU-140M
   base-pretraining readiness protocol with CUDA, data, evaluation, resume,
   review, and authorization gates.
-- Next: separately design and review the bounded CUDA/AMP operational
-  qualification. Training remains blocked pending every readiness gate, a
-  qualified 140M base checkpoint, and separate authorization.
+- Completed: GPT-5.5 independently accepted the bounded VASU-140M CUDA/AMP
+  operational-qualification design with synthetic workload, telemetry, disk,
+  temporary-I/O, and immutability requirements.
+- Next: implement the isolated testable qualification tool, then obtain a
+  separate independent implementation review. Training remains blocked pending
+  every readiness gate, a qualified 140M base checkpoint, and authorization.
 
 ## Capability-CPT v2 decision gate
 

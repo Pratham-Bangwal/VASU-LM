@@ -4,6 +4,12 @@
 
 ### Added
 
+- Added a design-only VASU-140M CUDA/AMP operational qualification package.
+  It specifies a synthetic batch-one 512-token no-update workload, measured
+  memory/throughput/telemetry, isolated temporary checkpoint I/O, and
+  immutable results without authorizing CUDA execution or training. GPT-5.5
+  independently accepted the design.
+
 - Added a VASU-140M base-pretraining readiness protocol, audit, and independent
   review packet. It orders CUDA/AMP qualification, a new provenance-bound
   base-data release, frozen evaluations, real-data resume, scientific review,

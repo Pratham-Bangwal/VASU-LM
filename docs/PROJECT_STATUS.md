@@ -229,6 +229,13 @@ artifacts and does not alter the published instruction release. GPT-5.5
 independently accepted the protocol on 2026-07-31; the acceptance remains
 non-authorizing.
 
+The first readiness sub-gate is now specified as a design-only bounded
+CUDA/AMP operational qualification. It uses synthetic 512-token inputs,
+creates no optimizer or update, and reserves only a future temporary
+model-only checkpoint for I/O measurement. Its implementation and runtime
+execution remain separately review-gated. GPT-5.5 independently accepted the
+design on 2026-07-31; that acceptance remains non-authorizing.
+
 ## Capability-CPT schedule status
 
 The generalized deterministic N-source schedule layer and Candidates A/B/C
