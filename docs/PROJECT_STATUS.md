@@ -247,6 +247,12 @@ future execution package can be considered. GPT-5.5 independently accepted
 the identity package and its clean-commit reproduction on 2026-07-31. It does
 not invoke CUDA.
 
+A one-shot bounded CUDA execution package is now prepared for independent
+review. It binds device 0, the synthetic qualification command, one ignored
+result path, pre-run safety checks, and a separate explicit human approval.
+GPT-5.5 independently accepted the package on 2026-07-31; execution remains
+unauthorized pending that approval.
+
 ## Capability-CPT schedule status
 
 The generalized deterministic N-source schedule layer and Candidates A/B/C

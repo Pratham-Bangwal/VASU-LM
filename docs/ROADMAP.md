@@ -36,7 +36,10 @@
 - Completed: GPT-5.5 independently accepted the execution-identity package.
 - Completed: committed and independently accepted clean-commit identity report
   `601b3bcc…`; CUDA and checkpoint fields remain false.
-- Next: prepare a separately reviewed bounded CUDA execution package. Training
+- Completed: prepared a one-shot bounded CUDA execution package with exact
+  identity, safety, and output boundaries.
+- Completed: GPT-5.5 independently accepted the one-shot execution package.
+- Next: obtain explicit one-shot human approval before CUDA execution. Training
   remains blocked pending every readiness gate, a qualified 140M base
   checkpoint, and authorization.
 
