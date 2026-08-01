@@ -1,0 +1,17 @@
+{
+  "candidate_package_sha256": {
+    "fineweb_edu_extension_2025_26": "eadac665b718fe5603e3c7b00c9d2016cbccc761972cb8311f6e5e2c8828636c",
+    "wikipedia_en_20231101_planned": "9a25f3600d1215885e122054009b09038bf5df4bf75d6319d5b2a6e7453420ba"
+  },
+  "candidate_states": {
+    "fineweb_edu_extension_2025_26": "blocked",
+    "wikipedia_en_20231101_planned": "blocked"
+  },
+  "complete_production_prompt_inventory_matrix_bound": false,
+  "contract_schema_id": "vasu_140m_base_source_admission_v3",
+  "production_release_created": false,
+  "schema_id": "vasu_140m_source_admission_v3_qualification_v1",
+  "source_acquisition_authorized": false,
+  "source_bytes_downloaded": false,
+  "training_authorized": false
+}

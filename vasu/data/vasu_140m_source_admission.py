@@ -12,8 +12,9 @@ from urllib.parse import urlparse
 from vasu.data.sources import load_source_records
 
 
-SCHEMA_ID = "vasu_140m_base_source_admission_v2"
+SCHEMA_ID = "vasu_140m_base_source_admission_v3"
 LEGACY_SCHEMA_ID = "vasu_140m_base_source_admission_v1"
+PREVIOUS_SCHEMA_ID = "vasu_140m_base_source_admission_v2"
 FAMILY_ID = "vasu_140m_v1"
 MODEL_CONFIG_SHA256 = (
     "29e9bafdffbbc632b1b6f006818b1470e6dbc20f21841aa33e625a0f04159059"
@@ -21,6 +22,18 @@ MODEL_CONFIG_SHA256 = (
 TOKENIZER_SHA256 = (
     "04942e101a4a01f87f7e492ad9e463d299a559e784b650fdedd1763a017d195a"
 )
+EVALUATION_DIMENSIONS = frozenset(
+    {
+        "likelihood",
+        "factuality",
+        "arithmetic",
+        "repetition",
+        "robustness",
+        "manual_review",
+    }
+)
+EVALUATION_SPLITS = frozenset({"development", "held_out"})
+PROMPT_EVALUATION_DIMENSIONS = EVALUATION_DIMENSIONS - {"likelihood"}
 STATES = frozenset({"pending", "blocked", "rejected", "approved"})
 SHA256_HEX_LENGTH = 64
 
@@ -144,13 +157,34 @@ def validate_admission_package(package: Mapping[str, object]) -> None:
     legal = _mapping(package["legal_evidence"], "legal_evidence")
     _exact_keys(
         legal,
-        {"license_name", "license_url", "terms_url", "terms_revision", "obligations", "unresolved_items"},
+        {
+            "license_name",
+            "license_url",
+            "terms_url",
+            "terms_revision",
+            "commercial_use_allowed",
+            "attribution_required",
+            "redistribution_allowed",
+            "gated_access",
+            "requires_authentication",
+            "obligations",
+            "unresolved_items",
+        },
         "legal_evidence",
     )
     _string(legal["license_name"], "legal_evidence.license_name")
     _url(legal["license_url"], "legal_evidence.license_url")
     _url(legal["terms_url"], "legal_evidence.terms_url")
     _string(legal["terms_revision"], "legal_evidence.terms_revision")
+    for field in (
+        "commercial_use_allowed",
+        "attribution_required",
+        "redistribution_allowed",
+        "gated_access",
+        "requires_authentication",
+    ):
+        if not isinstance(legal[field], bool):
+            raise ValueError(f"legal_evidence.{field} must be boolean")
     _strings(legal["obligations"], "legal_evidence.obligations")
     unresolved = _strings(legal["unresolved_items"], "legal_evidence.unresolved_items", allow_empty=True)
 
@@ -181,14 +215,35 @@ def validate_admission_package(package: Mapping[str, object]) -> None:
     _strings(quality["rejection_reasons"], "quality_policy.rejection_reasons")
 
     isolation = _mapping(package["evaluation_isolation"], "evaluation_isolation")
-    _exact_keys(isolation, {"inventories", "exact_method", "ngram_words", "scan_before_split"}, "evaluation_isolation")
+    _exact_keys(
+        isolation,
+        {
+            "inventories",
+            "likelihood_policy",
+            "exact_method",
+            "ngram_words",
+            "scan_before_split",
+        },
+        "evaluation_isolation",
+    )
     inventories = isolation["inventories"]
     if not isinstance(inventories, list) or not inventories:
         raise ValueError("evaluation_isolation.inventories must be non-empty")
     seen_paths: set[str] = set()
     for index, item in enumerate(inventories):
         inventory = _mapping(item, f"evaluation inventory {index}")
-        _exact_keys(inventory, {"path", "sha256"}, f"evaluation inventory {index}")
+        _exact_keys(
+            inventory,
+            {"inventory_id", "dimension", "split", "path", "sha256"},
+            f"evaluation inventory {index}",
+        )
+        _string(inventory["inventory_id"], f"evaluation inventory {index}.inventory_id")
+        if inventory["dimension"] not in PROMPT_EVALUATION_DIMENSIONS:
+            raise ValueError(
+                f"evaluation inventory {index}.dimension is not a prompt dimension"
+            )
+        if inventory["split"] not in EVALUATION_SPLITS:
+            raise ValueError(f"evaluation inventory {index}.split is unsupported")
         path = _safe_repository_path(inventory["path"], f"evaluation inventory {index}.path")
         if path in seen_paths:
             raise ValueError("evaluation inventory paths must be unique")
@@ -199,6 +254,24 @@ def validate_admission_package(package: Mapping[str, object]) -> None:
         raise ValueError("evaluation_isolation.ngram_words must be an integer >= 5")
     if isolation["scan_before_split"] is not True:
         raise ValueError("evaluation isolation must run before split assignment")
+    likelihood_policy = _mapping(
+        isolation["likelihood_policy"],
+        "evaluation_isolation.likelihood_policy",
+    )
+    _exact_keys(
+        likelihood_policy,
+        {
+            "created_after_acquisition",
+            "document_level_isolation",
+            "train_exclusion_required",
+            "manifest_binding_required",
+        },
+        "evaluation_isolation.likelihood_policy",
+    )
+    if any(value is not True for value in likelihood_policy.values()):
+        raise ValueError(
+            "likelihood evaluation must be document-isolated after acquisition"
+        )
 
     dedup = _mapping(package["deduplication"], "deduplication")
     _exact_keys(dedup, {"normalization_version", "exact_method", "near_method", "cross_source_indexes", "before_split"}, "deduplication")
@@ -225,6 +298,22 @@ def validate_admission_package(package: Mapping[str, object]) -> None:
         _timezone_timestamp(decision["reviewed_at"], "decision.reviewed_at")
         if unresolved:
             raise ValueError("approved admission package has unresolved legal items")
+        inventory_pairs = {
+            (inventory["dimension"], inventory["split"])
+            for inventory in inventories
+        }
+        expected_pairs = {
+            (dimension, split)
+            for dimension in PROMPT_EVALUATION_DIMENSIONS
+            for split in EVALUATION_SPLITS
+        }
+        if inventory_pairs != expected_pairs or len(inventories) != len(expected_pairs):
+            raise ValueError(
+                "approved admission package must bind all 10 prompt inventories"
+            )
+        inventory_ids = [inventory["inventory_id"] for inventory in inventories]
+        if len(inventory_ids) != len(set(inventory_ids)):
+            raise ValueError("approved evaluation inventory IDs must be unique")
     elif not isinstance(decision["reviewed_by"], str) or not isinstance(decision["reviewed_at"], str):
         raise ValueError("decision reviewer fields must be strings")
 
@@ -259,6 +348,30 @@ def validate_admission_package_files(
     record = matches[0]
     if record.approval_status != source["registry_approval_status"]:
         raise ValueError("source record approval state mismatch")
+    legal = _mapping(package["legal_evidence"], "legal_evidence")
+    registry_legal = {
+        "license_name": record.license_name,
+        "license_url": record.license_url,
+        "commercial_use_allowed": record.commercial_use_allowed,
+        "attribution_required": record.attribution_required,
+        "redistribution_allowed": record.redistribution_allowed,
+        "gated_access": record.gated_access,
+        "requires_authentication": record.requires_authentication,
+    }
+    for field, expected in registry_legal.items():
+        if legal[field] != expected:
+            raise ValueError(
+                f"legal_evidence.{field} does not match the source registry"
+            )
+    acquisition = _mapping(package["acquisition"], "acquisition")
+    if acquisition["immutable_revision"] != record.pinned_revision:
+        raise ValueError(
+            "acquisition.immutable_revision does not match the source registry"
+        )
+    if acquisition["access_method"] != record.access_method:
+        raise ValueError(
+            "acquisition.access_method does not match the source registry"
+        )
 
     isolation = _mapping(package["evaluation_isolation"], "evaluation_isolation")
     inventories = isolation["inventories"]
@@ -278,6 +391,26 @@ def validate_admission_package_files(
         observed = hashlib.sha256(inventory_path.read_bytes()).hexdigest()
         if observed != inventory["sha256"]:
             raise ValueError(f"evaluation inventory {index} identity mismatch")
+        if package["decision"]["state"] == "approved":
+            try:
+                manifest = json.loads(inventory_path.read_text(encoding="utf-8"))
+            except json.JSONDecodeError as error:
+                raise ValueError(
+                    f"evaluation inventory {index} is not a JSON manifest"
+                ) from error
+            if not isinstance(manifest, Mapping):
+                raise ValueError(
+                    f"evaluation inventory {index} must contain a JSON object"
+                )
+            for field in ("inventory_id", "dimension", "split"):
+                if manifest.get(field) != inventory[field]:
+                    raise ValueError(
+                        f"evaluation inventory {index} {field} mismatch"
+                    )
+            if manifest.get("fixture_only") is not False:
+                raise ValueError(
+                    f"evaluation inventory {index} is not production-candidate evidence"
+                )
 
 
 def load_admission_package(path: Path) -> dict[str, object]:
