@@ -1,0 +1,81 @@
+{
+  "contamination_inventory_sha256": "f2ff9b6f7f5b1cbfb79ed8fda08fa8dbf884bb4c224087de804c2568e7afb260",
+  "counts": {
+    "documents": 3,
+    "eligible_documents": 1,
+    "exact_findings": 3,
+    "rejected_documents": 2,
+    "semantic_candidates": 1,
+    "semantic_rejections": 0
+  },
+  "document_evidence": [
+    {
+      "document_id": "doc-001",
+      "normalized_sha256": "7e610c663ddb18ae5488e08e014cd51c94030350fdf64ced25bc05b27049e36b",
+      "raw_sha256": "e256ee8cec0f1c50a4b6e5b69d7240bec62d015b59623efded62bd8f3e426ef0",
+      "word_count": 15
+    },
+    {
+      "document_id": "doc-002",
+      "normalized_sha256": "2f0abe5c6065bca85d8a272cf6ab7e1aee457f450acdd98075e750c4c59cf87a",
+      "raw_sha256": "22f1fd0d0bc0172461412aeed1b035457956af9736672d7dee9d948a590906a5",
+      "word_count": 11
+    },
+    {
+      "document_id": "doc-003",
+      "normalized_sha256": "cc8aa523c545ca94c6cf0edad0f8076773a7fd09b46f4cdd938e6927619abb6f",
+      "raw_sha256": "9a29a1f4e2ea808b095657938244d7f73c2e1241dbcea093acef948940130e65",
+      "word_count": 8
+    }
+  ],
+  "document_outcomes": [
+    {"decision": "reject", "document_id": "doc-001"},
+    {"decision": "reject", "document_id": "doc-002"},
+    {"decision": "eligible", "document_id": "doc-003"}
+  ],
+  "exact_findings": [
+    {
+      "commitment_sha256": "864bdd6693d8b1d3c7723f8643eafe8e2478b99127d145343ffdba94ba4202b0",
+      "document_id": "doc-001",
+      "item_id": "factuality-001",
+      "kind": "eight_word_fragment",
+      "span_start": 2,
+      "word_count": 8
+    },
+    {
+      "commitment_sha256": "6848f5362953848431c142378089e4643a32c854df0d9a012db0e4830485cfba",
+      "document_id": "doc-001",
+      "item_id": "factuality-001",
+      "kind": "prompt_exact",
+      "span_start": 1,
+      "word_count": 10
+    },
+    {
+      "commitment_sha256": "d158be41db87d7055fa9548fe9c0e3cb685983fedb4f2d648d7a25c046d72d9d",
+      "document_id": "doc-002",
+      "item_id": "factuality-001",
+      "kind": "answer_exact",
+      "span_start": 4,
+      "word_count": 1
+    }
+  ],
+  "fixture_only": true,
+  "release_build_permitted": false,
+  "report_sha256": "b856613ca9526feae0700807039a3a6c2c9f8d5dcd513533856a5340c3240993",
+  "scan_before_split": true,
+  "scan_complete": true,
+  "schema_id": "vasu_140m_base_source_contamination_scan_v1",
+  "semantic_rejections": [],
+  "semantic_search": {
+    "candidate_count": 1,
+    "candidates_sha256": "e6d59add7c00ca2f666cde1ee5fe2c23b217f4ab0aa8161f4ec92efb9b154dea",
+    "complete": true,
+    "decision_count": 1,
+    "decisions_sha256": "c9f63f64e378011174028656b395f1e5aa11b6f81b7abc6be20503f2df17c0c8",
+    "evidence_sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+    "method": "minhash_lsh_plus_human_v1"
+  },
+  "source_admission_approved": false,
+  "source_id": "fixture-source",
+  "training_authorized": false
+}
