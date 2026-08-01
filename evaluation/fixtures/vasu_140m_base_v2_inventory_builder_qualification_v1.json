@@ -1,0 +1,38 @@
+{
+  "construction_plan_repository_commit": "216013a9175a5cdff165765e60641ce5b1dae8c5",
+  "construction_plan_sha256": "3a0b17aa613af4fd1bec4a76e12bbc545505a289719d394dc62e27e8e10b1494",
+  "dimensions": [
+    "arithmetic",
+    "factuality",
+    "manual_review",
+    "repetition",
+    "robustness"
+  ],
+  "encryption_key_created": false,
+  "evaluation_run_authorized": false,
+  "fixture_only": true,
+  "held_out_content_created": false,
+  "implementation_sha256": "7f4654a071706421161c95f19b75012d9e14582dc28e817367628857ceb56c11",
+  "inventory_sha256s": {
+    "arithmetic": "15ebba54ebc5d5b820f3daafb39bd94a04609efb84f3fa9c02b3551689b1f725",
+    "factuality": "431d11270717f3d684b809ae9f22c4f08714312b14d4a247bd09d6d54a4d1d89",
+    "manual_review": "bafb7550b1fa85079773e58fdd8fe01f649554e5fc20fff6d9efabdec2fe6cb7",
+    "repetition": "688c15b183b21d86653d655afc6787c64e6addb7044a0f6c721b03c021e99fe8",
+    "robustness": "6ba0b3b33c92e36fa58fad14080d174c5051978b2a3a7698fbc722812d07c819"
+  },
+  "model_invoked": false,
+  "production_inventory_created": false,
+  "record_counts": {
+    "arithmetic": 1,
+    "factuality": 1,
+    "manual_review": 1,
+    "repetition": 1,
+    "robustness": 1
+  },
+  "report_sha256": "2e046f7947ecd194c3c2bdefb19644aeb9768c1ec8cdbc4e8d884efc1cccd2e7",
+  "repository_parent": "216013a9175a5cdff165765e60641ce5b1dae8c5",
+  "schema_id": "vasu_140m_base_evaluation_inventory_builder_report_v1",
+  "temporary_artifacts_removed": true,
+  "test_sha256": "67db4f2ec385825aaedd987b386c06213cd9a14d43d851aea5ba12421fc3874e",
+  "training_authorized": false
+}
