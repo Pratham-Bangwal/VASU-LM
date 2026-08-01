@@ -1,0 +1,22 @@
+{
+  "checkpoint_created": false,
+  "exact_comparison_fields": [
+    "components_exact",
+    "progress_exact",
+    "record_order_exact",
+    "source_transitions_exact",
+    "state_identity_exact",
+    "target_count_exact"
+  ],
+  "execution_authorized": false,
+  "optimizer_created": false,
+  "optimizer_update_performed": false,
+  "production_data_opened": false,
+  "result_schema_valid": true,
+  "result_sha256": "e75cb4e30b0bf05d0f0d209a385e6b7a50e72b525b7e75e72ae1c60a4faaad41",
+  "schema_id": "vasu_140m_real_data_resume_contract_qualification_v1",
+  "specification_schema_valid": true,
+  "specification_sha256": "b766ac2e1fca964af376fca84382ec2f562b22a867d474545c1bdc77d1070dc3",
+  "torch_cuda_invoked": false,
+  "training_authorized": false
+}
