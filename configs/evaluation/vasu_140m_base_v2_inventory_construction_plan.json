@@ -1,0 +1,194 @@
+{
+  "schema_id": "vasu_140m_base_evaluation_inventory_construction_plan_v1",
+  "plan_id": "vasu-140m-base-v2-inventory-construction-v1",
+  "repository_commit": "216013a9175a5cdff165765e60641ce5b1dae8c5",
+  "suite_id": "vasu-140m-base-evaluation-v2",
+  "tokenizer": {
+    "path": "assets/tokenizer.json",
+    "sha256": "04942e101a4a01f87f7e492ad9e463d299a559e784b650fdedd1763a017d195a"
+  },
+  "implementation": {
+    "inventory_contract": {
+      "path": "evaluation/framework/vasu_140m_base_v2_inventory.py",
+      "sha256": "1ead769715f72faa13be981bf92199d81db30952bc17a02812d51c8055b4905a"
+    },
+    "task_scorers": {
+      "path": "evaluation/framework/vasu_140m_base_v2_tasks.py",
+      "sha256": "7777bd7d6a488c21e3937b5b05e1e46153e7fddbcb67784c47dc9e53a5087bf5"
+    }
+  },
+  "dependencies": {
+    "scoring_qualification_decision": {
+      "path": "docs/VASU_140M_BASE_MODEL_EVALUATION_V2_SCORING_QUALIFICATION_INDEPENDENT_REVIEW_DECISION_20260801.md",
+      "sha256": "32450e710fabb27416dd466e6f05745283aae1b72fc0a7786a59116848d8139a"
+    },
+    "scoring_postcommit_identity_decision": {
+      "path": "docs/VASU_140M_BASE_MODEL_EVALUATION_V2_SCORING_POSTCOMMIT_IDENTITY_INDEPENDENT_REVIEW_DECISION_20260801.md",
+      "sha256": "6e4c2d2263c243772e5b66f49a44fd5d3eac8d7149947d6720d9005b3e7052d6"
+    },
+    "inventory_contract_decision": {
+      "path": "docs/VASU_140M_BASE_MODEL_EVALUATION_V2_INVENTORY_CONTRACT_INDEPENDENT_REVIEW_DECISION_20260801.md",
+      "sha256": "110e8f5d8d3f3883995fb0ddd9479f90fd3a255b626b8aa53d354b67c1b506f7"
+    },
+    "inventory_postcommit_identity_decision": {
+      "path": "docs/VASU_140M_BASE_MODEL_EVALUATION_V2_INVENTORY_POSTCOMMIT_IDENTITY_INDEPENDENT_REVIEW_DECISION_20260801.md",
+      "sha256": "eb9a7512151df78ad11b7269e5366aa1edc3cece205d502928802f04ee83e2bd"
+    }
+  },
+  "source_catalog": [
+    {
+      "source_id": "factual-cpt-v2-development-seed",
+      "artifact": {
+        "path": "evaluation/benchmarks/factual_cpt_v2.json",
+        "sha256": "17c356f0b3a5093511402b08f307b770b8cc4443b3ca3e1cceaa0eb7044115b9"
+      },
+      "role": "development seed and fact-family audit only",
+      "usage_policy": "development_seed_only",
+      "provenance": "independently written VASU factual prompts; no Wikimedia sentences copied",
+      "license": {
+        "name": "VASU repository project-authored material",
+        "url": "https://github.com/Pratham-Sharma-07/VASU"
+      },
+      "prompt_reuse_permitted": true,
+      "held_out_derivation_permitted": false
+    },
+    {
+      "source_id": "verified-arithmetic-v2-generator",
+      "artifact": {
+        "path": "vasu/data/arithmetic_v2.py",
+        "sha256": "197ba0f190ca2ce3098196edd639c5b3bc8007e8a6863e040011b519dcdde563"
+      },
+      "role": "deterministic arithmetic generator with disjoint family and operand ranges",
+      "usage_policy": "deterministic_generator",
+      "provenance": "project-authored verified arithmetic implementation",
+      "license": {
+        "name": "VASU repository project-authored material",
+        "url": "https://github.com/Pratham-Sharma-07/VASU"
+      },
+      "prompt_reuse_permitted": true,
+      "held_out_derivation_permitted": true
+    },
+    {
+      "source_id": "ultrachat-promotion-topic-seed",
+      "artifact": {
+        "path": "evaluation/benchmarks/ultrachat_promotion_v1.json",
+        "sha256": "68806800c0b8d524a1cdd4e83ccdd46d388aa9d86f8070a6fbbf3e04a8091bf1"
+      },
+      "role": "topic and stratum seed only; instruction prompts are not reusable for the base-model suite",
+      "usage_policy": "topic_seed_only",
+      "provenance": "synthetic project-authored benchmark; not copied from Alpaca or UltraChat",
+      "license": {
+        "name": "VASU repository project-authored material",
+        "url": "https://github.com/Pratham-Sharma-07/VASU"
+      },
+      "prompt_reuse_permitted": false,
+      "held_out_derivation_permitted": false
+    }
+  ],
+  "dimensions": {
+    "likelihood": {
+      "interface": "direct_likelihood",
+      "construction_mode": "post_acquisition_document_holdout",
+      "counts": {"development": 512, "held_out": 512},
+      "count_scope": "per_admitted_source",
+      "source_ids": [],
+      "selection_unit": "whole source document before 513-token packing",
+      "family_isolation": true,
+      "provenance_required": true,
+      "contamination_commitment_required": true,
+      "scorer_id": "likelihood-scorer-v2"
+    },
+    "factuality": {
+      "interface": "direct_likelihood",
+      "construction_mode": "source_attributed_independent_authoring",
+      "counts": {"development": 200, "held_out": 200},
+      "count_scope": "total",
+      "source_ids": ["factual-cpt-v2-development-seed"],
+      "selection_unit": "fact family",
+      "family_isolation": true,
+      "provenance_required": true,
+      "contamination_commitment_required": true,
+      "scorer_id": "factuality-scorer-v2"
+    },
+    "arithmetic": {
+      "interface": "raw_continuation",
+      "construction_mode": "deterministic_verified_generation",
+      "counts": {"development": 1000, "held_out": 1000},
+      "count_scope": "total",
+      "source_ids": ["verified-arithmetic-v2-generator"],
+      "selection_unit": "operation template family and operand range",
+      "family_isolation": true,
+      "provenance_required": true,
+      "contamination_commitment_required": true,
+      "scorer_id": "arithmetic-scorer-v2"
+    },
+    "repetition": {
+      "interface": "raw_continuation",
+      "construction_mode": "independent_raw_continuation_authoring",
+      "counts": {"development": 120, "held_out": 120},
+      "count_scope": "total",
+      "source_ids": ["ultrachat-promotion-topic-seed"],
+      "selection_unit": "topic and continuation-prefix family",
+      "family_isolation": true,
+      "provenance_required": true,
+      "contamination_commitment_required": true,
+      "scorer_id": "repetition-scorer-v2"
+    },
+    "robustness": {
+      "interface": "paired_continuation",
+      "construction_mode": "independent_paired_perturbation_authoring",
+      "counts": {"development": 120, "held_out": 120},
+      "count_scope": "total",
+      "source_ids": ["ultrachat-promotion-topic-seed"],
+      "selection_unit": "semantic prompt family with paired perturbations",
+      "family_isolation": true,
+      "provenance_required": true,
+      "contamination_commitment_required": true,
+      "scorer_id": "robustness-scorer-v2"
+    },
+    "manual_review": {
+      "interface": "raw_continuation",
+      "construction_mode": "independent_stratified_raw_continuation_authoring",
+      "counts": {"development": 60, "held_out": 60},
+      "count_scope": "total",
+      "source_ids": ["ultrachat-promotion-topic-seed"],
+      "selection_unit": "review stratum and topic family",
+      "family_isolation": true,
+      "provenance_required": true,
+      "contamination_commitment_required": true,
+      "scorer_id": "manual-review-scorer-v2"
+    }
+  },
+  "split_policy": {
+    "seed": 140021,
+    "algorithm": "sha256_rank_by_family_v1",
+    "semantic_family_isolation": true,
+    "parent_document_isolation": true,
+    "development_before_held_out": true,
+    "no_cross_split_derivation": true
+  },
+  "contamination_policy": {
+    "exact_prompt_hash": "sha256_nfc_casefold_whitespace_v1",
+    "answer_hash": "sha256_nfc_casefold_whitespace_v1",
+    "fragment_words": 8,
+    "semantic_review": "minhash_lsh_plus_human_v1",
+    "scan_before_data_split": true
+  },
+  "held_out_security": {
+    "algorithm": "age-x25519",
+    "recipient_fingerprint": null,
+    "plaintext_repository_path_forbidden": true,
+    "independent_curator_required": true,
+    "opening_authorized": false,
+    "key_creation_authorized": false
+  },
+  "review": {
+    "status": "pending",
+    "decision_path": null,
+    "decision_sha256": null
+  },
+  "construction_authorized": false,
+  "evaluation_run_authorized": false,
+  "training_authorized": false,
+  "plan_sha256": "4bd36c7d7b862e782614347f9c837e3fbaf12c7eaff0d80b7df146c6d71db784"
+}

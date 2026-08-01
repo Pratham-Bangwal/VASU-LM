@@ -1,0 +1,46 @@
+{
+  "accepted_dependencies_bound": 4,
+  "construction_authorized": false,
+  "dependency_sha256s": {
+    "inventory_contract_decision": "110e8f5d8d3f3883995fb0ddd9479f90fd3a255b626b8aa53d354b67c1b506f7",
+    "inventory_postcommit_identity_decision": "eb9a7512151df78ad11b7269e5366aa1edc3cece205d502928802f04ee83e2bd",
+    "scoring_postcommit_identity_decision": "6e4c2d2263c243772e5b66f49a44fd5d3eac8d7149947d6720d9005b3e7052d6",
+    "scoring_qualification_decision": "32450e710fabb27416dd466e6f05745283aae1b72fc0a7786a59116848d8139a"
+  },
+  "dimension_counts": {
+    "arithmetic": {
+      "development": 1000,
+      "held_out": 1000
+    },
+    "factuality": {
+      "development": 200,
+      "held_out": 200
+    },
+    "likelihood": {
+      "development": 512,
+      "held_out": 512
+    },
+    "manual_review": {
+      "development": 60,
+      "held_out": 60
+    },
+    "repetition": {
+      "development": 120,
+      "held_out": 120
+    },
+    "robustness": {
+      "development": 120,
+      "held_out": 120
+    }
+  },
+  "evaluation_run_authorized": false,
+  "held_out_content_created": false,
+  "held_out_key_created": false,
+  "likelihood_count_scope": "per_admitted_source",
+  "likelihood_holdout_created_after_acquisition": true,
+  "plan_id": "vasu-140m-base-v2-inventory-construction-v1",
+  "plan_sha256": "4bd36c7d7b862e782614347f9c837e3fbaf12c7eaff0d80b7df146c6d71db784",
+  "prompt_inventory_count_required_before_source_admission": 10,
+  "schema_id": "vasu_140m_base_v2_inventory_plan_qualification_v1",
+  "training_authorized": false
+}
