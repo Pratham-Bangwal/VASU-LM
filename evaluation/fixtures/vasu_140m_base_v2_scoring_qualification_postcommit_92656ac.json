@@ -1,0 +1,32 @@
+{
+  "bootstrap": {
+    "confidence_level": 0.95,
+    "samples": 2000,
+    "seed": 140
+  },
+  "checkpoint_opened": false,
+  "dimension_mode_count": 9,
+  "evaluation_run_authorized": false,
+  "evidence_sha256": "5a681598e81d253d140cf66e30344de97eb352205e2802d543cd263cfb628f1f",
+  "fixture_only": true,
+  "held_out_opened": false,
+  "manual_review_packet_sha256": "6e82705bc9919d1c9f6ce870d6680c10d1910c1eb5da81710fafe20ae5c2d1de",
+  "model_invoked": false,
+  "observations_sha256": "2dc6f263355270d8fe1d19fc71bddc319779068d5a52b5ae0baa0db167121599",
+  "production_suite_frozen": false,
+  "prompt_content_included": false,
+  "qualification_sha256": "de5937040c96320a30796dbfd431eadda9f18ba69707f3db415f4c1c856179e0",
+  "report_schema_id": "vasu_140m_base_evaluation_scoring_qualification_v1",
+  "repository_commit": "92656ac0c8b8652fca3758a156e97a717d6b89a3",
+  "schema_id": "vasu_140m_base_evaluation_scoring_qualification_evidence_v1",
+  "schema_implementation_sha256": "b3d889168196b3c880eb99f9868f14105d6b4b3b5cc84010add96ffb77997c49",
+  "score_rows_sha256": "7ef49b1ad20d0b01e56d6a505beb637a7f9ac5383e13c28eb09cfa2b5a3b0323",
+  "smoke_sha256": "6e43664e5eb1d8f39916ff63f1425ebbb3f339ee69ec6dceb0ec21dcb979e074",
+  "statistics_implementation_sha256": "5d4c07d01fe7b833a2b6daf06fb562061ed0731160ffbd0e031eba3527568d71",
+  "summaries_sha256": "8ae2112962218edd824952f4f194a51b0ef60ff26ed99bbc73ca8b419e52a157",
+  "task_count": 18,
+  "task_implementation_sha256": "7777bd7d6a488c21e3937b5b05e1e46153e7fddbcb67784c47dc9e53a5087bf5",
+  "task_inventory_sha256": "82447a39cbbabda6259735befdba1b0719073c4daeb387801305329e554383ef",
+  "tests_sha256": "c71190f99822d1c5a887aa64bc1b22c5c2b57f465124ee34053d7ec2a8a62b34",
+  "training_authorized": false
+}
