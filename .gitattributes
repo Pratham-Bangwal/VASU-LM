@@ -1,0 +1,18 @@
+* text=auto eol=lf
+
+# Windows command files retain their platform-native line endings.
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Binary research artifacts must never be line-ending normalized.
+*.bin -text
+*.npy -text
+*.npz -text
+*.pt -text
+*.safetensors -text
+*.png -text
+*.jpg -text
+*.jpeg -text
+*.gif -text
+*.pdf -text
+*.zip -text
