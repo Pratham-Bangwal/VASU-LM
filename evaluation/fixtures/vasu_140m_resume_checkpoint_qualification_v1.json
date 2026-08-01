@@ -1,0 +1,34 @@
+{
+  "bound_identities": {
+    "evaluation_development": "2222222222222222222222222222222222222222222222222222222222222222",
+    "release": "3333333333333333333333333333333333333333333333333333333333333333",
+    "schedule": "4444444444444444444444444444444444444444444444444444444444444444",
+    "tokenizer": "5555555555555555555555555555555555555555555555555555555555555555"
+  },
+  "checkpoint_evidence": {
+    "checkpoint_bytes": 5378,
+    "checkpoint_sha256": "a215b3e475cbc0a20a06cb895823eb0a12808e051805e88a36ca33077f81fa62",
+    "sidecar_sha256": "712a614860d8f0cbbd46db0a10e4517f18b5654bbcbc017510d3ea23dbe8e7ab",
+    "state_sha256": "87744c630055f2a16714c738e02a043a814971e7de27784679160a1808457b1e"
+  },
+  "checks": {
+    "cleanup_complete": true,
+    "payload_exact": true,
+    "sidecar_exact": true,
+    "sidecar_identity_exact": true,
+    "state_identity_exact": true,
+    "system_temporary_only": true
+  },
+  "cuda_invoked": false,
+  "implementation_sha256": "0ee66ee62370d57f1ecb1279c32c8b5742529c21917f82096e738b304add76a8",
+  "model_created": false,
+  "optimizer_created": false,
+  "optimizer_update_performed": false,
+  "passed": true,
+  "qualification_sha256": "d71c551a3f5f077835843770ffa221416de608fca4aa0239f2e840ed537f9215",
+  "repository_parent": "eafd4d708415116663a5c1b1909cc94a6e7b00b3",
+  "schema_id": "vasu_140m_resume_checkpoint_qualification_v1",
+  "specification_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+  "test_sha256": "5a7750ee090e441faf3003bd180c023a5979833fffcbb35c635a4ede6e8d389c",
+  "training_authorized": false
+}
