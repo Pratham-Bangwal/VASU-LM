@@ -4,6 +4,7 @@ import copy
 import json
 import os
 import tempfile
+import uuid
 from pathlib import Path
 
 import pytest
@@ -91,7 +92,10 @@ def test_round_trip_is_exact_and_non_overwriting(phase: str) -> None:
 
 
 def test_rejects_non_system_temporary_root(tmp_path: Path) -> None:
-    fake = Path.cwd() / "not-system-temporary"
+    fake = (
+        Path(tempfile.gettempdir()).resolve().parent
+        / f"vasu-resume-non-system-temp-{uuid.uuid4().hex}"
+    )
     fake.mkdir(exist_ok=True)
     try:
         with pytest.raises(ValueError, match="system temporary"):

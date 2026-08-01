@@ -1,0 +1,164 @@
+{
+  "checkpoint": {
+    "bytes": 551408411,
+    "reload_seconds": 1.1619755000001533,
+    "sha256": "a2121be9259421c5053dcbf2a766bdfdadf7fad1b5ce9827c1681fc9730def24",
+    "strict_reload": true,
+    "write_seconds": 1.3194714000001113
+  },
+  "checks": {
+    "checkpoint_cleanup": true,
+    "family_identity": true,
+    "finite_iterations": true,
+    "gradients_cleared": true,
+    "no_optimizer_update": true,
+    "state_keys_unchanged": true,
+    "strict_checkpoint_reload": true
+  },
+  "config_fingerprint": "29e9bafdffbbc632b1b6f006818b1470e6dbc20f21841aa33e625a0f04159059",
+  "created_at_utc": "2026-07-31T17:56:32.316106+00:00",
+  "environment": {
+    "amp_dtype": "bfloat16",
+    "amp_fallback_reason": null,
+    "cuda_device": 0,
+    "cuda_name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.13.7",
+    "torch": "2.11.0+cu128"
+  },
+  "family_fingerprint": "72f5a98d7d3f307c8bebf4fd6c21b1b8642262a37f59070d436c0de54a3af99b",
+  "family_id": "vasu_140m_v1",
+  "free_disk_bytes_after": 2810093568,
+  "free_disk_bytes_before": 10392682496,
+  "metrics": {
+    "observations": [
+      {
+        "backward_seconds": 0.056056899999930465,
+        "finite": true,
+        "forward_seconds": 0.03355890000011641,
+        "gradients_cleared": true,
+        "maximum_gradient_norm": 0.9245695471763611,
+        "telemetry": {
+          "available": true,
+          "power_watts": 41.49,
+          "provider": "nvidia-smi",
+          "temperature_celsius": 50.0
+        }
+      },
+      {
+        "backward_seconds": 0.04445480000003954,
+        "finite": true,
+        "forward_seconds": 0.040070900000046095,
+        "gradients_cleared": true,
+        "maximum_gradient_norm": 0.924727737903595,
+        "telemetry": {
+          "available": true,
+          "power_watts": 41.49,
+          "provider": "nvidia-smi",
+          "temperature_celsius": 50.0
+        }
+      },
+      {
+        "backward_seconds": 0.039156199999979435,
+        "finite": true,
+        "forward_seconds": 0.03670009999996182,
+        "gradients_cleared": true,
+        "maximum_gradient_norm": 0.9245568513870239,
+        "telemetry": {
+          "available": true,
+          "power_watts": 26.7,
+          "provider": "nvidia-smi",
+          "temperature_celsius": 52.0
+        }
+      },
+      {
+        "backward_seconds": 0.05532610000000204,
+        "finite": true,
+        "forward_seconds": 0.025892600000133825,
+        "gradients_cleared": true,
+        "maximum_gradient_norm": 0.9247598052024841,
+        "telemetry": {
+          "available": true,
+          "power_watts": 26.7,
+          "provider": "nvidia-smi",
+          "temperature_celsius": 52.0
+        }
+      },
+      {
+        "backward_seconds": 0.050496100000145816,
+        "finite": true,
+        "forward_seconds": 0.03509059999987585,
+        "gradients_cleared": true,
+        "maximum_gradient_norm": 0.9246017336845398,
+        "telemetry": {
+          "available": true,
+          "power_watts": 26.7,
+          "provider": "nvidia-smi",
+          "temperature_celsius": 52.0
+        }
+      }
+    ],
+    "peak_allocated_bytes": 1388354048,
+    "peak_reserved_bytes": 1631584256,
+    "tokens_per_second": 6141.987393567466
+  },
+  "parameter_count": 137841408,
+  "passed": true,
+  "remaining_gates": [
+    "base_pretraining_data_release",
+    "frozen_base_model_evaluations",
+    "real_data_exact_resume",
+    "scientific_plan_and_hash_bound_authorization"
+  ],
+  "report_sha256": "ca1ac908b5c6621105b4d6b10fdf93146592a2302601acc761a80b882be32472",
+  "schema": "vasu.model-family-cuda-amp-qualification.v1",
+  "telemetry": [
+    {
+      "available": true,
+      "power_watts": 5.74,
+      "provider": "nvidia-smi",
+      "temperature_celsius": 43.0
+    },
+    {
+      "available": true,
+      "power_watts": 41.49,
+      "provider": "nvidia-smi",
+      "temperature_celsius": 50.0
+    },
+    {
+      "available": true,
+      "power_watts": 41.49,
+      "provider": "nvidia-smi",
+      "temperature_celsius": 50.0
+    },
+    {
+      "available": true,
+      "power_watts": 26.7,
+      "provider": "nvidia-smi",
+      "temperature_celsius": 52.0
+    },
+    {
+      "available": true,
+      "power_watts": 26.7,
+      "provider": "nvidia-smi",
+      "temperature_celsius": 52.0
+    },
+    {
+      "available": true,
+      "power_watts": 26.7,
+      "provider": "nvidia-smi",
+      "temperature_celsius": 52.0
+    }
+  ],
+  "training_authorized": false,
+  "workload": {
+    "batch_size": 1,
+    "measured_iterations": 5,
+    "optimizer_created": false,
+    "optimizer_updates": 0,
+    "seed": 140044,
+    "sequence_length": 512,
+    "synthetic": true,
+    "warmup_iterations": 3
+  }
+}
