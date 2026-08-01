@@ -171,3 +171,24 @@ def test_bound_file_hash_drift_is_rejected(tmp_path: Path) -> None:
     first.write_bytes(first.read_bytes() + b"drift")
     with pytest.raises(ValueError, match="identity mismatch"):
         validate_inventory_construction_plan_files(value, fake_root)
+
+
+def test_bound_text_artifact_accepts_historical_crlf_checkout(tmp_path: Path) -> None:
+    value = deepcopy(plan())
+    for source in value["source_catalog"]:
+        binding = source["artifact"]
+        source_path = ROOT / binding["path"]
+        target_path = tmp_path / binding["path"]
+        target_path.parent.mkdir(parents=True, exist_ok=True)
+        content = source_path.read_bytes().replace(b"\r\n", b"\n")
+        target_path.write_bytes(content.replace(b"\n", b"\r\n"))
+    for binding in [
+        value["tokenizer"],
+        *value["implementation"].values(),
+        *value["dependencies"].values(),
+    ]:
+        source_path = ROOT / binding["path"]
+        target_path = tmp_path / binding["path"]
+        target_path.parent.mkdir(parents=True, exist_ok=True)
+        target_path.write_bytes(source_path.read_bytes())
+    validate_inventory_construction_plan_files(value, tmp_path)

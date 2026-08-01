@@ -72,7 +72,7 @@
       "source_id": "ultrachat-promotion-topic-seed",
       "artifact": {
         "path": "evaluation/benchmarks/ultrachat_promotion_v1.json",
-        "sha256": "68806800c0b8d524a1cdd4e83ccdd46d388aa9d86f8070a6fbbf3e04a8091bf1"
+        "sha256": "a92cd70430570b0f94d32747d4b9b54beeb83c4cc24af6d0c348f2da190ce215"
       },
       "role": "topic and stratum seed only; instruction prompts are not reusable for the base-model suite",
       "usage_policy": "topic_seed_only",
@@ -190,5 +190,5 @@
   "construction_authorized": false,
   "evaluation_run_authorized": false,
   "training_authorized": false,
-  "plan_sha256": "4bd36c7d7b862e782614347f9c837e3fbaf12c7eaff0d80b7df146c6d71db784"
+  "plan_sha256": "3a0b17aa613af4fd1bec4a76e12bbc545505a289719d394dc62e27e8e10b1494"
 }

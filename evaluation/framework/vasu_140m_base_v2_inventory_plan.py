@@ -55,6 +55,7 @@ DEPENDENCY_KEYS = frozenset(
         "inventory_postcommit_identity_decision",
     }
 )
+TEXT_ARTIFACT_SUFFIXES = frozenset({".json", ".md", ".py"})
 
 
 def canonical_json(value: object) -> bytes:
@@ -136,6 +137,22 @@ def _binding(value: object, label: str) -> tuple[str, str]:
     return _safe_path(item["path"], f"{label}.path"), _sha(
         item["sha256"], f"{label}.sha256"
     )
+
+
+def _artifact_sha256(path: Path) -> str:
+    """Hash bound artifacts with the repository's canonical LF text identity.
+
+    The plan currently binds only JSON, Markdown, and Python source files.
+    Git checks those files out with LF, but an already-existing Windows worktree
+    can retain historical CRLF bytes until it is refreshed. Canonicalizing only
+    those declared text formats makes validation match a clean checkout without
+    weakening binary artifact identities.
+    """
+
+    content = path.read_bytes()
+    if path.suffix.casefold() in TEXT_ARTIFACT_SUFFIXES:
+        content = content.replace(b"\r\n", b"\n")
+    return hashlib.sha256(content).hexdigest()
 
 
 def validate_inventory_construction_plan(plan: Mapping[str, object]) -> None:
@@ -392,5 +409,5 @@ def validate_inventory_construction_plan_files(
         path = (root / relative).resolve()
         if not path.is_relative_to(root) or not path.is_file():
             raise ValueError(f"construction plan artifact is missing: {relative}")
-        if hashlib.sha256(path.read_bytes()).hexdigest() != expected:
+        if _artifact_sha256(path) != expected:
             raise ValueError(f"construction plan artifact identity mismatch: {relative}")

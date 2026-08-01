@@ -39,7 +39,7 @@
   "likelihood_count_scope": "per_admitted_source",
   "likelihood_holdout_created_after_acquisition": true,
   "plan_id": "vasu-140m-base-v2-inventory-construction-v1",
-  "plan_sha256": "4bd36c7d7b862e782614347f9c837e3fbaf12c7eaff0d80b7df146c6d71db784",
+  "plan_sha256": "3a0b17aa613af4fd1bec4a76e12bbc545505a289719d394dc62e27e8e10b1494",
   "prompt_inventory_count_required_before_source_admission": 10,
   "schema_id": "vasu_140m_base_v2_inventory_plan_qualification_v1",
   "training_authorized": false
