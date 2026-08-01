@@ -1,0 +1,123 @@
+{
+  "checkpoint": {
+    "accumulated_microbatches": 1,
+    "checkpoint_bytes": 1102823453,
+    "checkpoint_sha256": "81f842fa05dc901734f51f88b66f5c0bcef163ad7b7bc20be52ad6635ce3826f",
+    "family_identity_present": true,
+    "global_step": 0,
+    "gradient_tensor_count": 110,
+    "next_batch_index": 1
+  },
+  "checks": {
+    "dataset_identity": true,
+    "family_identity": true,
+    "model_exact": true,
+    "optimizer_exact": true,
+    "partial_gradient_checkpoint": true,
+    "progress_exact": true,
+    "resume_position": true,
+    "rng_exact": true,
+    "sample_order_exact": true,
+    "sampler_exact": true,
+    "scaler_exact": true,
+    "scheduler_exact": true,
+    "temporary_artifacts_removed": true
+  },
+  "control": {
+    "accumulated_microbatches": 0,
+    "global_step": 2,
+    "model_sha256": "baeab5c89dd89297c4c6d60b53190a367cca0e70f584fcce65306bbfc90a6a7a",
+    "next_rng": {
+      "numpy": 0.396448184665811,
+      "python": 0.7450027494304532,
+      "torch": [
+        0.4040350317955017,
+        0.4294534921646118,
+        0.37994319200515747,
+        0.8427493572235107
+      ]
+    },
+    "optimizer_sha256": "fd74bcaa615c5b4a6c321c1d3ce85cec44df63e295790656ae9810f513ccf369",
+    "optimizer_steps_in_epoch": 2,
+    "resume_phase": "post_train_pre_validation",
+    "sampler_state": {
+      "batch_size": 1,
+      "drop_last": true,
+      "epoch": 0,
+      "format_version": 1,
+      "next_batch_index": 4,
+      "num_samples": 4,
+      "seed": 140044,
+      "shuffle": true
+    },
+    "scaler_sha256": "6ab47d70854a8c690a0c2035be903f3d812cbab06f9e442e9b10ad70b1acd446",
+    "scheduler_sha256": "9d3be8bdb2aba37a923db49198a407e4f69c0fd2db39abef8e8797477d5080ff",
+    "seen_indices": [
+      3,
+      0,
+      1,
+      2
+    ]
+  },
+  "family_id": "vasu_140m_v1",
+  "free_disk_bytes_after": 18628235264,
+  "free_disk_bytes_before": 18628235264,
+  "passed": true,
+  "remaining_gates": [
+    "cuda_memory_throughput_thermal",
+    "513_token_data_release",
+    "frozen_evaluation_baselines",
+    "scientific_plan_and_hash_bound_authorization"
+  ],
+  "report_sha256": "ded0dd8b57e5b6ea12b2ef8b16988f8a1047f50712d3f1711afc0b2ed7f50350",
+  "resumed": {
+    "accumulated_microbatches": 0,
+    "global_step": 2,
+    "model_sha256": "baeab5c89dd89297c4c6d60b53190a367cca0e70f584fcce65306bbfc90a6a7a",
+    "next_rng": {
+      "numpy": 0.396448184665811,
+      "python": 0.7450027494304532,
+      "torch": [
+        0.4040350317955017,
+        0.4294534921646118,
+        0.37994319200515747,
+        0.8427493572235107
+      ]
+    },
+    "optimizer_sha256": "fd74bcaa615c5b4a6c321c1d3ce85cec44df63e295790656ae9810f513ccf369",
+    "optimizer_steps_in_epoch": 2,
+    "resume_phase": "post_train_pre_validation",
+    "sampler_state": {
+      "batch_size": 1,
+      "drop_last": true,
+      "epoch": 0,
+      "format_version": 1,
+      "next_batch_index": 4,
+      "num_samples": 4,
+      "seed": 140044,
+      "shuffle": true
+    },
+    "scaler_sha256": "6ab47d70854a8c690a0c2035be903f3d812cbab06f9e442e9b10ad70b1acd446",
+    "scheduler_sha256": "9d3be8bdb2aba37a923db49198a407e4f69c0fd2db39abef8e8797477d5080ff",
+    "seen_indices": [
+      3,
+      0,
+      1,
+      2
+    ]
+  },
+  "schema": "vasu.model-family-exact-resume-qualification.v1",
+  "training_authorized": false,
+  "workload": {
+    "batch_size": 1,
+    "gradient_accumulation_steps": 2,
+    "interruption_after_microbatches": 1,
+    "optimizer": "AdamW-standard",
+    "optimizer_updates": 2,
+    "real_data": false,
+    "scheduler": "LambdaLR",
+    "seed": 140044,
+    "sequence_length": 4,
+    "synthetic_records": 4
+  }
+}
