@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import gzip
+import json
 from pathlib import Path
 
 from tokenizers import Tokenizer
@@ -8,6 +10,7 @@ from evaluation.framework.vasu_140m_likelihood_inventory import (
     ITEMS_PER_SPLIT,
     MAX_RECORD_TOKENS,
     likelihood_content,
+    iter_fineweb_documents,
     reserve_documents,
     selection_rank,
 )
@@ -68,3 +71,24 @@ def test_likelihood_content_is_nonempty_and_token_bounded() -> None:
     assert target
     assert target_count == len(tokenizer.encode(target).ids)
     assert len(tokenizer.encode(context + target).ids) <= MAX_RECORD_TOKENS
+
+
+def test_fineweb_iterator_excludes_documents_below_token_floor(tmp_path: Path) -> None:
+    source = tmp_path / "source.jsonl.gz"
+    records = []
+    for index, word_count in enumerate((127, 128)):
+        records.append(
+            {
+                "historical_source_id": f"doc-{index}",
+                "text": " ".join(["word"] * word_count),
+                "pinned_revision": "revision",
+                "stable_row_reference": f"row:{index}",
+                "provider_shard": "shard",
+                "retrieval_timestamp": "2026-08-02T00:00:00+00:00",
+            }
+        )
+    with gzip.open(source, "wt", encoding="utf-8") as handle:
+        for record in records:
+            handle.write(json.dumps(record) + "\n")
+    observed = list(iter_fineweb_documents(source))
+    assert [item["parent_document_id"] for item in observed] == ["doc-1"]

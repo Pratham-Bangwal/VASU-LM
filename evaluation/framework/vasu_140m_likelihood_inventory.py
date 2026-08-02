@@ -95,7 +95,7 @@ def iter_fineweb_documents(path: Path) -> Iterable[dict[str, str]]:
             parent_id = record.get("historical_source_id")
             if not isinstance(text, str) or not text.strip() or not parent_id:
                 raise ValueError(f"invalid FineWeb record at line {line_number}")
-            if len(text) < 700:
+            if len(text.split()) < MIN_DOCUMENT_TOKENS:
                 continue
             yield {
                 "parent_document_id": str(parent_id),
