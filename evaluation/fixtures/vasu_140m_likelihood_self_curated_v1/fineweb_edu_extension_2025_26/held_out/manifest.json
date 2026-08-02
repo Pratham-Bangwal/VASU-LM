@@ -1,0 +1,2607 @@
+{
+  "access": {
+    "encryption_algorithm": "age-x25519",
+    "opening_authorized": false,
+    "payload_format": "encrypted_jsonl",
+    "recipient_fingerprint": "3413c58d2dae91a9c253642aba8583923af3fcd5d02893ad940ca6f21b5bd2da",
+    "state": "sealed"
+  },
+  "contamination_index": {
+    "byte_count": 10360034,
+    "path": "evaluation/fixtures/vasu_140m_likelihood_self_curated_v1/fineweb_edu_extension_2025_26/held_out/contamination.jsonl",
+    "record_count": 512,
+    "sha256": "a263f9ba22d330e9be9605af13d3330c9a5a5d7509e725baf02270f71e9da701"
+  },
+  "dimension": "likelihood",
+  "evaluation_run_authorized": false,
+  "fixture_only": true,
+  "generation_profile_ids": [],
+  "interface": "direct_likelihood",
+  "inventory_id": "vasu-140m-base-evaluation-v2-likelihood-self-curated-v1-fineweb_edu_extension_2025_26-held_out",
+  "inventory_sha256": "9e0c21886be39aa8b7f3d7cc67512fb04d713b7900d72885d33311eca20bfd63",
+  "item_commitments": [
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0000",
+      "provenance_sha256": "2eee9bd8992c31be8b963e779ffbfa7cffdfc398418a9e60d8a0b8258a866106",
+      "task_sha256": "edcbf2b3a343a4e3bb8e3909d09e8a781742858d25e42b233cf5a536da99e666"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0001",
+      "provenance_sha256": "71d174ffd870f8204bed7d38cef71b07d59290d7acba339f27e18f1c8260b5b2",
+      "task_sha256": "348085ed7004dcc2586a70d52b0654837e0aea80bb238fe7c19b37269e65cbcd"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0002",
+      "provenance_sha256": "eaf7a1f3519799f5c318002225410084a57b3550006d7693270d3f718beeaad3",
+      "task_sha256": "9aa6dfd272f7fe069e99519780c6c6dfde62cc503c62ee8194b7b945250aba86"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0003",
+      "provenance_sha256": "872d80c997d7c00be66bddb08ecf7e74c8f773f0ad30cab33e26a91418eb0c0a",
+      "task_sha256": "7139e7e55e1f1cbbc201ccc14c60dbc0712a3a7adaf0ba2edea308bb7455f386"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0004",
+      "provenance_sha256": "05d460dd8b32c7e5893955f8a398835252cb10c2a1676e699b69d808e4192715",
+      "task_sha256": "0243c4c87dad35d910035bf138e64c07e4f6ebcb3ff70a0a793ddc0277fd2751"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0005",
+      "provenance_sha256": "6b97baedafa87d2571a3844ae54b3d8f328647cd6e603bbad3b91d7e2a4c6655",
+      "task_sha256": "70aa9d86bd71130185ca1390e56a4eb95e1f3c19eeba170c50023d86acdfd01e"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0006",
+      "provenance_sha256": "971711ac168f86092ac5e394f42c3a04da874f69e2c47110e685003b32eeecad",
+      "task_sha256": "0c964b373dbc807011874b92c84460d6cdd5c92723bff5be3016821a65cf027e"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0007",
+      "provenance_sha256": "fe5fdc874af03adb86ba0091cc7f3d97d1a53e8030afaf0314a7527182fad792",
+      "task_sha256": "9ada8ba7d90fa3d4085a83cad1646419d3f867a917aba55130d19cc7899f76fb"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0008",
+      "provenance_sha256": "6202163c6f07f0e0218ea6d62b64909cdf06b9f56a052d6d198d1dcfacb76a29",
+      "task_sha256": "50cc7c7bede08d0ae23a636141c8d0f2ff31b5f3d5dc36261c92e8dcb7d5f97e"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0009",
+      "provenance_sha256": "35dfbe756a38a2fa0ae47e50aca892f2fcd1574e14f09375bf045ee0a1eb4e91",
+      "task_sha256": "8a47033582c1ce213a07697166923210252b77fdc504169ccdee072139dec8a3"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0010",
+      "provenance_sha256": "314167b0bdf8691752f671e9f796e9d2ef888c7198ef5d8fe819ecba6e60274a",
+      "task_sha256": "1e9ca34de52316ced04b891f4d08d50d9b8accb80012508e4a33c0da7f14bac4"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0011",
+      "provenance_sha256": "a6b1d06340fed83b05983ebdf91ecd025d5e09f25fc7060f229dcb568d54a20a",
+      "task_sha256": "387abde4022852e191f2f38593ba7bb6a3be027754cd432c7f2c5f077ae8b4be"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0012",
+      "provenance_sha256": "f10a67c4b315ffab7e00a0a3acb11e1f6a2974600b1c54d065973cc701dd7ea6",
+      "task_sha256": "7433fc3ee63dbee0654973c1f5e87289cd9019880551faf126dd41542a1a309e"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0013",
+      "provenance_sha256": "0869ec4b96446218c06ffd5f8f67ab9ee65a93322d194acc99aa2ac4acc83dc5",
+      "task_sha256": "aaa16d4bb8e98803ba0e4bd98fef4f479609f28eb6d3beba1acd8d801410eb2b"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0014",
+      "provenance_sha256": "66d8c02561221d1fecda55e4aa0856bb9237f395391b683bede5bf811e8d48c2",
+      "task_sha256": "6393bebbc63a9763697d0b5ecc069bef506ea346409bff3c32619180c7e2a431"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0015",
+      "provenance_sha256": "78ae3b8413422902b51c32ad08e774c199678c4f64fb018a9acc801482c608e4",
+      "task_sha256": "1c747be3c41b10d205e909abc667ff901a4d3fcbacd4f2c2a50af9fbdd1d8569"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0016",
+      "provenance_sha256": "80fce1e54015254f983f873663751fa25230213019b510b6234878c6cf22c07f",
+      "task_sha256": "15bf0537db97e46aace8bddb2a8976d44f96276a4aa6af80d9c5da98d5290de4"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0017",
+      "provenance_sha256": "e46ba7461c04c3782f1b1fc056961ff0a939191ab9b984a3a093a4d2146de39d",
+      "task_sha256": "e803ea9619f92dd641b7cdf08c91c16b1b60cb494975f0e8792a5f9b955f713b"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0018",
+      "provenance_sha256": "43a6bb3b9f335364afefa4c1fb0bc0b47d1ec584a8b17197d89384e1982f71e5",
+      "task_sha256": "90da96a251cf2d00bc5ef0a81d287228ab62188180909b896667b84412e0a000"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0019",
+      "provenance_sha256": "2b452e3ed9ba8950d5e6813d9072219a835c1becd83c11ad575b23f6e6a54d70",
+      "task_sha256": "c8b3ea38b165de1771cb16a992180590e809c59408b681f6a5c3aa035d3b9bc6"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0020",
+      "provenance_sha256": "5ae18f11f150d4f403a24b4b0440440c86b3d46cf23a180a4936ce78d3fc5602",
+      "task_sha256": "d563cfdcf0f7a722d4d8eab1ae48d5cf3c33962ba101b1ceee773eefe7a8b0fc"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0021",
+      "provenance_sha256": "6ba09d670885e562bf73ab20ccff9e7cfd8ab975403eb308e1b10e1e44ebfb59",
+      "task_sha256": "b9bf8755ca7861cf4c668194bc8961d636caf47092e17c38adacc8e66b4c25d8"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0022",
+      "provenance_sha256": "3adeac64c478c8feefc6a82256fa238694c62e627458b3f3e8e3b65dba5efc89",
+      "task_sha256": "62a9eee672f82c5ab8e38660945f15a4a1c973a167223bbf1bf114d1fea1739f"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0023",
+      "provenance_sha256": "198ecaa40319060c8ff3ecf578a577cb364c4e0fa77019da8025db919fa7d12c",
+      "task_sha256": "7ccb5d8adb2f0d9e60d17100dc13d7dd811e6f4c8ea08665c9a888d4893c50ac"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0024",
+      "provenance_sha256": "433d1ddfd13699cf8569e5790d84f4361670bb553fe1d9983ffe00350540f95b",
+      "task_sha256": "4e7269a15746138c23894aa4e6ca933f8e27162fa278095b1f6c35facd9c2772"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0025",
+      "provenance_sha256": "18bd1a1f40bf2e843d2328888bd2d444a8b01d62621c84427dc4c21c9a673f3a",
+      "task_sha256": "5a39b88a652cac518d49e810b6af6b3fe956b09b9f586186e6a5c1a007ffed26"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0026",
+      "provenance_sha256": "ef2dc9f19dc9992ede00310327aefbd51a34ed0e059dd1dbbe7b9f7b1c97f00d",
+      "task_sha256": "c48625b9d3638859050d59a0e495e78bf938951a272dc9dd059cc3a6368ef9c1"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0027",
+      "provenance_sha256": "ecefbf6f163682e35bb7daba7b1e370f9a9e1784fea31a6a273fe9fe9fea41ab",
+      "task_sha256": "8d8d57ebbb5d2e1499ed5c5f3b506052a6e84667febd425b72f0d6d67184ecf4"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0028",
+      "provenance_sha256": "d0566dbdc8b36fe8bb24693e29115dfdcbae870e15ba018ff94ac2707b744135",
+      "task_sha256": "f92041f4d16e47bc3b83d713957e7ebf0f6625bbf190bb386361a4fb92c23c58"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0029",
+      "provenance_sha256": "8bea3e2e167aa1d3934f8a3dc1563ada7b30a294fcaa50806b77e8cf77b68e46",
+      "task_sha256": "8a277af1930c28881284648995912093eb1e0cea2331b2b951487f7b48d46235"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0030",
+      "provenance_sha256": "8dd33fde82db2540c59f68c50095fd63e317f4780f6cd973c7ec61651da745fb",
+      "task_sha256": "effa0305c46ab8379057e81a889c57712ed0a78bca460b7ddead98c298366faf"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0031",
+      "provenance_sha256": "9f57a21ec583a3a8a1d144fefbff5b446f2d37427d86db75021057f4f400f28e",
+      "task_sha256": "c741cfad00ba4acd17a074096f61e293137aa6f91b1be57862a878abddf35dca"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0032",
+      "provenance_sha256": "4ce5dd6f907fc627d40f5405ae4780b2f606572639cb7872a9706ebcfe03e6c7",
+      "task_sha256": "dd1cd907603549a88042f3a5f92671cb326e908415b4d19c31871677f752044f"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0033",
+      "provenance_sha256": "58de4caefe8589387b786fc7e6424e272d1d554374830cfb38a4fb2ce009aa1c",
+      "task_sha256": "17c2af854b1f81ef92ab22cb26e52b825cb08e9c2935cc8a76c9d8d5cad482b7"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0034",
+      "provenance_sha256": "f2eaab0406995796979cbb184e29ee9213a53e2348fd51158df1845f7d942122",
+      "task_sha256": "69750ffb89f3fb9a544274a8666f6dfdea6d86936536e607d12692915bcd2849"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0035",
+      "provenance_sha256": "abecaaa5df7626685a8e78bb9d8881858436ae16c5337497c9be0d4d9c84ef23",
+      "task_sha256": "f9a2ce13111677cc640f10562924a9d1a3550c635370256bb2efd332b4a93a97"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0036",
+      "provenance_sha256": "58faa3f93b062adb21fd97c27034e88f4e55b0a262d622846f2af00c792045d6",
+      "task_sha256": "eb975ccb041d6a602b6840543770535801dd3d6f7254a77ba4aea390a6b78483"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0037",
+      "provenance_sha256": "f1226bd1e4f2bc14255be8446d72291ed1119da7f96b06f7fce31753e73050ba",
+      "task_sha256": "90c610e18cd1083854d5fa16f084362b0288616e61ba357824988308627dd74c"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0038",
+      "provenance_sha256": "9b1b7b264ebfbb0f61ae7c9a9ba4a14403a0ec3c4433015b337bb8657f0e1f1f",
+      "task_sha256": "7571ac8f324fcbe4398a8a6156426e2e16acf8da5c3e7ca72d4ddf0d5ed67351"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0039",
+      "provenance_sha256": "8e3da4fad4e805bba014a9874e3c0c6f178bb01edacb0c91aadd940caf3d3c81",
+      "task_sha256": "a459bd04e04fff20b875262fa06aec2202d016eb533161573a369436721aac77"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0040",
+      "provenance_sha256": "83331c86c8948e5637e7a6ae3081d55f3054f93070e29c67ac2800620c13836e",
+      "task_sha256": "67d587a7829b609c9da32aabe517b4b1a0a64aae964a4ed53972cc9d29ed1036"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0041",
+      "provenance_sha256": "3caa8e7b5118127d3c5c6bd4c10edc7c3f813b8fa3e2d12dbe5e6b4e85fb65f2",
+      "task_sha256": "5d4cbb845875f9d25c25478cc81192a9ba7b855fc7523efda2cb7439ada5a459"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0042",
+      "provenance_sha256": "7eb415bf18645ae7d8379e5201de7c8cdbaca9f1e7990e1583921e4dbe86355f",
+      "task_sha256": "d0c72dbbbd7e014a555485b26d00ede807babb17918620385088b0101f774221"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0043",
+      "provenance_sha256": "6c39c002b0e66a9e54e474e3949518c37206031b01c1e2d2e7fa734dafbdf1da",
+      "task_sha256": "7e599382e47156a47ded61af37652c3b23a3f2ee2a425e38f318acf143e18b67"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0044",
+      "provenance_sha256": "ea9f49ad4059f2ec59ab7ea2f8d1cc835fda01a6bfbef8f49815e4ee53f14ed6",
+      "task_sha256": "5ebe5ecff041a1587fdc89a56af7c150d6c3faba082956f0c658e0bfc4900148"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0045",
+      "provenance_sha256": "cdf402751ef5b08f1241308f78f38050067abf4fb71780b8b454e26421539614",
+      "task_sha256": "334614f4caec6de8670d703b1147f092161e67644f45d0ff0caf277968d34b99"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0046",
+      "provenance_sha256": "e2c663841edd175bc3bcd58e5bc8dfc12db1f3ac53e2f8069ed1bd9b947358de",
+      "task_sha256": "72b82a29f82822a3f8c485175dca0442990fd6f17b3c8c1ca37916ff4455ce4e"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0047",
+      "provenance_sha256": "8f72d6b73f44e762f0c9364f267a71a4ec7d57991000823492c105f1b0259c27",
+      "task_sha256": "e9de82e0b225e215ea82ced5bbb8e3ae9425cf2396354528841297c3536edc1a"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0048",
+      "provenance_sha256": "d1f873b555b053fe92fb0ad228b4aca79284bf5b623c66319f62bfb9be4f3f0f",
+      "task_sha256": "a0d4f41a4783b2d021361bbde8294de34706927c795840d07dcf65e8e091f266"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0049",
+      "provenance_sha256": "13a433ad3670695eca39bf17c76d9cb872dbc9080d4ad800d2b139a3612fbde3",
+      "task_sha256": "cefed1b5924d08d9d5fd24667b868c8fbd8349c963d331dedd830cbfc654a969"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0050",
+      "provenance_sha256": "0c1787fd3e67af4a790e6bd72a0be1b3d2e232cdc1bd5b3c591de12f766d760b",
+      "task_sha256": "3031c78685d620a47d90da3b1608ac911552a877fd12ca35a9bf881c14e05883"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0051",
+      "provenance_sha256": "35abaf68b461e0320f1fe508484f5871f97742a1adf9f01337a737a3be57c250",
+      "task_sha256": "b42cc9b88f01a54a76fd073a9845a1a70a70e811849d8ed5da0a1b9eb4ac8ad1"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0052",
+      "provenance_sha256": "fa797213a9eb5f9959e3f0af2e84bfd2f60e9654792c7680fbc8795097a8ca12",
+      "task_sha256": "b1378bf433326dc710b30ce414f5a2c9e0e468bf9d5ae49c62a801644a7944cf"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0053",
+      "provenance_sha256": "a5a141ce4181f4a6570037011cc4b8fb8d01054c12b519459ce4bb05f88053d9",
+      "task_sha256": "03c82153bdefe2ad4d78614f06d471f41f63b83596bd9aabe0bb7483e05b6dc7"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0054",
+      "provenance_sha256": "727dfe171e389a4a2a71aba72f5c0ef22b48616253dfd8aebb5751909bd03be9",
+      "task_sha256": "d0405ce7ce5bad7be7259e3fb17356ca93df62dc9c4c34ff5b3b13aa26b0aefe"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0055",
+      "provenance_sha256": "6c9273287546fa5cf6dc388ea7de383c9d6eadbd63be0343b2ae4cb3547c7a45",
+      "task_sha256": "0bb12ccc21b26622d4e1f264ab043ac9740907a592c9e507093b3d156ac54698"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0056",
+      "provenance_sha256": "53e8fd542ef23fc744dc62f94a07ab4fd763cdff68734f808db5db8aa5ba7ba4",
+      "task_sha256": "dc2d6e1f8cb022d6acc98e285c58635d5c755fc7e5130d521caf41a2b8f3eb2d"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0057",
+      "provenance_sha256": "278c5a44d43ab1c66b2435894c4eafa8916b4d10dab95549222b69a47752601b",
+      "task_sha256": "73e81f1064deb31ee1f289b09ff8be9a8f380c5a0500d403e22516aec00faa4c"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0058",
+      "provenance_sha256": "057d78a0e930b1fa99a319ffb08472ae55658537242b94c8b57bb25221c72438",
+      "task_sha256": "e0fe7620077190f9ed84b25761297533a669ec03ff67ddc092870d8a7bc89972"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0059",
+      "provenance_sha256": "6b05fc9a97eb4f872901927d5c02e55d3570290cdfd8ac601e860a20b2d5f5bb",
+      "task_sha256": "52f492935b06ed442ddedb3171f2cfe9caaf52634ae4a86381f652872db89f6f"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0060",
+      "provenance_sha256": "06ae4dfb3786f8b1a0f6ae02984c9b15c17e254fc12f5ff1ba1b57677209c536",
+      "task_sha256": "0efcdd488ba9b1346fe3500bbb5244254dc06b3bf648a334ab236ee224401cf0"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0061",
+      "provenance_sha256": "60c0b917ba5178020d0d4caa34035a676c5d8a837ae374e34c2553d7cb65f9b5",
+      "task_sha256": "9cb8a7ba804d61cb400b55cc39a8ee5f8c119fe879e39fd6e75faee61f9ec927"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0062",
+      "provenance_sha256": "e228ea7c06f85265443f2c992fe44a61aa1532b281e7e7c8bd7e3ad2df6b4734",
+      "task_sha256": "f83a0bb321343ea3fd190efff1cb26b9d95d34a602ee430414e4a7e32e04e867"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0063",
+      "provenance_sha256": "15f4784958f9ab1d302576c8368963ee2edb0f4656b536fdc72e31d039cad227",
+      "task_sha256": "5eac3ba3d8bef3591b8444b63686727f64afd199488635f27f88ae2250644918"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0064",
+      "provenance_sha256": "02e647096e46db64056f7ccf2df5966edce1d342c72ec87ea1ab8bd4e8580eee",
+      "task_sha256": "6ea11e195e2092c3ad56ed84adc4da07946c6b746c31b649423b06f93c8a6902"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0065",
+      "provenance_sha256": "ea509b6aaff13b24c93b717d99fc7a46d0bac754f0c9f43a0654b636c67c0e24",
+      "task_sha256": "480928da4f4e29f51c2a435b8a1581f5e021eb453907cbea0ec3f6ce0a11bf61"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0066",
+      "provenance_sha256": "a44205c124dc8b7d3a9f8524a6759e80fad12a8a92d78d444619cf520c97addb",
+      "task_sha256": "714bd33d51a9910ab40ab2fdf865d57e8a3c7519a3800f2721141ee5790b51c0"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0067",
+      "provenance_sha256": "98749836f3baca3c512d5cbc9887dfaf50a85de5a33430fb1eb2a9ef1c237179",
+      "task_sha256": "3749158ddb7d31122d8e966328b16f22a4637e83b249c0c5ed0cb0f838cd32ce"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0068",
+      "provenance_sha256": "9553c86b0555810c18b98f66c92c070cf64d10050cc00d4cd8b2f54cda60c2fa",
+      "task_sha256": "4fac4f3705e747cade06c571d888bde0dd9caaa159b8941f450ceb5f293be427"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0069",
+      "provenance_sha256": "77010bcc2c476d6c51f9925ece3ff540eb0ad4829a1a1469c974a400307c8d88",
+      "task_sha256": "93da419ce76068ef46fe70b1abb28ed884bdd73b181bb9a6509c5f38fbcccca8"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0070",
+      "provenance_sha256": "f99843357e3c811181f00d79ae2620313f7e5307ebcb5c0a77758165cf655bee",
+      "task_sha256": "ed4e08d2a92ac55234494679ce0613df551b7250f469a5ab3698eec7fa3efbb1"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0071",
+      "provenance_sha256": "0661e49cd883ab907f940c9cdfbb04a24b5a485a11280cc7475560759de1f1b5",
+      "task_sha256": "5421e0bab98e41852cfd9062f7d84b9b413a9a7fba7444ba75a7566dcfb6d2b7"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0072",
+      "provenance_sha256": "0728f86555ef65987df69201636212ae237721b62205ed55236684e6eb8dec45",
+      "task_sha256": "381d7491fa829da6a6b98fdfc4899481a311f655eddd8afad836b70b00736c8f"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0073",
+      "provenance_sha256": "b1c71859fa0392c9fe532277910001268ddafd615b8ad1852f6c474022e21caa",
+      "task_sha256": "f80446735c4178e13ad35e4bfdd4f218a77037fa2a51481ea9142fc6cd8cebd3"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0074",
+      "provenance_sha256": "b3ba2cb91c0e31f4281a1be3f03cc6029ca367c7cd075a7680104bbfe78e81b1",
+      "task_sha256": "729fac8d8a595d387e81aef0124825e2aa762f44b5e1ffc5d7547f337615c6c1"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0075",
+      "provenance_sha256": "4c15270788da7e6bcab7b6993299aafee0cb8d623c2b436d917db75d7c204d3d",
+      "task_sha256": "970c868159058ac995110e74ef144338953d72e297db7ce18debd8c4b76aa5e2"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0076",
+      "provenance_sha256": "aeccc042030254e48a742d8509094b94755ca1c88dbf32e90223aeaaf7cca8e4",
+      "task_sha256": "ca51dab410b4e66fd27740d5aa87e73d7af2523c04156e2e4fade8f5638ea09e"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0077",
+      "provenance_sha256": "7b33e09f1cab42229a02caa41bad4cc58b4b0ec4117a20d79db10d5f31648d4b",
+      "task_sha256": "6651a5e6e20d5d3e485dd6b197d376c468dab81d8bf304ae63e89b05269dcb89"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0078",
+      "provenance_sha256": "f1c645e60f00db165e9ac4dc9fe8d80a5a9fc2bafb640ea5e7527ee4f9be47dc",
+      "task_sha256": "4c0ddc22b208051a91f3937fcf912a2e10dc295fd2968a61a054f5b77211a008"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0079",
+      "provenance_sha256": "71e794b801484ee89de4f623c29d570326ab8623e9382e9c6e9d76611a9043a0",
+      "task_sha256": "5e52cb21ad13009ae45e42cd0c2eca3139d87dcfb8e475b46bea7f1dbe69718c"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0080",
+      "provenance_sha256": "32b33e5c7db33e6f1b9647d55ee3a0507527b3dc9a46c0b6c7945deb5df2c32e",
+      "task_sha256": "540e69c38e95e65975cdaeb33843866210c34e2051206444649aff9e876d3bef"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0081",
+      "provenance_sha256": "8692f9281dcb4f0de0d051e236204d6fc874d8f5bfb503765fd8d464e3d7044d",
+      "task_sha256": "cefa1ab24652a4a5f78a31f91347ad450941842762d7c57277b63cc3903a531e"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0082",
+      "provenance_sha256": "7187cd06cddd65d59983839bc4dffac8b058f7c75e2fe3e116f54cca468c7cd5",
+      "task_sha256": "c2b25c7e5631877cb61098ee1e7c91ba515b2342007f5ac8105a219075e56ecb"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0083",
+      "provenance_sha256": "d17f9e26c4bd641983b4a9cd478808cfb6fef968e76733cb09d76913754249d6",
+      "task_sha256": "5ec4bb47f4cb229a28b6b3f082712fc36ffc23c1a1a518fed6162eef781d7e83"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0084",
+      "provenance_sha256": "1ae46c3d0d885f8d79c4b8acea397f26edfb12ed24003b2e6a21f95a2f05ed4f",
+      "task_sha256": "21d1aeb80c27bd3bc06ec73e3bfb2ebbab3ebddf8f4f4a7aa330544f8f2007cc"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0085",
+      "provenance_sha256": "7f139519179c845047eea31cf43369255005310ccbf1fdd3f2e0ee56f7538aff",
+      "task_sha256": "d68743517782b302eba9f748f39b71c843038113a47b5b577a80a09cf4b47375"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0086",
+      "provenance_sha256": "c51d573b1ac2fc422376719b5506222b52ac9e13af0293e049f9361e04c8a993",
+      "task_sha256": "b97a264ca002cc36d2804ec8b30a306c4c97b3374dd4fc298c79682b69a78fcb"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0087",
+      "provenance_sha256": "a1a8bfcbc05729efc24dafdcffa6abef7c395be36fa3ea0128f8123bb35d7e54",
+      "task_sha256": "dfbfe04aea7e109b07f4dc4f1bffa5cc0c7b1c5f3078382044b2ca1ee0571acd"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0088",
+      "provenance_sha256": "d7f2bacab62f3f43f8ba648928fd106b970b400c318d2b69b507143b6d291d2b",
+      "task_sha256": "87ac8090210aeb509b982a5c5cb890e61fd56f528860b7a4df8b64b367a75b69"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0089",
+      "provenance_sha256": "05ec08aab2c6791dc06b8dc8afe9e68f5eaf57b9a9579cae641344ac57b27ab3",
+      "task_sha256": "8c5126bd37fdcc1da5efd1a88ab270040f5236252a3183cb454ef9399c1d9a4d"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0090",
+      "provenance_sha256": "49464ca44b14e0b6e71ab15ce07438062e6b99c6eff145851d1b8039341eeb5c",
+      "task_sha256": "4a2c44ef044fa860124205059a9db86fc5fff58232ea67de6b827cba3b0328b2"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0091",
+      "provenance_sha256": "3a65b50502edbac3de48c16d3e607bbc8c5649953e62692b99dcf1d729b1b978",
+      "task_sha256": "d9a134d98bffc3edc691ff9e9a75cd8f7be0a229230e5f9d3e6a0f2358a2d31a"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0092",
+      "provenance_sha256": "e92b7abb4ff5ae7192c6261b9d886641fd8f23c8b3b3196f6c27ec5b2327d826",
+      "task_sha256": "a5331e1474bf9a4fb849a66c19c2469bc5b6edfcb83651226a798323d12910be"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0093",
+      "provenance_sha256": "0f85489203bdf07b70c2d3147e750e3b1219c1a84ee41748395e03857159564a",
+      "task_sha256": "547f1ca04c78db9512818e4f05522b088f0c13c7eb41733fa83a6fc4cba554b9"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0094",
+      "provenance_sha256": "8b50c330b35c2f055ae6a6c2c37c003800969afa15477dfa171295db50352024",
+      "task_sha256": "b0ca65cca3476a54c97eb26af110efed6a59f64f8bb6bba90e882b4399f98e23"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0095",
+      "provenance_sha256": "b3e308cea1f6a2738f344f0da6b8c78fc9e131b01258f2f1637c88f1eada916e",
+      "task_sha256": "f891932b9c03ed4d5de3c4bb98fd53bb37917fe695830f987f9186fbc61406d8"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0096",
+      "provenance_sha256": "06f361e2ca3060403d7e2efb4b029348832c63d3318919bee6ded4656ecbd69a",
+      "task_sha256": "e86a4e10d154b0d57055c9fa69726537da5bbf200491e7a8a695fda34441ed3f"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0097",
+      "provenance_sha256": "f7189a2741254a825607a4a87439330cfa55f1e7082507715a8f7dfc98b8ca41",
+      "task_sha256": "9eda50c9ceaa7a84dd3a7926ccc16bc34531458a3a598c423e6526aaedc7f6db"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0098",
+      "provenance_sha256": "af57c4380bb41c0dd31e71101f7ec7c5e1eb63a90e271ca55b37407b0a2327c1",
+      "task_sha256": "ecd8732a5f5318345cb461fdbef63f279ea2355fc19c1841cf6dee107cee24b6"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0099",
+      "provenance_sha256": "e3e224fbb7a9ef3e5fd0eb1c84a992741536c49f20c2d17593ab0f39eb6f06b5",
+      "task_sha256": "4db8c49597d6d40727dc4f5b476bfb002b9c605d9705ace5b883721bdcfd0026"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0100",
+      "provenance_sha256": "8c0e0fe67b84df387a76181c0803c6cae49698a1241f01f10eeece03cce19399",
+      "task_sha256": "9ad1debcf522788c94b7ccfcf9de989321e29ae11ac34226c616c1c1b13209a8"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0101",
+      "provenance_sha256": "9464e3938019d2aa35a303a39bb4ba2d700bf4ea9539726af1390acb1318edae",
+      "task_sha256": "a96dc920a58f35db9636f5b866a34916f346772d2d3bd84438dcee687ecf85f1"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0102",
+      "provenance_sha256": "a148b940b054264de5025d48f8a311efca3d6c505bffc25fb72f6d5b536bcf71",
+      "task_sha256": "959a20b1e8bdf90a798cacdfc939bb31b076d3d35e3b5703cb90eab18ba80eaa"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0103",
+      "provenance_sha256": "af69c2b3268085f98eeaacfbc4851f1dc792b3769a194bf20f85b35f728970b1",
+      "task_sha256": "9aee89931dd1c181727ee5177ed6ea1285d94a1c52f10be28fec2ee0d74760bc"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0104",
+      "provenance_sha256": "e2897bb02088cb167cf1b06c99298f1bc5d35215bc27e3718e05090abeaa1608",
+      "task_sha256": "84727997b37dc8a7d6f94bdae3a41907b8437e9181648b873660644312c4b76c"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0105",
+      "provenance_sha256": "07b79885009d726d439408a1c0b30014466c5ba84d6a5472c858c082c46c1e62",
+      "task_sha256": "4540dc3d786d73cfb481796aed2c173d9ad39007fe49c4fd2faa838dd15bbaff"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0106",
+      "provenance_sha256": "9055f07d2ae380c42ec1ee3e81b99dd68be4a1c239aacce532357d5943447570",
+      "task_sha256": "50901246874812d3865c174087c46a2aa993a2241e45d880837da915dcbcd1ed"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0107",
+      "provenance_sha256": "6d8e5fff350770f04561d61553e7ef8257fa2980b908c1c002686ae84456a783",
+      "task_sha256": "60e2e2b401f09f96477ac4e74a85424c56c5c0703c402296f6a5a8f6bb263eba"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0108",
+      "provenance_sha256": "df97e05687194466a497d48626c4c3aaa0292cf52ee30a325e3136647a84a969",
+      "task_sha256": "7299544f8f4a2ac08ca4fda7737c18e655890ae17c1ec83ca7c240fbbb31e85c"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0109",
+      "provenance_sha256": "e2083f319fb3b350fe62ebf5008a7a67f455bef7f91a213555e3a06fad18d35f",
+      "task_sha256": "cd7d3ad5e1b5169e8b189f47b1a152d938dd2eadfc93c84b9f85dfc952a77b39"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0110",
+      "provenance_sha256": "104afba397c0a6a544ed2a14e620a1e0e8441d0bea64b29a8cf07b750ce14cea",
+      "task_sha256": "ce368115abb9141e67616aceedb6a27ca4bba75191831a4e28ecf01e4915761b"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0111",
+      "provenance_sha256": "b38655cc653e6d887d1216727b3cd90571f3871f213bb383e3bbd445a6426351",
+      "task_sha256": "1fc94c9b2ad12410d5611f18a69a7370548c712f03304f36841732a5e2620981"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0112",
+      "provenance_sha256": "d82af246b8cedad50eda86a7cf5b81402e31d538935ee120d1a1dab87f8e255a",
+      "task_sha256": "9b4dde5fe2725bb7aa02c31adb2b1097e81918a6e9b3cf40dc831fa96d9641a2"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0113",
+      "provenance_sha256": "3b94468efa769fcbc2677adae79096c8df5a7820c53f5de11813133f6e8f7787",
+      "task_sha256": "3395eedb4f539ad0ccc755e1d2a923d998cb89772205b3958859218bca2e4dd4"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0114",
+      "provenance_sha256": "fc3b4a2e9b0d59098bf5d708dee50fd08ec4c4e2c28d647e2f7e72b7e7521601",
+      "task_sha256": "25dae9248061ba7da8c57f6d78fb85fba05fe6b510ddcfa3808879acf2d53d9d"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0115",
+      "provenance_sha256": "62664c544d59ba067f0885bd220725389b3bade98e8a724d774034295216a265",
+      "task_sha256": "f857f767ba4871931c37217f0d4401a5eab828da0b79800c2187a53adcfd695a"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0116",
+      "provenance_sha256": "39fa377e9a7904dcf046a7f8cff372af4a1e886dfe4d2458520c8502c30c1624",
+      "task_sha256": "aa669acdd11ac9423cd9fc9ef807dfc8f47c14f6d8a135e2a926829f64014791"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0117",
+      "provenance_sha256": "4d52c91296827c549d31b38c9008ddc2a4bed96d5fd5ce47d789232274c2f373",
+      "task_sha256": "205dadb243cbcf84fa20f710d3b7acdf7333069625f6eb97312158e7770ed1c1"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0118",
+      "provenance_sha256": "e004380dc54bb61995565233b13a3ea5241595ad8cbffd5deadd0194312d3306",
+      "task_sha256": "00e5e462d6fd05ffd224bbb12c9884048330bf7275c874f4b1b6d690ddaa409b"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0119",
+      "provenance_sha256": "afbe43d9d9108dd170aa4a730f2750911f668330e8237380306b6694b5a1d55c",
+      "task_sha256": "c487590d7f97b32a114427be43fe7e142bd6a1fff993cb6496900ca07d774dbf"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0120",
+      "provenance_sha256": "9d16255b376cc42327fcbf13084095e17db68c14fe3b2a635ed5892f02e2f035",
+      "task_sha256": "4d3fb7a27e08ac1253916bafef2df5dac15aa2807354111a3a511817fd0c5f5e"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0121",
+      "provenance_sha256": "91226b68dca7e7f8475c80bfc076d5cc5a925f65ddbda871d159a41205b9448f",
+      "task_sha256": "9c35ddd40b206468e04f163f8b0301b744247d069a8cfb58ec6f0cc6d7dc9943"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0122",
+      "provenance_sha256": "acfc8e3c75243b1972a4f5d134f54bdcd8eb34a2fe7d0e95b351a7ec3488184e",
+      "task_sha256": "5006c4ed24c72b1ddd8dd6153ae06a9a2abd5fe88c447a1ab7261a1e78be8332"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0123",
+      "provenance_sha256": "ef600fd4d36184fb489c89ca18e522beb41b3025f7c50c31130fce471952b987",
+      "task_sha256": "62d3bdeb9e04f4f813ad52e58677f11161e92d9f29780ec0f99ec0dad8c8c37a"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0124",
+      "provenance_sha256": "79ee5cea1769039a58d7b0166df889ed0db29151b8224e6e35526f6de1393554",
+      "task_sha256": "3566d2f26766f697cd2205dea9502948073612286a6547048ab4936719c37608"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0125",
+      "provenance_sha256": "8a2069fb6b1973f228ff39e1564a109491477573c771776a2c7c464046560263",
+      "task_sha256": "6bdb2eaa9e7694f7e08f72de6df901ed86deeaad39bbc59a0e89873312d3dccc"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0126",
+      "provenance_sha256": "2847e897793da4fae1bfb03571c90b793ef5b9bd3089fbb9ad9de3410c8cd5a8",
+      "task_sha256": "890aadd2484243afdb48a5d27a5a121a612a0de3cd841e8dcfaf1fdbbba616af"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0127",
+      "provenance_sha256": "0bd0e29db4b255f4dbe7a120a6acf06aef102370d32b915ed84de9ea2fcd4c7d",
+      "task_sha256": "aaf495d2c1e8e4a6f102821f5653a0ef60e68642f38eda2953be0ba31d2f7e19"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0128",
+      "provenance_sha256": "023ce9ff8fb6ec4eae0ea17d771a554b3f319feacc5b701860c9e9c7ce4c74e9",
+      "task_sha256": "e57e0249c1921d703fa062691352e7ebcc028d5d8401eebd8879604cb625d5b1"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0129",
+      "provenance_sha256": "ed02ace62fc6db917a9831a9a5f6efd400eda93b64a7fc2b6dfced2632de5ca6",
+      "task_sha256": "17f5efcb782a29a439fa2959cd46a6d0b9289a3c2593372a4bf97592560ba188"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0130",
+      "provenance_sha256": "398420adda6ceb9ed73bbd57bc9464b2905d94a369d74446d25d08a03b369441",
+      "task_sha256": "4ce2c161a1eb50944358c9ebc709e57f88dfcb017096701f806c80acee4d245f"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0131",
+      "provenance_sha256": "50533a6208d29f89840041f921390549551815d0cef57b214c4580121875f29f",
+      "task_sha256": "ec61021b8c7c4164a931a1f9ef6967e5fad83ddb1e5ce72682625fc8a1b509ad"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0132",
+      "provenance_sha256": "0f178afd1345b492657c9562e529e679d5e920b53bc6efeae06a8952d3a06ca4",
+      "task_sha256": "b49ae8f236024c1c6a161145c128f28e7f11cc92ff80b19fd0d5ca68a306b068"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0133",
+      "provenance_sha256": "cf13dffee4112043391b1ac507c82562773e16a21a1cbd9c8598ef3a744538a1",
+      "task_sha256": "9db5966309b8b02db1d6ad3c52e6bc41d5f4b4bd4b681df6d9189b0b503c389b"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0134",
+      "provenance_sha256": "76478a95e7b6bc0e0bed8cee6c993e609b6b2848df35d2480f4682fd953ca7db",
+      "task_sha256": "6cea5aecf38e11fe174f885f4d7e483683f7c54b4d1a0174d13e2398b62a286b"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0135",
+      "provenance_sha256": "0f358c67175b77e28d9cfa32a59c7538315815929a6bdaa9ccc42c45665e2e30",
+      "task_sha256": "d50a75e569e2b6938e67703be71607cbd6f53e360a178a67b31caf4c27665cd3"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0136",
+      "provenance_sha256": "eb2bc9c35f5015352cb01cadb028996c88755e63cee7a94d3bedd0663931b180",
+      "task_sha256": "d3ab822ea25be7282a9cb8ccf34f1cb00ffa32bb06b0043445ec445660ad4ed0"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0137",
+      "provenance_sha256": "33ef9a50ed59fc5c34a2d69ed8823a70eea0f598809304ae7556fb5e90167512",
+      "task_sha256": "155200ad0db30ca216e0f129556e2197420497e94b1d1f3a36549342e21c6e25"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0138",
+      "provenance_sha256": "7c76d3d477fa966b0e8cbfdf0d6d31f2ab163047cf23df5faa4768763b45cdad",
+      "task_sha256": "58ef59d6c856ee847a43b542362f9ac03a3a657b8f435b46a9ced7625fe70b2d"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0139",
+      "provenance_sha256": "19a18ac74bf3b5bd5f0337649c82072e4b9dacc53e12530d6dd7f8a45022145f",
+      "task_sha256": "e4cb78d1d4b8599086a8b0593d6aedf18eb5f3c66aa036b02a1a3cd6280f8143"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0140",
+      "provenance_sha256": "950e0837f9a3c0757cab502491853b9e5ab733cba82685d1fad6dd4bf1c5c9fa",
+      "task_sha256": "ae7a987bcd28e9682dcc1b5d324bacdb13aa525f08f4c0025f5ab3500147eacc"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0141",
+      "provenance_sha256": "d77f79f0089a0c44e14b4de154e2b42a1eb40c5a883d6bf9e402cb9b5a187954",
+      "task_sha256": "69fe09a006f6c5bc33ac92a5a341f0bd9966438d8b047826801ae0134c9d447f"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0142",
+      "provenance_sha256": "d3f62225c409956d94458355f511379ffbfddd15cd9e05b45d231bd2ec329ab5",
+      "task_sha256": "013983cdc8be869f1569d152e477d9dd342bbb3fe8a6c6cad1513e964d564188"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0143",
+      "provenance_sha256": "88482ecb8834fd608f699d97951d500aaaac0c8d93d400a78f1a026a91d356d5",
+      "task_sha256": "5b81eb1e03b4c476639f8eb7cc2b00e3ea66aeea5a83bc3b10e56760596d2ba9"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0144",
+      "provenance_sha256": "995524ffd4ed57b70cad1e9edce75c5784cb9b7ee27b2e154980882b5efca34f",
+      "task_sha256": "82ebcfcf311ae6ed80d54423b2fbd417b9ada4ae26c4247850b7cefef49c2920"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0145",
+      "provenance_sha256": "9e0d82b0fddc7daf867abc361584bc4c587100532a3490da107059b87b2d41ec",
+      "task_sha256": "cda79e581a589f66070ff773e43a1af4b2c5c77d00f5f6a980877f81816ad485"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0146",
+      "provenance_sha256": "54bc6c7ce65b5478d969006f5c1b97fa2c213fec1bc8bfb991397db47e62a588",
+      "task_sha256": "743f6b12cf2f0aa66f383c02e0ec9a35f5e9caabb8d7b59a4464f6ef41450a4d"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0147",
+      "provenance_sha256": "58222a25c45695106e166aa5bb0a59d3118d8dbf2d1ff2d9e7465a107d716191",
+      "task_sha256": "6fd08e5001bb6d936f814097e1cd6c2cd31fe36027d3ed73bb8b2d72bfd9e07d"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0148",
+      "provenance_sha256": "946b18d48dde90dc91a9a9bdc05095e1c00949bbe49a8151051bee15ea110a79",
+      "task_sha256": "bc39309242672fd25fa4120f928964c5be505f2255c650519ba544ebf3853d60"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0149",
+      "provenance_sha256": "010fc2a11256f54b3b259fba12eea54b583b328cb07454c9ac4a56c731327747",
+      "task_sha256": "6aed0b5282f99d3cfc209d5e59684104f6851257fb00b8f6659e46725780bb56"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0150",
+      "provenance_sha256": "bb3974a1f44bbb7786978470831de0e112a2d89833a705d07c7fef2877ac8f6b",
+      "task_sha256": "6b4f0e5bae88636625a06beb07101fd58d6fa1f30fe6ac28ab06ea7063aec6e3"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0151",
+      "provenance_sha256": "dc46eda77b47c2279108f702c066cc39bd4b970a347821ae937f3f1dc65671e6",
+      "task_sha256": "adf000536b0b23344b16fe90716f474408966f0db843014fe16fd1efe03c0d32"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0152",
+      "provenance_sha256": "69a876bace52bd0bff241a6efa0c0dde4f68de22c468c5236b6048ea0a4aa8f5",
+      "task_sha256": "dd5e4e00e66bf1339eb247bf8e2b7ddabcb9dcb55ebddbc75c21aa065ae38c4f"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0153",
+      "provenance_sha256": "e758e3c19a031558534195d5ae0201cedc240dd36a995c3127620b2f0eca7399",
+      "task_sha256": "ba508594c19871166823c213d09801afd778ba8a05f70358a9c8b5aed7612596"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0154",
+      "provenance_sha256": "1c05d0f93dd9ee829d379d76f63bdbea192452ae37ac451dbeda5ef96e899133",
+      "task_sha256": "8e3861a2713cea3780dfcd768235554d6773d90df6da88c38114a71743ffbe5e"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0155",
+      "provenance_sha256": "e1acf25d8f2867deae3ff0c1744d6503188d8e5aa38a505978bdd904a2db3367",
+      "task_sha256": "f35d83e7d530311ef99a363a0a8553aa6af601f11a1abf84106284dcf1bdbd0c"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0156",
+      "provenance_sha256": "5e40db4889b09b0bf67d131a07d8075616766e8d045ba824f47dee1aa720222f",
+      "task_sha256": "9078088737afc3d0dd5e2e32a864402c38932132364e4e36ec9a2de684b12080"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0157",
+      "provenance_sha256": "4e43287eaaeea35bb6d16e61f6aafea2cb11b21c48a7f990bcba72257419c911",
+      "task_sha256": "f54501dd604d0dc458f56d47a6410cc5ea27eb769bb431a6e7312a51d0f08dd5"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0158",
+      "provenance_sha256": "145ba690721920baa85fe9668c975da845103aa16e6ed323c0f965a72d78970a",
+      "task_sha256": "827b0c1bc31fc56189bab396a3c2cac15f1998d6a3189cd8f775c3a45d8faa09"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0159",
+      "provenance_sha256": "b2ec0e1537182c8b285db521d7a3de29aaa0f1546cee47e1242288060e0cbfa2",
+      "task_sha256": "43d63928b462c7d410676c5ce33b4187fe7cf514afd135ad59f5f03259aff2c2"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0160",
+      "provenance_sha256": "aaa718478238ca6cdae68bd9521f4930c555b7550795c4e4b0fde41e28d27f37",
+      "task_sha256": "52a7afba1baa7a44874a43f1512c7a09b89fbe692f85e65492aa8cb9d8ab846d"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0161",
+      "provenance_sha256": "d16d4fd7424deebc65fdf666cb0cd9e42040d808795f7895c956f70694141168",
+      "task_sha256": "b2e1d70a354e1dd7a9bacb03fc519c582265ffebe4303947542f079f408db585"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0162",
+      "provenance_sha256": "0cdb20c1ac036067b956cb568a5ed803ff5f5c434c0fb121192ba4fc1a69130a",
+      "task_sha256": "c1c7d99d651182226b382b353b153aa2eb621acd959f40dd9287f5151b40181d"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0163",
+      "provenance_sha256": "633e327b50ce5ff397f48d59fac4d30a74ebd403b8bc3d2baacdd4c5a7d0a113",
+      "task_sha256": "f000a85177d8df8efaa4d3fd576a8fbbf987d59b69e043d3e7002a46dfcae469"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0164",
+      "provenance_sha256": "1a493d0fe61068b325defad6dc937dadc522f11103354df20d2517f4fef2c333",
+      "task_sha256": "9f591edb413be0305842b21697700dd02c19231b076f9a2bc5eaa127b72a0499"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0165",
+      "provenance_sha256": "32a72e82d56d1dc4970cef20e7230210cb9218ee48256fda658c8fc52829f602",
+      "task_sha256": "fe4ca714a1010fdf8031cfa50995d35196dcf235db5a026d9c3661b941fe4ec7"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0166",
+      "provenance_sha256": "e3584135abebe64fcc4d0d241f59f89c32eecff20d40d0a57d34e3737ddb17ef",
+      "task_sha256": "4dff0a4491268816fca16d28af73971e3778187e2e3850507384c9090cbe86b8"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0167",
+      "provenance_sha256": "b7f43a42dc1cbc1cbc215023d96cc95f7abd0a07ae3dd586ed6b620748089bd3",
+      "task_sha256": "e5da6766c95dd604a5a9bbae79777c9af8c83c5d56940c3c57bc2232edabe4e3"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0168",
+      "provenance_sha256": "a3558f07c7b2a79d8dfd0b37f0c7b423bbaddf4f09ee5d4d4e2e076e9b36c7f0",
+      "task_sha256": "389578a47e5c0f92f3a698c75ccccb59213b750ef7c001e2db53f76505b55bc3"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0169",
+      "provenance_sha256": "42bab3bbe5fc8ccf73d2e8da685a70f4eaa15384b4213634c78934dea05f2841",
+      "task_sha256": "edf26a3338c906ad0014dd496b6ea74411a3bd92f4daa52eaf8f17d63959e269"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0170",
+      "provenance_sha256": "36071b802b5a266f3270df5349a56d1440b28385318d976ac429c0748a3c3f67",
+      "task_sha256": "27eb9b1f9efc55e049aab4aaabdea9f6cbcf3d290c0ecf9a42a0d2089e106130"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0171",
+      "provenance_sha256": "9add9f3ff27fdb6d5821008350cd10c5b5b25f747f03ac247411d2680ede8f6c",
+      "task_sha256": "7d6b5110e91efc6e19b1e5a15d3733375ee35dfc3d51f2617edaefb79bbb8f64"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0172",
+      "provenance_sha256": "2fa7bd8127fb5554738455f85b14cb0c1ba320d0fd732287cece9c851ae1fbe1",
+      "task_sha256": "81cabe7a7a82ba5c4fbbeea32ba6b6b453284fcf9c14b044882e4c96534a848d"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0173",
+      "provenance_sha256": "ece7e19a85f89a58773238d78abaed5a4f2469112c1535a977729458e82596eb",
+      "task_sha256": "b0dd6a933ebc20654eb6685c3672276de847d90600300c99e34c59881dce297b"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0174",
+      "provenance_sha256": "c19ec86f0f0c56b7504da70babf802a20a08c1d45f29c41268af236753348085",
+      "task_sha256": "fb2043faa9bdf9c9279a595f97f26c742157830409147ca40fcf9246ed6b0254"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0175",
+      "provenance_sha256": "284e8a33c89521fc9ad632e6077ca9257717e148ed7e77e4b354259a1907bf47",
+      "task_sha256": "1a345bdcd3d711c227e902277c96a6dd1318c03665f48776b4830dd4cd1d6820"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0176",
+      "provenance_sha256": "38a12470d2fc92db3a230492e3649909f88dcec71fc8e8e3161837a2e2081a1d",
+      "task_sha256": "99751054e56a30c9739743b4f2c81bee82521b5e6c0034a779fcf5765baa9bc5"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0177",
+      "provenance_sha256": "9a95e4e610835de88db9b3eb9a369df07d6e42bac4d2329451b668758a88c817",
+      "task_sha256": "fd6e27170325230dae1d79a8e92ab44e1d9cbc4975aa4830636446e5a68b2029"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0178",
+      "provenance_sha256": "ccef6da52709ad76de7e045bb5fb3cd0cdb4c20d087e1b682173eccc1b24712d",
+      "task_sha256": "4bf2e3432d28a582c8bb715faee6f10747454d2fe6af5caa8196b3852289ef01"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0179",
+      "provenance_sha256": "913428ca2c6edda319633e9953ba660f982ec29b5acc0e89694bee646c110c10",
+      "task_sha256": "6bd77d9d85746727fda3933fc8887c87ec5a90826a645fde84718ad7445dd2b8"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0180",
+      "provenance_sha256": "b1e8b369d659b32757cd701628e8ce7f3ffaca46b4d84918a967582c53cccedd",
+      "task_sha256": "990ce07a764ecd77b859035cdf226ee2d3bf4b372e0d4abd1a382ad1385328db"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0181",
+      "provenance_sha256": "026d2c8643772b036736320101909c56cd51811b0e6808ccdd3b4367fc44a2f2",
+      "task_sha256": "0e05d18034a757f530bf85588c63cb2757d3d3731c67b82b07e003e17a863fb4"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0182",
+      "provenance_sha256": "9a0fb071c1f2994be588087ffd12eb7b3de1489329d4c3643891ccabf7de4759",
+      "task_sha256": "575e4d1d7712b4f4dcdc18b5a4cb3986cc14d73b65f7142e875f13962536839b"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0183",
+      "provenance_sha256": "a9804494352a9431aceb1a34434f08ec9c67332245dad1f70eb14de439878975",
+      "task_sha256": "5cdc312928520747cc2c6f1097c86cf7daac1949c8dc22ed8ca0842a988da541"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0184",
+      "provenance_sha256": "9ab8c4bac733e9d3fa78cb8519deb4de8ab4d3d16a27214fcce0cbf772a12496",
+      "task_sha256": "1ff99f3fc21c886c4d7261638ab6b7cba1e3f68551a3da29569f15283111df07"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0185",
+      "provenance_sha256": "f895f8a95f5f3c732f71e482dc6e09fbe323568ca17472f82faf1f57c4130ae5",
+      "task_sha256": "dac3bd074bcc4416c353b2cb4b5f01d0da1691c1791ccb9961f0f45b928b641e"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0186",
+      "provenance_sha256": "ec93ebea3cc7964434cf384c69928d4f998b11129e8dd88804596ce2c6bfd8c7",
+      "task_sha256": "5ca84446179a8cbee572887c656e36581c7e8b1d1a0fe894b7683cba7ae3b868"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0187",
+      "provenance_sha256": "6fa88efa9791819194c755004dc84db97b7ce0ce513c56fcfd2e17931a442cad",
+      "task_sha256": "b747f56f6c3a8539dbd3e4aef386ddde1e6c76e7de9bb31bd53b70c10cda1a7c"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0188",
+      "provenance_sha256": "0a5b7ef86b0fad9585e920e17172b538feb393a1704c48f9e7a6a88bc19a6fc9",
+      "task_sha256": "fc583494daaf0745266671348cfb109eb41c00a5b68fb835e6d0dad3c2c8e284"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0189",
+      "provenance_sha256": "21658413ea346b28eb59ddc02686886b244fe20396e36473cfd23fe942f6a40f",
+      "task_sha256": "976fd421147a2e49de03ac559b5f379f29f9f9758a2102358dac5dc631f3c931"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0190",
+      "provenance_sha256": "a6829ac33165b70a0dbc436e65b6b2c63347f389775293b2887a2e89fc21971a",
+      "task_sha256": "0062174544c490aace59f6a6a963a7f4b165dcca502d0cfbfac8770a12a73a4a"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0191",
+      "provenance_sha256": "8a8451e2674b3e940765fd73946abceb3a45f5bab1d22db173b82f3b4b79816c",
+      "task_sha256": "c3fa0cd5c22f6ad68319d133607f473958460126031f712713c283b5d91a65b5"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0192",
+      "provenance_sha256": "d9776e625f86f9614dc3d46d0ef5bf62d75dfaf14e7b08f5b2e47b9b018d2acd",
+      "task_sha256": "e89f61c9040fb97546b2550e4d66d7506d72013c316ee04f80338ded9ea21ab8"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0193",
+      "provenance_sha256": "2611f5c3b542cf7a09101c8ae37551da8d6ccebd3ccd72461d0f67a0f808aa95",
+      "task_sha256": "0db1b01e570fb4d2477d969b04366390db08f6d9cc1b9fb13388124d7deb8919"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0194",
+      "provenance_sha256": "e3b9b78cd93086abea5456a4ed7f04f743a27b3718ba3c318e04f2ebc1329def",
+      "task_sha256": "ecf80ea07f821e1d5f4e3ee5ddf6a19dfbfdef3e1fd1fc42391fdc7b3b2618d5"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0195",
+      "provenance_sha256": "af8b0f65e3bf2afcfddcd38cba865b3f3b2f58b54b23f3e544c5def8e7a4260c",
+      "task_sha256": "0b84c8334194a3d86b33e403254adbefbd725498882443a7cbe80dc97063343f"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0196",
+      "provenance_sha256": "c4ea4572d2cfaf4343fc2b9d035ad3c4ab337ff08697bf5071cf4c3b19a656b6",
+      "task_sha256": "be5d2b688100ccf1574f37192bccb8d44fe1c32e413b7b660de94dc517d64451"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0197",
+      "provenance_sha256": "c67e9a2039d351ce5ac983baeacef0d04f08b3f497ffb6c0400042d6e6c09639",
+      "task_sha256": "32a92f614d07a3240c3be36dd58c99ffd50b4b329d44d2bc2570d4d57f64b040"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0198",
+      "provenance_sha256": "3191f19075e48884a7650e8e0560d6613f3e9c0666ffecc454767b077b99b746",
+      "task_sha256": "8bddfbd812c956c04dbd2104ff9812e35c520e5cfa3959f26d2a64410066933c"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0199",
+      "provenance_sha256": "afe3b835779e2fbf429536b07ec19dbc3d60cd51c4f94405e9804ceb13b27e3c",
+      "task_sha256": "59b2825fc8876da4b8bc9b49fa6261e638d36af7a8a243d7d72e56219c1262a8"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0200",
+      "provenance_sha256": "d987397854b6430c1d502dc2518cc11d9f96d5b148295be1e3b7705e69862b93",
+      "task_sha256": "6197d5c6e40df0e47e0d87c725eeab818cb86de04f04b9e5280e39622cec5b63"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0201",
+      "provenance_sha256": "6b553f05aa5553f81ac62ca9f361f16b8a26c51ee2980ef833806fe2c6d074c7",
+      "task_sha256": "bec945057d563e8f66069437331fd1ceecbd9f69d05ac48703f8ee485a46f683"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0202",
+      "provenance_sha256": "c05476f24aeda64f716e156f2da3a8c687556729a5cb9fd6e1c9ad4845e89513",
+      "task_sha256": "28c66da6621d6ddbb9511ba1da5c59cfa04b44117cc2284ddbea1f77b02c5c4c"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0203",
+      "provenance_sha256": "70923c15030d4caed7a1d488e311e4014a8e1954ae8e01bbb64a0c6b4b115198",
+      "task_sha256": "eea76017c7cd39927efef1df5d8773719b42d336b44404fd423bbccbd8c749be"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0204",
+      "provenance_sha256": "dd6b67c713a1e85ac950fc89d282069001633f54bf664939890ec359b177058e",
+      "task_sha256": "53e65e1d217cdb9310c54c890f13dc0c0d0946f2ad46b53c6315f4f166f5aca6"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0205",
+      "provenance_sha256": "487832578966b46d0cd0ccaa8c772f5c4fc59f0859884d3a86475cf8f94ef349",
+      "task_sha256": "170982b88f254014d2e9bb0b1c2ab4f99457780a0e197448747b501f54fcda5c"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0206",
+      "provenance_sha256": "414e6ccd5f71cd9442103e5d3b809c341d64966daf55f5e2900e97506d1b75e0",
+      "task_sha256": "a683e3f9522d7399e87389c488505b93f9b5261cfdd8264e693b72dc92ea84a1"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0207",
+      "provenance_sha256": "2997066fb54058b39bb0f3d05deb86e377e339c1de8867a57255cc9447a1bd28",
+      "task_sha256": "81bb1da28dcc787d42f841f00daa51a2d3988e39fa8ed8671e9800e100899a19"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0208",
+      "provenance_sha256": "f285647e6e4459afa102b8c06b0dcee7f93fb8a670326cdeb74147b290ff2b3a",
+      "task_sha256": "3438faa8428b27a90a6bdb155d4bd0092e836a076551b095aa604f3b4c97eaf6"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0209",
+      "provenance_sha256": "e612cd11180ef0a1a6d3b36e175217d4021aa6d785d26db4432bc46af6787903",
+      "task_sha256": "b225e9a46db2297ce7223d6ec9e5cd40da4e3b42f07615be08ebf832d06de19a"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0210",
+      "provenance_sha256": "bea4c4b17b1f719003b7fd0ce600f424f2e25711bae141c7b7ada8a964759c11",
+      "task_sha256": "01be4b02da2e81c5981b72eb09d448b2c2b1485cc6d8de96b56d6b9e5d7430ce"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0211",
+      "provenance_sha256": "0662dd33e269704a0f9e0aa076fc72a4bf9745f72249ded9f68fc4344e8a149f",
+      "task_sha256": "aff5eba39cad82615e1e0961e4876900ab1e2fbcbece215136a9e164d3792a20"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0212",
+      "provenance_sha256": "9902e406ec13585f5d04d62c7ccfc899252909a6221b3dfbccafcc85816150ff",
+      "task_sha256": "58cdc28d1c29b2899bd86a8298216d45ea2ecc857d8f3967edc57916cca245fe"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0213",
+      "provenance_sha256": "7f479b6d5eb2a2640a51f2d9aea9d898faaa677fe7fa4d6ba3cab7f76a8e80d2",
+      "task_sha256": "48bcb1a8d0cce7fdf52157142bf60f4c2cc7338e76bd80e6446973b200cb6dc7"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0214",
+      "provenance_sha256": "21df91ce9c12e160f0357a8eef1f28dda1cf36a8aae7c21e08fc03c50b91e46f",
+      "task_sha256": "6d544a36d97c9b61399e6f5fe7089b86a01b3e278a51479a27cd1959f4ef827a"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0215",
+      "provenance_sha256": "40d4112f09379cb6a1efa80bb1a27294896fcb019970652c1889e1f54ca0e51b",
+      "task_sha256": "0bb8a3efb1327d763c32742cb7bbca123a2a4aa0761d2403b2c0027f8542b1f9"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0216",
+      "provenance_sha256": "6e87b116a33996864f1504b8dc8b41e9a5d1396724c8425794076251ca06cfad",
+      "task_sha256": "8b3f6a26e83ae572bd7ecfe7f5365d32bf8369216526eaf1899046950a09bc37"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0217",
+      "provenance_sha256": "301658f7207635b6d27e53a4a6a8023c6ebe5bfa566e691955c7421773cc2bfd",
+      "task_sha256": "f10c9238216fceca114eb76501cda5e5b4612d0b6f2dd035d2a7aa39032c3b69"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0218",
+      "provenance_sha256": "32c3753f0631df2734905c638c92f6b35dbcb98467eea01c7f006747d03f7bb9",
+      "task_sha256": "90caea66074a227d23cb711d8184068e281cf1517b7644470b19c6a6a0eb6bc5"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0219",
+      "provenance_sha256": "d70b1608e8e9c4ef6c7c5450e3a29dc928a9cbd4ac3a079f75b839746079d232",
+      "task_sha256": "ad652302920bddfd8c83c3cbd7f0f8c5f9b24669f052513caaf0e16840b14d23"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0220",
+      "provenance_sha256": "4aa02253f1b22e5b639da05ec7b553cb46007af9124b30b5d7633b7c83b81632",
+      "task_sha256": "327096e9f0ed7f26169f49c93447a3fdecae4cb61f81f18ab0125fa3f2e6b008"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0221",
+      "provenance_sha256": "9df67fdadca79591c2d7f7d4051e186c2dcf3a6efe4a157767d3fe98621045be",
+      "task_sha256": "cec40918854b809db51b4bb28da3a222b2c0b3b22ea4281ff787ec93629110c1"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0222",
+      "provenance_sha256": "4a707901b8b2df167d0ecacc23411a90aef2faf48ddb06efb61f0d474b15edd7",
+      "task_sha256": "c460a6fb115b8d742ccd57ad303b6930c2230ba6fe8eea0cd7243ee7a5133a2d"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0223",
+      "provenance_sha256": "8bbd77cfce9e8f7afb63da9936f555f42449ff462f139892e039af4d00abac39",
+      "task_sha256": "78ed9d69640f1f6b3034bafc4940df3226c44861be11fb6cfd671f98076bab47"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0224",
+      "provenance_sha256": "53492226dd3e6d85eed1b957ee769357bcb4befb70ddca23a0c0348cfd027a5e",
+      "task_sha256": "eeb69a04816fc8355f085172b836a807c33dd3569cb368b946e5d57793a6554f"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0225",
+      "provenance_sha256": "89e8ca6575c00caf400549db83776a59373c60bb69abff2bbee2b7062fad0524",
+      "task_sha256": "3c0daf5ddd9d608febe9dd4fdfff90a1c710a1814441b4a31746ec5f0a6490dc"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0226",
+      "provenance_sha256": "874a6037018b4877e29e3f8e1802377eb75a7fed019328dd02e823cfc78e1516",
+      "task_sha256": "d96fdd74cb2fbf115a19504cac03d323cae982725ebddfed01009bedfffa560c"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0227",
+      "provenance_sha256": "bc629de60cc2aecb4bed200b458a6ac1c7bb182fbb83bd317dd56f2e4c730202",
+      "task_sha256": "b6e83cb8fdb5487fac590940f3259751b385187caf019e928638a61608a61f3c"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0228",
+      "provenance_sha256": "172479abfa2d22f6585ecefed0d1e68631904880ae208044f65ab53440537193",
+      "task_sha256": "0b2d802948163f580b96d1013bb114322ab63b342d0e589a20e4028fa43f065f"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0229",
+      "provenance_sha256": "74d6cf64e61b4fc7a42dc0b1e9f57e77e1171f7e73129c61ffe55bca8e1f175a",
+      "task_sha256": "3b71ed7e0cfc51672aad9e5d315a826ef19fb60034186afea9ef746562461de2"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0230",
+      "provenance_sha256": "4090cb0049cb66ef1d8dfaef204db892adb04d62826b63b2827b83d3a521d68f",
+      "task_sha256": "faa3aa3f562cd6ae78a3f6370a66a2e57effd7eb48802d8898020fad9e510524"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0231",
+      "provenance_sha256": "988f0fe707e71bd78613b9cc236146526d54332407d7d1d94c0658c2438d2f4e",
+      "task_sha256": "c48c712ac15bad8985b8249706762b3ff95c1312b1263a9e31b2a5384c58b855"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0232",
+      "provenance_sha256": "415e605fc4d0a7f9c3478284833b9f653f18809d71ba55b95cb6a3cda615651a",
+      "task_sha256": "9b64fa86583c774c43f1cb79236e5aa0367ed664f81190394eb880cfeb816a22"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0233",
+      "provenance_sha256": "06e0a304df9ce8d5c345f6431108210abf68bc8011a45c821d01f291e8e3e432",
+      "task_sha256": "b7eaa239c87d8006472ba2bb483a55562c3e453caa5f6f2dc02ff59acebf00ca"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0234",
+      "provenance_sha256": "0806d04db8ae3333d2fb1eb32ae3eef733080358192bc252b18257b870ac0594",
+      "task_sha256": "1f4416ce912323cf28ca4f7912ca81a13fb55b9e838042407e878fcaaa48c542"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0235",
+      "provenance_sha256": "6c7aad734239325d17b75712af6e4e8c2eb0c1d42752194a1e612f74e09ac0b3",
+      "task_sha256": "d60f4e919d55754afdab0fc5eb6329292e81d60b92546f6f01106e4d2faf4681"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0236",
+      "provenance_sha256": "1dfec323a42e1328fbd0f02f339cafa12307ea16ec12371ea275607b5de36306",
+      "task_sha256": "ccacb4e0a89b367d8205679daf0c76530fd1b3f3c279d008079c289159a7aa70"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0237",
+      "provenance_sha256": "044b591345ee72698c6bc4734ab2d59626d5375102ded59ace5377b3fb5b4cac",
+      "task_sha256": "e314818b10fa362c25f314d07369c48c180a4b71ab435d3a83342c3e7dff27e0"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0238",
+      "provenance_sha256": "ecf9bd6944af1a7c11fe9758a9ec1429afe0ec89f16e61e7f5530896a9a879ea",
+      "task_sha256": "2978a5a37889372e71b228ffa729cec3b7dd303471c5c45e0c1b3b6e2a50b2cb"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0239",
+      "provenance_sha256": "45b5c1f223a292f6e1bdb0d474f2374771136b1849df944b5d3f45f5e0480263",
+      "task_sha256": "8419e96f4389ed379cd2dbe29e07b9fdaa6529481ad179754937e0b866fa9f7c"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0240",
+      "provenance_sha256": "f251748f7f1d6b993f41bdbc1cbb8a60ea76556555dda6f4afddcf89d6d47442",
+      "task_sha256": "f9c476ac5e6a1fb96a002f031c4b2cea481a780295dc931e8e7ac714e2816fa3"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0241",
+      "provenance_sha256": "036632abf4ca3216575c4580b7941d5d461205a10f29c034ed40c416618c4989",
+      "task_sha256": "8d00d2a04e4c59d313b8f7e7c0499fbaac3d394b147df809d2859dc4d28c8b61"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0242",
+      "provenance_sha256": "c9570aaa2f80c78334b4d44e2f032288a68b2f5edac0e0f743ef093cb48f6511",
+      "task_sha256": "6e11dfbecaf8cd7d0f63fb9be43063708ba4f21421c611453de19dd51c21f3cd"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0243",
+      "provenance_sha256": "465c4a73b5b42714063d3e4dd4f8cd078a7fef7f8e265172f050ff1c31eaca1b",
+      "task_sha256": "ee1749d6b5822b315fbdc33ef1bc1f83127c95380e9325ba60ad2a186d170a01"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0244",
+      "provenance_sha256": "ad0e5a7fba348c0bd4d0901e1058700ceaa3c4b4a68bd41f1fe2f3042258937a",
+      "task_sha256": "19532fd9b91e73cb478399f79412f21cbe867845a1f5f3d6dbea28e71f1c207d"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0245",
+      "provenance_sha256": "aa9cd0cc58af098194e1c3f5c68a32202e964e8f872cb47e9a5b1e3fe9407816",
+      "task_sha256": "c6002f0662dad84ffa147dc3025ce0911f82ee89acfeda228307db34defae635"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0246",
+      "provenance_sha256": "00eeaffaed252070afe10d574faf38ead9d71976bcfb6f7f7ec59c798f98062c",
+      "task_sha256": "4d24aa91a8cc54a7c71d07bb2502e23e9b3ca467e672960a1a4768c0984f449c"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0247",
+      "provenance_sha256": "af28ef01757b8fa2ea903e8607ce6457d6dae8b6e6df7ba6812e11f920e756fb",
+      "task_sha256": "86a1639832c37bdb98f62b89e7008b0990f30db75622f9a3b08c43861cea0995"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0248",
+      "provenance_sha256": "0aa0df014cf99defb1152b8d7c0c34906a778f373486c6d60f980d637c65fd3f",
+      "task_sha256": "7efd72d2cdc2c54bce26a53ea898e32bd1adc722575732607e65bb19862a3f5f"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0249",
+      "provenance_sha256": "7ff3cf7a0c47be377057d607a5d8819b0ce6f655904ccf67650960a4fd7621b8",
+      "task_sha256": "7a90e9a897c5a19a71c5147aa4effbcb25d90beaab1e689b99822cae1aefdd3b"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0250",
+      "provenance_sha256": "b295a6cc38684fbb28a9853455fb072d10ffae7c8cb6414691eab35ab53774d9",
+      "task_sha256": "af78df73707a764f93e0e42da43f58eb911eb1040edaf9be28fe5eb97ea00c2e"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0251",
+      "provenance_sha256": "e4c918ccef1e744a4fa0ba9bf7e2336d3ef827fc0b41ef31f3e211504e82e150",
+      "task_sha256": "48bdddf118bcce88e3d53249139af98193701ce023959c419c1a9ce92beabb99"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0252",
+      "provenance_sha256": "472b5468dafb1bbf5d90c8c4a57796ad1e6674c0df8ee84df28f1f6c6adac801",
+      "task_sha256": "2919bc157d779733761338ec2812e4a070ed8fb4dbbc834c9c70d9efd68d98ac"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0253",
+      "provenance_sha256": "30c52b824bfbbb946380e1e2d83c6a1919ec89da50968eef9fd2c36697f4deff",
+      "task_sha256": "80ce8deaaf39272e311ca9569e53e8aacbd717fcf3a24179e46747dd2ccdb058"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0254",
+      "provenance_sha256": "abcdbe979977f6e5db40588233a846223f97d59d68cc1295302b6f6dd46a32df",
+      "task_sha256": "14913bd87ad0a2e7ccdf7b50588c60e7f22524393fa32021cb60176f67a68b37"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0255",
+      "provenance_sha256": "1b40db4a396e8be7eed5a6d1df2c8166b1351a9db3dcb0fbdd37856e1bcc5dcd",
+      "task_sha256": "5e3017ad8af7334e06a474d066f985be4406104ebdf53b71d2c4de708da1b668"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0256",
+      "provenance_sha256": "473ca7533b08b9ce3c3d9497927f9d844ed48bb2821ab04034e75bb1e36b734e",
+      "task_sha256": "a0b81d6e58c4b52ea93f4b6342e57b259199e6e6fd1af68d8e7ef916be714e61"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0257",
+      "provenance_sha256": "c4dd68f542ef42a1eea40ebeaeaf939cead31c72d0ef1a10edf7d1b3096324e4",
+      "task_sha256": "f669b94cc17ffbb6d557c1686fcfe57bb102f19107ac68e97b737fd51317514a"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0258",
+      "provenance_sha256": "ef7fa6a63e107f657d9e0d6bc62bac161d5fbbad204f7f6d78fc12fd7e9714dc",
+      "task_sha256": "7f56469a0d042449f142fda628ae033a35ae460fded8168a6ddedd567261b378"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0259",
+      "provenance_sha256": "f8066ddcc402b9dddc8ba9d4efe481d4dea2ddf15ab95551a987ef65e4fe060d",
+      "task_sha256": "b1bfcc08af999214d5b41a645250b3ea10a2ddfca4a655e549410292afe886cd"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0260",
+      "provenance_sha256": "00b7c3865f149501b4ea24df4da8db5e47fb59b9629fe4b483d1058d306f7e11",
+      "task_sha256": "164aa73ed6f934572a3dec5d6a181f5808187d92e043f424317fd842e43c08da"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0261",
+      "provenance_sha256": "a998313ab46d6e4b7bcb7b99bd9fd71213d7b896e7ad2e9a0ee0cfebe54628d9",
+      "task_sha256": "e0e4f71a1030a1f5dce4b0b9a786d0f4d03e57b1ebc12c0a009cb68390f47e12"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0262",
+      "provenance_sha256": "6ceaee6bbf36924d369b70c4c01241e99e0a4a0a17b6743cd08d7f9c07ee6c1b",
+      "task_sha256": "b3f138ef714cdb24822ad31914fa17f5fbab342ad7a5b59ba414780d887b79cb"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0263",
+      "provenance_sha256": "8afca1aee6b7707db7b46528a3c53dae85a388ab7d99cc54780f338a552e2033",
+      "task_sha256": "679f05fc34f81700cf14b994064344eae08065fffb3b79045dda7be691aeea83"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0264",
+      "provenance_sha256": "02267f7cce1456807447906f51a77ec0ee83f72ca2097c2d25227cd660262a68",
+      "task_sha256": "0940146f447dc67ca586b2ef48dd39800835e823bca459f4f99ae878bcd474a8"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0265",
+      "provenance_sha256": "0b39fd917a2d73af5d182fa5441ea821e1f0b4ec7b4863c6d4ec9d7f3e523dd0",
+      "task_sha256": "f2c034ca86709abd385cc5749bb5a04d52fac83b51cca4a605b317264b824079"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0266",
+      "provenance_sha256": "527c0650a72eca3fdc998b45e4afe9836dfc86ded96013ac935865fac20d62e6",
+      "task_sha256": "4c4b8057ba5aeac7dba435eddc4e72c9724be079ef3f4702e381691722d1def7"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0267",
+      "provenance_sha256": "64cf36c25ba2fedd3f977a3304c3365fcfc3614b21e61fcd5f3ec56480836d8e",
+      "task_sha256": "dcda2a84551914a7b5d9d415f243cb519097d7205d401b8eb1350c341523bc4b"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0268",
+      "provenance_sha256": "40433afb34b784fd6ed26f3f22644839b8b663228f6a2e0f492b002f034a7c18",
+      "task_sha256": "bddd5592a02556fd86ea6ada3bdfa88fe6cfadf24c2c97136ad4aadbb764dd64"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0269",
+      "provenance_sha256": "daba59c6949d0b9da038875d88023d8e23c2906fddb8d02db631f68c052d5bb6",
+      "task_sha256": "41375e53eb74ad11da59251837624a23d30ece52274149d9fb41487c33078d24"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0270",
+      "provenance_sha256": "bb7243c9f526bf5722a1186f037e2f5d6c121f08c78b6fb3dd8ea32818e9eb33",
+      "task_sha256": "8b49376a1abe3b640c1eb65db4cf4d75ece442d0850582036e8c866cd992f800"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0271",
+      "provenance_sha256": "a2df8f6f56fa5f4b09d0556194a1c0269626be039a44c9aa12e283c6cb681d95",
+      "task_sha256": "eaeb73331524b514c2553a1e79138f91525019869982573611cb6d47237d1de3"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0272",
+      "provenance_sha256": "30bb541a4d941dfc628ee6d476533e655db446860af08d2a882fa2bb643fe68f",
+      "task_sha256": "086d0145339dcda0c313f9e1d53efadf0c7406e321611da775c0120a9ce9978b"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0273",
+      "provenance_sha256": "f4a2950a500977c9ba931de5df4e10181b2bace6a0fa2ad8d0e9417946e7f470",
+      "task_sha256": "7de9dac735412f9166c24d0229dbd89f58898eed6b35e5fbe150070ebe5bdce2"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0274",
+      "provenance_sha256": "b6efc88c910d1d352a8c8309f44aa02e7d176c09557d5568abfa45a50cb185ed",
+      "task_sha256": "5e755a653ecbc36f6de31d305c21832008b0cf6f76a95e6e21c6a8289a9157f6"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0275",
+      "provenance_sha256": "dee87dc13146b284f6bff1cdc7a06772e4e259d6f692a5104f16e7d2671ad99f",
+      "task_sha256": "561026bbee039ee75a47aecbec1259d89c79b8cc8e0bd6b950357c6c72068958"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0276",
+      "provenance_sha256": "dd31846d52da3dab5af3c603d80763446309a238f764747d9fc1a5a869b740a5",
+      "task_sha256": "f21581956013a850329c5d05ce8b45cb22bcb01fbfe8d13655757248a534c5ec"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0277",
+      "provenance_sha256": "abf04cbaaf53ce9f68ca38dd28e47546b001f02ffddae043672d79bbd73797d4",
+      "task_sha256": "d71a4344f2f6ef29ef331c41ecf8d766d83443840dcf78e5347a82c33ee872fc"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0278",
+      "provenance_sha256": "4ce5cfcbde3ba1363b72f1068c6df056d96fd0cf2a13e42ba605ad20b45dc31a",
+      "task_sha256": "9493917b933957df4a97d765328338645d10a74b6081e457178864fb6b2829d6"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0279",
+      "provenance_sha256": "ed78befeebd5a7f2c7a63aab5f344ec4fc1594e80ad49d667cbdc4daa9ad5ed6",
+      "task_sha256": "1e56a2df2d2a69d9e4be20bf45cd1405d8cb711bb37d7a94d3b0e3f422fb6ac3"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0280",
+      "provenance_sha256": "72bc1d169aedcf78faaef12e5cfb10a09d0cd3f942f0f8c08163aa6555427543",
+      "task_sha256": "43c1bfb8ba6344b9c9ff59e351e7c6fb4c1d6515d3ef152e5d4529d54b9291f0"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0281",
+      "provenance_sha256": "faffac18df775327a15345c911c6dd82bcd5005f5deb56901c6779bab5ab3f70",
+      "task_sha256": "d9cf2635740532c17e77d20cbf45baf7f04d28acff65e39adec3c3a425d91267"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0282",
+      "provenance_sha256": "61d550a67ab99c62fb84445552799f8f11503ddea41104baf3b17067a80cc2a1",
+      "task_sha256": "bcab13fc945f44bfdaf988284545fb744a278b00febd2e4133bf2a90209d29d9"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0283",
+      "provenance_sha256": "34fe2dca2d5aaa1b3603ea5a50efd2ae565bfafc3e7fee46f104e5a5ae63e4e9",
+      "task_sha256": "aa25ceaadfc2a161f2b74b932001ff210840d90a38495523e92977b083a681cc"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0284",
+      "provenance_sha256": "38328874598868281de65853fec8eb17c2f94c2edfcc56cdd41bd9f1205a7ea0",
+      "task_sha256": "ff2e3037833a4d6a3cec49ffa5c6f961b2cbf1d5f37c88669ab5313356944047"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0285",
+      "provenance_sha256": "f20e177be88c7bab708c00f05559798c6d46a5f7cdcdd1a8cae78fa1a9585be0",
+      "task_sha256": "563f6a0d59d048b17cdff1f9e06696ba864c6ec2a0bb648cc392bf34c55bbcf0"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0286",
+      "provenance_sha256": "e992f63375dc455e9301991eccd026edd88d906a5e0047515099602d6811bd27",
+      "task_sha256": "a7e84d545eb577e860b315b05723b56e4272aff1d47a3442c8766de9121790cb"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0287",
+      "provenance_sha256": "21e3b705ee2184a1843a3654f05b3abdb76d03b6f54790101c25460324631b5f",
+      "task_sha256": "f7692ebf868e2a2b922e365867ea6e64b2eb93984528f4fe9b4f13a0a9330c60"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0288",
+      "provenance_sha256": "a1993f522e85c01880157fe690b5f6735cfaf81bb718c8637b21e8cfde6ee1f9",
+      "task_sha256": "e4fa9b8c93abe484fa26b061ff2882ece2d6eb3de40e1fee90c8a60ef962f31a"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0289",
+      "provenance_sha256": "f2dfbb4f670d864335de7caa3cb0d433a5f52f1228a79b9feb7db3b1fffcc1c3",
+      "task_sha256": "15fbfd0f742ca1f692f386cc3e8a21a612f425ea24116dda6872276c816f43e5"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0290",
+      "provenance_sha256": "f468210f3623a39bb5a4746fb547c712fd6d5f516c0b2521fef77626a8a14b42",
+      "task_sha256": "b707859999748da50410ce7b51abe6eb1095695caa7194b6654ac8bba8253595"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0291",
+      "provenance_sha256": "64ab5634a73c5c786b346506e3738943b70a167c195947e3ceff032300984032",
+      "task_sha256": "747258cf076851dd7e7851c0d0d7ada8021dc5c9e1b163fbe4306b086a6bc801"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0292",
+      "provenance_sha256": "cf1ce1859b2364a1a00deb5ad832c552f48791f56d909682945fd58a8cab53bf",
+      "task_sha256": "c9ad656fa624d34a32420b1409c8506c4b3014b00ecc0c4fdcd5f7be91033c0e"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0293",
+      "provenance_sha256": "1f82c53d3cba550178671cfb37eaa2eddf0b569011ae4db6489e4bc232d094be",
+      "task_sha256": "9a461185ffdc5875bc06229dd3d040b3691ff18766bd42d845341dfdd9ce7ab5"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0294",
+      "provenance_sha256": "9690061c5551f9fcf157a43095d8a4203a13d7620339f6f7407615d9c2559c27",
+      "task_sha256": "977d68b8d3078bf28030b94295d54fee12bb8590b8f4f4d31008c82621faf96e"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0295",
+      "provenance_sha256": "cf79ba0b58cac8a89d78d8ab6733b779b6281c4b6dddc567881a7aa6fee8f22c",
+      "task_sha256": "94c436c8364c4acf7cc87996d44260f0ec194c487e0ba8c65033db810f30c0b0"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0296",
+      "provenance_sha256": "1c8c3fb84f6547feef2117a3fd5a3fe697a691836d5ae6519d32b366343bd131",
+      "task_sha256": "c752301fa004d769ff866cf745c975f7087a7f35a2e3aa0d23e6c7ca13cfca2d"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0297",
+      "provenance_sha256": "9b4533645de33eb68ffc86695e5a871fb7ce76ad009e4fa0c5bc88825a901b80",
+      "task_sha256": "1d7d7e29e1dfb11a8d518902c50a96e3eabd0191e042f867757af4df1e69759d"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0298",
+      "provenance_sha256": "62fb567b9872506d17a76297df4f30eb6e92bb571138e61d0eb5ed7ccc46397a",
+      "task_sha256": "804f57cc0756411b3fb083df23e48b92bab6355c6f819d231dad9eec6e60a3e2"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0299",
+      "provenance_sha256": "046f2519ae138ed2152fdf574a263c2f5ecb0ea7bdf01eb4310b20db1347d02b",
+      "task_sha256": "3c7e28e1e6148d817b38a11e3f034f25304f217f4336c0aa624fea92e1c79d40"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0300",
+      "provenance_sha256": "33d75246e8e1486c9884c8c4b0e03813102a22949738307f4b2632edaf4f46a9",
+      "task_sha256": "7c35baa72c32cfd32d1035a22c48daacf0b1c0e50665187adceb9d7920d4b425"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0301",
+      "provenance_sha256": "181748dad4cb78ce5f09deead9759d702ecd953404db94b3340a259509d7f045",
+      "task_sha256": "60d125319f6fdd406abc7b01eefef22c2964fb70b4ac5ecf6a54c2e9d1ebf474"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0302",
+      "provenance_sha256": "cc5f33d9d2816d447148953d6c64f170e9bf00b4a2287b8b3eab477a999170f3",
+      "task_sha256": "63551d77dcd0437f8c7b0fd08a45d62f7cc3c48b2087d9c059991bc4f130dc78"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0303",
+      "provenance_sha256": "94a25fa65b10a95715dacb97d5e44afb6a9700a724502ea39915af47f6f031d4",
+      "task_sha256": "4d699c67cdf5b67fcc69f59bcc42609db048a1332be1d4e669daad16902b4ced"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0304",
+      "provenance_sha256": "d96c9215b2f0dc3a78ee9b60da80aca5f0a7f903cf4d0e1859f534c8f17af41c",
+      "task_sha256": "0f66dbf04414349db73f3b3f218f48bd370542d56c413fca6c63e691fa481cd4"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0305",
+      "provenance_sha256": "7037d082bc03afefef36b15ccf1d48e4743793d7dbe8ab1fa8610297eab313e3",
+      "task_sha256": "e256ded5d41665cb9127d495a0bfbcd35bbd5b776e00e6c2c7542c08a4534c08"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0306",
+      "provenance_sha256": "35a2edeff0b4666b4c23b593acafd102b47f3e81d595321c745e869a8d80ab9a",
+      "task_sha256": "43f4439cc5d950edbb307f1760ba91bc353f97c006a9ef38181f42b073daae31"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0307",
+      "provenance_sha256": "8d0310014f6ef19be3f5c1eb5c38fa76bd9b241fb953fc86f616391632cae6d0",
+      "task_sha256": "3da908193d98faa1fc09721c689ec25f81382ae45a64416dcc8f143f92291b40"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0308",
+      "provenance_sha256": "03e221d6ebd51953c810208d1249cd60c063d371ba446cdab2c7107f4169fd31",
+      "task_sha256": "1ccb6e0c52ef90b6cd6a0af7025cc40e412d574b25e930b7c22f5e0734520af4"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0309",
+      "provenance_sha256": "38c6157b25de1b2eb667e1eeeddbc69e19da63a7d230e9c098c4a22ed446d607",
+      "task_sha256": "9fab06ea52631cdcd2603e39cc0f0ae8fd86892b82d409a440391e87ba565e11"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0310",
+      "provenance_sha256": "d0f88da1c882bc122b2e8eace83561ef810b0795c07ab4d2e55e8663003337ec",
+      "task_sha256": "ec9f2a3e1ecaf8f620229e1610854f4641819b838e04c39167f8692e384bd156"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0311",
+      "provenance_sha256": "29c4321693760ed061bdb635daf40cdd82b7c97b95daf16f39b23c74a48f8ba6",
+      "task_sha256": "a68974b1ce2900af92933c725ec3aa001767a0b79df3c8da9de7814695a70de4"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0312",
+      "provenance_sha256": "26242837bec3b5296d0d57c5442776c022b52caa1f4ff25b3b5eeffa4ed68883",
+      "task_sha256": "22260557960791d4feb87892b3d0d8858054207fc092ccf3771d78ec5d47ec31"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0313",
+      "provenance_sha256": "c2fea7251e1b1795b2056727571e8f13244d3b4ca3008e75fea85e1e6c8a99d4",
+      "task_sha256": "fcf2c33814fc8b76a0b3072c97a463c6d51da551941d8fb182e3a9531f38f0ae"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0314",
+      "provenance_sha256": "137a3e2a82c9920119632d3e56f51a372130512724b868a1884dd439a9e92139",
+      "task_sha256": "9363ff0e7a305f7ad6a134529af511355c122e2936e40c839dc1bfd444301e4b"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0315",
+      "provenance_sha256": "556e94e92731dbff28ca13e63a0e08a50edff3b3ef47667e7e2bb03e740ae2f7",
+      "task_sha256": "997acdc252de66ceb2749f92a73b3e8ea87617cb9f403f5b8fffcd9b3139a034"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0316",
+      "provenance_sha256": "380badf84881f07c2b5401d47957fd82f48e18daf456d5a1d7ded54ee1158509",
+      "task_sha256": "6b705aa3b0ee21a7d3e8fd183781ad9347e40d75f3d9aa33959403d6f977d342"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0317",
+      "provenance_sha256": "ae650e66653c46bd1d81440f5a6e41d5d316845660d219b55af2349766522e0e",
+      "task_sha256": "bb7c13e1309567ee3a25814e891ee2832a68be2b1aabd80ab8d617fc684aa1d4"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0318",
+      "provenance_sha256": "5253d91489cd8e52c440a1f8e5b6079703fe340f0a973bca5a37567a315d5311",
+      "task_sha256": "f69b6ba4c4364a4eaa9383470747047f43800d5977f9f3c4a366832781543cb3"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0319",
+      "provenance_sha256": "664a03641f43787ff7133be8d6b31c3757ccadea719574ea1e0e7a44622c2f2a",
+      "task_sha256": "387fd21db1888909b7b02297691ede4287a97adf89bb4f73fbc00e6277cc590a"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0320",
+      "provenance_sha256": "069de594097ff1fea9b67fee5dc6a7db55ff44fc6a8af64f38ff7282c4473225",
+      "task_sha256": "bc5f1eaefc9bf63c6f83f271620e52467ae515e893af7c56bbf465017eba95b8"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0321",
+      "provenance_sha256": "0f3fc7db40df5800f596878eb506d54e98d07f437549c9e29307d1082a4e5dc4",
+      "task_sha256": "3eeb8d0262452cffde79fc269767ef274aa20f0c0d32931ef7f5b61300a4e571"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0322",
+      "provenance_sha256": "edd6c5e9a003eb9eaa85c024908c57680369c994a28c06957f1a85b51d58250e",
+      "task_sha256": "881d7054adfe204ddb135218841360dde4878e4e0567dc8cec21eb1bc24103b9"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0323",
+      "provenance_sha256": "ecd17ec517ab50ea605b1a592cdff7fa5eb1a796ee82870e47e7527893933012",
+      "task_sha256": "28e8cb31d654cd157ed545e180cf42b4468cf42c0fae49971cd76ab885a2594e"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0324",
+      "provenance_sha256": "babd8978a00d197600f63611a6a7c7bd331ed27ac8e7ea6546f57056fac122a6",
+      "task_sha256": "afddd63624a28dd614f59554a4b7fa29bb987f33b25ea696d11afb260244b4c4"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0325",
+      "provenance_sha256": "9a7ccbd2ee30442a175c7ddc5c36d2a7098718766d117ebd186e9aefed4b78ad",
+      "task_sha256": "ff1c0cc9b2e2c2237e755aed1c0bdda547f2acc4fd1c0703d80e49012902ce81"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0326",
+      "provenance_sha256": "a295069024e779280a80ed8ed35d5a115fa3d40976ae03a4ccef60051ff32b8f",
+      "task_sha256": "871e77f03bd435883c903b2bec9cf13ce1fece70bc410b5d5865ce5eae451b0b"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0327",
+      "provenance_sha256": "6455dafe508ff83e3f3259ccdd643bdfcef3bf7ad21cf599fe9ae9c317aa2468",
+      "task_sha256": "18fb47af45965d2eedd73a7d4e82882c3fc0a3cbf0d1076cd4ff9100e51c5259"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0328",
+      "provenance_sha256": "f7e38520987bbae5f2d584b930a8deefe953e52efdf09461d42dc4cf4676e6ae",
+      "task_sha256": "31e166c62d230af982943f199fa235e21729920fe50bfd76db5808943912db4f"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0329",
+      "provenance_sha256": "2c541ec70afa69dcb9ef7b2ea320b71c9688357e22f3e1af280e6b6a2e143303",
+      "task_sha256": "7c5aec5d01710c4a8b1da6e1eb9314efc01de8c254541574dd13bc709805725b"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0330",
+      "provenance_sha256": "0fc98bd95c6aef7aace93c34b68bb8e8c632da0c1ccdfe751546bb484cc5b031",
+      "task_sha256": "de943a7376209a4ac61259fb1a2f1e7d3c68dde2e41b76114c44060722f45cdf"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0331",
+      "provenance_sha256": "205d5de38fcea5572679c6a869e0f149194d8a2292696b47e2a209a02de3224c",
+      "task_sha256": "d310967ceecb25ece1734095fa1eb9d6f81c1abbfb17739c75a0a88907525a38"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0332",
+      "provenance_sha256": "d433055a4c1c26f5d711fd936720948d49a94dc50025049658a2d63aa6777197",
+      "task_sha256": "a6d9008511d049b6b4eecac0bf9bae6545f29f393ef4030538d7a0e5833835ce"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0333",
+      "provenance_sha256": "c1607b2f6911bb044149e716ecd63de988efa0a4e09c472dcee09cd7b70ba6af",
+      "task_sha256": "337b8edb5bd74ea9df0f7e28985156d298939e42ca85265913430e31912f5f77"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0334",
+      "provenance_sha256": "12b6a244ca3e4dae93eb7192065731b7bd073ffb2c5bffdffc4ce688d977b601",
+      "task_sha256": "548afa3105cec4dfedee270640b9ca73fd602095bd6554a04e8b90540a08cf5d"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0335",
+      "provenance_sha256": "7326fecd02d7a84333c0accd10b0605a084d494b996c4f0b8b75f6cc87a4f527",
+      "task_sha256": "2ccd5c56ff7457151598f1777a369b6abe304cf99b7771a409c159f66c71e721"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0336",
+      "provenance_sha256": "9aaf693e74e9fc3d79dba810f42c4725e52f00d3c3e2ad79c811532f6acbd8dd",
+      "task_sha256": "02004fe173edc5ba50fd3fe109aa4be406b4705ced88e1afeefd00bff6d48a69"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0337",
+      "provenance_sha256": "94eccd059345d84911c16219f02eec58d04d5a3dcabf96d7fdb6483065011910",
+      "task_sha256": "99b41c9939ea0adf0d88558a64cdb1b8643c04986e35c2f2b7f055941f33ef10"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0338",
+      "provenance_sha256": "888aaa7aeeedb6e02be72b46c675fe7859ba00031123c975a1eccbbe50da617d",
+      "task_sha256": "314529a4da7cbda47e190aa203e1007bcd4523a0043b7a9d17e38840f01c532a"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0339",
+      "provenance_sha256": "211acb308af0c62933460cfc79af64ed4d94a955b296b833a744dc225f9cbc14",
+      "task_sha256": "d322b1e34d76f6a3e1c4429c118bc1b191152ebe2ea14333a588fd32602fb0fe"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0340",
+      "provenance_sha256": "c46c237a760dd465bd6aad34c285d6e9aea66ab291e4d01a3be508cf1a785b29",
+      "task_sha256": "cde88847cf8a48f9d8144d9a8d2a7b730ac386865ce3b4058d3797c432b228b2"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0341",
+      "provenance_sha256": "1583531006b889ff214ed56d0bde2caf0046475270aa3341e79d2efaeda4bd21",
+      "task_sha256": "f599e9f0d9d14fe6232bc5df63addff5994cd9a2ac39abd55eced1c9684e9951"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0342",
+      "provenance_sha256": "4d6f27a99dd06da7366a60adafb3bb646edeef6e0e20a87b31615a331217e555",
+      "task_sha256": "ab775df626860ddbfe2bf737315b78cb931dfdbabe35922875ed9db36176b0a4"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0343",
+      "provenance_sha256": "e98db96cfaf82a249f4bb420a8e55c2621138288b165cfd11e8fd4d6c5e58702",
+      "task_sha256": "4ce7593d847a7632742cb07da23e58dcdebfa43f2303eaa2831babe47b575274"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0344",
+      "provenance_sha256": "ff7015e73e6881b7ccec44ad10abea648956d770283e19177d4a8d95f7debdf7",
+      "task_sha256": "abd087d2add31059deea729b6f56d82f0a0d8633b1be6fb7da4dff44724f592e"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0345",
+      "provenance_sha256": "52293f647ad420f0affb2b0154540593b5da28e86baa0778bbccd9c236ceeace",
+      "task_sha256": "2935e482b05c4dca6679807f6916c3b56bf8d387f397d5304df8181010c0fc67"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0346",
+      "provenance_sha256": "76bf532dd7df916ae9598159aae7d56de425324838539b985a9dff0f211c4d8a",
+      "task_sha256": "8e2a024c5d2cf29c14e8949d0e19ab0ba136a2ab1af9fb3f71ef760b8cb6956c"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0347",
+      "provenance_sha256": "acc88b1cdc61d3ecb59fc43305a3f7e0a31df584438df96572a9927c187641b0",
+      "task_sha256": "0306f55e59683327cdf1086b32b223e16f274247e75f1ffb1cf43a8a4d374e46"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0348",
+      "provenance_sha256": "6a5b14f45e974daa7c1da794dd1a699d8300047d42694ca550defcc68eee478f",
+      "task_sha256": "d7d771d313989c132c1fa788cba6c25bc376738fed26744f163e4d6c7852b463"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0349",
+      "provenance_sha256": "1df1cd230d67912f9220902024f16f6a19b10a31a7c4bcca8f1038b78d0272f3",
+      "task_sha256": "63629141d578bec1c96e1af213a06005b9c084794eb3c0dd8d518552f5a9352a"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0350",
+      "provenance_sha256": "045d4757c52f46d384375b479146ebcf94f074569c65327a8dbc7d9c1eb89022",
+      "task_sha256": "16f358ee817b9064b340296d1e554183803c9cbc3e5d333dd003df148731ac6d"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0351",
+      "provenance_sha256": "ba9941e5e921003e13a90f64d5f5219c809a88ddadfb799406823fef4cfae2f5",
+      "task_sha256": "f0bb4809d0ac36a5385590cccaf69bc1d050fd2c62c2eb4207ba99c8bc2d1116"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0352",
+      "provenance_sha256": "9efed48c0adced6e5162187059bc7f8659affd6e51bc8f1565098db799a58f4a",
+      "task_sha256": "0a01f38ca24508664ede8bd666748a49bceeb3fa2c33642efba309fd98652645"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0353",
+      "provenance_sha256": "4226f332514ce01afd640c6ddec5328891e0b1693f0a99418c3fbcb4ab7d2b9f",
+      "task_sha256": "a55d881bbc4c47c6616107df702e947f7a4bd5b53dc97453cb7908b36f104a56"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0354",
+      "provenance_sha256": "cbda938ffb2c25643b91ae2d01b454032fadf038cd4b10eaad62d5a6cd026318",
+      "task_sha256": "4c3e8df330bf177f06db387834548fba5a3233f6ae0e0e64668a58a09a5f9814"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0355",
+      "provenance_sha256": "9e0b4e900a297ec4ebe05cd8a0136779aeae77d62433470e7535d3f339a875c3",
+      "task_sha256": "455c22ea77bdd9b15a4a3fa5f566ec342bbc16dad8711c16ef9247dbbed36cb9"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0356",
+      "provenance_sha256": "cef03a618c7e53507a5abb9bcd0ffa8580d72f347322b5bd402f3ff663399ae7",
+      "task_sha256": "4a440d9e858d0966511855fea35b268bfbd96c6e15f3eb0e47ff204f27fb6e7a"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0357",
+      "provenance_sha256": "a2f5efb26611d3cac2b33c21220a484289d3557edd4330ce355ca35ab24c0bfe",
+      "task_sha256": "523641de790e9fbc6614d3d5ef00ed9cecb40f76e55d88e4c4962c5b66d6dba9"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0358",
+      "provenance_sha256": "fadaefa7ef1219124e4277978aaf2fb8394d34f01f929e4571eaaeee1a758d8a",
+      "task_sha256": "aee14e3466f6766149c4033d697206ced7862580c831bad5c4e6939af2429476"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0359",
+      "provenance_sha256": "32d3b18288756a2c9dc08c6fbbc283a6d924853236f0c5c6f46803563a8bcea6",
+      "task_sha256": "6974d76201a17c20d253b3ad8f8ac5544de9884c2d82d8e5e24beb989cfbc99c"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0360",
+      "provenance_sha256": "3e96870904b9cbb231601bfd532db645ba848aa406bbb4655968305068e957d7",
+      "task_sha256": "3022aac8c38f03a04228428b947014626d174ca0b9db69087089c0378381ff8c"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0361",
+      "provenance_sha256": "9ddc72949937bec4aa2008bb841b7ed69002b2aae49b73ae7850465f45822f15",
+      "task_sha256": "62dfd8437f4ac7ae67a1253e0423d8574a1c24913bdaaabd340bb7ea5bcf7684"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0362",
+      "provenance_sha256": "fbc7e5dceb3730eb62c3696f5af801b21579ba3b04a60c35d17bda204bdc6590",
+      "task_sha256": "2921bd80798c122d78afcdd78a9d154d92256adf707b88b0ad582bfcd930f9fc"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0363",
+      "provenance_sha256": "6d4a4e299270b0619c2f93ea7100ac756abc7bf465b7972b429641bd0ae7f798",
+      "task_sha256": "fcf55c5c7ea6621e09b24034554e653602e275d8c6244e1fa5919f402179b803"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0364",
+      "provenance_sha256": "e56b5365bd4ddbb9e13ac61aae7f666da13f208adb30a758539828956ff384a1",
+      "task_sha256": "cdd44990cdf0ca1533d0fab5b9b7c8e0afda5b649bed89d16f17fb3589b3bf38"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0365",
+      "provenance_sha256": "faaba18a8924a8fc8df753393781f57eb97b848b46cf12768a40a3fb10d9a739",
+      "task_sha256": "3d9e7c46e31c4907c47ba40fd98fafc603d9a563f8963bf4224f128ca1494318"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0366",
+      "provenance_sha256": "7e57385272ee41de3eaef432abfa3cb871ddf1797c96b049258b948275ec3690",
+      "task_sha256": "c9a2e800c12232631fe9baf5820237970aad00ce3e3eebb3f7fab341f3df03d9"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0367",
+      "provenance_sha256": "2856fab438841467cbe3e4dfd34d76b7a42c030772e2c6780d9ab6549b1c1722",
+      "task_sha256": "31b22eecc913d266a2908b256b8092d77779617d13454bc0c3ac0d8d8291e2ad"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0368",
+      "provenance_sha256": "eb6c70541644f302a8d4cd61c17405946c528b70bedd250186a9e21dc62cd574",
+      "task_sha256": "63f49eda1f238824cfbef2a253e0c7b60c2d2ea28b463bbc996d5b10b726a7ef"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0369",
+      "provenance_sha256": "92254ef091cb3660fa58d531860972865de3c9a11b0a0d396579270d9cad65bb",
+      "task_sha256": "42140080db4e9edf73c809019313e8b49f6578bb3eda7fe3ecf937524e55643e"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0370",
+      "provenance_sha256": "518a218d8b96d8067b0e5691e4b8f7df6ccd83b046ae0b95cc6b31af118e1c4f",
+      "task_sha256": "d526a45fa931ae56e52114557f74d000828476d36289f1649d502d97372720a5"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0371",
+      "provenance_sha256": "4c12b25aaebbf7801706a1aa5ffb321c78b068189a9e675e30dc555df98bc002",
+      "task_sha256": "cff958f0c410c58503ad85740f2f265c1b326fc7492952f2e3da6d3cf71680d3"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0372",
+      "provenance_sha256": "4ccefc01e0edc7d18f9dbf6adf613312921edb9593d3246e6300d44f2836e9a8",
+      "task_sha256": "94fa3087a75534025c2a4abbf76cf12f24a298d5cc30f8b4ec7878fdaf6584e3"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0373",
+      "provenance_sha256": "882e559f836eb2edcc5e3c57c08d0cfc91fbc8a249974d9576a2bc0c0307de43",
+      "task_sha256": "6754c24a5818dcccb18fbea18a3478a9536312e024b52b74e7705320f3c23b77"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0374",
+      "provenance_sha256": "efd350ac3d5c8b096e8ae7a46a984a324092e59df93c5ebf190ba0c941164243",
+      "task_sha256": "142d8a6222169ef655a94e41abfb51b571cfcd97768372b91ca9f155c3e7ac5b"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0375",
+      "provenance_sha256": "109eb12986f6c5d03a50c4c9f00fab7adb28a3d986e658432d9b40204da4f62a",
+      "task_sha256": "f0b5ae7640035270802d7dffa694d9fba7aba9d7878fcb09756fafb642c09a0d"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0376",
+      "provenance_sha256": "65e0c84d15259041593621a80ecb0cc0b4b7c20b5fde5ebfd01f6e55391c4201",
+      "task_sha256": "0db6675e1ca5bab7850d4953f42b7870703934d6eb8cad12620f245909480691"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0377",
+      "provenance_sha256": "8db49fa40a4c18f4ba0ff2553d3a62a4c27524b7bfb379bfae4c45810f2eb68b",
+      "task_sha256": "b983e4f66627a4ca6a55431106e4a27e0afa191994ed7599b0006491eed34c77"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0378",
+      "provenance_sha256": "a6908af63e0b6ae59c6cbfe9f2886e847770e8d9be79db753cffa8c115bdf719",
+      "task_sha256": "0834c8bd2fc807ec6ca4282cafa3a027f224d01c2fa6bed766461138e45d8712"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0379",
+      "provenance_sha256": "4901e53c8733fb0d01fd326c9d9fdabab70d08a3a5f33827c1e4e0fb8815174a",
+      "task_sha256": "6ed7afe787ca01724d21e9419ab4dadb2ea87981b9432b659cbd00a07e735a3d"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0380",
+      "provenance_sha256": "7182ff14d12d82b1ab3f2426124650f6ae27da4c8657f20660bc79bdf86336ef",
+      "task_sha256": "1e42d66eb3761319f3047c951f64c65951adb2e1c14c093cbdbfef307846e872"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0381",
+      "provenance_sha256": "b32561bdd534e9333eccc1f8b2ab90e93e55f6d3bb2081b6b2c863d6715e5ab3",
+      "task_sha256": "3c1581b4a650ba34bdaa4c035bf0280246d8d863b72aa13622ad0d8d62d63065"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0382",
+      "provenance_sha256": "523eee771c50f81e5e9002e1278c8bf8dba7f3ed84e03c5516b8414109e36cb4",
+      "task_sha256": "d58ca09970dbcc667dd12c2e6f1c30137d0904adfd1d2e6ae4e09ab4477ef0b2"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0383",
+      "provenance_sha256": "90dc0d35d47740190a8653c451ef2285890f6a88b3b8dfd2b9018c31b0257dd2",
+      "task_sha256": "c3e30e84d908f468be287f158a051327a035ab87a17975d05c264facd5b95af3"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0384",
+      "provenance_sha256": "20e2a314530b1d94e4b0e7e1025e0039c28c40dfec8f59ca70eec432ab2b4b89",
+      "task_sha256": "08d713df343fe1e19ac47c9d9f0f33b8f591fc9576292fcab0e8f7d2069085a8"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0385",
+      "provenance_sha256": "9282db98620c8e2ab483441db1718ea45471b92ae8ff7ad86020062a8e429162",
+      "task_sha256": "780332cb70fe812a487a3938e36b9371bf9e1829ad0588ace3b2c70b465db50b"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0386",
+      "provenance_sha256": "151744a88bdb32ddba8da2a08775d407da67c22a478b28b55ed993a1ad08b16a",
+      "task_sha256": "545cb357b0c44820a41fd47e0703a68b912944600d51ec50840461aa926290a3"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0387",
+      "provenance_sha256": "4e4166d3214cc142a29040e58dae537cf5f52561b018774abe1ffbf12d5fec99",
+      "task_sha256": "4ae2db6efabb0968e9929c50440e73703da78e349149b47fa587874d1bb95756"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0388",
+      "provenance_sha256": "fd6676847d95a4b19577880da926f997ae7c63fa15d176ed6418c248f5d5c8ef",
+      "task_sha256": "fd819560859b069f32d01870d6d91ccfb27e6e4b2ce37f71ded35534a1343930"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0389",
+      "provenance_sha256": "922182a998c30f15ddb1e4f45d57563b8047f352ced45a9f5cbe90f58f334f5e",
+      "task_sha256": "7b544917ecd25793dfde7f80f48e0c2234fd35b845f2de4eeb3c7cfd518778f2"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0390",
+      "provenance_sha256": "bf4cd282ca4c36b18b40cd66355a206254bb68cf298c94b663586d0c0778a484",
+      "task_sha256": "7c87534ed697f02e7f1082290c5b0b5c1f6241e3b4be0e9006e628584da0a411"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0391",
+      "provenance_sha256": "913a017f7fa8a22984cd98d68c88c55138fe779d3024fa52000439cf75baf788",
+      "task_sha256": "ae5ec4a791a56c88117be41d4da5574daa05707771bb2ff051d324d0b4a8a051"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0392",
+      "provenance_sha256": "94579f7fbe6cc56c1f167e93cfdf554b3141156a906254f84ad8009d66e78032",
+      "task_sha256": "8b4fad8ad9bbce6de92c38818167a6c6afd4fc768b24d1c5d9f0841055b90549"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0393",
+      "provenance_sha256": "5d828fe452907f52d1554e16fef99decb8eb181c27fe1cb2aff9ba802fe73c17",
+      "task_sha256": "5c219c196cb379b92cf1c2044170cf76b248e9244e2f000c0a717e5c443091e4"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0394",
+      "provenance_sha256": "2d37787eaaa88536296023d60e179f8b3bbdd9ead9fbedea1486a1cf24d2d5ca",
+      "task_sha256": "8f6c6b36eb86b5df6896758136146c35b1ccc4271c451887a25c39ac4c7f6597"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0395",
+      "provenance_sha256": "3a442c6bf1148cadbc2fc6d4a7e2031dbf3e9f0681eb8dc5060fcac53eb14933",
+      "task_sha256": "59cb2de47312bc368b9fa1732fca3ee3fa5efec5b15d6332169d6c2a946e563c"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0396",
+      "provenance_sha256": "cdb6ccad9793bcf28721c5328db219bede2079225e17eb71487ae72e7da7f5b7",
+      "task_sha256": "4ad40eee182d38b81da31e4b39c09bf0ba38d204234a5f24e322c018e66c6d88"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0397",
+      "provenance_sha256": "bc83a1429dc2ce5848b4661d2ca55a4277921cfeb74e83046e5b3e94c4c70954",
+      "task_sha256": "68e4bc06dc3c5305fc4262a37f0eb83552dcd75ae06e4fe0a1655870f89feb89"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0398",
+      "provenance_sha256": "c79341e0c9b17e1cb03cc1ce47a4b760a7383b2ab7f6e7824c998dfb3db5190b",
+      "task_sha256": "98318dd330b40fcb4bea9d541c16ac7f66b25630728d9c124739bc902cb01c02"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0399",
+      "provenance_sha256": "306ba048feb06673ac995f41f4a5efca045a15f27b5e1687c8e9d663f1496043",
+      "task_sha256": "7fb08d9eebaef38bbcb1bb18832cf3c9e7f6b738e8ea452f700fd35f787ce1ee"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0400",
+      "provenance_sha256": "dfb9ff41ad211354b55c5031b941a53a2c8ff4013ef947f507383ac88bd0b256",
+      "task_sha256": "025eaa87a81699bdfb00bf07afd50d1f697141b2927ffdb7534e9b58510a5908"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0401",
+      "provenance_sha256": "21c6c92113f5f6853ca4a5cb0414c6eca1e4eebcdb36b3489edad18ef5162427",
+      "task_sha256": "929a67e6d12204ec3389a24eee6079464a3894f7bbb62d2f06b7a2152ffbde5e"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0402",
+      "provenance_sha256": "bb37ae40bcf7fe00277b681bcd18b202da9fdbf9b1d113b4940b54dfd2eab470",
+      "task_sha256": "f842ca2d5e13c381b460d3a98168efaea028398605145151b1d1bb236855c7d8"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0403",
+      "provenance_sha256": "558761a1f25d2fc2b049891875c5a5704ab94da31ae1f668dbc63ba3b63fc6d1",
+      "task_sha256": "9f458af40b2a53b629c3bdbbea6dc65a4158b8991730a9485a044949b89595d1"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0404",
+      "provenance_sha256": "d63c091a065ccf9416e3ce94c9d827d2404a790208ea1117096f7994ebc1b5e5",
+      "task_sha256": "b9a5ee07e1285a5ce53ebc99995e07c6f4ae3087ecf64bf3f98cba673be247ce"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0405",
+      "provenance_sha256": "d808b1be1bb103f994d0527ee25027f05bea2a1f205084666c22ad6ba8b649ce",
+      "task_sha256": "b20991dd73da82772bcc00409e105d6ade96e8bcb5c081591434e24622eb354b"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0406",
+      "provenance_sha256": "87da14fe78e8ca53a89edd1f499b56bcbfe98955c7a54ac8fb6f5c565a18cef9",
+      "task_sha256": "63c41ce52aaa2e18ee8c76a438c64992afae001e2673c6c4f5539caca729db37"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0407",
+      "provenance_sha256": "76b8219e621ebd26d0b25a0548d071c6028bd57ded14a4bc189af72ca206acf3",
+      "task_sha256": "f5d2fef79ce7fe79c59bec8e4956714e4301f00467f368c043c483f006b70d05"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0408",
+      "provenance_sha256": "35f1d51ae1986379c2c63eb8d718b5929e2b6c3f601d13500c9ec5a5f5dedd51",
+      "task_sha256": "13c3c30a5ae56604836c9172f9b9d99ce5206d811720ec597a4c4ac71d043932"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0409",
+      "provenance_sha256": "1fcb86e98343186a1cd269aec22cc809bf29999de85aa71e994e66e58d77623c",
+      "task_sha256": "101bea4d3c4219352a9cf05e8b94cae6ef885d1719709801cf87607fd36513e6"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0410",
+      "provenance_sha256": "0ce778f09fa6e2a42504f7f4e0b96b35711868cc7fc8cae8a70230eea1eb0b0e",
+      "task_sha256": "df635da8fb19f89ad19beb554206b5c1beb323e5b4c332adaf04c244af1ea5f0"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0411",
+      "provenance_sha256": "90d26aa2b062c8e3946ef896943047974b3602f699b36543032331157667ccc7",
+      "task_sha256": "2f5f3a7e75b7d48a1415e434cb52588ce0d4623f2ef7b6f052efb01f62c5a638"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0412",
+      "provenance_sha256": "1d603990e8479a27905e7163ea5435a9c384e3048959d381ae58bd6f5f516735",
+      "task_sha256": "f7ec8379a6b10fcc0f93d9b592973004fb9e154b097f8d9312a13d9d34d2e4c6"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0413",
+      "provenance_sha256": "75789534badee1c961d001c8a1fdb3b99f65b911bfb534132f536c32f78a8b26",
+      "task_sha256": "d07e4e3a9c437bbee8af58862e9ea9f63a3e396f12a342e5cab39269aeabb2c7"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0414",
+      "provenance_sha256": "9ba17c4f0688bb4da39cc1ac66a55b7b04c99811d7bf32ac76fe75a3e9bf7578",
+      "task_sha256": "4c6236ff9c3210bb4312932dff8f4e311a6814dda10c906d20c14a6a5686c9ce"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0415",
+      "provenance_sha256": "795df5c13eea91da46f3f1a1f8f2897192dd559809d773f1a5b806b39092b0e4",
+      "task_sha256": "cf1799a04daf9e4f9958437c94757729126076f8080734ba4a75c91521a0a37b"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0416",
+      "provenance_sha256": "d3ff29b8aa01b544b79bb1038dec2621ea3d7f3d3d5f99366bc6ec17477c4c04",
+      "task_sha256": "4a6822ff91fb15aa3b119a58740be6ffc89196715b771c47a355507ab3d929c9"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0417",
+      "provenance_sha256": "a578bb69c8206ab0c50605dd4144ecbdd27901a6d9008e8f8e6b46f221b70c79",
+      "task_sha256": "492fe225ac41ab2c52eeb82b3adc11e3709514512e33a9d5babc297ca939aea6"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0418",
+      "provenance_sha256": "ce63241fd9c346072dd6447d0f51d9435919c6ca7f52fe0fe31a816039d66286",
+      "task_sha256": "7a1b9fde3ee88605b57baa530a9249393477c24c0878636494f98128bf6e2beb"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0419",
+      "provenance_sha256": "243ca9e66def608d912e055b7ecfed9ebf5419659652607a766a2138a5981746",
+      "task_sha256": "013eedea3cebcb5e332c5ba3048f1c86817a9b2d983d8fb593d32c4d258ed8a2"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0420",
+      "provenance_sha256": "629e3317e3661f1d0a9d969006e8bc32cda562742eeb2f331c48cfc7ec7c7fa2",
+      "task_sha256": "762de281b5e3079ded8c989bc7b0e5cb55ff201f799fbf0e3521596cd805a0e1"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0421",
+      "provenance_sha256": "4f208b63b7d3898f60e0f583064b781768db6745110d690fe2716a70941ee9a6",
+      "task_sha256": "8218b0ec687e256f01ce9787e89adb35ffa660a6e7cd550466a23f1011dbe0fd"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0422",
+      "provenance_sha256": "282259395ced0522dc2c13f9a136b8bff62b9f6a2e1724910bc594a18b514e3e",
+      "task_sha256": "ce8fb0e23bc90d826c641b634f43dfa7de1a121d580ac2e872aa0c3f59530567"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0423",
+      "provenance_sha256": "f1b74ff105d7d0a18a62d7586a399016f1ced7897cfc49c92457bbb01caa0795",
+      "task_sha256": "ff406cde78bb5927728e2ad40b199e35a438324d645d05ab06bc84ce1b54a989"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0424",
+      "provenance_sha256": "d26cd19b2a83972d7f184a51b206221e89e04be02a6ed7bcf0ab714179e71a25",
+      "task_sha256": "32c368625bc48a293bd83731178ac5a780d94ea866b0953062c4c437065cb8e8"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0425",
+      "provenance_sha256": "f6dc784f78218af8db2cdeecae88df9ad54d9fd9e6cce360ea090051c6b1391d",
+      "task_sha256": "4bb8350af3f7b8994a006073655565e30dc93f248be79bb196b221a1d12980bf"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0426",
+      "provenance_sha256": "4d3b76f45803868783f45bfadbf2645c63bc6b18accc7ecbd2ca91aea0e5f7c3",
+      "task_sha256": "4409e7f8c27e7595521950391a7dd1674752b070bc51c79fba00c6f386001f36"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0427",
+      "provenance_sha256": "d879dc3af31581a4709663d24e364498122ee76287a3302656fdd39c65d47cdb",
+      "task_sha256": "d2fdb8d778d66e561717ea39c139914285de293f4302190572f13a30e0eabae5"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0428",
+      "provenance_sha256": "eb0b613d8d2ce64c0901b0d5825d94eef58bae950a9688a6aa777cbb6d678ac3",
+      "task_sha256": "62ee6f5d579888baddafeca1dbe8f500234948294817b65d47c25a14788b67b5"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0429",
+      "provenance_sha256": "becbed99faf83cc153379a2fed22d05531342e5e6d9bf92479128efe59731cc2",
+      "task_sha256": "7fde979f698cc82c7de3965fd2d85c62fa9849b80789ac5e3596e2602d250a06"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0430",
+      "provenance_sha256": "de58b39c663261a98406f0feee848f037ce6205b03a26b224118d974ccbaffd5",
+      "task_sha256": "3f0c0b046b82234193f8bc9d60efb64735ed06578f12a2833718b922f83471d8"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0431",
+      "provenance_sha256": "e61434fa081a2caa092f4e4323349897b407606ecc71284ad062a00b839961ad",
+      "task_sha256": "cd7847801deb5e2f75eaf1789772bd623cec722a38d03cb55a4cefe1004506fd"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0432",
+      "provenance_sha256": "e696d0639f97cb6026543ec14ec8fba2ae4cee75770c822bfe43be78ea9c2212",
+      "task_sha256": "b636af8ddd5745b9c22e42a24443530b2ecc77bfc9e6b2fd3139d14077960293"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0433",
+      "provenance_sha256": "dc2b8b81eb013adb0f20c7d992690652e827bd72e2063fdd9d9816fe9e05c32a",
+      "task_sha256": "b58eda9c772793a5a9a78fbc5ca9fb456671f0629d4a4d3f86511e18f1dda3f1"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0434",
+      "provenance_sha256": "c410a07fef9dd7a96f893e32eee6b3d73c4a4fdb367f02607c055356ad9977e2",
+      "task_sha256": "4564fee03eb130f591deef0d33df498f27b21b6c1ad9a4fcdffa9feddba7c54e"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0435",
+      "provenance_sha256": "dcd9751ff5b6920fdd555713729daa4c4958455d93ef5fdac24abfbba9bd330a",
+      "task_sha256": "d80539e0e6489b6d0007de4fff29058dd29f90a747624c934aec0c4888263f19"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0436",
+      "provenance_sha256": "5d27deac480c8e346560d701611b31e22de9f620504dea94e81d7ded375b6763",
+      "task_sha256": "0482f2cd919470c3f70c529dcf23b32756131acd1db59ca7152816847d5f1e49"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0437",
+      "provenance_sha256": "3ed15419e1f24c97be775429f0651c5757f63ab4e266943316ffd34d127793be",
+      "task_sha256": "8d8146f52b76623c7d43dd892aefa853de78b2e892795d6cf85a38ed4cdeea03"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0438",
+      "provenance_sha256": "c7ae38bbee3782405c6d62dd6468da2126eac057b8168919aaf6fe1bf1e27879",
+      "task_sha256": "8f2a1614dd4f5184e06588bea481f1cad6de95197adfd683502ae155d14ab29f"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0439",
+      "provenance_sha256": "d9e8b7432d5e02d5b761e292035cbf7983dc7c497a45aef16ded3cb74b2cafd5",
+      "task_sha256": "e8dd8662ddc6d84675401e8edceb70d24e48ed421609a698b0d01db513b952ca"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0440",
+      "provenance_sha256": "2e1ca0099f8826abb175a93ddf33d849535d77bd3d6b3a5da949de0e4ebac923",
+      "task_sha256": "d13a400c3f52b291ea52c7eb1576b3c99b1892bb0ddc10866ee9e0adb870c99c"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0441",
+      "provenance_sha256": "f68248eb56ed834c3af6d08797e32efe87ce69e0bae46ba43b3bbbe679fcb31e",
+      "task_sha256": "2c249404803eebbddc33bd3f5c702849176e7158757ebd34ca85cc3602548788"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0442",
+      "provenance_sha256": "86bc64dad69466a95571ab431707d00b343a9d107e7366077ff1375c127f12ee",
+      "task_sha256": "994e3f51ec71420cda5969c52ff5fa7eae652c12489c3fd11dd43c8f9a4a9c4a"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0443",
+      "provenance_sha256": "f6d0a6bfe9d5d3146b4b215f9c7c35132d8ff1d887574d8071c47699bdb4df24",
+      "task_sha256": "cc67dc648d9be8f0747314b52d11c497178b9b0fe87620f73c31bb7b14e28602"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0444",
+      "provenance_sha256": "5c35e57782a0239140c36b4af4ad1e920a9fb3cbfe8bbaeedcaca433dedc7374",
+      "task_sha256": "734889a384c0063623c528e08353ad656a0e33d83bd7a1db88d22afeacdc5e26"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0445",
+      "provenance_sha256": "cd5e8c327710ba4898f81f606102f3baaae6651b0be1938a4bcd7dfe15826cef",
+      "task_sha256": "035eeca05e1e4bc45e0d70d2cd0c332b3d02659e7e3139cc9ff6828b6bd86852"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0446",
+      "provenance_sha256": "c4085c0eb4690bee20d8c88c204ede2d575da8d61fd7fdd44608a94d62aa8ce9",
+      "task_sha256": "0feec198bf1c287f472530b764667e1f535715cddffb48f679e13cb7b9da7bfe"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0447",
+      "provenance_sha256": "13f5c2d69b89a02b5ce1195ca9823c3666651864c1c4bf6f8085d7f7f6510341",
+      "task_sha256": "c7eedd3d28828a6ce828daaec955d7ff547245875dc572099d4cc6d75734290b"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0448",
+      "provenance_sha256": "22d6b0b04ad0976fe566e6f10b2e0194367344c1731e5f72c815482d05cbeeef",
+      "task_sha256": "4dbc5002ef093b8fa02abbb81489ec60a4903a86165f41acafafb7daa17465b3"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0449",
+      "provenance_sha256": "901690a75c5db7af3599cb94309b48c89745099b8ab31b6c2aadb91545b9dbad",
+      "task_sha256": "46ec3217ca185ab3b6457865a2bf462a4dd8091dcb2928e0f31d260c3b304b2f"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0450",
+      "provenance_sha256": "6734626c2dfd670f0327edfb1e8ff478f61ddd4ab7456c4d549406d427e961ac",
+      "task_sha256": "c58184143c7cac7b41c1034a44ee3f3c67690332c8130f0cd8948d998ba989ee"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0451",
+      "provenance_sha256": "4adc0843060d9e6da47c5beb174200913ef011cd9d9d028a82d7aa7ac810acf8",
+      "task_sha256": "e6efd93a540db52458e855086c5922d023c45c5ae8c60795e87cfd780ceacf4e"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0452",
+      "provenance_sha256": "5d7fd29a7e52e64277cc5353e13d2c6044993db058234e314bac0a6b8282a7b2",
+      "task_sha256": "d267a434c38931d17af2cec7d6045fcf3ffd939d73683848238f8e3a71823718"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0453",
+      "provenance_sha256": "748468f9dbcd473eaad2fcbf02c46eaaf464f82da29be616b78c5b827ecce5c7",
+      "task_sha256": "6e0617b06b891252c533bc0163078c3350f088bb109b131e238d38eddbb1da03"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0454",
+      "provenance_sha256": "97f3588a2b3eb6349d282ff7b0f0622fc9b3540c832e895c46ee9a5abf4bb660",
+      "task_sha256": "c9c4f5353bb852713744d53018b25b1404f1b72128b3de39f957df2284215dc3"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0455",
+      "provenance_sha256": "f0fa1921a5b4d546d578f5e65d7b70b21dd5d775bd3984a6f3cefcc7c735b097",
+      "task_sha256": "78376f4e84158c68c89c268adc6bd54d364de6505edbe1718efacfe4f6085c74"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0456",
+      "provenance_sha256": "226684b1b2cc1a6ac0672aefe253e6c247c56f0c70e7d7c095eda9ce416186d6",
+      "task_sha256": "4cb76e7b2475295d26a2fc391965205129fcad715540048d1821a6b90d682285"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0457",
+      "provenance_sha256": "54d9b425e70e7d4265529b3ce21b014d232840ad39c7d08e87e8ae9363b5a59a",
+      "task_sha256": "c850460c6917c8546c7bcd22be126df445a85128dc38c584f70920eeae14683b"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0458",
+      "provenance_sha256": "a8e2604c39d7ca82b6597cd706ae2c0fd07cc142d12a2fd47cd3c3c6a6afc76a",
+      "task_sha256": "7014c00b832c8c6cf6c19d11a052d3de9eb3817805760673e198dac3b007aa90"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0459",
+      "provenance_sha256": "d2e86fe83e1e2f5bdb5aaeafda3a1391f18e3250114c9c77e9f44c5e2c0b53ed",
+      "task_sha256": "a0539a735422bbc317c8293d7cdbaa9d245f3a8383d666cd47b047d92f3ed08c"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0460",
+      "provenance_sha256": "1a5f2c49de89c80ff547bf23caa781fff6fe246613580f0e07312d921619e499",
+      "task_sha256": "09e3779dcf754929fbdbc70379a2df77e757b708dbd022a34e46b4d9ac329b05"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0461",
+      "provenance_sha256": "5531ea9ce8e5efe0226c6aa545a97e4e265765338a0840e38193c731ed285a01",
+      "task_sha256": "29ff6e6e7620d74ade9279940fc6e81ca45f515425208831969cee336d6d07c5"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0462",
+      "provenance_sha256": "a99849bccdbbadafa4f70c803e0f26e7f839411db2d3dce7538e65d617201c88",
+      "task_sha256": "bbc38322676bc506acc7570bc6fda0d81ff2581869f2d01376f3bdf135a91472"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0463",
+      "provenance_sha256": "1cfca413814c841ac3074d672325f0a661ce772543c8d916019cca41bda7d44b",
+      "task_sha256": "3f426502deabf1ef163be8a50072bdaffa81bac6136d4cb68cd05a8f337b01c8"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0464",
+      "provenance_sha256": "e3354ef79fa7c776936ed63ac018d59fb2e90595bdb305451e91df2b24513565",
+      "task_sha256": "86b66bd0c5e8430fdc235dff76a05fcb47f854e2ec4817d9a66a1c0a17ba3835"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0465",
+      "provenance_sha256": "07d89f909ee4bfd00ac6e773581c74481d5bd6db1fcb51e2d34276d2e0fbe549",
+      "task_sha256": "6d5ebdbb1ea2a3f8b527ced7820d410bfdbd9785f94d81b0d267eb0ccff002f7"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0466",
+      "provenance_sha256": "b82ad4779cdd88d277e779bf67a574aaef82c802b64e7bb373d387fceef7354e",
+      "task_sha256": "952dfc7f94a37a41817213a8304bf9de6fe068d8b9ad6f8cfbff3adc6057a35a"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0467",
+      "provenance_sha256": "44efecbe7629e1cb88ca7af43c76d13b8b4680c19a0294179e79197b77d1cd33",
+      "task_sha256": "12472f12dff8072c5ccba7d8b67c3236e88136e7ce53e835bb2e5fbd1fcd9aa8"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0468",
+      "provenance_sha256": "3b4ee5e1511cf1970e2749f10ef5d3cb4ec5842a7ecd3c5833ccd9ca62a23454",
+      "task_sha256": "952b5674a9d3281491c112e96390d6249109214fa546f551cc9bec8443afad44"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0469",
+      "provenance_sha256": "c633d7ba633c6d111330048a72f6817acc9e8d90b71c85d8bd1e0000dcb61f69",
+      "task_sha256": "d1bbc785fb11f452e6cec3a67d3639f76b669f63ee4751456bfcc505f26ca6dc"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0470",
+      "provenance_sha256": "eb57d0c3a7694b7b8d39e1859ca5427339ac14a829bd8398ac7a14e9fd21edca",
+      "task_sha256": "d8812a4bbfc3751acc78bd58c93f1f6a184e969c4c4855eb1903086902cdcb7f"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0471",
+      "provenance_sha256": "362883673a1d5eac1d386f3b55a7b81548cc0f64c388976328b3157dca0c5e23",
+      "task_sha256": "9703b63add8591998ce85ed2f86d24917780e9bd2f7af8c8565a305dce99602b"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0472",
+      "provenance_sha256": "7c73b3ee0f2c81a84b443e7ce4c15622e07eafeafa6feb641af0e1aecf59d8f1",
+      "task_sha256": "acf075146948e7e602ae015130c5e8b1450e47a8e6018bee0d9e80aee9c00b6e"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0473",
+      "provenance_sha256": "82d0ce15d34f036aaf6ec0d222c786c0e0d1a848626ff9718db7d4bc88ebf169",
+      "task_sha256": "b59809fa5a1dfca9880814152b424197ce0629d9eac4effd38ad5deb3e7f761f"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0474",
+      "provenance_sha256": "29442b779fb60942f7551d57673c61e46ef1323f6ed37d5e2ed7c52f003fc6de",
+      "task_sha256": "ca7f4d9cc3225026e798cad3260d4acbb44232648ecdc1465b6af2c22857bcd4"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0475",
+      "provenance_sha256": "577306eca2b6b46440528e6ed888dec2090549f2f4852fa67a7de0ecf038e3e8",
+      "task_sha256": "97420d9b006dbca19c6e404ab82c1fcc6a4e60774226b609864789a031f26e04"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0476",
+      "provenance_sha256": "82b32fe0cd4f8baa0ac3a968cb16507379d65bb14e72b8cf1896c5589a00856f",
+      "task_sha256": "50e5bede3d68df31ad6f6c6987cbfb044e3965bfbdfbf9954a1d71cab185a7c9"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0477",
+      "provenance_sha256": "38e4061bca7eb6d6313c6790bfd9f10f7631b5601eaa4d8edb4e1de2198070b4",
+      "task_sha256": "1447e43c0027456dd1f309a301751a9c58105a17e047d83104721f5243c3f4e3"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0478",
+      "provenance_sha256": "422be77f01ba08b254af8bd4d72609b3dccedc1a75b7346a70b749ff065b7bac",
+      "task_sha256": "e41d15a8486852158de277eae63c5d6de568c1dffe653a587fb1cd81a7037b90"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0479",
+      "provenance_sha256": "e43aafcf190848e39d6593ce3af146ae1d4ac3ba6cf62d7d3044a0e78dcf4acf",
+      "task_sha256": "83f070938fbac4c1070191c1dfffc5e918533f3534c58fa58787f63f88a3435f"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0480",
+      "provenance_sha256": "f8a6491e8563df204ef0fb2c232adc97c49bd6ba0bcd0b8c6ade497796ca31d7",
+      "task_sha256": "03ea4eedf7b8fae1f441c8ed330371003a9ce1aab810746e023e08bb20dfacbe"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0481",
+      "provenance_sha256": "3a1ca18b86e12d109e780300e2d9954306fc0cbce16a921ba86942f87b31cb78",
+      "task_sha256": "239865ddb51f0c2d992c45586591dddfce188cc820e48b47d7c04d07b70f9c8d"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0482",
+      "provenance_sha256": "1778bfaf08338e3639a6d4f49c657f04f8d5b130777098488334c4aefa529cf0",
+      "task_sha256": "ccf865f56a6b29dfcc3683b37299db605f3389fa7fc41df5b80fbba7cbe44383"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0483",
+      "provenance_sha256": "702403df780041b2b9bcd75264a0f2b193fb02b0cb1ae02de5717c25931639e8",
+      "task_sha256": "63060e6a1a618d81c1fe29c4ba9a7c1f05cc78b158272c3656f6fdeadd35ff77"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0484",
+      "provenance_sha256": "151b14f86e9baede00caba111a2690d92fa1dd1e9d1d1d6223048b6baedd37cf",
+      "task_sha256": "9c5e0bb6589648e24d9c6516d42035ab87a949bfd2c244fc8accc2b6c0a980b0"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0485",
+      "provenance_sha256": "f36472c324d810c9957d57a23766b9ea693f3f94b30d54b35f3f6333f35cf442",
+      "task_sha256": "87cf572891f8b5b193d45e1fe2c94f53240e8e5d96b7e92a78c4da04be809afe"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0486",
+      "provenance_sha256": "19e843c586db0d9a9c526a8328f1be95ebfe9e858f5686dfdfbd24786136432a",
+      "task_sha256": "95f36ead2d42c978ac7e8e6868446385673118589be09e51dc8d8b190eec8543"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0487",
+      "provenance_sha256": "a1b27b0562942a3bc6b62ce5cab97f9fa20c05688f51efa98ee75f149cae45ab",
+      "task_sha256": "31bef3d773215230ba64564fea9eb9d893337a1818a6b3a3faa42195f3dc3942"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0488",
+      "provenance_sha256": "f07e4bf9ea195cfcb83c0cc4e3f8b32181509161132150d8b6f90daf5be12a08",
+      "task_sha256": "b9dfb6d87fc96aacd49d54fdaf7b7b637f0934ed2ab72ef10e9443eff3831215"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0489",
+      "provenance_sha256": "b64850f8d9a5ed96d22d65608cfaa027b5803a595280b947a45c881f0362c580",
+      "task_sha256": "a86274699e858eae0bbf5bd888fce9bcffc838370de29db624bbd879686db672"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0490",
+      "provenance_sha256": "dbd8824756b7cc75e7d98081e90e77138a3c2cfc4111100096a3ce0660c9a426",
+      "task_sha256": "fe2896271ed49b9e4652183ead3e2a93023de3d61901715a9bf5af39a13b0eb3"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0491",
+      "provenance_sha256": "00ca258c0966d1e31b15fce85b6ab5ce0ac8d6334d30b28c972b4e2ebcd64dd6",
+      "task_sha256": "40828311b7912f995166e762023d56dac5c4b0898f8a0066e882969a29a6761f"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0492",
+      "provenance_sha256": "9d3ecb301ea3e40ee3d5dd8bacb4a6e4a1f68472b1678fc30fce83635bbbecf7",
+      "task_sha256": "b054d43d06448a258def26ae680c7c4c19045fdc88e57c5dbbe8c0b23b0eaef5"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0493",
+      "provenance_sha256": "54ea439238e9bea371ba059def95383d6275bd4a92d5a192d4ac4ae709549b02",
+      "task_sha256": "dd98d9efd36025af57604f2229f4beb48b68a24be2d68aa89c847a854d74b20a"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0494",
+      "provenance_sha256": "cd8b44e6e7e53a234aed60ca008a0f2379293cce204849a375f7c6407e60a52b",
+      "task_sha256": "1af2b552a820731ccf363a9c860d74a1f8c7358187eb94623767928fb3c7a9a9"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0495",
+      "provenance_sha256": "a85e19a20c57e173cecf617ee0f91ae4c511b9d1e2d54b3b546eec378f7d05e0",
+      "task_sha256": "5cacdd4c2655f40c34231908935ae296050dafc5b0567a5daad1247e0bd9cce8"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0496",
+      "provenance_sha256": "4763d1aab77cf7856042797d0edb038e7ef0f419401be8b7f42d6c3a1a665869",
+      "task_sha256": "1e9c218fe823c312c9d3fddc7f9de146b8e67d9a28f9056e28b569628a2e7767"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0497",
+      "provenance_sha256": "f79c5d6b68fbdee72543b1f23e6b38ce0e174a0b80f4ccf8636ca6b7b60bec5e",
+      "task_sha256": "869a82b366e78453efb33c9359a23365c87b582b3fccdabe541a8d53aed30d12"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0498",
+      "provenance_sha256": "cffd7c56adcaff8038a3da751eb018030457dfc8bbb68fc58ab0d3a1489be1f8",
+      "task_sha256": "4c3b28f1dfac137b3e0806640ad3d168ae004447ad2e46df67c53608ffea9446"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0499",
+      "provenance_sha256": "38b580344609b85149b46beccf3a733913ea0b5d0f41c5635584f3d0e0513541",
+      "task_sha256": "892bfd96a9979345e8ea12b75afc09de201eab1b48e06fe87b7ad7e357eb2d45"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0500",
+      "provenance_sha256": "29811cf0f91b0b179020471107d72c331ea18247ea60a5e3433ced7711ba73da",
+      "task_sha256": "6fec1e957647d19d99ce5c7eb2a141997d83522b48b302501c85c71e2d117f47"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0501",
+      "provenance_sha256": "b3eb387deac20469c7cdfb63268f42299c664ec5e4719a47a814826572096261",
+      "task_sha256": "168c043ddad08ec54a99951eb62fa63cf72087c0a7ecd09aeaf05f88acc3cf3f"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0502",
+      "provenance_sha256": "07d6c33889f27303e67b37ab6047f57981012f8d302de95ac88dbc9f0645bfae",
+      "task_sha256": "7d0483a40eb27c09d228ad1b317bac98c95148830591fb6a8086d8a47cd44c5e"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0503",
+      "provenance_sha256": "d412a914419a927e0b2b8fae7b3fec00e04019059b29192fee011ac6fef0568b",
+      "task_sha256": "ec4a8bee8764b727bda4556066780809363b818b3af398745a3a5b84a997f17e"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0504",
+      "provenance_sha256": "8a0dd5e0bc640559951dbe5ec0a92f8b276d08986f9f084cf5355e9e53452d9d",
+      "task_sha256": "7b5b76f9b7285970bd5a93b6cf4fd4ed31f3f017ce0497521cf86d83566d4f4b"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0505",
+      "provenance_sha256": "f1e3843cba6039a18f8f52dae4271fa1276a959173a7dc539b5ad023e7b9d409",
+      "task_sha256": "9df503db993e5182239b600aabf0cf470ead2576220906c3ca0a62ca8028890b"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0506",
+      "provenance_sha256": "79321fae1c798f0fa5c997fb1d18d6283540193042608146089baeed10c2aa05",
+      "task_sha256": "0d2141dee56bd9eba1262245031540b14aa381ba2e3df9255226518f9261ebeb"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0507",
+      "provenance_sha256": "3038334fdaeb227917395aa1f46910d425253dac6662422945b7c67b09e5f797",
+      "task_sha256": "484c92d4dd17181721bc610ff71fb8ac1fca64556a43910dba8335829335d979"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0508",
+      "provenance_sha256": "dd237a712d07142d40f0aaea291909f1ff61812abf058247a360e43978063699",
+      "task_sha256": "020767275c16b939c91860e9dd62b02a0590e29b1baff1eda3637646381038af"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0509",
+      "provenance_sha256": "d4501f9efc0435d72034b25e198a5edad3afd86c952b70de3ede6f920377b54b",
+      "task_sha256": "9e25b6f4dc421c7f46e5d1d770d1ddddb9ac7600584ff85e6d2c56171e9fdb9f"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0510",
+      "provenance_sha256": "835b670e5e426e21900d19f8bf044c6faba78a688eb1a75da0d2103b20847366",
+      "task_sha256": "91d8a73ef69882af862dc23a05e2bc08c9056bc59c31127e5de43eec8b67bd22"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-held_out-0511",
+      "provenance_sha256": "04f0e740d3b31c7bf614d2175b47a6659e3d53de85b5d62858e9b0f41a6c258e",
+      "task_sha256": "aaccf3cdd9cf5b54538e8cebacb65025f2383d6d8377ed5c5e0e7d7806d18a11"
+    }
+  ],
+  "payload": {
+    "byte_count": 1323449,
+    "path": "evaluation/fixtures/vasu_140m_likelihood_self_curated_v1/fineweb_edu_extension_2025_26/held_out/payload.jsonl.age",
+    "record_count": 512,
+    "sha256": "a9037f64d13142274f4fc5afd0b9cab1bf7795fa4adb37369fa6e13f04aaf2b5"
+  },
+  "production_suite_frozen": false,
+  "provenance_index": {
+    "byte_count": 362998,
+    "path": "evaluation/fixtures/vasu_140m_likelihood_self_curated_v1/fineweb_edu_extension_2025_26/held_out/provenance.jsonl",
+    "record_count": 512,
+    "sha256": "9031a6c7a27e67bef36362cdbf045a98d3c2e20590c0caae5207cd3425a1f36d"
+  },
+  "repository_commit": "28b20aa9fe4f653b40471fb68d9001c64195d6a7",
+  "schema_id": "vasu_140m_base_evaluation_inventory_v2",
+  "scorer": {
+    "path": "evaluation/framework/vasu_140m_base_v2_tasks.py",
+    "sha256": "7777bd7d6a488c21e3937b5b05e1e46153e7fddbcb67784c47dc9e53a5087bf5"
+  },
+  "split": "held_out",
+  "suite_id": "vasu-140m-base-evaluation-v2-likelihood-self-curated-v1",
+  "tokenizer_sha256": "04942e101a4a01f87f7e492ad9e463d299a559e784b650fdedd1763a017d195a",
+  "training_authorized": false
+}

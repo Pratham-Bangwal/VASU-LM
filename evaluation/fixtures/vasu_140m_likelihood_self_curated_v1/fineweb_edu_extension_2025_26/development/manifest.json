@@ -1,0 +1,2607 @@
+{
+  "access": {
+    "encryption_algorithm": "none",
+    "opening_authorized": false,
+    "payload_format": "jsonl",
+    "recipient_fingerprint": null,
+    "state": "available"
+  },
+  "contamination_index": {
+    "byte_count": 10398372,
+    "path": "evaluation/fixtures/vasu_140m_likelihood_self_curated_v1/fineweb_edu_extension_2025_26/development/contamination.jsonl",
+    "record_count": 512,
+    "sha256": "5103a51f34a6eaf3347b77e1058d27ac1ad900a14083099d6a495cc8b1e3d2f6"
+  },
+  "dimension": "likelihood",
+  "evaluation_run_authorized": false,
+  "fixture_only": true,
+  "generation_profile_ids": [],
+  "interface": "direct_likelihood",
+  "inventory_id": "vasu-140m-base-evaluation-v2-likelihood-self-curated-v1-fineweb_edu_extension_2025_26-development",
+  "inventory_sha256": "3964867cd2a6c11db72b57e824e503e4841e0eb5eb27a0e66d2f65818c5c24e8",
+  "item_commitments": [
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0000",
+      "provenance_sha256": "7de383bff2e219742544cfa93272e7215dd03d9a07d3613df6d70b17820970a7",
+      "task_sha256": "fc73c3aa006a0914de181b08b32fd6c6cf87c5dc10887dab1546d81be4b1927e"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0001",
+      "provenance_sha256": "437542026d790552dbf9fe94b56e15809bfbff1f40d50161c6a0692460204b8f",
+      "task_sha256": "d5808db9df3c9664e0c26c9dd00393d58d2e3302cc1501fa9c81e560deb64225"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0002",
+      "provenance_sha256": "62ecf911f763e19c6ea285467922c2cec5f1e1316b410c4523d102e2c7f1e860",
+      "task_sha256": "036de33c0592af5567a88d406dacd59a4c1dc3be39679a6aa4ece4d6889c0962"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0003",
+      "provenance_sha256": "36e5356d1e3fcd1b6aeda6ecb7f048b282afc2e00bb735289c1ec4617cb30fc8",
+      "task_sha256": "cd814da889ff052e121b9411eec966e724143652b54ab2b0b31bb9c341a69b33"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0004",
+      "provenance_sha256": "8d2a55cb869275d64c3ee2ceeb564fdc904fb9e19062522ace2eb07d49e9dbfc",
+      "task_sha256": "72c04c89757cdf6d158eef43097117965606fb8a9df9ff7f8f23eeacfb753082"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0005",
+      "provenance_sha256": "28b4b189127aa3abcdd2a21a29cef6b295ad850fd3f1cdbe2ae5d52c9ec699d9",
+      "task_sha256": "af80a96e772203a60d78b618d2dc273772e5361f02fe84c096cb5121fa6348ac"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0006",
+      "provenance_sha256": "d6f8571fd2efcfa049849e3823c44b0eae85fc6c9ddf2b7906d98f6e99da26e7",
+      "task_sha256": "28c2fafb8ba3ed9805de9dc05ce76403529b93ceb726d449348e54be1c4763b1"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0007",
+      "provenance_sha256": "a8dda69492991366f544bc0bbdcf7de0f2c22b3bc1ea5b93c63c9291db977d13",
+      "task_sha256": "8233321b164604ebf6a1282cb5c6484da4562521ce7e71da3ff2bee6d1f1ba03"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0008",
+      "provenance_sha256": "4cec5fd1d46faaeb67b285f8452d5ab5447cd4f6566bfded9b73fecb3536dbba",
+      "task_sha256": "6ccd80a7a49da25ce7644d32cf658665df06808fba6a3b4868213f4383ec236e"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0009",
+      "provenance_sha256": "680681636385e5b57d9dc7e50c8692df08ffdde95c517480c32892826a675b16",
+      "task_sha256": "bed62e9f46612b2c10f0bc40cd7b852f053027e2b3c9aa2e28212c9256fd4f6d"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0010",
+      "provenance_sha256": "91032976b8216a76370286cf4bd83ea93a2860bd82adb8726ac4a49e4b6193d5",
+      "task_sha256": "cd77f3eca01dc9c5f95fb4ef7c8b8e81e7ea1a926a250f7a0f8ba2bf34e852f8"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0011",
+      "provenance_sha256": "b3a149b49a9a3794497ba6bda254939d5acc3195ada728a82a7b38847b503dc4",
+      "task_sha256": "a5227d5e17e76f23d417e46f42df0097bada36f36798580723d863d5afe3bca5"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0012",
+      "provenance_sha256": "e31d45bc7b0cca0b8951ecfdea8e8201fdad79bafe4dfb68c81c3cc2bb6ae768",
+      "task_sha256": "58c09043a8977ce533e04fd0a6b7ea5a01ce5ad7630e618e900a3229510a0e32"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0013",
+      "provenance_sha256": "9b757bba9415761ac081e489affffd934ac0f10af5aae6595815ed1ca59e0ce0",
+      "task_sha256": "27032a87c6b1e87bdf3cc2aad969756e5cec65ff66cff044a9ed2de8a1d89f84"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0014",
+      "provenance_sha256": "7d7c852a93008ac85da740273456a44a8625902a978146ed25a4bdb4804be8aa",
+      "task_sha256": "bc3090d3f5dd9570b45db465bbcf298c5140896d7dde502f89738f9c9ae6066c"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0015",
+      "provenance_sha256": "65f34ebb0baf462e9dc83029510b63e2fc2100d34546be8ad39602cbf4ae0bdb",
+      "task_sha256": "06cf22143ca30e6a576f7296088cd6010bbef1d4c5613a708b7db5a2732aba0e"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0016",
+      "provenance_sha256": "c6975c7e2f39893e3aa567d0fb095bbd64decfc7b4db2a266cd5fb41677f90d7",
+      "task_sha256": "bc971b4b642c1d8babe2d14a80e02e8c20692f52bedc293475d70b3e305b9670"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0017",
+      "provenance_sha256": "0df6fc9cdd12f11caf8a1d6fbc4d3dcd31e947d3f59f83dbfdc844bb02fee546",
+      "task_sha256": "8482101a5a869b11064ec66bdf413c448592daf2079022d84619b4767f384afc"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0018",
+      "provenance_sha256": "51f12fc8cab9c47449812a8b727a8b5b35a7ea18a3e199e34c5b7868d5428f78",
+      "task_sha256": "ec90b1a8f49bbe2ef4e55363b1f14a3b11db0d3c6297305033290a4eb06dc539"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0019",
+      "provenance_sha256": "6f41370aed2e353cb05d4de63fd5de682c69e1b20f009aebfccafdd6a83663af",
+      "task_sha256": "5f4e52e4bc121b70813ff0a37b0e01b9a327ac04f953d7f1d5e65f836cbd23a2"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0020",
+      "provenance_sha256": "aac645ee72246f03d59eb8056bab8f00ec2a9f8e4d36c5d742f0f26b475ec37c",
+      "task_sha256": "690ecb681483cd1f0de0d474bbc76f454489970a058b7392d97db0ed274f43b2"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0021",
+      "provenance_sha256": "246f80c777eaedbed1aa5ef481b64ea5ffd9a7488162a0145c02b716dc313a9e",
+      "task_sha256": "d30fe36b8a85191d16f00ba8b99295b7b5a1d77880954aea44f8366ee18f5a2a"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0022",
+      "provenance_sha256": "db4c8dacc36f3b4e4ce627ac900153e3eb96c2cf39487b796c29feca4e27f94d",
+      "task_sha256": "09898b9d970410dd2ebaa91bda4a6a813b7e44c69dba50584a5e1bc45ee4408b"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0023",
+      "provenance_sha256": "eb514087488f397ff066e416403060488eb6cfd3081994508f4275c972374d9c",
+      "task_sha256": "c0561b1c964c5987a7ebb7de4324962253d77073ecec0d4fad573bfdc15665e3"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0024",
+      "provenance_sha256": "fa9aa1af0dec278cc63526bb73a77a34b48f7154b01c6c3d7a4882de0c3e7457",
+      "task_sha256": "a62cec38e7ff6705479f463806b3ea5259e2910160225586a39e4a7054231a04"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0025",
+      "provenance_sha256": "9ff6232f46789e9703251b1e85a95b12fedc5b8c74d0589b55920ddc787093e9",
+      "task_sha256": "573026bdc69cc29a4bc6dd833772322e03783143ceaf2e45b6c7b5629fca9f0a"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0026",
+      "provenance_sha256": "1f73c9eb3fc1da702c16535161a6ec1486fad0cfa5f7c1684e7381a1f3e1ff3f",
+      "task_sha256": "2f7415104ba76fdafa8ba774d00d626e2d3843326e29bb5557cdaf8cf24278a8"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0027",
+      "provenance_sha256": "1f8a3fd2bbf64fa260693b883b0c581ce85889088df80ff7eb4154a311f1f534",
+      "task_sha256": "e9f37d867e89ae9b74c1b561ee61bfcd9059c9728f29219d516ff21e373c9243"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0028",
+      "provenance_sha256": "96a1f5a79d55034fc3febb66d60876baed3254a113518f69aa38c574adee59ac",
+      "task_sha256": "c20f7a76b3175f7babad59f4580f4096043e1ba6c7faa46bcf3c83ae8b413938"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0029",
+      "provenance_sha256": "758a89343faefec4a6fa9c081abb767a64d693aac723a0f1e75d660badfc871a",
+      "task_sha256": "8257617157bbde946ab6776c769840a839e0278af40f2f010d5634836b5df90c"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0030",
+      "provenance_sha256": "03056cb7d4718030ff21d25e9d15aba484408a76c2c6397060d35a4eb484bb9d",
+      "task_sha256": "236c120dacc354af0c5b5ee973c9068f2ee75cc62c35d7d69346640566af7a39"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0031",
+      "provenance_sha256": "b14bc94a2f98c8c69eb3c8f56003436739beb202b7f88aa88009e201b50afeac",
+      "task_sha256": "83dcfaae02cca528f439b95b24b4c95132d81769280c6747ab9c7c56b6775f47"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0032",
+      "provenance_sha256": "f3fbe080acb0012dcb4a5fe86f5c15a9e94d10e24eb2fc7ba8bc69998bf53e01",
+      "task_sha256": "0cdeab7d7c03d7d9fe57f207f67105327a5b06aa799bb12f0f21b601c2a4768e"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0033",
+      "provenance_sha256": "8d514eff9ba7999ff8fd85b1b048a7b992db4a3833e0dbb8f1a5f2eb9c355abf",
+      "task_sha256": "62906de6a4637ceb0167ae7a689b60cbe24fabdef1abd96778dcf541176d1a9a"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0034",
+      "provenance_sha256": "cf399f4cfcd97acddf706d6d354bc83bfe8fe6b790f24907ab3869516b2afb6f",
+      "task_sha256": "16a09aaaa875bbe264c718d596dbf0b6454045f83235aa819125c3c03c936cfb"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0035",
+      "provenance_sha256": "f2428a737941750806cf69f6eaa37dfb5857f25d0d7f7e53be2325b7f2ab9791",
+      "task_sha256": "04f9ab08b394a75064b2fbacd14b7c1dc1d6fed0bfa2a78aa208b40651dc6c14"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0036",
+      "provenance_sha256": "25860cb92a2b35df6b4cf7764358d593e0915692eec34fc5efcf5fc815eac872",
+      "task_sha256": "8f9aba175cbae641f2cb99ef0eed5a461af26140f29a2f4fe9070341d4d5889a"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0037",
+      "provenance_sha256": "379690c00c1bf25179c3d6875a30954b58d2573fd062de8c3a42494bbc20e6d5",
+      "task_sha256": "280fe877eafd7a66232dddadd15c7dc0803c45c22b8f917aa723cd6f2741e695"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0038",
+      "provenance_sha256": "27e96733c7f08397da071f2c1bee98ee47ae4dfbf64a51a022cdfb8e91824ab5",
+      "task_sha256": "fa1c14ddfdc9c67cfae0a474e3a7662661dc45de23d9f0e6fb82dfe5dd73beff"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0039",
+      "provenance_sha256": "4667f9e91fbbdea5ed9b48736e9cdf4334eaf04456fba37d67f54af724ff9b0f",
+      "task_sha256": "dc90c0f7099866a730c3239457aef022798ba3f7b85eaeab53d03416c300acdb"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0040",
+      "provenance_sha256": "3b484e50c76b1500bd2463fc1390b483bd055f7b74a12e8858fcdfa511fafb08",
+      "task_sha256": "c349a4488fb39663f69af8861e6672042a56ee291b4ce77e18841201bc716132"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0041",
+      "provenance_sha256": "9dec9b3ac5b907a2ac17604ca4004b7b2f31d9c4dcd2cb5679d65f3a49727622",
+      "task_sha256": "9a2f14154e89d8e525310d48fb36661e3ba1308a9d95683c55ba8c989aa3b050"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0042",
+      "provenance_sha256": "e4678163326f5ddcc7d720e6f78ca7b4f9ddf36bf620e303f7a1c7bc96591abc",
+      "task_sha256": "10b39c6a5f10b66c4f4cd0822af6ff5465c7dd718c87f9512428b0107583da29"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0043",
+      "provenance_sha256": "aacb87c6417df5d83a7fdcaeb7417411f3e12d8448b30d109c7762d3a00a5491",
+      "task_sha256": "34c8ba74d9d1841dfd715271335625f03c87d83fbe470923232e99207bc433e1"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0044",
+      "provenance_sha256": "eff92c1948b07fbe6ea050d2473699411ca3515275253c30bf2b6505462ed736",
+      "task_sha256": "f9fac291c5cfc8ccb0ff0cd280b217433105f512da75433375944e63e98de4af"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0045",
+      "provenance_sha256": "ee912d4796c71c8b53a3b76b4c785aab9666cf2ab2a51cfe80aa986083a222dd",
+      "task_sha256": "d1d8cfb9b36ab22416dc4855154811c37f396a840077d6cfaa255edeb3028e18"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0046",
+      "provenance_sha256": "a02cc2b1a1d1cbfda8c70ad241d227cc65e4ef4a17ee9269019d60783323554e",
+      "task_sha256": "5acf1390dd4c18b6b0786dfdf399e4d0ac89f7ae390098693e19076e03e57659"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0047",
+      "provenance_sha256": "7e7891cc2cbccfa2dd2f7ecf2655f9c15203cae5e928d84657be1cc057f3f147",
+      "task_sha256": "1658bcdda1b1e05075334639cbbaf587d75c85f88e77810b4941ac6d7599023f"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0048",
+      "provenance_sha256": "9ff1642fe7efe566db6c6f3b447fe62de316b7682cdd1f7b9a4318d6b7befb88",
+      "task_sha256": "b9c3b54f3c72514a73f0bbca24c06a528c1712f9367325e5b3216a9e5ba437ea"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0049",
+      "provenance_sha256": "bba2527d6c05e8f912fd26763975e96ed6292d703f0c278fc3bb5157fb04597d",
+      "task_sha256": "715d4e98d5b79688d62b7a3bb05f900bce14ecfbd2ab4e656de8d9c922fb5d7d"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0050",
+      "provenance_sha256": "0b1b1e9e654f533360169eb365270071721529d377cde3622756e139cbfaf56c",
+      "task_sha256": "f1b6d04259708779b647c0be5d0c27a30b79b3138af9f382dae20f8c8be1f526"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0051",
+      "provenance_sha256": "8e13a7fd3130c719b44e6bce094e009b584fc7302cd808de49b89662af5647ce",
+      "task_sha256": "3ceb3db6335c7678685adc2016ee6ebd8b262b19653d74b54b4acfb9429ec25b"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0052",
+      "provenance_sha256": "93747f01465809fcb2ba3a159f43993c495106f3ba538631990bd161731ab8f1",
+      "task_sha256": "e74543a7e728486423a0308ca46af10ce84b563a9172c683bb50b508a451c344"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0053",
+      "provenance_sha256": "e336d475f937c05a66026148e450909ea2f9cadf32547e2860d98378c9ba3bd2",
+      "task_sha256": "32bdace129be0bfc4d62ce0f1a9109487f14c45bbc9da87df6fc77ae5a76e360"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0054",
+      "provenance_sha256": "a1028a7329590e4545c68fc5f33360e03f95d5ad4cb30730c9fe083af20054ad",
+      "task_sha256": "1ba9813d55b344992bc4abcd6111770a00e13aa28cc7c72ab94cab92658bcfb1"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0055",
+      "provenance_sha256": "d1cd016e8b0c9a0912cba4ff632e59c3b47f3abb7fd35c4e9b007a2833d869a4",
+      "task_sha256": "d95faa4bcdc65af39f4a2fc954fa9cd4fd49c496945ab2e362ee1a9783573379"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0056",
+      "provenance_sha256": "1835daad5dc42f5572828bec89e853c2e6175dcabd215c9abbd04654c003eea8",
+      "task_sha256": "1e063b644920432fc0acc1d6005ab505d619aff20f1a7cf9a1ca27e875630413"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0057",
+      "provenance_sha256": "78ad6f3ca5603623f322be1ff3a6301b1e8c3f8a19ed102f123fa375f1bb8e25",
+      "task_sha256": "b969193eff99b03335200f76ccae13daa2760f79216825bb81b16c819b06b44b"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0058",
+      "provenance_sha256": "abd2a4025ea138405ddf2251aa76d27ab54ff9a93ff948bf7e71ae2e177aa659",
+      "task_sha256": "9ef018c71837feb0cf43d7c0c8032799e187b644a2e3827f0996faa8dc9f24d4"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0059",
+      "provenance_sha256": "9da77bb39110e8cfa4f8828cf98faf99151294f8adc67787dbaa0738309ca7cf",
+      "task_sha256": "78243ecbb03702b5123c69271fa2c68533a5e9e54d6746a82348b2f0d3948951"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0060",
+      "provenance_sha256": "0281259a8fd12dc1f02dc1323d76a0062adcce19a745dc83f97797763941941a",
+      "task_sha256": "d6d338e9854481a5794c56102f1868cf09958224d53128f2c245d031d8ba52d3"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0061",
+      "provenance_sha256": "330a9c21d54207bf70271ce963648572b094f237ab391ebc069af620a3aae96f",
+      "task_sha256": "8f7ce43c41fb6070e9d75f508bc1554c26ef3e1305aceca3096c9db4736cc05a"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0062",
+      "provenance_sha256": "776be1774f27ee0efc61dded7d0aa8c6dba7bd54b0f1e38c62fdb4acfe0033a2",
+      "task_sha256": "d4d88568937719a3c45e9f8e43f98d83b2467d511b0056369429cc3294c52710"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0063",
+      "provenance_sha256": "7f6aa760d07829cd8a6a12955ee18231b3303ce792c23a69b42e9fe17980d0bf",
+      "task_sha256": "d08f6f40f2b398616b23a4ef71cb72f29fa23533da929fc434e58c68161f23ed"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0064",
+      "provenance_sha256": "72efdd96047e8e0511dcadf6ed4c9743fda8095949e1cb7ba0c738765589eb38",
+      "task_sha256": "5f8258f6dfc5aade01cc00bba0951171c959815fb8123abb50ceca95966e9a1d"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0065",
+      "provenance_sha256": "49e359f8d8e0edc7aef43a8e92d4be6bcc6bf18b1c2ba31c45db390b5902eed4",
+      "task_sha256": "0b31634e437d8dee6cca387a514a348c345eaf9140e3cab22ff32081d2322e7c"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0066",
+      "provenance_sha256": "4f86a6e1aa8afe700ed3ecd137db1c76a51c9393834d79b0770b3515ce73a1c1",
+      "task_sha256": "e1feb62e0234511217b9ef50616ce2740f814ee1340a682fe1a924dd324da99e"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0067",
+      "provenance_sha256": "7e7a71a5c16893b12226547f5e051358de3144577e61866ec5d409bf45b59c5b",
+      "task_sha256": "b07ee59767d0b617bad4c73c04b7719d2aa236713f454407e41fd403b967497b"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0068",
+      "provenance_sha256": "28f6737d6a21c8748b1a4eba6ca62adef102046715f73152d6b572c3fcaada55",
+      "task_sha256": "b47658dbe0b57db504a0cf8c11a4a74958872f63a5ec14361707e22a697590aa"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0069",
+      "provenance_sha256": "9e32546f3d3ab816ef76bebf43a8e17b4a75c1ac006f12401e28ef6dc1ce2644",
+      "task_sha256": "367a90b324efccd46a864ef14704564a680c34ebacc817b5d0159a334a1e95c3"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0070",
+      "provenance_sha256": "ca0252f7543febd7261ea39638305ee2b055014dfdd7408170d267933ba292a4",
+      "task_sha256": "50d5a7cc51ba3b231d59cee2de549403c81be1fc05e2892f1f74e978ace3c4a5"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0071",
+      "provenance_sha256": "97d0a84eac1d479941d2e487117323498baf514021165fa2efa095875bb31b91",
+      "task_sha256": "059a8de7c8a62b8a22bc86537e6bebca8d5f75a6e9168a6cf101b9cb18463bb7"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0072",
+      "provenance_sha256": "d475386e69645ef07e407b874f91490c0901b084d30d0fffe0339e97a4b1b351",
+      "task_sha256": "f34b8caef82a450b3814d7e69c64c9db3fa5d12a3f17fbe55bfc061042874f35"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0073",
+      "provenance_sha256": "16f1ce204f205705f274d60fd9e23c73e81aecdd2a348e83bd634a7031e44c62",
+      "task_sha256": "87cd3968d0953d41c808e8cbc4854d73bfc50ca6b6dcfe554897dcee2d695406"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0074",
+      "provenance_sha256": "fc3e03998284d5080f7603457c53f04a6994b73d1244d24458b7a55fe505c027",
+      "task_sha256": "b1ef39de03de1a7be8da3fd08e4e2324cfd243ff9c92d1fa80a174858351598b"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0075",
+      "provenance_sha256": "09eebba687ac3c928ed35b140f81beca696cb0f0570412a4a85632dc0040ab57",
+      "task_sha256": "ef904670e94d7d6f6d22c3e9cff13c18c11ca0d8d48b49a375cd78ced9890c8b"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0076",
+      "provenance_sha256": "792e8ef8d46f2c63234a287903160628fe716f531b4a8479db29424683575ba3",
+      "task_sha256": "b27deee501e37ce1715ffc2f4d11300786f3a428e13408a2ac5474b811791172"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0077",
+      "provenance_sha256": "54251d8c47b63c75a1e29c1ce1d4ed98aee93065074dd8b813cc820492f2ed9b",
+      "task_sha256": "d2e27068b449d3a422aab6b0caefa87383c56bd17b44568b77836c553e83762d"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0078",
+      "provenance_sha256": "2a23d07b37c801e910c11fc6ebfff82021b755b973cef38d6d29f73549513835",
+      "task_sha256": "38e2c99442546614e17c53267f2fb409e879e1e502d905b33c2c65f645dceed2"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0079",
+      "provenance_sha256": "6e29bcaa2bca2203b4d6e907480aeda1177c77744afce2a108dc258da869a1c0",
+      "task_sha256": "6f2b28b2d742af57780aae74f040b6e31d4329bd3b3d4cb2a8cf4b7d70fe8a62"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0080",
+      "provenance_sha256": "054278edf4a3728154788ad798a128f54ad4aa28b8e893d80cb4a9554adc0e71",
+      "task_sha256": "d979f8dce251059e1ef0d3222851ede916813382691178495a426d5947cd50e7"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0081",
+      "provenance_sha256": "3bdfbcfe0136dcb5dd3772579b91fb066a5b9ab2d1fe4de18c572491f41c65a3",
+      "task_sha256": "f48b6e6aaffdbc1315607b52e682345932261a1c8bc616ae3f3cf558e5f0b48e"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0082",
+      "provenance_sha256": "2fc29706c341149efbe923ec9aeeff88caf470068d1a07f689909e63ff886b80",
+      "task_sha256": "7bc9a098750850fd5515a4ef14e8f508b9955b13c551e776f631776a32db652f"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0083",
+      "provenance_sha256": "be8790f999acd3579fc86b5b70e7a89e3ef45b94f0ea9f950cd8d44956626fb3",
+      "task_sha256": "55db8c012a1ed670f40ab509927e169c7f946c0e052204f72dd70b5168ed0f6a"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0084",
+      "provenance_sha256": "d0cf3f9c295ac8f6b88a5eb3cc33299c3ab2caf95594bb7882cb6b22f0fadefc",
+      "task_sha256": "013ca53371e2badc1f46541ac39e1d80a8b60a28d6448951b41255fc0acbcc2f"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0085",
+      "provenance_sha256": "3f20c3c6ada41f86f0bdb431b3fb2151013cd0a2b281c0ebb488c5ad76c313e2",
+      "task_sha256": "e31d5ca19bee967f877ede9746dbb779b8ae845230ded3999aa45db568399446"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0086",
+      "provenance_sha256": "77825997c83642fbaa1bab79d9500a28a7fd346862db16aaa66c16bce17a9120",
+      "task_sha256": "b7ab6f16377778c27f2b664e1e8509fd366b48d5622de91bf7016a9ffd7cffcf"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0087",
+      "provenance_sha256": "da9667dcd5157f9fafb3ddc980ece486c26c0c22f2a3dc539bbdb031c56a3c64",
+      "task_sha256": "ef23a60dc9836732f2d1ae2a2cc18b44e0c4ce9fb8821a096669840ef305081e"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0088",
+      "provenance_sha256": "5648ca0ac4b0e0130ded31229157955eb64eeb31995a5caabab35bf77273b964",
+      "task_sha256": "ba5a5968ef5aabc6fd0ebf4b2c08ad85b3dd780011300f7ca589d5d843554c1b"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0089",
+      "provenance_sha256": "745efe9714935bfbd1a3583262533300c9da16b8d27b8d1c22264b9f82a1551e",
+      "task_sha256": "204e4077b8a39baa82733c9e66e85deb017bcf25aabd2c07649228e5d6d356ca"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0090",
+      "provenance_sha256": "c7b71fc2c2a15729e3303132b87f0bc51d9df3c0217a70a44b7c327daa670002",
+      "task_sha256": "3aad09b50a5f032de1ab91e9524696237598f3d8ba189b5361d6b42c6267919c"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0091",
+      "provenance_sha256": "ae8c5cc7aba8e3a6b7e09227f94402c12d1112fa8fb0930f1b950ad885bfc46f",
+      "task_sha256": "6d6c9a81defce674ccbbeeee2e19df108362829e2c780bfbff66e2d2e333526a"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0092",
+      "provenance_sha256": "3e7089758c1d19749e2d243b19d24911949005f189b0151dbd3e4481d698969c",
+      "task_sha256": "0d9be5fe7c99ef22bfc5da9db5ca44cb95faba4ec4484aa21150cfd9c9afbbea"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0093",
+      "provenance_sha256": "2bb59f1ffb2d2a1f8de8c4c14d39798f20971c56cff9744a1af7452ad2f0c5fc",
+      "task_sha256": "65fc39440f50de8e006585a98d74c779a2a7d3c4252bcea2dd90f36bfa81b2e0"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0094",
+      "provenance_sha256": "35b9cf095e9ee0f2f49c4df31654aa921f1617366c3fabea05f96dcd15397eaf",
+      "task_sha256": "55261b4d8e6de2930574b9faf89ba02215e33ff2b2a5bf2bf52eee3c2cba2d4e"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0095",
+      "provenance_sha256": "36116f97ce8ead3e0cc05128276b539a26d7d7596a468fd6a7e0a95ab7f1ef51",
+      "task_sha256": "7fd2ae102a5374e518577c3348cb9aa91bf9bdadbd25495c70c54783b152672f"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0096",
+      "provenance_sha256": "a17cb5b7ce8bd5b4ab9aef519031fb48c2de3e510d4038c0424a1b301f523601",
+      "task_sha256": "5a9d25278dfc376d076bca4c56e2a9fe9835df3097a0d82b82645b533168a497"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0097",
+      "provenance_sha256": "6cec4fe063f091c864f0249f5b2284947baa02b53822459ef09fec711ffeb256",
+      "task_sha256": "1a3a49c9d49f1ebe17e4b69304ead41cbbe74c26793787f529f65a4ece5b82c4"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0098",
+      "provenance_sha256": "cc37b15c9bf401cfa76659f5325ccb3e2f6eb61376d0348ced1460f077a9402b",
+      "task_sha256": "0b7487de55a6e20ec12294d9468b1964595cecef291678ef25b21460bdc9b815"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0099",
+      "provenance_sha256": "bf1a3956f0dbaa37159a2114e01ceda0f220ef0bf8869728dd6a413f923f480e",
+      "task_sha256": "471558fb7c1ca076c6c343a3aaf12142998c1264a9121ccab1c29d359c5bfd8a"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0100",
+      "provenance_sha256": "89c702e2a64e814724d280cc7224491cf399d2934e23c51a81c493f5f76e2aef",
+      "task_sha256": "47ebc74f71af161590162d677f6bcb6c50b24fad66c249114c01947c7237173b"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0101",
+      "provenance_sha256": "5e5a38fc718e1d186a7bbd7f4821b27ea83e1680314f13134c6e5960dfc1e91a",
+      "task_sha256": "005099909b62d7b3d58c4b1ea9befd7021821b02585c84743d07652bed87fd19"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0102",
+      "provenance_sha256": "e814f31eb3194178cd6473716cb75e28ddb5659b058b090312cecde35df4eb9e",
+      "task_sha256": "cff0698b503d6608883cf117979fbb5418072da8eb9ddf155c8cb654f74689cf"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0103",
+      "provenance_sha256": "ada87d88967fe2ca49d8487b6bf0c0c65cf4e47a9c6b4723101ee863561bff4f",
+      "task_sha256": "ab38cba0a50a029686c5a0936223cefe6afb17a79d13c9618d38ebdf2f87d964"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0104",
+      "provenance_sha256": "72355328b3964479e84cefae7ca139be6e8199600c4cff84167eeed8e26e3776",
+      "task_sha256": "febe4138eaaf9a2988ea0da96b152b7d297a1180a74eb386e2d8b36dbc43f09b"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0105",
+      "provenance_sha256": "7f31e7727234b5c4ddaf0426537a1f1089fc1efe96f1872116e322ce75c38c69",
+      "task_sha256": "ce61969be945dd9a211a8796a817fd1d2ff104be96e4dad78acb363b5cf69d89"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0106",
+      "provenance_sha256": "f51e5f119ee73ee0a224a5a51085b6fe966d24fa83b6d6f2a4ee1afb5c5057b1",
+      "task_sha256": "1401f8e9d6adbfee6e84145e886bd94258181900e83fa262e83483fae65ff581"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0107",
+      "provenance_sha256": "4f0ced220319abf76df544b1051cf814b371b3de9e5aefb618d1e3adef6aaee0",
+      "task_sha256": "76a1545bc1ded731332d18e662d2bbe108adb774a2b4b25f556671e5248476e2"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0108",
+      "provenance_sha256": "fdfa6884c67b53991a21aa224a08ed9d6b1b245b55cfb2473f092257dd950a26",
+      "task_sha256": "e58cc7e77dec8ccebac674b32bfefb92160933e58580e208e22027c5f8ab8507"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0109",
+      "provenance_sha256": "a93d720a0c4c94fcf08ed4de183c0249dc1574d23540d61cbcd461020c373075",
+      "task_sha256": "9f43ccad2054648b5ed8039048856d18289510ac89dd810bf68b0b382ca267ba"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0110",
+      "provenance_sha256": "a1f2452778dc33e54035ba0af4b6190210c84ceb56c6e7fbf56bf9eb46b7cb5b",
+      "task_sha256": "00565dec7ba195967dc6a8615ae8fec25df3d832d11a6f00a439e317b79c4ddd"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0111",
+      "provenance_sha256": "5c6a7557cda33714ee954ad447a0801cfa5a98fa9eb9f707dfce572fe2679e32",
+      "task_sha256": "963289eeec9b9ada0bd5edb943e0a2d9cdd4ee5302c5035cae3132d5f960c58d"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0112",
+      "provenance_sha256": "dc93b814081dcb3354c356995ff2ebb55ae4eb50074d040ab756231a4c5a4d69",
+      "task_sha256": "93d363ecbd994b0bd49bc0b389b6ece7bd466a12e424b765d67c667bf8628088"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0113",
+      "provenance_sha256": "2bdefb0ec135a31ea7cfe68ee01f878014640237d2571d769c54b885605d0503",
+      "task_sha256": "2e5722fd02f14053d00a01aeb61338d754cc84cf2e574daa207e06727fb34fcd"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0114",
+      "provenance_sha256": "714f21f14d975cd42414a9b674295d4e39dee7232d995bfec25d5778a3ac134c",
+      "task_sha256": "25efcc71bea1ff89c9fbe34c1e2a1c694431ffa95e5abe26438c9d178b72dcbd"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0115",
+      "provenance_sha256": "09722f0ee54e6d483d2a5c2b56ebfd838cd391a22e1e93ea9e950be3a8db7ab4",
+      "task_sha256": "be53b4af491ce26021c0e842fb8d42376150cf8aa9c1501d66879937098e7482"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0116",
+      "provenance_sha256": "3e0692d899f496881261c060e8d559cba34f07d1ab93ad51f5ca2624771dec27",
+      "task_sha256": "9f54bc0882cbab13d3c35c6f0cf7ce47c9542b3c39a499124ec8ac0c630a6ee7"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0117",
+      "provenance_sha256": "9fa9c79bf714165212fcc17db52dabf8658d3bab50c8495b192e6c1a8d02d2f6",
+      "task_sha256": "a941dfaeb204c2ce7374cb128a28d320c198955b23a273d022a1b8bbf83e5889"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0118",
+      "provenance_sha256": "e6d6af1e1548a3583d893b2715612db3010802e047624079d69b7403365bf165",
+      "task_sha256": "be7bcb95f03f5939bde5b186252fe4bb3682e90d9a66b801f8ee97d8f3a69d09"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0119",
+      "provenance_sha256": "ecf26a695f40ac95d7ecff00edfd85427dfc0f0792bc0b882e4ff383562d9290",
+      "task_sha256": "d4ecd016555c3b66d8902d0891fad5df2bf3ab2868ea1ef84e28bc5453a521b5"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0120",
+      "provenance_sha256": "2b4b89ebdfc09552da095683df293db34738c2e8c04afba8b0e007036fea386d",
+      "task_sha256": "fb2dc388d14ab53eae317a4de982afb7aba2578ed8fa25e05fbf5533a17d4799"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0121",
+      "provenance_sha256": "5943968ef344937a3e3ee50b80d3a60cd3bee456943b477acb710a5a8cba3639",
+      "task_sha256": "7b0d6d14a24fee25aa578305327946019388384b390787a8de62b9eb2f829bac"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0122",
+      "provenance_sha256": "8f35f731f43b2d24c199e206b63b208ddaeddcb099600695b841ce962c288b4a",
+      "task_sha256": "108cae6b6abb88ad0aaefa2e0350adea4e23b975bdc427ee9d081b12cae821a3"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0123",
+      "provenance_sha256": "d922a9ac702b68faa7c474919cb6fd7af9e7d21aa3e1cfb810e49100f974e05e",
+      "task_sha256": "9d97e48f2b540063e3a1f60979a6dbd18281bb9a3aadf69068c8329ba4ae63d3"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0124",
+      "provenance_sha256": "31117c752cb640667315be2029b09f47c94168f3817e8b24a7f27eff57009b69",
+      "task_sha256": "62e3c6af81d59b386637aee2be472f13d4f52f720923f69053751053838805b3"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0125",
+      "provenance_sha256": "cb843829bb78c07565e3cb4a2c14d35d4c39ef5df6b410e6864a6c32129195eb",
+      "task_sha256": "cdaf45d83a765e769255a400a48f4306a5248059a3693c15527d155945244fe3"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0126",
+      "provenance_sha256": "0cd0cfa515db7acb6700b8762bfbe546ee9ca41751a68c044bb44d6a8ae062ca",
+      "task_sha256": "76c71f0a2846efba5e3a044af1f9d48d1756cab728fbd711adfb448035ac9f30"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0127",
+      "provenance_sha256": "3e591689a195adc0831104cd8ad0ab4ebecf4b6584741dc2c4bba295267799df",
+      "task_sha256": "1d5d8d05500163668e8f213b19a23e0a9db59510347fc964541f2f8f3442fdf0"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0128",
+      "provenance_sha256": "5f88dabef125daf8d0f889717c512acbca1000b028c1418ef45b5a73babd080a",
+      "task_sha256": "689de3547e593a7afa276c3da31c09c24eaa494610a552288c118314300eefa0"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0129",
+      "provenance_sha256": "efa1d0e0faa46b3ecc2297d96ae7447d271b17712efe5677c53cb9174cf2d88a",
+      "task_sha256": "73c1261c98eaf2d38ea3e6be77ef64c1f74aff7697b80799cf51d8eac53c21ce"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0130",
+      "provenance_sha256": "68231269715c9773a2e689656c9b412c14b014f3179ffdd47525ca63254d15e1",
+      "task_sha256": "f5823d91e08020f15ab6c97125f8759e5b02e9c85dd67ce01778e23e49d29b6b"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0131",
+      "provenance_sha256": "9a7313c3f0223d02e972678a6a984615b17e6864a3e4fafc9fae5ff5f5f20fa4",
+      "task_sha256": "def89fdb06e94345f9f35a01f1d72ee52d2fd1419e5355d95bca585651484a90"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0132",
+      "provenance_sha256": "54af6a07cf830fce5ea071ec14d3487e497809d860239edd82207882599ab215",
+      "task_sha256": "a81f972c4794866e04886dbfc0b452731ce9cc0650f3956ba9ca879f670d011a"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0133",
+      "provenance_sha256": "c26572190dda40c56fc68c5e341ecf68ead677637acf95b17b40a312dfbd2b68",
+      "task_sha256": "04cc7b8c22a451aefe77e920749cf264efa6f53ab7cabd16006cc941e52278ca"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0134",
+      "provenance_sha256": "128e894d9dd4215382c959e83cc566a81bec89e7612f3c46390f1f88672a4897",
+      "task_sha256": "4f0c123ff947a296ea41a2341a9b198f9d5003955c168673c6ae209fa926fe9e"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0135",
+      "provenance_sha256": "4cbeb730f0ed05725caaf980b35501af38565a848b1d4b6de84123a9c1f15f28",
+      "task_sha256": "0101bb220d712ff664131f1348d3cc51ea998a7e6aaa2b5eee43c95ba244f5c7"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0136",
+      "provenance_sha256": "c33d87dad5a9aa67b3e9bfe1aab8d95b661586c64c368e0660bdc3de892514b3",
+      "task_sha256": "ec0ff29b9d89920ee5c091bd6b3bbf1f656dc090c95c270efea818326ccfac27"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0137",
+      "provenance_sha256": "6211b64061c3153f4f782df017d4b750c21b0a910d7b8ab0fddb8451894faf27",
+      "task_sha256": "a859ad4e815aa5a29de947cdafc5b29f27c551ec4de85b5b3a7694053ac3ba46"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0138",
+      "provenance_sha256": "71b13454f8349e9c2587bc0551bcda1b48356612b4fa5b98fe175de0ab7ed804",
+      "task_sha256": "f79615086e2a62b11e7ca2ee0a76d2a1514aa63ecc425f2ec614b29d2b81ec8f"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0139",
+      "provenance_sha256": "9b7bd20122cbfceca0340d53470399015f4178b0d71e26c46f7bef3593941fb5",
+      "task_sha256": "5090ab8fad7dc2b18cd2ecd34a4a559d5abf9f18b264cacb2fb17e00ace27f49"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0140",
+      "provenance_sha256": "da7cce35b07baffc1b4e3acbe40f84936b4f3d1939654d67a5573b5258ffd15b",
+      "task_sha256": "a468e368660f37f11f123672cc7537589b2ba1853049ae675687cedb089a76c6"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0141",
+      "provenance_sha256": "33d7e6a068838884eb5e672da62cb775b4057088fc1f6b9ac79889e8ef3d6574",
+      "task_sha256": "3e62b8ecaa6af857ba568bbb1e3a7f71e223038cdb8b4f238373a52f35845032"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0142",
+      "provenance_sha256": "56380837e00ff3aa99108141cf50bee51960323701579a3a7a9cb34a2f5cfc83",
+      "task_sha256": "b0a5e8f8e2487b553c2d02cac30d7a487b7aadcac0e645ed3b5cbc30bb0c5eb9"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0143",
+      "provenance_sha256": "27c7257f350f09bc479e8d2cb29a1349a11a2b35b97b5dcda5e09784ba294d79",
+      "task_sha256": "e54998939ec9d42068b3e2b8256af8ae69a44760ea3b0c342eea195f56d2940d"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0144",
+      "provenance_sha256": "ee828dbcb64cd8ae45bc605055f3b2900117b08eafba56b12376d41dddd3b193",
+      "task_sha256": "59f2f8e26825d02dac62e3f5a7e7382b3674a0d8cb5506154a0da2ee01ff2db6"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0145",
+      "provenance_sha256": "8afbdbad8d1b4f8ff67b486ffcf01c7a5058de6115b73e0679722f6cc034a7ee",
+      "task_sha256": "d10714ef453de47f8dbe1fbdc5a0becab775e263088c81556a14533f2367483b"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0146",
+      "provenance_sha256": "5cedea7f7910e32b473fb295f39387c9a4fe1ea94eb5a749243d2c730ef073fd",
+      "task_sha256": "b0615ba66fd328eb0a1df2eaf067d0b3a46ee08b277c09ed2b569606ab1ccd20"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0147",
+      "provenance_sha256": "3929a1e1cad165927225373583a73b981a015d190d79c0abbfd6bf6715cc61e4",
+      "task_sha256": "d79c33857e12de86de35acc54151a245530550bb23488a25ffdb91654e489b24"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0148",
+      "provenance_sha256": "c1d89d97bdb9b4db10274f4dcddb2b1d5ac3fc586d2e8ace0183f4b7e43c2373",
+      "task_sha256": "adb61c57a692396346322bf1b6883bc287dd33bd3b5bd2ad50a967f9bbc8d81e"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0149",
+      "provenance_sha256": "97f1b757e50b8e39cf2af1724d2b2e09282ac7530134fa35394ca9991659c2a6",
+      "task_sha256": "d1219d6b754e58731141c41b8c48dfe5ebb42f748b6506df0356202ac348e78b"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0150",
+      "provenance_sha256": "3be5256ce850605774e06ab9e6bd48242344228675c17bb44e917752b07b3a2c",
+      "task_sha256": "c9475d8fceed5697988a9bfa3cd00974fd3a90da654ec8b2fb4bb7510f96c3ca"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0151",
+      "provenance_sha256": "8e9a115bdb275660a072db99247c870c4b870c66b8d4bbbd7f75d69744e5e990",
+      "task_sha256": "bf35c94f8b2635546db87819679fd04bce7ad64d817988a3ecaea1dcfcffadfd"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0152",
+      "provenance_sha256": "1484bcfa5c07caf53ba955ceab101546a00ab94444cb761050700ca400a5b1fa",
+      "task_sha256": "76ead2d32a6fe34b6526ee28a9126d44cda9761f55956447c5e5541ef06c3264"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0153",
+      "provenance_sha256": "dd3f63490d4630c2ed14e5384514517cb382580c5b20948612f243cc391dc218",
+      "task_sha256": "16c6b415a78ab193645e2f09d54a5e6955fed27b9d63b3891d8650f2ea5f4f59"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0154",
+      "provenance_sha256": "efeb633fff38e492dc6d5fc6f6f851122ddbc23f7ae15e4d9c3ca208f5c29f39",
+      "task_sha256": "e86ceab7212e29b6c603e222d9fcb95933d3338576a8bb3b7d2354cdd0311d10"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0155",
+      "provenance_sha256": "3df82a49d500ad34442e68ccea3fe8acc80b866f09dd948d8dc951af3d625bd9",
+      "task_sha256": "549dce2ab092040c55d6f44d177a5a75997671d2e0cad0686a1c4c58b0b824d3"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0156",
+      "provenance_sha256": "1e32887302088b1320ac30c490e462fe1ba1c6d191ae7199ec5c1abb43eaa208",
+      "task_sha256": "cb34a210e12df532c6e351d490bebde9b736fca125ecb741384b96bf6ac58a67"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0157",
+      "provenance_sha256": "8cc84cba5b51efae4aff2ade94b2ce1aa7641e7ffd97f9749f6da57369837838",
+      "task_sha256": "465b8ef1250d3525078837752166647e06dddf628e168912c824ab7f28a76de7"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0158",
+      "provenance_sha256": "aba12fb42fae88183a6f055c1e417c102f329b9f53c88d3f6cb324dc7bddcf32",
+      "task_sha256": "9c0d33d5094cafe39704c386769961d0128f176bab96af6f6f86a3edb4cb39ed"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0159",
+      "provenance_sha256": "1cd16076ed1735c585505213d2dd95e8bf8462697e512f7626c824be87231ff1",
+      "task_sha256": "77db5d144c3b64041b416dc66963ac2bc07013f8941e6ec05c38983e1c7b7e5f"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0160",
+      "provenance_sha256": "b0b6477ffdc8febdaf38cc8bb2f05956467bf128d03055a1b3a68919c2b38fce",
+      "task_sha256": "af25d908ec7b155e74ba649f9af7d0941751862f4e5703333616bffe1410c322"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0161",
+      "provenance_sha256": "d762bbcf30d4f2e6b230746ee99881e1615b7cd0a12904cc5f084c0acf5fee16",
+      "task_sha256": "51a4c7c13d93030dc838c4f22df149d476d83d76cc7ed60ab80cdc9fe83140c8"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0162",
+      "provenance_sha256": "a86da962cc1327c711875253994b49ff5231039d6648fd980324c4d2e1d5c283",
+      "task_sha256": "e8b188a5ae772da6520b2d1f4c4743c1106f31812e1bcb45b7effc6dfbc42a73"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0163",
+      "provenance_sha256": "13ff97c147cb4d328345fd7dabb424f0ffed6d6330b5d5042a234c2ff735f1e9",
+      "task_sha256": "ff72e93a5417795bfcfdb74bad6c63a9ccb16c3e2279775b92f9013e8af3ad84"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0164",
+      "provenance_sha256": "53112db9eac577489598d4c3d64cd343dd8f336ba3c9ef47b5a5457f457d5f74",
+      "task_sha256": "258d19a769e31a9253a1447d94f91afa62bee52ce6e04f058021c0c000a034bd"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0165",
+      "provenance_sha256": "b6810bf4931cd4af1f6bb1aeedab0461d0cf420759929b824a0fdf15103bcdd9",
+      "task_sha256": "a6d1a11065c2a8489909bedaa113c001207da9ce196eac84811f6b2db0ec52b1"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0166",
+      "provenance_sha256": "85e770dd637821143606592c92ae45b967adf5583fcb75f146c756a0e37c341e",
+      "task_sha256": "5e624fe4bdf1c1d75628e3cdfd3cf6b8d241563239a299a8230b455d3ce129f8"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0167",
+      "provenance_sha256": "68862c434191483f738b947b95063634985414aec9b9412e579eba6ce7a4eec7",
+      "task_sha256": "a7a75a3a847bd69aa2c0ccae8573c6ed368f82efdfba9b323e75cb97388d2fb9"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0168",
+      "provenance_sha256": "d1314b31f35f0d1659361c410fe45b23828b65928f59e556e4fd0b0294a79055",
+      "task_sha256": "970d99dfdd6ccbfdc922b31e36efa36365ac534b22dc0c67c083f9d5d62edb33"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0169",
+      "provenance_sha256": "f0b83f42693fa7861f13e24a7a5ba1619b9024adb408bb5f7631922ba23fae7d",
+      "task_sha256": "55017fd296fed684c4b27da14f65aef7237607d9117e1f8dcac3fab536bec0b6"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0170",
+      "provenance_sha256": "45170ce4c0361674a6a8acc126fc07ac8f094405c2ef53496c39432fbfcbc64f",
+      "task_sha256": "0c60f2e13f271604b67e2de5cc9819d0cc09e6e79d77b4c2cdc08e5c28b03426"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0171",
+      "provenance_sha256": "49af48e63a7502e71597ea284fffcefd3ed41c2f9c6c39333b4187b91daa5bf4",
+      "task_sha256": "f72e32ac2b80b858e70ae0904e23ee0a56bbca6e172956448f0411f97f6e4f92"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0172",
+      "provenance_sha256": "a24e7027e924f6755b247ff9e0c4a5480b7ed579bc106f203e26915164b61589",
+      "task_sha256": "f3c36d550df117bfffa841b70daaa3a92420e8bcfc7065e0e9d90aa9eb25632c"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0173",
+      "provenance_sha256": "513bcea20449070da1998cceccef8b8b4312039d97f788299cded1b61878ad6f",
+      "task_sha256": "84a697fb0128643934c7fd2c708cf0f00a85096b6aa945f964657e7762986923"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0174",
+      "provenance_sha256": "0f52d8c25aea6ee79f07eeaaed278f982f39ab9057a233b1900e42e00047c1a4",
+      "task_sha256": "2b40565ddd86554105397db60467febb959ef37aabf0610b2fc3ca0c720660f9"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0175",
+      "provenance_sha256": "40ea6207f08c1a30a4daa5cf925f9bdb1227e8121a75f3e96999968c70e5e6d0",
+      "task_sha256": "579901d2bd273b29860e7c558f1844d59b17fb4a32d9c5eb931da4493a36873b"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0176",
+      "provenance_sha256": "01784f888cef249e67844c477371457c06dac67709499ab6cbe5e0ffe6199b8e",
+      "task_sha256": "402652e48665db53e7235afeeec84dc48db0777a7fa7beada4265bcd9f31bbfc"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0177",
+      "provenance_sha256": "bba077d9f35f7703a29ca1295efcdce8badbc2e53c640b9fc482c60455fd25a0",
+      "task_sha256": "4585a5a2815a8dba19c032576198295afea5ce17d7b88c331de9e6435d3578b9"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0178",
+      "provenance_sha256": "a422995e58e51d866f780d691e6fd864e59a82254a4cec500f9ee7ac0f2dc338",
+      "task_sha256": "ba250caa7a9a3696aaf443a94a7e8baaefa787cc9f8c1eeffd5030652a2f2fd3"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0179",
+      "provenance_sha256": "03cb37370e2cd065be8790f4af1446d8cf1a1996db23c0a03f2764687bde7098",
+      "task_sha256": "a82b787a898d14a424e76170591880e666b8177c5d6d7360816b0bfc76ab73fe"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0180",
+      "provenance_sha256": "df5fb4ba84f6bfa0cee9d6a9d76be296c725b7cdc84350687193eedcd30efa56",
+      "task_sha256": "82afd48ae1f6ffb32325fb13310c0a428480d6723e1bc4c033027ef183da753b"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0181",
+      "provenance_sha256": "900e43a715a3f6766b53d49b420b06c7d63f0dae1feecd75c2f7c53aad50d056",
+      "task_sha256": "279c24f61f49e60e929d4d0378c75ba27bed252526767276cab883fa21749af8"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0182",
+      "provenance_sha256": "f7c98e1ff0ee1e78b7fbfa206fe770004d077e52963a8278dc9387c402b55e0b",
+      "task_sha256": "bdcc89ab77e5a09bb3ea2559379c61d264fbde2a45ddc4e3a7466af7b1adc589"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0183",
+      "provenance_sha256": "be0715f4fd00df2339d1e1d42d2f870f0bd27ae4dc625409d6d47b3cd586e88a",
+      "task_sha256": "de2e3fe27b08b52db233017b00f111aaf1677b6e6efda33e6019a665c9b37430"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0184",
+      "provenance_sha256": "82130509d8f701dd295a03a73fc193f5f04ebb8a1259250ce78d26ffe57684f6",
+      "task_sha256": "6eaafe5e37769e3c618e9c580791d7005e44a882e67bd9967adf1665c7636cdb"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0185",
+      "provenance_sha256": "c1241a6a1f2613d26fda5cc4853a7e5bf03dd23db1b5bd79139ecebf7db127f0",
+      "task_sha256": "ee921e78b6675ebc04c938fbdf15cbd90a66d856173356502694c9c6dfbe1169"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0186",
+      "provenance_sha256": "003f66f44c64c2b57cba5d93519a9828ab879e61c880b6d09ab59e65190749ec",
+      "task_sha256": "96f58aa0de7c9f091fdc6ad541b1055faa83f9d71402703e776cf3e246b5c30b"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0187",
+      "provenance_sha256": "5b326d9cb8b6a055b1a82418ad6c4d2bef5a6598c01eee2b8e835deb3456371b",
+      "task_sha256": "cfc7386232e4d58fbcf7a65ed186648a8f15492d715697e33aa8bb55d8d6ed02"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0188",
+      "provenance_sha256": "e8ce0293df15f3235f69c1a0e31e28611f81dd9c2cf2c46546f6baf4a6338ea8",
+      "task_sha256": "df6f464de264337e9eb47cbf1979a2f3ad1e92c0c5b023fd89f5dcdf557c7350"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0189",
+      "provenance_sha256": "f5727c3d4e6b4c1350b6bee4ca31426c9b634480acfc7138717e9712097e3f72",
+      "task_sha256": "149d3bac3ffb7b8febb6d1cb91b9daba062380b03b3f4b7b67f6e7d574e91482"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0190",
+      "provenance_sha256": "a52666b1be0c581374225e7e1fced2c8d5d40d312009a16a1707b5837a7eb998",
+      "task_sha256": "275b7b282a5ddfeaa34ff5eb7b9e69970da9af146862fd891e57d6178513725a"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0191",
+      "provenance_sha256": "e537529ef5d082e688bf9129e79edf13937cb658ea987c97fe611237bea23ca7",
+      "task_sha256": "43525ef487843d3a55f4222d353b56b2f66cd4ad9d4b66118015a0edad3ed87f"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0192",
+      "provenance_sha256": "258a5150c34c74c243442138a63ef89aaa31b2a4c96acf59fea3a598a10eb174",
+      "task_sha256": "7da068d16e53cbe8a61ba73705facd1cf60a6934fd86015f69e9476b68f96a95"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0193",
+      "provenance_sha256": "41acc4955952583127dbbbfe6ec64341e75dd879ba7e36c00dd7475baf240ec2",
+      "task_sha256": "2b70301191112c23ea54d01387e5797581b1d685ce30955c3d6ffa92a787cb57"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0194",
+      "provenance_sha256": "b27c3d12900505939dd3d8c4a370084c2a413137b360e48ab7ca45c223312dae",
+      "task_sha256": "6bbdd95802657e637d0456190d36ae0bcb2bdc2fb0c1e73a7f01ab5940882bf8"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0195",
+      "provenance_sha256": "bd8dc39153deac8e6310b5fc73f9470307d6db8579faaab334195b8cbd77b224",
+      "task_sha256": "f8871f3e10db0ed561add1fa3146dd4c0bd8d49e9052668c0d7a7a73ab972b8f"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0196",
+      "provenance_sha256": "b60aad9e6b2b33a7a9696e613b2b64d3f8a1bc071d367e88b1f8fc5e5c7688c3",
+      "task_sha256": "c341adfed17b8c344e3b481f4b433d2e317a6dacba2b854f7f6127a5d0922797"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0197",
+      "provenance_sha256": "4d67561352ad6f1fcfb7642ae0bb7d58d8862faa72015ad72b15f4f17059357b",
+      "task_sha256": "f7cde7b5b7cf5ba61166abe706c05a4e1015113033baa3ac1c58052448b1fbc3"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0198",
+      "provenance_sha256": "1184ae9aa0317185bfc9e19a52e475ba0bed8b1b86f194f0168a6f56effc192d",
+      "task_sha256": "31f0cb0d04e3ac505d346959021fc8a80be3829b21681bad9ecea4e23ec036a3"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0199",
+      "provenance_sha256": "0335b18b55d6a05cd5ed012518bd83e7d7eaa7642e62d6ad90ff2e5c90af0b11",
+      "task_sha256": "8546d50cb77205001f34fb37d5c2d06b857c2f4ed52ac3768423a91bbb85e1fc"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0200",
+      "provenance_sha256": "5f11719cc5588c210a2bdbea65f05e929f2dc9c54dd79b51971519b6d9a15538",
+      "task_sha256": "4572da998793fb82fe440f3ef58b7c273c9bb1b9190f7337fc34b31fefa1e9b1"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0201",
+      "provenance_sha256": "83a6ee3f5b1541cdd5d8183830f4e30b1b513fa5c350f20082599b72a7a09c38",
+      "task_sha256": "240710e9b2d492c291ddde491b9ce52be035bc20bbae981fafdaeb6f9eb6d274"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0202",
+      "provenance_sha256": "508f39eec54c42b016776495ce12a007fca48c079ff3bbed92d966bf2b9b0305",
+      "task_sha256": "d3190ec2fd2433ad631aaf9015e2a603163b3cb7617c7ac0fd7b9ca2acf8dbe0"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0203",
+      "provenance_sha256": "d0957de7e1f008d52925d4057f04223381c5d0e0129f55af831a5c44b08bd5ad",
+      "task_sha256": "ee05c66a05f25f21288e515c87282390fbcaf34d184cab96f9b53e1e5ff07ea9"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0204",
+      "provenance_sha256": "5148c7e914a46c873e8ba99837127b60cce3aead9e1411b56421d6c25ced0eb1",
+      "task_sha256": "ca0c11f164675cc81f28e8f7788e4cc7c240181403eda630842c80c66ed0968d"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0205",
+      "provenance_sha256": "c044da08c1d57a3af97da456b1a427e8e115bbf8d4c1516c6b2fa1ca3d909bc5",
+      "task_sha256": "3ab0b30f9542f79a18249a6d4d9ac5b880f0ba6eaf7c305e432dfc9d51014226"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0206",
+      "provenance_sha256": "75e401396466966a5d2f84087f5d7f973c8f49fd7a1ad9e5700c2619850aabe0",
+      "task_sha256": "383435f493ebd6721879ec1e73aa23f0b5295ef11a5727994c2af6cd1eb6e431"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0207",
+      "provenance_sha256": "92ac6ecd30a12761543dd188f3037dc64bb61cd2f12db46e2dfc06203b75d789",
+      "task_sha256": "5676f2c45a681e5a32b3b431ca89852703135578e4a57190852a228c27e00c7b"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0208",
+      "provenance_sha256": "b93575e15c92216d0aae60511ade88df6a8cdf7dd82f136ddce4d4544f99ae16",
+      "task_sha256": "b0ffd5f7a5805a6603f5308558c8ebacdacf5c6f83a3dafaa303712d7e03ed65"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0209",
+      "provenance_sha256": "228ca1608d41a885554be0914c0a02a59be865e0adf9b13a932621d19dcda1f4",
+      "task_sha256": "52217e42b9cf07f302719aab23ce92a6e069bf19e22d23c4457b80876b4a614a"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0210",
+      "provenance_sha256": "511021f1ce78dd440c9f103652b6296300cb953a9e63e9efd78eadf3c3a6e756",
+      "task_sha256": "78cd47a41b028db4d0a0c3230e3adc607a02c42e118a1febed248d6392348fce"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0211",
+      "provenance_sha256": "df9fbc087c87afc9af6142ded068aa371e1e9d95eba518851e3d41e79f3f5d73",
+      "task_sha256": "7e87eff75b7a8ae1570f8dea6bec38b3f750df9e606561678031c73d5d3c0989"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0212",
+      "provenance_sha256": "61571371ec2627e6dd9544d32fdc8aff7a934de019d5709928f350c59142586d",
+      "task_sha256": "5cf4921d3827f73cd071737e5f83323105ab78a5463108c3953a23aab4b08624"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0213",
+      "provenance_sha256": "ba5237cf9886dd3ccff7eb6b188c4d208a289bac331980927727f1a707e30659",
+      "task_sha256": "9255c87cf23f513b36d04e983356a3af885e02324d660a09e25a7d47cf7212bb"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0214",
+      "provenance_sha256": "8a36c557ba397b703954fd9fc0851f90be24914507272292fe5e72fdcb8fbd60",
+      "task_sha256": "02822cedae56ec56f40bb85109f587c37e0e83f15bc781d96e6e19cd15ef3d32"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0215",
+      "provenance_sha256": "ffdbe764f851bffbb1cfc14ad9a8cf3733d832f2d8ec91893aa88790140c13cf",
+      "task_sha256": "0b49b470b13be9de258ac160c402650dc2b0a208876aa6c11d2d991f765194e2"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0216",
+      "provenance_sha256": "7a3473d6f0eae1067515c1e9c2e24c5d9764c0a382e70a4be5dedc64ad1b2dd8",
+      "task_sha256": "59d83bb040854868e3e48890fd85bd953a93002683bbfc4a61b0ac724b318f0e"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0217",
+      "provenance_sha256": "fe78ea1aee03085d720e4b7da9152afe21b49beecd9786dae074df3e94147609",
+      "task_sha256": "85599406ce3995158d99ada34317456232b6e6abe8aab5721f565f8017b4922e"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0218",
+      "provenance_sha256": "3af52b237de52d2018dd78cf103f2e313f831cd6d5327721f99a2ea0c8a82f43",
+      "task_sha256": "2aecd174398a189b6d7999c929feda9e6c7319c237b3f470ef0523d4444b911a"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0219",
+      "provenance_sha256": "3052e463b1adbff22de221b614a1f3b2e7b9824af4acb1e84bdc3ea8b306f27d",
+      "task_sha256": "0fcb0ae3033b0855fafe9ed4060676ff102605b6652668520de8164b225e843d"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0220",
+      "provenance_sha256": "af6d6bf9c2fcb2477ca50172da6fcdd1555f14f2a63ca56e56460eac81f97e85",
+      "task_sha256": "a3002d06e0b0f5bec2d0bcec743742a2705ae57fd7d2ada694724e41bd935b8f"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0221",
+      "provenance_sha256": "6a1aed53f8bad209fa69ac89b1c3aa5d8ae0da2465e3043c1deb72f58401f57d",
+      "task_sha256": "de72bb6d596b15da4cc095859f2186cef688fb7bfaab027274681052b85890cd"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0222",
+      "provenance_sha256": "49baf8fa3f6e2af26e3c5c76652238485263bbf10bd8eb1a2f9e4dc518ec3318",
+      "task_sha256": "9ad20391615ef3e9683d1e329dbceb4d3768f9fdb19ecd4eeb5425a64081ff9b"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0223",
+      "provenance_sha256": "86d696e04936f52dde2fdc95b61571e9551acbe3a9c1b2e13d1c7f346b298c8e",
+      "task_sha256": "b4a81f849b8b02bf3456c2b109a750b346b20a09220131b288e9fa5ded1ef26c"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0224",
+      "provenance_sha256": "75ebf2d8be3747c6f54331a9edebb26252eb530a55bc9c720ab039a840807bcf",
+      "task_sha256": "bd4e4b08804a037ef4ad69866f8501e435ea56dd5678365914a7fba10f92a922"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0225",
+      "provenance_sha256": "df6c4c5968b7b2e3afc57ec98fdb60927ec9f4e29435d5a3adf8f30556ce165c",
+      "task_sha256": "d0b95412ef76bce97f7d92b0f93e7e59f57c179ced6941bb0422814d416832b0"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0226",
+      "provenance_sha256": "6f50f1cdde6a5d0c5609b9acc56312cdc4f4c31335936a17be962e82cd5f1ed9",
+      "task_sha256": "4aaa36d1f086bb4ce35ee70d3bc1be1b206b0c5a0ebbd4d51e3d72935abd75d8"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0227",
+      "provenance_sha256": "604699f683d87005b5fcb08acfd3124e2aea7283521bbf0a9fff69e80a26ed69",
+      "task_sha256": "cedc8893a52f78ef1e7ea1846b4ca7c881cad4ce6610f86987f4b85d6d4a5801"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0228",
+      "provenance_sha256": "ff8a87281394388a62e48ee93a1feb344d1c421df6634b9463d465f1c892d468",
+      "task_sha256": "9f135cf6be57bb9f2688677fc8b5525e3ee531326e1b43eef12361246eed5537"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0229",
+      "provenance_sha256": "d20dc21dc8d9f0d74eba08271022b6f3841278db8b12b816e0cc6005a0c912ff",
+      "task_sha256": "299bc9992c28f1743db3955631fb0237de013ebf6fb40f908fe02c0c7f610918"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0230",
+      "provenance_sha256": "b66fdd47da7193104436f02087b62a6b05d1e4e42bf4fa7922b2886d48b8272a",
+      "task_sha256": "65024d1d4c5902b8ba1f6a666be578299a696a48c2c318fea10bac833100e5a8"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0231",
+      "provenance_sha256": "f5fd447a34589cdebc32b993370c59a8eb5988690f9ff2315955c1ab9ca87f7c",
+      "task_sha256": "44ecc22fe6cc26fd2379b2b0f570ea6c615913ceea07b106fbd16d9b26c62f0f"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0232",
+      "provenance_sha256": "4413f86e9f7e643df805bb73cc695923e251281f471608f39e93c0ee67fb7a7d",
+      "task_sha256": "7d9237ff67e7079ca3c22643f163c079d9587890ccce621db40194208ff65a89"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0233",
+      "provenance_sha256": "b6093dc26fd090cb420e3b947856334a7caa9495207f2b59b5a5f9959360ce56",
+      "task_sha256": "0c9f8eabf3b31074f551f7f8356bcac385a194a538bf0c1809d3c0fabccc3306"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0234",
+      "provenance_sha256": "d0a8bd4327b0e5f1bbfe4651528eddca5c2d829d076345a78594487694372223",
+      "task_sha256": "cb153df1fe331a63ea130c7d272c1cb097f23325a38079d98332605c0172d259"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0235",
+      "provenance_sha256": "d7283beb4ca7de469b8a0179cd9261698930eaf1e7b26c5b9b3bb4adfdee03ff",
+      "task_sha256": "109e06967ccbb6257322656f080e62de8786674f850616070119156d3d5cc13c"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0236",
+      "provenance_sha256": "bb412dfced6d1ed5b383b7159d2ab515597e97e2624930af637165346016c520",
+      "task_sha256": "dd4e80f392c0a42cab6331d9ccd2562308be1d4c87128381f80ecd2ab742eca3"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0237",
+      "provenance_sha256": "81d192db04a411d3c24625fbd7bd3869d82f8277bf2d8b018183a207db80a067",
+      "task_sha256": "e30d0878db49657aca43670bb1240592c2d38e48d67714a6f95572bafb6558ad"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0238",
+      "provenance_sha256": "751c7c20d31324da0b0319650ecac9a3ccbd5de095746401d9278486e94edded",
+      "task_sha256": "707a43596460a7d4d8bf2c8ed8142cd80e3be949bed023fe00eabf47159cb9ed"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0239",
+      "provenance_sha256": "3509a827f108e8f11490405dbbb506c8ad7b94576ad75c4412314ae71900c1bc",
+      "task_sha256": "5fb4255c24ed4bebfbf95a93cd1c68faba85baaa0f6a029626e2be77c81efdc2"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0240",
+      "provenance_sha256": "8397b5bf5c0e77e9876d70fec6e8514e40c09ec258ba391761dc6c286797f8f1",
+      "task_sha256": "58a00b7d3cef06eab3eb849c953f9bb444e4f9dd6240b4efebe6851e30ba1aa9"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0241",
+      "provenance_sha256": "6130c33d1be96d7080c167f5aab8cd4e95e70860b1e8127a8add79deaa3d3a8d",
+      "task_sha256": "973df67afe5121f956a81d1a293d49cd0f15da87ff7fb5b9bf98749138bb1177"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0242",
+      "provenance_sha256": "6d4c9cedc36b6973a35d78c3f32ac93214ddc17cea0414ad4c32049134c7f2b9",
+      "task_sha256": "c0d74ba08a250bd0dccda231704551bae3e386c1c968c00f3b464dcb0fc60284"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0243",
+      "provenance_sha256": "e5a8772f2a1cd949188349a9c7082ceb95c9fd45176505af5247d3a882228ec8",
+      "task_sha256": "ef0e8f5fb790fe334a53d1ec16ea6211772e7e0ab3cc0635fdc1b2ae94b202a2"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0244",
+      "provenance_sha256": "dcaccadca995c17a51d4a2757a125715632b8dab6bc7987aa182709f987a244f",
+      "task_sha256": "2dff8f0fe876f57f0c2966eb5a21f908a806736a5513f6a602cbe00c5a34cb13"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0245",
+      "provenance_sha256": "93879ce7089919de9a695c28b24120cb42355eab37ae9ce8ab2131eb11614540",
+      "task_sha256": "63b0918f54024aa9036636eda9bf42bac9a8d1299ea67a3ab7ee7d1faea4df3a"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0246",
+      "provenance_sha256": "0426dc4dce741ce8aba20e2719c4cfec1f9f529eb9569f09e17cb7a0032d658a",
+      "task_sha256": "bc89f4c43ea5c7d1db150a7f38f95233706a02bad1f553a2a7942e4ea38be8cd"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0247",
+      "provenance_sha256": "789a0551c20bb51a2f1123f442267f064e17eba4d7b33c32ac56ee28adcc889e",
+      "task_sha256": "845faa45f26d23d215662af0c38f465e65fdcac253486f12198f91f90cf99886"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0248",
+      "provenance_sha256": "e1d83e2974c76544629e084ff92ff58f4b5dafdc23948f8bec534f6b1b4bdbc8",
+      "task_sha256": "4416edcdac37d06f7f5db7e34bd7a95af1e8a0e9caa87189ed9048a92ca6fa9f"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0249",
+      "provenance_sha256": "6f73bb87d6515d0a11cd302498b953d6687916c31792c24c31ceab45676d931a",
+      "task_sha256": "b464722edc194219ef713c1946ca030a772f194ddf20f9f72bdff11b4a6d34cd"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0250",
+      "provenance_sha256": "f6d02caf481dfe00f631f854d5e8bf6ae102d07f52e6f308f0283c349e673ca3",
+      "task_sha256": "73edde6bb72ca98cc60c53b39a0642d4d0eee9b7c0990a07e45168c0395be95a"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0251",
+      "provenance_sha256": "b48271132f9fd31c52045ef46a64822674bc886a2fe4433683607eea6bc63031",
+      "task_sha256": "19d8bd061de4a7b734ecf5894123935e0c97697982af78ffc78a29804d940bc4"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0252",
+      "provenance_sha256": "8197cc1c338ce8713ae11c578907b789f5a0e506a6f761e65d115e8eaf128262",
+      "task_sha256": "bb4fc654d955a16127a9286a8bf71a5df79b59c81dc3fb37220337739224b6c4"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0253",
+      "provenance_sha256": "8241870143123904d3a6020273cf7915f0f803a4c07259b277e170b8d30f443f",
+      "task_sha256": "72ad0897312ac9432695ccfe41cc26106d5367a8ff3e1e0ec00b037b47978534"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0254",
+      "provenance_sha256": "a9bf44af6fdfbc8bc671fcbd570bc36b72dd748af5cd2c588683106da8578a98",
+      "task_sha256": "a91053a1ff6879e4ff9a6ce6b3d723999910ede3b019258a42fbedcd33528b9e"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0255",
+      "provenance_sha256": "d34929c5f895d753696f5b724657c05e9ff8bb0fd9c501daed844413c6b1bd5a",
+      "task_sha256": "82afb7c79ca220309089bb3295ed09341a4e73d29f6a7907fceda11c12397895"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0256",
+      "provenance_sha256": "db4282e468b36ef5509afd265262c486f74e893fcf278d184868a1e52bebf5b9",
+      "task_sha256": "129270c3c8e6cd9ce6e93934a3bcbd018120dac47d013ea13c6ba962c5b35d28"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0257",
+      "provenance_sha256": "f6abb1332eae289ff6bc23c9f7e57d84416f75cf3523fc8d0e0769fa1c5f4790",
+      "task_sha256": "f04b84f367d06bde4ca610146150adaaf9908cdce70b587fca560326cce6c6e5"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0258",
+      "provenance_sha256": "9a2f59feec51c86bfe24f640f89baa8f9143ba91f6671985b6e688b2001a938f",
+      "task_sha256": "1bc8fce879a455c5f8943fc530ac19a97df980d9c67bffd3531db0f3c5ce4254"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0259",
+      "provenance_sha256": "f00273818c6c8d7b39424f1e4a092253e65077c1926f798c4f5bfb59eeffbabe",
+      "task_sha256": "c8b75b35c5e623c439d067b32932c329eafc5b5fc8c682deb606042b4e1ef87f"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0260",
+      "provenance_sha256": "ffba0e503a11a56252f386cc892bb56d17d687e9ad295023f52c8beaf213681b",
+      "task_sha256": "eab1074b744b472b672ab4dea2e271eb7c2ba52db0f39f4d694d07675817f88f"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0261",
+      "provenance_sha256": "e8dcc93d75972647cd814e9d80b5e822b2d816531bfd82b70e9e35addf630ae5",
+      "task_sha256": "93f2ed64083692a397c79ad3a8119ade1184a30fb8ddb13068b5d818984fce50"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0262",
+      "provenance_sha256": "adc1b58e70961ff2e3464d207519e82bc2df28ae25858680dc84cd442efd4fda",
+      "task_sha256": "2c796ecb4673f9614afd97a1c3b515c524c2fb28cfdfde4f85ba0eb162201f80"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0263",
+      "provenance_sha256": "da4a80d099060ada060c76e25e9811dead414f1012495270fe231cc1b37e94a8",
+      "task_sha256": "a24fb8e6f21612e0906c2f76f927ee6793506650b4dcdf02f90c8b33d2b37d33"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0264",
+      "provenance_sha256": "311343484b51220499ef81f1f28454f462ef4d0452e72a700ece260788725631",
+      "task_sha256": "10e2f3a41a3120ba654b2534e08625cfa0a0f8a0cb62f59b3a81315296781167"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0265",
+      "provenance_sha256": "26e84881eaa40467c75772c094d04b44412e1533894521c08608e8ec16f72569",
+      "task_sha256": "5f423911266463c4640acb4d4dd7f896acd9f93fa94dad5d815aa0dbc3d1e356"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0266",
+      "provenance_sha256": "5d2e635e9608a064033879dc04ede4981d328f6702f8cad10e2d0040a6297419",
+      "task_sha256": "d1767bf515c3d1bae13cad02c176aebc4e6fdcb1a43990c609f969301cc0d947"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0267",
+      "provenance_sha256": "50fb8b84eacbbc8448774a29a9c03055bf118c23db92899cf4e9d5288f6c123e",
+      "task_sha256": "b02d90cef4f62f19d621423bbb22d4b259fc14ebe72d65b69622ba6af45b2046"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0268",
+      "provenance_sha256": "e2f747be1fe45203348dcbe6ac84ad9c5dff15c5ea67c13515acc3708b17cb1e",
+      "task_sha256": "2e23d5a498fcd0f97a872ddff1880996c15b0f58f9155336aad71a2fb72cae89"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0269",
+      "provenance_sha256": "b36ad94e5f28c898b62f4205abeb419436f155ea8b5d2267928f1e7600cd0508",
+      "task_sha256": "47a29ed6fd8579169d2e87f850ad0f8cd638f49f8261da399732dc03f7fd8195"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0270",
+      "provenance_sha256": "d98e9a50536001c405328e4f747c90d8ba8733e51124d8f35d35634ae0294ad1",
+      "task_sha256": "af2422204bbd097d303f3814e64015080b77bfa8a2540b128f202913629321c9"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0271",
+      "provenance_sha256": "1ac5794438f1941b4cce609fa6fac6e7b842ca2e09a2eba9b3fbad25c0fc18b2",
+      "task_sha256": "980e77c60efc752f9b0eac8efbc2805c53b19966f013719b98845e48d8acd3c0"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0272",
+      "provenance_sha256": "da960d8265af1e9f79c0db191ca807ff007e3fce47703ac6102b7b942edbc3be",
+      "task_sha256": "0921f99effa03a3a01d0135f70fb114770558266578e6b4c6c34ccfd4c99f9c2"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0273",
+      "provenance_sha256": "602151fa5e116f374913432d14d0f281e4fb2cb93c6cfcf52b311865c4476c62",
+      "task_sha256": "64935418b6681f63653fe061ce89d45070524296be2a69bcc87670647503d6f9"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0274",
+      "provenance_sha256": "0a8a860813af0e7fa24bb7df67e6bb4ee2d02f3ce08e1895ca37a659509438c9",
+      "task_sha256": "a67569faac0cb6134d21575140887df4c8ebd57e72f2f1c0220e7d668ffea817"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0275",
+      "provenance_sha256": "cce3f3724f72c61b1ac7480cb2a8a6e4ebb8a4a619c08a7cbb2a1da4317a0a1d",
+      "task_sha256": "4c79c8680bb73692498219da9ed057ef82c41bd39813fa8e07a276f43089be82"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0276",
+      "provenance_sha256": "ed001b567ad22b4f05d505de1d30baeef3aaac38b998d5c219f4f933250bd4e5",
+      "task_sha256": "c0ab1a15b42fda23aca818be022663516cb23e67b7786a559efd3a0065736169"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0277",
+      "provenance_sha256": "4261b48a22fc2d65199524ed5b9bc1f20b13107315d2aa9d915cbe62529bb491",
+      "task_sha256": "0c4018444974e1b3dbf9475ddab4fced30aa3f566c6aa41426b8d48f0d81a70f"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0278",
+      "provenance_sha256": "3b73e7d5bd3c5248c0e83853dd71040f0576ac26b7a22db5b952d635cf599166",
+      "task_sha256": "863ce605dd84d3825e34fc66626841a37a558d21f80ab297869437156a731206"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0279",
+      "provenance_sha256": "f4823316322adee44ea75cb4eb6bd43b0cb30127bbb270648515724135c29c3a",
+      "task_sha256": "46950fc88315ee9f530b42dc852abbfd5685ca2e3207dd4c2f55aab1f3db6219"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0280",
+      "provenance_sha256": "25b104b83ca147b8ec2f0661518082da52ceea0448021b871dffed92407280bf",
+      "task_sha256": "745e8ce870d35b3815222f3ca25323e08811506fd8c37eca91be729d8acca458"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0281",
+      "provenance_sha256": "1c4836332f68240a37723fcc77b18fe9c30959bd3637aa9abd66925d72779202",
+      "task_sha256": "9c63653ec36d01902c13e463cd94ac087bf0f79b650d8b53676f782b14ae1f82"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0282",
+      "provenance_sha256": "e9a3f493d8bb0f521075160f3b7614a2c05a4e74f3b6bbda19b75de3b784a0b5",
+      "task_sha256": "2bd530d3d2c62478409974e858be9679286ad62db2f54c099d8c1a78cf2a6dd7"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0283",
+      "provenance_sha256": "825b6371bb22de8b2afa37e14d2c9f1e00af62d51335f2024b57105ef719ced8",
+      "task_sha256": "7ed7fdcd019033e2d4a112546fb2b1c2779ce20537476b65c4d11011c51c09d5"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0284",
+      "provenance_sha256": "1b93da436d83ce90bf15cf417eb9e9c1731e7aa3b90c2135cb992a13876a8cb8",
+      "task_sha256": "5a5aaf7a7e5b292fbf1bdc48c4038f9a6c85bd0ea551922aa00323f9dd27f6be"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0285",
+      "provenance_sha256": "feff7e5a0ed558673888c6f8c37d9e713da6ada6c807d2b59a3a954b5960f4a5",
+      "task_sha256": "bd83ba6a82efb89e8279a301108b49bff225a65d5676e6d91447414a22cd3b10"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0286",
+      "provenance_sha256": "b0f0dfe3114f1e29b9913c30cc0d124b0c3b5979356c9279e0cebcc40b1edb9a",
+      "task_sha256": "191e6874176032fd6f42d805d3eb0ab3b1df84fa8260543c6cdfb78d7b99c55e"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0287",
+      "provenance_sha256": "d031cfca91de24a4f558b2a218ad663c8f0dbdaf531913dadfc3a924578dba51",
+      "task_sha256": "10bc65d072629a81dd09719041200a86825b46806b2549358b0bc22a4a0cc8dc"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0288",
+      "provenance_sha256": "6c51608aa36ffe9d802d23f6a381aa59fb94810c24a0416f7204165f7d34a153",
+      "task_sha256": "c2a7d877407c755eecda41e7217f96198eb65aaa5889d35d5ee78427179d4487"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0289",
+      "provenance_sha256": "172d58cf8919474dc44f631635f57b24964d0ff073f12863f2a428c132d9d831",
+      "task_sha256": "5d71348f541be98e0e761298e425627f91d7b541875f2ecf2f772423c495e2eb"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0290",
+      "provenance_sha256": "2ef8e49242424c0131199bba3443c1ca6bac4c244353a5b6b71a5f54612b661a",
+      "task_sha256": "c2a686dabd3f0662332b91aed5ba10a684789e539b33ec8f205b29ca34efa41f"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0291",
+      "provenance_sha256": "ecf98e727592d7d1dc263726801e68ce5c445a4875f999eb1eb24ce592c0cca7",
+      "task_sha256": "076483667002e3a2c9a4fc17910c852b965e0dd7c105f55e58c9b16faa0279c7"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0292",
+      "provenance_sha256": "de585a5bea0fe2b3b33bc66ba52cf7f047d2f70350d2c75c71b7e15c03d1280a",
+      "task_sha256": "dded583b04e10dbc1360e8c72ff35e3a6498faca7cf5f3c9a1463636b80cbbbb"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0293",
+      "provenance_sha256": "007f1897b2c40f75579f3d4ece0ab1b5680c41e46fb595dd9871a08a56a2d643",
+      "task_sha256": "7c04e671b36b8540289cc779a896a88cd0639aed28244097775facc75c66c697"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0294",
+      "provenance_sha256": "cba8dc526d807f05a8cf4923c6c45e65b192919bee2838221b774dc8e6a71481",
+      "task_sha256": "60480cd4514762116e903f01117697c9b8b403ed39b327f242a1d481ef304d9b"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0295",
+      "provenance_sha256": "6ed89074edc58ac5128531dcbc1671d45da6f36175ba70a54170c06debf38f4a",
+      "task_sha256": "141d0227913f5a6d6b386ddc215d3315c9a097d10aaf56d45a13ad5f8cad6e09"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0296",
+      "provenance_sha256": "6b988bf87dc1f680df28ed754a79d53169a0bd0c6c73f3bd69343da242e93103",
+      "task_sha256": "476308b2150e9f4913aa1c504f8f50b63061e54069937f7022f513a3d1dff153"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0297",
+      "provenance_sha256": "6578d23738c3dd5709e57f110be4ca660ba9153c8892994afe244f23f532df71",
+      "task_sha256": "8e1a775df961cc0a35ef333fbe51a8cd5bef8e18955f4b5cfb700f329b7002ba"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0298",
+      "provenance_sha256": "5e9ffa396fafdf927b1094735efc8b426c90b897decb1ded9e450b55ae1cb5bf",
+      "task_sha256": "bd8074fc4bbf8248da5e2681848ffa7aa298f0d34e7baf07a12d68c7dc92b011"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0299",
+      "provenance_sha256": "50ab4c502809aba4e84187bf3607b6c4f94e2c913674009896f249fe1f030ec1",
+      "task_sha256": "eb871f37e13fa1f847a020f14dce565b63325a38d6b9018056c9dc28e5ec395d"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0300",
+      "provenance_sha256": "b4153bf5e679f6ac00a122a6fa04521fa06444b5fa946fa9976f6c56c7d8db89",
+      "task_sha256": "42a58cc09d295f08a891eb09ba52f751b9a551443b3452da17efd9d8f6084d6e"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0301",
+      "provenance_sha256": "2b6925c555cc6d67c55cde93d16b754689c1900b32fdbc04793f03227e803327",
+      "task_sha256": "f6747f5a3965c3a534b32e42d4ec1335a6093fff7c81a870816e72e0eb992ed8"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0302",
+      "provenance_sha256": "02f3ac7433848b9e67785252ea57e0a1aaec5d25fef279e7125b5ed405d3e0f1",
+      "task_sha256": "09bc6249b27c732f16584b02d417cbf2b78eb5371337f866377fd4b7e3ec7d69"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0303",
+      "provenance_sha256": "a3959eebe971be456e3edd2ff5cb69c09eeeecc01aef464fc4843b4b7f5fd6b3",
+      "task_sha256": "d57d3c27d450d1c0837c3574861599c834c6528c672e0cfcea1ba79142a69b71"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0304",
+      "provenance_sha256": "6058b9b3c43b01deb34bb5336c2b4f777880ede7dd1a6a822c3975eeacd56cf7",
+      "task_sha256": "e7e8a67ee11c20bb4e49d2ace27d94693bbd6a39b9ce32896d528bd69d500700"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0305",
+      "provenance_sha256": "bf097cffbb19e990a68811c1c064f705b60d14fe5d21887b828b94cccd933f6d",
+      "task_sha256": "cc8e73c90982403874192723d5fbb4a50fb1faeb0ace39e0bdcdfa9e41b7c5e8"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0306",
+      "provenance_sha256": "ac56b4dedd945f618430c71afb1136861c1a359b1d6b11887f4dacd5966a6425",
+      "task_sha256": "a8ba251bd81f99effde3582fba75707f4fd19edd42da23326efaf52cb8dd6bd4"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0307",
+      "provenance_sha256": "622cf5793f8664f16bdfb2beddc7151e408f6f1e1b6558fec56f3b71c4766951",
+      "task_sha256": "fe114c7f7b9e484ba8cc291e792cc6ec888fcce97fec7cb0b1168bc3e4e53a0d"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0308",
+      "provenance_sha256": "ac3d593f158f149bab8b7201726c56fad0e41daf3cf7ebdbe7e0a385f19713a5",
+      "task_sha256": "2c643d00aec5ade38dfbcc6587a373b05fe2230d64628498557e5e504fbf590f"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0309",
+      "provenance_sha256": "569d4c7cb1a7bd68b51a6db8a610471ac8923eb117693bef1711210e2c941498",
+      "task_sha256": "2a8313df13cb9e384ea9acc27e080529e163a27a60810983a2655d8662e9197c"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0310",
+      "provenance_sha256": "06e6c844f5fb289d120b0e2579e36ac31b488d5ae0b2f0848e9b2a3d67e6c167",
+      "task_sha256": "8cf9d9bd3b75cf893c2298d7ecfee8b94be842411bf2ece7c61b95d470ff48c4"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0311",
+      "provenance_sha256": "3495c36336d30564edd2b6631a4d43ee36b7e40923d5452c0ce59b847ea01e61",
+      "task_sha256": "305ac1e91e74b76c9e7a10d1decf4386a28ecfad668a1546157407cc2b526086"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0312",
+      "provenance_sha256": "a3ed78c80a6cb8e13ed49b422b3e656946a1ff47fcf7fdf158c172bbb9f40b0c",
+      "task_sha256": "76e4e6c9a554b084bf83d0436d4c5fe09426b23f0760b943fdce37ff7e413d65"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0313",
+      "provenance_sha256": "b2c71e9c8e461b3c3401ee764d5df78320d096a7b759a061d037e92859ab9a12",
+      "task_sha256": "f31f4b37dcc4b492beeba0ce6a0bf984df349fe2c3d31f636ece514c59eae1d0"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0314",
+      "provenance_sha256": "ea24b0f914b11c3b0ba26f9839113e9618104df459a06d3784a80d0661114ccf",
+      "task_sha256": "a26be01254d510b09d7dfdbf100e1b3f3809c9ea8e17e060203c35ac35cf2cea"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0315",
+      "provenance_sha256": "13a84e6fffe9a188ea3a5c118a40539f934e9de9a35f3d17d7eacb2d8060fe8f",
+      "task_sha256": "7227abb855c343a494ed7d34bdf0dea6215183c969ff404226c7ca6bdf6f996a"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0316",
+      "provenance_sha256": "2f2c815f0ab7483a8684dfc3c847f643c2128d8b041dec2b735c6f569a514b12",
+      "task_sha256": "d6b9f70566a825483b4ce30ee183ab7c09a561636d081eb7d0328c42b322c17e"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0317",
+      "provenance_sha256": "b61689e39ac13bf7a3296316006eaa7abce7f9968193ff22c095937e3b989500",
+      "task_sha256": "b499a12c6655e6196365f30275380cf1631d56bb672e16572be1bc9e8327e01d"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0318",
+      "provenance_sha256": "afaf71f4ceeabcfb34fd6757fcab29f1a414ebe644453d020fd07163acf36f34",
+      "task_sha256": "186c23ff717ae1263ad8d5b5aa9e0ab5f2e6ec0cda6c611ba5af030e0e394d5d"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0319",
+      "provenance_sha256": "734dd8091a280763b00ee05a34fb9b9f18a097d02f36b35e4c0a4fb647c005a5",
+      "task_sha256": "c66e06a80238669bd5b4cc72a6f0ce2dbc91fea6f0423ccf44e2b0737beeb4a1"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0320",
+      "provenance_sha256": "664450c83b9cf0e6c54d709336026d2fd87a5e906e384f9376b65dfc578ffcc0",
+      "task_sha256": "78ffe9ab2eb0e34f95049a2cf3ca8497c628b973d5e41cb85d86123b74ec30c0"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0321",
+      "provenance_sha256": "9e2cab984cea149e883ee2186024aeec198c2948bce415ebbe622b72c6fbc79f",
+      "task_sha256": "1276c1a984c78791dc1c513827d9dfc4750c50398970b7bc7629afe3645873ce"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0322",
+      "provenance_sha256": "aa7554cbd9840d321515b4af791033b22619f6252af40c3c94cbfd5a40372ea6",
+      "task_sha256": "2576be70beb142a7634331a699f3166a0b7fac72ad045472f0829d1695812277"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0323",
+      "provenance_sha256": "2f0a72ba0e63f19f837e5c1d93a79408f7971facca7ec7d69ffbbc129c85d1ed",
+      "task_sha256": "bfa4235ac9078a94fbce0e99e7a10fc9397a2a881f15a7360cb50d42254becb8"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0324",
+      "provenance_sha256": "cf0d7141dc0a72c5bb3232a2abb2aa18d6dc42563d43a8eda8f1a0dd0959cc7f",
+      "task_sha256": "b3634f2b2938a1b0015d4473a9b53922bedecafe07c284d7e8932d6da0bc821a"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0325",
+      "provenance_sha256": "318511fa43a6d21891096e505db7f5c8f32d1a33830ed097d7bdae08e3ef377c",
+      "task_sha256": "a2e6ac0d32900f18542daa019f3e48331693d42323012c40aae5b029b1e4c88e"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0326",
+      "provenance_sha256": "9ffe72507ef8a3e5957ed23a3645b1a0e2dc856eb245a3655e14588e89fc0c95",
+      "task_sha256": "6671a394f77b44fbdb9ac95c9551b2a7088f3fac16a4f1d2f14ea52064b3ba82"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0327",
+      "provenance_sha256": "53fcf2feeb8b3da17b246c6adc05252b50177edcefe9823f7560efae20b88f3f",
+      "task_sha256": "e23cce5ad98014e61990503fd22b364f533536c3fe50970cd6d98136aa5e8682"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0328",
+      "provenance_sha256": "a1815b32574467363581130e3da90e146432afd0693c5ab9afbd7401db9ec70b",
+      "task_sha256": "b52baa1561cdd6e2da64850a8d9d3d44fae67355128fd9b2e77ade971d95cba3"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0329",
+      "provenance_sha256": "7cabcabcce2e7b77316f3a834c6b0bb19685267b66dfbfe31181321cc02b53b8",
+      "task_sha256": "67e84d8b075a15236b2d566ad4b3ad9146b1e478f05799978313d14401a4bf53"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0330",
+      "provenance_sha256": "da5aa231fa966e3c5a31645386317707202a37a7e3bfba3ca8f5fd2ac9032e7a",
+      "task_sha256": "88a6f91eb819c0ae164968051a1529eed98305a6899688efe3735804bbf519a5"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0331",
+      "provenance_sha256": "2dfe2cc6bef26e8373033133743829c4f6a3b0ee53343f0753a6ad096e0dea7d",
+      "task_sha256": "a632845876976ac6d9420df06ce9b8152d3b52ab1dfe50c7f76e8c41ae6b93f1"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0332",
+      "provenance_sha256": "e23bcd17c22f5dd54be38875e5d58ed5fd1bf86a5bdaedb02b7e9b38123b5d88",
+      "task_sha256": "7a7306d7474336127fe0e8c7658dcfccfdd2c43aff23a5c7bb3ab4a227497ef3"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0333",
+      "provenance_sha256": "a62499bd656aad7988751ccc2373a2f17e8206f8a09b0d745820b9269c5ef69b",
+      "task_sha256": "f144c7eb399123c4084b48b8ae8e31e0a3e06e08b02db333fc208bef88380d6d"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0334",
+      "provenance_sha256": "32e75854fcf153a9bf6727fdc5e48785e851f49bedf39360f282da0e1c88ddfb",
+      "task_sha256": "77e254c09e67ef62d64e1eea07582f391f74b4ca0ec1c38ae0d6bf82463baf4b"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0335",
+      "provenance_sha256": "42a3d77ffea90c221e7dd333a8baf5d13f5a942e4c9eabf82c6fb05e117898c3",
+      "task_sha256": "23b79426060c5ea13c60fb03b723dc4de73e5d7c89c3f3e62a594d36e4964575"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0336",
+      "provenance_sha256": "e31aa6ea9c876d434bbb711847302159f52e118478514dacb5e9bfe88afc031c",
+      "task_sha256": "b81cd46f87fb6a0510130383df00a855156dc8af23f205a41c2a8fa980771b68"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0337",
+      "provenance_sha256": "9ad64dbc2b17ebf95832749f05902cd2f3ce0417aba69a52a1ea8a562ab35a37",
+      "task_sha256": "0599b6f8e4839265434e916cf58f556ee0856be70e81004401a49d06b33923a8"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0338",
+      "provenance_sha256": "7eb14c03ccd7a68ccf9631e97b4af629bb98b2ed0dab088b33883b7105fa020e",
+      "task_sha256": "c62f24e6267f0f2a75f97526e0507b18a3e3a68bf8568272c80d84bb02f2abf0"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0339",
+      "provenance_sha256": "c65ebd783f80150a7956cb09d02d95f6c93b41ad68419cf2135ec9e4ec811073",
+      "task_sha256": "e35c9d838867fa8a654b3cdedcd3f228d4026ca850cd0b750d027b6999873c32"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0340",
+      "provenance_sha256": "433ade161dba7ceca793706f11dd463cbabe14850f687adb6c0a0ae48d1d3c0a",
+      "task_sha256": "052eb97e9dab6ccb50abef7bf2e48e2b317ae90bed5e94e94f0e63407f52d2ba"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0341",
+      "provenance_sha256": "b8f45bed4ad521c19ceede5ac90fbd6f38d3ed74d398c20e4be8b4243b2d0a37",
+      "task_sha256": "c00121139ad4bb404141c5a27adc32f27d79a8444535dd816981954c47c7f291"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0342",
+      "provenance_sha256": "005f76b999c8a36005e77a8a58b045e11f850c919b193f35ee75a5248242b870",
+      "task_sha256": "f229e4d22873ef2ab857c513a109df9f06429079ca248db88f5cc1b5966cf9ce"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0343",
+      "provenance_sha256": "c6a92d9de505928362f58d639f111218f3751e6eaae7ba51841fdc7e463cd2d2",
+      "task_sha256": "fa0143a74fa9f71c03ad00412eb85f6e402b896aefdff045d347bc986476ed1f"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0344",
+      "provenance_sha256": "647823f19e96ccd89fae18d65584c1abd7c3dbed3a1d4f8e688a685cb2e6330b",
+      "task_sha256": "78e83f1a8c83d09eb828eeb2b6c68af7b305e57f085840961ccc6db7ac4eccab"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0345",
+      "provenance_sha256": "f485f45576ec06f8bb46dff5d974d4984327248e44cfb81ce29fec571e25452e",
+      "task_sha256": "3ac047cdcdb08eee5d3a03d233b023618cae137b3f00d1b09e97924c0ffe87ab"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0346",
+      "provenance_sha256": "1f74307fbd33304dc347b4e1c81ce52f0d0fc94913d018534db81ef6823d1854",
+      "task_sha256": "0064a4675dab6c8b35d80932c2bed6f140a0388a0cfe4c60df37995d5a7425b4"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0347",
+      "provenance_sha256": "aaddded282ae7517954eeb1cbadd3e9e05db83b59133c98615f68afeb5d6fe02",
+      "task_sha256": "56a43a83707412749444dbc59e1e19d2a0737c00bddbde6362f03683c0cd6169"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0348",
+      "provenance_sha256": "6ce2227a81586e909309a8846dcd5c1584379afda1192a0f40ebc31ec01e002e",
+      "task_sha256": "f4dfffab9b84435b2526c34cdc6ee98c771e13d901f3ea42d026f951a7ad2deb"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0349",
+      "provenance_sha256": "48efd5a219cb641cf583186a9749c33812ab7daa353d4510e6d871c5ad361c1a",
+      "task_sha256": "48656f0262849500d1ba045bdabc795ab91e7a1f8652ca73b5ee18b3e2163e98"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0350",
+      "provenance_sha256": "d2bc34be82395ba65228f71efb3a022f0ce72d40ee999c12f1c6e33d47a50f79",
+      "task_sha256": "bfd56d020a0b67ef63fd27a2cbaa9e50826c42011c090c79bafe8cca411b4240"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0351",
+      "provenance_sha256": "4303537c2fef0327973902db5de4d6f4161564dbc401ba95f3980824a8c108f3",
+      "task_sha256": "3c50874cc4a1d6d361d1a7884e14bd056dd309772780b8eac9936f17118e7b51"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0352",
+      "provenance_sha256": "7a821eb605d4597e9d8833cd7eb4d242506777c36a6f00fb7a2b9acc5d8f7094",
+      "task_sha256": "f8b506512dceed2889f052e7f2c8c3a14261fc25b93adcff0717105652a3647d"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0353",
+      "provenance_sha256": "6b5d83c527fc43ec77483e8ff6e136fbc4bbc49e9fc416fe3e186afc3c0db16b",
+      "task_sha256": "0ea2fdc734265d11a03f2d39b3deb4ef98c9cafb7bc769a2f1d8f8aa0084c1a9"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0354",
+      "provenance_sha256": "000e16212cc46d5c34babe08f8c0e0c4f0b83f6aeeff5fa27acc620b42c51668",
+      "task_sha256": "49d6aad4471ab317f58be330ece7a45be6c34a137699aae9e539c3430188f199"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0355",
+      "provenance_sha256": "481c7c14abd0abab0d2bd15cd8fb64d9172109dbb6a1692d78165ab1063016da",
+      "task_sha256": "d712676f367b11a9b360f64b5a3f95678f7184dc7c8f1eec79523265a10e7813"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0356",
+      "provenance_sha256": "09ebf86ad98fca631201aa0e9db6e5b06acf1c33d1a92d0f3fe265d4ec699e1e",
+      "task_sha256": "cd33b89e42bf0089441fba1b791ce82a2407a6c3121e8cc3bf01ef384926d2f1"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0357",
+      "provenance_sha256": "042b7aaee846dd77d9a316b8f46b2739d08e1b80f75b6a3ed7e3c47fde605686",
+      "task_sha256": "a69a84ee6fcfca1c1cb87b5c5cad981a0314ae6c3352360f51433cbf18b49299"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0358",
+      "provenance_sha256": "8a3f7e5065824f332c0fc32396944eaa6718606de952a7de95ca13daee3b3fc2",
+      "task_sha256": "991fadec5c194d9eef43aa270f094b6fb3a7c84f0027c9755452dc1d4b650846"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0359",
+      "provenance_sha256": "640bcf9a88d3b34766af9a522d6846e367107cbeaca4a34258047384b1662437",
+      "task_sha256": "c011d47f0ab4458138019e822a1a828eb40beafcc0676459d365eedada5e3a98"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0360",
+      "provenance_sha256": "a1ab7d0e63e22fc07e974207af90a396045af790c6fac28b7d283870a79f7c02",
+      "task_sha256": "ebdfedd7b9c24f503ae8dcc1eb783e77fdff57ceaecf75e7ffdc1f6c3b6f8b06"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0361",
+      "provenance_sha256": "7661fa2a4bdb890b503d73c902e7a43ccaf79c88e4c89cd54633e15b79073fdf",
+      "task_sha256": "4ee1339f297925be9abe1b3cfc00ca6987c86744262e26d3c7f2384cd1c47daa"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0362",
+      "provenance_sha256": "9bb72635610092336162e3ca598899150f6eba9b72773bcd1ac0bfbea228a60b",
+      "task_sha256": "5276e444390d85a02d6cc47fc7b65ae2b5a1b7a9991b156e8e513a1a16b8121a"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0363",
+      "provenance_sha256": "e13b477b29b017a0b4a42aa8e15ec422caad0a8ae1d8b6cb63dc9f42641e71f8",
+      "task_sha256": "940a83ec45c65231f5659adf702b8224491dc0f30f61590ad642d52fe9c26827"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0364",
+      "provenance_sha256": "5dc06003199245f4736e94776d3fcd46baa5f1afa8a04995588a2243e51780a4",
+      "task_sha256": "04a2bd3935926b1a0ead300ae3c08be08a8115eadb0ed33be3034cca8f2f98cd"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0365",
+      "provenance_sha256": "26acfbcfabc2787b319ec84e62dbb05e245c68056f5fc2b5928feb4e0326838f",
+      "task_sha256": "cddba9bcd1fe3f8014ac672b927157300e502cadc9e76f6348562f162e57fa13"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0366",
+      "provenance_sha256": "8fe04976efaea3c15f6553d443c89e0f312ab5d4caa526ab28b761cc26c4a483",
+      "task_sha256": "9cc5013b7570b2a2a9e9f6cff8e81ae86772cf087b4d5ff7664934fc8cf161bd"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0367",
+      "provenance_sha256": "585c3668bd1a5a7f134a966dfe8278fb62cc9a4bc145f014a5d4a2e9a6315f6d",
+      "task_sha256": "5ecbf08861497e59824722f0592e9179e78d94540ae43b6dc2ca0015679642e0"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0368",
+      "provenance_sha256": "be93e2262fea17ffd29d6786bd0138dfabd50b3807d7cc0c980d5bc4e3d51162",
+      "task_sha256": "c23a9ae970495d6bf35880742719bfa465c0398b6db6c7a9fe4dabd1dd6cc4f4"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0369",
+      "provenance_sha256": "e4f722dc1e903dab7f14c61d3be921175ddb6fec9f0edeabe3506529dcd1617b",
+      "task_sha256": "1b5426e7b51cc2612e8dac482cce82bb9c2c622b3bab4a75e70765e12d40eb2b"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0370",
+      "provenance_sha256": "148c597ad9e5f527e84d70452abc460e34951c7bdcd7450905de15305ba6ab8f",
+      "task_sha256": "ad48eef50c4948ee2c33be0ef4f47248c8a6eafff1f0e73ea3f11ae26ec2ad8e"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0371",
+      "provenance_sha256": "b555e6fa5c998f4aff6478144c1d39f482d338f9c788c88eed29965de67ba6a6",
+      "task_sha256": "649250ca4ebffb785fbb529cf9533f8704ec4cf7bd5f296c32bab1bd0eba7b03"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0372",
+      "provenance_sha256": "8a6e25d3b9076626b53ff55faf77dd5075c6514bbbb92a8ea0d3919561894e3f",
+      "task_sha256": "a061e6a698095f45a1fb25d25c9e436d78a51f2275256fb8574c817e8e6d9ffa"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0373",
+      "provenance_sha256": "921869a397b6549d4ba75e2c115816f4c8ec2e15a939515e858fb6d1c79e3357",
+      "task_sha256": "28f4bbe1b88d182a5fcf7f609729cd1916a8bc5407df08a42e2a9cafe5bbbe86"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0374",
+      "provenance_sha256": "c97de53a0e76b44e8536861693c88ac46407710cd702ba3bca8c1a42ec161ff6",
+      "task_sha256": "b8c2d5cfed609eb945bec8459b7024b8ddd6306b9d122da66f9b8f38a200ce58"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0375",
+      "provenance_sha256": "982c7dd91e4dd0a924439e62f29ffb45d610cb1dcc4a3e2e5bcd4573d273fa6b",
+      "task_sha256": "17a0cec8e4f6caf2a9a22a0f6337ec11d316207038421f3565b2ff2377892e4f"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0376",
+      "provenance_sha256": "53332f3a8078f9c6d529f527f60b895019ff06e247cdd1f963ebf4cd45f5252d",
+      "task_sha256": "a9098ff7ccdaa1e55d29445913d5d76c988819369f4436a96f58c5c42946b946"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0377",
+      "provenance_sha256": "148781ad65d01403e2a3c62c88c898bc16f38407652a110179edca51f2ab0105",
+      "task_sha256": "1378914444dca3b2aa793a1c4faf114d55cafcfbbe198f2c365c6808b950c2ca"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0378",
+      "provenance_sha256": "d3b089ee244a3ef2140695284e3530c41b373995d22827290cd3f80f629b0250",
+      "task_sha256": "fe9499ea8b6464e4c2103837453bf39ced264cd2f964e64a0e540d8fca98c454"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0379",
+      "provenance_sha256": "9e381a8c874914e6bfcdbb48c2b30da154a91c2d63cd2c5a983e28d1834e0c65",
+      "task_sha256": "ad6bfab7b5b619a661e49ab034222aecea1da2b9c0c5f710914328b9858bfbc7"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0380",
+      "provenance_sha256": "faf1aadea26a6c5c06d1213528fa1afe7341ea292b8fb38ab76f9a7477244f8b",
+      "task_sha256": "ddb3595813882b7385b5f52aaeb4a91939cd5840fc3aef8ebbc6ea0558650a05"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0381",
+      "provenance_sha256": "558c29b728163ae4dbe61752f926879bae30fdce83b9b20119219ddf407ab8f9",
+      "task_sha256": "a3f29147c3609fad5b0bc00e034d0e8fb3cff4180777b61545772a1f319f55e7"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0382",
+      "provenance_sha256": "10c1276f3f06df25d580c5422f446251ec665d44d4dc7b3a42951fc84fe70866",
+      "task_sha256": "e50ed2bfae6e44847de5f1bd98da9003f1b6d774368785708ade740c27d7eaea"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0383",
+      "provenance_sha256": "17db21a86c8aa72da099cb95146cc8012401c0bde92c11434cfb6cd432c4eb87",
+      "task_sha256": "4b726f78263c1207e91f78db69e1cec43ab34a4b283dd398df1a55324beee04c"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0384",
+      "provenance_sha256": "57b95d248573639d159477f7ed47fe297ec946cfa5040b901240bc08eeb938b7",
+      "task_sha256": "1db0e6a88914dd3dd7b351215b1424b15c6a437f0e05299f254e52babd34fb09"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0385",
+      "provenance_sha256": "15d16f7e401bbafb66d6acc8e7a7ab136656b0865deac7562176753cfc4c08a8",
+      "task_sha256": "f144d1902419be90f382458cda826688f6d94614451ace390888a12c790a6b39"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0386",
+      "provenance_sha256": "3c360309e26cb48ecfc7290be39ee28782ca65dd601c90a033661d75e5e6cd21",
+      "task_sha256": "c6fd77ee30a3f180151188a3edc66c016d7e4ef8bc5407abfee0dde16c302c3d"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0387",
+      "provenance_sha256": "75d845e8567c4314a000a28d8187e70373018652ce363f34abcad25e973da10c",
+      "task_sha256": "3112d87b187b5bf276666e1ec393b14b1d4c156eb0b2b6a87eed07dd4a9af1cb"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0388",
+      "provenance_sha256": "7661fe9a2af8722f5f19a28da335bad6dfba2b0833fbbbd6212835f9d955a976",
+      "task_sha256": "6c14f076eb7c6a3df67bd62a1bc38361e9b03c43051e86abba622ab2a6f9237f"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0389",
+      "provenance_sha256": "301d054a734c264fb76edb2591231dc666b9bee9526ebf547320eb8a60f116d7",
+      "task_sha256": "d9421cb0d38d577c1ef11ad9cd1e8dbdf90e8e2e64af21e19534377660b2df95"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0390",
+      "provenance_sha256": "df3a542a6457b191b0ab15fbe7c05639352b6b0661c353c151027bd1e373f3ed",
+      "task_sha256": "4b3d6f19b8c83fb897ddf094cdbfa22d0b6beb9bb8d115554e8f1c0ea3a044d6"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0391",
+      "provenance_sha256": "344f4061d07999f8055883157fe897b4c9673834e1a0284d25f43fb0d1c6b4a2",
+      "task_sha256": "942ff23ade2e52c64bc803804be2899688c1ccabb4c6f0c9c80137bbcf226af5"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0392",
+      "provenance_sha256": "df9d7519c403a01c02de40b9a4b0ca895a09bcf5e60414b10d4924a22278f223",
+      "task_sha256": "cd68943c71936df4bca37b47bbcda80296cf9238288b91f2c9c71ec77da37bf1"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0393",
+      "provenance_sha256": "429668321686bcd9c2310d9d4def17a37858134c570886e19f283d66c4a3f8fd",
+      "task_sha256": "5245861d54875380b41c40f4501d64d93910f671f02dab8f2447ebe62d8d51dc"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0394",
+      "provenance_sha256": "a0d3113fbf627822d708f19096ad0fb9e6ff60d2c316a813215bc623b3f8440c",
+      "task_sha256": "5d57d2a07f742f8475405d63b794b07ec22d1c58a087a5ae325cd5a30e8fdbae"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0395",
+      "provenance_sha256": "7d5c7051e185c348c186e4ee4703c3c3c08279cb2f77561e6386ad7295cfbcca",
+      "task_sha256": "3927e5cbf29a8b8f2a5af7e523a33e1ba5ddd462c730d59bbcb25ad22af97671"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0396",
+      "provenance_sha256": "d79a50de37aed22d6debf30a6e3612dbab70c5fabd459465906070599af839d1",
+      "task_sha256": "869b0cc8927463126a1158c3e185ac3563e60e6d7bd7443a2644d0fd2ddee716"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0397",
+      "provenance_sha256": "a9a0cc580bdfdd9ea3f31a92bb5f60128e833d8d7da8073d20e365023905d00e",
+      "task_sha256": "90144dbf5ac64dcc98cf148a987e7ac835520f4283427bd62c59502ee1de82b2"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0398",
+      "provenance_sha256": "4a46037f5cc96f4f213f2c42792d521bd608e38f46926db7eef3585f5ca3b0d3",
+      "task_sha256": "c43f15e45b6e2854c761189472cfe08b6296be1d31f139ba2b46d5a73187ff67"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0399",
+      "provenance_sha256": "bb1efd2124f15923af8f9d9366a89deb327b57a8c02889a17993fc246365dd77",
+      "task_sha256": "f0441b72583c86bcf2f5853b4f8ed936025b6f851c7555fdc1648b85dd13a561"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0400",
+      "provenance_sha256": "464f58c44a24f29621175c1396addbf6aa325eea138eed11c6a9ba8cdd750bb3",
+      "task_sha256": "43c60b65f41845e031299656b185e23d439de503971f9dae293399b22e5d4b6b"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0401",
+      "provenance_sha256": "50263bb2bb3f0a44f5f94e9890e001811be37a0dc309aca6e8f3d97521092d33",
+      "task_sha256": "ec44997a7c870f1cccb728a32f50bb3cd544fdad237c279ffaa8d4b281e4e2af"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0402",
+      "provenance_sha256": "03bc215d1f8d9d3c5818d8c7665150d200f000cbc5345f6f7c897417702588d9",
+      "task_sha256": "f1a451332a154bc1c2be1a27f6ec33bbf8a69dfad2a574c73b40464080167593"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0403",
+      "provenance_sha256": "7279ef6340a3c967a8a8c6613bb577a35f303835b8bd2062388ad5b7e2d8a4b2",
+      "task_sha256": "b6f4eb3e01114e11ef0780614a5fd1fa35a9f481aed9ed4cf305a2d5cc92ca23"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0404",
+      "provenance_sha256": "10f11a774cb77ba0ab5cf35e6c8f6703fbe694082fb42e1d8143456c5695d490",
+      "task_sha256": "02405d814768027a8d8009235c9d460486314172a7694bb19c275b735515ed08"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0405",
+      "provenance_sha256": "504b0052d1d69aa3c90dc1d7cc3c059bf6b2190b5d2f442ad3967b608bbffa08",
+      "task_sha256": "3c57adb0348811492568db7bb251b8c0cfa80ae4d26beefbdeabcdeb73c91fcc"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0406",
+      "provenance_sha256": "d92ce739c7a0f2f54567da12887be22cb51c5f119a4e8d926e2713ccb9398d3d",
+      "task_sha256": "6d90f61beb053a4463e31d9024ecbc221a15afb81147cbf24a27fc08fb623a80"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0407",
+      "provenance_sha256": "1b19da6c0f9db12a3761817a6c28eaa70a9732e068b3e1727ce56242115d0138",
+      "task_sha256": "ce96b4d84a534c7a88ecfaf7f888a81095eb6c2d6855ee7bc1c4c570819c6d45"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0408",
+      "provenance_sha256": "8145c861ebbf2a34e5fbc4840ba207f3ec95d3af7121030ce802eadd01b8ff28",
+      "task_sha256": "60f47bd8f7dcf3a563baa43e87893d1cf36aa775c22c3746cb64a13144a6c868"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0409",
+      "provenance_sha256": "43cdff33ffb94526f9fe4185966a9403954ad86eae465d7f8efac8e94257f4ed",
+      "task_sha256": "7e914a1203daa85c3bc64a88b5b194c24331b41e8d53208dc34de0bea7e4e227"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0410",
+      "provenance_sha256": "da33a9436e47c8eb9326160543b42b5b5b899d835cab064fdc928444946d5e35",
+      "task_sha256": "66ebd3a891e5d89675efdf2dc17e730c72454e4527626c5b890cac4ec5c0c194"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0411",
+      "provenance_sha256": "74485e701a6e920b6ade9246d7ad98dab8dfc3e94a21b3bae9e233fdf5a51f73",
+      "task_sha256": "bb0ee36130c33dada8017367df34af74834ffd7fb031bba3e08ca3e5ac519d6b"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0412",
+      "provenance_sha256": "2f01434b2f8559d2d3387e9428495608d30e22f39cf4d12fdf010994e2df0c30",
+      "task_sha256": "6fa1a62f4c7fce38e341b4c760eefd0c0847375d8fe6fe4c59b995ee3868b29a"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0413",
+      "provenance_sha256": "98ce4b64d9b3fcf15b912387e18e48842d4fbe2db14f6ec2cc887205ebbb5d77",
+      "task_sha256": "a2c0a76e91ffadcdbb720bcde76d1002d223fa559e5af689dd8e069a0e1c80c1"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0414",
+      "provenance_sha256": "46502b20f764ba7e6751b51031791631634fd4a10c25a9e0ed6fc9752cb43b20",
+      "task_sha256": "ffa028be44c8930e794e596172e04761e69079a42a01416dc58540ec4185da8d"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0415",
+      "provenance_sha256": "63ed2fa758939567607652d038f450dca91c5fb38c16f5deb45ae7edbdff902e",
+      "task_sha256": "4f79367fb0c768133948c54d1a0bffc909b946225889b3631ea8c239e61b9467"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0416",
+      "provenance_sha256": "06bfa5abfab2c98090e3f6789e2b9b0f334610caf7e0c3221657e62688c652ec",
+      "task_sha256": "63243cd4b92f4f16ef50e8e6969795bbca9424daae2f4bc52caa5e3cb3f5a0c7"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0417",
+      "provenance_sha256": "69630c6ac04fa86050498d0a844abaab8d64b4096dfcb1afd517b7e2172d0420",
+      "task_sha256": "7bf24fba954bc05687da17dfc866b94057f05c6127f77ba054709c61e8fd25db"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0418",
+      "provenance_sha256": "0695ecffdc3fe0dfd681248e9f3c96add8a68610fc8053da176fc34a30e8b93a",
+      "task_sha256": "807ec2f3edbd140f111b66f20574f8d11fc0a129748619c1f33974b4f37168da"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0419",
+      "provenance_sha256": "e987dfa2a773409ed7a97daf9b416360c5479cf2179b88b390b9371f0f45ad2e",
+      "task_sha256": "6aed5aeaafc145af53df3ea41005449292fba83cbf710b08dcd5035236f08b5d"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0420",
+      "provenance_sha256": "a1e6406fa8172ad846a1ec089e59c427edeea9ccc890836bbd44dacf438931c1",
+      "task_sha256": "5409737e1fa5c250193025a65d10e296214d414472af07e3b8c2774d87ad9ae9"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0421",
+      "provenance_sha256": "f0abd42919b5eb8c76611a381bc5e0940a5c17f515548bff7b77f1b5b8c2ea05",
+      "task_sha256": "1f56771f764aa05dc39a4a01f95620c5b2e11ca92e7572149eda382aa924174d"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0422",
+      "provenance_sha256": "658bf4d47275fcc4569a68349e80b20965d8cd4be05d2a04001b6f1a07ed2f81",
+      "task_sha256": "bc4dfabf61690805229702de3a63271786253d2ad1411e7df910df477d2a8a33"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0423",
+      "provenance_sha256": "277046b072641b3844590e57b87c800a0afdb2574cf3e3058af805f227df2169",
+      "task_sha256": "8a57178aeee14d60073ea452c1ebf70456378ed9c47f663c37c6e5487492b4b9"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0424",
+      "provenance_sha256": "74785a57a341b971689aa8a17b8a796af304be301b11ea79aa1e383eaa2143a1",
+      "task_sha256": "e177a4c554368f96636a371011f76d3e9d433ee2e435d0eb8dffc67dd66ec2f8"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0425",
+      "provenance_sha256": "bbf12529637ec51d9b838a6c66484323fce278640a30874266759361caad116e",
+      "task_sha256": "4062357848f03bf1fd42c6b97ecd616887375bda807ad38f1a2838ffc21039f6"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0426",
+      "provenance_sha256": "8829e480c9189b67896a2f1f41b2dd4d19f5ae8ccafadd5f0d04fddf701929ca",
+      "task_sha256": "41a4c74bab54c585a5311e2ea5df360652e9578a41e8c7e401d3200927eadf8b"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0427",
+      "provenance_sha256": "a2792c18b880670336b59fe5bbf7c262dadbf7c72ac9e9b23d43c54907fd158c",
+      "task_sha256": "ca3a9c72dd748742df64cffe8ed1b1a5a6fd77a01088c679570abfbcb8ab7416"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0428",
+      "provenance_sha256": "95304ba293fe8aaa86f8a9b070c0d87f5e9c484d154a4130ba58b45f121ef602",
+      "task_sha256": "e8bfcefe856c4bc1ffe3b7e6b37e8b5da732907c7dfead5ca9c2cbf8f04fd86b"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0429",
+      "provenance_sha256": "019f9f77c42477912b001966dfde9e3c785453efb94df9046b3c93f8ab03c147",
+      "task_sha256": "80effc81b778646f21749a2340ef5ebca8a932e305551cedd609ea0c5fc50d81"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0430",
+      "provenance_sha256": "707b787690a6c70596bd2616f6f73e66b4e241f5ed52ad27e4b690597e414178",
+      "task_sha256": "f5f3aab835fd92392b724dae85e994202e27847041f88c1c53d27beb61b73146"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0431",
+      "provenance_sha256": "44098ad66da2772f61efe674dcd0f9c3f7a3cac2db6b9adbadf74773affff34c",
+      "task_sha256": "27ae0b26d9dee5f81f1632df5d2070d56add3fbbba5dfa22880ef066ae555d5a"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0432",
+      "provenance_sha256": "bdf19bef7d04c7c1dc7fafeb0ca402a409e4b9ff399b07b7292937b8308daa69",
+      "task_sha256": "8af7f777a5d4beff68e700bce915b3744f2f836773c30cf04ecb61d0a8c1095f"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0433",
+      "provenance_sha256": "fa8d8f75e65b9eeb2f1fbeaa8eecae4bd9d0408c26af5d39005691487bef4bd3",
+      "task_sha256": "960b389245923ee4bf02af751f5f16f940dcb1d89e4f34e6adff768d80b8e7cb"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0434",
+      "provenance_sha256": "c51054e8bb2f36a9af4eb04a2328957474d2f6df1870a968273ab692bcc7d570",
+      "task_sha256": "c1461d60030d33bc6390127ceb5e37661706c856192964649334f5e5cfab40ba"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0435",
+      "provenance_sha256": "242dbc90ee6404991ee3a4db6b8ec219c1025ac17a1eaa72a396f642c8f56eef",
+      "task_sha256": "416cf184829d169197fbc91ad01bcb09d8135c42daacccf6e06530a68e830916"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0436",
+      "provenance_sha256": "4824b9763b792c7da3b9e4529de2a9e47a036b023eee9a6135c9ac49aab92c3b",
+      "task_sha256": "861e9d1f80cdf2ba7bba3ec0395f6bbb1c2bd62ad8de73d01060b2a8fb7c2e97"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0437",
+      "provenance_sha256": "f1061024ee4aa44944d0aa4659a8bb591241469967a7542a4afe2bd4a35da6ef",
+      "task_sha256": "25da270f49d17c45754d7c13af28f3278f4b0f0fcb1d587fc52b92c3b57f24a0"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0438",
+      "provenance_sha256": "c139060ea3ab70f5e42d9d68a51f8669666303c133322c50c3b6625195e7fbc1",
+      "task_sha256": "53d6616c28cf4381d243e3b7e1e78edc2a5dcb4cbbf6f94efad76c5b460a153b"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0439",
+      "provenance_sha256": "24598b58d905c54267cb43bf3911b74bbe26f9faf49d7a1e89f439a0737ad976",
+      "task_sha256": "732175847f5ad2262ff521f3d395394b95083aa801695d57d168306396959a0b"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0440",
+      "provenance_sha256": "c8592a2d93ab4e121f852a31de6ebde6bfef2a163910f3284c52b9cb34671fd9",
+      "task_sha256": "2addcaced13aa514ad5151ee35f2c0b01e4bd95ee3e80e80059c3579abd13daa"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0441",
+      "provenance_sha256": "54fd134962813ed9cd57e86474b1ec38a833b739297208880dcee52c6b28406e",
+      "task_sha256": "f7f7a19f414e15689baad31305d4612d5ee326f739a803b5bdf13a5bcb34e75d"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0442",
+      "provenance_sha256": "aa4c8baff219ad4ad281651ed721ddcd2cc9ae6c05812e04dde8d7db15b3cd07",
+      "task_sha256": "d073aaea84284f3413b39704ddc5eb4c7d6647c0e5e7d3331aa9d6b85a6d8468"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0443",
+      "provenance_sha256": "eb94114842e9fda31ddc4d8af6078f40561fde4a664a364149a31020839d3f5f",
+      "task_sha256": "5060c271aa7fee93c6f81f759f6cfca6af10da44facf3f0562fe3c408b359a43"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0444",
+      "provenance_sha256": "bdefa779dd306c73220294ed4dc161612cd2f4a20cc64c4163f37d627cdde1e1",
+      "task_sha256": "3ba035465b4f52e7ca509c37542c4d775145b6d736bea1643625d6a11ba57a04"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0445",
+      "provenance_sha256": "1ef8f81f7462564ed27c7b42c0470e52e740a498aa4cc2455df5803d24a7d2bb",
+      "task_sha256": "c57d86340e75c2df8d088ccd56f47f2c857aa21e87837cd68158f9efe8d927d4"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0446",
+      "provenance_sha256": "ba74488e6545ae8f504a88d0842207a424c720dccbf3dff40799a853760e10ba",
+      "task_sha256": "756cd4bbeadac9fc7865fb752130ff3449f5ffe52b2a78c75d2bb355184d68b3"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0447",
+      "provenance_sha256": "da6603b7dec29f616664735c246be55c8e210e3a424c28e692be4deb235a78d9",
+      "task_sha256": "6518bee8d94152301771aaa310bd2f546124a6e4ea51f511b1510e38f71ac3e1"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0448",
+      "provenance_sha256": "792e503f9780628cd6ad3d0e5a14831d2bc6d84fac7ce3054328eb5c944225a9",
+      "task_sha256": "e4aba49c59c2131aa5aff8a842fed788cb18e77d69436cd3a1e909b62d15e811"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0449",
+      "provenance_sha256": "5e1e8c49720322a9c68f77483ac9d49b56972a10e1b59cca93af21b3b864d436",
+      "task_sha256": "02a5931c07d8a842b9f51cccccc5c75edfd22be402addc0bf968e2df6226a0ff"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0450",
+      "provenance_sha256": "0286bbacaa788cfccea65fbfd0a1a18aafe95f9c95bcfc1ea14fe348d2e8c046",
+      "task_sha256": "3750e4dd2fab7caf6c2512ae94d1767a7ce7153916744598c66d31e87ce90cf5"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0451",
+      "provenance_sha256": "f2b4beedad121f830332c2d8d0ff93c979eb11817a7cba2cb831611df6a780b6",
+      "task_sha256": "ab6092cb07dda5e436b838d2a2434499293a02428127898cf93ce7751db53b28"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0452",
+      "provenance_sha256": "14b377359638031003aab57c0fed9d97246bc1cf11530d5a6e253adbae471419",
+      "task_sha256": "c5980b4c876dd9b7060691f3b6f5eeab1086bfaccce1920834f5d68d7fd69296"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0453",
+      "provenance_sha256": "dad4b0890526a29009516d7af56bf4de47acc3492fe741540b35f5532a026205",
+      "task_sha256": "d5128d04c8e2fe3e9705991c4226a4db9899a98e675ddb65e518ed33e1801c7e"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0454",
+      "provenance_sha256": "dadef595fdf61f714ed0f113c0837393576a6e40ec1e3905c0cb731bbfed4e72",
+      "task_sha256": "6af62630d23df12e076a67c13fed0935a4ee513dcb721f2037783c7cd51e505b"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0455",
+      "provenance_sha256": "faea58d3a8aaf80ec39c484e126a2e36db42c9f51b846bc678a1e727c8418175",
+      "task_sha256": "0f913c77ab075696b09b5eb536e8863ae1f8beb99f5a059f87799e007882ac8f"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0456",
+      "provenance_sha256": "5ff750dbda9d826bb8569bed49349210ed477dffb7576e2f40e38c62b3b2d127",
+      "task_sha256": "a4b2f418f0cc04658f0f361ecc2e952925f81e50561913279dd39898761688bf"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0457",
+      "provenance_sha256": "507d0b797ec5f13afbee315c2267c0f5e910eca84ce0ff53083238b21321aae2",
+      "task_sha256": "ad1c64e1039a8c1c98a1895d04137b9bf5e28307c8066fd76c76ae42151a9044"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0458",
+      "provenance_sha256": "72664f9db85ccb227d17a7e1fdf69b6846a80f0f9295b989a845a3f9de4b0f52",
+      "task_sha256": "a5b4030fa4f2b38357dda8075115b506769d2eb827c632e2200a474f1978409f"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0459",
+      "provenance_sha256": "94296ba015c9e506095b8a768adfdddf3093de64b990b6d00e39c0229a3a44b8",
+      "task_sha256": "33cf25905ac4c4801666d6691742c7b93f1c8935e4180848a512c1f28e27c0d4"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0460",
+      "provenance_sha256": "6b0a2bda62a9389df154b779b3d5d5e376a0ef428c5e77eaed0568ff4be53603",
+      "task_sha256": "6362df0101f0183633b67328481d97bbd356bd6e4f7c5692b63b21355bfc5fbe"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0461",
+      "provenance_sha256": "f4aed342435f558f2daf22fa92184506b0c87364919ee872a3d3eb1941e0bd45",
+      "task_sha256": "242c0d307345ef8dc98dd40b7bb3e2d4f80582defcbb7a3870b59fd35b115a5c"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0462",
+      "provenance_sha256": "51ea2a54b31dffcc14b3a4cf492b6ce550d512a199dc5815274c9625b94f19d5",
+      "task_sha256": "93d689cebbdfedb3a3f60987df81d0f21e02efe2317a5ce8aade79b9550818b8"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0463",
+      "provenance_sha256": "a5d87aac4cef3f056cd97c067170537e8abf51cc4d7c4bebc4be3ef7e8639249",
+      "task_sha256": "2a2ba5182855b8ab85ace915911761cd5fc596b1aa1b8171ccbed4da0dec48e2"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0464",
+      "provenance_sha256": "241b8e4b99ec86a06fa2467d8a69f8481d81561bca9b7c02235f3e16ec5f40cd",
+      "task_sha256": "0040850c3fda0a61b2520dc5021e99d53a66e974bfd67ad37e55a90a2b43177e"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0465",
+      "provenance_sha256": "b0842244d484553c35da910d8b6d97f2ba5793d51db4ff921f85b24207c9033a",
+      "task_sha256": "cf5469f05b6327eb20a5a6157c9f54ee30da028daac1d5fcfd4007725d541b58"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0466",
+      "provenance_sha256": "630c832d7b1cdfc06edd9d85c24bb0c633401d9c117966ce74a0f77802916ec8",
+      "task_sha256": "10f0e127fd76e70d73629273f853a1f0bc3e4b23cbdb6c12864231bd3a9a4cc5"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0467",
+      "provenance_sha256": "1363cdac676727793ec41f838fc28ac9d2a82db509b31e26a5108fa6933237d5",
+      "task_sha256": "343c36a5d9f157aeed76bb4c1f9e61e1c064ca9272b553d7a82a26a82de6b083"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0468",
+      "provenance_sha256": "cff2e6bc33234bf1f8c75f751dea10da7a676f9a439b8a5ff8ac43247e11469e",
+      "task_sha256": "63d4df6061a43c167ebab43b08ff188443a57cb3fd5d357d18094eb9fbddf343"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0469",
+      "provenance_sha256": "c7a3bf27c354ba852d2bab5714b37808a027d09651648239665164f6c2c52f96",
+      "task_sha256": "caf8e6be0bcd7aa543aab3e76fe43dac60299e70a1079847e1d88475eaa36b5b"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0470",
+      "provenance_sha256": "5ecbf65c4df07e1156bcac5d35eada904a800406db8335bfd1fda03a175d0095",
+      "task_sha256": "7fd2fdb839965d7938081049153160442fb61376a4a18b5f5dc438a75429e8de"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0471",
+      "provenance_sha256": "fa0a0cd2b78d2fd8cd20934564e1ed63659d6da053a38bfa1726da8c2f1f7c56",
+      "task_sha256": "12a7f5a8d3123b26ffb90371c46b425382b2e244d535c39d1b6e4431f5f42dfa"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0472",
+      "provenance_sha256": "610293fa5c60222f126974580026b071098064aa28ec583b454101c960a58459",
+      "task_sha256": "0a7832db9271fac5103174b845b8fda5258c7ddf59db2fa15b5ba2f99dd61dbb"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0473",
+      "provenance_sha256": "6b2f5691ea40ef9dcc2ab6e770d6abd06e5c0cdacdf49230660b8125d984313a",
+      "task_sha256": "2fd9d80ce5d5d9b7b18ce66e19753bc01258365fa2ccd939939176d0b1074174"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0474",
+      "provenance_sha256": "834ced57b55465fbcaf2b2ca7c66767046c3c27c6bdbb47e9a1ee1841d8a1076",
+      "task_sha256": "ff484e790988a832f9877fdf4cde71c9cc51fda0a8a95921ba12c7fe780133d5"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0475",
+      "provenance_sha256": "c021662a410b67887fa335a55f39f4e6452ccea31623fabc309c754eacc2a20b",
+      "task_sha256": "5e8754e4082eba64d2a34b03a1ed0c6a37c54c024b2575c58c6b3c69425200b9"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0476",
+      "provenance_sha256": "0ae8f19b2c9773db2bd2f6816ae82d3797b966489d3bf7fc65242cc5f59fd2e5",
+      "task_sha256": "d0f6f514f63d50cbb278e6a162e67f7cbec32e4f769d2a278a2552766ecb6215"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0477",
+      "provenance_sha256": "b02345debda6e1680e4889ed816b6fba4c3e1b7e1e2ad80b1c71ac0a4451f4f3",
+      "task_sha256": "27fb74f53e5b6949e976e76b38960c724204c79b16e8c60075642acb184a7229"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0478",
+      "provenance_sha256": "78093b9ac67aced064e60f1490c7339128cfd73a291c774aa368fe12d043b6b6",
+      "task_sha256": "34274dec32be7140344cab8508f4850348163882279f37dc038a0960df66aea5"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0479",
+      "provenance_sha256": "7409a31d92dbc77c6fb2babfca0525852e4b84555d0892585298706ac0c649cc",
+      "task_sha256": "2a1701d9a042a31a22476c9e4526bd23d07389ae49934eac8e524d44b57be747"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0480",
+      "provenance_sha256": "2db5a18e9a094a9876877bc968e7f317f2a91f6b115b248e1ef81f94fdb24662",
+      "task_sha256": "14169364ac9f087979628d4114adba0a3a7ad407b4c8833b083f5fd106bd4176"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0481",
+      "provenance_sha256": "bdc2dc8f1fd904f83a5d469a3d1e7384e9ed5317d5777956e4cc13625e3e0ba2",
+      "task_sha256": "34bef8a6f85a400a18c43f9492687906d19b014f243ca6d5574d32f245bb57b4"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0482",
+      "provenance_sha256": "5be4d1b6ea425c4b83211a5cb2e8f701954af83be95d9ef3b4d2d8f90961c2b9",
+      "task_sha256": "384284c2d7e2fd4fb237b9e5ac96ef0032d9d6a449e2a2304e2aa02d5802deef"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0483",
+      "provenance_sha256": "2d01ba0daa9e100b17575893acba28b7d3b95c25a72517c1def8feb4ea291126",
+      "task_sha256": "2b58b4a054d17bc5fa96c600f52a58f920c8a7b02905ea535aa8fc47d849ef1e"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0484",
+      "provenance_sha256": "2853fec1d17ed2d28ca2fcbc31025ec531b2d8671e4e11eda2b28fc871f18932",
+      "task_sha256": "85f3c3412032d06654cd734b20e9c8f677f135b763c9de19616db837a08360fb"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0485",
+      "provenance_sha256": "7702ba018178442e98367e46862c6bd5af318518c6877a75d235d84ca825c487",
+      "task_sha256": "8fdbecf57ec31296ad56789fa695dd0333901704fe71cb48abfe7ee42989735d"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0486",
+      "provenance_sha256": "c307d1c44938dfe1697378c098e6faf1eea3829e18af81a7ecd0742136c1face",
+      "task_sha256": "d16c38d592024c469874074de635fe8689097f65028d60341e30f2d1b22d9e79"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0487",
+      "provenance_sha256": "6fbaa627f40d73413be95b91fe2eaa163d228dbf4c4666ddae8351608da06e37",
+      "task_sha256": "c5866c30d7eda22ddd443af85fd900cdd0900903017f2a50328fb7ef50efb642"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0488",
+      "provenance_sha256": "9e728b4cce02dc79d78360ad6b68f791bdc5670f9aea6345edee62e619bdfe5f",
+      "task_sha256": "864004dcfb8a8a4c9a4d354057a0516e8e44d0e0b94602b38d70d578d2236df4"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0489",
+      "provenance_sha256": "3c30caa94690cb473dd9d3b3a3423728c58ff520195854356e2b9c971c15cfaa",
+      "task_sha256": "d57717638fa4ea51cbf3952e3e948e52d286a38de52100b404744e4aa3c3b147"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0490",
+      "provenance_sha256": "464d217b3edddaaae70ad246c3fe0039e3fdddef4aa44479b47b1e0a038044ad",
+      "task_sha256": "76f9a7bc9f18da779011d7806ab1489cd0d0fa932d0e8335ed53ee0d5b52885f"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0491",
+      "provenance_sha256": "35634a737de173b1207dcbdf6d7406aac2b63dd49e6095c8f4d947dbdaa1fccb",
+      "task_sha256": "98a3b705f50ce9eabcd2fae646866393cac967fb43979c5bfebdac8a84bc9ce1"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0492",
+      "provenance_sha256": "3ad57e519f353225d742bc93380fc0aea9ad416de0fc0929c0c2423828ddd2d7",
+      "task_sha256": "e81fb0df0f88f87536522e9d9e0cce7441acb62d7737a49987561a677a3ecd20"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0493",
+      "provenance_sha256": "492466781a6d4c317f59ea1d37247dfd414973692839bc5d3e1d2e84914e4ac4",
+      "task_sha256": "f9cf1a4430f04c5b57bcb6d0fec117ad3e555d0d65a5a6965ddc67019f19f827"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0494",
+      "provenance_sha256": "37cdadd14879b2ac719f404c7ad4119cad6017d0f3f8213f187ebcb652df453b",
+      "task_sha256": "c125100930895560c4f37ae032b4c4b23d91555f61507f1dca478c5403d9397f"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0495",
+      "provenance_sha256": "c74ff5651a40aa6f0afdefca373806d836aa7a8f46d2e4e39e2f1e9faf9df216",
+      "task_sha256": "dc7d3fbc67728299c13846c61f613848873798cea2b96116ba2b3355edca8a19"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0496",
+      "provenance_sha256": "923598f69b8f2cc551f79e530c08e4be17b9a59a8ee2f170845446d44283eab7",
+      "task_sha256": "3e32e335eb859b0a8e9e74db6b851be002d70be1804274c16ce787210d17d7ba"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0497",
+      "provenance_sha256": "861505dec7f14ff0087d7347127c6ab6e6157296814ecba1b484215b68469d50",
+      "task_sha256": "246c314c776353c543b0089429ac3100822bdec41ca93886487abd6c4bf618e7"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0498",
+      "provenance_sha256": "6ed9f45234bb6786f207e9d471221322ecde0b832ffaecd69958cf8d2b24b7c1",
+      "task_sha256": "0eca3265204d9452467b20e0a57157244b9da877a84c86f16742cf8a6fd2ab8d"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0499",
+      "provenance_sha256": "95547b8bf61022d5ab8ad7e793a9adea180dac28ee6aa1974a5858edf0098de2",
+      "task_sha256": "352ccc06866c0a4f4fbc1e8016560a1e7c8dc459388a6ca67cc400580b682142"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0500",
+      "provenance_sha256": "2e9c9830510f53f2b22a7253990715e713015da36d09a1c2db85befc32df3ad7",
+      "task_sha256": "ba705c61d76fca2364a0b70100787576c34d90dbee91660d23eaec0ddadfff5b"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0501",
+      "provenance_sha256": "18d77333204fd1c9068e76104bf844607feb3773e613b728168b2e60ee1a34e9",
+      "task_sha256": "4013fa11cb4e8989b9edadf8486fa516a35a73eacc427cac9eaff1fea72ab000"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0502",
+      "provenance_sha256": "f209ba1b380a85139f06144d9e6467121fee81e217a6a877b16b94dbb9b211c9",
+      "task_sha256": "d97c7c4e08177f46810f3f92dbaa08135cc337459895e335976a3c3aae448ad5"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0503",
+      "provenance_sha256": "72b07a09221e96e2a534de190a71ee7e189f54e447007dfbd220281748850836",
+      "task_sha256": "b30c054dd1c8d274878f484c25748bea24bf4a3c3ab7f960d42f88fbd08c35c7"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0504",
+      "provenance_sha256": "ec5237d0431dc6522e6edf02138c31d10315d2519924953d007081d0b388c3be",
+      "task_sha256": "dbd2964e87b0d2a99c473c82251616a87ca815300bc8624d84ec846a37e04b52"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0505",
+      "provenance_sha256": "c41d80a6a59767bccd98a30a1f4823b73e338095cffa28c7cd747332a15882c7",
+      "task_sha256": "83be9100cd7d7a38bcf0cac3ebeea04eaa6028849fe82359781cc796653df8e7"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0506",
+      "provenance_sha256": "6033c3f70ee9f756807f11d5f766f872febab09c17a4d3e1223bdc2cdeb1565a",
+      "task_sha256": "e6320424cb933684af958f19fde53a819f7e169df89b0fee17a37ea0dc0256c8"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0507",
+      "provenance_sha256": "9f4b181e2e8647076bc62874983e9cee0307796832a1a68c0a34c8236ab41a12",
+      "task_sha256": "d6ae762a70b97ab358a216677db54a9e45cdbfd478123b7812f6df780f9d3c1d"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0508",
+      "provenance_sha256": "14f9b954d57f256169f455c8211e5ac4632eb49665fc71321b6c71533b33e59a",
+      "task_sha256": "6dc040a9749194c5aecfa12fd7d2973ccd3e8e8dfcb62a472330f99ea72cf0e0"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0509",
+      "provenance_sha256": "87cf1fb85f5d8915edc69bdfa5c047f72b012533fbe6add3f2b1e1bffacda14a",
+      "task_sha256": "aa0ac5124041acd561ed13b35a1f408911f5d7124f5ab8d5eea753bca2f16ea4"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0510",
+      "provenance_sha256": "999ce6e4e161c4c2596fdcf36d1d71b29af4fea6281910da5d4bdcc0670640a8",
+      "task_sha256": "d61c0fafbbbe2d045dbbc01864d49efb63eb03b393dca1924e965eafee404321"
+    },
+    {
+      "item_id": "likelihood-fineweb_edu_extension_2025_26-development-0511",
+      "provenance_sha256": "c29366ccc3787ea3f44ff8a110b442c55f52926e5c5f99c53b622f5dec41cc4d",
+      "task_sha256": "f76011a11e140882c2e5f1eb03fef420b59b5782d29ef06d7085588c7e636e04"
+    }
+  ],
+  "payload": {
+    "byte_count": 1333511,
+    "path": "evaluation/fixtures/vasu_140m_likelihood_self_curated_v1/fineweb_edu_extension_2025_26/development/payload.jsonl",
+    "record_count": 512,
+    "sha256": "1b019857ae912a466437e5f44aaec9217ed36e0cf60559801406bc12d980d9ef"
+  },
+  "production_suite_frozen": false,
+  "provenance_index": {
+    "byte_count": 364531,
+    "path": "evaluation/fixtures/vasu_140m_likelihood_self_curated_v1/fineweb_edu_extension_2025_26/development/provenance.jsonl",
+    "record_count": 512,
+    "sha256": "f1442939279bcc133a944f652550cf98ebf8d216254281a12b1a3d5edbb70e22"
+  },
+  "repository_commit": "28b20aa9fe4f653b40471fb68d9001c64195d6a7",
+  "schema_id": "vasu_140m_base_evaluation_inventory_v2",
+  "scorer": {
+    "path": "evaluation/framework/vasu_140m_base_v2_tasks.py",
+    "sha256": "7777bd7d6a488c21e3937b5b05e1e46153e7fddbcb67784c47dc9e53a5087bf5"
+  },
+  "split": "development",
+  "suite_id": "vasu-140m-base-evaluation-v2-likelihood-self-curated-v1",
+  "tokenizer_sha256": "04942e101a4a01f87f7e492ad9e463d299a559e784b650fdedd1763a017d195a",
+  "training_authorized": false
+}

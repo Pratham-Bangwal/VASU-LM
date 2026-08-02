@@ -1,0 +1,2607 @@
+{
+  "access": {
+    "encryption_algorithm": "none",
+    "opening_authorized": false,
+    "payload_format": "jsonl",
+    "recipient_fingerprint": null,
+    "state": "available"
+  },
+  "contamination_index": {
+    "byte_count": 8017963,
+    "path": "evaluation/fixtures/vasu_140m_likelihood_self_curated_v1/wikipedia_en_20231101/development/contamination.jsonl",
+    "record_count": 512,
+    "sha256": "3423fe099ba908ac1f1de230a1511edfc5ebc393c74fc314d121d484d605822d"
+  },
+  "dimension": "likelihood",
+  "evaluation_run_authorized": false,
+  "fixture_only": true,
+  "generation_profile_ids": [],
+  "interface": "direct_likelihood",
+  "inventory_id": "vasu-140m-base-evaluation-v2-likelihood-self-curated-v1-wikipedia_en_20231101-development",
+  "inventory_sha256": "ec8f6c7efcfd2ced161293ed1c87a2081f66c5a85209f2d066a7623f0b7bbd04",
+  "item_commitments": [
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0000",
+      "provenance_sha256": "e2a61a0925e9668465231283488e173edfa7d0e75f6d40872f38aa2b32ed06ac",
+      "task_sha256": "07fb31fd78ee44b94ca0dca2c243088939c59681487afbf09d64cba405ac319a"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0001",
+      "provenance_sha256": "99cf18518d747afcd3fbe72269553fc6d94ee3f316dc9ada7f3c3d39bbdb95d9",
+      "task_sha256": "ee70653a4142dc9d9312d0ab230a15cdb353844446c5d15a02c0ea41dfd0ad9b"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0002",
+      "provenance_sha256": "8d293de913fbdcb14326d200e9319e4765a6ad05681ffcb70b1999ffd8437853",
+      "task_sha256": "e13c144b02968343c2a2b14f9f8d6b677ec5c0f1ab6530609fd6f49bc845296c"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0003",
+      "provenance_sha256": "6b21f51e7418e81a4774a95097a43f45722630d93799442d3761e51632f864b8",
+      "task_sha256": "7e7568a316417f176771b4bfa1ef8e05f9c1c867ec2b88747fa9c1007638697a"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0004",
+      "provenance_sha256": "e3e2ac1d88bb9afe805b3b4afa42b5448ab266fc549e580c8f1e23e6f2d400dd",
+      "task_sha256": "bad2fa8d0f87b76688ba854569eadd1624b67c1a3eed2a6b54bfee2888ace05e"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0005",
+      "provenance_sha256": "a3fd0d00e304fb90781bdae2ce19ac065bded361943e334a0a4b170c606a7aeb",
+      "task_sha256": "103e27fde0f19664d3bf3326711928f5ec68733d6e64a85e903169ca0ca5fdc7"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0006",
+      "provenance_sha256": "5a9dcc135c479e3ac4e2fc431e81321fac6197679d9020a79c1cb44b69305d32",
+      "task_sha256": "bc768310afc81ca3c1d3af9dbe08c1e588604eab0b1a2d4714a1c690a6f3ec8e"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0007",
+      "provenance_sha256": "53f791378fcbb64b520d4ec1330a815ecbca68407646411ce117f0d4b38164d5",
+      "task_sha256": "75b7e7bcb5eab95ad071f2f7517b810efa4a4f0d44cb0763a274092221b8ea9f"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0008",
+      "provenance_sha256": "2a6f128c835e09e06056c7460d53cdc58a9c3adfcda1536e9cbd9bd977ee56fd",
+      "task_sha256": "ca843eab11dfc739f4d2c35212058e9619c9adc49ab3a563bcffc60d970c289a"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0009",
+      "provenance_sha256": "a268bff3b763f5cb02624dc0ba7d77d0d9b34d6e9dbdb610763f2810f76f8d7c",
+      "task_sha256": "4db111ce8c9a65a0d66c5b4c4986848caa09f1a0faa22e60901ab2a623eba507"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0010",
+      "provenance_sha256": "9a05c7f82d8fd98cd4e68aa51b8fc551637073137608eb3713080db945c44d28",
+      "task_sha256": "2524484d1327b36b5bd02defebf0b2b997341ad1021ab290139dd4c102da2727"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0011",
+      "provenance_sha256": "814c5cddbc5a0072429becdd68b3ac1ada466169609fe35864ca13ba74d60d21",
+      "task_sha256": "5541007ea39276a11ad8b7b736afc70b685ca27d783f89323005763f23150266"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0012",
+      "provenance_sha256": "4fdb5605796f055a5dd9f4aa66e2427e1cf173894e821c092fbf8699dfa29734",
+      "task_sha256": "586be294834ad35f44fc1b3917cc4228bb0cad290780bbd3f5d2035c7096eef6"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0013",
+      "provenance_sha256": "23b0000bc4a8be929b3b0857c1e90a71b9113698d84f19ec5453deaff7b9c89e",
+      "task_sha256": "be3686b862075896ef8107cfc6acf460e1828e8825c2c4a812fccd4f35769952"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0014",
+      "provenance_sha256": "d8c4ff740b3fab866c80f1d1a71d9a5aca334caf6b96a3a2215c7a0904102ea6",
+      "task_sha256": "23e5973adc79623f66814366f8483a51c1d00be69f07c2203ede702bfa0e066c"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0015",
+      "provenance_sha256": "ea9192c45e6411913930821480ab1558d58ce2e4af50c861443d2c7593d2dd1d",
+      "task_sha256": "d94eee8cc4e7324c85398e89da2bcc4ffa7bbe4abef873135414374dcdb77632"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0016",
+      "provenance_sha256": "cf23bcf91cedcc6b45631bad8149140610625a759fb78457a2bbb458962eb432",
+      "task_sha256": "bf5cfce1cab2a3e80614c6af6b9c4d7133f57a8e4a14d06629307b91ad9538a3"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0017",
+      "provenance_sha256": "3b2e559c75f42dc733e529f414917628b088464cca5b94e9bf504266f722ce7d",
+      "task_sha256": "5160ad5eb1b8aa10b1c32cc7f968d1810a158f6a08ccd8681738319457a157bb"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0018",
+      "provenance_sha256": "d041996a3c310a8a9f008394d6c902a117fa08690a44e47ba38ebcd9accad3ea",
+      "task_sha256": "c2b5af1cb3fd43db350bf9001768fca6aa36e27b47d0fecf4b322e66a0960c42"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0019",
+      "provenance_sha256": "46a1034cd06a69a9058eefbbe7549985db223dfe093b77ffd6e857d0c371eafa",
+      "task_sha256": "9b1c2a02376519d47a36b761574ed8ae0120d3fca583898091d3da2537d77e16"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0020",
+      "provenance_sha256": "c6b8fbecb6733a9cfdc579e995ffdb08f32ddc52ea824e149025bd390739d5aa",
+      "task_sha256": "6d990aa386b897b25f2178f2a749d54ccb9705951a4b9023db88c7cbcc772cff"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0021",
+      "provenance_sha256": "1dee1c3f54e2aca9f1ef4466a420ead918017cdf808a234bf86b8011ca2e1bff",
+      "task_sha256": "56f39814aef48f7f045d928911db5c5fda86fb1cb3ae22cedae7bf27a7b06bdb"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0022",
+      "provenance_sha256": "ede732b6e0ef6481d5c60110f25e22b804a052c8a9a4327e32f6c037f4b2bd7f",
+      "task_sha256": "57f2b9862f5b7e441d9145d807abf16d7099160549498ecb80ab25a38a3b2a4b"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0023",
+      "provenance_sha256": "23ffc248f97633db23c499d6339a9baf145e6c1439727b1e13c565539632a480",
+      "task_sha256": "29f517f6f7ebe63eb5d5ac6ac6f27dd6701e5e0404eb90a88f527b5729be0fb6"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0024",
+      "provenance_sha256": "d2daa0590e9ef1d426b65dc111c80c65bf93bbfb34a6f398982507a6c448a077",
+      "task_sha256": "315a78a33ed52d4ace7137ed86f6a29dfbae2f5bcc5f0f24d05bab5aaf3804d5"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0025",
+      "provenance_sha256": "de8ddd1217a3ffdd1c59ea0a8feaf93c48a129b46dfb5ee2fbc56b6fc7333ba2",
+      "task_sha256": "d3c7a1cbb0ee77251a528185ad140aa11598dd40236ae5a56c6690fcbf4aa528"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0026",
+      "provenance_sha256": "e950aa6f54748fa123c340b076ec7a32ea1a50b3668cb07032b1d97ab732b1c7",
+      "task_sha256": "ec6f2fda35780bf3135cd1a4596206f8f088147e2f87ca905ee7c629ed7ebd12"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0027",
+      "provenance_sha256": "1f141a0249ed0092cd3c14ee49f8b4892c4891c75df6270fab4cffbddc366a13",
+      "task_sha256": "2b99bf6c6ffad19d931d654720ed2ca6203df5bbf349382d78fdabf30da61372"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0028",
+      "provenance_sha256": "613f3f4288c92ee54ce53e7f5f169c60671d92381341d5807402086e1b3e978c",
+      "task_sha256": "3bcfc620c6fb24376ccb7f4355aa03266596cac3de91821338a3b31d38822e96"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0029",
+      "provenance_sha256": "41677aed7a5866057dee62cb9ce69d40319e0cfe61e0fbf11072f1224acbb089",
+      "task_sha256": "68873511f2b37cd0cab995d2bee1c09e6dc288671f2e0e988dd2a23219193c75"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0030",
+      "provenance_sha256": "138c209c97c57d1ca39d721bd1716ca3ad0ec146904b9420ef2414d0f6dc311f",
+      "task_sha256": "218a2113e10108e3fdcff8cce13ad418e95750d7bff4d0fef4bad2f5fdc875a1"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0031",
+      "provenance_sha256": "26c9deb8a69fc2d01b4410dda54e43baa9bc4ac580bdcaa1f381c8816687e529",
+      "task_sha256": "c123f940817ca82c31b49ad9dc593365841338e47e2ca16d9c01a17617a8af3a"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0032",
+      "provenance_sha256": "202ca80c4772af6c8e47fa98c2b3ba52022e2f6c760d09b0c4b326599e91dc66",
+      "task_sha256": "516c9e8b5eacda73a7c8a47b772e130f6e8f7d02f4b572a1478aa8aec2050ccc"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0033",
+      "provenance_sha256": "2195abb7e8e5d8026f4080b12735bbcc17317219441268b144aad8fb2b9b4235",
+      "task_sha256": "d096c1973160a342d6f007ab1d93c0383097076d96fbb41eafb0cbacfe3b4934"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0034",
+      "provenance_sha256": "697dc904bca4364c0056ac1b815252e7e3113f393c293d233e6e31fc4e2a3964",
+      "task_sha256": "b1d32a72431e6c874d006a8d47c5973ac4ac224fc7ce1f80398387fbea3eab6a"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0035",
+      "provenance_sha256": "6a4dde213e65244be99798d1c2d8f0ea82818798004f535b5564beaef2066c9a",
+      "task_sha256": "40e19efcbe2a0626bef2fbb6ae54fad968d69fe751943ba12ff3ca526fbb3dbc"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0036",
+      "provenance_sha256": "16201fa2479953266cfa3d7cc02627859fb29564aec4b2a0b0d32124a00fed62",
+      "task_sha256": "de0f68d2d801fcf5aaa7caf2d3da89869689bc9dd3b019d8bdb64945d51a5b32"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0037",
+      "provenance_sha256": "4b13647daae441430e86654d836aa2cdf5a79a4e6b24f84c573520509c9af5a4",
+      "task_sha256": "3aefa04eaa4c810cb16fa5a9318a9ea61ba1749d292982947d910e0ea2510cdd"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0038",
+      "provenance_sha256": "cfb10a47bd3ba381c305621471b77c162e80316c2516322b8abca8fb61738ebe",
+      "task_sha256": "d056c62b3a3168ddedb8efe5eca5385322049c9c8524ba4a742b5f4e5107fec1"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0039",
+      "provenance_sha256": "135eb9aacd22b654c35624e3cbac8c28028864f1d2cc1f91d0be6661e28a027c",
+      "task_sha256": "7be167cd4c8344c23fbdf9ab7262e9a702d6e2414911a043799eca1ad59d3e7d"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0040",
+      "provenance_sha256": "22bed3136765b986df03365064271b01f982fa1013a005ab9128b240a954f054",
+      "task_sha256": "030e609c62ab7f74052be08f795909ff83a2c0a56fd684584aa4b0bd8bb5be91"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0041",
+      "provenance_sha256": "183f8be3cc904cd3f0a8edfc1bad04e08098e14c31a093577908345c3575a182",
+      "task_sha256": "ca32f1f417600462ba837fc85087551a5282528b0bdf1e2c08acbe6175938604"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0042",
+      "provenance_sha256": "2ad55e916a5b1e1b23e124f7c87de7e321a9febd95dbe4bc86abb0afa51690a0",
+      "task_sha256": "515520ef1cee37648afde3aff1bf1566713320af8ec6166f0c740ba437f73465"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0043",
+      "provenance_sha256": "b3225fee3d60232b7fe4e1f713a7dbdbbeac6d8bbb34aeca84deee7275d156bc",
+      "task_sha256": "6eb4c5daf8dafdfa65c2b3ec3ae0ef7f140f8227e48d9ea0c90ff61a383b7c6f"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0044",
+      "provenance_sha256": "6f25ee1f00632837a206f155d2b503f0111efd6489661d7184f6c0acbf6000db",
+      "task_sha256": "ddda760daea46000e9c5941702c6bfbd0c9ebba6480b21f958fc01f976863f51"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0045",
+      "provenance_sha256": "aca7bd3ad5924dcd9da68f951cd5ae21b515ac3f07b51159cb7e2fc42e7fbfae",
+      "task_sha256": "377517aeb92380027c769d50be936f03e503c8e6ea09b365340978436de12528"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0046",
+      "provenance_sha256": "63779df781ae1288c8de256032b6a22ae3da92c33f0fa528dcec8333ba1684dd",
+      "task_sha256": "5415c2859cf127d8baa098e53c8beae87c56d7376b87372f837cd853d0722f41"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0047",
+      "provenance_sha256": "f818bbd0c46cfa05d687604ab4cc62e0d248c7e0c09ec6d0e7e509410825eaab",
+      "task_sha256": "3ca2d6f08e4ae2d01a2f532e5d844a484821e44f4fc28ca8e0830d8cfa5a2f60"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0048",
+      "provenance_sha256": "6e7be27f882803f8da7a70cb4805af6465da73c0fce8991a1ea0eef700e20c24",
+      "task_sha256": "499982473ccfbe518c5023cb1613bda305ac0acd36b8d103e2576f7f30e3720a"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0049",
+      "provenance_sha256": "326fe0f832137e21b6df2c29afab9a9c647e9c74f453b9c3ca5e1b632238d4db",
+      "task_sha256": "c169aef2ef500c80ef531f29cab32d6e005a847a662830e7536ba0261d6a69ae"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0050",
+      "provenance_sha256": "ae1fcd4acb65401a0b86ba41981b79bcd88964a312f6bf96e5505fd8afb77839",
+      "task_sha256": "67fa2129b56fb9b9d47129ba9ea7c4cef57b191ed1097f70edf85f92803e2a61"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0051",
+      "provenance_sha256": "7d30afe91e987bd0b17cba414abdf04813ce7c888c07f1fed8cbc788bd680854",
+      "task_sha256": "febf0934f6f8a13afe85917a4bea163d7831c12049519b573769078354b11998"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0052",
+      "provenance_sha256": "584b1889d6150a4104049b05e2926a2e8ffe82760cccf24e8d48c27cb4bc4437",
+      "task_sha256": "faba4ae100f2d74c35ff87a57ebafcebef63911e2eba4a3f2e93e696bdeaf1e3"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0053",
+      "provenance_sha256": "e172a7e554e95c1cbf7764657ce5ecbe14540d5b6f16fb27fbec16f91f11495b",
+      "task_sha256": "f5aa1c003a7dc9a79d1a82c1ab7ae441ea4e4e0503626d26b0d440621ea2aab5"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0054",
+      "provenance_sha256": "82a66f67da1bebdb403afbb7827ffa5177a925e9a05f76b541ae65f4d3f43e40",
+      "task_sha256": "8a612eed548e909ce17c1b3a26d0fd6ec05dbc58bbf37ff4badda54f82853e91"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0055",
+      "provenance_sha256": "64a7539ab261ee3492c8041def5e47f9c199d4db33d8e1f61535140f01db4ce7",
+      "task_sha256": "683a3593d954c33af448bd5c6ae6ace511dd9a38ff060a6790c360e37d673d6f"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0056",
+      "provenance_sha256": "4c28cf14a7f264cc269dbfce0edc241887832cb6a894a2ae79c61d9e6d72e396",
+      "task_sha256": "51e065223877d94fee340b1bd5b43bd0f4e8c2c3579183749754dd6f5b4098f4"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0057",
+      "provenance_sha256": "ef8278ca43589d3f5a3b9cf0caaacc6e01dcda944c9ec1260cc64425a94823a3",
+      "task_sha256": "23ba6a6bcfa026d3eaa9060cf5002b3a1525c5932ea95b5b0bd703b80fff3bce"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0058",
+      "provenance_sha256": "b02a964bcf3c07d63febdac273ba3c2fe27aa89172d827e450c866d2229d3c7e",
+      "task_sha256": "9445612dad1a4deaa445baf5b72a7c0b4c06c341fc7eac9fcda9cb68200877ce"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0059",
+      "provenance_sha256": "929deb3347da54e8a939817489e586f3aeeb11cd470b1da117ad6ab088bd76ac",
+      "task_sha256": "4dc05e50b03d377b526affd8f99ae62b3a087bb556734ca2c54a968c3e6ad1bd"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0060",
+      "provenance_sha256": "d47a65ab1012d665ebc5ba569e0926308b8b56c9252fabd0fe0b555e90d1c279",
+      "task_sha256": "8b4d7a1b708dcab61281b85980a4f12c72873dd24c9698602d0dceb188dd991c"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0061",
+      "provenance_sha256": "e5556199d5b7e8dfb6f3a0f2e3c76bea398228eb7972d8a0a52171b9e38ffa2d",
+      "task_sha256": "c66be777dbb4d80a5233bd11afde04d1b5e97d604395ec339b72406a4fedd6f8"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0062",
+      "provenance_sha256": "31bfa85831d66cf39a1ecf1d38c04cf0ad5f855f1f9971d37cc302aa319aafef",
+      "task_sha256": "f310bdb63bf361aad59b95be774b6ba783000bf1d0dee0b1d2773e6d5b6de88d"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0063",
+      "provenance_sha256": "3072e5457a9aaefe80b27a8e7bccc3be77df27cffab30ef2df4b7e4c982f6a26",
+      "task_sha256": "8dc0cba9661801845f78f597f3c42bee0f6d39ee91ccc85491743ad01bb66ce9"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0064",
+      "provenance_sha256": "000441e9a19aba78fd80a00bbec62a51265996e25454a88048b46582c1080586",
+      "task_sha256": "67b9d45cf92fcb48f6dd64ad43c85cda18e922b192c4a489d3e2dd6bf2ce2481"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0065",
+      "provenance_sha256": "53863a74f865b44f9a87212d081540023ad20504550914ac7e39320b2c1e168b",
+      "task_sha256": "62f49d178de920c3fbc7eceb66f5431d1a3ae78b5231587930a9997b89baf200"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0066",
+      "provenance_sha256": "2e0a4dfa3c0f36c1892856d2fa2b00424feb516de0acb024c78229cf9699f818",
+      "task_sha256": "7a371e2b5740904e69f5eca058cb8ae2deb96e5cb7c0f5272b90015ac605c97b"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0067",
+      "provenance_sha256": "2682427b9aa013f8baab9302d6e9431a2f3d8660000c4eb194254f29f46e0dcb",
+      "task_sha256": "04946db14bc2c79718242be3c9172359e65f01a5b6a73425fcd65c6b492403a5"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0068",
+      "provenance_sha256": "0c9b1261fef7212a0712d16ed960a25ae4094508229153b1de6fff12c91fbcf9",
+      "task_sha256": "25dbfedb038f5d6a4bf1010cd2cd20aaecab86d5d023056876b9546c4d58e3e4"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0069",
+      "provenance_sha256": "244ecb5b0076090f9df66cc940ba88085e6942703260e2cef418180b0f949b8e",
+      "task_sha256": "3f4c3f7d0ab6176e73f32c5eaba2d5f4b850795e1ea485256d4d3d7236200bcf"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0070",
+      "provenance_sha256": "82e64227d70784447094e32af933d787679f86052e1d0697febf2fb2836ccdc5",
+      "task_sha256": "dbaaa63115e6540d587db87ae2c1cc4b09b887e8467dee9f831e355df58730de"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0071",
+      "provenance_sha256": "b4b62c28f0884a2a2c5c4303e5eee7dde36151929187de2c7ff5f094d72d216c",
+      "task_sha256": "fa28b7c5c644e373f0fb209d148f815a1a7c3564a63faa93bf89c186ca2a7def"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0072",
+      "provenance_sha256": "83f6d39328a99134bf96a488b3ac6a1a8035833f1360c9a8b8387c2afa8eec21",
+      "task_sha256": "83e28447e5104604331ce2d622be761f2cc2cb408531ab1838b3727877cf244d"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0073",
+      "provenance_sha256": "f8f28459b9836f9d9d40fcc44ff5ed4ef42b1dbf8e640e9f141e900ae0bac520",
+      "task_sha256": "49225d8821633412cacf98f44b309a7a5c7702d2831031109b2d803d5676a762"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0074",
+      "provenance_sha256": "a8fefc8e825f0782ce25efcf7e9bbdba8808bff85bad5397a8b3e2d73feb7de4",
+      "task_sha256": "7787d7aa1d3f4515b62b91b2b8276eccfc5f90fd58f5f2dfb8cf8e8581c99fcf"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0075",
+      "provenance_sha256": "a247e3c5fc5255be5a8e2a6364c006f998ccdd4c12cced7dcb2653cfbd09d26d",
+      "task_sha256": "9d02185740d1c34280f686d5e4d3ca3df67a2eb4d2d2aec56e8a060ab5281a0f"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0076",
+      "provenance_sha256": "c8bcbbf473b7a32c3af147a06b6193897cbec61c4e837275020192a00ad5d769",
+      "task_sha256": "37dbad303f5c517e862e99d55b24b934d732c5db68368b13d3b3688b50e26808"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0077",
+      "provenance_sha256": "167ae4dbd1269d28a18366386887f9c5a9c18a113f2ed72ae883a824824b5dfe",
+      "task_sha256": "614870235921b35ac758db0038d8f99d5a9e7023a94da0e77d041a87de2baa40"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0078",
+      "provenance_sha256": "5c106dbf438a3552e26f29aadf5b6ce35fb807e5f5629554c1d24de0d665710c",
+      "task_sha256": "d3d5b06d3aa3788865a4c15f9a331690c789377a8970e5e008523ce988046b20"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0079",
+      "provenance_sha256": "c5e6e8dfd080cfaaa7918f69f541caf35d4915fdabbc568fadca996ac8e724d3",
+      "task_sha256": "f4241f141399ce773167a36d53628f9391cedb5457ff17456521ee692f17a5bd"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0080",
+      "provenance_sha256": "b63950a21a2baf94c22a12eabaa35acc5c52d009b9ed70ff87fbe85f1dc08ea4",
+      "task_sha256": "49549c64de5f8facff6dccef4b5f4c5311dd9f040b054d2abf8c1145c0cc4173"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0081",
+      "provenance_sha256": "783d0caaa82ce49a446477c6a4fa95fff642d2f14a2bfef08e528bb6e2768ee5",
+      "task_sha256": "ae39e3e8477de28893e6f3a51b0d8167e4460380f3d6af61699280ab1e676d54"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0082",
+      "provenance_sha256": "d9a51f4b561057ef16a2780b2fe86432bad65bdbe68c665c4353b2818af36f85",
+      "task_sha256": "20b36e55e87fe9048465248fd7961b91860bfb83c7849092c0599db025732d62"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0083",
+      "provenance_sha256": "684b9ce37189f317e1e3edfd1a3e5009f858aaad4cfe58432bbed220dbf1d90c",
+      "task_sha256": "bb6dc2984732820a67cd8c949190d8bea98985de308f7d0485e4abffa066ab6b"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0084",
+      "provenance_sha256": "ae9ec4b30d4ab56a2cfafee6e9da96de7e486b81dbb37fdcc3b05c96fc077a1d",
+      "task_sha256": "f9dc9baf6d966239745488c6fd50e2b457c7b2dd0b7cd9cedfdd22d0676d2a8a"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0085",
+      "provenance_sha256": "f56571c52d628df2fd6edd0828a199b954b6162968856a3a9787c88924c4de5a",
+      "task_sha256": "b7444405590ce67f91dbf5b9b8ff5ee9e00118c06d7938921a2417d69a7044a5"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0086",
+      "provenance_sha256": "cd2de792d9f2d7099cc09736c41f4633f0fcd05d569230e6d6e17a22a9b7b920",
+      "task_sha256": "06a58f218963cb72a5d8e1a7a8c495166e0de77538170dd536b4a32774447baf"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0087",
+      "provenance_sha256": "23e926479ace8e94f7f0bfed7e417e036c5a31a15c406617cb64439bd67b9cd7",
+      "task_sha256": "f72f7544baa6e23c2df55e1cf43c8e6224f5b8529d680d7d06c871455932c569"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0088",
+      "provenance_sha256": "53e0f93b23fd11e74e15af112a20dcd066273c55b1aee0f941833560988d6727",
+      "task_sha256": "40a93a4a0cd2c2cb51875f17725413d2bad3d31cfc82761af48305af9ada78ed"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0089",
+      "provenance_sha256": "9191aecc5c91e078ebb5ea821bffcb319c980c8d3fc8bc9cb84e70b686b260c3",
+      "task_sha256": "135abdcb4c4465198a5baa29e40b0b219e1f05b5812837c03f203bdffbdc2717"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0090",
+      "provenance_sha256": "376816610add5dc7711784979f1c7fe92ae604d13c53a2357cd7a7145217a72a",
+      "task_sha256": "8ba1dce1bda330a9bac9af67ef8fa106d76ff40550e19b1339a74225a6500198"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0091",
+      "provenance_sha256": "413eac92aaecae1ae239381718b9f74bab171f0dc27271bf6b3ecdd57c583559",
+      "task_sha256": "cc9ea8704401b41b3f3aa7397dff2dd7c64064cd58cb0858bc3c7263f754cc46"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0092",
+      "provenance_sha256": "fd1115ad34e3fd6962d59d668475f26ea4f017e2328f6609bed710e695f6d8bd",
+      "task_sha256": "2c4f99c4f47680ce77512333add6f2aa8640e94c7d82a58cc181b40f29933045"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0093",
+      "provenance_sha256": "6ad3f23de4c1d380fd433e364a476409116dcaf713628416ad0374de53ad57cf",
+      "task_sha256": "e1c2178d3c8c8697dbfbfd726a6c15fe36fb0accfec5e06a7de770b503ec304f"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0094",
+      "provenance_sha256": "5a65753d0c821bf845176942d012cfd83e3e839b5bdbd97cb5b721ce02467e03",
+      "task_sha256": "a155065e46e1343d4b3eb8eef3c3bca472a7b598ca4d2cc8c88f4de3a1e613af"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0095",
+      "provenance_sha256": "48c977fbb8b87262ac3e0357be7fdc6c9bdc08bcec2c5d5a11f999075cd9fb46",
+      "task_sha256": "182793316b7d7e66806c596ef347db9e3c512e05ad8a4ae211337e232738fa91"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0096",
+      "provenance_sha256": "09a0b911087951217314c75108cd66b987d576ea8ada24369a37a56df5edc172",
+      "task_sha256": "fa800ebbf782c22277116088d960492731aedffcaabdbf52c52fd923e3ba2c4b"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0097",
+      "provenance_sha256": "c572c83b40a5b82974797f7e29208d41fd56d5c1ec212bd878a5abcae55186b5",
+      "task_sha256": "1e861daa195518263b784ea76aa6fd973667b27fc8cf9f7718ac32423fc80cfa"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0098",
+      "provenance_sha256": "5603f32b2fac05d94569f857378175f14bc11802a951198dc193f05d02cf3b8c",
+      "task_sha256": "3a3d06a5fbe76e3c56bc69ceaa47ce5fac9fc4c7514de6aa8b22d0ecd6f609f9"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0099",
+      "provenance_sha256": "1d13e2daccbc24526402ea24450d4890f2bc254da512b936b6f69135140294cf",
+      "task_sha256": "84187736f74e7eeb743acf06f8e63ec96391eb08973df6d68f63cfbb409a1751"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0100",
+      "provenance_sha256": "6ad5867f521725055ba33837c53e47020e34671e4f0ae1a7db7da2cb80920ba8",
+      "task_sha256": "d7bc47efe3a336e182aa00055aa0b56881943766d77db38e36bb910314890bfb"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0101",
+      "provenance_sha256": "def951000162e6029bd885452cf6a384e847d39bf74896026f434f899627ee56",
+      "task_sha256": "1c60097fda4ddf565187c33a1ad2d1227c8fc53a291fee6054c756658a5d1731"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0102",
+      "provenance_sha256": "5ae4e166ccce69a19c2fcfd676036b8291815b6de465ffc2f82f55bbba4b5911",
+      "task_sha256": "21ff5e582741c20d6b3a86767b3eb28785a21cd0ffb67d3daf58eb5b6a10d6ee"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0103",
+      "provenance_sha256": "0c143ed50b454c349e9e99a6954bf961726653679d96b826d15bfe08bf92c566",
+      "task_sha256": "1af0467047c4dd6b56f2ba6b47f2a6b1e26db9a5cb4056970075dd3ccabd95f7"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0104",
+      "provenance_sha256": "ff11dd89320666ceb34173478e69a775779f483d1e8de6bf461b442becc52334",
+      "task_sha256": "c7bf8e78e4d1f6e7ddc2ec3456153105ab6dc85aad7f5ba8b13855d02b22ec7b"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0105",
+      "provenance_sha256": "9a1a614902e128ec0a92f8c6b98e6b7dac3080c00b4ed4ba5253303fe80652f5",
+      "task_sha256": "4410aec29316241ef4400ab64349c5467132bc445756e58d16653eff4bfb3d6b"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0106",
+      "provenance_sha256": "b258ff508e631fa8bd3b5d3831d280d8fc5cdf49026fcbbf814f5e169974e230",
+      "task_sha256": "2b524a826b03cb4f2404e9d27553ee4cd611776aa6a089828ddf96887f9309d8"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0107",
+      "provenance_sha256": "b592e628b6a7ff244bed3e9999fc900048e4239880650653fcd83c0c99f7bbf6",
+      "task_sha256": "033eec6436c831e9663aa60e64fcf8530d3e695ba45c8978496c7393f124e14b"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0108",
+      "provenance_sha256": "20e9ad291a49130d14d04eb3756cce1b2ab7d76fde3afa7efb716ecafc4e244e",
+      "task_sha256": "a068393dbec403c2dc9b728b19f442e7137e6ec4c0f508ffaed8d8a72cfc01a7"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0109",
+      "provenance_sha256": "cf7ad8f3dcdc14dfea0171b1df4cd3c0d6f48bbf4a1cf47ee38d176d772a4016",
+      "task_sha256": "78d2ca77ca82507a589d28934db5555f812bd589dfb6c76c3244649c0fed12b9"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0110",
+      "provenance_sha256": "90b82b8aaa871275ba0f3e8ae43706b5fd8dbe8cd3e385acbbd9706573eb8cd9",
+      "task_sha256": "6ee774234435a5b9cf5089314e6440d4ffcef38704e05a0316dd9895ea257f4c"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0111",
+      "provenance_sha256": "31c683296ce1cd0e6aabdc0dc9fa922a3a9f4b82bcecbc99dbd67db93aed957f",
+      "task_sha256": "d73b127c0f20950dd1b428d5ce7c6e83cd0134a7a9f92f53e69510cdc534ee55"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0112",
+      "provenance_sha256": "e3f8640901c773e187c611c634673bbfd07a1710c0aa68d459c5cdab3f0398e6",
+      "task_sha256": "97464cdb3dce672ac6e5ddcbf836639510e603d083da7a2f813e9483459f188f"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0113",
+      "provenance_sha256": "0dda8a29ed6bdc0ae78a906c52a22214cdd97a5c7c6e3717fe9c520fde8553de",
+      "task_sha256": "8f6d1ba53d6ec367e3e86a14be15c4502112b4d2436900c9140bd34e7fac9691"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0114",
+      "provenance_sha256": "b76f5b810a0d66f1883b12a74ee186600a0aa0aa439a1f150bf6e88158572ce8",
+      "task_sha256": "ce78c7af5fb4c67b56d5a37958d510e952aec45c56ec9c5299548353cd69936b"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0115",
+      "provenance_sha256": "7b31e9f6c4c2b779b4eacfcbb462651716ae6f57426a5ec92f2087c6ccbcf884",
+      "task_sha256": "6f050ed48ad89538c7bf53fccaa8e84d9cc5b586048693835bd2a83fadb4a5ee"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0116",
+      "provenance_sha256": "becbdd0cf82d1b1c9307d5b8f8fd9f7f354f383c52c7ea5c1a921ee444ba8655",
+      "task_sha256": "6e48c89588d2d4a72d0d0576919f1a511b989e66e8cee99c700433ac19193af6"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0117",
+      "provenance_sha256": "e0f8a3b7b712e1998732a050e2e2dcbfb25c2488d47a799597f3cb48b6487059",
+      "task_sha256": "da4c853cb1ea670ab5c0fb2de34754a3a719348abc5086d0fee33214a1b183af"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0118",
+      "provenance_sha256": "afe2dcf62941ebc3cc5f6934c02b46241f70d2a3453e1af11778ada80f02314e",
+      "task_sha256": "d73622733f2ce133dea05f862f11f0ed06bd93f05d4d5d715082c5817b901c18"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0119",
+      "provenance_sha256": "55dc4fc2fb8b729c0e858c9c9eb2199c4034a5a0b97abb3c19d5f723f519b6ad",
+      "task_sha256": "67dd6d1bfde8081941b4155395f091d57d5f690ced6c369716075deecfff8c44"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0120",
+      "provenance_sha256": "eac8559d17a73511f2f81475a7194aeab57a9c6cfa15a67d5a954d1d5bafa728",
+      "task_sha256": "fa96fe46b37c9ed67c94f0ec87b9effae2ceb153be95c3bf736901d381e6dad3"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0121",
+      "provenance_sha256": "5a3bc2e5de4e79acd7ec9c46925c34fe43b44bbb0f12d7c79fd942ec08a9d60f",
+      "task_sha256": "86ff0d2633037affaebf91244e4ed6ac199c28ee8557cf46b8c77b6f00d19c4a"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0122",
+      "provenance_sha256": "44cdd52c3d759f852ab53d47e7f93be5acc65612a2681c6f0618a8806d20ed57",
+      "task_sha256": "0039ad8e0ece2c35070499ffdba58414ab29172f5ce67ef630846e5fd3aa60af"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0123",
+      "provenance_sha256": "4272db2c58e75b72b195f6676228770b9e4ec62c168238235d3eeae1fce78db5",
+      "task_sha256": "5ec1efc3a5b7e482a702eb623c9f121af524107b3214f820c15208884ecb186d"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0124",
+      "provenance_sha256": "f9294c3f9231fef7b03afacec39f9d1e0501cfb365fe07e85bbcbff871861f67",
+      "task_sha256": "2d02d7d37ad48898271f829466bff100ce439f8bfc7703944aadeab70e38b5c9"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0125",
+      "provenance_sha256": "9fcd3bb6ffeb31610657d0ec86e010f3a7cdb60702491d08530a54a42f4529f0",
+      "task_sha256": "65b7c6633e3fda23ff59b550ea8985d57dff53ba32f3ca28a7f0deaa20aede98"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0126",
+      "provenance_sha256": "1477ad13da98534f1e31ef3675c909815f07e0fbfab7a25884e355f0f4013127",
+      "task_sha256": "7abeb47ae96861213d779420826b94c4d4f512ebfbca92fa2df56482cd47db46"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0127",
+      "provenance_sha256": "3d4d0e01e1a92a0d4fd9780c6f6c039e7857fd1f224be7a31c3f91bfc20ee6e6",
+      "task_sha256": "56ea68afb7a2f20ac6f57dec9bbd6052da1f8716910a63b7a78e8333e537f2e9"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0128",
+      "provenance_sha256": "28eafcfab8081ec0a15e1d9379e86ac67fe6b4b11b0f7a76ab369be327996f5e",
+      "task_sha256": "2d16934625811eab31c02b5595905d51f85c3871df8610655cd8785db77f03d5"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0129",
+      "provenance_sha256": "c2bbd60de53087e99a496531a65ff7a5858784a5aa8eaa095705c5558e40ed49",
+      "task_sha256": "e6306bb744854c82b42fa05253add6f673323df90e88a89f52b223461a54d96f"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0130",
+      "provenance_sha256": "65f54fe6170e71be353886798ee248300217ee52f6b7d98883c6a632517d0c74",
+      "task_sha256": "f6bc9e446ea7ee85810efe3bb6e24bfef1555a3dd0d92d5dbfc9eeb10b9283a3"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0131",
+      "provenance_sha256": "6509b86b1c19b6bfa2a2680021109888fc717b48abf78f805b529c1378399dae",
+      "task_sha256": "d4ca750dc1cd322f6ef06092c3476f8061145bfc258a89f2b0d3ef108a8a0777"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0132",
+      "provenance_sha256": "7722ee958df28c15d1a8e67f0ddd7529a80c4d1e0b3a229a5d667d087bdf5e7e",
+      "task_sha256": "61f2155d08f6edfb263df44607ff5737fa8700b7de5d0ae1b371bd4f3a14cee8"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0133",
+      "provenance_sha256": "6f1bdeff51062edb49d0a0326c09de286d4539e4ae8891a6a51827a52f423358",
+      "task_sha256": "731887e34496396a19722cf39818d2ffceb1de0161a86db88be058e7db34568d"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0134",
+      "provenance_sha256": "54b49205a7424fa2798b8e97a2639ea1b51130ee4a07ad8cb8ee49dae06ad5c1",
+      "task_sha256": "a1cb64ed6fd07bbb777e07215b527caf45e3bc523f605b0cc6cafa75a5918834"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0135",
+      "provenance_sha256": "4905d673d87be03fb05ba7ed14233c7baeeb5b8c78199e9b590db40683edfbf2",
+      "task_sha256": "bcebd1a8d32a9d3c6d3f8ba43c2948451e3e779a24782094d48784fe0d489831"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0136",
+      "provenance_sha256": "45075214d9e77cfb2d843f157c880531c179eefcd558ef3dcd308b35cdddb483",
+      "task_sha256": "de1c21c531ec0672718e9b1f1e8c0224ec2b00ed99dcf0fb3fa148daa9ae7d6c"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0137",
+      "provenance_sha256": "ffca113368ae28d928f7a5b77f9d8e8a380c98e02033dcb765246379454f9a3f",
+      "task_sha256": "04a8b86b29883ec0167235d07624c2b52f745de670eeaae4236fe026ec5f8847"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0138",
+      "provenance_sha256": "30aa32d9dc2780adf210230a56f0fe72e6985d1cd3e8e215b9528f0830e38bad",
+      "task_sha256": "38c3e4dc5bfc1e27bb636e47423dc7f9485a292267804499fe481246814f1053"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0139",
+      "provenance_sha256": "7b00ddc5d7aeb879e89f3ea049669861cd36c5a8f08420b6d78427bef463f7a7",
+      "task_sha256": "49768d8abe4410859db304693e195bd0e4f2a6ea2e285993fcd62dc4206b04de"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0140",
+      "provenance_sha256": "50b0f736c6f17327f5209cbbe69755e58990e0ae11ec438f367a54e29225b324",
+      "task_sha256": "f00e48a972dfde8e5836a1ca22e454c9e448c37f8d8c511b222b827744e96ab7"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0141",
+      "provenance_sha256": "3a0c2bb28c840fbf97c9eaa0523dd6d0c8f22e6c8d27c8d80cfcca77a49605c0",
+      "task_sha256": "6f9a7213855f8750ad431af4de1da561b14e6e67ccca7c7dc5bf3dabe4c70680"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0142",
+      "provenance_sha256": "5130f68286adcb87d80a88141e09c52699e59d0de1f48d31b28b942dfd3182c1",
+      "task_sha256": "0e3747e9d2b6a81b194f71aeeed9972a318b2ab539fcbd721534a4b629251454"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0143",
+      "provenance_sha256": "4bdb97d5522674098d7c9faa2b4c70b0ac108af01aab0a43d4a259fb2ccaaa1e",
+      "task_sha256": "8138f172086410861d01f3b35c3d269c352f90a2cc68ea3ce1a0546318e5c4e3"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0144",
+      "provenance_sha256": "a9a996fc7e2d3449c41c5b7d638777a0f0af741c53de04380d152b87bd0174aa",
+      "task_sha256": "6aea1d8a373768178c13b717efc4b8481fab48f4f04afd7ee77ee60ac643fc41"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0145",
+      "provenance_sha256": "5eab450327e06d5311c2b91e62b1c4999a33ee301f1d04cfa1d3919d89982edf",
+      "task_sha256": "c17345c9246167cc2d40d8991d3393af242012399b661a2da182abbcb0c830a0"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0146",
+      "provenance_sha256": "6f1759a5dd84975068ee74a1ba6d36c2b6265e8f50b7e7cb518a86e26388559d",
+      "task_sha256": "1d52e9250ba4d36e5e6f9846082352339e02ed4456ec4f4228cfed3a622248a2"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0147",
+      "provenance_sha256": "31b42f2f68f1ebd3976b0169dce3701d155a866e6e30b0876b9dfe7bca5b6748",
+      "task_sha256": "d729d7d2e738fc703748c8e724819a743e79023e109e715330df3d8b08c40125"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0148",
+      "provenance_sha256": "b5601a6880199d53b40a7f971b073ef186691be7419a0036d9b335fd8b8b2386",
+      "task_sha256": "2b3826818863f4cc78b164a8d8b1a5be025de30cfcc4fe496296dec0d50359e1"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0149",
+      "provenance_sha256": "36178745e1342de950bb08b8419e3b3aa684eb4aadd071755ce318ba506cf510",
+      "task_sha256": "7fc4384d2743848fffce5e64254a8e0051c08a0ac0d14e453796316b664aba99"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0150",
+      "provenance_sha256": "fb513d8784163c527ff1a4303d4fbf003675555f593e66a0fc354ece49f2f3f7",
+      "task_sha256": "52cef05af836d541e11d54bd37cd82d8a1aff740d4e9b0d257834310af23a204"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0151",
+      "provenance_sha256": "7d1c214331691c0dba5fd0b8c645465b998b51bf35e07c8dcc13a7c56cff0b92",
+      "task_sha256": "efb0b6ce4a6fa28f2bdd61e9e5a14bbe58bf576f8c0534d09e9737e09cb17f43"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0152",
+      "provenance_sha256": "647cbed9b594083eb8cdb4f8d4a48303bd394abf412789e1cb041033a6887b31",
+      "task_sha256": "1389ec41f37c9ef4a0c125a4e8d1fba77e98e4938acdaece018600211ac39904"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0153",
+      "provenance_sha256": "7beb588112da4dd0b6e3204e0468c9c99acb426901602ecc1dcf645c4f5aa749",
+      "task_sha256": "ca0ad1d353d67766400516b2ecf74d58acc2ec1f6a69b2ba6a72d7cc00f3730a"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0154",
+      "provenance_sha256": "4d93aa8a1bcda4ecc476394f6a682453e39f4958c8d383445936a52a7dc46080",
+      "task_sha256": "468d39e7fd66c7f871f8ee9d45e164467bd175ff772d5185ef53b0d095cf883a"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0155",
+      "provenance_sha256": "85d38bd4aa1adcf3ad06331b6fddd84f6ac3fb7fdc6aac928d516e1e2e06042b",
+      "task_sha256": "96a697a846a456fb89afbdefd9b211746aca507cc994883977152a89147fdcee"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0156",
+      "provenance_sha256": "95c51d11cc0bb0345266d5aadd2efa2aa336d70f22095babbeed301af02fab11",
+      "task_sha256": "52cfe2fc2b11b0cb2c56c4e9e0a1517ab9aca63131dd73d4af1ec8bc0c550e1e"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0157",
+      "provenance_sha256": "27bf5ac3ff45b7e00cb548226c4dfacfd5f4b7c86e41f2884f1d7ab69474ca37",
+      "task_sha256": "b42805c52c39bfae756391fba12b4eb665c99f1ce9a0c7cdad4b83b34a0887c5"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0158",
+      "provenance_sha256": "e87768b943724ac8ffc13738024b016ce2b458b90087157ef6e38a665c5c570b",
+      "task_sha256": "52a60308bad79fddeeeb897104a803a77e8556d4491ea56ff5dfe6f6b1c32c91"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0159",
+      "provenance_sha256": "2a2f19ba73187354e8e5ee6b2284e8906075423d4f511eb6e575f9039949233f",
+      "task_sha256": "81c99b4304fd001d04d93c20f8ff560c8d45c64614568d1ee11fe3e2179eb07d"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0160",
+      "provenance_sha256": "2302e83eb669e4026855d12235127b35aa21d1e308187f84445945feb4e28831",
+      "task_sha256": "8321caa55011835c4ae250e856876f0b20f759a73da2fff7cdc329351cd010ef"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0161",
+      "provenance_sha256": "8789c335dd56e051c273bb6206695d5a40af22df3250cdbb29f5601c13fef2aa",
+      "task_sha256": "7e19ea8176fe0947515086a6ff85fcfad675b2b426a957070ebb074d185254fa"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0162",
+      "provenance_sha256": "77f18804ea78d723a7a74120257b4d31905717a68e8821273790705c7d9631af",
+      "task_sha256": "e7d39efa822638af80c59c5bdcf2cbfa3a7f74dc826f3089e4d077dec02e1fab"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0163",
+      "provenance_sha256": "f21859b1e2af1ff6f87b7f22c1a1d373976a76632dbe6775ad4cff66a57a49dd",
+      "task_sha256": "fbe255dddea70e8ff6f175143b89fd400c0e1125557828fe15410f72c7bc7c45"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0164",
+      "provenance_sha256": "6ab5114c9dc3c1f736faa59902753f27a55398fee670928e9338a4bef60f40d9",
+      "task_sha256": "5c698b8a44a545b5685abb62585220792e96fcae1372da478cc1f84909022940"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0165",
+      "provenance_sha256": "fde3b5eab4cfb829529cd0ae3ac89c06f88818f04aec2f182cbe4c45589f2775",
+      "task_sha256": "02c0513ac9fb1ba0660ccb145487659113c8bdfb2d9c2065ba5f1057b0e69a5c"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0166",
+      "provenance_sha256": "770541c4f4f66a69234ab74bb8b6f30d8cd87c00a9dd4ef40725eb84975766cb",
+      "task_sha256": "8538901ee3e8b09ec93bf07fb031b72deab6710cf238cfbedc6c933a071be22f"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0167",
+      "provenance_sha256": "fe3401af28fcd9c77c80189bfd256c04fdb12a9add57318a5ad4f647e4d7707e",
+      "task_sha256": "84e9a0b1b3b25ac46ef001541e42d4cd96607acd48a5a37a7decbe5d0bb4518a"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0168",
+      "provenance_sha256": "19f14a1613c3b01ca90bfe7cd2c0d72561612260895b098f306231f5f6b18abe",
+      "task_sha256": "a792c51b4f075a00437be3c018f9b9c85ad0e83fe63524c92b9ec85df300cd10"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0169",
+      "provenance_sha256": "51718d9c8a6a92cce68987fe55b7f47d8bb9691de111193e6e19689e2a21a187",
+      "task_sha256": "772c6fe3e956a6170a786dbfa6d40a5504212daf70bbab27f224f484e57069c2"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0170",
+      "provenance_sha256": "ef8dc8a7de598146dce232efdc7de13484b8fa75e7ff52527d58e280a5ffad12",
+      "task_sha256": "8ac36330a9987d4b9e9eb2932f996c32c101f42d4bf5ef3758d4c7ed36a8192a"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0171",
+      "provenance_sha256": "1113848b18dbf65140ee69383b8ae2727839391b67599a3d655c676c4d926a93",
+      "task_sha256": "b82ffac373a2d55c53cee08f6f9af74bbc111a413fb3ec37a42d831f244922aa"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0172",
+      "provenance_sha256": "65515583427ebe65ad88f4e9f2be36f39836793d27678661b0f2bf23c6598615",
+      "task_sha256": "493fa3ed341a3ee87ee89c7272249c542c29f1237b5a717ee4a94fa10f9985a0"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0173",
+      "provenance_sha256": "42d0bbec7cbb9f99268f1d1ec8b1ce42418e22ef263e5df7145025602c20ac77",
+      "task_sha256": "4cbb821ba1dcfd8c34716129c327e6eb423fe55099e1e5067260bd3ce19a59b1"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0174",
+      "provenance_sha256": "c1f75a2b4f19d8f1fc0bb17485dd13eb0ad659edec3acc685f3fbcd9642b5699",
+      "task_sha256": "cd33246b929cb6866477d2fb68a38e405a01b17a98201c57f0e770184fe78a29"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0175",
+      "provenance_sha256": "ab2f742e97b9b7c490d6a71312a302bc5ca5bf8bd09ec034c42b38e6315f793b",
+      "task_sha256": "b2a67497a2df6f8444a704029b759c4d9895cce3fe05d752abf979da7c162f8b"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0176",
+      "provenance_sha256": "e4410c45a5fa34398c0d9c2a8fbc011f1bb3e64124f6059b5d13a0b6365a2bb7",
+      "task_sha256": "20ac30004db72cc8df9694c184a4f2c9e3f92f25e2ffd295ae1e581ec06a4a71"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0177",
+      "provenance_sha256": "79ca0e138027f9485998fd74f693529173f630444f00a00a222ada22809ee509",
+      "task_sha256": "b3b27d834e3bdc597ba8a37dd36d3371b208277bd07e7233485407f89fd0bfa2"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0178",
+      "provenance_sha256": "6848a3118ff557d380f991e3a8f63481e766546cc38efca4cb5d531376ef2892",
+      "task_sha256": "dd7428e17713746d88a8d5cac275ac051619cf4c61a8552a9137bc4c113219f0"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0179",
+      "provenance_sha256": "21f22024b171424efc0c893e50d40278d2e7bd809525695a25b5d6e0a2b7498e",
+      "task_sha256": "b899a3fbc6e18654b1f24c879af0182e6ec046fcf8f33d8ae628a6d58b73589f"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0180",
+      "provenance_sha256": "0415dab31b311be064357f5f97ea5f6ae4caf7a7655b147d1808371fc37e02c8",
+      "task_sha256": "f3e39f13b22a43936f3f05fb0c794cdca9c9f33e65586966ca777514eec0b13a"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0181",
+      "provenance_sha256": "78d8b53988655b2e2e1a3d2541e7da515aae23cf452f9812c48a24516380e54e",
+      "task_sha256": "6549220c73c7791edb6f1a6eb8e596be80b685769de104b1cb2876c5c4e30ac4"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0182",
+      "provenance_sha256": "f5e42192e711cd2e544d0d8c7525f4edecf5fba8d8afc93087a692abd4638226",
+      "task_sha256": "e1168c175bc457e920032a2a0b7b6065af7fcea9874ba43cc2421937fee8b8a9"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0183",
+      "provenance_sha256": "07d1bde9361626e18598fdfcb2bf7702e57acb461c13532001735b6f69d19214",
+      "task_sha256": "421789aebca8c8a1c78eac4b0b230b724c3b44d6dae35980fc23cfc8e11e087c"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0184",
+      "provenance_sha256": "a5500032ffc20a11dcec947fe66b3fafe72fc50d19aba808b7ffa6bdbb4a866d",
+      "task_sha256": "c990f26fa75947cc09a11de8dc9c68cc90de8bf42d68b8931ed06b4c35a4322b"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0185",
+      "provenance_sha256": "35f2a26c0c9d0b21e295095b12814864693c76a72a4500136af97e5e29a32f7e",
+      "task_sha256": "e5ca23b6551e72a177287d4dfa202277a6de21dbabb43ca59df249b9b48d6315"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0186",
+      "provenance_sha256": "0c184f63cfed107611de03cb768ccf3619f270e7ef303913e32446b1e158102a",
+      "task_sha256": "e7fa8093861761b758aa17bcdbab7624601de7a646f7df0047f68a207b0cbe2f"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0187",
+      "provenance_sha256": "38cb852e014344726a81b7bbda4eb93bd4d1d05cc8cdfa7ce8071bac0b2a52f3",
+      "task_sha256": "5841fca344a214332d25d5889c068aa9689cc259623b232cc0f733f91da37e28"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0188",
+      "provenance_sha256": "7c9705ce4ab34b3d674a51a4048c3467e261ae5c83c1153b3ceaff37f764be5e",
+      "task_sha256": "0da7eb44444bcce96dfe862b46295a4e0696392d4fe4b3d2cdd6bd30c7db53c8"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0189",
+      "provenance_sha256": "fcddcc60cca2ff4f0d635d5fcf7e253a97dec9387bc5b727b3919adeec62bc3d",
+      "task_sha256": "c5d9902b309ee961dcb7adcf59e47e5d947c9b668c5afc61b9daa6dcc5113f6b"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0190",
+      "provenance_sha256": "7f3e56a33d4eeaf1d6524d78f1fb242ebb8728a76292e60827d841fe5030437d",
+      "task_sha256": "2ecba122d5e75e2059a544763b9b41d842de3bdd0c17185b95a0c17d6b2378ea"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0191",
+      "provenance_sha256": "1af8e4b80dbe71412a5d4766f66f84622b9cbd8e211a2c6ed0dd73bae53d89db",
+      "task_sha256": "1743c5e4cb57018234fcbe4e48aca79df257e27bf9cb1bc4fd5e0911dd1e8474"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0192",
+      "provenance_sha256": "d153623b90c6514f65762924c1148105bf70190e244e63f2cc30bcafd3691cfe",
+      "task_sha256": "fc03c64211b8565d9a2daa1b48a3fe8cf07a6d501c8319cc5f8403d88b9b0ba9"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0193",
+      "provenance_sha256": "bf5d304480d09a718543eaece7149124bf42e0e5b3efb4931eb7a7daabe4942e",
+      "task_sha256": "4e38fec35dcf7de6ffae0fdba59d796e2d1714bac28381befc1e9deb78f98e1e"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0194",
+      "provenance_sha256": "a505d07abe54df19eb8f30a517b1eb8c78fb940732f5127a732d1fe4a9560279",
+      "task_sha256": "6cdeef18765d7d41d3f92bf7d935be7977b0099c63fa76e373aff07fae132934"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0195",
+      "provenance_sha256": "a0a755a1004ea8a5b531252d1d02a5a1bb705e0cd755459e938b430adb1d862f",
+      "task_sha256": "8faf313d5b355ade9a6cb97ec988aec8482a4020ef902c7e8f13c9609eaf7153"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0196",
+      "provenance_sha256": "050d92402dbb4c0155a292f986d50a1deeb6447bac85a92bb882ef76647daa41",
+      "task_sha256": "6965ffdf45759bb93081b83de79e5be9bfdbc46d3c02afb331a84fc1c7e38836"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0197",
+      "provenance_sha256": "f53e22281dbfdf7c6bfb540a0d6a2225fa63465e2354ffebc523a90ac055804f",
+      "task_sha256": "e5ec53eb53fa2c032702b2f60d99553a8a779250eb6b90c57b5ca9b879919f5b"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0198",
+      "provenance_sha256": "a7a3c9b6b6fc24e6bc3344ba6cc3988854b4077f4948fee542fb792de9666fde",
+      "task_sha256": "002ec4f7d4979fa551b2a85e2ef2c60045d5037b85ed8ddcff168a18d584ad8b"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0199",
+      "provenance_sha256": "2577fa9bb10bcea4b3ad1555a7fae429e6edec13a3802014d04d0fd9a58d867e",
+      "task_sha256": "03dd56ec41803790c4d31e2c90454c0c4efd377d540a42a077ef9c1b05957d48"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0200",
+      "provenance_sha256": "226625ba8e4a3be425f0a47273f27c5312e71cf7813da2c8e2b2f4ffa97e5804",
+      "task_sha256": "9e77851993c1fe2ab9e41769ec3082f08facb8d8a95f78b47eab99cd84697494"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0201",
+      "provenance_sha256": "3dc5a5f2f69ebe4fa188608d245f39659179983e6efc6df1b1e778a2f651a2e2",
+      "task_sha256": "0ff2dabb11260f1b4d3d4810ecd2feb594f76b5292d3a0afb8832ad7c3ec80a5"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0202",
+      "provenance_sha256": "cc2e4c297dbbc5409d2321402454d7b4c45573fdd1118ae68c4586bc28eb296c",
+      "task_sha256": "ad99dcaba9b8da4e60023228102c3602a53769f8add65afefef8bf331a89295d"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0203",
+      "provenance_sha256": "b147f5c785d59979ee6bf52e870aa2d74b310275a56e3e16dabe55b889454af1",
+      "task_sha256": "e5fa5e740d6a65a6c1fb26aa5ae9f75ec4a2f205309e4a5c795f87e5b93667a5"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0204",
+      "provenance_sha256": "c2213a367db898f207f8dda06fe098969142505c21428f09268720caa21cf42d",
+      "task_sha256": "f0f6cd664d1421d241dc373f4cc7bc21bded6ee3201b36a131dcf844caa3fd96"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0205",
+      "provenance_sha256": "694a628805e7ab9733ab28be57f9e49ced7a0c736566622faf1ef01ddb993a19",
+      "task_sha256": "64ab6a76f2b2ca5adc5aebd2890e4621f736db298b9838702cad8bf9b50883c4"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0206",
+      "provenance_sha256": "5366331213db30c6e74ac26121ef0839c4e8f6ffb7e4945cc85076a770e67317",
+      "task_sha256": "7e17e88727680eb3e34cb2075c71f2381f3e47166f40270b9f8adc0fa9148afa"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0207",
+      "provenance_sha256": "b3af9113b6016605422f9ea6fd4e9fb8895341f343e8896acdceac3c703cd280",
+      "task_sha256": "b90e3f3104a9dd34271acbcc79767bca144d5c375ac243dd1f7af67fcf781bad"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0208",
+      "provenance_sha256": "ee7b87ac69343e5f7b5dd365a8e2c5430aaa9ac4492a03769d0c2a9f4668a143",
+      "task_sha256": "7bda9b6e0ef97099ca165a17172cbcd74bd1188c7a74ff687fa77bcb2d9cc7fb"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0209",
+      "provenance_sha256": "1968050cb4c3dc07c99a77179b1399a7dd08f052870d4af373842914a8b076cf",
+      "task_sha256": "055d03beb6817e242e9527c6a2a1b577091ff22a97ac3a2e4a80343fff4b9c38"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0210",
+      "provenance_sha256": "3214892626e1311de5f7d7fdf42e708d0089efe4ed4e68502aed5713f238e182",
+      "task_sha256": "dfbeffbb603bfd1f82521a7d33525e42e4a8fe84b110dbf05441880c1563b526"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0211",
+      "provenance_sha256": "b6b390c395277eb00f71e36fea81f49fc260ce35fc740b5d22fc98211ab8f9ae",
+      "task_sha256": "b6167dd61cc0af047c0d568af8d349b609d070f65d2f712bbf96f4b9e4cb110d"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0212",
+      "provenance_sha256": "a014b3f3f516cdc6dff09b75cc4f3b7cc69b0cafccf6970da4334820d58cdbe0",
+      "task_sha256": "8e493cedab5f8fe13835be787f243aa020cdb092ad29f7df63ed60bf34ef0efe"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0213",
+      "provenance_sha256": "716262f829f5a7b3aa105e0265fcd448e71dc816c7c30e36d6bb42df845d99a7",
+      "task_sha256": "084650fc4aa23ffd2be1a4d403610b9f5051fe89fb7e33bf2cfbf77a59171592"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0214",
+      "provenance_sha256": "0ede7a2c76df9fb09da7cac182378a7ed5c18c83e5b8379eb1cb80aa061f8e52",
+      "task_sha256": "284a9d4b37096ea2de8c1fba9547e611fa739dab3cebbf1e156d75f4f2b5f69e"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0215",
+      "provenance_sha256": "d05237cf95de40e0b1be1ff5eb372cb32438ba1f5c69d0da86eb6b147b7d05bd",
+      "task_sha256": "169b481dc3248548e3cbd50ad78f3990c22c02899866a3c556d9e52ba09b0f97"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0216",
+      "provenance_sha256": "cc91410be6bfaac2053cfb60deff636a1ebfa333507d910aafb4afa196495346",
+      "task_sha256": "8a520fc3d19a013e8f12d732edef6a6243a620b7a9d88469e00ccf3e0748dc8f"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0217",
+      "provenance_sha256": "261d283478759e549292f299d732cc910852ad2a4b5d082ca70b80c19196a201",
+      "task_sha256": "1dc74ac90df6a43e84264959d4f843e9dc1b85f573c549b3edc7c5cd555e8db1"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0218",
+      "provenance_sha256": "7405ca51c284b830be755a8aea9a123c4c516951b5749fbe7d3438a2c5233e40",
+      "task_sha256": "8d09ed4b3f5e2be859363bb84b5a9d5cd2881c9d21564ccbdc73a53f77814817"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0219",
+      "provenance_sha256": "d263212a18457998a594088e8679431f8833da90c1efdcc49efa05ec910b961e",
+      "task_sha256": "ed4e431af9f14485b128829606fb9ea91d77c6b143f4a7af155be41f47b7d723"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0220",
+      "provenance_sha256": "81dc696e000cb87b4eed304af16978c8a3a6c0844239c5585a210301a53ed236",
+      "task_sha256": "0dd90bfcb990a00a7a99a4705548c26476354c9c70b543233eeecfccb0f3acd4"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0221",
+      "provenance_sha256": "75ad23d019c6341261e4465d374ff4c7b579abaa2942ed00aa751869b7a8b26b",
+      "task_sha256": "25bbeb5bcf736de8d89edeebc787f907e308ee68af51c7f65d60bd85b39edab1"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0222",
+      "provenance_sha256": "d44c9366ff8515ea63541b86a00d9d6f429fbdd60851544036c119e8d6fcd9b3",
+      "task_sha256": "7e673cee3723f9c9c37aaad743be5d104051deb4729fe76555f1094ca00639f4"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0223",
+      "provenance_sha256": "f1a6382fc475d064ae713de0b5323e918a880fc67f88ed61b9bb5ae117e406e7",
+      "task_sha256": "b624c839159802d5e182e587139a046b062ea194ba92e1d7d5fa440770900e34"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0224",
+      "provenance_sha256": "cf137d6fb3e317fadd759834b15542aedbc76f3ea2c4996030dbc8bdc686441a",
+      "task_sha256": "25bea26eaf926ff0dad049e856e2e3bd0e1e445d0a83e8f24abca718d0422baf"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0225",
+      "provenance_sha256": "45fe94a4be1d9d2f63c1cb4e627daf31b92d9140baeb2197e891fa87522eb137",
+      "task_sha256": "911065f51d10b8b99c3aad0bd25fb0c258bd8d7e035be07f2bacb10ea16b770b"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0226",
+      "provenance_sha256": "3898b25bfebd02d4db0157b1cd8687c08a375ccc9aa04c7628b6d522860a6839",
+      "task_sha256": "2613fc3d1deda80ac66e00f4722d2c1eb3f21b2e4a4b4f7aa88373804b346f02"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0227",
+      "provenance_sha256": "49a5d40a657db9733903c31dfa68b651ceb085667d6940a0c048832bcce7aa71",
+      "task_sha256": "40e0bdd4a9517b5e5235d60dac6f8a2399c2ed84ab904c0d2bdd57455578c1e8"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0228",
+      "provenance_sha256": "878059b38ce8a8d3d775cfb667ca005a88f3848bb07d237a333c23065feb3aa7",
+      "task_sha256": "7136ae497a5648ac83b984dda1a41366d98759240c618634c31176614b8d5542"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0229",
+      "provenance_sha256": "7cce3de2ba78c89ab489bf4a3c31ee7d9436bfabaeef260859e09e0bd3e42e7c",
+      "task_sha256": "8de5719dc8458f9d6b0278438dcd789b836f159a0bd8a473833d528899d811be"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0230",
+      "provenance_sha256": "029c961f1a193db392a3d6c04cd88e0b71993482c5317fef1b29f7a54aec6286",
+      "task_sha256": "cc2cbfa4ae33cbac3809033b03490ad854af5074a98c93224689a30e6c08e7c3"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0231",
+      "provenance_sha256": "2d02d4c91a3f9f04f1abcadd9b5ac6bd98d027c9d8758f5ede9bc4e53d6c24c7",
+      "task_sha256": "b675b2b508e2dea249fc89b6cab07fd72e296229874ec6f931a7316b305d7605"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0232",
+      "provenance_sha256": "26274ca31ddb16f39f2cf09647cbc519b8e8e685c5e5fa09d6742fd88636348a",
+      "task_sha256": "4d1400204505405adcbbf678b2c1302424ca4220a7b46b1f5e918eddeac0eb08"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0233",
+      "provenance_sha256": "290d2f364ec4d4f4f466ee14ed63f8f2211252f949cf5a37843004f3f3f51db8",
+      "task_sha256": "76bb127e5000c954c9a3a62557c804dbe8153232d14f2868570e38b7f0511c93"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0234",
+      "provenance_sha256": "12178b976727cdcacd705576d8e7c09516c3534512963282ce516ae76563382a",
+      "task_sha256": "71b67c91295aa76a5e10210ef19acfc6a0bb0228103157e650fa070f39119a89"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0235",
+      "provenance_sha256": "6141ff5099dbb0602106c91a5456653a0e3c7c835b5d3cbb15c33262d4e98857",
+      "task_sha256": "9edafeb7ec5cc32f1f435bb0cd9485a7881bc8064ab21db926c8004c511a3084"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0236",
+      "provenance_sha256": "08eff4b30df5a7dbc4e4233381ba59b155ecf833a6b494b8f32761366a36f052",
+      "task_sha256": "23e45ff213c29f93e341f6f8b3b0e99dfb310cda28deaf373f99d4ff419bf0ed"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0237",
+      "provenance_sha256": "3e2f2291755adae379c182490307d14e3a918c206377e2f48fb0d5edd6ff7efc",
+      "task_sha256": "387fab61a604888fab3a23d329d27808de90c9280ec6d1037386ea35ca73cdce"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0238",
+      "provenance_sha256": "4aeea5e26cd494f82a6048214838735caa1b2893b62dee269b34ddb28e4fe82d",
+      "task_sha256": "ca8cf89ce4277f5a801b09f766fa29e49116e2a6bc42471a90646353acebdc82"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0239",
+      "provenance_sha256": "e1c55bcfee553fabbe34ab19cfbbec7150985a37b4e96fbca8a048c62a2bae99",
+      "task_sha256": "25caa6ddf62cfb3c39039c6d33710185e7366a7d059c82ca12a3e96805a7254b"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0240",
+      "provenance_sha256": "b479ce03aa29aaf7c7369aaab1520c4bdd69e8f2880f4f32169d7ca3402b16cf",
+      "task_sha256": "119059b97c1219e349c86c29031816724cdc96f2354ea54e969e56c3cf2007b1"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0241",
+      "provenance_sha256": "fee31cdf3dd14691f3c4f713d860b6fb7cd744bb5ae31fd7595e0cc52b610be5",
+      "task_sha256": "d06ddd7d3dc592feb1180ffe5f432c4c1dd56e977bbd494b3727968aa48ba18e"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0242",
+      "provenance_sha256": "48285bd866165012f87af70667fd09d42a08581e731b7e7f44e3e422849e5c24",
+      "task_sha256": "c6f5874c145326939bbcf9e9e95691cb85273e41dac9593644770e6e7ca7d7ea"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0243",
+      "provenance_sha256": "5563d31c4a7b3f81438bf94b84557e78429afcfd66e6a6e3706d1cc1448cad54",
+      "task_sha256": "3722ed1c3c8d23fd788a6c6ad93ae495d8ba30f36b116317458a8e0a4bff5e20"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0244",
+      "provenance_sha256": "d4e06b1db8da7e72d09210264a41544eb40ff1d1b33fd0cc06572cee7294def3",
+      "task_sha256": "41531a2395c7aa7273393ee56f3304efab39da1ccb6f49e8d1286b8f34258523"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0245",
+      "provenance_sha256": "1edf900abf7d7c10dc21acc2c1a9551957e677c9f8103b355f1592c34f5146aa",
+      "task_sha256": "18e2be0ce4dde0552e2930be5353ce96021949fa834e9815607fa00dd5d38f8b"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0246",
+      "provenance_sha256": "c29d82d5d4423dc3e99b8543e448494bc5f03620250ff67baa5abcb1018d3a5f",
+      "task_sha256": "e4d18ba5673a999db054135ae3381ce45d415185f9af1351707900c8da2d6c59"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0247",
+      "provenance_sha256": "c67b1541f583f5970c50999a38b33242795769bf923c8ab121d379ef8241d6e0",
+      "task_sha256": "0617cfeea42b6f430b6d995f855fdfc0daefe9377a224eb268ea9e366aa67485"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0248",
+      "provenance_sha256": "f1c0302ec2a5b25c582467e151551d83213d271972160067ed98c641f253531a",
+      "task_sha256": "399984790d5b12101a9fcb09dd7bc749aec993a67b6540a0616c4752f2750b11"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0249",
+      "provenance_sha256": "192a2a02afc69496bb5544db06833d0ebc11b14d1ac426c2994daa153e41da32",
+      "task_sha256": "8d782fb71b7beff8fff38148a4ba7b57af743c26c415f9b6261641d3ee0836e3"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0250",
+      "provenance_sha256": "6818f36c73173eccbbf83339ecbc9cbe1959085b831edae6684fe42005ade1c4",
+      "task_sha256": "4237220864950c77fac165399fe22923612ccb2000293e2f33a73eff8437e41e"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0251",
+      "provenance_sha256": "f2269ef9069205535a6a865097efa94174ab129015339a3c8523f4a9429a7901",
+      "task_sha256": "16cfc67d22e858e5a2d2b12a3cb220f295d1e1630b95f83d5a7643160337f036"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0252",
+      "provenance_sha256": "a659404499d8a6ae902e3b4f7986c6bb0065ade47a9b101b89eafe1dab20743a",
+      "task_sha256": "47d6457791aa2ee0f3cf90db52e2b4cef9b72b9d762006e87d5ec487e827f865"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0253",
+      "provenance_sha256": "030b87852194d5af83a6fc71f9255d8d498aa01b16e0d8114f648f979352b250",
+      "task_sha256": "a5f5150b0ae4d1950c3914ca147e3f0891a1dc1420daf4df217264cefb0b11cb"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0254",
+      "provenance_sha256": "7e831089d15c4dc78b80bfef383aad90cd7a4b495059d26e1e589e9ee49e2fc2",
+      "task_sha256": "fc028d82146461e5554da0dd47cd27ae86eee483d9f84a5bce9cebbc41a8a3be"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0255",
+      "provenance_sha256": "2e7f64210912a315f85d752a0fda665126741e384fd6ee3d0d6c85c9a3efd5fe",
+      "task_sha256": "95ba44718c8c9fdd615b75ad8a0cc4eec40a395cf0b8f9074d5311373e404262"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0256",
+      "provenance_sha256": "9c6377ed76ea4831cd584c4b4e98dffb7dd76941ff28d1b54d547c684b5f8d62",
+      "task_sha256": "a61a7d691f04cbb5419e7c8c08cef6b6d9a0f8157a2b8aa7f5528fef6b0b4c8b"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0257",
+      "provenance_sha256": "1249caac4d920e8562d04c90bf13b096f86d4dc66c78f55f3b57b113ebc337d1",
+      "task_sha256": "4b4aac5d58d7e262b46a331bd8602bf6eeb2f3fa2a71ebc25798a5065c0db290"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0258",
+      "provenance_sha256": "1f5079c9429ce77ac256d9ba4c05b69abab50d3754d3b5a7750380bfab7bb606",
+      "task_sha256": "171985b4fb97f06a451d13f05b77522f35ebf5231975f0bcca62ceb2b3338cd0"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0259",
+      "provenance_sha256": "1da09a28ea7d17e63a08c0c8fccaa4e65da9f7043002347839abc634f5bc11dd",
+      "task_sha256": "9d43ea91f5d60453c878776e5b04d780417726002abaa6917d21bb4f8dd91bd4"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0260",
+      "provenance_sha256": "e48016f67e6b1126f7a7ee37c014056cf016aa0ca5b623a611089340f79257f0",
+      "task_sha256": "49af63a541bc396ea7ef90eded00a649b8dd988dd2697bb9367e6fe3da21a4cb"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0261",
+      "provenance_sha256": "3fe320c72f294dfde78bf9f3e8716b126912ae218d40696ec21a81fee1b0eb14",
+      "task_sha256": "0b9dfc48143b8e9e77f9009eb69c6b6f6cb60534d9a98361c6207ba4d0b820cf"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0262",
+      "provenance_sha256": "a369a19731d4998313cec18e9c8d4d70e91d02077cfce09606a907c283e551de",
+      "task_sha256": "c86a8111a41e44fe19715c3b96df53690ea4b147626dd2e884026c9a9beb8a7a"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0263",
+      "provenance_sha256": "ef0aa78ea3a04f442e42517b194053cc37dee520257e10f22301a2bd47945589",
+      "task_sha256": "1fa99d7b549c65d78da03dd3f3d7151c3422688982f88989b63da0fd8257b6a7"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0264",
+      "provenance_sha256": "17b289c6b04c3514fbc3fda286032d149a128ba89a57c4956ec7f98db209974d",
+      "task_sha256": "ced66d591681cc1a0fefc895873a01eab3e7e31f05f4023539bc10e210880506"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0265",
+      "provenance_sha256": "d4ef08363129d230035cbe36bef9140a5074dd45d2bd62ecf9c86b244a5dc138",
+      "task_sha256": "fdb70e457d14d133d1881557f3f92fbe3311fcadb3cbb08a3e06b4ed6b95ebe2"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0266",
+      "provenance_sha256": "f6f0b09a8f742087bf6ef365997571d61bc470d359af005ee2e26241165c9e0c",
+      "task_sha256": "b5d59cabf68464b0fa7576f057d4e2a20da2fd37462403f145a00a494db37c67"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0267",
+      "provenance_sha256": "9e369e7b614bf869fea6bca2c025a84e097b4e1b4d8a6049ac90a43ec5938281",
+      "task_sha256": "1418b78b05446af8b90e6b9502600cd5301630b9dd51828db88d60ca9fdbe79c"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0268",
+      "provenance_sha256": "9845e9ee9a5ab7325acdf352062cade0b28d2ede21090d7d1001f5b0f71e5749",
+      "task_sha256": "f7c836f458afef01914ba88faa44755882d0824bd09e18fa2944bb487904a09c"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0269",
+      "provenance_sha256": "0465da9933816eeae4134e597c6e0062afcf3d93a293bd52cb11670d4af3a852",
+      "task_sha256": "d1e68a9a1fa810916b1c4f2c3b6494fee93e2cb0d36b907f762a015059664072"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0270",
+      "provenance_sha256": "f5860ec71ef8a48a14ea41f2f59b3edf464adcdc7d6c92fb1f8a82664cc884cc",
+      "task_sha256": "7130639c525bc4acfa6c59e797054534dab7a794072a00dc344233fb28a9c673"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0271",
+      "provenance_sha256": "d5cf2fc1f2b3fee594c13a53eaaec71472c8d687f62a1e8a7779f841b86309ec",
+      "task_sha256": "4e4c0f0f7aa3547ece8bdc9d518666f38723c2ee53614cfaf23a9b34b21e6cda"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0272",
+      "provenance_sha256": "567a4c29226f305dd20b29d97bec05b33459f19d822e30b61316e46e0077c462",
+      "task_sha256": "c040d9b784ad9ac22e0e363b67f21241fac87a04543b0cdc0e7f8d30e6a283ba"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0273",
+      "provenance_sha256": "a3d3d28abfbdd08b68eb4c62e38b4d0e55af18a27a1339b5b1bc390f4f0d89f1",
+      "task_sha256": "05c51b54bbcde6a9f83823a954b32e9cec6c9e83011259d26dabab8776adfcfd"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0274",
+      "provenance_sha256": "ba14704d2a26195396b3e0f9a9a3b5fb4c76fa03a49f4c2f9ca307b757229a00",
+      "task_sha256": "62b19abb491250b0ba50929ffd9e805d7746235a57e3cc18affbdb41ad4a3073"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0275",
+      "provenance_sha256": "ee5b1f70e48bb3b1399b762c9788d278e95795f9d4f91bdb898ba846f6654658",
+      "task_sha256": "29c178b27b1fed6d5531cca6fb13a61b0f8ae4db35c64471f01a4cc6488d08ce"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0276",
+      "provenance_sha256": "eb5255c99181e234bd96ce4c563abe07538701aa55bebe053ef9468911c817e8",
+      "task_sha256": "8e9e644748ff45ca7a6306190c315593cdc0b25e2ad11a2add507ba14846b4be"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0277",
+      "provenance_sha256": "25afcc34a3c12561d34a31c2551d8ef68970c607dc4c1e84d6bf05b0babf1167",
+      "task_sha256": "a64689ad3e2918df0ecf2e2e59167c0114bbf9f840f777884c12788d71a94ba1"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0278",
+      "provenance_sha256": "db75f48d1f8f806f6943370b0383a4883bdc66c731bca985495a02a376d05f7a",
+      "task_sha256": "7b5b1ffcfd9302f7d3f5e96ee405622b05e5342d9fed0ce2e4497ffb0334c1f3"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0279",
+      "provenance_sha256": "530dd433845862f1c124b1f8914debecee6300fad71966db1e393144ae18e385",
+      "task_sha256": "9938a7b3de87bab40513146d16027739a5dd6593b56b0c83d63d37809ff0e878"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0280",
+      "provenance_sha256": "64e543fc7a966af8c00642f726860e8f216a0d89f9d408ba36325fd3959ae79f",
+      "task_sha256": "9df9d716e10a99d071bea2bb017dbb039ed022e2e1cf781663932fdf7a69fbde"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0281",
+      "provenance_sha256": "869837ab1763b4c817dda241b252df1a74d9465c086a74f57d44010d2e11f96c",
+      "task_sha256": "bb9bd7864360668f18b7d8d56ceb8929817b45195215ee54433090101db2b0b0"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0282",
+      "provenance_sha256": "f00be8133cd82da4e6f64ec7387a1b09eb7eca48ee245d853456e560e93e52ad",
+      "task_sha256": "20e144b0d69023801729d985feb6442004cb1bb0e1b48da8d56d5f9513027abd"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0283",
+      "provenance_sha256": "15bb426e5bd06850f890d090f6e165767c8c454312a866b8cef9b1ca2d403d6e",
+      "task_sha256": "2dcec016d7518904b01fde8a9a25be6d8f5036dcca514da8578ef54f5bf6cb9d"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0284",
+      "provenance_sha256": "12e954705b1568c8e9277d345dd78ede53d5b272d3f7fb6cb2fc3e846fa2188a",
+      "task_sha256": "81aedce80145f9a4ac0b989258aae4c07775a7fac23957121c6ba9e9aa701ad9"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0285",
+      "provenance_sha256": "9136fdb845d020561205b08b2e35d9d56f92fdb514ca4a5c908d1b14c985cdc0",
+      "task_sha256": "4cef987efbf4441ebde6508c5afeb00246c7386341b74baa9d15f0ab9b0bc012"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0286",
+      "provenance_sha256": "49a5a888c01ecd70a23705ed045bd8d0b08011178fecbb711b0ee28beb136873",
+      "task_sha256": "073f3b054c3e33ae16e7b809f17a88c9d36b2a0dc96d1fefbdbd7a66e181b25d"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0287",
+      "provenance_sha256": "38906b30081487f8615f9a59b021481fe797f5243ab5f4685b7a77ddedf838fd",
+      "task_sha256": "39a5fd64d41d51e58503feaa77163c0b4e14be9ac8bd2109186b18b83c5a3f63"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0288",
+      "provenance_sha256": "c457c9b331709fd2ade910358138d646db673f3b539fc457761b2529ad0fbd80",
+      "task_sha256": "56e45db65c8fd4db609ce2c21b4449e5a8c63fe5ace288d3acdac9a5f063968a"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0289",
+      "provenance_sha256": "e91a1506b0abafc158ea07a09ab6e2ebb0d6fd98f6e7257803d0eee55d72ad8a",
+      "task_sha256": "c9bb148b020be38672589efb4bfeefe97ee9458e03d4138b418dbdf650043b77"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0290",
+      "provenance_sha256": "31c5d2995d82d18d907d91fad0849ae9b65dea10b491f959722e0401ac26223c",
+      "task_sha256": "52a5c3ef8c866d7dc2e5181110e541302ace738019e3eb19a0086de4169e8235"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0291",
+      "provenance_sha256": "cb4f81bf9a1534872b16f4d4678c8d86629a8992876ed3a3f6d640d35b546d87",
+      "task_sha256": "cc433e06fc46304e88b4416890395baa55431817238c4bd307ec477e69b4b763"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0292",
+      "provenance_sha256": "49fbdbffdc63911b7bd756fc9c22275a6aa09abee9f4e417ce507041fda19630",
+      "task_sha256": "0c90b229a6ce465caa3ef796d94a8241c9779fd82b4c9ce770fd1aa4534d92d6"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0293",
+      "provenance_sha256": "21aac1ec35b0e5cfd2add93760111246debc8ecea0c346a94e95eadf1935b229",
+      "task_sha256": "7871a51c0df8747c609529c72c05115b6f9d57e0a1c1b819983e63b7068547bd"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0294",
+      "provenance_sha256": "785aa4b42a442f6ca4bdfd9445e1aa930936ab9bc35cdafd20d718b774c03d32",
+      "task_sha256": "d926ce7bb89486a46a5efb18026ae9c6780b88dcd688c534de6f791da2518c7b"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0295",
+      "provenance_sha256": "2f5572c5a81bf6d2f3fd80a635e8f5ab8c03f35fbc9fd91f4732629832d1643b",
+      "task_sha256": "11c8ed23baaa7a105f7596837efa59f3c2e8631b66cc7ed3369bb6dd506a0242"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0296",
+      "provenance_sha256": "903bc50c6a2ccd567450157210ce89a549945b23c2bf962f228e6f116a878aaf",
+      "task_sha256": "7a6042f6a63c5bab50d604c1848cac6b3e06dc8e91e9851e4436554b2f270879"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0297",
+      "provenance_sha256": "2e61bd776647d9559495c98e2383bfc3d1a97240e1a597682d10a3594aca9e1b",
+      "task_sha256": "1f109170954b6d28e3fd42fb734008a67f69a0620e13fc5c7b5eb01b8a9c795f"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0298",
+      "provenance_sha256": "2a53fb01034166434545790b74792e03b3338d3ab0ef3a18ea19e42a1b3f2755",
+      "task_sha256": "aa1a138fccd9c37e50a915666000aaa2b236f9ff41db6a916597a6454de61c35"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0299",
+      "provenance_sha256": "c4529a216914d62b91cb1b58f2eb491b8ec4eb612b9243f06532603d59f0027d",
+      "task_sha256": "69daf7c6c761012510c73f2cd7f939fc1b089ad647569447eed973bc49e78907"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0300",
+      "provenance_sha256": "0e682bf17b7d54cf5057f1b885bd9abad1d8626b30e0281f1694d8adddc57083",
+      "task_sha256": "bbd8c4284da256206ab35fc856f87a27f4267df287d117faa2f30a31fd66ae7c"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0301",
+      "provenance_sha256": "f70d50f54bfc135f47a1178e80338527b2107b1318ba95de5d1f846d9b13dd05",
+      "task_sha256": "49a1e5d6f5145609c2232b175f9b2ad6a671a50160090d022397dcc2fa8612e0"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0302",
+      "provenance_sha256": "449006cbedc5797dbf61b1a3a50e7208e3f636083f5a9315fa420501f6320009",
+      "task_sha256": "4cb3c73fe2c979bc455cad4b6d2062fcc570105318ce1d00956f94d55da7a253"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0303",
+      "provenance_sha256": "3abc4727b842565738fe46caefdbe58e149eda1150d7c705eba1d8d8478d46f7",
+      "task_sha256": "28300618d3c75d65444607bb8a668438cf580ba646f02e914951bd958d501ace"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0304",
+      "provenance_sha256": "b6b36db7589125c54998b223a126a8b5b86706cccf84a9a1e43f02ee4d7ca5e6",
+      "task_sha256": "e233d39af3cb711643fc037218b3ac18c700167280033be10d3cf65974229c0d"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0305",
+      "provenance_sha256": "d53b1768519bf03a25a7b7ffc7dcdd2dac232e89ec2c3986d5f8241645962033",
+      "task_sha256": "6df0cd7d1de74acd1916c2f8ccc0c910827c951e0e30a192445882c4293263aa"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0306",
+      "provenance_sha256": "ea5d34bf084a61c03ebb73156d7ca6e0ec159906448e1a7904a59d97c3377302",
+      "task_sha256": "f3e62de7a27012a5a4e5b03eb0689246e08c6e6c7a4074bfbc08e9f6206d5c44"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0307",
+      "provenance_sha256": "2347baf78d3689da226d6e9c5dce3381c4ff1ea381a55e9e910b1a428d63630f",
+      "task_sha256": "3cfd1998ebcf6c5c7acfced2f56c24457554f24c16b99f102b3742198b263cc6"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0308",
+      "provenance_sha256": "a89df10938bf79c0734efc6beb6e397afe742609f06f923fe306897354c01d12",
+      "task_sha256": "8e915064b14f71b7b3477864206a5f4823b463922a63e47da36b846b86c2ba6b"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0309",
+      "provenance_sha256": "7021aa6fdea69e60879cc694511f15a5d192d5ac165a4ecda83564dca92995c6",
+      "task_sha256": "28d7069482f8d42a5f4ffdd5843dd0d5e63296bd488b61e686b773d1cb74f5bc"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0310",
+      "provenance_sha256": "66b58290a984d0f6c0bb0cc25d77ce1491ed9651d191683f9bc2a11d9af41ff7",
+      "task_sha256": "d9c36d6d169397242603cd7e45e51706525e442ecf20ec84247ff0130b718d89"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0311",
+      "provenance_sha256": "a82d7a21098fc4e33ef097078b500a1476f53369f5fa0297e586ae4ea289b22a",
+      "task_sha256": "b90384f2e0a06090cf831e77ae4f2143bd3a51d8d59698b39fb4fe367e5daf55"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0312",
+      "provenance_sha256": "af361f6f35aa53eb9319d36663836f43345aa2da0b96e33c579d359db1945417",
+      "task_sha256": "bfec6fc4df77905f331bbef49a745054507e3e748bfd23ea9dd83a370366afc6"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0313",
+      "provenance_sha256": "02806b6c771d1969a325b834eb8a25769c50f302a574f42fedd75e072d2118e8",
+      "task_sha256": "6de3319b94b6a3725a2fdf2fabf47201491f94922eff12459c5932d659b62cb1"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0314",
+      "provenance_sha256": "082d976eb02ca7f5d4c88099fe0c4a649d0962f9f01f3972217ed0f128f29943",
+      "task_sha256": "bc35d16076278b3f996cb97f8d3ae2e1ad2f936c6c533dfc9a81e05a3d5bcd1c"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0315",
+      "provenance_sha256": "7a7cd2a18c0151cca6a7e04933800ba6e99d4208d453c528d321aeeb44f89713",
+      "task_sha256": "388237274698138475c1131ff5db3a0ace4d851e8dcbf8b069c896e8f808fc5d"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0316",
+      "provenance_sha256": "40b405a79e773a5c9cc85fd37e6bbdacd511696e125d7f63c04e32c759729f72",
+      "task_sha256": "a7d0b92078db54373c6c0a6f1fe8133b35c32c58541e907166bc9ef49a93dfda"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0317",
+      "provenance_sha256": "5d521b44e44c1d6508625f1f204b33a467e5c0d19f42ccd16059fe4666302ef6",
+      "task_sha256": "92f01628c1dd8c5bbfca18fc3bd544ea1de41c2749e19d50a4a0893a665f631a"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0318",
+      "provenance_sha256": "896d8f2f770e1aa845b9a743ed614b2f83636986325a94b395ffb55d5635523c",
+      "task_sha256": "060f81d00e313ff29b859475204665d5c49c195406aa5c3b0cc8b335fb34dc53"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0319",
+      "provenance_sha256": "49e131393251cc03e956f0089ec58b74b4770d5802dd54fc2741294e00e95f48",
+      "task_sha256": "b02dc8f68f8322d675c4550c98399d2683fc22ee29142deb87ce5ce9a24c29c8"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0320",
+      "provenance_sha256": "d8b04bec241904481bcebdbdb311befb0fc917499967bae82413003b89f76a84",
+      "task_sha256": "be4dbe9bf5700109915433d6d907d14db58cb87d50b3c2e92063e1188a9b5eef"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0321",
+      "provenance_sha256": "b3f004eec69be281d6792ed2ac4e28b5c6c361dcd48db31db2fb1126794954b2",
+      "task_sha256": "130501a22b45a2f4deba206ed285cc9d64a98a387b07d96884bbcedeb81fd8c7"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0322",
+      "provenance_sha256": "f04d249fe63954cf43b3ee373e760a806a5cea520af889153f66e2b054ae424f",
+      "task_sha256": "cbf85b9da6708b71e2a00075b40da7ed95a96c2844d7e56d801a6ef4db476447"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0323",
+      "provenance_sha256": "cc8a0b18f87581e65c1a55646e7eb4892b41ef37fa303e9b6cf59739de3514f7",
+      "task_sha256": "090ddc12fe2b23cc1044c1d747b55f0f27e4f22a0a8bdc1e9567838c6d42797c"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0324",
+      "provenance_sha256": "8fa51b17d3473dd06607e2a6071a945c3c04d6fd4c7332c9da563e22adbda524",
+      "task_sha256": "5bf8fa1c3cdda0ca55ecc4adc138a07f0fdeea36b97b9fa776daa7b1637b2afe"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0325",
+      "provenance_sha256": "80f6de919ca1d5b6897003042acee1fe394dc1460204e488a5e8f83b5af2aa4b",
+      "task_sha256": "c892df1785d8c67c6a735f6be85210ee1cc695a0f0c02e63a571122b84b523bb"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0326",
+      "provenance_sha256": "db6bce6aebc7d1f162fce9ea591a9f625ddab36a46bc837a0cf834d91b289212",
+      "task_sha256": "66c0d626a1e26c3d6da0989c5f448a08d52891a0b9ff8c88539e03ffba6ac223"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0327",
+      "provenance_sha256": "d671c681df123d9cfdb3674188f921ff5b265c090595dc0d95bcd7030fea7ed1",
+      "task_sha256": "53b4e283242d1455e929dac88c9d13a301dfd4ae898ddf1a781a0063f5ce8bd4"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0328",
+      "provenance_sha256": "eb7549d7892a19118074684e59fbdd03db6e6111ed7f8a892de7f610b9d3ecd2",
+      "task_sha256": "ca36e8fcd903fce56713ee430013c365bd04c1f735cf7b3ddfce5fd386099039"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0329",
+      "provenance_sha256": "e2ef4b86b31fbed21846d3a99c76eb412235371d1c2a046d6e630d40e69ba37c",
+      "task_sha256": "b6e8daa2242be3e59e28c454c14ab576f9d49c2ac56b5966c0d1af9e0cbd4714"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0330",
+      "provenance_sha256": "d4129ab568c67d20a204ec5edd448d48c2fe4e2f58cdf40c44e3150d01a3b550",
+      "task_sha256": "d94897805a4c0ec6348dbbb2e7d860c7329971f2b93980ca57f7aeaf25a4f79e"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0331",
+      "provenance_sha256": "78065d890313dbef73217db3b756f493621bc9ac791e22dc11dbae9cec34723a",
+      "task_sha256": "3c067814a27e24b42daf76075b23854076f825fec57a69253cd873e2f5736588"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0332",
+      "provenance_sha256": "12e0fe15fac87c38ef59addeea18f6efe20c42a32f17454aaa116b7edd5122f1",
+      "task_sha256": "cd07bc00939966b38f104a62920fe3ecec282f464aedf3e37e35dba9897aa2e2"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0333",
+      "provenance_sha256": "29554250d60d907cab5016eb0f80d10542dd0c03d3559eaf49b06a88b65ca20e",
+      "task_sha256": "a382d3bf8e279cb84969394e72d41a03374eb08c302483d3e2901058e70bbd01"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0334",
+      "provenance_sha256": "923d14e921a0f7f72dbd3be7c792f48b60ec34f27347e71248c5974163e7e6e3",
+      "task_sha256": "74361d2159baffea58b22e63c075a639e54cf03ad6088e5f7153ef8a50a5f5c3"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0335",
+      "provenance_sha256": "1eb3cfbf168b6fcd0e5aa6264407fbe4e850f68b2bf9cc68a84a7f2f28b67bda",
+      "task_sha256": "b15adf8893c1fa2d0a2b379560a4b52e6f3d1e7caa4f4cf328b8e82969bd6a1b"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0336",
+      "provenance_sha256": "45bfde8737f9c4dea7a8718ce4d5c3336b08dd00a5a0da32181cce22a15ad475",
+      "task_sha256": "691a430655bf0700f06dbcf804b55afca45c0e2ca1a816d6df84ea553f513e92"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0337",
+      "provenance_sha256": "2373624d300c64e4c08e5d6a1a877d82266f7f3173e0770bccd37515fdc2cbdf",
+      "task_sha256": "758955afb9e4a1881899485c97e6e49f8dd254d07e4164d905d3e459571b5259"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0338",
+      "provenance_sha256": "219599c0459928be1e785ac8c4c51702fc0483f4cf521900c85c3239fe7e1d2f",
+      "task_sha256": "2642627ae139d2175b131c9d9185bf69343c9f620f49f2cd1598fe28d9ccf37c"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0339",
+      "provenance_sha256": "998e5d7dc438c5c17dd2c081177bac95327a581a2716dc11bcc44b89f01ebcd8",
+      "task_sha256": "2031b781b206c271f64287fc56faccc85fc9d3c203cc940c8db7db349d2ca078"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0340",
+      "provenance_sha256": "06a65b320429726cca96b6ae74af424e3ff1d163ad30ec4f7d606d67e3f5a701",
+      "task_sha256": "dc94b0b22d856cb86d0495ae14bb5a82f1fb6bbdb71e240fa6f726959273a229"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0341",
+      "provenance_sha256": "645c7d776b64e9b56346b8fd87802b08c2caf367472621f5ce278c9c1a4d080f",
+      "task_sha256": "6d0af2225813208ea1d0aee10de664408315ddd9f205d4a5ba5647ad06e2d55d"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0342",
+      "provenance_sha256": "ba788404c53d763b6b8d9d5259cfb708f96236c1d941b0a97f9b3c6c20366c75",
+      "task_sha256": "c32777fa5b874099e705b90e24659703c6cf60e7cfe9908a82a4f91aebe529de"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0343",
+      "provenance_sha256": "d9344d6ca063d9577c0e6b6c37a43e1f4c9e6f2f48987aea9a512d92e884c934",
+      "task_sha256": "a87460ab4c91e38acb584f98e32f76dfddcc37d3dc5631b3a5cae34441ec702c"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0344",
+      "provenance_sha256": "d671840abd7b1754a2cb6da2b9c3efd81be3e2eefad8a906d706b7a1523eb0b3",
+      "task_sha256": "dc41d4167204c486ebf07c56ec8887e86f1e8e809e82ccba374546746498283e"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0345",
+      "provenance_sha256": "b875d89225d0d2f4747518d45a4c29ab4a3c998e25f65e2ca6471148d3d1c32a",
+      "task_sha256": "308b808e7242e3c7dac51d7b30135398db7c665be086b2d6c6acf81126b5faf5"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0346",
+      "provenance_sha256": "ff20435b46aeccb1b547955507228ebe6c1c26bea7191f56b16eb2b7002b7ba9",
+      "task_sha256": "ce3f7336a5a8993fea4ee4874aa65f0bf21ada9f4d94619b789ba3db4ba767c2"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0347",
+      "provenance_sha256": "264fe87455d6d4fe875fc4e7a55cc8786e85ae58205bccfd249590cef9902f4d",
+      "task_sha256": "44c47415c12f375144dc76e4cfabcdcdc64b84276ece090b68c95387a30a2b5c"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0348",
+      "provenance_sha256": "52558dd75dd59ac7c11bef63f1fa2a6bb41df2ffb1ce6ae6a53de523f51a04d6",
+      "task_sha256": "25cc92ff2cbc62b29266874d1ace67ad61af714e061e648edf3a79462df2ace8"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0349",
+      "provenance_sha256": "b8920a5aac12d55223fb1abab453c00ed7d015f09ae43970929c3e7626649729",
+      "task_sha256": "848c8c5c443b87aec42a661ca991c2b182c306644f5d7c76c6500d74ad597c2e"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0350",
+      "provenance_sha256": "f00a664865807d26c3467ed2f9e489a248ab1c0f0a295e5437b72f8d4247c602",
+      "task_sha256": "9f4dee2ddedc6260cf6600e0d4c30598bfac72740720d3ba77823a47839d9ae3"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0351",
+      "provenance_sha256": "60870d48f1324b2783ebe5ccae68396dde211c6132183ab8576ca7ba9f43b9a5",
+      "task_sha256": "9fa52a2880ef59d80e56456111ea9cf080be201df4fa0ed0b48309658f7a7806"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0352",
+      "provenance_sha256": "9f2952077fee1b092c6772b4403584456177b9c8bced5845d70880c685dc7963",
+      "task_sha256": "39e0b8ce4f56271a599c667f2006d0f2c25cd4ad0faa533a1adc116533124db0"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0353",
+      "provenance_sha256": "b79e75b378ad2e630fd3ae8e56e3b12708ceae63e472ac698679c2a63a9cb003",
+      "task_sha256": "56a6a3ac389b1aa5a7db076743c90f207f74209b0fd8ec36989d8542868c9992"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0354",
+      "provenance_sha256": "639e072febcd20cc36a097ffcdc0bd990413a13775e769de9c532d22830d9a06",
+      "task_sha256": "6862c2047b2cd3b255454c33505ee625cbb9caf921ea20561b4c5ca1b07e5300"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0355",
+      "provenance_sha256": "689de295e401c9edcdb7b5018d5c6079234a4a6233eccaecef00dceee2647275",
+      "task_sha256": "c714bace96b5313e2060a456d83b30047343dde5686b2541d765c736af92a1ea"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0356",
+      "provenance_sha256": "1432b1811d20bc38ff5e68a626ece23b30a8efb62a55b0dc201a467c4d1a69aa",
+      "task_sha256": "4561af7c8f8f07f83753990d0610c213eda73f5043f2870a38d8eec0ee528302"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0357",
+      "provenance_sha256": "9b72d04f962ac0e819caf05174091fac8ed847c5930b006e888364db40a23a41",
+      "task_sha256": "ca12cb7bbe2c62932bde8202289326b218bbe433464e7fa4c66706597039c389"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0358",
+      "provenance_sha256": "07d958881b8d19f20bad83e62af2fd9a19bde69abaf40a4fdfb0c7d5c4ff9a95",
+      "task_sha256": "2ab5cb17cc6da58fe7245512b849864441f38420addad927237eb92af06df094"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0359",
+      "provenance_sha256": "845dd39c52f8f517b79a21b33442b0ec30b09bbe0ac73bd609a5cb6891e202f8",
+      "task_sha256": "f180b6cbcd14480eed8fa9cca9029bc6bcaf2b348d248c749aced8878723be61"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0360",
+      "provenance_sha256": "71a240a993407f44702230bc51f0c18239d97dac23e0b8a09d5c09b34697ecea",
+      "task_sha256": "5fc0384a2c84e83f5bbb07af03d4e35c28cc96ba4204f237507818fdfc512b32"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0361",
+      "provenance_sha256": "1c821e09b616a99f972acb23364be7d60bf1600b87d28e6db76d03b072120147",
+      "task_sha256": "373bacc119fdf005ac61ed3312fbee0844e7b58f1a3a8ddda14c7d32d3e2bfa0"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0362",
+      "provenance_sha256": "eebad23abc0f541c3a6c0d4ccc25ee25e48ac5e39bc4e8771fd1253d75cc9673",
+      "task_sha256": "4bb0962aa396c9efe150a9eef075e4feefe4c37b30a3ccf4718dd73bdfb87268"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0363",
+      "provenance_sha256": "ba642d5050dcd0ab20854f1ba999795134dd6d1229c8211f789652d602ebed67",
+      "task_sha256": "0643df338f58e1552703a843742881e3c249ab1eb78af2ae0a28186e7a2a7b8d"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0364",
+      "provenance_sha256": "d60169899867ef5198063244ef57afbb862d4b9b856fe5466b3171525194be1f",
+      "task_sha256": "4beb409df94ab57d696ba739546ec229747e08ae739923c766055350a81132a9"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0365",
+      "provenance_sha256": "d53b50b224642c91abf2fd5a1895ca6cd9b69e10152c3b81b785018edc7c4672",
+      "task_sha256": "721da4383ece0acd2057b693f792181c4092787f231036d1f8a07fdffa944c34"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0366",
+      "provenance_sha256": "313ca611e03c7500e18ec2acbcee7f280221b804f9bbb40aedb0731d3c342faf",
+      "task_sha256": "7b398777ccc097fa75c058ec327fa44d8b85730f82e04d2ee14b7a5edeb32540"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0367",
+      "provenance_sha256": "8b5b457988c6e8b066832b07dd4257fd526526cd59d8cc013fc169971501107d",
+      "task_sha256": "1e5abc383390e92ff38a8408558655c28d74eacc97bedc176228b385bd0035de"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0368",
+      "provenance_sha256": "9b3eaaae91fd32f363f0e9b401afa4448c29b9a7bc154b8ddd529ae4d1ce7541",
+      "task_sha256": "c6d04a0471ed05979bf561e33d0e16e54988d2dbedec223100deaf61ee91c6d1"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0369",
+      "provenance_sha256": "de8756dc8dfdd879e2e39c700ed9b2f49eeef26cc9db8913801b404d997f5090",
+      "task_sha256": "4e639944985fd2d17ea0f0a1e23e15b586d3b483c7b37d694e1096d0de9d6c3b"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0370",
+      "provenance_sha256": "621bec619d4774a586ca3d607791e26e1ddc418a651d423e1328fa4550bd6990",
+      "task_sha256": "6a0974a7018c8d4dc3498b52b57c1c14ef8c5c7aaef6ab3c61ce11cea98254c9"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0371",
+      "provenance_sha256": "77afccbe16fbfe95ad035b60743f61f604973faf4802d68ac548220436b02255",
+      "task_sha256": "a87347a7afa05b64841e6f13452f946f87a3e0e48834a72f1d77b7191f230e72"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0372",
+      "provenance_sha256": "bd4b310c960fb16a907c3ea0ea9547b8ce75624fbc62e3ed05eded9220a1a76e",
+      "task_sha256": "2ee7d10fcbccd0005c099c4f81180590e7e43c135543fdc70d3f3f16eb2e1a17"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0373",
+      "provenance_sha256": "35dc6dbc93a2be9507122b8f3c05a0bb9fcb2dd07b19f3613c5343c3c93ad1e5",
+      "task_sha256": "39457abcb1017467ebfa639a1fae387a7fdddc30e3c743b820330ace24622036"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0374",
+      "provenance_sha256": "f06ad3f8fd44c964de6207331d2f136eb15e5490c8d74bdd9a1eaba788d11e3b",
+      "task_sha256": "3b6584ccfb472d25026f1bdc3de3d44acadfc6450348d1ae69f8d8027de43a14"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0375",
+      "provenance_sha256": "3024e4bfa2b8dd65856cb684ad065efa8a15b35788bfbfe0e03dc8d5f5591a8e",
+      "task_sha256": "b6cbac2cb34c31dfae0c4125c9e15c448a77f8cb5209193612dc475f54b12c19"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0376",
+      "provenance_sha256": "fa4d8d840af23d1b66de394707b1c17bb328aed7db32e5b39bb534cb57c03951",
+      "task_sha256": "7470dcccb4faf72f7ea5e38091ba9761a176076b7dba9c5532a1fbea08f292c3"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0377",
+      "provenance_sha256": "8ee6cd4358fab8543b66afbd8e14711093e83ff8c9b058d7bc2bac10ceaf8698",
+      "task_sha256": "43f8605c0c8607dadc8a11e4269c3d72703f2e691432f768cb3ab5fac87612cb"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0378",
+      "provenance_sha256": "2a2d079b242f7fe9b295271023d2d9e0f3d94884ab9a4162fc17806f38aa2b61",
+      "task_sha256": "1ea7a137a05e254a748d071f935f65d1c5bbb3b429114d8ba58e8d375815cac0"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0379",
+      "provenance_sha256": "a940450cf88817fd90cc1026716ed80683f91403a3fb0e8a98c519a000ade379",
+      "task_sha256": "5c9204b8579a2b8f7de06388094328c8f5450a2aef00152dc7752a7d15d4bd6a"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0380",
+      "provenance_sha256": "1bd0d6d614e6a11dac4ef59f3accc0da096040b2a2b2a9d457a257c1e5b2432c",
+      "task_sha256": "9bdafaf0bc29dfe1a4411e3199c4ad412295bc1b8baef1a3583f9d438c2e3bbc"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0381",
+      "provenance_sha256": "3f47503e0e2a19b8ef134773f1c738b38ce903bd0d54ec7c8f8ee0b1a567229f",
+      "task_sha256": "8732690b4cc75faa9c7566f6b6fe540e4a2f498dc502214144da2d79e169192e"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0382",
+      "provenance_sha256": "de763fd508bbc28114855ed869f6fe22daf59956284fa886f261d7230bbe656b",
+      "task_sha256": "558193f3d37d5fe3bf5071d741df288e52cf8065a82ab3843e3a7d234969a81b"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0383",
+      "provenance_sha256": "9944e47f84970296998beeaaca2f8576fa56ff2bee4a759796264e7f050f4afa",
+      "task_sha256": "61bde7157ae5d3bbda1fe6a0bf4c468ec3e84bbdea83a1c413ce80c7e132a836"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0384",
+      "provenance_sha256": "5e91389d8bfa8723dee339b75206c373075fea37b25be9600c251780a922a5db",
+      "task_sha256": "f500f9109a93af9cdf2f5961c390023ce55781fee0a21978c66c625fe2160703"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0385",
+      "provenance_sha256": "751c9d5321979bd8c215655efd3a7b0945aac8fcf29f1c23a5b5a4fecba45c21",
+      "task_sha256": "43a98c82b1213279c8017d5d769c721ba6c7c6ef916a1eb13e4e45ed8863da0d"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0386",
+      "provenance_sha256": "57feb8578742803cbfc7993413de86aeaa48045bf8d42e2889e22d20122941b2",
+      "task_sha256": "b60ac61458f020b6e530925d8e2f4d496814389bc1f0f5f4f6431a943cfd025c"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0387",
+      "provenance_sha256": "b7ea5b9f2a4168a6b37db52224f689ea7f37307f9e38d5c5830f7cc5bc78bc4e",
+      "task_sha256": "40148bdeec740e78dc0dc1982d803e89e7fa0d92873c53b7c83114f9ac4e6f21"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0388",
+      "provenance_sha256": "fc36dfb6ece8093620c76eeb2ea0d453996615a90b7c573317c30a6474282f78",
+      "task_sha256": "18dfe5372b458dbbad653445105580ea9711cb26feadefda4fdabe93edd95eb3"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0389",
+      "provenance_sha256": "b25839b68c541317ec50e4a0e754c937138632f3cf44cd7e8fa6c198ad2dbbb8",
+      "task_sha256": "ed2e0c7e98ebe3d31ac15c12e7ef5aa0f6a2848cd28de3a154452e3c9ec6c065"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0390",
+      "provenance_sha256": "5b19426a8b9f3bee806d69b35ad3c01658422fead73b467c74a2cc39271bc8d4",
+      "task_sha256": "17a863f90c10a60806e1ca2688218a8c497a5635cf9e7e3cc6a200454c98927e"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0391",
+      "provenance_sha256": "8e08ec74de347eb29b6ed76ca95c69df1fec60663020db74023c9be420478c1a",
+      "task_sha256": "22f1924ab10a0b818c51809ad2e1d4ea0c2a23f28c76a875e5b7600f157807b9"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0392",
+      "provenance_sha256": "6733cb6569c51203d1784e4b7eea977be587544c085dddf9f9c824433b05a6fb",
+      "task_sha256": "38344a7a1061a4f9a0972797c2dbd72c748566650ba277a06777d178b19f4428"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0393",
+      "provenance_sha256": "95c6d5413ae066abf3432677b52115faa4800f7272ffef4f0eaa62adeb0aa726",
+      "task_sha256": "0beca0dd0756a18d4cf092a6ca999d1983457b3d2e71a31bcf4616447e00dc7e"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0394",
+      "provenance_sha256": "9089dda77f90812da680202811530eb19c302b88479a574185c9fc7d82c21758",
+      "task_sha256": "8efbd25427ac8760ae8485058aa33dbbc5e4c76049e8f27a67bc353ba79117c9"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0395",
+      "provenance_sha256": "6dd1f047005aaa0043eed3281827720ec46b9c490344e3c2943e8c4cb0576ee9",
+      "task_sha256": "f8f05e814ed12f064b1440e2771c1f6e6212f29fd637e39ce134df7755706088"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0396",
+      "provenance_sha256": "3df9ae01524a7594c67b1c280c7701bc3b8a1bae6f94987da52e322262696121",
+      "task_sha256": "5128268fd17dc39b323c2dcc3ef497293f75cffd8628ccde3c0fe20e2ee38481"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0397",
+      "provenance_sha256": "a77522e976118a74441b6f1c8e66a93e248891236588d0fe76298134d3b51cf9",
+      "task_sha256": "f5e10b2e06f49c6d4acafad482163b44e24ebe6eef9817c7d9f0899dcf21e129"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0398",
+      "provenance_sha256": "bbdb297f4392f1800776621c1151032f24983ac2760b902e02c4f317354bee28",
+      "task_sha256": "fae424a12b9e0a71290b6ed6e8abb2409d86ce4eca471700241c8781299577fb"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0399",
+      "provenance_sha256": "c6405b0ababe8a8969f8bf491bc578e3f1b2dac2517530834cc3aa0d7df58191",
+      "task_sha256": "67ef3fe5d2a379a13f50aba855d0b33f2b72ab5c564e041963b455b0b4d4db2b"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0400",
+      "provenance_sha256": "2594822e27dd4a41a7fbcac46aca0367310ebcd7690f54ea4f19734fd59ff43d",
+      "task_sha256": "570c020089a442b1dd208ed9fed8efdfe3c9a12453895dd03a7b9f752f013380"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0401",
+      "provenance_sha256": "77f5dc60ffc7ea73dc950d7d7c94f2ca35397832309d21a5c2e52f6f09d1b510",
+      "task_sha256": "a46ac0c50031d1ab40207d10c59a5862b1e9e1b16d245776eecdced62d41584b"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0402",
+      "provenance_sha256": "c0d839eb3fbd2e3ae41f127adad3abce21d3c0518f9a9290a6ba17427cc5fb83",
+      "task_sha256": "ae0d7d973c36ff6a30753af02d4253fe5171157c2482e828bc057dce39abbe57"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0403",
+      "provenance_sha256": "ba69013079b777ea18bb64e91fe74408f88a7ade4304bbfbe244033772bb64ab",
+      "task_sha256": "af02e3bd7b02988fa57eae34d726833bf7621733dbf9152a91075f7ae1e15e0f"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0404",
+      "provenance_sha256": "be737cc5b0772025f64cf33dd07c9d363d361a9be6d5a0859e38488290abc46c",
+      "task_sha256": "468af698ae5e2e95579fe4f08d6950219923ccd83368e1d7d49fb58fc1f90970"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0405",
+      "provenance_sha256": "1d2cbf271aabbb1158348c5f8951de256a99410b32a44b2dc8aef959764a7d02",
+      "task_sha256": "fac618c97deeac890bc88725f7c8444bec616b7616cdbd432f2b2e7ee5110315"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0406",
+      "provenance_sha256": "7d22326ce6238db6dd03f53d742b79797795abc2c75b59fdf7522d808d1feee7",
+      "task_sha256": "24188a98da6af1026819673eecc69d4f9dc8cfd3b896e0654861d4160bde24bf"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0407",
+      "provenance_sha256": "0a8ba15ecd1336c47e785c85dc58b0d3eaf29826e6a9460924ac3b80f40ba7f3",
+      "task_sha256": "7eb8ee4088317971e0886514b0bcad63e2c7543ad3fc08b9e76e19c12859c1e1"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0408",
+      "provenance_sha256": "fbc8302577afa42b05a81465c57862cfcde9cbc480f687ed595bbac42c0e8639",
+      "task_sha256": "d22c1591331586d2a689452c96ee55ca97af03297442ae522259b43b37430d0d"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0409",
+      "provenance_sha256": "d4324d81b334b531d64b3aea65cf281d46be1033caaabb4597046946e97f5924",
+      "task_sha256": "f2fca888b45adcf684744456e58c5286a0f07ca26910613e16d6786d20702ea3"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0410",
+      "provenance_sha256": "7d820fad6f8dc68030d5aaa6ed67977223e148c3ae7a27d1a3a1a735c021b2db",
+      "task_sha256": "53979213d652386dbb861ccc9b5167a98023d134dd125922055a2b025786cfa9"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0411",
+      "provenance_sha256": "4f47b7f3f4921f2012211639325c2f2c97e813f86d058f2a02b84f61bedb7250",
+      "task_sha256": "9f274cb362d1126cdbd4c1734477345c4db99c61735f9687de2df92c51316324"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0412",
+      "provenance_sha256": "fbfca822790982fde52ee10bd1f5ffb74155b1c4ad7d9e24cabb850608891980",
+      "task_sha256": "449bf217bfc985e9129a7ebced09c36df1a8e1174d233a02e5ca7f2a9b8ab45e"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0413",
+      "provenance_sha256": "835386a70fbac24883e2fa58fc5631c51f590e21575248c58e00a32b0c11a179",
+      "task_sha256": "c3f7899c9ac49cfd6910b5f5f2fa0d26d244753b0fce1ee241f7d03759603233"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0414",
+      "provenance_sha256": "ec75b00fcfbd9cdb78fb0cffd3a060343b1890ab8fb1fca2e5a4b25790a0e5c9",
+      "task_sha256": "03d19b738ec75bbdc14f4eccd60ee8312b8e66c600d78c9c5b77b96450b3ff61"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0415",
+      "provenance_sha256": "c73e80100da527d5e9ea429715d0831496ad09aa8961a00ec80c12967ff997eb",
+      "task_sha256": "a3a9f5afe911199924f9f0a5e225ff9a0b9812473c554e041db699accb4fc0ae"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0416",
+      "provenance_sha256": "f0e75da2f9151566f9aec017f4b88ee3772b16f2c9965b1c6db6db1cc5817830",
+      "task_sha256": "d758fd11d693a23005bffb131523970b3289617dc0df94a27ddfc07c5372e329"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0417",
+      "provenance_sha256": "fda79aca88a69441fd904faec96583ddde02b830be8a29448b3bdfbc0a15af8e",
+      "task_sha256": "eedd1aa928b8a8aebbbdd7f906c684acd37129f196195513ea8aa09b0aade456"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0418",
+      "provenance_sha256": "b1f2f565a59f6492c1372e2022014c62af0ddf92922adb54b9bfe721962ecbd5",
+      "task_sha256": "84be68fe08603c06898c16710fed2bd39c5ed0fa36fc517fb6910f61d7da89dc"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0419",
+      "provenance_sha256": "cf1e89d4173772d9acef89e1847c2e19adabde24d91eeb36880044214b8c5926",
+      "task_sha256": "42a426c15cdc48508116c295f59497d6defc51cf2c312941609185c5abb3e8cd"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0420",
+      "provenance_sha256": "6fcdf41a7df428f31d221c7e76a9e8d75b12ff1eed52bb2a11f879e1443d3458",
+      "task_sha256": "9937392209c724e5eb1f71c750f6753594c0d95363966665a4e2c9723a014bc5"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0421",
+      "provenance_sha256": "9a18e70dc5f05cfe6ebdb31aeebefd733110426c9995f536455b0df7c10a701b",
+      "task_sha256": "08f6c4465f96ddc8f20e590584046f3481175a3090371759ae6daf922452b56d"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0422",
+      "provenance_sha256": "b945130fbbe584e2869f6fd3a4ddbd23cf1fc68c391cd302376c56f7619ba973",
+      "task_sha256": "ac3fe8c1979b79de2dff44896f64fedd0f7e4dd182c9d7c429a19d880468d70d"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0423",
+      "provenance_sha256": "3faf6c8973124570f61294a7d8b5296dc30bb8a75e7fc8bb68f9e3bec80d82cd",
+      "task_sha256": "9d1df6ea3132a82d996c28429911b31dcd74d046ab5c0af223e0bda2259a17ec"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0424",
+      "provenance_sha256": "778a0bd75be7474a7de75815797aa08e9d18ee21e29ec98e09d2977ac486a4a6",
+      "task_sha256": "f212259ca69b2b69341922884128bc6761baa40ddaab1cb294f8c5fb696e0e8c"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0425",
+      "provenance_sha256": "fb551fac88241280bd30fa76031761f9a90b17386ed54c39d9c8cf2ad96ddbe4",
+      "task_sha256": "c75d9fd0b0cab3ba07bd74d043116817e5fc57f2dd144ee58d9e8b4e5dde132a"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0426",
+      "provenance_sha256": "91538b20823b6a5c9f7e2345cae51879dc76450cd90894079baa9e739c2295f3",
+      "task_sha256": "511f01ad449282ecc2e4f6e7c81d5fb616b47cce6e8d488df0da46625a24186f"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0427",
+      "provenance_sha256": "09f627b98cae5cb331e6705a8eb3cf46ed43e631b0a78f0c2749e7fa81dbb0a5",
+      "task_sha256": "8658650b6109bd15e93edd457527f5d2f6ccfb46fd43a5c1b22e5f077d07dbe7"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0428",
+      "provenance_sha256": "22c2207a237b197b187ac03b6cf1aad5654c69c94164392f62038c5475c7cb80",
+      "task_sha256": "63fa77db5b720e90a6f6fa6737cb80071c71960ca49ddd7ea27547397abbba18"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0429",
+      "provenance_sha256": "5327dee885db5c939a5f4cf56989293308b2c9467400d2eeb01ffbbfcc7a54de",
+      "task_sha256": "a968244f08aeb98a0a85b13c9237c68942f27c2d5996a6d0af380dc5bbe9876f"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0430",
+      "provenance_sha256": "ae1fcfcafe1dcaac9ada2347ab6f131bebcb20c0471583f05aae1f61e14fa0b3",
+      "task_sha256": "6d43df4e73759a2cd78854aae96f769e0a868d06b8ee95040ef83a141a31e23f"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0431",
+      "provenance_sha256": "3d384b7d209f099a481b06e5321fc9f10420e1175d3586fdcbf817286749180a",
+      "task_sha256": "e09e1b3c1582b9b7631bdb7abdb2b68484be1f565a0b6340f165358d1b3e06af"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0432",
+      "provenance_sha256": "eeb38662fbd7661aac5ef21d04386c1cb2b202455b3a8ecc11c5e628f06f78c4",
+      "task_sha256": "d2e163aff24573ef587cf0daef3b5267c3a9a07830c333d138de8c6531378466"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0433",
+      "provenance_sha256": "c5f1688b8f7f5500ce9de50c08731018a62040b721eb816edccfb8a90c7550f6",
+      "task_sha256": "c44bfc8202b9fa820f92a7b9dfae634af9ece73df539e864a8188e9127dd9f72"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0434",
+      "provenance_sha256": "4166edf4b121d42808ebffaaed2c536df19508e4882f5d2588c8e59869198780",
+      "task_sha256": "e63a2c3fcc03cf558e9a1013cd2e15a20f1d5f856c9944f631f38d78731161f0"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0435",
+      "provenance_sha256": "bf5aca64a2b308e6423be461c4428117a25be051fd6108685a1469cc78759ca3",
+      "task_sha256": "f76568b4095c7682e7cd4049a58b24bc8da85a6b3c54cb4b182147cbac0b8783"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0436",
+      "provenance_sha256": "de06f2017023216983a2d732339888ebc25230745f16b9e3a28b038eb5576f48",
+      "task_sha256": "25c5be6bc4740b25c4cf822dcef56ad1dd99ae83d59900a0e0fa624741714ecc"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0437",
+      "provenance_sha256": "fcb0b8983e2ae405af8570e503e8ed1446c7ef105996ce1ffc6fdc02cb695a96",
+      "task_sha256": "b6e10e988b09e1e9043c207adc3090e8201b4337e58574da6e0999b423a7b810"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0438",
+      "provenance_sha256": "303f5b8bdfe73dbf5139ac1cd935db08c5a6657cb1baf87e0e51402aaa9086c0",
+      "task_sha256": "66e4efa97c5804d7afdd6340ec0b06c1c7f50f65fd447669ab6c09e233497a83"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0439",
+      "provenance_sha256": "9a0e0402df7a75642076f9f2be567335ecb311a77c551c2f3fe165ac11147404",
+      "task_sha256": "7dab2a2f3a47f0da9927918c825ae34844b3a25a9579928a3e232d55adc6fbfa"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0440",
+      "provenance_sha256": "26b45a67e0fa26a4f6fa4bd88eb4607acf1a1a1bad31a8c0fbc7fe9fd81a76ff",
+      "task_sha256": "5439b332a86db82d8496e2d7dd71d92d29e4fa495898f73e62e6445fa01a0351"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0441",
+      "provenance_sha256": "3c32ce44d088ab55ea33cfea239710c3eba86df12c05e146d5b815eeca66d545",
+      "task_sha256": "c1f95db47aa70eda69eabdf49ccbbb42094fe96706e9ef67b3b2a9c0d20ab04b"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0442",
+      "provenance_sha256": "e87dd4369e47a486798df69485defe033e9ffb971b928fdee149f37d68eba403",
+      "task_sha256": "5ab61f4411bf93306e4dc2325b17cdf010581aa9274158b0b254683001b23777"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0443",
+      "provenance_sha256": "080be8679e53938b32006d7c9de37858ec86ad7af81df36803cd454abec45e8c",
+      "task_sha256": "f033d2f22bf1ea57aadbb70e69247835a4bfbd6a64a21b76b46894b72393178e"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0444",
+      "provenance_sha256": "3bdf325babafe15768c80006d4c887189bceddc0b5ae0db1063f69b398a08a6a",
+      "task_sha256": "202882131785a36f4efb3623c7764ab2cc8b5084c38a5c18042df48a25be56c1"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0445",
+      "provenance_sha256": "963e420e72ba19fa0fa0f47300a59736dbd87ce7cb55a5edccab418d22baf828",
+      "task_sha256": "bf3a663b32e4d84302be0e283930261d87588895dc2a516f7f232c1ec173222a"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0446",
+      "provenance_sha256": "0e3035b4f719c232862de31c8eb183618127f62de0060d3bb9c52a443d3be8b3",
+      "task_sha256": "094f36043a762f28874b04145c67369badd6ade23823a8b8e2e15ae1eaa68cb7"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0447",
+      "provenance_sha256": "cd606b25ce5c0c76627a2798103cc44a89b54dd8027765cfb24e9f420c7b6f49",
+      "task_sha256": "4836839bab9a50fa4af9cee22e23a62fe25c6bba20e3482e282c886a96eb1ed1"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0448",
+      "provenance_sha256": "fce2df5514aa62ef1fb76ee083e387579c2c852c547b13a1532c9cb5575f6c02",
+      "task_sha256": "abae3007652b4f2d936cc1dbdc3c250f850ee671f090fc5641faed7e095c3a38"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0449",
+      "provenance_sha256": "f8fd57b01afedc4276179fd007c8996859aa0ca89fa81524a008e23bd21edde6",
+      "task_sha256": "8481d484cbb217a8bbe0e15dffb254fd8075d4ab26546d4546642d2a66541152"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0450",
+      "provenance_sha256": "3ae267589dc537f97ebd3067f3c8f438d976fe77b90bd1f0ea99ee91cdb59299",
+      "task_sha256": "c073165821a10b41577fea1ed4a31937ea2463ee27ef3db486218523ce1c6a92"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0451",
+      "provenance_sha256": "6bcae40df35d70c7a08bfea57079f18dc99f59a171b63bcc499e8170849432f9",
+      "task_sha256": "49827b4737bb52c95fc21aedc962fb82fd8a6ce89f78356cc1a7c96a704f9afd"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0452",
+      "provenance_sha256": "a824aaf819bca651ec29bd935f4ae5d4cb0fc7f65efb424d66e28106e30ee9c4",
+      "task_sha256": "a0ba8f06a9eea6e02f39b323f7a1ab91bd2f87e37166c63f00c1ad23f0394a1d"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0453",
+      "provenance_sha256": "f1841c80707395c186462fdb832c71a37db5c7b71760b5922d29e605d5530927",
+      "task_sha256": "ee35baf0689705209df93a5acbf3d71e3692e850b139404f9a26bc09d8e87bfa"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0454",
+      "provenance_sha256": "e6965b190e213fc0162455c714c57db5d6f6f824519c35e4cc8ef7001ecae71e",
+      "task_sha256": "7cff024144947ee4fef463968755181026c665fcab4b62d9602aa8d68cbcce96"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0455",
+      "provenance_sha256": "009dc9806c7be3557bbcccf4d098a61814f59896b7f0b4d96ba331b07c7a76ee",
+      "task_sha256": "39ecf7b9931975c8796e764538bcad2d8b516cfae8265e0722e0de272c95adb5"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0456",
+      "provenance_sha256": "e27981866a18b11933025840b61e01dd46166e2a141c800ff114014742ef0d79",
+      "task_sha256": "2c819d434c9f05691278a166dc3aa8d343f89a25a6321866af2d81dbfe4faeb8"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0457",
+      "provenance_sha256": "efd1d024275f1801a6ecbc32e8069a63baeb15df171b40091a97e32a58d2bd0d",
+      "task_sha256": "5edfae3a0c259521dc74ca038f527795bd6045347849f301e94506f536d4e8ea"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0458",
+      "provenance_sha256": "eb8a87fc5b1ee1857ef2ec7e06507723d6bf35daf1abec0eff2a0c914b6b6bc5",
+      "task_sha256": "2cc8d5d02b1a263473240e273eae46552d3e6c81add5bc38049eabd8facd7ce3"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0459",
+      "provenance_sha256": "ac765bfa5d6d5c08c7f5db199714114cd142b5cd23c8239babe2d96a8fb9e454",
+      "task_sha256": "8db98231620b0911903d065104b5c45ad2592337f15e43044e6a8cc03819b7f5"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0460",
+      "provenance_sha256": "5c0c18ab31c422dd3dcc6d99dc3559b943fa0c068f0b45d6962c6eef429d77e2",
+      "task_sha256": "b23509c4fe9de6ba81c09597fbada5e1582c3b0bedfccefe46c43ed07e1d9f5e"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0461",
+      "provenance_sha256": "24a03f0247b9bbabcadfbf7fe248b5bddc0a1a803cc95f5206927ec00d4d5f62",
+      "task_sha256": "d524eab4070f92b042d8b2b1623cfa4a6281a808146167e8256448b22ecaa9ba"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0462",
+      "provenance_sha256": "25517ae8521c960ee186bee824d8ff1dc464ea3f2ec27dd9f64db2f6f9f40b92",
+      "task_sha256": "133bab6936803cc3d73e4564faa9480080a3b3b84ed325350e0afdb92f0559a9"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0463",
+      "provenance_sha256": "d5e8aff07ad4df3038b9c8ba4fdf6c4eec53885520aa6f299b4bc241049a0ca9",
+      "task_sha256": "69b8191999e8ae60da3e419fa0473af62d8cdabd220e62e8c02ab24cfd6eb187"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0464",
+      "provenance_sha256": "031de3642c87343eaafcd154400232c9748bef1639261850c74c0cebcdd79791",
+      "task_sha256": "fb82edad6a1d87221185013ddaacf13a149dcc6b5c480d37293e611e3b64956e"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0465",
+      "provenance_sha256": "38f12b2f59d6c6d86ba00112f5512d6e51fe0fb38883500dbc6d1886193c637c",
+      "task_sha256": "ca918f9a6a61d214380d93bc67883c04f70c558afb8a0a7cf508042127a750d9"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0466",
+      "provenance_sha256": "bcd6d7e5bc6bd4feb02cf1f0d4ee4140250b97be68ae9710bf3d36bc6af190a6",
+      "task_sha256": "4978f87e7c850bd20f9e99fff22ca50b9255dc4734e274ffe59a60844ab31ccf"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0467",
+      "provenance_sha256": "d635c5a2d4916b03bc19af30b410f48b8e26432a54e728c648914f9122acf6ce",
+      "task_sha256": "6be5faf18552c45cefb636720215c62af4dfeedb050f251d490239e77dcd7724"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0468",
+      "provenance_sha256": "dbc377e04a4b49103b4605d7e1c3c9ad95aca56dd15347d1caf19ff8d82a6b7c",
+      "task_sha256": "c01cb04f320d2d288560de6c4630aaf006159863fc4a459c89e21d71e3ff1d86"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0469",
+      "provenance_sha256": "712509fa11c80e8d2bc0ddd012bd4ade29e07ba468bf24c82079b8c0b6003adf",
+      "task_sha256": "4ebc1624ff00324473434575a0375f1145ba0d484259a6b5902b0e5e37c3602f"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0470",
+      "provenance_sha256": "babc8ad0395a42886a42f3c4842e7c64fc8a3e0c1eb4cedb3e71f40ff56dc870",
+      "task_sha256": "f38ec101fed78bf192866aadd71dc6598b5f87371f2968168931386f3e85a479"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0471",
+      "provenance_sha256": "d8c577a5f598a679442e9c917848bdcd694010efcefda0db8002b1a1a74e37a8",
+      "task_sha256": "1802049b1a9d9d105876ca6828dbaec1533f11b74838f82f98be36db1735ca93"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0472",
+      "provenance_sha256": "e5457e272fb54406eb58592a3a83c99c5ad25cef630a88776b7161477ee39f5c",
+      "task_sha256": "5b8a56d2d4100167eb31a14b6fe21326a45271452d2871e17da93dd49312eacc"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0473",
+      "provenance_sha256": "e4b4e64d04d3825c9e9e2a9f8c761588f4218d01c824de6db5d2f217ecb8492a",
+      "task_sha256": "8ab5cbe1c785f16f79346028eede810f9a36e123034f535757e134d1485fdd75"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0474",
+      "provenance_sha256": "4074aaef1a7ddcab9109997593a3bf178b1da8b48338fdc7b66e6ed0169cbce3",
+      "task_sha256": "5e40e3ca2452fc06b607be509463bc6d3a29b1ffff5f28cd73d711d00039c710"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0475",
+      "provenance_sha256": "7d6a19ab8e22e26324bcb5e61d2d931bbb89d5a414954b3eec80dbf28bcfcf84",
+      "task_sha256": "53e237d1e07e946004c30b75c7c39aacafc9235ffe61cd0f6e3ff46ff27955ea"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0476",
+      "provenance_sha256": "dd295d98e66cf6ec9d64ec77675b44e6642b92cdb2034a6f953aa518d17f2595",
+      "task_sha256": "c2ad452394edd828358635e703da68183b71f0e74a80a9ebb7733c1ba87815d2"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0477",
+      "provenance_sha256": "7cdd91795da458075389e0efcf88877da987f392fc95b7f794f590606754cf54",
+      "task_sha256": "74b15bf7f59132d359bf9c5194b11d1af88c404d8265a8ccef1176366d219fec"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0478",
+      "provenance_sha256": "f067ebf23b6061f86130bbda2eb42d9e62f017fd1fd40c8dbec2519f4646b491",
+      "task_sha256": "1f47e9995cecb37b02b85fc3651957d3e4b735e3e0826dca672c931b0f5869e0"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0479",
+      "provenance_sha256": "2fff288074df3d5e9cb371bea18bb6046daf61b22b0730c6f0e93f49a358c226",
+      "task_sha256": "af2b316252865342295854a2b3f85cc8ae1a235c6b10496d63ea71085eef27fc"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0480",
+      "provenance_sha256": "41f972ce0570e449a225df5656daea6f329abd2d8e82288d3b9224da3c99a670",
+      "task_sha256": "c2df795f7eafd7ca92be1521fea93bbbaa676f7f4c4c1a9080a1c04078c91bba"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0481",
+      "provenance_sha256": "3addb1b7ac9e28a9c4d3f40e89b0a521374b1353b11933bcec5ca995d3cb9618",
+      "task_sha256": "aaa8d94eae6c3b970fa0696cc09bd04d0775dd94879e929161efa86ffea6985f"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0482",
+      "provenance_sha256": "05184774b10131c5c9cf060953c4bef7195f89b7d150c3268bd1ba31bdb40485",
+      "task_sha256": "4b963480c42b5bfd91ee2f8e21b33b39c8398997fc607cf06add88a9f825a035"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0483",
+      "provenance_sha256": "a7f5b07c562a6081b17b9d419440cd2bd6fea2fa43089619634e20d360734aaf",
+      "task_sha256": "63a3745f8e5a5ea70c9bd4186dbd0a89c0c248caf06dc8d7dc2911e18b2f269f"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0484",
+      "provenance_sha256": "3ba74700f044d7283365924f925d0a11c3e04c0042e9a5b5b1fb1a746be4d063",
+      "task_sha256": "dc4db095da23bc55ea39785d23a3702fd4e81df0b56554bf14ab47240c90c3db"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0485",
+      "provenance_sha256": "762f344511da2c5c5e68c30b2d1f1c87c7eeece316314d7906aba4949326b534",
+      "task_sha256": "8c19ac9b9233f710620e7a8ebc7ba264c2ffc4f1f6c756ffd18f5277e560efda"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0486",
+      "provenance_sha256": "30ff0c4398c8acd56e50dd906a92cd2414d9ce14c94a74f9dc111823e444ba03",
+      "task_sha256": "0dd273b4d78e4343f210e5f6fabd9cd56ada3ba34716c4ddfc8eeeca5bc0d9de"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0487",
+      "provenance_sha256": "9602ee0d6cbc3a1ef41fe9050e40263eb6ca7463acd2e3d214ee939d7ef8fe85",
+      "task_sha256": "c84a0eff76933c69acf9a9fa65ad9ab043e3db52f343ac12c636ab8aa1aae1c9"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0488",
+      "provenance_sha256": "b700553d6867fc57b99f9235e3ff6890a063b193e72dcbea8af8483f5dfb4967",
+      "task_sha256": "ba8627cc93d157163434c6a23bd7aa12082921e035c5fab61f6fe9dcd6f8e721"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0489",
+      "provenance_sha256": "4a8b40cb594135cedac548dced23aae401f39d4412b91db5830061eab350c2f2",
+      "task_sha256": "4b8cb04eac34709d77ac460dd3e3dde100a92bb0b2cb0acbe08f2bc55e006f36"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0490",
+      "provenance_sha256": "80a99a857e4a0dc7056847545bd999b3c2d53718e0725822d7b96ec310c976cc",
+      "task_sha256": "f89b6db7c40965a6bfc577e15ceb672fd6e574750ca2dadefc48ffe5f05ae63c"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0491",
+      "provenance_sha256": "e1a37382c6cccb406ce8865ccaef441a87a9f87f80405ace4acca48684f04523",
+      "task_sha256": "158f836f632340f809201e804b27e01da8d4a7699e6af6d20f7e0abfa205ab79"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0492",
+      "provenance_sha256": "ef2ea3ce6cb2016959ce3493d594dfa0e7d1f34f2661320c08c7f2f76449761f",
+      "task_sha256": "55df3e8a53ac1b31b4f7d36e8f91f344814070e14e9b96b6300a4846efdd6ece"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0493",
+      "provenance_sha256": "6b413e547da575bf92ab3b048e2b6ecb879ea12dd128f2391a565b26718ddbad",
+      "task_sha256": "ff2156dd150a21dc27cdf53987da41f9f8432468826558af57aa03e85c9deae8"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0494",
+      "provenance_sha256": "1e5bc9cb63950ba5a712a3592c3d0d744c115970ad9bd518610612315c7a8a45",
+      "task_sha256": "351fa3d0b9f2401c4bad8d932f690c155fc4b7c788924d2b0d2124719bbf959d"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0495",
+      "provenance_sha256": "b13f10f0624bad9b9052fccda4ae337d5c0e3e6c6197d26fa92075fd2a44ede3",
+      "task_sha256": "261c843a996875a96d096af9a9370b67a441cace077a47b49c6c17d502a688f8"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0496",
+      "provenance_sha256": "52e816521040c8f2818988edbcb59a4f3f67552133db11133f19f84db05bbc40",
+      "task_sha256": "f6314a650a62f9a4c837214dcb7acf12dd4bdf097664ab1c1c46bef060a801c6"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0497",
+      "provenance_sha256": "88a4331de66afb5c329a2cae81cabe229ec980e1c343bd9cd8c9d4286ad7271f",
+      "task_sha256": "ce863e4e05022d02080790abcafd96cd839aa1f385f2ba1ac8af4904f4f3f575"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0498",
+      "provenance_sha256": "87d71be521c8b49ef946fc25f104e968f2d633b08b7613874d612946c77b6ba9",
+      "task_sha256": "8af81626c5eaea3a6f3966d0782b97e2bbabc8b103dfaaab340a21b82ca51a2a"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0499",
+      "provenance_sha256": "e371a7deb47b0f0477e9eec99126c39ef2d00f1457d2681f49744b9fbfb686e3",
+      "task_sha256": "d558fb4ce0e4071e3b49ebdc9eb77efa5d824a532086546d1c4730947801450e"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0500",
+      "provenance_sha256": "1f60a78cc956b1215ba2e2fb5399b7e7490a0907bf00100e9cda6e86a116ceab",
+      "task_sha256": "2027b09e864ba8d5daa0b55b273d3a2b66f6930fefa4678619c0349860b7cf60"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0501",
+      "provenance_sha256": "5c211eccaed133e323289ef48956fc36171ce231aab02aa30637a944f4edbf01",
+      "task_sha256": "f6b17bcbb4dad62884843f66b7475f7a26fcab82efbea7d50d2302d790cc6cb9"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0502",
+      "provenance_sha256": "07baa203112783646fc3d2cf5d2628bd5e5556f09d681560f784f5a185628748",
+      "task_sha256": "c1882e2fd69058da666b013b61d98972cd5c9b816a0fcd3f1de1fdafe519eea4"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0503",
+      "provenance_sha256": "2aeb31e510e1256e6f9d77c2619800f40bd8cd48cf46f8316ee433fd1e4a1a3b",
+      "task_sha256": "125b3926e3166b02f767de294d988a2a97c6c5353932103c3d6af9dcce0f994c"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0504",
+      "provenance_sha256": "c3e111eace4707e86f45982c4b669bba4db18fdda25821133fb77a518f0ee7fb",
+      "task_sha256": "371c1aa26c072bfc43b9aa3e56b641d031e80d552357db67d1f21158552b3c1a"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0505",
+      "provenance_sha256": "11c0753d9333a8511d485342cdce29dbfd343873f83eec73ab14410fd0d97968",
+      "task_sha256": "89c8440897c3bc57acf8f1300ebf16748573b881fee1adea28b568649aa2c2a9"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0506",
+      "provenance_sha256": "dc90507c8043264f6213980ae0c5a86107745d868e0b2ed535e9c119a317f241",
+      "task_sha256": "0c12af76d42caea15a8a94782c839f86f16cfc24ba477f2079cd55d83c1e1433"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0507",
+      "provenance_sha256": "731d62278cbd84bcd3ef46d60002a63510a16994c5444efce9f5a81c935d2c53",
+      "task_sha256": "d895e6b527aa4385da7d22c3348ec2a91314a78f072ec3d48055fb5c2b713a55"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0508",
+      "provenance_sha256": "16e46004bd0d9c1dbf576179c8e42db20bf5a9940626210975ad36b2a8df95e6",
+      "task_sha256": "7a5f6c0b58fecb802da369da981d4f2c61c1a6f2e8d03792e2398121627fa10c"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0509",
+      "provenance_sha256": "d2e7cd600e0ccbe5cc17a593a407d85615d3cc6445cf1bf5e733af4dae038658",
+      "task_sha256": "108512f1914194808575d191537e02ee6d8a2f4a7908db924613ae4c01f81e82"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0510",
+      "provenance_sha256": "cbf01d0deb92de50f54b4e6df51fe28dc1de2f3a2949c9bfda317be8e30d149c",
+      "task_sha256": "af39c7e794f9718db82256de18e46774d003fcf5d35b91e130fd3310e8dc79bc"
+    },
+    {
+      "item_id": "likelihood-wikipedia_en_20231101-development-0511",
+      "provenance_sha256": "4f603cabb04d85d134dab76ded76f463b450fc9bb4efe796e9e85371e9318b99",
+      "task_sha256": "7c7b814d982a505ad63015e79918e9b64e266e68423c6ebf3000c14bf04a2474"
+    }
+  ],
+  "payload": {
+    "byte_count": 1080081,
+    "path": "evaluation/fixtures/vasu_140m_likelihood_self_curated_v1/wikipedia_en_20231101/development/payload.jsonl",
+    "record_count": 512,
+    "sha256": "4f2b063b1b2bae7bdc0f3f84efeec524a17dce66730bda9420806f9d6bda2ef4"
+  },
+  "production_suite_frozen": false,
+  "provenance_index": {
+    "byte_count": 285014,
+    "path": "evaluation/fixtures/vasu_140m_likelihood_self_curated_v1/wikipedia_en_20231101/development/provenance.jsonl",
+    "record_count": 512,
+    "sha256": "9429678b47597f49041f28a690021d764431ac5519aa7a0c1beaefccac2efd3f"
+  },
+  "repository_commit": "28b20aa9fe4f653b40471fb68d9001c64195d6a7",
+  "schema_id": "vasu_140m_base_evaluation_inventory_v2",
+  "scorer": {
+    "path": "evaluation/framework/vasu_140m_base_v2_tasks.py",
+    "sha256": "7777bd7d6a488c21e3937b5b05e1e46153e7fddbcb67784c47dc9e53a5087bf5"
+  },
+  "split": "development",
+  "suite_id": "vasu-140m-base-evaluation-v2-likelihood-self-curated-v1",
+  "tokenizer_sha256": "04942e101a4a01f87f7e492ad9e463d299a559e784b650fdedd1763a017d195a",
+  "training_authorized": false
+}

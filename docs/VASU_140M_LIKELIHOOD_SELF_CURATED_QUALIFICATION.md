@@ -1,6 +1,6 @@
 # VASU-140M self-curated likelihood qualification
 
-Status: **implementation prepared; construction not yet executed.**
+Status: **self-curated qualification constructed and validated.**
 
 The accepted production inventory plan requires an independent held-out curator.
 The project currently has no independent curator, so assistant-constructed
@@ -18,3 +18,11 @@ Every output remains `fixture_only=true`, `independently_curated=false`,
 `production_suite_frozen=false`, `evaluation_run_authorized=false`, and
 `training_authorized=false`. The package changes no model, tokenizer, training
 dataset, mask, checkpoint, optimizer, schedule, or exact-resume behavior.
+
+The completed package is stored under
+`evaluation/fixtures/vasu_140m_likelihood_self_curated_v1`. Each candidate
+source contributes 512 development and 512 sealed held-out parent documents.
+The held-out payloads have Age v1 headers, both per-source split intersections
+are empty, and no `vasu-heldout-*` plaintext temporary directory remained after
+construction. Exact identities and validation evidence are recorded in the
+companion construction audit.

@@ -1,0 +1,52 @@
+{
+  "checkpoint_accessed": false,
+  "counts": {
+    "fineweb_edu_extension_2025_26": {
+      "development": 512,
+      "held_out": 512
+    },
+    "wikipedia_en_20231101": {
+      "development": 512,
+      "held_out": 512
+    }
+  },
+  "evaluation_run_authorized": false,
+  "fixture_only": true,
+  "held_out_plaintext_persisted": false,
+  "independently_curated": false,
+  "inventory_sha256s": {
+    "likelihood:development:vasu-140m-base-evaluation-v2-likelihood-self-curated-v1-fineweb_edu_extension_2025_26-development": "3964867cd2a6c11db72b57e824e503e4841e0eb5eb27a0e66d2f65818c5c24e8",
+    "likelihood:development:vasu-140m-base-evaluation-v2-likelihood-self-curated-v1-wikipedia_en_20231101-development": "ec8f6c7efcfd2ced161293ed1c87a2081f66c5a85209f2d066a7623f0b7bbd04",
+    "likelihood:held_out:vasu-140m-base-evaluation-v2-likelihood-self-curated-v1-fineweb_edu_extension_2025_26-held_out": "9e0c21886be39aa8b7f3d7cc67512fb04d713b7900d72885d33311eca20bfd63",
+    "likelihood:held_out:vasu-140m-base-evaluation-v2-likelihood-self-curated-v1-wikipedia_en_20231101-held_out": "2497d6a429ed667b62a4bbf2660f47206ef45d0583960acb92b012acce59efdb"
+  },
+  "model_invoked": false,
+  "parent_overlap_counts": {
+    "fineweb_edu_extension_2025_26": 0,
+    "wikipedia_en_20231101": 0
+  },
+  "production_suite_frozen": false,
+  "qualification_sha256": "69f742cd0a4cf02c8de36d37cb469bc1900537a180bcf2ca4f683b557496c0b2",
+  "recipient_fingerprint": "3413c58d2dae91a9c253642aba8583923af3fcd5d02893ad940ca6f21b5bd2da",
+  "repository_commit": "28b20aa9fe4f653b40471fb68d9001c64195d6a7",
+  "reservation_sha256s": {
+    "fineweb_edu_extension_2025_26": "8f798ee23e11fc7bb0d4a9930866f15f505aad07f7c8fe918002083bfcf5f02b",
+    "wikipedia_en_20231101": "13820bd6f83b97d7760e09511fdc5cc2502f97d61efeb009d00befd126a0e066"
+  },
+  "schema_id": "vasu_140m_likelihood_self_curated_qualification_v1",
+  "source_artifacts": {
+    "fineweb": {
+      "manifest_sha256": "45631233ce7218869f6b16e0d6b447933e93cc267bc821820dfa50d3ccfa967c",
+      "path": "data/interim/pretrain/fineweb_extension_recovered.jsonl.gz",
+      "sha256": "c90f9e21d9b73324b9165cf1fb7ffbc274fbba5ccba5ac22b7cbe48abb6d7f1e"
+    },
+    "wikimedia": {
+      "manifest_sha256": "e4516d2132a12e38ae9523c5cfe8a38bddf44a945c4bdfa86e1cb9a03f521286",
+      "path": "data/processed/pretrain/factual/wikimedia_likelihood_source_v1/documents.jsonl",
+      "sha256": "bc2a014fadcfca02cdebce55bc47c7780838a2ad5278f0cb2a63dc5679c7b7a4"
+    }
+  },
+  "suite_id": "vasu-140m-base-evaluation-v2-likelihood-self-curated-v1",
+  "tokenizer_sha256": "04942e101a4a01f87f7e492ad9e463d299a559e784b650fdedd1763a017d195a",
+  "training_authorized": false
+}
