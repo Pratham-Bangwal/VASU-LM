@@ -41,8 +41,15 @@ def test_streaming_scan_excludes_reserved_and_detects_hash_spans() -> None:
     )
     assert report["counts"] == {
         "documents": 3, "excluded_documents": 1, "scanned_documents": 2,
-        "matched_documents": 2, "rejected_parent_documents": 2,
+        "matched_documents": 2, "rejected_parent_documents": 1,
+        "audit_only_parent_documents": 1,
     }
+    dispositions = {
+        match["disposition"]
+        for finding in report["findings"]
+        for match in finding["matches"]
+    }
+    assert dispositions == {"audit_only", "reject"}
     assert report["semantic_scan_complete"] is False
     assert report["training_authorized"] is False
 

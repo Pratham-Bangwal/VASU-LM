@@ -14,7 +14,7 @@ from evaluation.framework.vasu_140m_base_v2_inventory import (
 )
 
 
-SCHEMA_ID = "vasu_140m_streaming_exact_contamination_scan_v1"
+SCHEMA_ID = "vasu_140m_streaming_exact_contamination_scan_v2"
 MAX_FINDING_SAMPLE = 100
 
 
@@ -26,21 +26,28 @@ def report_identity(report: Mapping[str, object]) -> str:
 
 def build_commitment_index(
     records: Sequence[Mapping[str, object]],
-) -> dict[int, dict[str, tuple[str, ...]]]:
+) -> dict[int, dict[str, tuple[tuple[str, str, bool], ...]]]:
     """Index non-redundant short exact spans and all eight-word fragments."""
 
-    index: dict[int, dict[str, set[str]]] = defaultdict(lambda: defaultdict(set))
+    index: dict[int, dict[str, set[tuple[str, str, bool]]]] = defaultdict(
+        lambda: defaultdict(set)
+    )
     for record in records:
         validate_contamination_record(record)
         item_id = str(record["item_id"])
         width = int(record["ngram_words"])
         for digest in record["ngram_sha256s"]:
-            index[width][str(digest)].add(item_id)
-        for field in ("prompt_exact_commitments", "answer_exact_commitments"):
+            index[width][str(digest)].add((item_id, "fragment", True))
+        for field, kind, blocking in (
+            ("prompt_exact_commitments", "prompt_exact", True),
+            ("answer_exact_commitments", "answer_exact", False),
+        ):
             for commitment in record[field]:
                 exact_width = int(commitment["word_count"])
                 if exact_width < width:
-                    index[exact_width][str(commitment["sha256"])].add(item_id)
+                    index[exact_width][str(commitment["sha256"])].add(
+                        (item_id, kind, blocking)
+                    )
     return {
         width: {digest: tuple(sorted(ids)) for digest, ids in values.items()}
         for width, values in index.items()
@@ -63,6 +70,7 @@ def scan_documents(
     excluded_count = 0
     scanned_count = 0
     rejected_parents: set[str] = set()
+    audit_only_parents: set[str] = set()
     seen: set[str] = set()
     for document in documents:
         document_id = str(document["document_id"])
@@ -78,14 +86,17 @@ def scan_documents(
         words = unicodedata.normalize(
             "NFC", " ".join(str(document["text"]).strip().split())
         ).split()
-        observed: set[tuple[str, int, int]] = set()
+        observed: set[tuple[str, str, bool, int, int]] = set()
         for width, commitments in index.items():
             for start in range(max(0, len(words) - width + 1)):
                 digest = normalized_text_sha256(" ".join(words[start : start + width]))
-                for item_id in commitments.get(digest, ()):
-                    observed.add((item_id, width, start))
+                for item_id, kind, blocking in commitments.get(digest, ()):
+                    observed.add((item_id, kind, blocking, width, start))
         if observed:
-            rejected_parents.add(parent_id)
+            if any(match[2] for match in observed):
+                rejected_parents.add(parent_id)
+            else:
+                audit_only_parents.add(parent_id)
             finding = {
                     "document_id": document_id,
                     "parent_document_id": parent_id,
@@ -93,8 +104,14 @@ def scan_documents(
                         str(document["text"]).encode("utf-8")
                     ).hexdigest(),
                     "matches": [
-                        {"item_id": item_id, "word_count": width, "span_start": start}
-                        for item_id, width, start in sorted(observed)
+                        {
+                            "item_id": item_id,
+                            "kind": kind,
+                            "disposition": "reject" if blocking else "audit_only",
+                            "word_count": width,
+                            "span_start": start,
+                        }
+                        for item_id, kind, blocking, width, start in sorted(observed)
                     ],
                 }
             findings_digest.update(canonical_json(finding))
@@ -117,6 +134,7 @@ def scan_documents(
             "scanned_documents": scanned_count,
             "matched_documents": matched_document_count,
             "rejected_parent_documents": len(rejected_parents),
+            "audit_only_parent_documents": len(audit_only_parents - rejected_parents),
         },
         "findings": findings,
         "findings_sample_limit": MAX_FINDING_SAMPLE,

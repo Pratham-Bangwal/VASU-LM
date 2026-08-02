@@ -21,8 +21,8 @@ EXCLUSIONS = ROOT / "configs/data/exclusions/vasu_140m_likelihood_self_curated_v
 FINEWEB = ROOT / "data/interim/pretrain/fineweb_extension_recovered.jsonl.gz"
 WIKIMEDIA = ROOT / "data/processed/pretrain/factual/wikimedia_likelihood_source_v1/documents.jsonl"
 OUTPUTS = {
-    "fineweb": ROOT / "evaluation/results/vasu_140m_fineweb_exact_contamination_20260802.json",
-    "wikimedia": ROOT / "evaluation/results/vasu_140m_wikimedia_exact_contamination_20260802.json",
+    "fineweb": ROOT / "evaluation/results/vasu_140m_fineweb_exact_contamination_v2_20260802.json",
+    "wikimedia": ROOT / "evaluation/results/vasu_140m_wikimedia_exact_contamination_v2_20260802.json",
 }
 
 
