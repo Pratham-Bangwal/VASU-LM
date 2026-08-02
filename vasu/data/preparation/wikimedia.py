@@ -61,6 +61,9 @@ from .schemas import (
     MAX_PILOT_DOWNLOAD_BYTES,
     MAX_PILOT_OUTPUT_TOKENS,
     MAX_PILOT_RAW_EXAMPLES,
+    MAX_LIKELIHOOD_ACCEPTED_CHUNKS,
+    MAX_LIKELIHOOD_ACCEPTED_PARENT_DOCUMENTS,
+    MAX_LIKELIHOOD_OUTPUT_TOKENS,
     PreparationOutputPaths,
     PreparationProgress,
     WikimediaPreparationConfig,
@@ -118,6 +121,7 @@ def load_preparation_config(path: Path) -> WikimediaPreparationConfig:
         )
     payload.setdefault("maximum_list_like_line_ratio", 0.8)
     payload.setdefault("minimum_prose_sentences_for_list_chunk", 2)
+    payload.setdefault("preparation_profile", "pilot_v1")
     missing = sorted(CONFIG_FIELDS - set(payload))
     unknown = sorted(set(payload) - CONFIG_FIELDS)
     if missing:
@@ -176,19 +180,42 @@ def validate_preparation_config(config: WikimediaPreparationConfig) -> None:
         raise ValueError("shard_identifier must select one explicit Parquet shard")
     if isinstance(config.random_seed, bool) or not isinstance(config.random_seed, int) or config.random_seed < 0:
         raise ValueError("random_seed must be a non-negative integer")
+    if config.preparation_profile not in {
+        "pilot_v1",
+        "vasu_140m_likelihood_source_v1",
+    }:
+        raise ValueError("preparation_profile is unsupported")
+    likelihood_profile = (
+        config.preparation_profile == "vasu_140m_likelihood_source_v1"
+    )
+    parent_limit = (
+        MAX_LIKELIHOOD_ACCEPTED_PARENT_DOCUMENTS
+        if likelihood_profile
+        else MAX_PILOT_ACCEPTED_PARENT_DOCUMENTS
+    )
+    chunk_limit = (
+        MAX_LIKELIHOOD_ACCEPTED_CHUNKS
+        if likelihood_profile
+        else MAX_PILOT_ACCEPTED_CHUNKS
+    )
+    token_limit = (
+        MAX_LIKELIHOOD_OUTPUT_TOKENS
+        if likelihood_profile
+        else MAX_PILOT_OUTPUT_TOKENS
+    )
     _positive_int(config.max_download_bytes, "max_download_bytes", MAX_PILOT_DOWNLOAD_BYTES)
     _positive_int(config.max_raw_examples, "max_raw_examples", MAX_PILOT_RAW_EXAMPLES)
     _positive_int(
         config.max_accepted_parent_documents,
         "max_accepted_parent_documents",
-        MAX_PILOT_ACCEPTED_PARENT_DOCUMENTS,
+        parent_limit,
     )
     _positive_int(
         config.max_accepted_chunks,
         "max_accepted_chunks",
-        MAX_PILOT_ACCEPTED_CHUNKS,
+        chunk_limit,
     )
-    _positive_int(config.max_output_tokens, "max_output_tokens", MAX_PILOT_OUTPUT_TOKENS)
+    _positive_int(config.max_output_tokens, "max_output_tokens", token_limit)
     _positive_int(config.minimum_document_characters, "minimum_document_characters")
     _positive_int(config.maximum_document_characters, "maximum_document_characters")
     if config.minimum_document_characters >= config.maximum_document_characters:

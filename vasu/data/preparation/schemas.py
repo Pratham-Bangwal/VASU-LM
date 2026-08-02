@@ -11,6 +11,9 @@ MAX_PILOT_RAW_EXAMPLES = 10_000
 MAX_PILOT_ACCEPTED_PARENT_DOCUMENTS = 2_000
 MAX_PILOT_ACCEPTED_CHUNKS = 4_000
 MAX_PILOT_OUTPUT_TOKENS = 2_000_000
+MAX_LIKELIHOOD_ACCEPTED_PARENT_DOCUMENTS = 3_000
+MAX_LIKELIHOOD_ACCEPTED_CHUNKS = 20_000
+MAX_LIKELIHOOD_OUTPUT_TOKENS = 15_000_000
 PREPARATION_PROGRESS_FORMAT_VERSION = "wikimedia_preparation_progress_v2"
 
 
@@ -63,6 +66,7 @@ class WikimediaPreparationConfig:
     fineweb_index_required: bool = False
     maximum_list_like_line_ratio: float = 0.8
     minimum_prose_sentences_for_list_chunk: int = 2
+    preparation_profile: str = "pilot_v1"
 
     def for_smoke_test(self) -> "WikimediaPreparationConfig":
         base = self.output_paths
