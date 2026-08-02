@@ -6,9 +6,14 @@ import argparse
 import hashlib
 import json
 import subprocess
+import sys
 from pathlib import Path
 
 from tokenizers import Tokenizer
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from evaluation.framework.vasu_140m_base_v2 import sha256_file
 from evaluation.framework.vasu_140m_likelihood_inventory import (
@@ -21,7 +26,6 @@ from evaluation.framework.vasu_140m_likelihood_inventory import (
 )
 
 
-ROOT = Path(__file__).resolve().parents[1]
 SUITE_ID = "vasu-140m-base-evaluation-v2-likelihood-self-curated-v1"
 OUTPUT_ROOT = "evaluation/fixtures/vasu_140m_likelihood_self_curated_v1"
 FINEWEB = ROOT / "data/interim/pretrain/fineweb_extension_recovered.jsonl.gz"
