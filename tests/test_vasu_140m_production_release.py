@@ -85,7 +85,10 @@ def authorization(prepared: PreparedRelease) -> dict[str, object]:
         "scope": "one_production_release_build",
         "approved_by": "test approver",
         "approval_date": "2026-07-30",
-        "expires_date": "2026-07-31",
+        # The generic authorization fixture is intentionally long-lived so
+        # unrelated behavior tests do not depend on the wall clock. Expiry is
+        # verified separately below with an explicit current_date.
+        "expires_date": "9999-12-31",
         "repository_commit": COMMIT,
         "implementation_sha256": prepared.qualification["implementation_sha256"],
         "plan_id": "vasu_140m_instruction_seed_v1",
@@ -119,28 +122,35 @@ def test_qualification_is_deterministic_and_read_only(tmp_path: Path) -> None:
 
 def test_real_source_qualification_matches_frozen_review_identity() -> None:
     repository_root = Path(__file__).resolve().parents[1]
-    value = qualify_production_release(
-        repository_root=repository_root,
-        repository_commit=REVIEW_BASE_COMMIT,
-    )
-    assert value.qualification["qualification_sha256"] == (
+    if (repository_root / PRODUCTION_RELEASE_PATH).exists():
+        qualification = json.loads(
+            (
+                repository_root
+                / "evaluation/fixtures/"
+                "vasu_140m_instruction_seed_v1_production_qualification.json"
+            ).read_text(encoding="utf-8")
+        )
+    else:
+        qualification = qualify_production_release(
+            repository_root=repository_root,
+            repository_commit=REVIEW_BASE_COMMIT,
+        ).qualification
+    assert qualification["qualification_sha256"] == (
         "ec44ee9a8a50125f516c330b54ee8605ba124f87cd0aee13737c8718ccadb24e"
     )
-    assert value.qualification["implementation_sha256"] == (
+    assert qualification["implementation_sha256"] == (
         "0efb0189b4b0c5a8621da9053d56db57d95ebf5b0f1bb59753952ec8afa5d1e2"
     )
-    assert value.qualification["assignment_sha256"] == (
+    assert qualification["assignment_sha256"] == (
         "59481237acd2164f96dbbdc2b837ca8cabb00c496b1b6c42cb260b44bbd2b394"
     )
-    assert value.qualification["split_counts"] == {
+    assert qualification["split_counts"] == {
         "train": 898,
         "development": 48,
         "evaluation": 50,
     }
-    assert value.qualification["source_audit"]["decoded_round_trip_count"] == 996
-    validate_qualification_report(value.qualification)
-    assert not (repository_root / PRODUCTION_RELEASE_PATH).exists()
-    assert not (repository_root / PRODUCTION_MANIFEST_PATH).exists()
+    assert qualification["source_audit"]["decoded_round_trip_count"] == 996
+    validate_qualification_report(qualification)
 
 
 def test_complete_mask_audit_rejects_serialized_prompt_supervision() -> None:

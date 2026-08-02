@@ -243,10 +243,11 @@ def _specification(
     return value
 
 
-def run() -> dict[str, object]:
-    repository_commit = subprocess.check_output(
-        ["git", "rev-parse", "HEAD"], cwd=REPOSITORY_ROOT, text=True
-    ).strip()
+def run(*, repository_commit: str | None = None) -> dict[str, object]:
+    if repository_commit is None:
+        repository_commit = subprocess.check_output(
+            ["git", "rev-parse", "HEAD"], cwd=REPOSITORY_ROOT, text=True
+        ).strip()
     temp_parent = REPOSITORY_ROOT / "tmp"
     with tempfile.TemporaryDirectory(
         prefix="vasu-140m-base-release-smoke-", dir=temp_parent

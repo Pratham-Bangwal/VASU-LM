@@ -574,4 +574,4 @@ def test_frozen_smoke_qualification_reproduces_exactly() -> None:
             / "evaluation/fixtures/vasu_140m_base_release_qualification_fixture_v1.json"
         ).read_text(encoding="utf-8")
     )
-    assert run() == expected
+    assert run(repository_commit=expected["repository_commit"]) == expected
