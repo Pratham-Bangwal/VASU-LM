@@ -15,8 +15,8 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from evaluation.framework.vasu_140m_base_v2 import sha256_file
-from evaluation.framework.vasu_140m_likelihood_inventory import (
+from evaluation.framework.vasu_140m_base_v2 import sha256_file  # noqa: E402
+from evaluation.framework.vasu_140m_likelihood_inventory import (  # noqa: E402
     ITEMS_PER_SPLIT,
     build_inventory,
     build_records,
