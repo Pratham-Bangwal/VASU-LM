@@ -38,3 +38,12 @@ The generator does not import a model or access checkpoints, training datasets,
 schedules, optimizers, authorization records, or private Age keys. It changes
 no model, tokenizer, dataset, mask, checkpoint, optimizer/scheduler state,
 training configuration, or exact-resume artifact.
+
+## Read-only preflight
+
+`python scripts/smoke_vasu_140m_assistant_authored_internal_preflight.py`
+revalidates every fixture manifest and its bound bytes. It emits a hash-bound
+qualification report with `checkpoint_opened=false`, `model_invoked=false`,
+and `training_authorized=false`. This suite is incomplete by design: it does
+not replace the six-dimension, development-plus-held-out evaluation-v2 suite
+required for an eventual full checkpoint evaluation.
