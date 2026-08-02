@@ -1,0 +1,34 @@
+{
+  "decision": "blocked",
+  "evaluation_exclusions": {
+    "path": "configs/data/exclusions/vasu_140m_likelihood_self_curated_v1.json",
+    "sha256": "217b78d0202f20338a47341fbd504755383ad9d6262f636468b2e33dc9bca640"
+  },
+  "evidence_id": "vasu-140m-wikipedia_en_20231101-blocked-evidence-v1",
+  "evidence_sha256": "c50d4c34c946ccc42d4214d7ceb5a3fd27cbae4efd45b1b8ac167970c242fd45",
+  "exact_contamination_scan": {
+    "path": "evaluation/results/vasu_140m_wikimedia_exact_contamination_v2_20260802.json",
+    "sha256": "fb24631b97e0678edabf55fbaf9e7c1b760e8318681e305eaaae86e95fe2a55a"
+  },
+  "pending_admission": {
+    "path": "configs/data/admissions/wikipedia_en_20231101.pending.json",
+    "sha256": "faa392fc37b12658548a5662743e67da4f5c55bf1546eb5cf78748759e2931d4"
+  },
+  "release_build_permitted": false,
+  "remaining_blockers": [
+    "independently curated production prompt inventory matrix",
+    "independent semantic candidate search and review"
+  ],
+  "schema_id": "vasu_140m_blocked_source_admission_evidence_v1",
+  "source_admission_approved": false,
+  "source_artifact": {
+    "path": "data/processed/pretrain/factual/wikimedia_likelihood_source_v1/documents.jsonl",
+    "sha256": "bc2a014fadcfca02cdebce55bc47c7780838a2ad5278f0cb2a63dc5679c7b7a4"
+  },
+  "source_id": "wikipedia_en_20231101",
+  "source_manifest": {
+    "path": "data/manifests/factual/wikimedia_likelihood_source_v1.json",
+    "sha256": "e4516d2132a12e38ae9523c5cfe8a38bddf44a945c4bdfa86e1cb9a03f521286"
+  },
+  "training_authorized": false
+}

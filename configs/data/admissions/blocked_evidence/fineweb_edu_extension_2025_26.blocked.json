@@ -1,0 +1,34 @@
+{
+  "decision": "blocked",
+  "evaluation_exclusions": {
+    "path": "configs/data/exclusions/vasu_140m_likelihood_self_curated_v1.json",
+    "sha256": "217b78d0202f20338a47341fbd504755383ad9d6262f636468b2e33dc9bca640"
+  },
+  "evidence_id": "vasu-140m-fineweb_edu_extension_2025_26-blocked-evidence-v1",
+  "evidence_sha256": "b05daef9bbc850317a8dcd4d4835589bf59c90e1fea22fb409b7eff6d48441a6",
+  "exact_contamination_scan": {
+    "path": "evaluation/results/vasu_140m_fineweb_exact_contamination_v2_20260802.json",
+    "sha256": "91b0a6110c5e2b7a2183951c0e5dc2f6012f9f84680191f68c1298cfc105217d"
+  },
+  "pending_admission": {
+    "path": "configs/data/admissions/fineweb_edu_extension_2025_26.pending.json",
+    "sha256": "95bf7d6fca405b1b69e3578575bbdafddff4d1facbcb9c733bf5e6e8623242db"
+  },
+  "release_build_permitted": false,
+  "remaining_blockers": [
+    "independently curated production prompt inventory matrix",
+    "independent semantic candidate search and review"
+  ],
+  "schema_id": "vasu_140m_blocked_source_admission_evidence_v1",
+  "source_admission_approved": false,
+  "source_artifact": {
+    "path": "data/interim/pretrain/fineweb_extension_recovered.jsonl.gz",
+    "sha256": "c90f9e21d9b73324b9165cf1fb7ffbc274fbba5ccba5ac22b7cbe48abb6d7f1e"
+  },
+  "source_id": "fineweb_edu_extension_2025_26",
+  "source_manifest": {
+    "path": "data/manifests/pretrain/fineweb_extension_recovery_production.json",
+    "sha256": "45631233ce7218869f6b16e0d6b447933e93cc267bc821820dfa50d3ccfa967c"
+  },
+  "training_authorized": false
+}
