@@ -1,0 +1,126 @@
+{
+  "acquisition": {
+    "access_method": "Hugging Face Datasets snapshot pinned by repository revision and dump configuration",
+    "authorized": false,
+    "immutable_revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9:CC-MAIN-2025-26",
+    "raw_hash_algorithm": "sha256",
+    "shard_inventory_sha256": "7fe7f891b0f0aa7d1d4c958429c057fe4292a2b857cf26fa308c86c631011af9"
+  },
+  "decision": {
+    "notes": "Pending acquisition identity, production inventory matrix, contamination scan, and source-specific review.",
+    "reviewed_at": "",
+    "reviewed_by": "",
+    "state": "pending"
+  },
+  "deduplication": {
+    "before_split": true,
+    "cross_source_indexes": [
+      "fineweb_original_plus_extension_v1",
+      "wikipedia_en_20231101_v1"
+    ],
+    "exact_method": "sha256",
+    "near_method": "minhash_lsh_word_5gram_v1",
+    "normalization_version": "unicode_nfc_whitespace_v1"
+  },
+  "document_lineage": {
+    "revision_field": "dump",
+    "shard_field": "shard",
+    "stable_id_fields": [
+      "source_document_id",
+      "text_sha256"
+    ],
+    "transformation_id": "vasu_140m_base_source_filter_v1"
+  },
+  "evaluation_isolation": {
+    "exact_method": "sha256_nfc_casefold_whitespace_v1",
+    "inventories": [
+      {
+        "dimension": "factuality",
+        "inventory_id": "vasu_140m_assistant_authored_internal_v1-factuality-development",
+        "path": "evaluation/fixtures/vasu_140m_assistant_authored_internal_v1/factuality/manifest.json",
+        "sha256": "18d51e8e8513c055e01ebb0899512ee3f514dceb752a74998d12d7979213d618",
+        "split": "development"
+      },
+      {
+        "dimension": "arithmetic",
+        "inventory_id": "vasu_140m_assistant_authored_internal_v1-arithmetic-development",
+        "path": "evaluation/fixtures/vasu_140m_assistant_authored_internal_v1/arithmetic/manifest.json",
+        "sha256": "f18ad1b52d448946444751820c88f887a77ec9dd08c035e4ade34f487258413f",
+        "split": "development"
+      },
+      {
+        "dimension": "repetition",
+        "inventory_id": "vasu_140m_assistant_authored_internal_v1-repetition-development",
+        "path": "evaluation/fixtures/vasu_140m_assistant_authored_internal_v1/repetition/manifest.json",
+        "sha256": "b0f3db1b04676bbb5be70a686a035a693b64fb764917a2eac3dbd5e480f6fd82",
+        "split": "development"
+      },
+      {
+        "dimension": "robustness",
+        "inventory_id": "vasu_140m_assistant_authored_internal_v1-robustness-development",
+        "path": "evaluation/fixtures/vasu_140m_assistant_authored_internal_v1/robustness/manifest.json",
+        "sha256": "6d62e1dee09d7618cca0331433b4b42ae3994b2f6321494b5c857b14c642671b",
+        "split": "development"
+      },
+      {
+        "dimension": "manual_review",
+        "inventory_id": "vasu_140m_assistant_authored_internal_v1-manual_review-development",
+        "path": "evaluation/fixtures/vasu_140m_assistant_authored_internal_v1/manual_review/manifest.json",
+        "sha256": "a8339caef169573c25abe9849a8f1564dbdeecf9f1af2a7ed56a2597676e50bb",
+        "split": "development"
+      }
+    ],
+    "likelihood_policy": {
+      "created_after_acquisition": true,
+      "document_level_isolation": true,
+      "manifest_binding_required": true,
+      "train_exclusion_required": true
+    },
+    "ngram_words": 8,
+    "scan_before_split": true
+  },
+  "family_id": "vasu_140m_v1",
+  "legal_evidence": {
+    "attribution_required": true,
+    "commercial_use_allowed": true,
+    "gated_access": false,
+    "license_name": "ODC-By-1.0",
+    "license_url": "https://opendatacommons.org/licenses/by/1-0/",
+    "obligations": [
+      "retain ODC-By attribution",
+      "preserve document provenance",
+      "review underlying web-document rights before redistribution"
+    ],
+    "redistribution_allowed": true,
+    "requires_authentication": false,
+    "terms_revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9",
+    "terms_url": "https://huggingface.co/datasets/HuggingFaceFW/fineweb-edu",
+    "unresolved_items": [
+      "exact immutable raw shard inventory is not yet acquired",
+      "all ten production prompt inventories are not yet available",
+      "pre-split contamination and cross-source deduplication are not yet executed"
+    ]
+  },
+  "model_config_sha256": "29e9bafdffbbc632b1b6f006818b1470e6dbc20f21841aa33e625a0f04159059",
+  "package_id": "vasu-140m-fineweb_edu_extension_2025_26-pending-v1",
+  "package_sha256": "1cd2d05dfee67e0758a71e43badc8797aa394669bfca065b3949f8705d339e2c",
+  "quality_policy": {
+    "filter_version": "fineweb_edu_extension_v1",
+    "normalization_version": "unicode_nfc_whitespace_v1",
+    "rejection_reasons": [
+      "missing source ID",
+      "invalid text",
+      "evaluation contamination",
+      "exact or near duplicate"
+    ]
+  },
+  "schema_id": "vasu_140m_base_source_admission_v3",
+  "source_record": {
+    "path": "configs/data/sources/fineweb_edu.json",
+    "registry_approval_status": "approved",
+    "sha256": "d72ffec39d8d0350291ab7c88dda3b01a621e5cfa09b4582a211ca1a122bdaf7",
+    "source_id": "fineweb_edu_extension_2025_26"
+  },
+  "tokenizer_sha256": "04942e101a4a01f87f7e492ad9e463d299a559e784b650fdedd1763a017d195a",
+  "training_authorized": false
+}
