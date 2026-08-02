@@ -1,0 +1,28 @@
+{
+  "authoring": {
+    "held_out_content_present": false,
+    "independently_curated": false,
+    "provenance": "assistant_authored_internal_nonindependent",
+    "training_data_eligible": false
+  },
+  "evaluation_run_authorized": false,
+  "inventory_sha256s": {
+    "arithmetic": "fa9855f439220e811f5cf5de5978eeae358f8e6eeb3cecc33f61315c880c4eaf",
+    "factuality": "eb84e4904ed2da8f8309bbb9df4d557490a6dc6f3c1c75ebae72a1f0749a9045",
+    "manual_review": "955df5ef3e306b975756f076fe9572b0433127d993ca40cb4b4c7303d6e39bad",
+    "repetition": "68ca327e0fe5b7d8e60420d5723478833ae77c50fea908f44121aa47691b629f",
+    "robustness": "fc37fbc37e2019025406af8e6bdd3bb5d8748a904031e7c68b68bef13cdf75a2"
+  },
+  "record_counts": {
+    "arithmetic": 1000,
+    "factuality": 200,
+    "manual_review": 60,
+    "repetition": 120,
+    "robustness": 120
+  },
+  "report_sha256": "20da19a2f048dde7f6658ad9e2d60e204db81830b65673da31b389e82e979736",
+  "repository_commit": "a9ba8e71e4163caebfa9043790fd4d9dd48cd46e",
+  "schema_id": "vasu_140m_assistant_authored_internal_suite_report_v1",
+  "suite_id": "vasu_140m_assistant_authored_internal_v1",
+  "training_authorized": false
+}

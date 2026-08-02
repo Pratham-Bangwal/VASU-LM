@@ -1,0 +1,650 @@
+{
+  "access": {
+    "encryption_algorithm": "none",
+    "opening_authorized": false,
+    "payload_format": "jsonl",
+    "recipient_fingerprint": null,
+    "state": "available"
+  },
+  "contamination_index": {
+    "byte_count": 140160,
+    "path": "evaluation/fixtures/vasu_140m_assistant_authored_internal_v1/repetition/contamination.jsonl",
+    "record_count": 120,
+    "sha256": "eb75b552dd69ff25133b91cc761d27a3134cb4754daf6cecb10b2868119149d4"
+  },
+  "dimension": "repetition",
+  "evaluation_run_authorized": false,
+  "fixture_only": true,
+  "generation_profile_ids": [
+    "greedy-v1",
+    "sampled-v1"
+  ],
+  "interface": "raw_continuation",
+  "inventory_id": "vasu_140m_assistant_authored_internal_v1-repetition-development",
+  "inventory_sha256": "68ca327e0fe5b7d8e60420d5723478833ae77c50fea908f44121aa47691b629f",
+  "item_commitments": [
+    {
+      "item_id": "assistant-repetition-0001",
+      "provenance_sha256": "1a3db433ca76a7aebe0b491ec84e4d6766757556481fe654d4f078e19903d522",
+      "task_sha256": "9a55346fa7ad24e02861d691e270434e39f03e106a733c62f834d5bb81bc5816"
+    },
+    {
+      "item_id": "assistant-repetition-0002",
+      "provenance_sha256": "1b1bc57688e3a58c9cb7a67ff067ec29c91e21523f390c5beb62ff05132fa8c5",
+      "task_sha256": "cad05ebf54e065b28d918526e7c3e3a84827d1046ce1c4aac7fd570dc1fb4a7a"
+    },
+    {
+      "item_id": "assistant-repetition-0003",
+      "provenance_sha256": "2d35324756834a82eba05e78bd379e063190d7d1cfdd8f75857dcd07e52c9f89",
+      "task_sha256": "b400015fbbf76a6aadea0cbe27f771537cd3619a208bef3243e60fea3df1d241"
+    },
+    {
+      "item_id": "assistant-repetition-0004",
+      "provenance_sha256": "9d29a048cb684a0ef1446993da8d4160e302579beecae74addee002f0b4d5fa5",
+      "task_sha256": "d1fdcb1c413671ca0f13bd8c35228e97532ba7a23567ca4dc9a08b6a13524923"
+    },
+    {
+      "item_id": "assistant-repetition-0005",
+      "provenance_sha256": "a539994d8963842e7a0b21cdd217de0dea3c1c69d706acac19bdd4a0d79a33c9",
+      "task_sha256": "5316d4ef7187561cbdfe098e92920778679f7a05398fbab52f7d5150028a96d7"
+    },
+    {
+      "item_id": "assistant-repetition-0006",
+      "provenance_sha256": "7cf209e8edc3007a3ffaa847caf1dd936161bf7654e550a3efcb085e31f49451",
+      "task_sha256": "76d1b6bb4c8906b61bbb9795e4307bf3cb4f0a2d7eedbaa110aa163a3af9cf4d"
+    },
+    {
+      "item_id": "assistant-repetition-0007",
+      "provenance_sha256": "f937c74c01e6bda166ff2274421f332a153c9f7e11aee2f8c651e0de996fa1e7",
+      "task_sha256": "d72ab6db6ee0e457705c053da7ebfc3421b31e330d3537b2f3f35ce3334c83f7"
+    },
+    {
+      "item_id": "assistant-repetition-0008",
+      "provenance_sha256": "94367b1e9c3f8dc6db0c1a74dde9f482da6bbde93de0bb37650a7d669b8de60c",
+      "task_sha256": "6d952c07c9c8793f062c7f9b6b19489eac7bcaf8f912b61842dcad45c481edd7"
+    },
+    {
+      "item_id": "assistant-repetition-0009",
+      "provenance_sha256": "c2691dfd3ba3ae02924c795a7c8ff678c9539237a85925fb9c6f08b1b19c1916",
+      "task_sha256": "19f771a987c6db2c5a71f17f1a9e4aeec15e2a908a2ba3169217a30f9792f9f4"
+    },
+    {
+      "item_id": "assistant-repetition-0010",
+      "provenance_sha256": "b8ec17c6220b9d04c12e8136a6bc4f0e1d2fccfd3c50afc708e0378474413625",
+      "task_sha256": "4c763568240a1721ae36471371edd9683d9ea2ed83961a38be50848b5c2c98f5"
+    },
+    {
+      "item_id": "assistant-repetition-0011",
+      "provenance_sha256": "e7bc9003204254aa451142e5cb777b7db858278d35467301f95a3ad3cc9ca3d1",
+      "task_sha256": "4280a4ba841213fa123a64ee87aaf7552ce4cdeabadb73d0a7fe3bde548a219d"
+    },
+    {
+      "item_id": "assistant-repetition-0012",
+      "provenance_sha256": "e4a0b217dc071d577aa71d9a082ce2aff8a4a645f744996bc4cf896abad56167",
+      "task_sha256": "34a7b57f0f90a962104ad837f860a2e70bc54f7c9786797b4a839217c65003c7"
+    },
+    {
+      "item_id": "assistant-repetition-0013",
+      "provenance_sha256": "0e869f359c763fad3e2d8f91e4e97bd21b85911fe121522dbaa5cc18dde50082",
+      "task_sha256": "289cda7f2d7724e5ef31abe03f9578232a5ca075dca3c43dbf2df1ba1cc8369a"
+    },
+    {
+      "item_id": "assistant-repetition-0014",
+      "provenance_sha256": "adf644b5373e33b95cf25974b228c072b919f120862691750e89b02e1d38614a",
+      "task_sha256": "0ff25d42105de2cea0d64adaff0a6b74a85a8bf5ded609172a5b5cc0eeecfb40"
+    },
+    {
+      "item_id": "assistant-repetition-0015",
+      "provenance_sha256": "72d0793690b504118678a5acd6d2b8fbe7e0d18096de5e9ab6af27dfc257eb44",
+      "task_sha256": "df04bb78afbd4bdcc9c7d8889a76eb3562e95f427802fc3572bc3fc5627a7b6a"
+    },
+    {
+      "item_id": "assistant-repetition-0016",
+      "provenance_sha256": "5a421b5c7c64b83251548d5bd6572d91329b11bd4ab49d2daa169ca5e0bf06c3",
+      "task_sha256": "4a3b580caa63c0f6681083a73d22fd9d122795d5bfcb17e84cce58720e71e4b8"
+    },
+    {
+      "item_id": "assistant-repetition-0017",
+      "provenance_sha256": "da1aaa73d27408e47857bf0fc651dd4f065a2e9774cd99b7380b0e2fa2d367c5",
+      "task_sha256": "5cc97ff95ad7185635a34022c69ee0ae0a32a8f32881baff69269341d6eef1ad"
+    },
+    {
+      "item_id": "assistant-repetition-0018",
+      "provenance_sha256": "c11b47f6ebfe4d8593f43560352f26ecc7d01a0b75584d0028458a5788d03ebe",
+      "task_sha256": "d3e4abedcb2e529290e6cc3be2742e7d269864ba797b91f9025f261d540a6e01"
+    },
+    {
+      "item_id": "assistant-repetition-0019",
+      "provenance_sha256": "e714ce2bdac6775827c48833a17d07ce00220eaab96c79852cfb850bdddcbb0f",
+      "task_sha256": "bb37d86045d611e8b50cd05d81db62824458a030e11a4e2596939bf5e1ac48c8"
+    },
+    {
+      "item_id": "assistant-repetition-0020",
+      "provenance_sha256": "3a68d809d3d510f633ab3a8ec9ab3c106a3dc8deb1811d416aa7a4524f927493",
+      "task_sha256": "f07826790d774b9a249f9422dc69df91b66462691a46dfc28af55a7546cd78fa"
+    },
+    {
+      "item_id": "assistant-repetition-0021",
+      "provenance_sha256": "aebf65c0161b2fabb9fbe8225b80150aaaba4631fe4098454f067ad98b2650cb",
+      "task_sha256": "b458a099b393db7d4320c5ba52f4e0a778ee9c339feac6ccf2020580b59dc9b1"
+    },
+    {
+      "item_id": "assistant-repetition-0022",
+      "provenance_sha256": "7e91fff865652c501cf7de7f9b485562af6a09071f014684e5a5438576e7e896",
+      "task_sha256": "60e59aa4f479d51c296172cd56208e987707c952fe049e1941be8ca249745e65"
+    },
+    {
+      "item_id": "assistant-repetition-0023",
+      "provenance_sha256": "00d93e45e0eb44beb7e339fcf6311a2870fd10fa7fd71ff5658cf5c2dd48db21",
+      "task_sha256": "185252f005b44d1895d30c6cd0994b1778ac58d9ee143f25b6a742a20f4994ef"
+    },
+    {
+      "item_id": "assistant-repetition-0024",
+      "provenance_sha256": "f90fbdef3c354d66e3254f5e0548747344fb600eaffe16445b32cda6bade4329",
+      "task_sha256": "53bf6571033fab95880d12c5c9c94aac8ba340dfcfbb3fa7f41964fadc5a65d2"
+    },
+    {
+      "item_id": "assistant-repetition-0025",
+      "provenance_sha256": "6faec4769bcb3932f6385179bfd4d7f429e640a5e4466b7d3bdb8e4b4fbcf25f",
+      "task_sha256": "393d97e4fccafdf0ceb12b7a2cea227aa7e055e5018daf88018ac918794efbdd"
+    },
+    {
+      "item_id": "assistant-repetition-0026",
+      "provenance_sha256": "06d195f54a9acd7eefdaffd2a2cde6ce61adf253486333b972c2d3a156739565",
+      "task_sha256": "3592fff49376134998880207f69784efe84023ce7d35d8c53b1079825d6c67ed"
+    },
+    {
+      "item_id": "assistant-repetition-0027",
+      "provenance_sha256": "ad170845aa7a6232c4118787a5f7efde1af60d255ffd509e0a140f1e501de4b8",
+      "task_sha256": "178b2c9ff981eedcf415c5eb90bdde2f6699c61697afa4557cd8f39b8e12c27c"
+    },
+    {
+      "item_id": "assistant-repetition-0028",
+      "provenance_sha256": "53a71500a57d6febce5c0a129b4b11eaac20f0a988bc0f5b7e22b0a5bf1e4b0b",
+      "task_sha256": "aa0dd20fa266e82effb91c880e46fba8230b434bb3d526cf640c059c0c73e7e5"
+    },
+    {
+      "item_id": "assistant-repetition-0029",
+      "provenance_sha256": "a2b86508256d5fa827d249ca9322386223af642d9fa338c46a1308034b612540",
+      "task_sha256": "ffa88c0fb30046c0d7551b580aef231f9322e983f69c4d884fb85e4f7f3fd240"
+    },
+    {
+      "item_id": "assistant-repetition-0030",
+      "provenance_sha256": "8304b69ef1fe375ccf8f010b800e4471e8609e263199e635592cb301b40068c3",
+      "task_sha256": "c1480851b3c5bf296b6de7a503707d39063b6069e2da5d2befed400bedfe8af1"
+    },
+    {
+      "item_id": "assistant-repetition-0031",
+      "provenance_sha256": "ad245d7094a63de855b2113ff4918ed8b8f12b609448f92d832e82ebec8ba816",
+      "task_sha256": "7b0fdc3ad620a5448f5bed1b6f8d8ad15e120586e3d8d20ad04b96aace2a57bf"
+    },
+    {
+      "item_id": "assistant-repetition-0032",
+      "provenance_sha256": "fd2af6958c05f55331538f9ccf6cc5427f97564f918400e7374ad5bdf77107cf",
+      "task_sha256": "3d695127be57e44c0b91d75576ab7f938e539c0699e56bc9c25f6bdb77739f7d"
+    },
+    {
+      "item_id": "assistant-repetition-0033",
+      "provenance_sha256": "a4a9091b8d3fc9791c0bc90491fc4b0a180bff255ba74d65fbd5d266e6de49fa",
+      "task_sha256": "94e31f68fe9ff23c28c0d4c27e7ae0f73e1a3beb3c49fa7e4827d1638e093a5e"
+    },
+    {
+      "item_id": "assistant-repetition-0034",
+      "provenance_sha256": "f064b341ec1e1b7f7587425f81c7650c2d624dcec18e69d0bc358619b8dfb8ad",
+      "task_sha256": "35cb4c23b32cbe47e5c7f727cf7c246f1531f0f2160f67d3b51a2d589e602871"
+    },
+    {
+      "item_id": "assistant-repetition-0035",
+      "provenance_sha256": "12d686161e81275dd4abe6c804c6117c638983b450d6bb270ecdd88039bc750d",
+      "task_sha256": "31080d42217e826b4aaca7b8e31ecf5529e6aba85c60d3b61dcad86000ad45f0"
+    },
+    {
+      "item_id": "assistant-repetition-0036",
+      "provenance_sha256": "64348c68995598dce0da0457f3a8eb404b007dd9e49f3419e6405bcd2462f8a4",
+      "task_sha256": "a9c73abcce245d7588f502684e34a64bbe87d5d6ffc70eb82693e77a6f19853f"
+    },
+    {
+      "item_id": "assistant-repetition-0037",
+      "provenance_sha256": "8e3ecb735a440d84219c3dab2156ed3503f95da5baef5550740cc2f61e57e0a7",
+      "task_sha256": "226c55647c41e8f683ee7c93fb374865bbeefd8a23c4290f3b132ef374295fe0"
+    },
+    {
+      "item_id": "assistant-repetition-0038",
+      "provenance_sha256": "bf00280b2118d19f56bd07e04a6481f77d22bccf1a3134139b11bea1c8780212",
+      "task_sha256": "8e0798b4b913565c7e2130acad01a61f76ca8ee02cd3d35687c01f3ab3db1045"
+    },
+    {
+      "item_id": "assistant-repetition-0039",
+      "provenance_sha256": "6c7808754646109cbfe4566c0e0e55c6194055939d67acb28502dc3042f23333",
+      "task_sha256": "da571099539b4bfa5c566158c9e2b0f5c05dff86681198c31b4336d8da46a18a"
+    },
+    {
+      "item_id": "assistant-repetition-0040",
+      "provenance_sha256": "2f7b47a53cef16b1e478779c10af575dc352b36570c29628eb1800b9b546305e",
+      "task_sha256": "d57ae496af7b827e5c5fd24a42a16cee52809363f51474ee64701689b0f69908"
+    },
+    {
+      "item_id": "assistant-repetition-0041",
+      "provenance_sha256": "65d71d3a7e0b30e47a5475eb0365534ff2f26815222e44f1a3abf409df65715b",
+      "task_sha256": "85672423aa527338946237af80439e08e44e00216bf19d3019ada9f160e23c3f"
+    },
+    {
+      "item_id": "assistant-repetition-0042",
+      "provenance_sha256": "c3e61c85efd32e13cb00bdc60489d1db25e4f0097914f385369c5311014bb866",
+      "task_sha256": "5e06e7784ae1eefd2afd3dee95d4af98544ae74e750baa3a53c4a6023ce2ce5f"
+    },
+    {
+      "item_id": "assistant-repetition-0043",
+      "provenance_sha256": "10efd274db11a8795affdb096612cc3a98542876de3c694a1b65d659f17a03ad",
+      "task_sha256": "239f31baa1e523a206ae2ed42ca4930162ecc4fbb929de965d8fdef8976c9eb3"
+    },
+    {
+      "item_id": "assistant-repetition-0044",
+      "provenance_sha256": "41ea1bccccf6be9d17dd8267490c1be182ae69fd5c21b460bd6780cae2189861",
+      "task_sha256": "44609914ac904ad218350fee65e19cc5b70995185e23ff70b8287ba90c862dab"
+    },
+    {
+      "item_id": "assistant-repetition-0045",
+      "provenance_sha256": "dff65017faae5836569bd3dd9ea95312172ad14b7d4a300d8dc3aa56e7b8e2cb",
+      "task_sha256": "3517c27801e676a4922bfd46f368e78ae6e2869cdb9d724a43b82c4bbccbda3f"
+    },
+    {
+      "item_id": "assistant-repetition-0046",
+      "provenance_sha256": "533b14b87bd515107f878020458d1b3493b79b3f751642e4c3ec45353f359677",
+      "task_sha256": "189050f1b98ae7455b35e839cd58c2a8a1a8e86392ca4e15b6f186effd425278"
+    },
+    {
+      "item_id": "assistant-repetition-0047",
+      "provenance_sha256": "6927fdd209c27afdfeaf758bd553c07ea22cea2dd350fcf75aad3595742b0e22",
+      "task_sha256": "fdd2b1a85fd4da5255884ddc15a09717395d89754d09221e1136d3a609146feb"
+    },
+    {
+      "item_id": "assistant-repetition-0048",
+      "provenance_sha256": "5f9472254d9d8bc2697723ff9e8981a8cba43a34af20540059a513a1405d1a01",
+      "task_sha256": "f4729963db64d120ae144eafe606a714a64f94ae9f0c92fd73f805e08ed6ecce"
+    },
+    {
+      "item_id": "assistant-repetition-0049",
+      "provenance_sha256": "a8b8a3af9e719f7fc6363e39f1fc7a4eaa5b00795e7dd101552d2a9025f85602",
+      "task_sha256": "be053c6b0fa4984e1e4910cb814a94aaa74125c6b8fd88a8a7ed348490587b28"
+    },
+    {
+      "item_id": "assistant-repetition-0050",
+      "provenance_sha256": "6b4c58b7a616e481ed875444205ecaeaab7663c7617fa6917dc4284628617758",
+      "task_sha256": "e8178b41ad86c5350c1581306983ecda620d459e2c2f25eedc510a2329a189dc"
+    },
+    {
+      "item_id": "assistant-repetition-0051",
+      "provenance_sha256": "dde35794c9cb00b79ef375323bb7fa5315f5391afc93d0358038cd08ebd18d71",
+      "task_sha256": "39a72a0378c813891e638d59e4268d6ac61b3e1f854d72e6d9dc332ea0d778d4"
+    },
+    {
+      "item_id": "assistant-repetition-0052",
+      "provenance_sha256": "ec88aea66ca8ca65a1fd1d06ff38d2b71f71ebade5ee30dff2b30f23ba086021",
+      "task_sha256": "aac8fa2296fa494e778f1dd8d0f21c74655d8951449252e160967e6f7ab2c2b2"
+    },
+    {
+      "item_id": "assistant-repetition-0053",
+      "provenance_sha256": "12b7461573469938ad7cd8f4be5dc7e69d83e9f1ef40ea33206e378f10d8e573",
+      "task_sha256": "0318a60ab86795d501a202d7bb7808fec5c3148dbfac6018f085acb2d1b0a180"
+    },
+    {
+      "item_id": "assistant-repetition-0054",
+      "provenance_sha256": "6078f353ea8da9440a0aaa6ccc09d3d44462ab17bc51c6510b0e777aa9d7fd1e",
+      "task_sha256": "789dcf5768ee203c79f4fdbc6cfe248624b852c9c7140252fee60fc13f9a0c82"
+    },
+    {
+      "item_id": "assistant-repetition-0055",
+      "provenance_sha256": "0e8d4461566636c0670ec4098e1915d026eb79cbb873614627c4897de6543535",
+      "task_sha256": "70a7e34aaaeda78bd44a60873fffcfba9f3713fd200b01c043966edb41b17b4c"
+    },
+    {
+      "item_id": "assistant-repetition-0056",
+      "provenance_sha256": "77125df3a2e0cc73ffe93e9033514085bb628441ecaccf2f4adb7ceda1447a73",
+      "task_sha256": "8bfae7461a932c9f81c90ca95bc696166c29f4b097eab51426ad4f252e7e41c8"
+    },
+    {
+      "item_id": "assistant-repetition-0057",
+      "provenance_sha256": "b753cc21a05af8f8304a7569e894091cec9ae065124f3e58e19c1fdb238b91c8",
+      "task_sha256": "bea0819b0b41bed18d065a7151acdf2aa64e7ac39209f0163d4159eb86ed86f6"
+    },
+    {
+      "item_id": "assistant-repetition-0058",
+      "provenance_sha256": "ef573f7fe9e43eb30fc1eb14fb1e3c73e4230f7c2b134605c36cc7d3f4c145e4",
+      "task_sha256": "0a31fd3a78bbece401111ce46df49f8bcdf0c157ef3c559c0e7450d3a20ecc19"
+    },
+    {
+      "item_id": "assistant-repetition-0059",
+      "provenance_sha256": "2c2b2a107edbf190f214c64eb7dc9e7d4c743c31bede45dd62bfbe675ae96b17",
+      "task_sha256": "b2379d693155cd68f4bfecbd94c91f988dfc9214c9efe3a2d41afedaac95c99a"
+    },
+    {
+      "item_id": "assistant-repetition-0060",
+      "provenance_sha256": "32783f1edeb485e850d47b77bf23d377259def2e8408cc40b116a60ca2d0152e",
+      "task_sha256": "b4871a86456cd6d13bc6a3937c8dfdac58dd677e39b6d39060d8c39d1353cd4a"
+    },
+    {
+      "item_id": "assistant-repetition-0061",
+      "provenance_sha256": "546f7aaad29741c97c781d1296c0a754726d576b57e8bf75d6732e9fbf4be837",
+      "task_sha256": "72cc17b182d6e098d5c4c64966fbcfe4ec8e3828b78386d630e1fd87253694fb"
+    },
+    {
+      "item_id": "assistant-repetition-0062",
+      "provenance_sha256": "8f0d197dd5e8a885d43832af96005417379c13c3c90f032fa84c7091522eab2e",
+      "task_sha256": "691adaadd68a121216258ef4eccc3ee769d98c6152da86ad50dedd6bc62d5b7f"
+    },
+    {
+      "item_id": "assistant-repetition-0063",
+      "provenance_sha256": "cff984901c23365591c00333fdc24ba518c54f75de9e32d294a5d9c44f9a0c1c",
+      "task_sha256": "409bbcca45f397549ad9cc00f7e21dff62a2ab8f9c815e0bf7ea5f5890ef009a"
+    },
+    {
+      "item_id": "assistant-repetition-0064",
+      "provenance_sha256": "9d583d9d6be63ef1642d690e2b1e6c4c365795d46179e321cc8957e5cb8625ef",
+      "task_sha256": "3b97cc67bb28632d42ccb812cef736063781715a4af2551acd0f958d8708199d"
+    },
+    {
+      "item_id": "assistant-repetition-0065",
+      "provenance_sha256": "dba3f1945ec10beb103ed20a390731844b95f1a5acb2e01d4b618f0bc03138f8",
+      "task_sha256": "2fb1462c08068a52b9259770345e36c1311115c45aed843b58f54c092b751b9f"
+    },
+    {
+      "item_id": "assistant-repetition-0066",
+      "provenance_sha256": "caf11628350106d4dbb2753a94a4deeb10c5b8ae2fea30755638b33cd1ee05ff",
+      "task_sha256": "cf92e7ccad991b6c552a8c79a6dbbf57542e7894e865b08c16284d2046e48ecc"
+    },
+    {
+      "item_id": "assistant-repetition-0067",
+      "provenance_sha256": "21cedfc62c4589a33131a753c2064411ad19dbd70d01f3afe0d60caf6fca28dc",
+      "task_sha256": "97ca2cf08fea04aab4a6128a16903b2a7a14bd7c6154e6c29da241e2a27891b8"
+    },
+    {
+      "item_id": "assistant-repetition-0068",
+      "provenance_sha256": "1360f9dc0fdd57a527a2e12b0fc765bccdb468b0caef99bbc763c9e3a852ae6e",
+      "task_sha256": "2cd9fd0e8bb8ff167084d5fa924f5f18a76b086c358974ca7fff457d899ae017"
+    },
+    {
+      "item_id": "assistant-repetition-0069",
+      "provenance_sha256": "b36e6790f030e1d1aed9724ee0e0b574853199ca532c2262633021f790354e56",
+      "task_sha256": "446262b095d17193094783fb88644da9d0df2f7cb2a037e200da47fa383ce15f"
+    },
+    {
+      "item_id": "assistant-repetition-0070",
+      "provenance_sha256": "34cb3f90b679be3078bfc37cf9843b65ef31f04dd0fb7eee8fec16624123c682",
+      "task_sha256": "e6e7d31cdeb20878e5cb7655c5e959fec84efb1fe6e589c3ee41defcc17b550f"
+    },
+    {
+      "item_id": "assistant-repetition-0071",
+      "provenance_sha256": "42be6a97fa866f36d62d108dd69f6f5bf5ad01e98925c8de0d0a4150c09175d9",
+      "task_sha256": "07c92f39b81def647d646c5ae2d4bfbf21150659c64880e45148b96446a6c37b"
+    },
+    {
+      "item_id": "assistant-repetition-0072",
+      "provenance_sha256": "5c178f1683eb2b5ae6010564d24186fc7b9a2b4cfea3db89926c03fe1283f87a",
+      "task_sha256": "6cc5ccfc5ba2d1acc487b33b983c22867acf1345148e9c2572d8eba728d111f5"
+    },
+    {
+      "item_id": "assistant-repetition-0073",
+      "provenance_sha256": "a078ae374ca77c45affe7fc94639a7dd33f8b3609d63e907653e01bf301cb173",
+      "task_sha256": "aabbae0c0cc0f2be72c0a28282094c95af5c3ccceaa135a8437dab3c4066f8f4"
+    },
+    {
+      "item_id": "assistant-repetition-0074",
+      "provenance_sha256": "c92092bdbe301f9f25c929fc5eda904b028a6fbd1959c192843123cfbd351758",
+      "task_sha256": "7bd9db4614a3e5e7d9cd1b8ef883446ca37260f708da5ae929c8979cb6a86b43"
+    },
+    {
+      "item_id": "assistant-repetition-0075",
+      "provenance_sha256": "48881a9b8d5815ad2f81e82522d6f5d1cf7aade9b7223c37ef2ddfa852d32ee9",
+      "task_sha256": "2d046a4c88c8ceab37f87652593cb807ab838b1a4a3cf197e85a12d5d0aa7eb7"
+    },
+    {
+      "item_id": "assistant-repetition-0076",
+      "provenance_sha256": "bbc2bc2453173d175320a8ed3f2e1a0d479307d71301fd0b6fee923b57759516",
+      "task_sha256": "3768e22e225fa703dca756777168cf1003f54d3dc0bf2cec6984a16aaa888ea3"
+    },
+    {
+      "item_id": "assistant-repetition-0077",
+      "provenance_sha256": "99acd0cba18ad457cd9c0a49aee0ff79cbfe6bfdf782c5e5734811483b239a0d",
+      "task_sha256": "56e34a9c4a2c7bf0f9d4af7ebbc29f8ac59f4d2de3addb2bdddacf1dcc9fbb9a"
+    },
+    {
+      "item_id": "assistant-repetition-0078",
+      "provenance_sha256": "0d4df279cb44018c4b07b2960691e0629cc72515d7829b1b0096307544346e0e",
+      "task_sha256": "b749fe2c85a84b425814955c5345da98a82e581e46d1b78ea343ad710be643cb"
+    },
+    {
+      "item_id": "assistant-repetition-0079",
+      "provenance_sha256": "686c16aa689b84bfce2518d15579dd9ed6724ff805ea616cd1ed979a205c3815",
+      "task_sha256": "5342b87aa29fd35025531b91b1636978091a5cab1e9af84b0fd5c70fb61d94ff"
+    },
+    {
+      "item_id": "assistant-repetition-0080",
+      "provenance_sha256": "ae918e06536299a0e6630e760965a1da1661847dbb5611e60cf2d194bbd12014",
+      "task_sha256": "5b935e96dca209e98e371c76334be6d15fbf4b4f63957a52b272a0dd8b7d255b"
+    },
+    {
+      "item_id": "assistant-repetition-0081",
+      "provenance_sha256": "feb26a3f980c97676e2a9cf190e373a94edf8fb545483ca1f67c920ce27f2c07",
+      "task_sha256": "a1dea4a4db36e8c10efee0c789462d51502a6adea14eaccd5ca44a7054140a7e"
+    },
+    {
+      "item_id": "assistant-repetition-0082",
+      "provenance_sha256": "be6901f74e6d19d1a618f661a7a9930da604fa4637319a2885ebf6dfbee0290a",
+      "task_sha256": "928b8f3f018dc5363bc04495480c88b4e3875621622c67d3f7971c5740bef4d1"
+    },
+    {
+      "item_id": "assistant-repetition-0083",
+      "provenance_sha256": "ac584d9e25014df6c286951e19c208d57842cb672bc78b88512b864b93473eeb",
+      "task_sha256": "1150d52c4e73a62c1f99ac971bcfb04294383b18d14d2cdf4ae721656e66f4d9"
+    },
+    {
+      "item_id": "assistant-repetition-0084",
+      "provenance_sha256": "40f7ae9300c64dd12fcda98d30b528148541efd812b500c203135191b9d64235",
+      "task_sha256": "f5b52e33ed614e6c43a6fa0274a9e10d292fe2c05270776e6b46172f3c3072f6"
+    },
+    {
+      "item_id": "assistant-repetition-0085",
+      "provenance_sha256": "9acf2fadb50fe5ae795668510de28280c22c6c7d6beabd829919b38be82a3679",
+      "task_sha256": "1496dc6e32c04bb0be48071d742af39a079dcbebc395be0c034c8c8a633f8eb9"
+    },
+    {
+      "item_id": "assistant-repetition-0086",
+      "provenance_sha256": "2e96236bc89033fa507cb0ef72656cb926a85b65a91bc09cf6ec8fec8dfbe63f",
+      "task_sha256": "facdedef64daae2f1493c937fb30e5353773634fd743f101c3c9a2506378efcc"
+    },
+    {
+      "item_id": "assistant-repetition-0087",
+      "provenance_sha256": "e8336e0e2ee0b509f7509dfb6e46af1f81efbac8fc1f01edcf3e2ee46354c124",
+      "task_sha256": "97e9ad9803d25cde3a9252b9c505b00ef4df9e0ec6cee9bf72dc9ed2be33f1fd"
+    },
+    {
+      "item_id": "assistant-repetition-0088",
+      "provenance_sha256": "aa51a6caa86b7029a9724428ce1efa0aab4311ad1c74e03fe9cc9f00854b5667",
+      "task_sha256": "a7e9fa803ef0c7e90153604dc2f6ecb1a8b436ca497fcfb3c71bca4983db2395"
+    },
+    {
+      "item_id": "assistant-repetition-0089",
+      "provenance_sha256": "2db6b725a6fe16d45f81094eec23a1b9ab6316c998e9143e4d4ed38c7e777521",
+      "task_sha256": "4d224621dd4ab6738f91256989d2854e348a3bbfa513b823a75bf5b273129513"
+    },
+    {
+      "item_id": "assistant-repetition-0090",
+      "provenance_sha256": "94adf80f945de5f6490e5b491de7c7e30370d3e4895cc675415c98bbbdf73b01",
+      "task_sha256": "4a84c1e1b4b8f9609d6a86cfa28b532c249532d8041382d4ac105917197698d0"
+    },
+    {
+      "item_id": "assistant-repetition-0091",
+      "provenance_sha256": "0d4a985ee896ac85a25065f2701964285af8360657607b8185848793bde2ea9b",
+      "task_sha256": "3afc1d70382d3031f143ede022200947cebe638afe07006fac4ba787ae266a4e"
+    },
+    {
+      "item_id": "assistant-repetition-0092",
+      "provenance_sha256": "1f0982747331a3e06658235a1654c5c644c702ec369bdc8d30bd3f12110590ea",
+      "task_sha256": "b92d84c507c69d530bd2f6df01251d4a56453cbb58cafa2380a7d70b400b0543"
+    },
+    {
+      "item_id": "assistant-repetition-0093",
+      "provenance_sha256": "8a14e89ff2249f3ff64e20c935be45b7501171771980f916e26a8dc1e6892b02",
+      "task_sha256": "c531690259c0e4af310e0bdc1e71d57c72b120d35d00fe0a80b47938b9326e9c"
+    },
+    {
+      "item_id": "assistant-repetition-0094",
+      "provenance_sha256": "a8cf2f0c2c89a0ea3b23ffb202aa48059c516254f12186022c03094cc1d59160",
+      "task_sha256": "23eadb5528f649806c731af0ccb25bacb1f5b809f9b7e7695f0b2a06d83925cf"
+    },
+    {
+      "item_id": "assistant-repetition-0095",
+      "provenance_sha256": "e2ebf026c8450ad5789971c48568c986e4d065b6e3476f431fe0dc500ea811e3",
+      "task_sha256": "76a3262c5b2d2a017a20732d48d7ffc0a7298aaf70f6e3841640627c6bc8259b"
+    },
+    {
+      "item_id": "assistant-repetition-0096",
+      "provenance_sha256": "2e2f9beb7abacac56d83a970abb3f5ba33c4b7b294f5b0b1d10c18a54b9869eb",
+      "task_sha256": "d5b6ed804e15539b43f18fe7b100e79f38366ef7ba60b2865514120f2fa8016e"
+    },
+    {
+      "item_id": "assistant-repetition-0097",
+      "provenance_sha256": "72cf7ab7c402e71d93fd6e8e243e9a9742f0c20398f18b3a3d59c81410f7c856",
+      "task_sha256": "5b89c5ccc846bfb1c036ef79c52e2b7c8b99b4b653ef82a79e0d0e31c5461b59"
+    },
+    {
+      "item_id": "assistant-repetition-0098",
+      "provenance_sha256": "1ad40ad8688d25f97ff5bb322d20081b8539456c38f70841ee9516cf312dc105",
+      "task_sha256": "9e79b8e21328b993c443f8cd00825e62ed294438c9da7f766cb151f1c692e89b"
+    },
+    {
+      "item_id": "assistant-repetition-0099",
+      "provenance_sha256": "d2f296506adb5cec9e089a6a7340e1cbabd9ab2cd3afd25679c8330cf9761c8a",
+      "task_sha256": "cb2e2c83dead54e3b5faa029fb6302ee8df0a2b7ee796466b892778eacf9f037"
+    },
+    {
+      "item_id": "assistant-repetition-0100",
+      "provenance_sha256": "06d7b6c1611acbaa7bac76670f1cac0f3f11e47e9bf8ee3e7b36c984ce6097fa",
+      "task_sha256": "c9b5204b29637f0a1726b9a773d6fca35f542aa8e6d637522793006c0e7de490"
+    },
+    {
+      "item_id": "assistant-repetition-0101",
+      "provenance_sha256": "33b202246c96815b9c25cd8cf65dcbf0644e76ae59129b582142dff2f320325a",
+      "task_sha256": "b471e279c5ea63e911ee5e49f38fc3c65d7108f093ef571020716a315417fb27"
+    },
+    {
+      "item_id": "assistant-repetition-0102",
+      "provenance_sha256": "54a5ecd9ad6f50759fc8dd6360bf85feb4fc34138ecc474949592dc250de9c00",
+      "task_sha256": "7253d1061b7738dd17e4a9b3a36637a2f909b2a1f3b091532740c2d95411f4e9"
+    },
+    {
+      "item_id": "assistant-repetition-0103",
+      "provenance_sha256": "003139f67f5c0f9f813c761c52fe2b84de7c5c97af9d7c7f2de97bbb5769e868",
+      "task_sha256": "5f6ef702c27c4adba7d580ed71c0be77f78967babd267f02dc189121e34eea55"
+    },
+    {
+      "item_id": "assistant-repetition-0104",
+      "provenance_sha256": "70c690c9b63eced22fefd7123e2a4b491661eb02d80885f74027383595cfc59e",
+      "task_sha256": "f8e524a9d3f255ca888b1baf75e8dfeb826972a31f76a7f896833a27e1253a24"
+    },
+    {
+      "item_id": "assistant-repetition-0105",
+      "provenance_sha256": "23580780fa522f284bdd0ab92aa26e02aa6423bed3fdaa9945b6984b1458db87",
+      "task_sha256": "37035e62c59331f1fdaa37548c08d8835e5e1776afe7e535d9b8656e0ff5b94f"
+    },
+    {
+      "item_id": "assistant-repetition-0106",
+      "provenance_sha256": "d500b6e79554357654837790bc34e38a14bbc79f09c33fa39e6f6fe56af735d7",
+      "task_sha256": "4801d2c4441b2d2fe0ccb3d3d6967317037564c6f62daef8cf4138aec5f63d7a"
+    },
+    {
+      "item_id": "assistant-repetition-0107",
+      "provenance_sha256": "7769b1e04025d3fd1594c4ded4162b19545d5b91f2d0f731746203bda69ca254",
+      "task_sha256": "a6f97d750ef31c22f47eb1aabf77fb4c29cf6617f5fd121610a3e366fbac2909"
+    },
+    {
+      "item_id": "assistant-repetition-0108",
+      "provenance_sha256": "6d414a2779a35955a1f6722d9978d094198f246d67e7b8616dc8783361002ff1",
+      "task_sha256": "f1c659dbdcefab83ab34ab8e7d145435bb6be23eb2bbf455f9f95160b5f38ed7"
+    },
+    {
+      "item_id": "assistant-repetition-0109",
+      "provenance_sha256": "52c2fc733c816a93087e2a9675dc0b748eb851356b5f79ab398ebba0f806322c",
+      "task_sha256": "75d38055395f74a282b290909a6dd66ebb45e1f5eff6ccdda458c914588657b0"
+    },
+    {
+      "item_id": "assistant-repetition-0110",
+      "provenance_sha256": "eb8365791b4b549e81eb803a76c4479f23bd6cfd4ac7f4368d01d26232751d22",
+      "task_sha256": "afdd11f992e66684fe7c852a6ba5add5f65904ece66c9b1d7fb056afb74fa6bf"
+    },
+    {
+      "item_id": "assistant-repetition-0111",
+      "provenance_sha256": "b30ff485dd2769421115948d48fbe072a4761d0f872aa29fd47948011aabb1e1",
+      "task_sha256": "592b47a3c9004cfa978d9ff0e279a012d1425ee444f1d434741d3c05e6e8b652"
+    },
+    {
+      "item_id": "assistant-repetition-0112",
+      "provenance_sha256": "d43336b4eb51fe5e51c9dfce6d2fbb34759f3951616efcf4894a0bd5a35f50dd",
+      "task_sha256": "4ae4479824f1d487d72443acef94cd4949b6d9683cce772358bfc12f0509cb9f"
+    },
+    {
+      "item_id": "assistant-repetition-0113",
+      "provenance_sha256": "f472c4a11829644a671209e8c6ce9806d827c502f7092156618e0002f9be868e",
+      "task_sha256": "31dfb09d0af8aced570a8908340e8ec5fe90f566f53a2fb0e67bc5e524d82072"
+    },
+    {
+      "item_id": "assistant-repetition-0114",
+      "provenance_sha256": "acba33e64b010af48ec97aed09416f8de65db0ade9ca396b7ab6e9bbdc1e026a",
+      "task_sha256": "929ad94751109cbc2fecf5e32005bdd8e5972954f6f76d0e1779aa1af8df33ba"
+    },
+    {
+      "item_id": "assistant-repetition-0115",
+      "provenance_sha256": "76750a340cc8ad7e46a7e47ed725c393101b1e9a60f86f28b0f8d9479430a74f",
+      "task_sha256": "c53a0663ee2ed10927f5f3147524c49926a442b80b218ff7d75d0a25c94fedc2"
+    },
+    {
+      "item_id": "assistant-repetition-0116",
+      "provenance_sha256": "49b52d96559c839236be1b60d643ca9542b8c7c2e2e309a8ec7fe7223528a996",
+      "task_sha256": "2f36ae8377002c24d864a9af044f05828d4ee564a39b0b641c492519dbf97160"
+    },
+    {
+      "item_id": "assistant-repetition-0117",
+      "provenance_sha256": "66800e0ece7d68ad43ea479736e29f3b5b7cfaa14c159b5207df630b55d296a2",
+      "task_sha256": "a361286e50ea9d7958caac1ea58f5e817ba3648ba6818c58b8aa99ecda114241"
+    },
+    {
+      "item_id": "assistant-repetition-0118",
+      "provenance_sha256": "79f5f717c59fd11439a8eeb602390e2e77991f23101da9b64941e127f5284c7e",
+      "task_sha256": "07278f6d7117bee94187cdc866c0842db556dc7d7acf2175afb233408cb6d87b"
+    },
+    {
+      "item_id": "assistant-repetition-0119",
+      "provenance_sha256": "9f51712a64991e67feb34edbb27340994b42eff44829bf238a10c6e641f07383",
+      "task_sha256": "f7f3a020ce57abf93395aedd50c57f3081a395738cf57f813da0c1645cce21c1"
+    },
+    {
+      "item_id": "assistant-repetition-0120",
+      "provenance_sha256": "af68a580070c274182861502628db696e0da369fd132a1b8664aaf358b5c810d",
+      "task_sha256": "1e8ec32049c4428d5b5b91c9503bcdd4a68240aecf8bbc7b832f4344e0dbe9f4"
+    }
+  ],
+  "payload": {
+    "byte_count": 79724,
+    "path": "evaluation/fixtures/vasu_140m_assistant_authored_internal_v1/repetition/payload.jsonl",
+    "record_count": 120,
+    "sha256": "f269180f254c18bf1b0188aa2f4101f80927c66a27ee77618476ce127e77758b"
+  },
+  "production_suite_frozen": false,
+  "provenance_index": {
+    "byte_count": 77160,
+    "path": "evaluation/fixtures/vasu_140m_assistant_authored_internal_v1/repetition/provenance.jsonl",
+    "record_count": 120,
+    "sha256": "c232ae355239a247fc31e227c48c9baede9e6e9b36733010666cd24734612e18"
+  },
+  "repository_commit": "a9ba8e71e4163caebfa9043790fd4d9dd48cd46e",
+  "schema_id": "vasu_140m_base_evaluation_inventory_v2",
+  "scorer": {
+    "path": "evaluation/framework/vasu_140m_base_v2_tasks.py",
+    "sha256": "7777bd7d6a488c21e3937b5b05e1e46153e7fddbcb67784c47dc9e53a5087bf5"
+  },
+  "split": "development",
+  "suite_id": "vasu_140m_assistant_authored_internal_v1",
+  "tokenizer_sha256": "04942e101a4a01f87f7e492ad9e463d299a559e784b650fdedd1763a017d195a",
+  "training_authorized": false
+}

@@ -1,0 +1,650 @@
+{
+  "access": {
+    "encryption_algorithm": "none",
+    "opening_authorized": false,
+    "payload_format": "jsonl",
+    "recipient_fingerprint": null,
+    "state": "available"
+  },
+  "contamination_index": {
+    "byte_count": 114120,
+    "path": "evaluation/fixtures/vasu_140m_assistant_authored_internal_v1/robustness/contamination.jsonl",
+    "record_count": 120,
+    "sha256": "2fcccbd01e99aa252e6aa65616444f07f04682ca0fc7c092b9809ebefa58c948"
+  },
+  "dimension": "robustness",
+  "evaluation_run_authorized": false,
+  "fixture_only": true,
+  "generation_profile_ids": [
+    "greedy-v1",
+    "sampled-v1"
+  ],
+  "interface": "paired_continuation",
+  "inventory_id": "vasu_140m_assistant_authored_internal_v1-robustness-development",
+  "inventory_sha256": "fc37fbc37e2019025406af8e6bdd3bb5d8748a904031e7c68b68bef13cdf75a2",
+  "item_commitments": [
+    {
+      "item_id": "assistant-robustness-0001",
+      "provenance_sha256": "b945a20923b0c60ebb0a1e5148af1fead08a02540122b5fd7084f4e4cedc1d9b",
+      "task_sha256": "7531d59814911048f33a2846dc7ff00ff5fbed8249a49314230271fc59610482"
+    },
+    {
+      "item_id": "assistant-robustness-0002",
+      "provenance_sha256": "746fcc4311812258baa49206cdf62702bcd0d1b9df16a5774fc4ae3cc701aeae",
+      "task_sha256": "99ee947e261a379d548140a10a01815f3ac58a9d1b3757a28ab9f111e951eb32"
+    },
+    {
+      "item_id": "assistant-robustness-0003",
+      "provenance_sha256": "3f6d541fbd6e2612e4a5958dceee3ae969d8fffb1aac2cd84dfbe3e2772db7a8",
+      "task_sha256": "9c002f06c3c9dc775eea8a42201e036090cc7cd7691dc1da7ccd70356860e6f3"
+    },
+    {
+      "item_id": "assistant-robustness-0004",
+      "provenance_sha256": "6904afac7cb1121b13bfaf92f1d7995ecef9712b5469618dd1da3a9a49233ea8",
+      "task_sha256": "769f256e5f61f99f8e598faa1353adf2562cc9f3d0e55d84af050e2ccfab3f79"
+    },
+    {
+      "item_id": "assistant-robustness-0005",
+      "provenance_sha256": "887ffc6f3cff0bcdd3cbeb6d7a3e110fe6cc9d688d1af9e4dc1b6d7d8d31f035",
+      "task_sha256": "2801fe2f1bbab9bc49f79fa0a797694112e429fe1cf918c37d3b388888ee5dca"
+    },
+    {
+      "item_id": "assistant-robustness-0006",
+      "provenance_sha256": "4be5c23c6aa68a97adf4f8d068b3328bdc92c03780ae9614162d9aa08509172e",
+      "task_sha256": "b157a08a07e8c778dace34bf3caa105b4e314c80c40a97c6f170cc4ee58a518e"
+    },
+    {
+      "item_id": "assistant-robustness-0007",
+      "provenance_sha256": "6d058b9d372a133de1229a8917e88132699171b502f8f83cf6fcdc1bdff1e2ce",
+      "task_sha256": "fb16c50be2bc94ca566f36415d566bd3c5e321bb183d46cbaa5658c16d598018"
+    },
+    {
+      "item_id": "assistant-robustness-0008",
+      "provenance_sha256": "7464ffb1d8fd21acd196a193e1d44b4b318f6abc1abf66ced1eb954e77882d23",
+      "task_sha256": "87b29627d8c429f03e6a3f59b7d7db3adb30df3b3f3addba0f8153862849a57a"
+    },
+    {
+      "item_id": "assistant-robustness-0009",
+      "provenance_sha256": "a34a39a1f068bb178754f4e287dbeee39ca86c8c7dcd1ffca8abfd3723bfb11f",
+      "task_sha256": "004ff3648479905d34b0c7b138dee27424870eb0ec15dca5814d052cb6a3a7b5"
+    },
+    {
+      "item_id": "assistant-robustness-0010",
+      "provenance_sha256": "e25b690aa7a67b8080c2cc9548dd65f117cd139f7385ddab5599a7aea8655902",
+      "task_sha256": "bca16976d3a3fefde36f3d7f7953a73b2bdf9c768b4993ccba25d377cb87adbc"
+    },
+    {
+      "item_id": "assistant-robustness-0011",
+      "provenance_sha256": "1125dac42b263b98190e490737c69e5998bf9313c7f35990ffdc3aacfc72bc3d",
+      "task_sha256": "0ffb4c67d8ca3f98094e5e4b223e76aa49d0d0f0274becace7d672b2964cee46"
+    },
+    {
+      "item_id": "assistant-robustness-0012",
+      "provenance_sha256": "3b9e01a7bd1c88e290ebd5b78422e216c2e689fdc1159750b3f2794ace2de425",
+      "task_sha256": "32db73b3dd2f27987a1f464967224c212cf4fe35470351e87480e4ca9f86e69a"
+    },
+    {
+      "item_id": "assistant-robustness-0013",
+      "provenance_sha256": "784c02b20fd4a126e3d31a026278f39b2532386cbd97a25ea14773c5ab67006c",
+      "task_sha256": "b2fd4b067c654bfbaa6ae64bb16402d92aa54b1a15ab07b7c8357cbb77322692"
+    },
+    {
+      "item_id": "assistant-robustness-0014",
+      "provenance_sha256": "5493c09487ca68cf390045424a609c9a82cef0e8e65c2152f15320726665d07c",
+      "task_sha256": "fd9c502185fa001e35c47169cfb3dfc02d3e3aca6cfaec0b569b02145a0f6b1a"
+    },
+    {
+      "item_id": "assistant-robustness-0015",
+      "provenance_sha256": "57dfc9a60e70d373f19c6f5d419db234c91d3ec1f5c6f53513f7c8542cb62f4f",
+      "task_sha256": "f8e3d210df75e56b26711a622aeb0f79b61e466a432121a47d3002be1545fb11"
+    },
+    {
+      "item_id": "assistant-robustness-0016",
+      "provenance_sha256": "86e9df2ce49e3ef9d0591f7c542e4192a82e50863b07201b015ab99a44999455",
+      "task_sha256": "d8bc1793e0f9274e026015696c8b502455eaeb60ff6c09b9351f665d9a8f152a"
+    },
+    {
+      "item_id": "assistant-robustness-0017",
+      "provenance_sha256": "6c68258532a573490db3862bcf0834d71ab94f2f0038334772d5d0239cc47b7b",
+      "task_sha256": "c10aeebc451a071b6a1f57557ca9f55c1f702722668bc89f3405bed39bdc85ac"
+    },
+    {
+      "item_id": "assistant-robustness-0018",
+      "provenance_sha256": "7b4a965cbe8acb3803319259825d18799140065ab89d72ff7f53026dc636f22d",
+      "task_sha256": "32fda27a06fd9994bd2ddf6432bf083966a36e9ed89838150778841a275cf8c3"
+    },
+    {
+      "item_id": "assistant-robustness-0019",
+      "provenance_sha256": "e192418f69982aa37d21eed2c060e246bb1a12e9c7bfe0afbbf95300295f0134",
+      "task_sha256": "44149c736088f142f2ec61d718ab2e830deb3c2709ac9baf0b39af8bf1aaa54e"
+    },
+    {
+      "item_id": "assistant-robustness-0020",
+      "provenance_sha256": "18920809def4023f6a43cb9d9d9fdd5530f396a5d59756d9544b9fbd2c7fa6c0",
+      "task_sha256": "49fed2358cae81d7b70813623e9bf7cc12a9aeb2a0b94108a59cecf495c22bc7"
+    },
+    {
+      "item_id": "assistant-robustness-0021",
+      "provenance_sha256": "e96f7e7dc1b6d236f03a46afef60ca73d34fe9c18a38ce0c2b65a983d4ea7907",
+      "task_sha256": "31ed26d7023107a6dc57c4f0500379d4ae37d0b3710807548694003fe23952c2"
+    },
+    {
+      "item_id": "assistant-robustness-0022",
+      "provenance_sha256": "b39479616b6b7add837206eda39155452f65e58b92081895601a1528fda0bd1f",
+      "task_sha256": "3115ee089fb09a09079677a5e9fde6ba9256df7c8e7d7f76993ed1f5fa086b92"
+    },
+    {
+      "item_id": "assistant-robustness-0023",
+      "provenance_sha256": "d52a6abd203e2739e66d6dbd1eecec1adda29fd434de967059409a481c5c0408",
+      "task_sha256": "037334d08337e6fa19b6a4944bd1e776d8ae1f5da8b3da4adbb37869644a208b"
+    },
+    {
+      "item_id": "assistant-robustness-0024",
+      "provenance_sha256": "16ccaf226fa8905d641fe07c0881d081a212f0153d394077abbf4a7ce219f452",
+      "task_sha256": "3f28f98ca8144464c1408f013d70ac9ab309b34d30b4d2e749ecdaff6fb6e605"
+    },
+    {
+      "item_id": "assistant-robustness-0025",
+      "provenance_sha256": "76980a59eb780059de9cca0cb26302dffb147d2282b47f7c48546af081ef7e0c",
+      "task_sha256": "2cd5717f706d81c7a3e4e954ad55e21287e282e582d4d122c37129453992156f"
+    },
+    {
+      "item_id": "assistant-robustness-0026",
+      "provenance_sha256": "6ef0daa64667c1d9445a76690c69f6045b7b9167ed3a6d6b36fcc62e8c9d4539",
+      "task_sha256": "438575ba595fa0c9b6913b46ed519bb2b7c6ac76499c437572f237e3be93c111"
+    },
+    {
+      "item_id": "assistant-robustness-0027",
+      "provenance_sha256": "376f780e16952eccac3ed2dfca7a7a9625ad1c8dd31710145690734e9d9ebd4a",
+      "task_sha256": "80ee2659e8a32a06dbd6236ae203587d570238c4420d2cd91322a30d6f4d32c7"
+    },
+    {
+      "item_id": "assistant-robustness-0028",
+      "provenance_sha256": "e6dbefc20dd6b17e483070bfa5ea9e726054c222311f4b06779f59f843c8797a",
+      "task_sha256": "94112e24878b1b9318489528ca7e006d677055b85230c5cd0d09cce97848f707"
+    },
+    {
+      "item_id": "assistant-robustness-0029",
+      "provenance_sha256": "b54fe7f650844e5617b35df2e92bff4357c1b77d1540c023e1c0ae16117542b3",
+      "task_sha256": "db6d025dcc78f32687582cade8789136f6cbb3e97619b03da07890a241303616"
+    },
+    {
+      "item_id": "assistant-robustness-0030",
+      "provenance_sha256": "72b0e53ac0e1cf703945634289263d1e8939d6fd079264b64aa46cc986a132ab",
+      "task_sha256": "66704ff975c9368e6e970e435f394cdda3868f6af29fb5dc9fbb939e5202be2e"
+    },
+    {
+      "item_id": "assistant-robustness-0031",
+      "provenance_sha256": "a95f63c1096c4e76c93dc8b6b86b7911973521bef3717510779ad9533d7acaa7",
+      "task_sha256": "0731a6375fe11a2fce6c4ee18e6ac0daa987346d75fed5a27965e1ab230bdc24"
+    },
+    {
+      "item_id": "assistant-robustness-0032",
+      "provenance_sha256": "242f3ec393511e777b484903cdb98af6bb2e50e14cd83796e4206111fb078418",
+      "task_sha256": "27edb588811eed3d138bf8a5ebd54c732bccac4795200040b3854f48738ecb8a"
+    },
+    {
+      "item_id": "assistant-robustness-0033",
+      "provenance_sha256": "c113c1d7b55afd9f072e0933fc4d926a3da4694b47bfeaa5a761b4aa1cc0e7f2",
+      "task_sha256": "55950b7e90203fce81c342a533892c701df7167d9354113e82ba9c55bd9ece22"
+    },
+    {
+      "item_id": "assistant-robustness-0034",
+      "provenance_sha256": "7d233cf69fe329af6c2d64afa1bcd6208889ec7855fb272392b4e97b2bb623c7",
+      "task_sha256": "4fc8fb51fa80d01dfed513dbd198906ce8f198a1774c97359d0cea91368913cb"
+    },
+    {
+      "item_id": "assistant-robustness-0035",
+      "provenance_sha256": "7ea59fd236c627e6235696b921343605489b6a60f63b63dfed491949e7d229ef",
+      "task_sha256": "c020c77bec16d4d6d1cfcd725347601b6167badd7bc62cd609f87c77d98693b3"
+    },
+    {
+      "item_id": "assistant-robustness-0036",
+      "provenance_sha256": "bba595ead2983e873d1541133b9b1e7203142113cb272f1b8c8aed7dec1f33fe",
+      "task_sha256": "e029f1d1bb2e1d29d7c8b69236a73cc12525b2f4e96484a692d7aa19618a4af4"
+    },
+    {
+      "item_id": "assistant-robustness-0037",
+      "provenance_sha256": "d131dc4f00ee358a79ff43ac45ee8d272c29b8c544d1904723bb06513fa36061",
+      "task_sha256": "19be3a58adacbfaad4c0c104c31c63306eb5590254136ca708d1cb85978374d2"
+    },
+    {
+      "item_id": "assistant-robustness-0038",
+      "provenance_sha256": "68cb548f35800f5cd6adef09eccaa3084350ad742274bdc3b36929e58f324bcf",
+      "task_sha256": "b6ba5318c82a9131992c5c42d1d5b142e2e1988f64068653526f2d49b8e11ea3"
+    },
+    {
+      "item_id": "assistant-robustness-0039",
+      "provenance_sha256": "4554dba4ae3c9bb91d263e62e6884e6c824c69f8111b1b0a06899c6af0710659",
+      "task_sha256": "0648cc2b244eb069b534fe49dad9c63783ff9f81875544ebefe85910e1c4d423"
+    },
+    {
+      "item_id": "assistant-robustness-0040",
+      "provenance_sha256": "5dbabbd7920d7ba6cdc08df2feed59cef62df35b1853259673866221e505e58f",
+      "task_sha256": "dea93db545086fedc4f7ebd2d821f7bfb04143fac1ad7fe9d9038bd2469029f2"
+    },
+    {
+      "item_id": "assistant-robustness-0041",
+      "provenance_sha256": "2e2f94847f91072c0731cfbb50be41bbca1a19f96881995c2349e9cee52d7955",
+      "task_sha256": "69c522c763ca1b4eee7a525233776ce3532f82d62a7b01d17b83d7291ed78d7c"
+    },
+    {
+      "item_id": "assistant-robustness-0042",
+      "provenance_sha256": "aeedb96801766d2a77f3983f72aacf4df17f0b967b0d1f5a640729b77300ed10",
+      "task_sha256": "1243c7dd4db828b690a1f63983e3b085e6354873ef5e6f0a77c1e2095cfc79cb"
+    },
+    {
+      "item_id": "assistant-robustness-0043",
+      "provenance_sha256": "8208aed1dbc67de472330d8fbe88dffcfa1c5ff734c804f07389272a40db8176",
+      "task_sha256": "610cca8dd5e8058d68c3788cf4dd0c251f72b3ee80fd6db83b165d52856e219b"
+    },
+    {
+      "item_id": "assistant-robustness-0044",
+      "provenance_sha256": "70f1049e73aa28cb5226001c762e7ef0f2fe1a1c618e706f76e319b8b7b1e05e",
+      "task_sha256": "945ea8a4ad3ec9b247894aa82242e98108abafd9c6c2f94476a343ff60e1e2ad"
+    },
+    {
+      "item_id": "assistant-robustness-0045",
+      "provenance_sha256": "525fb13ee571e108feda95b0692f37542739887a1627851cb23d1f8e23a42875",
+      "task_sha256": "137634df1835e1153fb8cc0b2448d20cbb9b7d2aeca198155fb3ebe0b821a2d9"
+    },
+    {
+      "item_id": "assistant-robustness-0046",
+      "provenance_sha256": "86fbe1600715d612177de1b918bbae6bf7cba876fdc7a2d1a2b8526630680fe9",
+      "task_sha256": "e9e9f60f8aab6358f839a55ebf3acada983c2456065b89de50dfee7496006e7f"
+    },
+    {
+      "item_id": "assistant-robustness-0047",
+      "provenance_sha256": "3b51a58a10340fd81f7fed4b22e5900533421172fa047f775e06872f5c440bed",
+      "task_sha256": "0b4b664e77b03828845d4d46aaa110692232c0df22fe27cb5d39961c743bf4a0"
+    },
+    {
+      "item_id": "assistant-robustness-0048",
+      "provenance_sha256": "cf4342ffa11b5e9316382f6dbe228946faa28f42eefeae27c5abf2495179d98b",
+      "task_sha256": "a50c0f2ede517473f38262e8056d4597461197b62d02581991b9ca0a49ca1829"
+    },
+    {
+      "item_id": "assistant-robustness-0049",
+      "provenance_sha256": "078ee138eb7016197c3d888ec1dc04ed1157c965cedb1fabf25fcd054a92645f",
+      "task_sha256": "40d17bff77848efb00742cd95d0b16cc81968ac86ea45c4bdce539897f95ed13"
+    },
+    {
+      "item_id": "assistant-robustness-0050",
+      "provenance_sha256": "32d08302317e59ea634045eb497664e6ecd5db018dda47ae01f3a57a9d953691",
+      "task_sha256": "19e0c7817468c325ea7a7c6ea3b7d2f3f58fd7096a4437f705d791edde10b8f3"
+    },
+    {
+      "item_id": "assistant-robustness-0051",
+      "provenance_sha256": "925440385f8524957e3d969e0ddc8ec1c2f2d9539f8a7788db8518d677a16fd3",
+      "task_sha256": "e9be3131b1da527e47f0c4812253fdc0396a7326bfc848c26b96b29ff61ae146"
+    },
+    {
+      "item_id": "assistant-robustness-0052",
+      "provenance_sha256": "fe264dc86d1822464c561c36a03989efe8af82e005a523576e9ea846b81f5e60",
+      "task_sha256": "efcc15062910f43d69605bb928e1a25a59966c0b04b9c38f1bd997c8639ca4df"
+    },
+    {
+      "item_id": "assistant-robustness-0053",
+      "provenance_sha256": "3d4efaf713b9f7686b315a7e850921b8aac85428a9f0895be7a907b734a8bc3a",
+      "task_sha256": "6458afff24f99ff6744425f02de4b03bd05b8e1c83e9cfa511d8b2b0488026ee"
+    },
+    {
+      "item_id": "assistant-robustness-0054",
+      "provenance_sha256": "eea9cc5ac22ed7f13335cef0f7978550f36758d59ea0e3150ffea6aad11568c7",
+      "task_sha256": "b9e119d8e162f7ab0dd71971ac730803b2f3552ded052dc74239bcf2a5293b45"
+    },
+    {
+      "item_id": "assistant-robustness-0055",
+      "provenance_sha256": "0ef63411b329e30a86e426a2467c3231b7c488e44246d8674c18afce432039de",
+      "task_sha256": "e0e0e63023f35ad140351f45c622fa997ee27adbc84bbe47178294cc0ace79f2"
+    },
+    {
+      "item_id": "assistant-robustness-0056",
+      "provenance_sha256": "d4a48f58d38c3246269763e3f44b7db7f23e4695fde23f835435893823d35639",
+      "task_sha256": "ef2e7095d7697a6828da498c7d76ac0e0849e539d433b227f540cc3757cb6f88"
+    },
+    {
+      "item_id": "assistant-robustness-0057",
+      "provenance_sha256": "e5608f9eb84397cfa802d67ed305d89d74e5212a49f2dd5950af2647cae1d60a",
+      "task_sha256": "edad2f9f4eebc984e83cc189cb051f59457f686aea139fd9cd138c26d80aa7aa"
+    },
+    {
+      "item_id": "assistant-robustness-0058",
+      "provenance_sha256": "aa597b19fccb5bffce9fb0b646936fcc13263f9aefe9516e6feb47d2a7c36f66",
+      "task_sha256": "d0e4d0bdbe652d09b4e76d0aa88a1c6ab1d34e39c56586596c9c39f4107ff28e"
+    },
+    {
+      "item_id": "assistant-robustness-0059",
+      "provenance_sha256": "88518aa3973fa4f09376c5132e3ab1a8df109054a8a8ff6928ca2fe3948e7531",
+      "task_sha256": "37649edecfc3e4b4722cbdee59f038486c61a9be43515f7bd7c886e0d4dd6a0d"
+    },
+    {
+      "item_id": "assistant-robustness-0060",
+      "provenance_sha256": "4616729759a37391cc39953b5f56264ba8a7041692b873e257ee2f40a2889201",
+      "task_sha256": "f370a6e2d3fc3febba5643405a5cca4706146f5bb827e5d3be4800e79af3e35a"
+    },
+    {
+      "item_id": "assistant-robustness-0061",
+      "provenance_sha256": "5167058d9c6285128f21d9b0562c7443be3d2f77fd3e87555c3f63fd98c956f3",
+      "task_sha256": "ad12386ea61083b0e77e260b50f7b0fdec2a66e3eabf140ceb4e7b70b0d4f8f5"
+    },
+    {
+      "item_id": "assistant-robustness-0062",
+      "provenance_sha256": "ef87b32a8c7ea2c1a1ef63e17a546cab56f8df37c53db729857324ebec60b64f",
+      "task_sha256": "c53f86bdaf7f3e5be86d2f5f66e84f41140d4885803d042e721251314b9f5394"
+    },
+    {
+      "item_id": "assistant-robustness-0063",
+      "provenance_sha256": "09ffca5585cee9d15c1cf5e8452ff204234c212f213806f4b4945fcbf275bb06",
+      "task_sha256": "8459eda0ee9870342ba4f82cb7fa8156271e3d7a0a090583727e86ca1b770c06"
+    },
+    {
+      "item_id": "assistant-robustness-0064",
+      "provenance_sha256": "74e64c70f51c85103769a6533ebbef8a8ea5653c5c5c9eedee036e6b4536a462",
+      "task_sha256": "bddf99ce1a1e5fe28f8bb5d27d7f717f2982a75d5938a6da0e3a0b4d1b617419"
+    },
+    {
+      "item_id": "assistant-robustness-0065",
+      "provenance_sha256": "6b97840464a6b05c8097b0b647270f9823c969b858782b8329613ea587a42430",
+      "task_sha256": "fe66897c557dec5d35b8f9969eb74f6ffe02eea19a697b5d2f032798ae020049"
+    },
+    {
+      "item_id": "assistant-robustness-0066",
+      "provenance_sha256": "a584da2171c019e7e022011c61e3bdb938d0e5adb0011c20236231b114d9849e",
+      "task_sha256": "e6ce5092e1178d100cc78c88a0ec30ded09db6c0fc898bcac0339f319cfcc0df"
+    },
+    {
+      "item_id": "assistant-robustness-0067",
+      "provenance_sha256": "f1fdb92c2c108c347c8d41a3de7363b9d1ba615aebca667b028787c98b00acb7",
+      "task_sha256": "7489679c9218a83ba65c6372f683dd11521433679c2aa45c2db7ab08a1b33113"
+    },
+    {
+      "item_id": "assistant-robustness-0068",
+      "provenance_sha256": "d53059a713bd860f6c51c236a2231623b9196a60eca7a279c20ceb7ce6f7212d",
+      "task_sha256": "6e20b73d01181e9d94b8e38f432c3e66a3584ab84de314bb703bc5c28081ba51"
+    },
+    {
+      "item_id": "assistant-robustness-0069",
+      "provenance_sha256": "3eea1d1b18a0d85864c24ae69a2608c262a6f7de76cdb0db255ab109355c4708",
+      "task_sha256": "79925f0003785112cbf2196914514dfa68524876cceb605fb39b87f9001e90fa"
+    },
+    {
+      "item_id": "assistant-robustness-0070",
+      "provenance_sha256": "a45a7d6690663b3ceae37cf7ffb78ddd0d1b2dea8ef4fc785d4b8b73e259293a",
+      "task_sha256": "5d20052da75d171b58d46b0283c02ea8a772b4951ca65b549947cc24142675f2"
+    },
+    {
+      "item_id": "assistant-robustness-0071",
+      "provenance_sha256": "fc4f0c1950377c36912ee2af313fa1bd984bcfac9b8b0813af428d435b84e6aa",
+      "task_sha256": "0c5526d36dec83bd0079e6717dd390518794341b0f7f301ea95c03fdd4cb6a07"
+    },
+    {
+      "item_id": "assistant-robustness-0072",
+      "provenance_sha256": "5cc52172bf834cb15c17e4d1c23d18df512967ef41ee87283ddc2cc19912b16c",
+      "task_sha256": "31889d922da378ded8fdbdfbb6ef8d86b218cd7e760d963f4c16135d4203ae45"
+    },
+    {
+      "item_id": "assistant-robustness-0073",
+      "provenance_sha256": "1aa9ba6f463f0cb91a904b31ab20a4da1700c4b61b82f41d2e988a37da25a362",
+      "task_sha256": "5432e99cca4f301d20a602e8eb246b200691b5641c92b7fcc3a4a4b3a7c6144c"
+    },
+    {
+      "item_id": "assistant-robustness-0074",
+      "provenance_sha256": "055b1a1b7f36ad1ce6adaa19572bbc106ef9d5d9be7467adb2fa54f13e8b91f0",
+      "task_sha256": "4afa593b3f7d44d4e072f33b06d5125a8e5899723f893583a7dacf246ea06e98"
+    },
+    {
+      "item_id": "assistant-robustness-0075",
+      "provenance_sha256": "bb7e25c3145b09e4aa69245bb72848267acbb6dabb83e1301fba5c1052f9f901",
+      "task_sha256": "909645e91f02c129994894162f2d69d0664caf408cbd21777eb1850ea9eb12ed"
+    },
+    {
+      "item_id": "assistant-robustness-0076",
+      "provenance_sha256": "36bace3e9641ef33710ccc320fdf16ed270b015c938ffe271bd52a960c11f844",
+      "task_sha256": "a4012d3cde704f6b9a90d98ee0e1ae72d0f0a86901ccc41e2623cb8ff7a9d5da"
+    },
+    {
+      "item_id": "assistant-robustness-0077",
+      "provenance_sha256": "cac630f2aacda307dce09e0c61f676a774bea9259a9e4c0742e0748edacbee14",
+      "task_sha256": "979bb7561f802c2d34298b551e4745a310a989710253a9e29974b9e4b5cd51ee"
+    },
+    {
+      "item_id": "assistant-robustness-0078",
+      "provenance_sha256": "22c6f5434c507f46f5fc9ade2da9b4e5bbb3ea05ed7088e8f3eb1f2225c6ff8c",
+      "task_sha256": "0fb56ea2deaaee792f9259ea7dea9077aad9c56d67d795fbb9eaf1627d47d4df"
+    },
+    {
+      "item_id": "assistant-robustness-0079",
+      "provenance_sha256": "d42867c2c3abe50a3aa9e3bd4f444657bb89e9279606c0fe1c4c8971effc9f6c",
+      "task_sha256": "ea9f4c3f1004e5d78805a4050df39694f4ee6290d201fdc5589286c17e0848b9"
+    },
+    {
+      "item_id": "assistant-robustness-0080",
+      "provenance_sha256": "e061b1111f9034eb946a5f47a64dd16376ab639c1ef32eaafc19674215dbab48",
+      "task_sha256": "8a74c3f71b95468ba0701e16137c0d04f17c70e1920e52149ce15e042603fc53"
+    },
+    {
+      "item_id": "assistant-robustness-0081",
+      "provenance_sha256": "78b5b26ade87c8fd99984700e24d81964ae33efd3c680a9de68c148d88e617b4",
+      "task_sha256": "1e2841769f7d0a9814ac6160dd4e1866e3f030e12151659145889ba11b8dbfaa"
+    },
+    {
+      "item_id": "assistant-robustness-0082",
+      "provenance_sha256": "f1dfc7cb3074fc0bfe7dec0e4549591e0d8334d6c63c3b44e21e9c8db32d631c",
+      "task_sha256": "65eb897da7cc276d5865522fc76427fc562b0d97a97eb4c0cf46a1c6d8744f52"
+    },
+    {
+      "item_id": "assistant-robustness-0083",
+      "provenance_sha256": "b334289a34abe32fd63472fea430f4e79744561411dda32c630d26e4510805b7",
+      "task_sha256": "9c003859a1c0cfdabc087bcb18c13529a3c00b697a846d3776d5746e6afc1c63"
+    },
+    {
+      "item_id": "assistant-robustness-0084",
+      "provenance_sha256": "6ab734f91ddbd88b3f83dfa4e38c8377d39014e59bb56e1ac65334a17d769764",
+      "task_sha256": "1aec322fc10122599ba133c9558ef9754ce2e1fb4b082fed28efed239a19fbf1"
+    },
+    {
+      "item_id": "assistant-robustness-0085",
+      "provenance_sha256": "5ecc72259f94ba54db7eb332c63821eb87c4327e7d3b74af86e209a1b2da00a2",
+      "task_sha256": "61937f42a50d6274904bf815fe500115981db113522782947006a31bd78e5f94"
+    },
+    {
+      "item_id": "assistant-robustness-0086",
+      "provenance_sha256": "326bd601105707ec0d69a526d94f783daee09943ce29e3fe792bf419a57f2e94",
+      "task_sha256": "c8d816f1dadfd613c0652d4601957bcb4a3f53ba5b8dbbfeda01664bf30a39c6"
+    },
+    {
+      "item_id": "assistant-robustness-0087",
+      "provenance_sha256": "043cee8f3973ca7919df4965dbf89cd30f6e4763f9672957640b2fb07ce4bef3",
+      "task_sha256": "ae7fe1b1e35156bae97ec788d7b0c9014efe152c2ce4373b6fefd350f8784719"
+    },
+    {
+      "item_id": "assistant-robustness-0088",
+      "provenance_sha256": "78b3df58531504c7bc48ff8026a4ac494ac41e24776dd2a0f2b677bea074c399",
+      "task_sha256": "6cce3ef6f6f07204a2ceb7ffd59309856efb7e252f993cd723871363ab514742"
+    },
+    {
+      "item_id": "assistant-robustness-0089",
+      "provenance_sha256": "60320a7574652052a82b8941a78fdc26a0735d22731b3c0b203e37951442ebf4",
+      "task_sha256": "bd2b563d5b270f20349a1f21234278e0f326bba1e3c5b6c3d698a8b5e4969018"
+    },
+    {
+      "item_id": "assistant-robustness-0090",
+      "provenance_sha256": "46f9054c57ea6d0dcd1b9b6c91996dfa7e0a6df5c5ff672111bb40cf9a8b2600",
+      "task_sha256": "8b5c99259100ed05301547ddb52ded9df88948d9710510ccad3b918ecd7a4e36"
+    },
+    {
+      "item_id": "assistant-robustness-0091",
+      "provenance_sha256": "72d3e58970dc76ad165b87483ce807209d4ef3c758df743c910c0fe784905fa3",
+      "task_sha256": "729dbdd09d284b05558a83662bae740f988fd0ab888e408fb8c56da6405b6824"
+    },
+    {
+      "item_id": "assistant-robustness-0092",
+      "provenance_sha256": "6346092223893eb2b1a4ee40f1663c76d2752bdc6d69e93849b95a75e83326da",
+      "task_sha256": "4726cd59ee7d3877ac09520823ac9343ce1c8da54b4a54c37652efb2ee776b60"
+    },
+    {
+      "item_id": "assistant-robustness-0093",
+      "provenance_sha256": "6a9ef7ab2ad7208e7f15858cfac2104b68c571b3d73d6d184f1759a70de88569",
+      "task_sha256": "3262a85eab45bd1c115ad0c7fab2ccd0f2c1452a11c305f6c988fcf50499d546"
+    },
+    {
+      "item_id": "assistant-robustness-0094",
+      "provenance_sha256": "2e597ec8ce067ef0213652d9f0769e5deb3d6996e34b5e3184e064b3199eb9c2",
+      "task_sha256": "2e3753cb9f5cd0908bc5432f343329e8dc7675f5ef13947adfbaa0baea4d9499"
+    },
+    {
+      "item_id": "assistant-robustness-0095",
+      "provenance_sha256": "5c6ae4870750d5d390647e2f141f594db7b2511288a5f3a551e398bbdb778a39",
+      "task_sha256": "334ca7c9d7b8add12e1ef0c63387c92924962491316242ec18c58af74143b763"
+    },
+    {
+      "item_id": "assistant-robustness-0096",
+      "provenance_sha256": "2dbcc8204c09f64da2731b079c75021b04aa03c9bdc78e7e62704d898f7eea8c",
+      "task_sha256": "03970ad5ab514477f7be241c35481054e6626a74e0f2ec82389917dccf92e6c0"
+    },
+    {
+      "item_id": "assistant-robustness-0097",
+      "provenance_sha256": "3e0e9e9a5a845a667de9f9ec74de1f28b7caffbfcd9e236074a80eabeaff2382",
+      "task_sha256": "97e25c1c34c6c408671f3cffe682a210d67e031804df83002de2c8d079637a6b"
+    },
+    {
+      "item_id": "assistant-robustness-0098",
+      "provenance_sha256": "10de8e11075175e1db7b1d37feaf0da7f912b92b648f0c7f432b30a16b451e30",
+      "task_sha256": "301fa69d2da16cdd5e8940ccf52488f1f06930b09f67aef4e6f6eb2bbf371600"
+    },
+    {
+      "item_id": "assistant-robustness-0099",
+      "provenance_sha256": "bf168d796076e007ef6e08acecf606db542fd5d8d44ee7bec2debb62e0a091cb",
+      "task_sha256": "7df91890abe36919b71b179b70523c1a274e429bffd258e2c5dc3e7fd6be522f"
+    },
+    {
+      "item_id": "assistant-robustness-0100",
+      "provenance_sha256": "7c3e050f517ff9c70659efca475e337c59b42a81dc495c37bee14559611e68ce",
+      "task_sha256": "a2d8f5bcc8dd89dc84797f714fc674c248a0a0ac8725ac3fd5b024b4d1fe2e0f"
+    },
+    {
+      "item_id": "assistant-robustness-0101",
+      "provenance_sha256": "57fa3f065909ca5ae4a91cd5ca45323265630e69bf620a0733c1a332b357c0b4",
+      "task_sha256": "22cdd42120f5d0bd85470ce1c4b25f01e8cf5dbb7cade22235e1500f937cfd8a"
+    },
+    {
+      "item_id": "assistant-robustness-0102",
+      "provenance_sha256": "1bd13552ad6b0b40eeb650998d79539af0ecb20ee2302327f1cf617596cfe60c",
+      "task_sha256": "0cfc2dfb4236fba53cf5de7171e526583fc003b8442e9eeee5b09e44b1315f42"
+    },
+    {
+      "item_id": "assistant-robustness-0103",
+      "provenance_sha256": "1681e874383de7a43d07fd869bb2d3b679dff7c925ff6837f52facad006c09d2",
+      "task_sha256": "3c60fbbfc84afdfa27090c616964e6c696586f8186fcb0e9da8f94ad0baa4ae0"
+    },
+    {
+      "item_id": "assistant-robustness-0104",
+      "provenance_sha256": "2e484e038da2c9dbf8c89f74e55a5e0d18502e9fe43bdb0043cf208bf05cdf18",
+      "task_sha256": "38351df32a76dc6d95da14a4cbf44393d9da40ce13c575281a66e84215678b9a"
+    },
+    {
+      "item_id": "assistant-robustness-0105",
+      "provenance_sha256": "81ba6fc27634e22996321c21f5b79f4101ce1d707b896e9b7c8a4b5ee29faa4b",
+      "task_sha256": "bf803e8dc26667997477f04bd1708a7dc1343ca33821f20e54494d21d744036b"
+    },
+    {
+      "item_id": "assistant-robustness-0106",
+      "provenance_sha256": "9325f9a4e525f436efdec9e48d7854999b06f137e011f5523ac78c5a724aa429",
+      "task_sha256": "a77b0f624a663aec8e2acb2bfa0020ebf01054ce6f54a3c8211a4f15e267f16f"
+    },
+    {
+      "item_id": "assistant-robustness-0107",
+      "provenance_sha256": "b933ece6084f8e06ac487ffd2a9ad5f6ebe6c5fa4ee4ac49efb08074db85f239",
+      "task_sha256": "566f14805d503269bc7233d58ac275b13620595a531dd15339b3d2e9a8a08695"
+    },
+    {
+      "item_id": "assistant-robustness-0108",
+      "provenance_sha256": "2762a6ad971c352c8200fdfe0ec91b3435b456089d6f7022ef2a73d4753aec24",
+      "task_sha256": "eacbe01e18065b44b4bd30a634ae22d69289148d20824f915deba5131f39c38f"
+    },
+    {
+      "item_id": "assistant-robustness-0109",
+      "provenance_sha256": "2290683ab4706d991b87d802896461a21f619863330f6de8758492c1585ed409",
+      "task_sha256": "4ba279bc5d8d6eb4a8f99e4828a7071a3e100a0937f80aaad4059e292757aea8"
+    },
+    {
+      "item_id": "assistant-robustness-0110",
+      "provenance_sha256": "243939a7a12de20c3901e8b64f45fd82d5a579225c89557e164d3ec6221bb5c7",
+      "task_sha256": "5856ad04679b7b0d5b20c0a4bea9db88d887b7c3541ffd667704126e142117e0"
+    },
+    {
+      "item_id": "assistant-robustness-0111",
+      "provenance_sha256": "5e6d465ed7019471797dba4de81a312b27295e57a7e9f7b6911bda198380c67d",
+      "task_sha256": "3887b7ebe05e5e7fd7558bc0253f52842e200f58e9e28c7b2e08a1344641b195"
+    },
+    {
+      "item_id": "assistant-robustness-0112",
+      "provenance_sha256": "66a728030b2c4364d667094111fe03d9978fc3e62c7dd8fcbe4daf52f2e514f9",
+      "task_sha256": "9aac4c67f0393988777e61ebe0091975554b2531228bebee02c76ed183bc20db"
+    },
+    {
+      "item_id": "assistant-robustness-0113",
+      "provenance_sha256": "df7d67df760354922c62ec8a99d7cd47e29711c46f5be939d673cf0a5cfe7b4d",
+      "task_sha256": "fad9ba6baa010ffd312fa954486238a2b2f226468a7527ea0d2a564786f1ee1a"
+    },
+    {
+      "item_id": "assistant-robustness-0114",
+      "provenance_sha256": "0a71e60afdfd21add81a022c70c1df0be4e38fed052541c40497ae6d70bdf2f5",
+      "task_sha256": "2eeb7e57aca38f5eeeda0643883844807855c7e39e66d98abb7fa3d6b22ffb5b"
+    },
+    {
+      "item_id": "assistant-robustness-0115",
+      "provenance_sha256": "4dcec211936db131e099b72251a198de255792271c10ed3b818a382618e26fb6",
+      "task_sha256": "175836b985374ad45e1e9722e3cf831a1ce00ccbcdc5a837625366f4bc683c90"
+    },
+    {
+      "item_id": "assistant-robustness-0116",
+      "provenance_sha256": "84d54805b998b755c4a21c84668e3261721688bc04e2b22318d68828b0952056",
+      "task_sha256": "c3204459a502185777800215c6932db3e433b54b40ceabe4e9ef598aea6101c3"
+    },
+    {
+      "item_id": "assistant-robustness-0117",
+      "provenance_sha256": "f7ccff583e574eacd1479a4c3d1b396e5398aa142db4b35972e481678ae7f882",
+      "task_sha256": "df8954f12123cf481414fda68402e5e493d140ab10b27011ff90ce753014d04c"
+    },
+    {
+      "item_id": "assistant-robustness-0118",
+      "provenance_sha256": "ab5254cdc5e0eb336828f0eac1f78c37a9b3f20da1e5b79bca5fd276587ea62f",
+      "task_sha256": "dbbffd0e20debb3dd66f50f900fbd1870abbd27f7d0c7fdc501ef1507407fa10"
+    },
+    {
+      "item_id": "assistant-robustness-0119",
+      "provenance_sha256": "a6cf36935df6436177cdb1d6d70bebe147476323e1a89f51d57c413e4e79d6ba",
+      "task_sha256": "7e8c9b9ff76e9fb4b25441297641b97642e5596a87e0d492626f757345511299"
+    },
+    {
+      "item_id": "assistant-robustness-0120",
+      "provenance_sha256": "1c1ced5d30eaee8525478a51afb89a0c112e9f78ab5310b7edfc7ea0397b5c1b",
+      "task_sha256": "740e5a0d523dffbe5f7911db0130be9165c78bc16b07a14458ababe167101423"
+    }
+  ],
+  "payload": {
+    "byte_count": 117673,
+    "path": "evaluation/fixtures/vasu_140m_assistant_authored_internal_v1/robustness/payload.jsonl",
+    "record_count": 120,
+    "sha256": "32a2090d28faa5610816b8212161072780a1a0c8de17459a8ea97e9730b8f0d9"
+  },
+  "production_suite_frozen": false,
+  "provenance_index": {
+    "byte_count": 77160,
+    "path": "evaluation/fixtures/vasu_140m_assistant_authored_internal_v1/robustness/provenance.jsonl",
+    "record_count": 120,
+    "sha256": "f9c95a6c1710ef7fce894290d0e1b610ee360908927ef6166efc3ea9e047c048"
+  },
+  "repository_commit": "a9ba8e71e4163caebfa9043790fd4d9dd48cd46e",
+  "schema_id": "vasu_140m_base_evaluation_inventory_v2",
+  "scorer": {
+    "path": "evaluation/framework/vasu_140m_base_v2_tasks.py",
+    "sha256": "7777bd7d6a488c21e3937b5b05e1e46153e7fddbcb67784c47dc9e53a5087bf5"
+  },
+  "split": "development",
+  "suite_id": "vasu_140m_assistant_authored_internal_v1",
+  "tokenizer_sha256": "04942e101a4a01f87f7e492ad9e463d299a559e784b650fdedd1763a017d195a",
+  "training_authorized": false
+}
