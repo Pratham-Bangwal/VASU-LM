@@ -1,0 +1,165 @@
+"""Streaming hash-only contamination scans for acquired VASU-140M sources."""
+
+from __future__ import annotations
+
+import hashlib
+import unicodedata
+from collections import defaultdict
+from collections.abc import Iterable, Mapping, Sequence
+
+from evaluation.framework.vasu_140m_base_v2 import canonical_json
+from evaluation.framework.vasu_140m_base_v2_inventory import (
+    normalized_text_sha256,
+    validate_contamination_record,
+)
+
+
+SCHEMA_ID = "vasu_140m_streaming_exact_contamination_scan_v1"
+
+
+def report_identity(report: Mapping[str, object]) -> str:
+    body = dict(report)
+    body.pop("report_sha256", None)
+    return hashlib.sha256(canonical_json(body)).hexdigest()
+
+
+def build_commitment_index(
+    records: Sequence[Mapping[str, object]],
+) -> dict[int, dict[str, tuple[str, ...]]]:
+    """Index non-redundant short exact spans and all eight-word fragments."""
+
+    index: dict[int, dict[str, set[str]]] = defaultdict(lambda: defaultdict(set))
+    for record in records:
+        validate_contamination_record(record)
+        item_id = str(record["item_id"])
+        width = int(record["ngram_words"])
+        for digest in record["ngram_sha256s"]:
+            index[width][str(digest)].add(item_id)
+        for field in ("prompt_exact_commitments", "answer_exact_commitments"):
+            for commitment in record[field]:
+                exact_width = int(commitment["word_count"])
+                if exact_width < width:
+                    index[exact_width][str(commitment["sha256"])].add(item_id)
+    return {
+        width: {digest: tuple(sorted(ids)) for digest, ids in values.items()}
+        for width, values in index.items()
+    }
+
+
+def scan_documents(
+    *,
+    source_id: str,
+    documents: Iterable[Mapping[str, str]],
+    excluded_parent_ids: set[str],
+    contamination_records: Sequence[Mapping[str, object]],
+    source_artifact_sha256: str,
+) -> dict[str, object]:
+    index = build_commitment_index(contamination_records)
+    findings: list[dict[str, object]] = []
+    document_count = 0
+    excluded_count = 0
+    scanned_count = 0
+    rejected_parents: set[str] = set()
+    seen: set[str] = set()
+    for document in documents:
+        document_id = str(document["document_id"])
+        parent_id = str(document["parent_document_id"])
+        if document_id in seen:
+            raise ValueError("source document IDs must be unique")
+        seen.add(document_id)
+        document_count += 1
+        if parent_id in excluded_parent_ids:
+            excluded_count += 1
+            continue
+        scanned_count += 1
+        words = unicodedata.normalize(
+            "NFC", " ".join(str(document["text"]).strip().split())
+        ).split()
+        observed: set[tuple[str, int, int]] = set()
+        for width, commitments in index.items():
+            for start in range(max(0, len(words) - width + 1)):
+                digest = normalized_text_sha256(" ".join(words[start : start + width]))
+                for item_id in commitments.get(digest, ()):
+                    observed.add((item_id, width, start))
+        if observed:
+            rejected_parents.add(parent_id)
+            findings.append(
+                {
+                    "document_id": document_id,
+                    "parent_document_id": parent_id,
+                    "document_sha256": hashlib.sha256(
+                        str(document["text"]).encode("utf-8")
+                    ).hexdigest(),
+                    "matches": [
+                        {"item_id": item_id, "word_count": width, "span_start": start}
+                        for item_id, width, start in sorted(observed)
+                    ],
+                }
+            )
+    report: dict[str, object] = {
+        "schema_id": SCHEMA_ID,
+        "source_id": source_id,
+        "source_artifact_sha256": source_artifact_sha256,
+        "contamination_inventory_sha256": hashlib.sha256(
+            canonical_json(list(contamination_records))
+        ).hexdigest(),
+        "excluded_parent_ids_sha256": hashlib.sha256(
+            canonical_json(sorted(excluded_parent_ids))
+        ).hexdigest(),
+        "counts": {
+            "documents": document_count,
+            "excluded_documents": excluded_count,
+            "scanned_documents": scanned_count,
+            "matched_documents": len(findings),
+            "rejected_parent_documents": len(rejected_parents),
+        },
+        "findings": findings,
+        "exact_and_fragment_scan_complete": True,
+        "semantic_scan_complete": False,
+        "source_admission_approved": False,
+        "release_build_permitted": False,
+        "training_authorized": False,
+    }
+    report["report_sha256"] = report_identity(report)
+    validate_streaming_report(report)
+    return report
+
+
+def validate_streaming_report(report: Mapping[str, object]) -> None:
+    required = {
+        "schema_id", "source_id", "source_artifact_sha256",
+        "contamination_inventory_sha256", "excluded_parent_ids_sha256",
+        "counts", "findings", "exact_and_fragment_scan_complete",
+        "semantic_scan_complete", "source_admission_approved",
+        "release_build_permitted", "training_authorized", "report_sha256",
+    }
+    if set(report) != required or report["schema_id"] != SCHEMA_ID:
+        raise ValueError("streaming scan schema mismatch")
+    for field in (
+        "source_artifact_sha256", "contamination_inventory_sha256",
+        "excluded_parent_ids_sha256", "report_sha256",
+    ):
+        value = report[field]
+        if not isinstance(value, str) or len(value) != 64:
+            raise ValueError(f"{field} must be a SHA-256")
+    if report["exact_and_fragment_scan_complete"] is not True:
+        raise ValueError("exact and fragment scan must be complete")
+    for field in (
+        "semantic_scan_complete", "source_admission_approved",
+        "release_build_permitted", "training_authorized",
+    ):
+        if report[field] is not False:
+            raise ValueError(f"{field} must remain false")
+    counts = report["counts"]
+    if not isinstance(counts, Mapping) or any(
+        isinstance(value, bool) or not isinstance(value, int) or value < 0
+        for value in counts.values()
+    ):
+        raise ValueError("scan counts must be non-negative integers")
+    if counts["documents"] != counts["excluded_documents"] + counts["scanned_documents"]:
+        raise ValueError("scan document counts mismatch")
+    findings = report["findings"]
+    if not isinstance(findings, list) or counts["matched_documents"] != len(findings):
+        raise ValueError("scan finding count mismatch")
+    if report["report_sha256"] != report_identity(report):
+        raise ValueError("streaming scan identity mismatch")
