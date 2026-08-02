@@ -15,6 +15,7 @@ from evaluation.framework.vasu_140m_base_v2_inventory import (
 
 
 SCHEMA_ID = "vasu_140m_streaming_exact_contamination_scan_v1"
+MAX_FINDING_SAMPLE = 100
 
 
 def report_identity(report: Mapping[str, object]) -> str:
@@ -56,6 +57,8 @@ def scan_documents(
 ) -> dict[str, object]:
     index = build_commitment_index(contamination_records)
     findings: list[dict[str, object]] = []
+    findings_digest = hashlib.sha256()
+    matched_document_count = 0
     document_count = 0
     excluded_count = 0
     scanned_count = 0
@@ -83,8 +86,7 @@ def scan_documents(
                     observed.add((item_id, width, start))
         if observed:
             rejected_parents.add(parent_id)
-            findings.append(
-                {
+            finding = {
                     "document_id": document_id,
                     "parent_document_id": parent_id,
                     "document_sha256": hashlib.sha256(
@@ -95,7 +97,10 @@ def scan_documents(
                         for item_id, width, start in sorted(observed)
                     ],
                 }
-            )
+            findings_digest.update(canonical_json(finding))
+            matched_document_count += 1
+            if len(findings) < MAX_FINDING_SAMPLE:
+                findings.append(finding)
     report: dict[str, object] = {
         "schema_id": SCHEMA_ID,
         "source_id": source_id,
@@ -110,10 +115,13 @@ def scan_documents(
             "documents": document_count,
             "excluded_documents": excluded_count,
             "scanned_documents": scanned_count,
-            "matched_documents": len(findings),
+            "matched_documents": matched_document_count,
             "rejected_parent_documents": len(rejected_parents),
         },
         "findings": findings,
+        "findings_sample_limit": MAX_FINDING_SAMPLE,
+        "findings_truncated": matched_document_count > len(findings),
+        "findings_sha256": findings_digest.hexdigest(),
         "exact_and_fragment_scan_complete": True,
         "semantic_scan_complete": False,
         "source_admission_approved": False,
@@ -129,7 +137,8 @@ def validate_streaming_report(report: Mapping[str, object]) -> None:
     required = {
         "schema_id", "source_id", "source_artifact_sha256",
         "contamination_inventory_sha256", "excluded_parent_ids_sha256",
-        "counts", "findings", "exact_and_fragment_scan_complete",
+        "counts", "findings", "findings_sample_limit", "findings_truncated",
+        "findings_sha256", "exact_and_fragment_scan_complete",
         "semantic_scan_complete", "source_admission_approved",
         "release_build_permitted", "training_authorized", "report_sha256",
     }
@@ -137,7 +146,7 @@ def validate_streaming_report(report: Mapping[str, object]) -> None:
         raise ValueError("streaming scan schema mismatch")
     for field in (
         "source_artifact_sha256", "contamination_inventory_sha256",
-        "excluded_parent_ids_sha256", "report_sha256",
+        "excluded_parent_ids_sha256", "findings_sha256", "report_sha256",
     ):
         value = report[field]
         if not isinstance(value, str) or len(value) != 64:
@@ -159,7 +168,10 @@ def validate_streaming_report(report: Mapping[str, object]) -> None:
     if counts["documents"] != counts["excluded_documents"] + counts["scanned_documents"]:
         raise ValueError("scan document counts mismatch")
     findings = report["findings"]
-    if not isinstance(findings, list) or counts["matched_documents"] != len(findings):
-        raise ValueError("scan finding count mismatch")
+    if not isinstance(findings, list) or len(findings) > report["findings_sample_limit"]:
+        raise ValueError("scan finding sample is invalid")
+    expected_truncation = counts["matched_documents"] > len(findings)
+    if report["findings_truncated"] is not expected_truncation:
+        raise ValueError("scan finding truncation flag mismatch")
     if report["report_sha256"] != report_identity(report):
         raise ValueError("streaming scan identity mismatch")
