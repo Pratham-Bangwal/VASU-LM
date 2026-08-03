@@ -2,11 +2,16 @@ from __future__ import annotations
 
 import copy
 import hashlib
+import json
+from pathlib import Path
 
 import pytest
 
 from vasu.data.vasu_140m_source_admission import package_identity
-from vasu.data.vasu_140m_source_admission_v4 import validate_admission_package_v4
+from vasu.data.vasu_140m_source_admission_v4 import (
+    validate_admission_package_v4,
+    validate_admission_package_v4_files,
+)
 
 
 def _package() -> dict[str, object]:
@@ -69,3 +74,47 @@ def test_v4_rejects_mutation() -> None:
     ).hexdigest()
     with pytest.raises(ValueError, match="identity mismatch"):
         validate_admission_package_v4(mutated)
+
+
+def _real_package() -> dict[str, object]:
+    root = Path.cwd()
+    package = json.loads(
+        (root / "configs/data/admissions/fineweb_edu_extension_2025_26.pending.json")
+        .read_text(encoding="utf-8")
+    )
+    decision_path = Path(
+        "docs/"
+        "VASU_140M_PROMPT_MATRIX_REJECTION_REMEDIATION_"
+        "INDEPENDENT_REVIEW_DECISION_20260804.md"
+    )
+    exclusion_path = Path(
+        "configs/data/exclusions/"
+        "vasu_140m_fineweb_semantic_quarantine_20260804.json"
+    )
+    package["schema_id"] = "vasu_140m_base_source_admission_v4"
+    package["prompt_matrix_decision"] = {
+        "decision": "accepted",
+        "path": decision_path.as_posix(),
+        "sha256": hashlib.sha256((root / decision_path).read_bytes()).hexdigest(),
+    }
+    package["mandatory_exclusions"] = [
+        {
+            "canonical_sha256": (
+                "cfd31cf8ea68d27994b1d85caba163de1141a9ead1a8bc87c90ed39c7e67837b"
+            ),
+            "path": exclusion_path.as_posix(),
+            "required": True,
+            "sha256": hashlib.sha256((root / exclusion_path).read_bytes()).hexdigest(),
+        }
+    ]
+    package["package_sha256"] = package_identity(package)
+    return package
+
+
+def test_v4_files_verify_embedded_canonical_identity() -> None:
+    package = _real_package()
+    validate_admission_package_v4_files(package, Path.cwd())
+    package["mandatory_exclusions"][0]["canonical_sha256"] = "0" * 64
+    package["package_sha256"] = package_identity(package)
+    with pytest.raises(ValueError, match="canonical identity mismatch"):
+        validate_admission_package_v4_files(package, Path.cwd())

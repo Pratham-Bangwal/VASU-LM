@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import hashlib
+import json
 from collections.abc import Mapping
 from pathlib import Path
 
@@ -115,3 +116,27 @@ def validate_admission_package_v4_files(
             raise ValueError(f"binding {index} is missing or unsafe")
         if hashlib.sha256(path.read_bytes()).hexdigest() != binding["sha256"]:
             raise ValueError(f"binding {index} identity mismatch")
+
+    for index, raw in enumerate(package["mandatory_exclusions"]):
+        exclusion = _mapping(raw, f"mandatory exclusion {index}")
+        relative = _relative_path(
+            exclusion["path"], f"mandatory exclusion {index}.path"
+        )
+        path = (root / relative).resolve()
+        try:
+            artifact = json.loads(path.read_text(encoding="utf-8"))
+        except (UnicodeDecodeError, json.JSONDecodeError) as error:
+            raise ValueError(
+                f"mandatory exclusion {index} is not canonical JSON"
+            ) from error
+        artifact_mapping = _mapping(artifact, f"mandatory exclusion {index} artifact")
+        if artifact_mapping.get("schema_id") != "vasu_140m_source_semantic_quarantine_v1":
+            raise ValueError(f"mandatory exclusion {index} schema is unsupported")
+        embedded = _sha256(
+            artifact_mapping.get("quarantine_sha256"),
+            f"mandatory exclusion {index} embedded quarantine_sha256",
+        )
+        if embedded != exclusion["canonical_sha256"]:
+            raise ValueError(
+                f"mandatory exclusion {index} canonical identity mismatch"
+            )

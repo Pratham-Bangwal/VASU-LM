@@ -26,6 +26,17 @@ Mutation, missing files, rejected matrix decisions, optional exclusions,
 duplicate exclusion paths, unsafe paths, and a FineWeb package without its
 quarantine all fail closed.
 
+### Independent-review remediation
+
+The first independent review correctly rejected the implementation because it
+verified exclusion file bytes but did not compare `canonical_sha256` with the
+artifact's embedded semantic identity. File validation now parses the bound
+JSON, requires schema `vasu_140m_source_semantic_quarantine_v1`, validates its
+embedded `quarantine_sha256`, and requires exact equality with the admission
+binding. An adversarial real-repository test changes only the declared
+canonical identity, recomputes the package identity, and proves that validation
+fails closed.
+
 ## Compatibility
 
 Existing v3 admission packages and validators remain unchanged and readable.
