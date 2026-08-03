@@ -44,8 +44,12 @@ Frozen output:
 - unique FineWeb source documents: 2,659
 - embedded quarantine SHA-256:
   `cfd31cf8ea68d27994b1d85caba163de1141a9ead1a8bc87c90ed39c7e67837b`
-- file SHA-256:
-  `f440bde55cb499a6294fc9739c65e0955e9d61460535f5dca0c9e761b78f3c58`
+- authoritative Git-blob SHA-256:
+  `865c757133c0a7d34c9218d06f3ffdac3279fcd3fe5eaa6478c0f4f401d88faa`
+
+The pre-commit Windows working copy used CRLF bytes; Git's repository-wide LF
+policy normalized the committed artifact. The embedded quarantine identity is
+content-canonical and unchanged. Future builder writes explicitly use LF.
 
 ## Scientific disposition
 

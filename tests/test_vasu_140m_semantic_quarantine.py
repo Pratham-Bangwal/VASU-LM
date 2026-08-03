@@ -78,6 +78,12 @@ def test_writer_refuses_overwrite(tmp_path: Path) -> None:
         write_quarantine({}, output)
 
 
+def test_writer_uses_lf_bytes(tmp_path: Path) -> None:
+    output = tmp_path / "quarantine.json"
+    write_quarantine({"value": "line"}, output)
+    assert b"\r\n" not in output.read_bytes()
+
+
 def test_real_independent_review_resolves_frozen_quarantine() -> None:
     report = build_quarantine(
         Path(

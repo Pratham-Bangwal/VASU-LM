@@ -145,9 +145,8 @@ def write_quarantine(report: Mapping[str, object], output_path: Path) -> None:
     if temporary.exists():
         raise FileExistsError(f"staging path already exists: {temporary}")
     try:
-        temporary.write_text(
-            json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8"
-        )
+        with temporary.open("w", encoding="utf-8", newline="\n") as handle:
+            handle.write(json.dumps(report, indent=2, sort_keys=True) + "\n")
         temporary.replace(output_path)
     finally:
         temporary.unlink(missing_ok=True)
