@@ -189,6 +189,30 @@ def test_preallocated_v2_1_diagnostic_is_internally_consistent():
     assert report["training_authorized"] is False
 
 
+def test_inplace_history_diagnostic_is_internally_consistent():
+    report = json.loads(
+        (
+            ROOT
+            / "evaluation/fixtures/"
+            "kv_cache_inplace_history_cpu_benchmark_20260803.json"
+        ).read_text(encoding="utf-8")
+    )
+    baseline = [item["baseline_tokens_per_second"] for item in report["trials"]]
+    optimized = [item["optimized_tokens_per_second"] for item in report["trials"]]
+    assert report["baseline_median_tokens_per_second"] == statistics.median(baseline)
+    assert report["optimized_median_tokens_per_second"] == statistics.median(optimized)
+    assert report["baseline_mean_tokens_per_second"] == statistics.mean(baseline)
+    assert report["optimized_mean_tokens_per_second"] == statistics.mean(optimized)
+    assert report["generation_implementation_sha256"] == _lf_sha256(
+        ROOT / "vasu/inference/generate.py"
+    )
+    assert report["full_history_sampling_preserved"] is True
+    assert report["stable_history_storage_verified"] is True
+    assert report["token_history_concatenation_absent"] is True
+    assert report["promote_kv_cache_to_default"] is False
+    assert report["training_authorized"] is False
+
+
 def test_preallocated_cache_logits_and_generation_match_other_modes():
     model = _model()
     prompt = torch.tensor([[1, 2, 3]])
@@ -403,9 +427,11 @@ def test_separate_generate_calls_create_fresh_caches(monkeypatch):
 
 def test_sampling_receives_complete_history(monkeypatch):
     history_lengths: list[int] = []
+    history_storage_pointers: list[int] = []
 
     def deterministic_sample(logits, input_ids, *args, **kwargs):
         history_lengths.append(input_ids.size(1))
+        history_storage_pointers.append(input_ids.untyped_storage().data_ptr())
         return torch.tensor([[7]], device=input_ids.device)
 
     monkeypatch.setattr(
@@ -425,6 +451,36 @@ def test_sampling_receives_complete_history(monkeypatch):
     )
     assert generated == [7, 7, 7]
     assert history_lengths == [3, 4, 5]
+    assert len(set(history_storage_pointers)) == 1
+
+
+def test_preallocated_cached_generation_does_not_concatenate_token_history(
+    monkeypatch,
+):
+    model = _model()
+
+    def reject_cat(*args, **kwargs):
+        raise AssertionError("preallocated cached generation must not concatenate")
+
+    class TorchProxy:
+        cat = staticmethod(reject_cat)
+
+        def __getattr__(self, name):
+            return getattr(torch, name)
+
+    monkeypatch.setattr(generate_module, "torch", TorchProxy())
+    generated = generate_token_ids(
+        model,
+        _Tokenizer(),
+        "test",
+        "cpu",
+        max_new_tokens=3,
+        do_sample=False,
+        prompt_format="plain",
+        use_kv_cache=True,
+        kv_cache_implementation="preallocated",
+    )
+    assert len(generated) == 3
 
 
 def test_decode_rejects_multi_token_query():

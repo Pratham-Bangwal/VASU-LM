@@ -51,6 +51,13 @@ promotion result: the scalability and state-validation improvement is retained,
 but it does not justify enabling KV caching by default. CUDA promotion remains
 unproven because CUDA was unavailable to the profiling process.
 
+A separate five-trial VASU-60M CPU diagnostic replaced cached generation's
+per-token history concatenation with bounded in-place storage. Median cached
+throughput improved from 69.5288 to 71.7665 tokens/s (+3.22%); mean throughput
+improved 1.25%. Exact greedy and sampling-history tests passed. The change is
+retained as an internal cached-path optimization, but does not change the
+uncached default or constitute CUDA promotion evidence.
+
 ## AdamW backend benchmark
 
 The bounded VASU-60M AMP benchmark in

@@ -81,30 +81,38 @@ def generate_token_ids(
                 "kv_cache_implementation must be 'dynamic' or 'preallocated'"
             )
         logits = model(input_ids, kv_cache=cache, cache_mode="prefill")
-        token_history = input_ids
+        token_history = torch.empty(
+            (input_ids.size(0), config.max_seq_len),
+            dtype=input_ids.dtype,
+            device=input_ids.device,
+        )
+        token_history[:, :prompt_length].copy_(input_ids)
+        history_length = prompt_length
         for _ in range(max_new_tokens):
-            if token_history.size(1) >= config.max_seq_len:
+            if history_length >= config.max_seq_len:
                 break
+            history_view = token_history[:, :history_length]
             next_token = _select_next_token(
                 logits,
-                token_history,
+                history_view,
                 temperature,
                 top_k,
                 top_p,
                 do_sample,
                 repetition_penalty,
             )
-            token_history = torch.cat((token_history, next_token), dim=1)
+            token_history[:, history_length].copy_(next_token[:, 0])
+            history_length += 1
             if next_token.item() == eos_token:
                 break
-            if token_history.size(1) >= config.max_seq_len:
+            if history_length >= config.max_seq_len:
                 break
             logits = model(
                 next_token,
                 kv_cache=cache,
                 cache_mode="decode",
             )
-        return token_history[0, prompt_length:].tolist()
+        return token_history[0, prompt_length:history_length].tolist()
 
     # Reference implementation: retain full-history model calls. The only
     # added guard prevents a call beyond a declared model context window.

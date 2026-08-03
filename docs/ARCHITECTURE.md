@@ -122,6 +122,11 @@ cache views. Five interleaved synthetic VASU-60M trials at 128 tokens measured
 mean improvement was 1.24%. This is below the existing 10% promotion threshold,
 so cached generation remains opt-in and uncached generation remains the default.
 
+Cached generation also uses a fixed-capacity token-history tensor. Each sampled
+or greedy token is written in place, while repetition penalty and sampling see
+the exact populated prefix. This avoids reallocating and copying the full token
+history on every decode step without changing generated-token semantics.
+
 ## Training structure
 
 The base objective is causal next-token prediction. Inputs and targets are the same token sequence shifted by one position. Instruction datasets can additionally provide response masks so that loss is applied only to selected target tokens.
