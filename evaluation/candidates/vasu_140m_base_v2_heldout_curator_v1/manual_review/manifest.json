@@ -1,0 +1,347 @@
+{
+  "access": {
+    "encryption_algorithm": "age-x25519",
+    "opening_authorized": false,
+    "payload_format": "encrypted_jsonl",
+    "recipient_fingerprint": "3413c58d2dae91a9c253642aba8583923af3fcd5d02893ad940ca6f21b5bd2da",
+    "state": "sealed"
+  },
+  "contamination_index": {
+    "byte_count": 65820,
+    "path": "evaluation/candidates/vasu_140m_base_v2_heldout_curator_v1/manual_review/contamination.jsonl",
+    "record_count": 60,
+    "sha256": "334ffb551afa91991cc3a1abff81f7190fba3714542a7c5e9a7d7c0001e7b309"
+  },
+  "dimension": "manual_review",
+  "evaluation_run_authorized": false,
+  "fixture_only": false,
+  "generation_profile_ids": [],
+  "interface": "raw_continuation",
+  "inventory_id": "vasu-140m-base-evaluation-v2-curator-candidate-v1-manual_review-held-out",
+  "inventory_sha256": "e364c07f9ef0e3356bdb27f61cc761b95213a277e9598754ad278c792e9cf4b6",
+  "item_commitments": [
+    {
+      "item_id": "hocur-manual-review-0001",
+      "provenance_sha256": "b3fea7bbb0f7ef9b3771c5978413140eccb0f41927e6a1c8e0b974827ad444c6",
+      "task_sha256": "515b2ced28bea91fcebba73b55dad5b933a563d65cb0e4a4a79dd6f7e90261fb"
+    },
+    {
+      "item_id": "hocur-manual-review-0002",
+      "provenance_sha256": "df26a616b7255835bdef9aa10b17e0e8da51efc7ae3e45db4d25eca4abe6f679",
+      "task_sha256": "56865816d51cc1e84741efc6a0e678bf0a75fec9e1503eeae2245f93aa130fad"
+    },
+    {
+      "item_id": "hocur-manual-review-0003",
+      "provenance_sha256": "ac9368dbb59b5e97b2bb22a4bb73a75c66d2e011a015260d7997f2d1ee9d91dc",
+      "task_sha256": "1c9dbaa94055210517435c4c424ded4097ba07a1eb442195ccd2d41ef3689891"
+    },
+    {
+      "item_id": "hocur-manual-review-0004",
+      "provenance_sha256": "b4dac69d77f2f76da7ac22275ff2674ed116aa4c5befab743e25bd63c6b1b097",
+      "task_sha256": "353f6d3671099b10984370b4011785cb011cd95a8dd0b57607ec0cd812b73b66"
+    },
+    {
+      "item_id": "hocur-manual-review-0005",
+      "provenance_sha256": "0957200e04cf10400e6b679b4946cf7d438dd40b0b1eb09ef0e29dcc948430bb",
+      "task_sha256": "890eda6a5dca214a85f7830c253944a8570ddaac891cfb3b101d29ff8e157cd0"
+    },
+    {
+      "item_id": "hocur-manual-review-0006",
+      "provenance_sha256": "01b3cf2ae52a42ccf0dfec4c569c4ed693153bc7735367347a3aed4ef6929ce1",
+      "task_sha256": "b2eab73a24965539bc691cb841cc8f0b9a2ca266daee321c92c0c551c3694e85"
+    },
+    {
+      "item_id": "hocur-manual-review-0007",
+      "provenance_sha256": "1793f67cef537a2bf71a158e3b43699dca80ddcba11cbabcbbf730cc1f7ee77a",
+      "task_sha256": "1f967cc063194cf07cc5c7fa432c0460698a76188bae65c470ee0fbc164cd334"
+    },
+    {
+      "item_id": "hocur-manual-review-0008",
+      "provenance_sha256": "377529c270fbfda751054011597f64792a6afae514700a208cc87ced6f949e30",
+      "task_sha256": "c574b58eb69deb1137ab6f45f4ed11ca0c8c4c533212ae3199ac8e92d4b957bd"
+    },
+    {
+      "item_id": "hocur-manual-review-0009",
+      "provenance_sha256": "c522339f0d37635b29275f5ae1127bb7d16fa69a3beb6a9e9c63c7f4384b5b24",
+      "task_sha256": "2cb590f321fee69c5acc400dd2f556f649ec12031c8bfafcc17d184d6bcc642a"
+    },
+    {
+      "item_id": "hocur-manual-review-0010",
+      "provenance_sha256": "10e5697770b45dbd68edce17ad04a0dba1a892f3411ac0185a01abda6e100277",
+      "task_sha256": "4b3bb03d40a04176b1c51b7a4ce1f2cf5ebf3e47101b27656405aa5d6b34e3be"
+    },
+    {
+      "item_id": "hocur-manual-review-0011",
+      "provenance_sha256": "d287f327e8e0c7d71d4ba27f3e80b8a128b33241500aa4f7fdf3bd954cefc21f",
+      "task_sha256": "a04cc9b1a9adfa53925b86fa7f3b6ab26741b13e8400366926c5dbb12f63ce74"
+    },
+    {
+      "item_id": "hocur-manual-review-0012",
+      "provenance_sha256": "7a07a52b063d15ae52fafc4f72e713f161b73a90961590f4f7e56d3d1818f060",
+      "task_sha256": "3e55a9a96b802d28fcd87417c19f854c906fa3727b37cc8cd8e627f7155b1e5e"
+    },
+    {
+      "item_id": "hocur-manual-review-0013",
+      "provenance_sha256": "50abb9a84aa854b8462e0ba7d0cf5fdb3bbc5bcbe79521c36da17a1beca10a0c",
+      "task_sha256": "d90edd4fbf5aad7c02a95cd2c8cdf2557e5cbc72768bce0e1b8200994ec7e717"
+    },
+    {
+      "item_id": "hocur-manual-review-0014",
+      "provenance_sha256": "02ea14b5923fef0132c6d82322235e6c2e6f7065b76cad769eb66f824dec03e9",
+      "task_sha256": "887c17910b48636cfe21c6838b16c503e12afb1ca39d45ee54abd19cd6836e5d"
+    },
+    {
+      "item_id": "hocur-manual-review-0015",
+      "provenance_sha256": "a78a5ae7428cd7e28b282866ff6f0d08207ec3eb018f493be59a84dea309d473",
+      "task_sha256": "1c8f1b475a017a1ac07914e459163257164d6f5f5ac5d44608f405700f77e66e"
+    },
+    {
+      "item_id": "hocur-manual-review-0016",
+      "provenance_sha256": "b1518fd3d2b253260fe39e71a64244081f92069ba39316240245dceee7077abd",
+      "task_sha256": "65595215375ff4f2d3b5d9a60c5287609028614ba06704bf6a788d60496be58a"
+    },
+    {
+      "item_id": "hocur-manual-review-0017",
+      "provenance_sha256": "78da67f0654e8842f728a81ad173fe80fee5a1e0795ae026a219a54c01460224",
+      "task_sha256": "7ae72210744e7395fd3be24d0f9bb074a69e891b85cdd6b7a8f0c4c64650e29c"
+    },
+    {
+      "item_id": "hocur-manual-review-0018",
+      "provenance_sha256": "23269115d270ab589a5bd6252d70e8a36b72fdaf1ccf7601564377273060549a",
+      "task_sha256": "8d386cc639bbd21d8170ee02bf11331a1b8caec935cb034985dc40b84b40e25b"
+    },
+    {
+      "item_id": "hocur-manual-review-0019",
+      "provenance_sha256": "60fcae379bfd984cf0ba5406cab13759a29dd339d712cf215ef8edcd15283f2c",
+      "task_sha256": "f5b9d2eafb1ef59e603ce4545f97acdde98d6585865688e1438c524546188178"
+    },
+    {
+      "item_id": "hocur-manual-review-0020",
+      "provenance_sha256": "bfe05c3c702373cdf190f29d51f8bb423fdc445e9ceb0dff04705d8e09ebfe3b",
+      "task_sha256": "ec85d6ed47ab49c8105c367a64e60d987581e4ae83c26d21b368758ed461076a"
+    },
+    {
+      "item_id": "hocur-manual-review-0021",
+      "provenance_sha256": "087cad21c5dc3bf75d0295848f38023873020cb70c0fb3a8095af50fc9d0e388",
+      "task_sha256": "f4ede2674176c141d227b1454010328683fb9331c325348e3afda050dc3a1648"
+    },
+    {
+      "item_id": "hocur-manual-review-0022",
+      "provenance_sha256": "5c831f6b25738d659f90a9c2dd51d0c9de28637e8fe653478d56a3bba562a2d7",
+      "task_sha256": "923b177154d4f96013cbe5799d51113f8d1dbcaabb04df8a98fd33f9f2a93a5c"
+    },
+    {
+      "item_id": "hocur-manual-review-0023",
+      "provenance_sha256": "7bb0d5b2d646eb9120bae425a96a66b9784aa9f66870aae9196c6182fbcd8c49",
+      "task_sha256": "0372fb2029d90b87361748716eca74313e1c1a9be7636465bff52f25a6cc702e"
+    },
+    {
+      "item_id": "hocur-manual-review-0024",
+      "provenance_sha256": "9cb4e7da5c9c6deb8f70f1078ed2141fe374c64d0f76d73035a0e6ecbd775c66",
+      "task_sha256": "44c3a9e474543f8c3c36da17e5782dd1083d76c1a675ee3e02e460842d76c8f5"
+    },
+    {
+      "item_id": "hocur-manual-review-0025",
+      "provenance_sha256": "d643db8f4ce4a7846fe14c4ce191dc0f2bd7c9b800c55d01929c3ac75a7c689d",
+      "task_sha256": "2cde8d2d9dae918a16f5d190f8517421b810466b807ea4a475f57fec7837ab3c"
+    },
+    {
+      "item_id": "hocur-manual-review-0026",
+      "provenance_sha256": "f9be4018afbf174fc5828d801d32dcd38a300d44b50d0a852c9c78a56ef2c7f1",
+      "task_sha256": "9aab457930dd5ac6a4a58efc85b626b4b99354cb075622ace97c9d557eebcb59"
+    },
+    {
+      "item_id": "hocur-manual-review-0027",
+      "provenance_sha256": "4f8c9983ee756859a121306b6203dbf656dc1cc7c6da31e6d2623953e7f6783e",
+      "task_sha256": "a92248378fbc3eb9b61622ccd28f91d1ce7416feeee500b9083abb0c785afc30"
+    },
+    {
+      "item_id": "hocur-manual-review-0028",
+      "provenance_sha256": "6930bad60a652608aab803f2e2c0dc4201d08197818a0887e93936ba5312210c",
+      "task_sha256": "1a29e0a2928946de011eefa039c4bcb6cbcac73e655db0269e9fa35a99afced3"
+    },
+    {
+      "item_id": "hocur-manual-review-0029",
+      "provenance_sha256": "04bff3834aa16bc14c119bd7ef08514fa43ce734a6fe7c9fa9a417076f3f56d9",
+      "task_sha256": "3e889b473422135c549d1d4e4360691f5daa5f048ef9ff8a88626c482635739c"
+    },
+    {
+      "item_id": "hocur-manual-review-0030",
+      "provenance_sha256": "eb39f383f554a5e9ff4f3e23b453fbbacf3ba98dc009f17527bb00f41a3fc084",
+      "task_sha256": "3c1c0aa7b83c0bf5125899fe625109cc8024c7627b718c9ae6b3a519d6638225"
+    },
+    {
+      "item_id": "hocur-manual-review-0031",
+      "provenance_sha256": "d8af6b8d5b9919be0fe7f47c6ec99b6b1527e0ea7323d84ad6b495a7f9196311",
+      "task_sha256": "d4fd84e0121d46dc2fd8bb91eaa67b568a968ec91b40683c09d647ec07695cf7"
+    },
+    {
+      "item_id": "hocur-manual-review-0032",
+      "provenance_sha256": "22252a2eb3fa112ae024759b9253264a5c43839d3d0d93b35dc99bc93274a670",
+      "task_sha256": "f894a0c9ab7c5b94af6c32910578ded6b666910735df0ecbb49f3cd86b389928"
+    },
+    {
+      "item_id": "hocur-manual-review-0033",
+      "provenance_sha256": "c764d66f65091f33c8caaa5425147f58be72b4a77dbf1dec69288fc636d8319f",
+      "task_sha256": "81e41e654497ab1e85bc7d65f90e558add835306c12bec70f0a08f959928828c"
+    },
+    {
+      "item_id": "hocur-manual-review-0034",
+      "provenance_sha256": "66338a3573cbf8f71508e41364f43590a4491592cddd3cc90ebba2bd76bcef12",
+      "task_sha256": "27f84d56e8945d078a65618b5f9d2e6cf1c7e1ed5949299e5084db44b90ad6c0"
+    },
+    {
+      "item_id": "hocur-manual-review-0035",
+      "provenance_sha256": "ee4931c9d9282d32808aa77a9f031428e448dbef4ba2231153b6b019b87e247a",
+      "task_sha256": "0f76e43def8f9595771f8ba7d9b51ff08303ff48994e89b9c4977f54db12f3c6"
+    },
+    {
+      "item_id": "hocur-manual-review-0036",
+      "provenance_sha256": "2672ccb350e30683e43b042410fc4000bea5fd1e74dc9d5fbb6a1c45363eaa04",
+      "task_sha256": "66d25fc948133295c55b98dd0634b717b937a3932b79157e7de63a06db803d91"
+    },
+    {
+      "item_id": "hocur-manual-review-0037",
+      "provenance_sha256": "8df81c99ccf1b6ac88e48ea83772abac456b7ce8a8f38c3a7abbe02ba03db00a",
+      "task_sha256": "e4a9265610517a10dde16c4d47474493453f33a47e6914a235e1437ab014e2d5"
+    },
+    {
+      "item_id": "hocur-manual-review-0038",
+      "provenance_sha256": "bc5d50d2e5bf30e45a483d6863d983f81604293d4ebdd272a7e768b526b740a0",
+      "task_sha256": "034300d35085ff5323983e243a148ac19cdc1befb99656e06066cb26c06f8f74"
+    },
+    {
+      "item_id": "hocur-manual-review-0039",
+      "provenance_sha256": "aae0c3bb51277b7ddbb1c4781bbde8c7f53acad252ce979cd86c7aadce98817e",
+      "task_sha256": "2c010f838a3d4d0038558bb7b8853ba0d2a1c3082a901b64f7454c3417c00a5f"
+    },
+    {
+      "item_id": "hocur-manual-review-0040",
+      "provenance_sha256": "148dd8555789484355ab20c965bd093c061fa3cda105dd22db8877a4eb4a4d22",
+      "task_sha256": "7938adc89cd22be0bca2bc0889ab3d3480d4b4c90115241ee6224352e25f8b68"
+    },
+    {
+      "item_id": "hocur-manual-review-0041",
+      "provenance_sha256": "2613cfb2dc7579eaaa773f068672ec0610914f76d9fcb07b372d48f8d68f11a6",
+      "task_sha256": "c996ea016adf28628b5ce9201f2fed6aa2542e06328ac529a334e8e3e20b9ac9"
+    },
+    {
+      "item_id": "hocur-manual-review-0042",
+      "provenance_sha256": "91c8c786b91a39bf037c70c55043afe081a683063e4ba394d080709557fc7aff",
+      "task_sha256": "42790d66fb96cac62fc4fb7176fcce2f1d986837a652e49a5c82d7a76facd72c"
+    },
+    {
+      "item_id": "hocur-manual-review-0043",
+      "provenance_sha256": "2d5f5bdb1d3a72645476eb4436b7077e5661dc18d39ce75201f01d0e4f8d7992",
+      "task_sha256": "5264d67bc2d45102058bd217323876a3e8d0753f130d8be0ca30049d577a8a4d"
+    },
+    {
+      "item_id": "hocur-manual-review-0044",
+      "provenance_sha256": "afaf0f1a5fea76fe6a3b81953147d13f45ee05e0defd5e562c16d2f162ffb689",
+      "task_sha256": "03a3775e511c0b75a95d569f6b50fcd67c9cbd9e248ff0d9b810dc1e52ee65f1"
+    },
+    {
+      "item_id": "hocur-manual-review-0045",
+      "provenance_sha256": "5f4dce70187bbf63eb8975a8c08eda4e1db4d6633d3eba5d1be37f096bf7c11d",
+      "task_sha256": "10df6357401619662db0bd07cbe52498faa633586966e0cc111f4df1e8758361"
+    },
+    {
+      "item_id": "hocur-manual-review-0046",
+      "provenance_sha256": "fb788a30de672336368cbef97afa146d39000c1181ca3d23ca2c6ae0a0026f1d",
+      "task_sha256": "429966e116dba17faa2488548765a0f925774295ae238b5e3f1cde5d03059c58"
+    },
+    {
+      "item_id": "hocur-manual-review-0047",
+      "provenance_sha256": "1cebc5622ea85cfdecde7aacfd127deb2a9772674876096789a3fe1b79f38c49",
+      "task_sha256": "82e6c65c725216cfd880cbb83069aa4a8c15c988b6a522523f74a583d963f06a"
+    },
+    {
+      "item_id": "hocur-manual-review-0048",
+      "provenance_sha256": "3f9dc28ead6a8553ddfd80cf70c7dbbcd28583c5e38c2be793e521aadc46cb75",
+      "task_sha256": "cde820618bd5c0d001514528a00b1b57e8cedcaaed6ae7b3f28d3f2433520a97"
+    },
+    {
+      "item_id": "hocur-manual-review-0049",
+      "provenance_sha256": "f698e80b2e9d192701138f7a045e89a1df8a248923e10d52aec113e5e633cd1c",
+      "task_sha256": "addaa6a84cb698a353057e2cddadde901ce403343097e6d542ae3e0e2c669aa1"
+    },
+    {
+      "item_id": "hocur-manual-review-0050",
+      "provenance_sha256": "c99dc9cb645dac023dfde4980a6c6e93886dad01306d708366ad9044f1a0d5de",
+      "task_sha256": "34712241e9076fa8f6d9fff4c804a5ff37cb88c87f0396c726ff91e64f8d331d"
+    },
+    {
+      "item_id": "hocur-manual-review-0051",
+      "provenance_sha256": "b183e53411a5ddd6c3480c286e4a411b4381d5ce4f2087a18a64696932790c74",
+      "task_sha256": "82c7ce58ff65b70f7474de8e0e8bcccff1a8ad247a344aa835d3d14ffa79a428"
+    },
+    {
+      "item_id": "hocur-manual-review-0052",
+      "provenance_sha256": "406db6b376f0891150d3cf76dcce96a50ccde71ac793de1cda2cdbf9ee702d40",
+      "task_sha256": "0d51f71d29d350de3ba94da36b415ff881d9481e02788ca900430c71c06d6003"
+    },
+    {
+      "item_id": "hocur-manual-review-0053",
+      "provenance_sha256": "ef55469808a4f90f94f9e439745e897551adad6d5bbc622fe3f42d69baf263fc",
+      "task_sha256": "8b3b4c5c58f693ef934b895b09ac1efe89cb8eada334dacadbbe5fc6b8124138"
+    },
+    {
+      "item_id": "hocur-manual-review-0054",
+      "provenance_sha256": "be4757345f536bbd1201c326c97f257610160d5ab82e100b4734f39204e5028c",
+      "task_sha256": "1685d612aac5020709638979940cdb74ecf5a7b216f8c46b28f331335bd74bd2"
+    },
+    {
+      "item_id": "hocur-manual-review-0055",
+      "provenance_sha256": "30e8d55f01dc17b2fda016d1ecfaf4fbb4cef86248e7365961af5a2077b67c83",
+      "task_sha256": "4866b9a6cd4556580f30799cb2edd11e8406d355be23a9df678c16359861f2fb"
+    },
+    {
+      "item_id": "hocur-manual-review-0056",
+      "provenance_sha256": "064f5b5b9b75fedec768f227c1d0637175397f08c9504b3171e74c468fb4fc42",
+      "task_sha256": "581c95334076b2538c9d0f1dceb0bcd8c2197b0693a3894409a15f0be6703991"
+    },
+    {
+      "item_id": "hocur-manual-review-0057",
+      "provenance_sha256": "cbcc7ea11bc98562f00ef4a25ef4de107d0a928bf27a278e21389b1643c408bd",
+      "task_sha256": "ec87bc2c5f65a746d1ecad9f24ae42335e9fcfcdc84d3ea9e0afe1bb8bcbc31b"
+    },
+    {
+      "item_id": "hocur-manual-review-0058",
+      "provenance_sha256": "0867ac19723ee13b5cc0e7a514ff272e06a8a5599b2703e8395d0b2179a1f9c3",
+      "task_sha256": "d258ee12a79c077d4881f63f19c32bb5a0a5d9d10e3a187b046a70f51bb66199"
+    },
+    {
+      "item_id": "hocur-manual-review-0059",
+      "provenance_sha256": "6596bc977659b0eb75478234101005035d027f1a7f19f5052fbd009f826294c9",
+      "task_sha256": "c575182483b8f4160a454541d89f3793bb66f5d5b37ade160e5d9ae85b8ea0ea"
+    },
+    {
+      "item_id": "hocur-manual-review-0060",
+      "provenance_sha256": "d079d7060f422a9e5d0da4ed2721a7179bf3d2c35845aedd22e9fb7d2daa199d",
+      "task_sha256": "4f71146e699edb754bdbb6cc945a88ee85a6a81d38d468e53db1815a5d2dea29"
+    }
+  ],
+  "payload": {
+    "byte_count": 42037,
+    "path": "evaluation/candidates/vasu_140m_base_v2_heldout_curator_v1/manual_review/payload.jsonl.age",
+    "record_count": 60,
+    "sha256": "075113c520916dfdff0eeab1b9a6cb7b78cc81a1482bfbe071727084235a9daf"
+  },
+  "production_suite_frozen": false,
+  "provenance_index": {
+    "byte_count": 42300,
+    "path": "evaluation/candidates/vasu_140m_base_v2_heldout_curator_v1/manual_review/provenance.jsonl",
+    "record_count": 60,
+    "sha256": "6d325e0ebbb7c0e994021491fe573f756717bab30e07903451412f87492cca93"
+  },
+  "repository_commit": "08d34598dd103686be50b6121b80f88b63d05e64",
+  "schema_id": "vasu_140m_base_evaluation_inventory_v2",
+  "scorer": {
+    "path": "evaluation/framework/vasu_140m_base_v2_tasks.py",
+    "sha256": "7777bd7d6a488c21e3937b5b05e1e46153e7fddbcb67784c47dc9e53a5087bf5"
+  },
+  "split": "held_out",
+  "suite_id": "vasu-140m-base-evaluation-v2-curator-candidate-v1",
+  "tokenizer_sha256": "04942e101a4a01f87f7e492ad9e463d299a559e784b650fdedd1763a017d195a",
+  "training_authorized": false
+}

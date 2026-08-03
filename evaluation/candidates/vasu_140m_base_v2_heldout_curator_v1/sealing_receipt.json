@@ -1,0 +1,29 @@
+{
+  "evaluation_run_authorized": false,
+  "intake_receipt_path": "configs/evaluation/vasu_140m_private_curator_intake_20260803.json",
+  "intake_receipt_sha256": "9c77388dcff102e675f048fd294e04df7fa48520b81d98ddb06d9113ab7f5bf1",
+  "intake_report_sha256": "a568cc5627cd84a1d6989ae832cdd017edd6fb94011b3874f0ef2a5ed043928d",
+  "inventory_sha256s": {
+    "arithmetic": "ccc2afe2dbf4414a523c4c3715b9e8defbdf146f9c39b0a98fcd98cc2279274f",
+    "factuality": "3d1b43edc6c01f7c9de4f67b2b65b1db3a8a74658d43f9a49d7a3691d62982e1",
+    "manual_review": "e364c07f9ef0e3356bdb27f61cc761b95213a277e9598754ad278c792e9cf4b6",
+    "repetition": "68a986f226e63f7c1015f3dcfebaf5a0444f4fb4d2743bd14b78fa2517706a0b",
+    "robustness": "09bfe0eb1cac11561ec82a44b45b113dafc55aff9bcce923a9b9c7824e922783"
+  },
+  "plaintext_payload_persisted": false,
+  "private_key_opened": false,
+  "production_suite_frozen": false,
+  "receipt_sha256": "c14fe696143e618ffdf4f501f3ba90ab8fe4f48fab93e96bfe99cd3e2ce52d18",
+  "recipient_fingerprint_sha256": "3413c58d2dae91a9c253642aba8583923af3fcd5d02893ad940ca6f21b5bd2da",
+  "record_counts": {
+    "arithmetic": 1000,
+    "factuality": 200,
+    "manual_review": 60,
+    "repetition": 120,
+    "robustness": 120
+  },
+  "repository_commit": "08d34598dd103686be50b6121b80f88b63d05e64",
+  "schema_id": "vasu_140m_private_curator_sealing_receipt_v1",
+  "suite_id": "vasu-140m-base-evaluation-v2-curator-candidate-v1",
+  "training_authorized": false
+}

@@ -1,0 +1,1047 @@
+{
+  "access": {
+    "encryption_algorithm": "age-x25519",
+    "opening_authorized": false,
+    "payload_format": "encrypted_jsonl",
+    "recipient_fingerprint": "3413c58d2dae91a9c253642aba8583923af3fcd5d02893ad940ca6f21b5bd2da",
+    "state": "sealed"
+  },
+  "contamination_index": {
+    "byte_count": 196400,
+    "path": "evaluation/candidates/vasu_140m_base_v2_heldout_curator_v1/factuality/contamination.jsonl",
+    "record_count": 200,
+    "sha256": "46aa672e018d542c952203c744e2dc29f38533814e2322e061d829e610986e0b"
+  },
+  "dimension": "factuality",
+  "evaluation_run_authorized": false,
+  "fixture_only": false,
+  "generation_profile_ids": [],
+  "interface": "direct_likelihood",
+  "inventory_id": "vasu-140m-base-evaluation-v2-curator-candidate-v1-factuality-held-out",
+  "inventory_sha256": "3d1b43edc6c01f7c9de4f67b2b65b1db3a8a74658d43f9a49d7a3691d62982e1",
+  "item_commitments": [
+    {
+      "item_id": "hocur-factuality-0001",
+      "provenance_sha256": "6d002541b4687c1bbd22af5ea13db66a2e1a154364c05c2989c0bb60fc691d82",
+      "task_sha256": "44b2a464af59c7d7ddf4a188bb1c31babcddc8b1fabe7631d2c21d9fff988d41"
+    },
+    {
+      "item_id": "hocur-factuality-0002",
+      "provenance_sha256": "14f82ded0f8cc76c8022012074a2e097c583f86a7e18bd677fe169944c994a68",
+      "task_sha256": "eb209ebe9b3e45e6506bceef447517a12a5967550f9afcb8d3a8ba16d3fe76be"
+    },
+    {
+      "item_id": "hocur-factuality-0003",
+      "provenance_sha256": "850f21e81cef214de57d9e1b1ebbad694cc0bbeebf7dc971086d8fdb9209ee34",
+      "task_sha256": "a529b942e2fde090cc5cfc27c1e8b642d2a601dc03a1f10285bd0ffd3d8172b2"
+    },
+    {
+      "item_id": "hocur-factuality-0004",
+      "provenance_sha256": "277179769428d0cadaed734a7acf21ad23f4b09e7a860f01528eebf101adbed4",
+      "task_sha256": "97c1fe51687b1bdb6952f59448cfaf9a6a916df7c9cb5856a87378fe7aaaf939"
+    },
+    {
+      "item_id": "hocur-factuality-0005",
+      "provenance_sha256": "046b657546377e78fc2a60175f4c7e7710ba2a1ab07f3774e921e1eb7d476ea6",
+      "task_sha256": "d45d69e1fb149dde4f4ea50f65a9bc26c34b336c40f6375f68645434350408c9"
+    },
+    {
+      "item_id": "hocur-factuality-0006",
+      "provenance_sha256": "1657fd7017d168aff51361535b0b74d637ad32344cd27d43aa8bec8852e8f925",
+      "task_sha256": "873d08c8a255932f18efea5864d70fae9bd460fff80bc6d93c7223dfb89c70de"
+    },
+    {
+      "item_id": "hocur-factuality-0007",
+      "provenance_sha256": "69594de995e30bc3afe2659afa192e724490c7ae957a3d72ae9b12cc4255c858",
+      "task_sha256": "a49d31edc40ebc6fd1935a3a96170a02e6a13566cda16eec8eb1287e14b12d3c"
+    },
+    {
+      "item_id": "hocur-factuality-0008",
+      "provenance_sha256": "17372bd0c7d9e0e26125c111f1b3e6b1088e98a5c3caf59c9d19303f41c12718",
+      "task_sha256": "6d0a8002b222d6c9787c22f036946c0beebaab40b5098bc22290d53260402b38"
+    },
+    {
+      "item_id": "hocur-factuality-0009",
+      "provenance_sha256": "624cb6dda0bf0a89e52d0d7acc327e5d8c92103cc48ca1288ef9cf5237ccc832",
+      "task_sha256": "ff271458269ad0bb2ab375a3b0d7aaf3395775b9ff468c422d182074e15835ec"
+    },
+    {
+      "item_id": "hocur-factuality-0010",
+      "provenance_sha256": "c2bd62265b0e6b827d634b2f3c74ae1f350914898f3ef3e75a8d471dd777eb2c",
+      "task_sha256": "e69527a125bfb1c4cef76783b266e8e331af42ea37c6085053a45d1e8b9bbbf6"
+    },
+    {
+      "item_id": "hocur-factuality-0011",
+      "provenance_sha256": "657b6cdd86c04c322ec3830fb36827a5879c03ed8b91061c943df9805c14acb7",
+      "task_sha256": "92b3114276f3f921840940ffb505ca600525d7bc8b806d8d228043846a03cc04"
+    },
+    {
+      "item_id": "hocur-factuality-0012",
+      "provenance_sha256": "ae25aff5ee82b62fad68551e734ea2e334d2e5b9f401ebc010c9a8f98e875a66",
+      "task_sha256": "de40ba530ab6957ee43bfcae4c798fcf1054b81bb77ac5e0ec99bae1503f61d4"
+    },
+    {
+      "item_id": "hocur-factuality-0013",
+      "provenance_sha256": "abc40b23e02d2d8acc6ecc2b4e9e5a099614f5bac69bf4eded32445922a6e6ae",
+      "task_sha256": "a57662da29cf9570ba7b0eaf64e9fe9afc52cb23f88a5175f670e426d0106df1"
+    },
+    {
+      "item_id": "hocur-factuality-0014",
+      "provenance_sha256": "8b1a51655d277e1ae1f904394e6705671b4be6b6cd41b59b86729a7557011a6f",
+      "task_sha256": "e7bf3e5c4016dfbfb2ca58910c2a5e23adfe86143e385f4dff85065e7085c97c"
+    },
+    {
+      "item_id": "hocur-factuality-0015",
+      "provenance_sha256": "c9b6c6d4b5973b7fbb05d662d16e2df7a8269e24703983ab2cd41e0e71c93678",
+      "task_sha256": "f1b7b81533db61eae4449e21706c31a04f244b46806a18861f5493070399a72e"
+    },
+    {
+      "item_id": "hocur-factuality-0016",
+      "provenance_sha256": "a3f73ff39ec1ab8296855b40c84a8416aaa44cbc3b9514c83d53a6e490fa7ee8",
+      "task_sha256": "65b5f8abc145e9035e051d0a34a6b9394701cf6242a2e9debfb824fe80c198a7"
+    },
+    {
+      "item_id": "hocur-factuality-0017",
+      "provenance_sha256": "4011677b1c3e9aa5a06f2f5882eb398fdb8906b17f1518e56e1d8608075c972e",
+      "task_sha256": "cf37746d500a5a62f50444d1de09451bda5dd65c20a169350f74316685db21b2"
+    },
+    {
+      "item_id": "hocur-factuality-0018",
+      "provenance_sha256": "85d84467b7510ca2d82524124f3d1ee09a0f42d6dc140af0860632f1c03978d3",
+      "task_sha256": "24153e40bdf3c99706291c6507bfc10328d29c0b09e33438a9253676c02db106"
+    },
+    {
+      "item_id": "hocur-factuality-0019",
+      "provenance_sha256": "67bda58616ef03c07cafbaf37659ec7a616a316e2a1b659c979f81cf4e05f4e0",
+      "task_sha256": "5041575afc26815d8ee502dbfb7a2ac8446c7e3e3b7b94e3beb91a6e20d23355"
+    },
+    {
+      "item_id": "hocur-factuality-0020",
+      "provenance_sha256": "7d36d7ba670435cf2833f6239f3ed6ece0a9ae615d677da6f8d86ce1c18ed7b6",
+      "task_sha256": "42e8ec5b354fb61ba1b1f30c71b303abe271a8d13d4586ee209f407b6c38795c"
+    },
+    {
+      "item_id": "hocur-factuality-0021",
+      "provenance_sha256": "f0baf6783c4f80cd7e38fe0a2ba724af4a0c7956ee57a5cb9c2009fb8d8f149a",
+      "task_sha256": "10d3dee461e61946059264859356c503cf8378c090415d73bf1a2e3c40429de7"
+    },
+    {
+      "item_id": "hocur-factuality-0022",
+      "provenance_sha256": "d320e789f5be6c9619181f405cfe0db51885214b2a58276dba5fb91b7ef8da2b",
+      "task_sha256": "816cddcbe4d2c2554a41a37c336602d280c497dfd6965af8d8b620effd492e48"
+    },
+    {
+      "item_id": "hocur-factuality-0023",
+      "provenance_sha256": "4bb8e243b8929df88083d44f4b54cc5c014c4f0736babb41c863d0f4dc1fc26a",
+      "task_sha256": "d8bdfbb74c44ea62fdb15a8184796245ba05a7b5b158b3d03f0e03cc6aeb86be"
+    },
+    {
+      "item_id": "hocur-factuality-0024",
+      "provenance_sha256": "ebc5b754e3617b4cb655d4e43dc952b26933dfa27081abe51cd58b51874a4ff0",
+      "task_sha256": "9bdcc3a0ac35417ce3969a5b0441bc7dde745f03b67079bfc9a630cb84c1b942"
+    },
+    {
+      "item_id": "hocur-factuality-0025",
+      "provenance_sha256": "7f66a22be30c6567106dd8bc00e089eedd465a99123045477069bde2bce5ec21",
+      "task_sha256": "77f14ac38b17d001e510a280ef694ad9f2e45905211253269d242e96a26a6028"
+    },
+    {
+      "item_id": "hocur-factuality-0026",
+      "provenance_sha256": "688908e47194b751b762761e5ac55bcdd26b775ccc0744179d5d7c4b0271e9ae",
+      "task_sha256": "b32c1dcd6e3e1b6859918ca23953e66e8d44076143f5be991f3b95cf19739b33"
+    },
+    {
+      "item_id": "hocur-factuality-0027",
+      "provenance_sha256": "1bdb7715e01cde348904226b3c5da36e8cf23df00880d31e78469bfc8f721ccb",
+      "task_sha256": "9331fb2c45c45e511ce9c25d8af30d8df185a09ab83b598ea6b345a103a17659"
+    },
+    {
+      "item_id": "hocur-factuality-0028",
+      "provenance_sha256": "7ab29f0272b324f3f475042156b34fb3a7524ca1e926fd04952885af674080b0",
+      "task_sha256": "5df1d169befd81a1fdb59c8f6cb48168ffe35e4c84f0dc68f0545a2889afde3b"
+    },
+    {
+      "item_id": "hocur-factuality-0029",
+      "provenance_sha256": "74ed769ad527515714d1b73a58a056c3036d0920951cccfb04d1818997dd0b19",
+      "task_sha256": "6788d924fd7b747b368c15912cae8a8a38e8b7aa7047369f442de28b3322c376"
+    },
+    {
+      "item_id": "hocur-factuality-0030",
+      "provenance_sha256": "9966d047e7ddcfdc1d93c54058d61d4dddac9b2e4f6254cf818a463f7d46eae6",
+      "task_sha256": "21230b343f9629ebf09896c9ac7169afe77617fe98d62d0e3028881fa03e400d"
+    },
+    {
+      "item_id": "hocur-factuality-0031",
+      "provenance_sha256": "f441c90d5166e7bd4181076fa2929b16bd4f99010c762c80535452e27b2392fb",
+      "task_sha256": "8ee03f2bcfd0c0606cc6df997540c9dded9ec193336a8da830940a179d87625e"
+    },
+    {
+      "item_id": "hocur-factuality-0032",
+      "provenance_sha256": "a62b0ff8941bebe88260539bd4fb1c92f57958af19d8b722dfbd20a766eac066",
+      "task_sha256": "f5e3bb3cfbf20146f0d2728271588cd8cc08e6da728878e20c77726eaa9063b0"
+    },
+    {
+      "item_id": "hocur-factuality-0033",
+      "provenance_sha256": "9c1e3596b97358cdc129cf81fdf1b3e2a15d6882a1543e1b47785bb56d1830f7",
+      "task_sha256": "2f9f105f7064f93f58432ca3356d834b5377df2eae1255db0809213325b2aa85"
+    },
+    {
+      "item_id": "hocur-factuality-0034",
+      "provenance_sha256": "b6ce6e6977345a35adf93f28bc4dea2fc92d37f6e0825e2c82382b5d652e50c1",
+      "task_sha256": "f83ead56dc6afecf724146bb7b5886d580c6b229884de23e6d40871737e0b2d9"
+    },
+    {
+      "item_id": "hocur-factuality-0035",
+      "provenance_sha256": "4f3904f86eb615638527b10324e1e4a73ebae679813ddeb4dbaf776f2f1c8aa8",
+      "task_sha256": "996975900cb288a286d0783ee790b370840642d45b077cc530f182f62f417c31"
+    },
+    {
+      "item_id": "hocur-factuality-0036",
+      "provenance_sha256": "241684798329a2f83b6ddf07dc8479840fa41cee1c6f61f9f31d480a67b90228",
+      "task_sha256": "3e483bd64b14bea577cb4fb5ad6bdc867e57b812315858f78f23177bc8c445f0"
+    },
+    {
+      "item_id": "hocur-factuality-0037",
+      "provenance_sha256": "9a9c0cbaf31b3c6be7b54bb705cab88e39f5a8fea06b71775c31d19809a32b67",
+      "task_sha256": "b5394cd9570aee63172aeef4f718bf4c7cfcc05a1e3bebef1880f994e12a89d9"
+    },
+    {
+      "item_id": "hocur-factuality-0038",
+      "provenance_sha256": "0cb90c7506eb375bc50dbed63adb56b565d60ae1521c01a07adb3a2af61a5267",
+      "task_sha256": "a11c0c6be6a3aa3a4d83e6eb6b1f9e799dc3b5b71264fb3fe5f22e5781a0e75f"
+    },
+    {
+      "item_id": "hocur-factuality-0039",
+      "provenance_sha256": "3e4e85d55b7b2091a92f48d39eb5b1ca5f244037d4c7670e569c6d42dc5b2893",
+      "task_sha256": "0e2660331ce761b3d2fb780976fc44572f0eec0eb79658862372f310d2b43108"
+    },
+    {
+      "item_id": "hocur-factuality-0040",
+      "provenance_sha256": "78eb68e445b7739dc9d39367c0f870c8ecc25bc8a99550f843fc1a9378e59862",
+      "task_sha256": "0d6c503c8f4873568087bdd73f7be8c2b7e1e84e32b8913c51b6fad75dc9b1ef"
+    },
+    {
+      "item_id": "hocur-factuality-0041",
+      "provenance_sha256": "57331df9140861bcf611f7559cbe9291b208bbac268a96fa8f876297af49ed2c",
+      "task_sha256": "a4c5f5e9111c58c4c3030a2de833907b2ff5e8f309b025ed409e84b7c6a39b7f"
+    },
+    {
+      "item_id": "hocur-factuality-0042",
+      "provenance_sha256": "c52ad156cdb6b650d113d7f262c6320c352a3f1846476890a562e72fadce8173",
+      "task_sha256": "645f8b07aba41aa83dde62c59873224132e3d6f70ce0f206304b623a08b6c620"
+    },
+    {
+      "item_id": "hocur-factuality-0043",
+      "provenance_sha256": "8c434d05cbe163948bc520db3a6d486de54e0c090fc2e3ed475e1769e2a2a22d",
+      "task_sha256": "90a1eb27350f380156e7b72a1585ea0cbff5824decb414ad2fcef31ec337b0e0"
+    },
+    {
+      "item_id": "hocur-factuality-0044",
+      "provenance_sha256": "04c15556ebd4a6c64da7825324ec86fe66993365236b831a2a3cd602b05d22f9",
+      "task_sha256": "fc0c7ab0e74fc5d1a88905f94b0a172e0c325a37b667d985d904dd066e2d3a30"
+    },
+    {
+      "item_id": "hocur-factuality-0045",
+      "provenance_sha256": "bd7ce59f94a543757099aea4c466b4278ed3e4679d2793072395107a47b1a71b",
+      "task_sha256": "463a47750f8880f084ac362bc84bf41968aabb7c2ee2d95fe5d2b1bdcb359ed1"
+    },
+    {
+      "item_id": "hocur-factuality-0046",
+      "provenance_sha256": "f0b483a1b957ab50a28c16808d7ac10186fb614f877c37febb897f98fe0667f3",
+      "task_sha256": "5d249e82c9ea14e18975b598a94d4f6a9cfd680d02624d018f8e885ce3cc87ad"
+    },
+    {
+      "item_id": "hocur-factuality-0047",
+      "provenance_sha256": "7ac33d4c51b20fba23776b7d3f4d7c70f5f823b41b1fe536c5f523f66bcd4f5d",
+      "task_sha256": "3e332ff5f3e8704f49bec38e16fb5dc4eea6411d75a96b7bbcee3b448e20b34b"
+    },
+    {
+      "item_id": "hocur-factuality-0048",
+      "provenance_sha256": "34b602d15c3d5b6046495ca6c709c2c2ddd3297cb201465cd49d27b7521887b5",
+      "task_sha256": "b4cc8936303960e9f6da751dd3fb132d272344cd146bc5dfcdae0b40314e3fef"
+    },
+    {
+      "item_id": "hocur-factuality-0049",
+      "provenance_sha256": "ff18c967e69da5d9d57d64977d62f30839767d57e58b63906c954cae93a1496a",
+      "task_sha256": "eb8f998af95d39597b4e8ca0e6ea0d5e1175c6f7471deb7673fb6d2d229f1d44"
+    },
+    {
+      "item_id": "hocur-factuality-0050",
+      "provenance_sha256": "d55c5819cc2420129df858045324a547962e911b1d1b6b0098e1cd78e78137d0",
+      "task_sha256": "4e96fcb5a610990622c2bf5df651b1779d1849fd707a2126c44ac018646520e1"
+    },
+    {
+      "item_id": "hocur-factuality-0051",
+      "provenance_sha256": "833f2a725bee4f6768c55a9cf43b2808ee1dd953639e6b95f68a6ab5d85256e5",
+      "task_sha256": "1e23915bce2008462c828c20c03f700b8ec02e83735c8e263869fb33dea1c15c"
+    },
+    {
+      "item_id": "hocur-factuality-0052",
+      "provenance_sha256": "3b455c4cae798630d156c32061f26700efb95aea63b987b1cdab9a5ee58eeabc",
+      "task_sha256": "b10b43afb839e82e623afe79f80d56dcc6e79231c57f66f0241ed5b627dd6193"
+    },
+    {
+      "item_id": "hocur-factuality-0053",
+      "provenance_sha256": "c5c764f1182ba03b6cbcb7ee94d556c365dcedfe8aa18645dbd518185338420f",
+      "task_sha256": "b345f56986d12c163dd4fba42439c60388dde3d078a8c46924630b8d1bd090c7"
+    },
+    {
+      "item_id": "hocur-factuality-0054",
+      "provenance_sha256": "bbf92761e134dfb6179b5e51a11133502cd595c86e77916d003225c77b7dab61",
+      "task_sha256": "8ffb00724248411b4c0b03dc6cb472d547e28fd5f53457c15c16c5c3b935f8ef"
+    },
+    {
+      "item_id": "hocur-factuality-0055",
+      "provenance_sha256": "26d41ee3dd33912abebfcc746a411f09a756eab767ffcec90bb80d458032623c",
+      "task_sha256": "9a7ac9d70b4e96bef72a0d42d5e75fc2e7fcec493451358924ff9da87da424a7"
+    },
+    {
+      "item_id": "hocur-factuality-0056",
+      "provenance_sha256": "25188e615e56de14aab164dc359bbdd7bab96797a34a0a65d439cdb02e5eeb77",
+      "task_sha256": "8b01d52798b28351224ec56b6a57404b0b94f0859bc20ee48bdb348be2ae8d79"
+    },
+    {
+      "item_id": "hocur-factuality-0057",
+      "provenance_sha256": "0627f02fc4fea1ebec19ec1e1f4973c135ea8e172f6026c383428f4117f64d14",
+      "task_sha256": "3497cfb487031ad9a71962d3a4764055de89d447e714f5abf9871e0a6c28514d"
+    },
+    {
+      "item_id": "hocur-factuality-0058",
+      "provenance_sha256": "01c5fbf8323954d8112560ccb9346d0414a2159802a40a18d6ed034f46db5f03",
+      "task_sha256": "a0245b4701a4468db66b4d3406c8db5863b03d6324d593f09473d6c80976856a"
+    },
+    {
+      "item_id": "hocur-factuality-0059",
+      "provenance_sha256": "432df33f96b63fb58cee8c12159be5f92fd71b31a131d0ece30c980a005bb593",
+      "task_sha256": "158951d7d7523a4f32ee2cb33269d057f5641aaaec7d0a50a23b7ba2ff55a639"
+    },
+    {
+      "item_id": "hocur-factuality-0060",
+      "provenance_sha256": "05f753289e30861c34875cab44b27df51bdf262956e817c4690c1e19632a191a",
+      "task_sha256": "e1a32e1dada36ee7a933752ad719acbbc29c1752277421ad41b1452c62da7050"
+    },
+    {
+      "item_id": "hocur-factuality-0061",
+      "provenance_sha256": "9e2ff27b1c6b35c1269d7eb8efa65c23fd416066e06c86ff28f0582a6aa0168f",
+      "task_sha256": "b803c78b415a7ebf3f7cbec46a474c0153a8c2f4e306036ef6def6be3225acb4"
+    },
+    {
+      "item_id": "hocur-factuality-0062",
+      "provenance_sha256": "9eb5021b1b3996adcecd8639b9ff941a5b2ce4111952402f51ee9da286fbd253",
+      "task_sha256": "3514e3265c733dac495cdd08f32f0c363d983bd950dca3e6b24f86ea62d8c86c"
+    },
+    {
+      "item_id": "hocur-factuality-0063",
+      "provenance_sha256": "272453006cde9abe70f66c2ba7e6425b44dfe9b55365c0ec8d7d44f68329fc4e",
+      "task_sha256": "7120d0b866c6a49d52841840c7e62d2becb75c7ac51f4851490ef677feaf5bda"
+    },
+    {
+      "item_id": "hocur-factuality-0064",
+      "provenance_sha256": "b510bdddd17f4595a51b6441bb291bd3a1ce92d68c12e1fee5e03453c9880af7",
+      "task_sha256": "e660ec70972533784475efa4f0c71c085a55b5ec03af35944df68dbdfb2eedfb"
+    },
+    {
+      "item_id": "hocur-factuality-0065",
+      "provenance_sha256": "ab43968bc77beba5f739b71a0b626a423a0598880088b83f6cc7d65faa1d306f",
+      "task_sha256": "71059aa398cdd15155554ffda92eacd93080b116107cbd1992ac6fe7a7a76e63"
+    },
+    {
+      "item_id": "hocur-factuality-0066",
+      "provenance_sha256": "7f5ebc96f27e1640fa6a3a51383f5096d0c3c3bea9927b39ad4e7975ad8c180a",
+      "task_sha256": "05e5ce2ef6eac8fc3c46df47b68fefa503d550ad3bf2bf8e7a99c0732dafa9db"
+    },
+    {
+      "item_id": "hocur-factuality-0067",
+      "provenance_sha256": "298de73cf327d0712706d37e5229b3f7b7c38839fcc87a0e67f492c33010d19a",
+      "task_sha256": "0fdb87b2d636df4c71c8ff253f62b6fcea7b21ac5d2ffe6e72d68ede29576629"
+    },
+    {
+      "item_id": "hocur-factuality-0068",
+      "provenance_sha256": "528a52fe87bce190cd9e880daf565b711689a5aea51e8c530e05c0f3944f945f",
+      "task_sha256": "bc117eeba259f3fdbf9cf9e0dc8a1f22e1ec1338f81bdb5ed2a03ceeae764540"
+    },
+    {
+      "item_id": "hocur-factuality-0069",
+      "provenance_sha256": "fc71edc97cde5771aaf79494eb863fe265ba850e0f5ed38d435ec781579a7970",
+      "task_sha256": "c10ae62f9b421c7ad957d461dd27863e75f74aefa199b1e9f6ddee91d608827e"
+    },
+    {
+      "item_id": "hocur-factuality-0070",
+      "provenance_sha256": "1fac2e141dfb8aa108e81785f00d60b611fd1f2a467892b828926979302c88b1",
+      "task_sha256": "1530952e2e65bfb12f02c9b82e732dd41876d9b5628b8c1af16b6972ce6568eb"
+    },
+    {
+      "item_id": "hocur-factuality-0071",
+      "provenance_sha256": "75b9f68f6e3b31c4d8b45c24ab79825b750c6d26d9d1bd6711835dcbaee378cc",
+      "task_sha256": "554dd446ad7522119c70fef415144b5150cae4ca93684d19cdcb1ad3849cbb8d"
+    },
+    {
+      "item_id": "hocur-factuality-0072",
+      "provenance_sha256": "6f7cfb409c544c6c73e843abc59c2e70bd90cd2161e0762ac04e08ea4ce32fef",
+      "task_sha256": "36f39e46e1396fd8f4a87b9d7681dbe0f47b57f4e30c89e40bec400675e02750"
+    },
+    {
+      "item_id": "hocur-factuality-0073",
+      "provenance_sha256": "51b24796f3e4bd1782209441db03c4c98b3c353a85636e2da11d1125ea6d8aed",
+      "task_sha256": "2a99faae07c1b07b14671c182a86f8081ee167c396fb46717984f6e602d25ca2"
+    },
+    {
+      "item_id": "hocur-factuality-0074",
+      "provenance_sha256": "e6036e7446ae9a2ba001d79c589cef569784f3af91b334cd9ba917d07f3f2df9",
+      "task_sha256": "f185af634a6b57d1acea68445a0d194acf97ebb0d3216dff55f4a6799c427280"
+    },
+    {
+      "item_id": "hocur-factuality-0075",
+      "provenance_sha256": "b5c1a4dfa4688eb0793d55ce5b77927410519c98901bb6977c4c0224d7ae3ed1",
+      "task_sha256": "e9751d301602e2875c841ffbc0d1b736e9f29b5463c499e29aa868fb7d9d3da4"
+    },
+    {
+      "item_id": "hocur-factuality-0076",
+      "provenance_sha256": "83590121578b357fd05e90ebb285dca13c5c707290c04df9bacd256faf1efe46",
+      "task_sha256": "af4b07457073a4c848c0a34e0278cdf8dbefeff359f8f7be65d9eb833285ccf9"
+    },
+    {
+      "item_id": "hocur-factuality-0077",
+      "provenance_sha256": "2aba96613104af9e77dc2414bfb4a9467a1c32b749c854ba6df77caf804cc3ab",
+      "task_sha256": "f9d0ae78f05e48670582537a1ab69ce7ee17c034de418e44e76c5b9337ec8200"
+    },
+    {
+      "item_id": "hocur-factuality-0078",
+      "provenance_sha256": "75031e833ab0b27c77d5b6e798a66a6938fa47c192453e4b58ebb4d2905227d0",
+      "task_sha256": "b03027fb1b6697e4e5f2e5be99759b24f3aa7d631658575314c5c1d346a50665"
+    },
+    {
+      "item_id": "hocur-factuality-0079",
+      "provenance_sha256": "bbd2af052037677f22e03e1523c85ca06cf0d5a808b68db1150f980d460e57cd",
+      "task_sha256": "df3a3edc134dbd335cd2fc1de45e4df3fd7cdd95a514be206b6a43bbe60b6859"
+    },
+    {
+      "item_id": "hocur-factuality-0080",
+      "provenance_sha256": "5b615e3771e5e9b31f935936e1e126d328a813be2d679f5fb2670e933115003f",
+      "task_sha256": "a66befed19825253fdc80306312cc310dfca32cac88b7b13c15927a3dd4d60ba"
+    },
+    {
+      "item_id": "hocur-factuality-0081",
+      "provenance_sha256": "80b886cccc194e15e697850f98d2af8046af60f5c7a754d1e4a00e2c5b0fdac1",
+      "task_sha256": "2669dad5278ccb85b05700d3f21f776473ba17a169ca7c26a52fc944a840d042"
+    },
+    {
+      "item_id": "hocur-factuality-0082",
+      "provenance_sha256": "20c9fae52489460ea3cbeb9bea9c16153895e19ee31bfa30b2a8ed34b47bf292",
+      "task_sha256": "3f47c2fee69310e2a35a0f327409d84d268de544ffe2c3f2e8f76bfe0712e317"
+    },
+    {
+      "item_id": "hocur-factuality-0083",
+      "provenance_sha256": "14dca26751fcd9cae603670a410a2a1941f14eddc92dd8f042cc4595aa049565",
+      "task_sha256": "aaa864c39b79e55b0ac9443d9aa34b981ff8c521fd965c862c68959e01e52120"
+    },
+    {
+      "item_id": "hocur-factuality-0084",
+      "provenance_sha256": "92a4ebb04c7404fb2e5966dfe27a610d7b63b5f7efb1914f35021d6dc6794129",
+      "task_sha256": "b5f4e19881e214bb2656e40ac850eb20055247aa569673fedbfb295e169dfd56"
+    },
+    {
+      "item_id": "hocur-factuality-0085",
+      "provenance_sha256": "f69e5a62d90d08db929309156550afa5fbaf72a66fa7a26f03fb131e8a9d0a8c",
+      "task_sha256": "d122248ea544e8d0e2d7d78541a1c49336d9fa26b0de5fe715cd2853ad68eb27"
+    },
+    {
+      "item_id": "hocur-factuality-0086",
+      "provenance_sha256": "23b00e225a5c21fce08d99b39a55e822170e9de271bea74bbfe6f2b96b13b376",
+      "task_sha256": "89d7eda3fa16da32db8ac0f2a62d8703f04d754b8e2a24ea08982733c917bf2f"
+    },
+    {
+      "item_id": "hocur-factuality-0087",
+      "provenance_sha256": "37f90bed1cec514ad45fa63deeee5d37dafc0326b93314fb0c9caa806a2b14a0",
+      "task_sha256": "c90ede0a7cf5ecdfb575f602f7a1dd94c295652ddd62f6c720fceb2588c0d664"
+    },
+    {
+      "item_id": "hocur-factuality-0088",
+      "provenance_sha256": "3c8b2b1bcd4852ad209dbfa12e103bf1093520ea0daee85942a962dcff57ea90",
+      "task_sha256": "a516465e2b5de3e9c9a97ddd0a9401130d3e813d45090c18a631a6336e4b5328"
+    },
+    {
+      "item_id": "hocur-factuality-0089",
+      "provenance_sha256": "4ef1629cb961d02940f15b17ef50882f542f06e4fcfd527e821120aa6b38e66a",
+      "task_sha256": "7791368ce76f43caf5c6a0da285b51df1236d44cc690d5bb931fca63f789924c"
+    },
+    {
+      "item_id": "hocur-factuality-0090",
+      "provenance_sha256": "ad2d9758af6e494334590532cc886e5ac0b3544a381a8ca2d4fdb5689a1d0412",
+      "task_sha256": "502356a797ab7af63f0125ce634e93a65e55a05d877d1288305f22ed5c6a4fb8"
+    },
+    {
+      "item_id": "hocur-factuality-0091",
+      "provenance_sha256": "03fcf709ea949b667a32ac2d22868454876337c6a88f9a2d687ef4a895c6920f",
+      "task_sha256": "5dfdee493d0e19d68c5e078b635dc7637f5d1573481634cc61965bdb89a6033f"
+    },
+    {
+      "item_id": "hocur-factuality-0092",
+      "provenance_sha256": "174947a7b88e91627c9f69c42ee7b578f17be7f34e728e1e147cf62e80e2ef96",
+      "task_sha256": "fead99f49798cf75cc16b142a7665a1e554ae3687eb858ccab3ede5ae2cbc577"
+    },
+    {
+      "item_id": "hocur-factuality-0093",
+      "provenance_sha256": "1de1210d62b25ece9cc80714aba3b5018d617604561f753d11a821c2dfcb7b90",
+      "task_sha256": "b105e4d4e2d6e375b060d4ed5603726933b6ddc3629dbf92f4fa4b37693bae2a"
+    },
+    {
+      "item_id": "hocur-factuality-0094",
+      "provenance_sha256": "2b7bb1a3fa0f24c0ddd1ec7a530d0799c1f5e13686c6f086c4267b9f71060ae1",
+      "task_sha256": "4acedb34e0bcdbcd89a87dac1ab03be8492cbb8366744b13eefbcf1d756b44ef"
+    },
+    {
+      "item_id": "hocur-factuality-0095",
+      "provenance_sha256": "23b513eeae63d9f8f44a7235886ccf85ae3508f1ae036d473291c3ce6dca238d",
+      "task_sha256": "896c3b51bc42a4270b0258ec8b754c6da3916feed869c6c2783c6caa98b1cd1a"
+    },
+    {
+      "item_id": "hocur-factuality-0096",
+      "provenance_sha256": "3ce9d3d1ae3ebeefd6989c7fe5cb8b9255e6e057ecb7bf8143160cb2d2b731fe",
+      "task_sha256": "d684b01f2305c3534fc952271aeea075c3a830c43e3628d5a69998a0fba5f328"
+    },
+    {
+      "item_id": "hocur-factuality-0097",
+      "provenance_sha256": "d15a6fb3af918dd32bfa3c8f1a7065d54f789dfc575fbcab5d65a6a1482ef1c7",
+      "task_sha256": "924b8b7a3f274d2021009705afa5ccaf56259b10db51b1e88cd1db6e9dfd5059"
+    },
+    {
+      "item_id": "hocur-factuality-0098",
+      "provenance_sha256": "fcfddf0e43c39bd066e48ea0bf8a3ee1e7abb3e10a6d67a5834541495722ceea",
+      "task_sha256": "880089ecedad168a0a475821c7d0382c42ad377eca5862b802221d7bddf5c096"
+    },
+    {
+      "item_id": "hocur-factuality-0099",
+      "provenance_sha256": "01d8707e2c202a44e12e1dd606c3069fe526a0cca670e1cc130e37c8515745b9",
+      "task_sha256": "731b6904fc735c3f3695f88370cd169dec83f6de5fd1736e4dcf462cc3c8c55d"
+    },
+    {
+      "item_id": "hocur-factuality-0100",
+      "provenance_sha256": "f17f14f90cc5f5c6ca196257ce425f77a63086fbf96d48436f130844491db927",
+      "task_sha256": "692f3ef86530094bb6e083936bc32a45519dc069ea570c4e474be543870ba614"
+    },
+    {
+      "item_id": "hocur-factuality-0101",
+      "provenance_sha256": "488bd88e75aec596cc86a65ab96371ba9b720590bd39d2c9c5c159911dab8fd6",
+      "task_sha256": "71bc16c7c2627364e765c9b0bf4f8aa57f3c3c700c1fe7a47e8589ce22a71f94"
+    },
+    {
+      "item_id": "hocur-factuality-0102",
+      "provenance_sha256": "2ce94e307e455e538eb69edace30a86140efb96fa7f1be6bd16230801b633552",
+      "task_sha256": "6651feceab300586182dd6b234163e096a99b893d88f2be854b2a25a7c90a2dd"
+    },
+    {
+      "item_id": "hocur-factuality-0103",
+      "provenance_sha256": "374f70f9e30035866e5eb705ac5263a5483424d202b61ff7950d6453996add41",
+      "task_sha256": "29e605db24a4d7a0aee08a2ab1448669f4e0a4c24c18f4a2c3f94b0e5e7edd59"
+    },
+    {
+      "item_id": "hocur-factuality-0104",
+      "provenance_sha256": "b6ec51670753e2867901d30e2ffe537e2e898f7da1a6e13d0669986756b3ab8a",
+      "task_sha256": "4686fccbe3b33febc67e7f53eb1324b9589116177c134b6091b766b45c674edb"
+    },
+    {
+      "item_id": "hocur-factuality-0105",
+      "provenance_sha256": "6f1adf040eb3f38a3d139891c617765924f9d2725f883692147deed41f3d45d9",
+      "task_sha256": "efa1369ea30674b420c68f669c486272cec3d4fbb04335a7672aee63a72240d6"
+    },
+    {
+      "item_id": "hocur-factuality-0106",
+      "provenance_sha256": "87d01a2c742cd9305fe9eba273a67c4c5e63a4494d97b055a81db24042190c2f",
+      "task_sha256": "5c2ea72dcad67163d2385eedb49487b925c4992404f4ef78861bbe01a0b877dc"
+    },
+    {
+      "item_id": "hocur-factuality-0107",
+      "provenance_sha256": "11b8a7c99ea4bb4c20c878821d443582172ed905c08483f4c485ba4a1207802b",
+      "task_sha256": "ec91ed9f4dc4e25213058be11d0ed79335d580941d72cddab8aecbe8a4393c71"
+    },
+    {
+      "item_id": "hocur-factuality-0108",
+      "provenance_sha256": "09de07a188525c9b1a09a2af703e0f13b40cde6006da276a7560b0edfc15caba",
+      "task_sha256": "f27f09742dd00e9e36d661540893b98922db8256548ceb2eda993d2f7e6a7126"
+    },
+    {
+      "item_id": "hocur-factuality-0109",
+      "provenance_sha256": "6a5eafeeb5aa79613d83b96ff1a2c63897de4c0c909f7cb2b6267db374ea6d67",
+      "task_sha256": "628ab580fbab701ff1ad797943a03173d3186909a3f9d53a5a0bdf91ea7b4311"
+    },
+    {
+      "item_id": "hocur-factuality-0110",
+      "provenance_sha256": "67ee60f050130d12c1ae1f1e0303eafb9e57f917276e34060cab35d29b7f4fe9",
+      "task_sha256": "629e512af566bb63eb420bfc5907c28bb85fc1988ddc4de3b84264c7d2344a43"
+    },
+    {
+      "item_id": "hocur-factuality-0111",
+      "provenance_sha256": "3f15744e9e1a710f795f6c57b54677de4743aa72aa28307a3140ee0d9599d7dc",
+      "task_sha256": "acd374ebbddbb0cff0530b70a1dbc89d2cb00f5c36734e0a6fd538884093d7c6"
+    },
+    {
+      "item_id": "hocur-factuality-0112",
+      "provenance_sha256": "d2b125f543c6702d0d9810cd70072c290ae0cf9af44697631dd0bb02366a13c9",
+      "task_sha256": "8b5dee6c1471d4a20331b25b9af7f77bdf56f7cb3610478f94bd011da6f87279"
+    },
+    {
+      "item_id": "hocur-factuality-0113",
+      "provenance_sha256": "bb6a33d0c4dbd72ca54f135c604aabe7f1fc98d25a085eeae370c6717a75142e",
+      "task_sha256": "c3d329cef94b1032662a6fcdb17e783ad652b7f54b481237073513abe70a2f63"
+    },
+    {
+      "item_id": "hocur-factuality-0114",
+      "provenance_sha256": "50513fe837b1469b7ece0d002ef37551324135b4caa7f69cb6b0a219333e80e6",
+      "task_sha256": "0df25709e884423ad3621f313ca03342c7ff681ca5cf2ff2334d5ccba74d3a7d"
+    },
+    {
+      "item_id": "hocur-factuality-0115",
+      "provenance_sha256": "4303dd84fb2cfb96645559dc39abb6db53a0060f0e210e946245327dc171b1a6",
+      "task_sha256": "7c9a65ea2c504abf58599cabf634157a7f99d2a54ccf2bb125daf90985ebb172"
+    },
+    {
+      "item_id": "hocur-factuality-0116",
+      "provenance_sha256": "fe6314d1ba6454e2d6d28c0aadb9eae35708dfa22ec6af07d548c074f71c8e81",
+      "task_sha256": "53f7815852628f9697e3167e7d0e47a2cedb2891f04c2ad307ba5af811e89de2"
+    },
+    {
+      "item_id": "hocur-factuality-0117",
+      "provenance_sha256": "71deb0cfa2be5444493dc8813a745f792d6180030f647d9048a01a0e6e0d3179",
+      "task_sha256": "cbc3a413d6df8e7fca10a2c44ac9e44f68dc4523522bea4a16a5be28f4ee0708"
+    },
+    {
+      "item_id": "hocur-factuality-0118",
+      "provenance_sha256": "235578dcf90a01a7f829815f3b8abfe5a5405bf3a0456e0c811c2cef36ff67c8",
+      "task_sha256": "2fda5574517d23abbf348c89aaa44f7fdfd182c52b00ccdc2926d2f82dd54c67"
+    },
+    {
+      "item_id": "hocur-factuality-0119",
+      "provenance_sha256": "daa922d07d43685ccd7d9329586f254bb45c8f5e271011dd5734df3359de3eab",
+      "task_sha256": "058ca724ac4041780d20da614110db7d8461e4cfc95e281476b24fc92fd0b6a2"
+    },
+    {
+      "item_id": "hocur-factuality-0120",
+      "provenance_sha256": "4be0b1dcf579d2105bae64cfdba53cd403ff0da93c9ea172497b05ce3f6b1a30",
+      "task_sha256": "d173485f6363c759426fef3c31be0623c198ddb71a1800e90c7d3a0b72bd90b7"
+    },
+    {
+      "item_id": "hocur-factuality-0121",
+      "provenance_sha256": "208357bb34f93fd99e3c8c7f3c42f88d9e76cbdbd72b7c1aaa7b2ba8c26842a0",
+      "task_sha256": "fdafb24de24f667700ed4a1750a2c6ebfa0ce178d6892275ee9cc02571fee4c1"
+    },
+    {
+      "item_id": "hocur-factuality-0122",
+      "provenance_sha256": "781d512f889890c1aa321b70051e63ea19d47107f25a6aac900cc8f822520a70",
+      "task_sha256": "7ea5f1d2fbdde541139d9c3ff3494c01be8642bde33d0da311ba7464166eee3b"
+    },
+    {
+      "item_id": "hocur-factuality-0123",
+      "provenance_sha256": "39c75dcee958dc75a363ce0cbaccf899781c374a78df22dbc1c89e35b38fea4f",
+      "task_sha256": "51a55965ac9652c33f8af8fb741ff56e6ae67ec7dce47d4943bab37a31e6f71a"
+    },
+    {
+      "item_id": "hocur-factuality-0124",
+      "provenance_sha256": "d6091034ef6a838b715685e0fbd6c5af69e267be0c32ab68188ec155d6d32dc2",
+      "task_sha256": "f2a3f811b4e154a3c8237f991947eee956688128cdd44f394c6d370a0396dfdf"
+    },
+    {
+      "item_id": "hocur-factuality-0125",
+      "provenance_sha256": "a0354b70cd2dbbe72592272deda75e2c8ce937aee022e9a199273eda6185b4d6",
+      "task_sha256": "2d784c7e7f916d629f70c40e12ca6893bf1c8b7874cf84b9f431c5e6a4f14e7c"
+    },
+    {
+      "item_id": "hocur-factuality-0126",
+      "provenance_sha256": "477871ca7f8d04fdc6bfdce7f3825655bd89659fa7ae0455ac8e23cd425eb1ea",
+      "task_sha256": "3609e25a82a00d7ffd244ae7b757779aed02ab05eb31c1b2cb71b57e5e7c77ac"
+    },
+    {
+      "item_id": "hocur-factuality-0127",
+      "provenance_sha256": "1a4234532412722434070088c248f8e0e308fd263b730ebd89a0c7ccbff93d41",
+      "task_sha256": "12d5c5701a8463d00694943c207faeaf54be218743a1b6c6927742067ce510bb"
+    },
+    {
+      "item_id": "hocur-factuality-0128",
+      "provenance_sha256": "596248988b359c9fdffc50efdc4cf43ea48f2376a800684dd7347c1af5272187",
+      "task_sha256": "d93021c7bf0a3dc335cbbf166427b9febda8a9db520311351c71c6dbc00f0b00"
+    },
+    {
+      "item_id": "hocur-factuality-0129",
+      "provenance_sha256": "cb9d122362cdf28ff1bf2de104bfbec1915bef7d7a313b9a959df1e634412774",
+      "task_sha256": "994b88f7b5074d48778df340d7a4704f27e203c059f38fdae927f90a5f9c8af5"
+    },
+    {
+      "item_id": "hocur-factuality-0130",
+      "provenance_sha256": "792945b164ea0265eb3742189bc2c8f01ed4ebb054c5f57da4c89fe99f34dc3a",
+      "task_sha256": "560518c0ef441d39ca01ce9ad76aeb683472c52bdc29bf53c391b302f15fb7f1"
+    },
+    {
+      "item_id": "hocur-factuality-0131",
+      "provenance_sha256": "cbce5d194cbe0a38d0c8bab79f403db265aee1f676b04aa5c5b12fb89354d475",
+      "task_sha256": "45b098eaa7238aa91617ca2446154a8bffbd05af8ec331ab6bcce188e2a51e96"
+    },
+    {
+      "item_id": "hocur-factuality-0132",
+      "provenance_sha256": "aa7c59e9ecc837e2f469e275841c3abfa847d5db3aaf6f3cecb4f875e9f6db66",
+      "task_sha256": "4fca03b06566927db83f3faa6fad526668e4ed97a7288f3cecd59b67fa27c3cb"
+    },
+    {
+      "item_id": "hocur-factuality-0133",
+      "provenance_sha256": "07f319d2482c98709f8d0676f53ae7c202c45b4ee7c238ee0c3f606aefe33d09",
+      "task_sha256": "4bd72a0c691d51fdb36cf07e339b8b32e67c52a28cc100bbecef80ecaa141a7c"
+    },
+    {
+      "item_id": "hocur-factuality-0134",
+      "provenance_sha256": "c3afe151175168526bc3aa1628c2473ff16761fc060018bae7eec25f88d2b57b",
+      "task_sha256": "7b86dc9676afa90a14c5a82a169f2b1931241eb1701a59fcc11ba238c515adc8"
+    },
+    {
+      "item_id": "hocur-factuality-0135",
+      "provenance_sha256": "0fbf5e16cc99844ff4a7ec421a681d8d6ee376a4500f1fa44e0055a07efdc276",
+      "task_sha256": "ca8e7926ed046b9f6d5932112fc9b5e2c19f3e3293a19579269ff16cef7e31f5"
+    },
+    {
+      "item_id": "hocur-factuality-0136",
+      "provenance_sha256": "2c16a9c05fa8d2d9e5dc95f7867a3521be27f24dc1f9d57ce53533d18404398e",
+      "task_sha256": "a862f3ed37267b3d409d8a8b339a82fab9cf83efd92ac81583cf35a6dc913490"
+    },
+    {
+      "item_id": "hocur-factuality-0137",
+      "provenance_sha256": "06dbd559f61d04ffaf6255373e41e29f7d55f5a1ddfb567e21717502aa3bfa41",
+      "task_sha256": "ef4e9514608d3814cfa34caca90b0d5a17964db49b3e49bf8f4ec43afc21e2b1"
+    },
+    {
+      "item_id": "hocur-factuality-0138",
+      "provenance_sha256": "8926e9694b298b01efcca8542665ffb7f5412d885a96a146b51864c1a7befb6c",
+      "task_sha256": "ea2b0b79d9ee5bbd2498a1b464269fe416434a4ca735fed6af3ab76c28d205ba"
+    },
+    {
+      "item_id": "hocur-factuality-0139",
+      "provenance_sha256": "4f96d8e71ddca4e614971df934207e9f601c3c8028df438b326f7bd33d23fcef",
+      "task_sha256": "af95289ff75344bc49e8cb5b154b76ef6a6d4506fbbcb373d53d85c3240ff2ff"
+    },
+    {
+      "item_id": "hocur-factuality-0140",
+      "provenance_sha256": "6abdc88b3741bc11897241047a9d6cbeee6fef2f4ebe9bd11cef747e6c4bae05",
+      "task_sha256": "37eff3505a36e37975ec0d29d225560ff6681bfa6c28806eb0bb15556aa6ec92"
+    },
+    {
+      "item_id": "hocur-factuality-0141",
+      "provenance_sha256": "f287b9b790655be2b8b686cec8918751f1344822e77c6430caa9a2f5e3839c9a",
+      "task_sha256": "57017a7a695a84087fd42bccf35e6ecdae2878e21416371965693e4fa6ea3ee0"
+    },
+    {
+      "item_id": "hocur-factuality-0142",
+      "provenance_sha256": "8927ebf48b28a5549770d43b77805dbd1ece545a939edf91875d954bec9acc8f",
+      "task_sha256": "6e89a249eefb7ba63aa8510049579726199abc143623fd69ec0d00d030f176c3"
+    },
+    {
+      "item_id": "hocur-factuality-0143",
+      "provenance_sha256": "85601f2bc4991aca62c75a51ee4aa0802fb905d42daa42c3bee9351c2b5bd3ea",
+      "task_sha256": "95773669ccd42b64bd97cbd613949da9a4997d7c52aa7cc15d6f806487142565"
+    },
+    {
+      "item_id": "hocur-factuality-0144",
+      "provenance_sha256": "5deaf16c863a7195d13942d534342363b4ddffc721f71aca0f434705dbcc7273",
+      "task_sha256": "2912542889f58a9b497ba877358cb882e104ee49929d57c606edd459b7ba7395"
+    },
+    {
+      "item_id": "hocur-factuality-0145",
+      "provenance_sha256": "182de2e0421ca93b3e7d84b9e155f4b66848bc40b5d8dbbb4a77f9bd274c9024",
+      "task_sha256": "5d1c3af0faa4b339d60238f9fccdde189f84f199c013e814676151abefca9cd4"
+    },
+    {
+      "item_id": "hocur-factuality-0146",
+      "provenance_sha256": "26da4ce2c32eb0eaa13499ef03764c97a56790ed72f0949390c508e75b547996",
+      "task_sha256": "f5e6306bfeaf63c74aba66479d31ebf09c2b22b3fe7b3fe7bc368824da8bc2d6"
+    },
+    {
+      "item_id": "hocur-factuality-0147",
+      "provenance_sha256": "d7adbdab4627eeca6f1ac5cb2c4c37639f75b882d59fc6bd428632b0bc2f2438",
+      "task_sha256": "4760bf417c9e733c696f269929e79638faca7f3130240fbc1fe42b17b8a53788"
+    },
+    {
+      "item_id": "hocur-factuality-0148",
+      "provenance_sha256": "9a17078b430b99e4a7cf60dfc9cc819e11578a9971a9070fd8b69a13120be05a",
+      "task_sha256": "6e320cf33a0c67b78ae99d8ae85f0c044f1b772d3ecd04741558809f6e4873ec"
+    },
+    {
+      "item_id": "hocur-factuality-0149",
+      "provenance_sha256": "a304509f9f9c21e90c01c400b7c90faf05c022ac894908a4a71a14e75f85175c",
+      "task_sha256": "ade357abf1e1dd47ba80379a0f6126bc0b9d904ba748271697d640e83114b79e"
+    },
+    {
+      "item_id": "hocur-factuality-0150",
+      "provenance_sha256": "8029b8d9cca0801d4ae4701fd2b47c5eadc23a5662b83b5e0ddfcfbcb6ad65e0",
+      "task_sha256": "e062318d0e957a99d926724ab586ea27126f0621bd9bdd340386b7d349a7cb97"
+    },
+    {
+      "item_id": "hocur-factuality-0151",
+      "provenance_sha256": "dea1c7949f7aa050e5f45e54b34184387144bf075341cbc4d3c9f490a149f6a1",
+      "task_sha256": "82ca242d173e0932cb98bf15215b75969648f71055e755f9d8909c7b7bcd9efe"
+    },
+    {
+      "item_id": "hocur-factuality-0152",
+      "provenance_sha256": "5000ee71def0694d38dcb3e17cffe91990f079663983e84b1bf2ce99ff9b1294",
+      "task_sha256": "ab0064ffbc45b4bfd32b0215e8753557fb3888e750d01109a3e39953be790c87"
+    },
+    {
+      "item_id": "hocur-factuality-0153",
+      "provenance_sha256": "5442319e9a1bcee245087ac7b3701da7da996a41618169ca608770709f6aaff2",
+      "task_sha256": "7cde37ea656c6fd718901c2148d987b196f37c7e5a77525d70c6cabe71bfe4ad"
+    },
+    {
+      "item_id": "hocur-factuality-0154",
+      "provenance_sha256": "52996a40b4b775570520b66984a7308ae2e4b886202ac38a33f1c04d9184ce52",
+      "task_sha256": "95168510af7276f40d765c7d032605c90136e057c56aa1c1dd28ca27c50acc88"
+    },
+    {
+      "item_id": "hocur-factuality-0155",
+      "provenance_sha256": "4090b96bba900f4350b4b42934cd17ecafad32e37d7dfb57d4507422680a06c7",
+      "task_sha256": "b5503a2e1e2645d7fe818d7183019f35c3bf6e49699290f5c13ed95dec9bdee0"
+    },
+    {
+      "item_id": "hocur-factuality-0156",
+      "provenance_sha256": "bf831b37280c638bf8bb78c4fbb461e4275cf3cfdac292c5d962b6a676f95b21",
+      "task_sha256": "f9271d384965febfca36147083ab8ae67a5522cef56947a7bd80dbc863a68938"
+    },
+    {
+      "item_id": "hocur-factuality-0157",
+      "provenance_sha256": "426cddeabc5eda927a8f20b299e9a84b63a3d0733875c242f4df921202014a55",
+      "task_sha256": "fb3a30f851c1805c08da0a8086329112295a072933fec83dac3850e86fd672e4"
+    },
+    {
+      "item_id": "hocur-factuality-0158",
+      "provenance_sha256": "cc4901441c1d9999c96f6b37ef177a7dc0c4bb43fdf4a38f231b58e0477db9c1",
+      "task_sha256": "e51a0edeae825181e2948427f8fe6299e93af55522ab5599a3e2c8f782437f9b"
+    },
+    {
+      "item_id": "hocur-factuality-0159",
+      "provenance_sha256": "8b37c1fff2b677e0d88950eae27262f9232fd2a3b2a0ca64a3482dc2f0990b7e",
+      "task_sha256": "69e32a32d26993c466001f86cda67ac84c41927f9f9575ebff70a6dba56877b3"
+    },
+    {
+      "item_id": "hocur-factuality-0160",
+      "provenance_sha256": "871bfeb3f6250ade96ccddebedd582a917483e59c7c24558e07100ee9fe583b1",
+      "task_sha256": "beb1d261704e440eb9d437b4f8d48a7386b36fdda63d37fc75fa5089a5618bfd"
+    },
+    {
+      "item_id": "hocur-factuality-0161",
+      "provenance_sha256": "5024b1113ac8e7235fa5564f29a112cd03a92af2a0a6982c3cdd3c734fa58fda",
+      "task_sha256": "ec9a24d94a441e52f97c82ada4994527f58b0240499301444848b43b489ad3ee"
+    },
+    {
+      "item_id": "hocur-factuality-0162",
+      "provenance_sha256": "201876631c54af8a70f8e07dced226ea35c5c7398f7c61007a986b4f93519f4b",
+      "task_sha256": "e3d4b9e21d400bfdc23f2122acc1d7e42f1fbf9790858ba3ef85810909fab8ba"
+    },
+    {
+      "item_id": "hocur-factuality-0163",
+      "provenance_sha256": "001bd66375a20fd7f4079f0846f30f3a087724e824bbbe328d4e7be9937a7d30",
+      "task_sha256": "f7cbe510014c11a317926a55f85e7ab654818963be2a2094e35b3f2b4016cc97"
+    },
+    {
+      "item_id": "hocur-factuality-0164",
+      "provenance_sha256": "12626c0677ec5a4087b4f0f776a84ab27fa96d65e44178a650a4b3192d783452",
+      "task_sha256": "cbe2c2f1bc2ed11966640151496f519c044d7afb6d480feeea5fe22527642264"
+    },
+    {
+      "item_id": "hocur-factuality-0165",
+      "provenance_sha256": "8d5021c18df48e5f9ad181dc8ea98bd8fd1f7fe371bd9ea2ed34c70689e9c3e1",
+      "task_sha256": "069880eb7687c99515de2161a926e70925a4ddd2ffca70ecdffa8af6c3baffe7"
+    },
+    {
+      "item_id": "hocur-factuality-0166",
+      "provenance_sha256": "fe610e6f857502d5a58a3727ca630cf1d8da9d38e66b9a524733d6843f141f4b",
+      "task_sha256": "a190469699b768bb9e35537ca8e147c2d16c12825d99a9df50d6b7c38f77a03f"
+    },
+    {
+      "item_id": "hocur-factuality-0167",
+      "provenance_sha256": "a6bbd137bd23ffce3d3499fcf608a792c3510fbc350b90d7436fcab5c1e798d4",
+      "task_sha256": "752ea6ee043845c1d08490c78a33768c77c68ce40a25cd3bce82e6bea07dff0b"
+    },
+    {
+      "item_id": "hocur-factuality-0168",
+      "provenance_sha256": "a59d3e7916bab2306019f34dc49e343ce942ed0df625f38da407347c8e4a8c02",
+      "task_sha256": "1372f34a1d90463599d939dd22ffae085b706984c69932cdba8b89fa3ff2b668"
+    },
+    {
+      "item_id": "hocur-factuality-0169",
+      "provenance_sha256": "394868aac5ebda88b14208b4d5f44e8d12510cd54ca5f41f5a58876cdbc7241c",
+      "task_sha256": "ed5dbfb8e4962e9422dd35858cb07d15d6aab171d51affc4ac19e9fb158e8b4a"
+    },
+    {
+      "item_id": "hocur-factuality-0170",
+      "provenance_sha256": "9534e888c32799a036d163cc27571a45452a6818fa4fd7b782c566b3e94a4d0f",
+      "task_sha256": "d2b1c49c61730ce6c05d018abb7682f760ae02673ef9863d23d5fcf382709228"
+    },
+    {
+      "item_id": "hocur-factuality-0171",
+      "provenance_sha256": "415ea6146ef0b6abb5f10cb0c80c84af2407c7c4d0d22126aa9f9cb0aa52166c",
+      "task_sha256": "292f9347478f16d1bef6d66e9bdb60a58f73c27463552fdd772b3dc95fe003cc"
+    },
+    {
+      "item_id": "hocur-factuality-0172",
+      "provenance_sha256": "692af52913c776b8da9166ad52532726f06a72b51ea9bf82a709d3a881be126b",
+      "task_sha256": "f8d5b58d9cdc3b78c037ea29ede414102399d37325822fe24669809fe3f0516f"
+    },
+    {
+      "item_id": "hocur-factuality-0173",
+      "provenance_sha256": "d79aeb1ca59083fc3b81ae98bb3f4bc8ed61eecfda6910d908ace21770d67b77",
+      "task_sha256": "ec86536e80c150f8f1da7d262b80c2c90052400b267a1245cda000c3a28e2db0"
+    },
+    {
+      "item_id": "hocur-factuality-0174",
+      "provenance_sha256": "73c59adb3ebf865dec80ba3cd861435ae98ccfe815aeff53fa26798ec029e994",
+      "task_sha256": "dd0854b4b21c290bec43b2e19492c5b2575449be4f6584867db3ccbe81e2e55a"
+    },
+    {
+      "item_id": "hocur-factuality-0175",
+      "provenance_sha256": "65e990efb781f869e1bace7ccd411b08cc9995604099e4abbf42ed4067bb346f",
+      "task_sha256": "6052a29bb2966dcf009b5fd4f23e1cdd47619654b11ebe8c1b0ac79447b21594"
+    },
+    {
+      "item_id": "hocur-factuality-0176",
+      "provenance_sha256": "ac9ea1eee2bdab6f98fb8d6dadedf52f12c288eb6aaa79ff1142aacfbdfc7a81",
+      "task_sha256": "2354fa6ae8dc3bb62f3419bf0dfddd810f9e46067a727bae19f33776b303b047"
+    },
+    {
+      "item_id": "hocur-factuality-0177",
+      "provenance_sha256": "d7de7b574082ba7ebbe273b0524a8a83451b24c2556d4c50fb471b33ccee5603",
+      "task_sha256": "eb707cfe89c0816f5cb0df689ccde6ff5ec56e44585c9c18d5e357cc237e3322"
+    },
+    {
+      "item_id": "hocur-factuality-0178",
+      "provenance_sha256": "cf41e457d7de0df7614ce7411e35a36ef545379711b0bc33a5a45262b008cc7d",
+      "task_sha256": "3e3aa7a45084c8e70bd598f7f95366be6b1593dcc4574ab4e8d8c1220acdd3b7"
+    },
+    {
+      "item_id": "hocur-factuality-0179",
+      "provenance_sha256": "8a169def983e15561fc2a24d960755103093d8f7a119f68cc1d4840f003ab151",
+      "task_sha256": "1f3b9f56a2995c1344b50d1d91f3ed7ea2fdc937e9ca36626c198cfeaffe43c6"
+    },
+    {
+      "item_id": "hocur-factuality-0180",
+      "provenance_sha256": "12ca2ff8d92984d3215db7a098647d1cac31e266d262ed633ad083d49ac23fbb",
+      "task_sha256": "3f29501f72bc40d8e9004c4b1d69d82dbe0a701d84a18943f97bf18ac90cd92b"
+    },
+    {
+      "item_id": "hocur-factuality-0181",
+      "provenance_sha256": "5946e391e1119b33f4dbe26d8b123a63245dd37644fc1e85fd2f0ecd46b68bea",
+      "task_sha256": "9de0eaaf1e803142be788e9a3e781cb04d7f0a606a946093ff9834deea3602cc"
+    },
+    {
+      "item_id": "hocur-factuality-0182",
+      "provenance_sha256": "857f196c6d92ff36ef75a9055c7b6fbc94599fd7574fa1b6efa0513e30a7c322",
+      "task_sha256": "b1150cec93b715aefd9ce519eabdf984c9347faa37473712ee2a6e131f4782a0"
+    },
+    {
+      "item_id": "hocur-factuality-0183",
+      "provenance_sha256": "fe9c315caf99ebd0e2121d15b8b512bcb65cd98d03cd521b375d37aff1bdd28a",
+      "task_sha256": "56e4b86e37100449b8e390c137dd96136522d7cc4b2f54a7630497f33c0d5b78"
+    },
+    {
+      "item_id": "hocur-factuality-0184",
+      "provenance_sha256": "56e8b71fb9fa9f6dddd3041ebe22ea2ac6dba91c65753d04515ac143f8048b0e",
+      "task_sha256": "944e04c3083e169eb2523ed1bc1a3cf45935fb266dc4f8e2aa0fa227e2a559ba"
+    },
+    {
+      "item_id": "hocur-factuality-0185",
+      "provenance_sha256": "f1af7984dab42f75473868f285e6c6017a227a6b15a39e595af4207b6f261e38",
+      "task_sha256": "75860ca2c5453899ef0e75aa8fc7527e2eb7b3ca6d47823daf25f4be8c6438d4"
+    },
+    {
+      "item_id": "hocur-factuality-0186",
+      "provenance_sha256": "0615ab43f44c628441f9c87d8e4eacc982eef88a1864b797edab9419ef161475",
+      "task_sha256": "93a913d22a8b798a8ad05743c733c9bd3fc82d3b9d46e2b256b4677fd9ac85a4"
+    },
+    {
+      "item_id": "hocur-factuality-0187",
+      "provenance_sha256": "8b72b6f5732c15d57a277d956902b0e86da0b0aaf73ba76d7c35dbbab5930a59",
+      "task_sha256": "c1c582e37d1968e7b85b9979f995cf4c0d9165591b1db4fde25d4c37b6563070"
+    },
+    {
+      "item_id": "hocur-factuality-0188",
+      "provenance_sha256": "aa209c2aac9dc86e1fc1771aa7c21fa9097a483e3ea0142be75ba57c83adf254",
+      "task_sha256": "9646d72baf9d053c4f5df794083b17fba2be1cf373f564069cdc8b5ef8d499c0"
+    },
+    {
+      "item_id": "hocur-factuality-0189",
+      "provenance_sha256": "4d093db41237b4eca92ffb440f8e4fa1e1b12dc74d6fcad9a598079304e14e5b",
+      "task_sha256": "4e43ee7152117ac449f6bcc5e39c9cdbfbafe20145b65fd27e9fb2f391447682"
+    },
+    {
+      "item_id": "hocur-factuality-0190",
+      "provenance_sha256": "6e62d29e5f69ec21f51062caa42e64284e31dfbca9551c1b92f822056d30e681",
+      "task_sha256": "7a7922e5fe91449f2908c121733755af9a9c7b11d82da4a305edfcefa7a698b3"
+    },
+    {
+      "item_id": "hocur-factuality-0191",
+      "provenance_sha256": "bd88756e4791cffeec33126d575bcdc479af4b10ffe6b21ce7c28651ee10b5f1",
+      "task_sha256": "27548c7e77a37485b8d923c39a3c39e3b515218c91fc9800d0009e951c1d43fa"
+    },
+    {
+      "item_id": "hocur-factuality-0192",
+      "provenance_sha256": "b9dc4b85e382516546078a646de9547da50e7aa85a6dcb5df48e3c957b5ad310",
+      "task_sha256": "f4de0fa52a027963473a934730b7bd8453f4a9b18616dd9034e5c9dde96ed8c7"
+    },
+    {
+      "item_id": "hocur-factuality-0193",
+      "provenance_sha256": "d6f0b2a5bbfdb66fc8da7d98e623fa9521265e0bb2b2e08363173158f475d7d8",
+      "task_sha256": "ebf1530a98dd5b55f63d74df5cbd72cdd7c511187c1ceb6befcc4d50bf912088"
+    },
+    {
+      "item_id": "hocur-factuality-0194",
+      "provenance_sha256": "804c2bb42a1db05076525f9c854b0e5143d2e7741d4d3a1cabd630a965b15715",
+      "task_sha256": "9c328b8e786c7a0a1c3bdbb65cd0d9cb7aa611f65a5170618617a7b23559e9dd"
+    },
+    {
+      "item_id": "hocur-factuality-0195",
+      "provenance_sha256": "0c57f1a2ebd7026381ba00fe9322ab5a2eeed3e5e8830501165f5eb7406f25d2",
+      "task_sha256": "587c087d70c8084a5c9ca2a196b442f728889607dcb09cf6028d76747e35ee91"
+    },
+    {
+      "item_id": "hocur-factuality-0196",
+      "provenance_sha256": "ec16d4e9d15d5594543c194bd3437458e52fbee3efb5ab8a30be4941dc3faa82",
+      "task_sha256": "09ae2f26143d30a6c562841f64b3dd90ad942b274bee80a7f3d2e3ab61e2a82f"
+    },
+    {
+      "item_id": "hocur-factuality-0197",
+      "provenance_sha256": "d09d5f27c41381fe8366dcb9a275a74e7c1cb4c5095542197353a684393b2bc0",
+      "task_sha256": "aa8271ca6e5b966d8760a67cb31872f637a7e3253c1c28819ea20a308713cc50"
+    },
+    {
+      "item_id": "hocur-factuality-0198",
+      "provenance_sha256": "b7f8fb489a7e5caa559016c4cd8a599d7c4e4588cc1ab4a0329ef3f1d6ced573",
+      "task_sha256": "741bf92fdb7057e26617f0afa4ac75bcd8f72b198be49729df47c96040af8f79"
+    },
+    {
+      "item_id": "hocur-factuality-0199",
+      "provenance_sha256": "418b13fabcf98a414f6d12ad06f0f085cf20d82132326eb53ec4948ec03fccb4",
+      "task_sha256": "c6b3870280628ae4ef8abc34bf879fb72916017697ba4e4b00d5f51876aee89d"
+    },
+    {
+      "item_id": "hocur-factuality-0200",
+      "provenance_sha256": "967ee9a2f32da294ef437460d9c127c2bbac11dfac683818b21e5b2078210fc6",
+      "task_sha256": "5b7938741f5dc05ae9b5365df66e2778ab73cb507cc5aae90dd4b7b2c175a0b7"
+    }
+  ],
+  "payload": {
+    "byte_count": 156610,
+    "path": "evaluation/candidates/vasu_140m_base_v2_heldout_curator_v1/factuality/payload.jsonl.age",
+    "record_count": 200,
+    "sha256": "693134d7b4628e63c2415d3f28f93597ea0ec5a53a9fba3ac08071e6c96487cc"
+  },
+  "production_suite_frozen": false,
+  "provenance_index": {
+    "byte_count": 139800,
+    "path": "evaluation/candidates/vasu_140m_base_v2_heldout_curator_v1/factuality/provenance.jsonl",
+    "record_count": 200,
+    "sha256": "d4631bbc3dc0541eee14a3a9ed992bdd4c512ddf66887cc6fbea259074fe860b"
+  },
+  "repository_commit": "08d34598dd103686be50b6121b80f88b63d05e64",
+  "schema_id": "vasu_140m_base_evaluation_inventory_v2",
+  "scorer": {
+    "path": "evaluation/framework/vasu_140m_base_v2_tasks.py",
+    "sha256": "7777bd7d6a488c21e3937b5b05e1e46153e7fddbcb67784c47dc9e53a5087bf5"
+  },
+  "split": "held_out",
+  "suite_id": "vasu-140m-base-evaluation-v2-curator-candidate-v1",
+  "tokenizer_sha256": "04942e101a4a01f87f7e492ad9e463d299a559e784b650fdedd1763a017d195a",
+  "training_authorized": false
+}
