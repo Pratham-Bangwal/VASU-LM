@@ -1,0 +1,16 @@
+{
+  "age_available": true,
+  "ciphertext_created": false,
+  "evaluation_run_authorized": false,
+  "implementation_sha256": "63d36558d4e5c1b4438b1f7f2736cea35ace07d77dac319d4d3fe2e4dfd72398",
+  "intake_receipt_sha256": "9c77388dcff102e675f048fd294e04df7fa48520b81d98ddb06d9113ab7f5bf1",
+  "intake_report_sha256": "a568cc5627cd84a1d6989ae832cdd017edd6fb94011b3874f0ef2a5ed043928d",
+  "private_key_opened": false,
+  "production_suite_frozen": false,
+  "recipient_fingerprint_sha256": "3413c58d2dae91a9c253642aba8583923af3fcd5d02893ad940ca6f21b5bd2da",
+  "record_count": 1500,
+  "schema_id": "vasu_140m_private_curator_sealing_qualification_v1",
+  "sealing_invoked": false,
+  "tests_sha256": "ab47096f4716863cfc69d0325079fd194e168822348391fca2e823f27ffda28e",
+  "training_authorized": false
+}

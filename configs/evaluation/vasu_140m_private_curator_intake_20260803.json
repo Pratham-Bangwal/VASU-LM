@@ -1,0 +1,49 @@
+{
+  "development_overlap_count": 0,
+  "evaluation_run_authorized": false,
+  "files": {
+    "arithmetic": {
+      "byte_count": 846691,
+      "filename": "arithmetic-heldout.jsonl",
+      "record_count": 1000,
+      "sha256": "a546ee8242ba34e81ce31bdd3c05b8ab7311178fa84731cdce1fdd35a4f632d4"
+    },
+    "factuality": {
+      "byte_count": 200378,
+      "filename": "factuality-heldout.jsonl",
+      "record_count": 200,
+      "sha256": "2b3f20fa07cc2ffe5597377a64b994dddcff1287045b53cba22c42b700d4f9a3"
+    },
+    "manual_review": {
+      "byte_count": 57077,
+      "filename": "manual-review-heldout.jsonl",
+      "record_count": 60,
+      "sha256": "5e1c71717f22bc9b2c66b2aad79e4b9e320cf4fdf429655358205cc79ab3df4f"
+    },
+    "repetition": {
+      "byte_count": 113372,
+      "filename": "repetition-heldout.jsonl",
+      "record_count": 120,
+      "sha256": "39b54ad4c9364898d01ec8ad42ce1e03f093e858a4e83cabdee414979d531aa6"
+    },
+    "robustness": {
+      "byte_count": 112472,
+      "filename": "robustness-heldout.jsonl",
+      "record_count": 120,
+      "sha256": "b09c6677341eb62d20c12de9c80e136a74f39ee4d453334a5fbdce5979d42e1f"
+    }
+  },
+  "held_out_opening_authorized": false,
+  "plaintext_copied_to_repository": false,
+  "private_key_opened": false,
+  "recipient": "age1x25qdaeysrwvqq6wrnqag4g9agkqdz39e26l3k52ct4320ppys7quv9zqm",
+  "recipient_fingerprint_sha256": "3413c58d2dae91a9c253642aba8583923af3fcd5d02893ad940ca6f21b5bd2da",
+  "report_sha256": "a568cc5627cd84a1d6989ae832cdd017edd6fb94011b3874f0ef2a5ed043928d",
+  "schema_id": "vasu_140m_private_curator_intake_v1",
+  "total_records": 1500,
+  "training_authorized": false,
+  "unique_item_ids": 1500,
+  "unique_parent_documents": 1500,
+  "unique_prompt_commitments": 1620,
+  "unique_semantic_families": 1500
+}
