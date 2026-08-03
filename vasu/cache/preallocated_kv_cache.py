@@ -43,7 +43,9 @@ class PreallocatedKVCache:
         self.dtype = dtype
         shape = (n_layers, 2, batch_size, n_heads, max_seq_len, head_dim)
         self.storage = torch.empty(shape, device=device, dtype=dtype)
-        self._layer_lengths = [0] * n_layers
+        self._sequence_length = 0
+        self._next_layer = 0
+        self._pending_end: int | None = None
 
     def _validate_layer(self, layer_idx: int) -> None:
         if not isinstance(layer_idx, int) or not 0 <= layer_idx < self.n_layers:
@@ -66,13 +68,21 @@ class PreallocatedKVCache:
         self, layer_idx: int
     ) -> tuple[torch.Tensor | None, torch.Tensor | None]:
         self._validate_layer(layer_idx)
-        length = self._layer_lengths[layer_idx]
+        length = self.layer_length(layer_idx)
         if length == 0:
             return None, None
         return (
             self.storage[layer_idx, 0, :, :, :length, :],
             self.storage[layer_idx, 1, :, :, :length, :],
         )
+
+    def layer_length(self, layer_idx: int) -> int:
+        """Return one layer's populated length without constructing views."""
+
+        self._validate_layer(layer_idx)
+        if self._pending_end is not None and layer_idx < self._next_layer:
+            return self._pending_end
+        return self._sequence_length
 
     def update(
         self, layer_idx: int, key: torch.Tensor, value: torch.Tensor
@@ -84,41 +94,50 @@ class PreallocatedKVCache:
         self._validate_tensor(value)
         if key.shape != value.shape:
             raise ValueError("key/value shapes must match")
-        start = self._layer_lengths[layer_idx]
+        start = self._sequence_length
         end = start + key.size(2)
         if end > self.max_seq_len:
             raise ValueError(
                 f"cache capacity exceeded: requested {end}, capacity "
                 f"{self.max_seq_len}"
             )
-        other_lengths = {
-            length
-            for index, length in enumerate(self._layer_lengths)
-            if index != layer_idx and length != 0
-        }
-        if other_lengths and not other_lengths.issubset({start, end}):
+        if layer_idx != self._next_layer:
+            raise ValueError(
+                "preallocated cache layers must update in model order; "
+                f"expected layer {self._next_layer}, got {layer_idx}"
+            )
+        if self._pending_end is None:
+            self._pending_end = end
+        elif end != self._pending_end:
             raise ValueError("inconsistent per-layer preallocated cache lengths")
         with torch.no_grad():
             self.storage[layer_idx, 0, :, :, start:end, :].copy_(key)
             self.storage[layer_idx, 1, :, :, start:end, :].copy_(value)
-        self._layer_lengths[layer_idx] = end
-        return self.get(layer_idx)  # type: ignore[return-value]
+        if layer_idx + 1 == self.n_layers:
+            self._sequence_length = end
+            self._next_layer = 0
+            self._pending_end = None
+        else:
+            self._next_layer = layer_idx + 1
+        return (
+            self.storage[layer_idx, 0, :, :, :end, :],
+            self.storage[layer_idx, 1, :, :, :end, :],
+        )
 
     def reset(self) -> None:
         """Reset logical lengths without reallocating backing storage."""
 
-        self._layer_lengths = [0] * self.n_layers
+        self._sequence_length = 0
+        self._next_layer = 0
+        self._pending_end = None
 
     clear = reset
 
     @property
     def sequence_length(self) -> int:
-        lengths = set(self._layer_lengths)
-        if lengths == {0}:
-            return 0
-        if len(lengths) != 1:
+        if self._pending_end is not None:
             raise RuntimeError("cache layers are only partially initialized")
-        return lengths.pop()
+        return self._sequence_length
 
     @property
     def allocation_bytes(self) -> int:

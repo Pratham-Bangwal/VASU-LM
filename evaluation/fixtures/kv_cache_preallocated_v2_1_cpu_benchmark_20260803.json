@@ -1,0 +1,33 @@
+{
+  "schema_id": "vasu_preallocated_kv_cache_v2_1_cpu_diagnostic_v1",
+  "date": "2026-08-03",
+  "baseline_commit": "84c8a936cc5865e6dc540fc9aa1b204e7ba0ef10",
+  "cache_implementation_sha256": "e4ac086f32c3f4491357af5384b64fb00db15ec46839ab64df633c2bc0402836",
+  "attention_implementation_sha256": "30e582dd5a375bb025f00b214afc553b7193f1c781d4718bd535a819881cff1e",
+  "device": "cpu",
+  "torch_threads": 1,
+  "model_family": "vasu_60m_v1",
+  "model_initialization": "synthetic_fixed_seed_42",
+  "prompt_tokens": 32,
+  "generated_tokens": 128,
+  "trials": [
+    {"trial": 1, "baseline_tokens_per_second": 54.94594649587087, "optimized_tokens_per_second": 56.362684362670244},
+    {"trial": 2, "baseline_tokens_per_second": 56.017056843703934, "optimized_tokens_per_second": 57.83874765013231},
+    {"trial": 3, "baseline_tokens_per_second": 58.18732746377781, "optimized_tokens_per_second": 58.19991571015365},
+    {"trial": 4, "baseline_tokens_per_second": 58.65415744562871, "optimized_tokens_per_second": 58.54162565703679},
+    {"trial": 5, "baseline_tokens_per_second": 58.89370927764572, "optimized_tokens_per_second": 59.32107951388007}
+  ],
+  "baseline_median_tokens_per_second": 58.18732746377781,
+  "optimized_median_tokens_per_second": 58.19991571015365,
+  "median_delta_percent": 0.021633999918058144,
+  "baseline_mean_tokens_per_second": 57.33963950532541,
+  "optimized_mean_tokens_per_second": 58.05281057877461,
+  "mean_delta_percent": 1.2437662315316178,
+  "greedy_parity_tests_passed": true,
+  "cuda_measured": false,
+  "promotion_threshold_percent": 10.0,
+  "promote_to_default": false,
+  "checkpoint_loaded": false,
+  "dataset_opened": false,
+  "training_authorized": false
+}

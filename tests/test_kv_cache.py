@@ -1,5 +1,10 @@
 from __future__ import annotations
 
+import hashlib
+import json
+import statistics
+from pathlib import Path
+
 import pytest
 import torch
 
@@ -8,6 +13,14 @@ from vasu.cache import KVCache, PreallocatedKVCache
 from vasu.config import ModelConfig
 from vasu.inference.generate import generate_token_ids
 from vasu.model.model import VASUModel
+
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def _lf_sha256(path: Path) -> str:
+    normalized = path.read_text(encoding="utf-8").replace("\r\n", "\n")
+    return hashlib.sha256(normalized.encode("utf-8")).hexdigest()
 
 
 class _InnerTokenizer:
@@ -97,6 +110,8 @@ def test_preallocated_cache_reset_reuses_storage_and_clears_lengths():
     storage = cache.storage
     key = _kv()
     cache.update(0, key, key)
+    assert cache.layer_length(0) == 2
+    assert cache.layer_length(1) == 0
     cache.update(1, key, key)
     cache.reset()
     assert cache.storage is storage
@@ -109,11 +124,69 @@ def test_preallocated_cache_rejects_capacity_and_contract_mismatches():
     cache = _preallocated(model)
     key = _kv(length=2)
     cache.update(0, key, key)
+    cache.update(1, key, key)
     with pytest.raises(ValueError, match="capacity exceeded"):
         cache.update(0, _kv(length=1), _kv(length=1))
     wrong_batch = torch.randn(2, 4, 1, 4)
     with pytest.raises(ValueError, match="batch/head/head_dim"):
         _preallocated(_model()).update(0, wrong_batch, wrong_batch)
+
+
+def test_preallocated_cache_enforces_ordered_atomic_layer_cycles():
+    cache = _preallocated(_model())
+    key = _kv(length=2)
+    with pytest.raises(ValueError, match="expected layer 0"):
+        cache.update(1, key, key)
+    cache.update(0, key, key)
+    with pytest.raises(RuntimeError, match="partially initialized"):
+        _ = cache.sequence_length
+    cached_key, cached_value = cache.get(0)
+    assert cached_key is not None and cached_key.size(2) == 2
+    assert cached_value is not None and cached_value.size(2) == 2
+    assert cache.get(1) == (None, None)
+    with pytest.raises(ValueError, match="expected layer 1"):
+        cache.update(0, key, key)
+    cache.update(1, key, key)
+    assert cache.sequence_length == 2
+    assert cache.layer_length(0) == cache.layer_length(1) == 2
+
+
+def test_preallocated_cache_reset_recovers_partial_layer_cycle():
+    cache = _preallocated(_model())
+    key = _kv(length=1)
+    cache.update(0, key, key)
+    cache.reset()
+    assert cache.sequence_length == 0
+    assert cache.get(0) == (None, None)
+    assert cache.get(1) == (None, None)
+    cache.update(0, key, key)
+    cache.update(1, key, key)
+    assert cache.sequence_length == 1
+
+
+def test_preallocated_v2_1_diagnostic_is_internally_consistent():
+    report = json.loads(
+        (
+            ROOT
+            / "evaluation/fixtures/"
+            "kv_cache_preallocated_v2_1_cpu_benchmark_20260803.json"
+        ).read_text(encoding="utf-8")
+    )
+    baseline = [item["baseline_tokens_per_second"] for item in report["trials"]]
+    optimized = [item["optimized_tokens_per_second"] for item in report["trials"]]
+    assert report["baseline_median_tokens_per_second"] == statistics.median(baseline)
+    assert report["optimized_median_tokens_per_second"] == statistics.median(optimized)
+    assert report["baseline_mean_tokens_per_second"] == statistics.mean(baseline)
+    assert report["optimized_mean_tokens_per_second"] == statistics.mean(optimized)
+    assert report["cache_implementation_sha256"] == _lf_sha256(
+        ROOT / "vasu/cache/preallocated_kv_cache.py"
+    )
+    assert report["attention_implementation_sha256"] == _lf_sha256(
+        ROOT / "vasu/model/attention.py"
+    )
+    assert report["greedy_parity_tests_passed"] is True
+    assert report["promote_to_default"] is False
+    assert report["training_authorized"] is False
 
 
 def test_preallocated_cache_logits_and_generation_match_other_modes():

@@ -78,15 +78,19 @@ class MultiHeadAttention(nn.Module):
         past_len = 0
         if cache_mode != "none":
             assert kv_cache is not None and layer_idx is not None
-            past_k, past_v = kv_cache.get(layer_idx)
-            if cache_mode == "prefill" and past_k is not None:
+            if isinstance(kv_cache, PreallocatedKVCache):
+                past_len = kv_cache.layer_length(layer_idx)
+            else:
+                past_k, past_v = kv_cache.get(layer_idx)
+                if past_k is not None:
+                    past_len = past_k.size(2)
+            if cache_mode == "prefill" and past_len != 0:
                 raise ValueError("prefill requires an empty layer cache")
             if cache_mode == "decode":
                 if T != 1:
                     raise ValueError("decode requires query length exactly 1")
-                if past_k is None or past_v is None:
+                if past_len == 0:
                     raise ValueError("decode requires a populated cache")
-                past_len = past_k.size(2)
 
         if past_len + T > self.rope.cos.size(0):
             raise ValueError("attention sequence exceeds model maximum length")

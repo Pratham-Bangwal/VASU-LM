@@ -42,6 +42,15 @@ preallocated-cache greedy generation with exact token-parity checks. On the
 RTX 4050 at 64 and 128 generated tokens, the preallocated implementation did
 not meet the 10% VASU-60M throughput promotion threshold; it remains opt-in.
 
+Preallocated v2.1 replaces O(layer-count) synchronization scans with an ordered
+O(1)-per-layer state machine and avoids constructing old-cache views solely to
+read their length. A five-trial, fixed-seed, one-thread CPU diagnostic at 128
+generated tokens preserved parity and measured +0.02% median / +1.24% mean
+VASU-60M throughput versus the previous implementation. This is a negative
+promotion result: the scalability and state-validation improvement is retained,
+but it does not justify enabling KV caching by default. CUDA promotion remains
+unproven because CUDA was unavailable to the profiling process.
+
 ## AdamW backend benchmark
 
 The bounded VASU-60M AMP benchmark in

@@ -97,7 +97,13 @@ Cached inference has two explicit stages because their masks differ:
 
 Invalid transitions fail explicitly: prefill cannot use a populated cache, decode cannot use an empty cache or a multi-token query, cache-enabled modes require layer indices, and prompt-plus-generation length cannot exceed `max_seq_len`. Cache tensors are validated for layer, shape, batch size, head count, head dimension, device, dtype, synchronized sequence length, and the model context limit. Separate generation calls always create separate caches.
 
-The current implementation uses dynamic concatenation for correctness and simplicity. A future preallocated cache may reduce allocation and Python overhead. Full prompt-plus-generated token history remains available to repetition penalty and sampling even though decode forwards receive only one token.
+Two opt-in implementations are available. The dynamic cache concatenates each
+new key/value tensor. The preallocated cache writes into fixed-capacity storage
+and exposes populated views. Preallocated v2.1 uses an ordered layer-update
+state machine, making synchronization validation O(1) per layer and rejecting
+partially completed or out-of-order model forwards. Full prompt-plus-generated
+token history remains available to repetition penalty and sampling even though
+decode forwards receive only one token.
 
 ### KV-cache benchmark
 
@@ -109,6 +115,12 @@ Preferred checkpoint: `checkpoints/vasu_60m/alpaca_masked_v3_from_200k/best.pt`;
 | 100 tokens | 120.94 tok/s | 119.87 tok/s | 0.0086 s | 0.7546 s | 258.86 MiB | 236.89 MiB |
 
 Dynamic caching reduced measured peak allocation but did not improve average throughput in these short, batch-one tests. The 30-token run was about 4.9% slower and the longer run about 0.9% slower. Correctness parity is established; optimization remains future work.
+
+A later v2.1 CPU diagnostic removed per-layer length scans and redundant old
+cache views. Five interleaved synthetic VASU-60M trials at 128 tokens measured
+58.1873 tok/s baseline median and 58.1999 tok/s optimized median (+0.02%); the
+mean improvement was 1.24%. This is below the existing 10% promotion threshold,
+so cached generation remains opt-in and uncached generation remains the default.
 
 ## Training structure
 
