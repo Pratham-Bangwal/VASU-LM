@@ -1,0 +1,19 @@
+{
+  "development_overlap_count": 0,
+  "dimensions_validated": [
+    "arithmetic",
+    "factuality",
+    "manual_review",
+    "repetition",
+    "robustness"
+  ],
+  "evaluation_run_authorized": false,
+  "held_out_opening_authorized": false,
+  "implementation_sha256": "bd6a000a321e21de781061331c7601934d786ce8bc728098fe08e7f075d777d1",
+  "intake_report_sha256": "7fedbb2ab26307e17429dfa82f794ec8191eb71f46c8f21d63158f0f4b4661ea",
+  "plaintext_copied_to_repository": false,
+  "private_key_opened": false,
+  "records_validated": 5,
+  "schema_id": "vasu_140m_private_curator_intake_qualification_v1",
+  "training_authorized": false
+}
