@@ -1,5 +1,42 @@
+import math
+
 import torch
 import torch.nn.functional as F
+
+
+def validate_sampling_parameters(
+    temperature: float,
+    top_k: int | None,
+    top_p: float,
+    repetition_penalty: float | None,
+) -> None:
+    """Reject invalid sampling controls before tensor operations begin."""
+
+    if isinstance(temperature, bool) or not isinstance(
+        temperature, (int, float)
+    ):
+        raise TypeError("temperature must be a finite positive number")
+    if not math.isfinite(temperature) or temperature <= 0:
+        raise ValueError("temperature must be a finite positive number")
+    if top_k is not None and (
+        isinstance(top_k, bool) or not isinstance(top_k, int) or top_k <= 0
+    ):
+        raise ValueError("top_k must be None or a positive integer")
+    if isinstance(top_p, bool) or not isinstance(top_p, (int, float)):
+        raise TypeError("top_p must be a finite number in (0, 1]")
+    if not math.isfinite(top_p) or not 0 < top_p <= 1:
+        raise ValueError("top_p must be a finite number in (0, 1]")
+    if repetition_penalty is not None:
+        if isinstance(repetition_penalty, bool) or not isinstance(
+            repetition_penalty, (int, float)
+        ):
+            raise TypeError(
+                "repetition_penalty must be None or a finite positive number"
+            )
+        if not math.isfinite(repetition_penalty) or repetition_penalty <= 0:
+            raise ValueError(
+                "repetition_penalty must be None or a finite positive number"
+            )
 
 
 def sample_next_token(
@@ -10,8 +47,12 @@ def sample_next_token(
     top_p=0.9,
     repetition_penalty=1.1,
 ):
-
-    temperature = max(temperature, 1e-5)
+    validate_sampling_parameters(
+        temperature,
+        top_k,
+        top_p,
+        repetition_penalty,
+    )
 
     logits = logits[:, -1, :] / temperature
 

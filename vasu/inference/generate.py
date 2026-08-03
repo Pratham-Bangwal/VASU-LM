@@ -1,6 +1,6 @@
 import torch
 
-from .sampling import sample_next_token
+from .sampling import sample_next_token, validate_sampling_parameters
 from vasu.cache import KVCache, PreallocatedKVCache
 from vasu.data.prompt_templates import format_prompt
 
@@ -30,6 +30,40 @@ def _select_next_token(
     )
 
 
+def _validate_generation_request(
+    *,
+    max_new_tokens,
+    do_sample,
+    use_kv_cache,
+    kv_cache_implementation,
+    temperature,
+    top_k,
+    top_p,
+    repetition_penalty,
+):
+    if (
+        isinstance(max_new_tokens, bool)
+        or not isinstance(max_new_tokens, int)
+        or max_new_tokens < 0
+    ):
+        raise ValueError("max_new_tokens must be a non-negative integer")
+    if not isinstance(do_sample, bool):
+        raise TypeError("do_sample must be a boolean")
+    if not isinstance(use_kv_cache, bool):
+        raise TypeError("use_kv_cache must be a boolean")
+    if kv_cache_implementation not in ("dynamic", "preallocated"):
+        raise ValueError(
+            "kv_cache_implementation must be 'dynamic' or 'preallocated'"
+        )
+    if do_sample:
+        validate_sampling_parameters(
+            temperature,
+            top_k,
+            top_p,
+            repetition_penalty,
+        )
+
+
 @torch.no_grad()
 def generate_token_ids(
     model,
@@ -48,22 +82,34 @@ def generate_token_ids(
 ):
     """Generate token IDs with the reference or explicit cached path."""
 
-    model.eval()
+    _validate_generation_request(
+        max_new_tokens=max_new_tokens,
+        do_sample=do_sample,
+        use_kv_cache=use_kv_cache,
+        kv_cache_implementation=kv_cache_implementation,
+        temperature=temperature,
+        top_k=top_k,
+        top_p=top_p,
+        repetition_penalty=repetition_penalty,
+    )
     formatted_prompt = format_prompt(prompt, prompt_format=prompt_format)
     encoded_prompt = tokenizer.encode(formatted_prompt)
-    if use_kv_cache and not encoded_prompt:
-        raise ValueError("cached generation requires a non-empty prompt")
+    if not encoded_prompt:
+        raise ValueError("generation requires a non-empty prompt after encoding")
     input_ids = torch.tensor([encoded_prompt], device=device)
     prompt_length = input_ids.shape[1]
     eos_token = tokenizer.tokenizer.token_to_id("[EOS]")
     max_seq_len = getattr(getattr(model, "config", None), "max_seq_len", None)
+    if max_seq_len is not None and prompt_length > max_seq_len:
+        raise ValueError("prompt exceeds model maximum sequence length")
+    model.eval()
+    if max_new_tokens == 0:
+        return []
 
     if use_kv_cache:
         config = getattr(model, "config", None)
         if config is None:
             raise ValueError("cached generation requires model.config")
-        if prompt_length > config.max_seq_len:
-            raise ValueError("prompt exceeds model maximum sequence length")
         if kv_cache_implementation == "dynamic":
             cache = KVCache(config.n_layers, config.max_seq_len)
         elif kv_cache_implementation == "preallocated":
@@ -75,10 +121,6 @@ def generate_token_ids(
                 config.dim // config.n_heads,
                 device=input_ids.device,
                 dtype=next(model.parameters()).dtype,
-            )
-        else:
-            raise ValueError(
-                "kv_cache_implementation must be 'dynamic' or 'preallocated'"
             )
         logits = model(input_ids, kv_cache=cache, cache_mode="prefill")
         token_history = torch.empty(

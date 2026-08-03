@@ -1,0 +1,18 @@
+{
+  "checkpoint_loaded": false,
+  "dataset_opened": false,
+  "date": "2026-08-03",
+  "device": "cpu",
+  "generation_implementation_sha256": "501cc841c27f081953273262de193be4a1255b3c55a34cb47a492c987a3877a3",
+  "greedy_sampling_sentinels_preserved": true,
+  "invalid_cache_rejected_for_zero_token_request": true,
+  "invalid_limit_rejected_before_eval": true,
+  "invalid_sampling_cases": 6,
+  "invalid_sampling_rejections": 6,
+  "kv_cache_enabled_by_default": false,
+  "sampling_implementation_sha256": "7e71d94c2961c8e47620f63510e4ee7bf9e4b94ddbc0c774ad00284d09b76500",
+  "schema_id": "vasu_generation_request_contract_qualification_v1",
+  "training_authorized": false,
+  "zero_token_forward_calls": 0,
+  "zero_token_result_empty": true
+}

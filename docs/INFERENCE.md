@@ -146,7 +146,9 @@ Sampling decides which token should be generated next.
 
 # Greedy Decoding
 
-Available by setting `top_k=1`.
+Available by setting `do_sample=False`. Sampling controls are ignored in this
+mode so frozen greedy evaluation configurations may retain explicit sentinel
+values without changing token selection.
 
 ```text id="z8v3mx"
 Choose the token with the highest probability.
@@ -248,6 +250,24 @@ Generation usually stops when:
 generated_tokens >= max_new_tokens
 ```
 
+`max_new_tokens` must be a non-negative integer. Zero is a valid read-only
+request and returns no generated tokens without running a model forward.
+
+---
+
+# Generation Request Contract
+
+VASU validates generation controls before model execution. Sampling mode
+requires a finite positive temperature, `top_k=None` or a positive integer,
+`0 < top_p <= 1`, and either no repetition penalty or a finite positive one.
+Invalid cache implementation names, negative or non-integral token limits, and
+non-boolean mode flags fail explicitly. Prompts must encode to at least one
+token and cannot exceed a model's declared context length.
+
+The contract is identical for cached and uncached generation. Cache selection
+is validated even for a zero-token request, preventing configuration mistakes
+from being hidden by a no-op execution.
+
 ---
 
 # End of Sequence Token
@@ -292,11 +312,14 @@ Reuse previous attention states
 Generate token
 ```
 
-Benefits:
+Potential benefits:
 
-* Faster generation
-* Lower latency
-* Better chat performance
+* Lower repeated-attention work at longer contexts
+* Lower measured peak allocation in the existing CUDA diagnostic
+* Better scaling after sufficient implementation and hardware qualification
+
+KV caching remains disabled by default because the existing matched benchmark
+did not demonstrate the required throughput improvement.
 
 ---
 

@@ -135,6 +135,13 @@ Malformed-rank tensors now fail through the documented `ValueError` contract
 before any shape indexing. This qualification strengthens correctness evidence;
 it does not enable caching by default.
 
+Generation requests are validated before model execution. Token limits and
+mode flags have explicit types; cache implementation names are always checked;
+active sampling requires finite, bounded controls; encoded prompts must be
+non-empty and respect the declared context. Greedy mode intentionally ignores
+sampling-only fields to preserve frozen deterministic evaluation presets. A
+zero-token request performs no model forward but still validates the request.
+
 ## Training structure
 
 The base objective is causal next-token prediction. Inputs and targets are the same token sequence shifted by one position. Instruction datasets can additionally provide response masks so that loss is applied only to selected target tokens.
