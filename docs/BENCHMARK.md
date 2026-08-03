@@ -58,6 +58,14 @@ improved 1.25%. Exact greedy and sampling-history tests passed. The change is
 retained as an internal cached-path optimization, but does not change the
 uncached default or constitute CUDA promotion evidence.
 
+The deterministic long-context qualification in
+`evaluation/fixtures/kv_cache_long_context_qualification_20260803.json` fills
+a 64-token context and establishes exact token parity among uncached, dynamic,
+and preallocated generation. It also verifies exact context stopping,
+full-capacity cache writes, stable storage across reset, and fail-closed
+malformed-rank handling. It is a correctness qualification, not a performance
+or default-activation result.
+
 ## AdamW backend benchmark
 
 The bounded VASU-60M AMP benchmark in

@@ -52,9 +52,14 @@ class PreallocatedKVCache:
             raise IndexError(f"layer_idx must be in [0, {self.n_layers})")
 
     def _validate_tensor(self, tensor: torch.Tensor) -> None:
+        if tensor.ndim != 4:
+            raise ValueError(
+                "cache tensor must have shape (B, H, T, D); "
+                f"got {tuple(tensor.shape)}"
+            )
         expected = (self.batch_size, self.n_heads, self.head_dim)
         actual = (tensor.size(0), tensor.size(1), tensor.size(3))
-        if tensor.ndim != 4 or actual != expected:
+        if actual != expected:
             raise ValueError(
                 "cache tensor must have shape (B, H, T, D) matching "
                 f"batch/head/head_dim {expected}; got {tuple(tensor.shape)}"

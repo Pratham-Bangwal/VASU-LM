@@ -127,6 +127,14 @@ or greedy token is written in place, while repetition penalty and sampling see
 the exact populated prefix. This avoids reallocating and copying the full token
 history on every decode step without changing generated-token semantics.
 
+The long-context qualification fills a 64-token synthetic context from a
+one-token prompt in uncached, dynamic-cache, and preallocated-cache modes. All
+63 generated token IDs match, the preallocated cache reaches exact capacity,
+overflow remains rejected, and reset reuses the original backing allocation.
+Malformed-rank tensors now fail through the documented `ValueError` contract
+before any shape indexing. This qualification strengthens correctness evidence;
+it does not enable caching by default.
+
 ## Training structure
 
 The base objective is causal next-token prediction. Inputs and targets are the same token sequence shifted by one position. Instruction datasets can additionally provide response masks so that loss is applied only to selected target tokens.

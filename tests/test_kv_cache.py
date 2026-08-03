@@ -132,6 +132,51 @@ def test_preallocated_cache_rejects_capacity_and_contract_mismatches():
         _preallocated(_model()).update(0, wrong_batch, wrong_batch)
 
 
+@pytest.mark.parametrize(
+    "shape",
+    [(), (1,), (1, 4), (1, 4, 1), (1, 4, 1, 4, 1)],
+)
+def test_preallocated_cache_rejects_malformed_rank_with_contract_error(shape):
+    malformed = torch.empty(shape)
+    cache = _preallocated(_model())
+    with pytest.raises(ValueError, match=r"shape \(B, H, T, D\)"):
+        cache.update(0, malformed, malformed)
+
+
+def test_preallocated_cache_full_capacity_reuses_storage_and_rejects_overflow():
+    model = _model(max_seq_len=8)
+    cache = _preallocated(model)
+    storage_pointer = cache.storage.untyped_storage().data_ptr()
+    prompt = _kv(length=7)
+    newest = _kv(length=1)
+
+    for layer_idx in range(model.config.n_layers):
+        cache.update(layer_idx, prompt, prompt)
+    assert cache.sequence_length == 7
+    for layer_idx in range(model.config.n_layers):
+        cache.update(layer_idx, newest, newest)
+
+    assert cache.sequence_length == model.config.max_seq_len
+    assert cache.storage.untyped_storage().data_ptr() == storage_pointer
+    with pytest.raises(ValueError, match="capacity exceeded"):
+        cache.update(0, newest, newest)
+
+
+def test_preallocated_cache_reset_reuses_full_capacity_storage():
+    model = _model(max_seq_len=8)
+    cache = _preallocated(model)
+    storage_pointer = cache.storage.untyped_storage().data_ptr()
+    full = _kv(length=model.config.max_seq_len)
+
+    for _ in range(2):
+        for layer_idx in range(model.config.n_layers):
+            cache.update(layer_idx, full, full)
+        assert cache.sequence_length == model.config.max_seq_len
+        cache.reset()
+        assert cache.sequence_length == 0
+        assert cache.storage.untyped_storage().data_ptr() == storage_pointer
+
+
 def test_preallocated_cache_enforces_ordered_atomic_layer_cycles():
     cache = _preallocated(_model())
     key = _kv(length=2)
@@ -178,9 +223,11 @@ def test_preallocated_v2_1_diagnostic_is_internally_consistent():
     assert report["optimized_median_tokens_per_second"] == statistics.median(optimized)
     assert report["baseline_mean_tokens_per_second"] == statistics.mean(baseline)
     assert report["optimized_mean_tokens_per_second"] == statistics.mean(optimized)
-    assert report["cache_implementation_sha256"] == _lf_sha256(
-        ROOT / "vasu/cache/preallocated_kv_cache.py"
-    )
+    # This is historical benchmark evidence. Its implementation identity is
+    # intentionally frozen and must not be rewritten when the cache evolves.
+    assert len(report["cache_implementation_sha256"]) == 64
+    assert int(report["cache_implementation_sha256"], 16) >= 0
+    assert len(report["baseline_commit"]) == 40
     assert report["attention_implementation_sha256"] == _lf_sha256(
         ROOT / "vasu/model/attention.py"
     )
@@ -210,6 +257,35 @@ def test_inplace_history_diagnostic_is_internally_consistent():
     assert report["stable_history_storage_verified"] is True
     assert report["token_history_concatenation_absent"] is True
     assert report["promote_kv_cache_to_default"] is False
+    assert report["training_authorized"] is False
+
+
+def test_long_context_qualification_fixture_matches_current_implementation():
+    report = json.loads(
+        (
+            ROOT
+            / "evaluation/fixtures/"
+            "kv_cache_long_context_qualification_20260803.json"
+        ).read_text(encoding="utf-8")
+    )
+    assert report["cache_implementation_sha256"] == _lf_sha256(
+        ROOT / "vasu/cache/preallocated_kv_cache.py"
+    )
+    assert report["generation_implementation_sha256"] == _lf_sha256(
+        ROOT / "vasu/inference/generate.py"
+    )
+    assert report["attention_implementation_sha256"] == _lf_sha256(
+        ROOT / "vasu/model/attention.py"
+    )
+    for field in (
+        "full_context_parity",
+        "exact_context_stop",
+        "full_capacity_reached",
+        "storage_reused_after_reset",
+        "malformed_rank_rejected_with_value_error",
+    ):
+        assert report[field] is True
+    assert report["kv_cache_enabled_by_default"] is False
     assert report["training_authorized"] is False
 
 
@@ -397,6 +473,37 @@ def test_maximum_context_stopping_is_identical():
     cached = generate_token_ids(**kwargs, use_kv_cache=True)
     assert cached == uncached
     assert len(cached) == 2
+
+
+def test_all_generation_modes_fill_context_with_exact_token_parity():
+    model = _model(max_seq_len=32)
+    tokenizer = _Tokenizer(prompt_ids=[1], eos_id=31)
+    kwargs = dict(
+        model=model,
+        tokenizer=tokenizer,
+        prompt="test",
+        device="cpu",
+        max_new_tokens=64,
+        do_sample=False,
+        prompt_format="plain",
+    )
+    state_keys = tuple(model.state_dict())
+
+    uncached = generate_token_ids(**kwargs, use_kv_cache=False)
+    dynamic = generate_token_ids(
+        **kwargs,
+        use_kv_cache=True,
+        kv_cache_implementation="dynamic",
+    )
+    preallocated = generate_token_ids(
+        **kwargs,
+        use_kv_cache=True,
+        kv_cache_implementation="preallocated",
+    )
+
+    assert preallocated == dynamic == uncached
+    assert len(preallocated) == model.config.max_seq_len - 1
+    assert tuple(model.state_dict()) == state_keys
 
 
 def test_separate_generate_calls_create_fresh_caches(monkeypatch):

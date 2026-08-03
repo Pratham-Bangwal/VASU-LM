@@ -1,0 +1,21 @@
+{
+  "attention_implementation_sha256": "30e582dd5a375bb025f00b214afc553b7193f1c781d4718bd535a819881cff1e",
+  "cache_implementation_sha256": "2628af4956fa1267379e3a764bcfeb7b9a3b936fd1b9cf20027f76308cf8a7b3",
+  "checkpoint_loaded": false,
+  "dataset_opened": false,
+  "date": "2026-08-03",
+  "device": "cpu",
+  "exact_context_stop": true,
+  "full_capacity_reached": true,
+  "full_context_parity": true,
+  "generated_tokens": 63,
+  "generation_implementation_sha256": "abed1d439eab9523f4fd6bafa3198c9ea02ac8ac8b38cbb78e32e1966ad51811",
+  "kv_cache_enabled_by_default": false,
+  "malformed_rank_rejected_with_value_error": true,
+  "max_sequence_length": 64,
+  "prompt_tokens": 1,
+  "schema_id": "vasu_kv_cache_long_context_qualification_v1",
+  "seed": 20260803,
+  "storage_reused_after_reset": true,
+  "training_authorized": false
+}
