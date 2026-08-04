@@ -1,0 +1,167 @@
+{
+  "acquisition": {
+    "access_method": "Hugging Face Hub Parquet shards using dataset config 20231101.en and revision e6057dc557255a03c9c3c47ceab0eb44353b1bc5; acquire shards sequentially with resumable HTTP/Hugging Face caching",
+    "authorized": false,
+    "immutable_revision": "e6057dc557255a03c9c3c47ceab0eb44353b1bc5:20231101.en",
+    "raw_hash_algorithm": "sha256",
+    "shard_inventory_sha256": "61271d2e32e39613c668ba56f7070985c4e0d7b7ffd1cf7357d9a817d006b405"
+  },
+  "decision": {
+    "notes": "Pending independent source-specific admission review; no source is admitted.",
+    "reviewed_at": "",
+    "reviewed_by": "",
+    "state": "pending"
+  },
+  "deduplication": {
+    "before_split": true,
+    "cross_source_indexes": [
+      "fineweb_original_plus_extension_v1",
+      "wikipedia_en_20231101_v1"
+    ],
+    "exact_method": "sha256",
+    "near_method": "minhash_lsh_word_5gram_v1",
+    "normalization_version": "unicode_nfc_whitespace_v1"
+  },
+  "document_lineage": {
+    "revision_field": "snapshot_revision",
+    "shard_field": "parquet_shard",
+    "stable_id_fields": [
+      "id",
+      "url",
+      "title"
+    ],
+    "transformation_id": "vasu_140m_base_source_filter_v1"
+  },
+  "evaluation_isolation": {
+    "exact_method": "sha256_nfc_casefold_whitespace_v1",
+    "inventories": [
+      {
+        "dimension": "arithmetic",
+        "inventory_id": "vasu-140m-base-evaluation-v2-development-candidate-v1-arithmetic",
+        "path": "evaluation/candidates/vasu_140m_base_v2_development_v1/arithmetic/manifest.json",
+        "sha256": "6782969334873a2640a1fc38dfeaac20823f4beaa7683ba0a45782c8e2793bf5",
+        "split": "development"
+      },
+      {
+        "dimension": "arithmetic",
+        "inventory_id": "vasu-140m-base-evaluation-v2-curator-candidate-v1-arithmetic-held-out",
+        "path": "evaluation/candidates/vasu_140m_base_v2_heldout_curator_v1/arithmetic/manifest.json",
+        "sha256": "4615ab2175608adf80d5b7a2f66726d2d654237e93646b04705b798a222f26a6",
+        "split": "held_out"
+      },
+      {
+        "dimension": "factuality",
+        "inventory_id": "vasu-140m-base-evaluation-v2-development-candidate-v1-factuality",
+        "path": "evaluation/candidates/vasu_140m_base_v2_development_v1/factuality/manifest.json",
+        "sha256": "ff3133f4bd0f5f1b8e0fde7e5083fbf1d0129e5b308c9e5dcb7d1c16a69fe108",
+        "split": "development"
+      },
+      {
+        "dimension": "factuality",
+        "inventory_id": "vasu-140m-base-evaluation-v2-curator-candidate-v1-factuality-held-out",
+        "path": "evaluation/candidates/vasu_140m_base_v2_heldout_curator_v1/factuality/manifest.json",
+        "sha256": "fc72a3b14224330a8cf16778056c278b18e724f2d09ef944c9506e789bc63de1",
+        "split": "held_out"
+      },
+      {
+        "dimension": "manual_review",
+        "inventory_id": "vasu-140m-base-evaluation-v2-development-candidate-v1-manual_review",
+        "path": "evaluation/candidates/vasu_140m_base_v2_development_v1/manual_review/manifest.json",
+        "sha256": "7765fbde2ada3bb4998c0fff9c12d53ae14305303818fd71b7e67238ea82fb47",
+        "split": "development"
+      },
+      {
+        "dimension": "manual_review",
+        "inventory_id": "vasu-140m-base-evaluation-v2-curator-candidate-v1-manual_review-held-out",
+        "path": "evaluation/candidates/vasu_140m_base_v2_heldout_curator_v1/manual_review/manifest.json",
+        "sha256": "5c086894f401ace3c093b6ff826cb9bcb39094cab022675af3026c42da8ca824",
+        "split": "held_out"
+      },
+      {
+        "dimension": "repetition",
+        "inventory_id": "vasu-140m-base-evaluation-v2-development-candidate-v1-repetition",
+        "path": "evaluation/candidates/vasu_140m_base_v2_development_v1/repetition/manifest.json",
+        "sha256": "dd23945e1c19e71d2790e41f92421f485564778277ec6bf48ce2b640aff44a71",
+        "split": "development"
+      },
+      {
+        "dimension": "repetition",
+        "inventory_id": "vasu-140m-base-evaluation-v2-curator-candidate-v1-repetition-held-out",
+        "path": "evaluation/candidates/vasu_140m_base_v2_heldout_curator_v1/repetition/manifest.json",
+        "sha256": "0d98e48d709119c01b0f604f07b508649e06ae7fd2efb5d46584fbcf4762d6f5",
+        "split": "held_out"
+      },
+      {
+        "dimension": "robustness",
+        "inventory_id": "vasu-140m-base-evaluation-v2-development-candidate-v1-robustness",
+        "path": "evaluation/candidates/vasu_140m_base_v2_development_v1/robustness/manifest.json",
+        "sha256": "d54e2d25a0205a290da1a7cca3e32ba069a61f5630e3d4b44b9be660b8d8c5ac",
+        "split": "development"
+      },
+      {
+        "dimension": "robustness",
+        "inventory_id": "vasu-140m-base-evaluation-v2-curator-candidate-v1-robustness-held-out",
+        "path": "evaluation/candidates/vasu_140m_base_v2_heldout_curator_v1/robustness/manifest.json",
+        "sha256": "909ed4ca716d6db2c6807130c9139c3178b76263494627582d62b9e36ebc11d5",
+        "split": "held_out"
+      }
+    ],
+    "likelihood_policy": {
+      "created_after_acquisition": true,
+      "document_level_isolation": true,
+      "manifest_binding_required": true,
+      "train_exclusion_required": true
+    },
+    "ngram_words": 8,
+    "scan_before_split": true
+  },
+  "family_id": "vasu_140m_v1",
+  "legal_evidence": {
+    "attribution_required": true,
+    "commercial_use_allowed": true,
+    "gated_access": false,
+    "license_name": "CC-BY-SA-3.0 AND GFDL (unversioned)",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+    "obligations": [
+      "retain article-level attribution and source URL",
+      "retain CC-BY-SA and GFDL notices",
+      "record modifications",
+      "apply ShareAlike where required"
+    ],
+    "redistribution_allowed": true,
+    "requires_authentication": false,
+    "terms_revision": "20231101.en snapshot policy binding",
+    "terms_url": "https://foundation.wikimedia.org/wiki/Policy:Terms_of_Use",
+    "unresolved_items": []
+  },
+  "mandatory_exclusions": [],
+  "model_config_sha256": "29e9bafdffbbc632b1b6f006818b1470e6dbc20f21841aa33e625a0f04159059",
+  "package_id": "vasu-140m-wikipedia_en_20231101_planned-review-candidate-v4",
+  "package_sha256": "06bfd284b4cc3e64554ec42925e1c3b272f6051ffcf90591934b0cc8c2968446",
+  "prompt_matrix_decision": {
+    "decision": "accepted",
+    "path": "docs/VASU_140M_PROMPT_MATRIX_REJECTION_REMEDIATION_INDEPENDENT_REVIEW_DECISION_20260804.md",
+    "sha256": "8626ded952d055633b089ee535869ba1dbbe183e19ff4bc5f01bba53b6f7e0c6"
+  },
+  "quality_policy": {
+    "filter_version": "wikipedia_en_20231101_v1",
+    "normalization_version": "unicode_nfc_whitespace_v1",
+    "rejection_reasons": [
+      "non-article namespace",
+      "redirect or disambiguation",
+      "markup or boilerplate",
+      "invalid Unicode",
+      "evaluation contamination",
+      "exact or near duplicate"
+    ]
+  },
+  "schema_id": "vasu_140m_base_source_admission_v4",
+  "source_record": {
+    "path": "configs/data/sources/wikimedia.json",
+    "registry_approval_status": "approved",
+    "sha256": "c1a81bff01499f1a843a7fb9f966bc2d9e13637d8d6afac3f8ecd9d3478a34a1",
+    "source_id": "wikipedia_en_20231101_planned"
+  },
+  "tokenizer_sha256": "04942e101a4a01f87f7e492ad9e463d299a559e784b650fdedd1763a017d195a",
+  "training_authorized": false
+}
