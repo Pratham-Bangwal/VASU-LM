@@ -1,0 +1,27 @@
+{
+  "accepted_dependencies": {
+    "docs/VASU_140M_PROMPT_MATRIX_REJECTION_REMEDIATION_INDEPENDENT_REVIEW_DECISION_20260804.md": "8626ded952d055633b089ee535869ba1dbbe183e19ff4bc5f01bba53b6f7e0c6",
+    "docs/VASU_140M_SOURCE_ADMISSION_V4_CANONICAL_IDENTITY_REMEDIATION_INDEPENDENT_REVIEW_DECISION_20260804.md": "f1fa40847613bdaccbaa353252334cd7b7fb61c24f4918cc4ea671b4ba43279d"
+  },
+  "evaluation_run_authorized": false,
+  "payload_bytes_preserved": true,
+  "production_suite_frozen": false,
+  "promoted_inventory_sha256s": {
+    "arithmetic": "fd6f75ebed75ee0fcb2bfc36fde29a1057a2e67a162eec7438d0ef727d0266bf",
+    "factuality": "958257c55a0fdd4782470324cc5d1128d70ae5ef9dbf2d029c67f4e88fdb4008",
+    "manual_review": "ee214389a90b189432ad5bb10bf14903c62cc22226fa97b646a23a31174e3cea",
+    "repetition": "a9acb73757acf8321e15dc0b4f1eb0936e5c983976b125d39cbc6cf419676a03",
+    "robustness": "48d4396b1883af7fa345ce445ea2d0e726126ab625add9dc55e417a2da54460c"
+  },
+  "receipt_sha256": "3852c57e4704efc213cc0fe34a86a58f37fa60bc43a21dae3b3c6bc9aea85818",
+  "repository_commit": "b6a6f55d2c1d3b99cd2ea6f4c5e56869fd03852d",
+  "schema_id": "vasu_140m_development_inventory_promotion_receipt_v1",
+  "source_inventory_sha256s": {
+    "arithmetic": "fa9855f439220e811f5cf5de5978eeae358f8e6eeb3cecc33f61315c880c4eaf",
+    "factuality": "eb84e4904ed2da8f8309bbb9df4d557490a6dc6f3c1c75ebae72a1f0749a9045",
+    "manual_review": "955df5ef3e306b975756f076fe9572b0433127d993ca40cb4b4c7303d6e39bad",
+    "repetition": "68ca327e0fe5b7d8e60420d5723478833ae77c50fea908f44121aa47691b629f",
+    "robustness": "fc37fbc37e2019025406af8e6bdd3bb5d8748a904031e7c68b68bef13cdf75a2"
+  },
+  "training_authorized": false
+}

@@ -1,0 +1,347 @@
+{
+  "access": {
+    "encryption_algorithm": "none",
+    "opening_authorized": false,
+    "payload_format": "jsonl",
+    "recipient_fingerprint": null,
+    "state": "available"
+  },
+  "contamination_index": {
+    "byte_count": 44695,
+    "path": "evaluation/candidates/vasu_140m_base_v2_development_v1/manual_review/contamination.jsonl",
+    "record_count": 60,
+    "sha256": "6754f15474b2ef16ed244a2d8482b465352fedaa4d5b2e040f0d211e79a0946e"
+  },
+  "dimension": "manual_review",
+  "evaluation_run_authorized": false,
+  "fixture_only": false,
+  "generation_profile_ids": [],
+  "interface": "raw_continuation",
+  "inventory_id": "vasu-140m-base-evaluation-v2-development-candidate-v1-manual_review",
+  "inventory_sha256": "ee214389a90b189432ad5bb10bf14903c62cc22226fa97b646a23a31174e3cea",
+  "item_commitments": [
+    {
+      "item_id": "assistant-manual_review-0001",
+      "provenance_sha256": "aef443e89d6f1744aae99da87ca1a11e05444eddbcf69826ddb683790b43c4b6",
+      "task_sha256": "9718a280475d89a65c27ec5891ab178b08e7d399f60f810a161466ac6764f6ca"
+    },
+    {
+      "item_id": "assistant-manual_review-0002",
+      "provenance_sha256": "8d1f2a2407672bc9effebbbbfca444702199d0df9e391435e6b9e23a20a890c5",
+      "task_sha256": "ad046010b4bd369ecf7110e7f260da529608773646cea840e3fbe55370f7b156"
+    },
+    {
+      "item_id": "assistant-manual_review-0003",
+      "provenance_sha256": "20c502ad5a5e07596b2516f22e35408a63b8cd42c45e98a72be6678915ad1f45",
+      "task_sha256": "f4db32418bd8632a1348cda129bbe4935ff277f22f597525b5d9811897aaa8b7"
+    },
+    {
+      "item_id": "assistant-manual_review-0004",
+      "provenance_sha256": "2eaac34c35bd9a12f2400503e0b4e535e197e38ab226ddbf39c405c75917c158",
+      "task_sha256": "8e8c9e1d0c3f6676437e2ca39efa14be75099ed42bbcf68b496fa0b1088d0ca0"
+    },
+    {
+      "item_id": "assistant-manual_review-0005",
+      "provenance_sha256": "16173826484107b0d5550ff628c0f85c4f6531b8aa77d4f3cfd315ef356bf34f",
+      "task_sha256": "e1bbf7647b6b88fc8b3d2e56da22bd7fa1a488b14c496f6fe77d34e59b06f17e"
+    },
+    {
+      "item_id": "assistant-manual_review-0006",
+      "provenance_sha256": "bd7429594b44c670e9f1f4b1baa4154ad9f8f929e31c6b3b01b4abec760e29a2",
+      "task_sha256": "371b8b7d1c2e426e97b79b9ea689c1bcfac0115917bd60dcfaf8b566e5981418"
+    },
+    {
+      "item_id": "assistant-manual_review-0007",
+      "provenance_sha256": "ec7351ac90d657b189808b0f855d9c415b8de5b394a8e1bc5c6f9b8dd7a363e9",
+      "task_sha256": "f27b1bc73506385a631a9df61b345e56f6956f7556ec0d9b25d8d1c107ada045"
+    },
+    {
+      "item_id": "assistant-manual_review-0008",
+      "provenance_sha256": "4b5b480ec9d21c16555bc28b011ad2764079a394efd6e4b9f991b66e00f14200",
+      "task_sha256": "3bfe04f800e40ef650e492dd814fc90e27434f7e77cc4624585308efcfe71801"
+    },
+    {
+      "item_id": "assistant-manual_review-0009",
+      "provenance_sha256": "145b9045edb16d3e4c48ff3dce5cabf50eef4f19fefd4594334dc2e349072c05",
+      "task_sha256": "55982b957f741e4fb204d5f6ba7c28eed1672f982aff8863d8917e7dc4eed3bf"
+    },
+    {
+      "item_id": "assistant-manual_review-0010",
+      "provenance_sha256": "f5cc197ce246c5570c384f1b62d05b1bbc9a709adeee499ff09ab51e216f2b33",
+      "task_sha256": "329e1150ba17cc4afe012b5dfae08de63f1a7f2a9a36371f9e851651c0b2c96e"
+    },
+    {
+      "item_id": "assistant-manual_review-0011",
+      "provenance_sha256": "c865f4dbbdc53fa40a10e0fb0eecb74c757013384846be84acc632299f4e7a6d",
+      "task_sha256": "9c7e0f679cb067b29063ccf7fc2f1566befe2850a82e736225e9056deaa33aee"
+    },
+    {
+      "item_id": "assistant-manual_review-0012",
+      "provenance_sha256": "b7f2e0046656ea5a4b1e3ed89041925644691228dbc35de53524ddebbd9ff889",
+      "task_sha256": "c555d6a42c75dc14ed349e6eab5eebb79c1b825179f4cd93e9a893108a450af2"
+    },
+    {
+      "item_id": "assistant-manual_review-0013",
+      "provenance_sha256": "490f9d2164437220fe02bb2312cf59e35f24b331b9991636cb81660d02b81fb6",
+      "task_sha256": "20149e6a18f86d8a03fde5017972aefdf08090b180376fd1c19d120b0dde3fcd"
+    },
+    {
+      "item_id": "assistant-manual_review-0014",
+      "provenance_sha256": "924263b19521d4477412309bc41e4f44262070880ef9227d73b25d65adf48934",
+      "task_sha256": "c65445c76f258dc5e0958a5385dbfa0d0275c68652aa4b573d54181f9299d1b3"
+    },
+    {
+      "item_id": "assistant-manual_review-0015",
+      "provenance_sha256": "08862a00dea1ee5b5dc79413cc1b8a2aec8a6d51372d5e7b101b96969b50d8b6",
+      "task_sha256": "38a578d156dc1e1c7b3e72169226aebe7ce65299a4be59401e89988303356778"
+    },
+    {
+      "item_id": "assistant-manual_review-0016",
+      "provenance_sha256": "4cf6e6451876a63535bb01057ffb80e3965f618469eef249d73abbcb2d22d38a",
+      "task_sha256": "61f0abee55f4858060e8bbf3207b35d959a8855a02835934cbbc55f4e1881350"
+    },
+    {
+      "item_id": "assistant-manual_review-0017",
+      "provenance_sha256": "97b527b6951334673ba896c17ac9f31b335161d15623f2df7fac31ce73af2276",
+      "task_sha256": "9e783f8659301f4cfbe9bdfd9787bce4c8637b4f1bf4f514942081d47d0cfd44"
+    },
+    {
+      "item_id": "assistant-manual_review-0018",
+      "provenance_sha256": "9527adb790b859feb925c13ee2b5d5090f4fd1ccb48dc38f11871b0dbf1169e3",
+      "task_sha256": "a9d24e6921caa1cda6d3fefd35ff5ec3d8ab9e6a274da7b7d04e36ea862cb220"
+    },
+    {
+      "item_id": "assistant-manual_review-0019",
+      "provenance_sha256": "fc3334a43d766ebdf026647f50a136eee58030ae9982977695cd8c913bc60b69",
+      "task_sha256": "c1484f0fe35b1315aed39045656a1178f1129bcd889d9753220410d21f7e9d75"
+    },
+    {
+      "item_id": "assistant-manual_review-0020",
+      "provenance_sha256": "cdde65eec60fd7840c37e248883f147259700a52f59e8f88e6cb3fec5aca9b56",
+      "task_sha256": "13fae100860f6bd3d9a95cb511a4e1577ccdfb01c4ddf34d154cf126ec66ab82"
+    },
+    {
+      "item_id": "assistant-manual_review-0021",
+      "provenance_sha256": "d3b1532b1f99a269386fd2c3e34d59b9d05eb2fa9e6ce79b81a345889c11228c",
+      "task_sha256": "c045f069a5d109709a06e21c505f9713979a5496289ff69bab65e3835def8897"
+    },
+    {
+      "item_id": "assistant-manual_review-0022",
+      "provenance_sha256": "de6709777822241e3c40db78d09e067e8162872d95e9b96f983df054fb2830d5",
+      "task_sha256": "20bb6e9c57b72135e1006b3e13847f074ecc85f65414b815d0f5c8579b2a1764"
+    },
+    {
+      "item_id": "assistant-manual_review-0023",
+      "provenance_sha256": "e1006e64044fd0a633918df208a4453ecfae8580269e821e1c49dca751055037",
+      "task_sha256": "d1cd4d4c1a22e060d99f5a3976a48bfca901d78db0dd200e6572580a57197f8f"
+    },
+    {
+      "item_id": "assistant-manual_review-0024",
+      "provenance_sha256": "6185093426099174ab17068180b8ade8bd582c631c03712fbdfda7f89bc51ba2",
+      "task_sha256": "02b71f00afffeb5407d6e240a308cd725d01b7461918adb7f8cf9c17c43eb2e0"
+    },
+    {
+      "item_id": "assistant-manual_review-0025",
+      "provenance_sha256": "d9b80f38ae87d270b062250afa7bbe51eb1f6f213f8c5dcebe11d3640f67675e",
+      "task_sha256": "472a30ac5370495db313751fa48d216e43bd3a57fc74b197e9f4fb894cb9759c"
+    },
+    {
+      "item_id": "assistant-manual_review-0026",
+      "provenance_sha256": "49b04bdffee486256914b8827fd5554894315eeec232321140f115025f4a5ae4",
+      "task_sha256": "0aaf4b2c66c652823f663ceef8c433827b36e5c034369d0d53c1548a6f6c3bb8"
+    },
+    {
+      "item_id": "assistant-manual_review-0027",
+      "provenance_sha256": "f9b302b7607ef634b886171d7d1f6a6e2b5bbd7dc0936cea1ee77f51536661b9",
+      "task_sha256": "e778a49db6a459b8fafda81b62adbc5877c2732e2e29b98f22c60325fbe1e77c"
+    },
+    {
+      "item_id": "assistant-manual_review-0028",
+      "provenance_sha256": "f7fbfcadd5df6d9a91e7720876d150d7771493d1b4ec59e33ea3697c3d5977a9",
+      "task_sha256": "48c87425f44bbbfe87b45d78e0ec9c8b7b771581a8f163fd4c4885d5b4dec17c"
+    },
+    {
+      "item_id": "assistant-manual_review-0029",
+      "provenance_sha256": "db6b12c3bfeb8473c76d970893a6c687aa37c9a04351289dbfc944ad98d7059c",
+      "task_sha256": "4ead0eed1b3e0627a153b2c183f086d4c27dc6c1102734db2d797ae5884f95e5"
+    },
+    {
+      "item_id": "assistant-manual_review-0030",
+      "provenance_sha256": "2b2e22a1b69afa75c0799cfa392a1cd6298594b52cfc47e63194fa60d7cf20ec",
+      "task_sha256": "de982676929a286673732fd441e78d165cc2b4c8f27a73d941312874e934bb39"
+    },
+    {
+      "item_id": "assistant-manual_review-0031",
+      "provenance_sha256": "8e4b3d33ee1074fb9c95c2c3a2b1f315f813ee98141ebbb15305a53cb2158382",
+      "task_sha256": "a47103c9f04528e956f231aae4f69f0cdf37ea2cf25c1f3e1951c15d49157c72"
+    },
+    {
+      "item_id": "assistant-manual_review-0032",
+      "provenance_sha256": "6b9047edb43cbc7f1354c90474165430f2ec45071eba314cace01c7e7a2b3d4c",
+      "task_sha256": "1044ce1300a2287fcb1df0d155a479a01de1cc678ac5aeacda8298ec21f696ce"
+    },
+    {
+      "item_id": "assistant-manual_review-0033",
+      "provenance_sha256": "81ef1a648ffd20fe51292ca75bf87f662993e0435e3f70126591131b69c94b00",
+      "task_sha256": "9917438275bf7fa2f972a2201237b30dae3ad0f65e27e6499fb23ca1b81fd7d3"
+    },
+    {
+      "item_id": "assistant-manual_review-0034",
+      "provenance_sha256": "5c64813be3b4fa9b35e541174d54845215f39a8f914f9cb85f9cf1fea0379551",
+      "task_sha256": "5f2a8cdd1e6c32b1291824157510603087549e907f7c0e6ff703bf7f584ed5c7"
+    },
+    {
+      "item_id": "assistant-manual_review-0035",
+      "provenance_sha256": "91c1c12a86db34e3415c61326e790fdf0ef5ad0a654c2cba4209023027ed87d9",
+      "task_sha256": "21a3af9faa2e7875037e11bf49efb46c1879e526d48192e875929ed0088f6785"
+    },
+    {
+      "item_id": "assistant-manual_review-0036",
+      "provenance_sha256": "e5b0d8bc7826471159378f6e19d19f5605fd387419abf742142a5528e9ccb9a6",
+      "task_sha256": "54cc9a24639cd70fded8534104bf18c0f1fe91bfdf52f5b954235f01a4994002"
+    },
+    {
+      "item_id": "assistant-manual_review-0037",
+      "provenance_sha256": "699ebf5d5a9a43db1d917089743fe16849b336839c6bf44a8c73e104d9149037",
+      "task_sha256": "8e8bb276ba37a6ee38067ee7c41bec7ebe2f222fa9552b86732bdcd2eaba2703"
+    },
+    {
+      "item_id": "assistant-manual_review-0038",
+      "provenance_sha256": "93739013f5a4747cca26000fe4f060060db556e2e6034d60ab5c860686fdef58",
+      "task_sha256": "c9434014fd57541805efa6708abc16668933be503a6288e1be24d73bb2181333"
+    },
+    {
+      "item_id": "assistant-manual_review-0039",
+      "provenance_sha256": "dde279d144fc7ddbe9bd42ff0a8285ce5df1a5aaf6bbc3903142809de8ab7abc",
+      "task_sha256": "9fc55c5cfc2b66d0d63f071ee8b42d5df21da9418aad15022c6840b50f38a091"
+    },
+    {
+      "item_id": "assistant-manual_review-0040",
+      "provenance_sha256": "70f54446b4d4240854385ac319e69aea0bdb1def7b653d0dfc927213f1566a34",
+      "task_sha256": "e6102f37e32b784d6130ee4d09717d99f1d0e559bdaec3d45cbaa2fc5de0d4b1"
+    },
+    {
+      "item_id": "assistant-manual_review-0041",
+      "provenance_sha256": "8f93731be7ade86ba4ca82c47d5606539b70377490c53e663407e91800143967",
+      "task_sha256": "7aa194c29a93ef59c14a092afcb83cdf0efc1bd9ce7326c0ee00941a7cc2c53c"
+    },
+    {
+      "item_id": "assistant-manual_review-0042",
+      "provenance_sha256": "af3161787ae7aa6ffa045de0b166936828d798489442b435d7296b7b3cec0a66",
+      "task_sha256": "1b90ebabf4c4cf7871024e563c51c64a7987831534d2b8935b3435a7573117e0"
+    },
+    {
+      "item_id": "assistant-manual_review-0043",
+      "provenance_sha256": "2b7e5addda7a8170ed08071a189d2cbe02c823a094366720c63066b9c6a0f89c",
+      "task_sha256": "b944a008c881125c42c4902e2a5d83f002a29692415f1229c591762afa6a6220"
+    },
+    {
+      "item_id": "assistant-manual_review-0044",
+      "provenance_sha256": "49f6e51a3c1b490c8570f7b4090f7c2193c0e259bc3b819a2bc392bbaed2bfc2",
+      "task_sha256": "fb3dd5f62bdebc9c79f30c9db3b265ab5cf8cb369ca51d7d6d10f90adc4999d2"
+    },
+    {
+      "item_id": "assistant-manual_review-0045",
+      "provenance_sha256": "c3d8e2521f3a961f265cd76a5c0ae8ea1ebc3de134dfbd5695d1d8f560bb37ba",
+      "task_sha256": "13c026c60028847642d8c3c23821c3da611377b4fcb7dae556668722678e10e7"
+    },
+    {
+      "item_id": "assistant-manual_review-0046",
+      "provenance_sha256": "039a9ec9237d36a0e18ed184b00d18be78e3a4a9171d9adb84efbf2a99a40941",
+      "task_sha256": "f8279144c45fcdbfadefc0d65b9c2fca1fdfc8696a054fca9b69a75081338887"
+    },
+    {
+      "item_id": "assistant-manual_review-0047",
+      "provenance_sha256": "5ed252567ee97c884a3ec5d9354966d081ab00cf99dd1cec5047f112aeabb2de",
+      "task_sha256": "d2f2afa711088ecd5e330bfb0e857e3ea2bfffe706a6b4a3e09991283ce11dfc"
+    },
+    {
+      "item_id": "assistant-manual_review-0048",
+      "provenance_sha256": "9f7135732f02451d6392f343d157090df2c180283201148b42c44a9c21d049bc",
+      "task_sha256": "b6539b83dc5444d26e5b7a2ba5e0aa814a34b44d14eb444a5ccdb5c892b891a5"
+    },
+    {
+      "item_id": "assistant-manual_review-0049",
+      "provenance_sha256": "52d513a1b72f3bd8e1dffd52bdcf3aadffd7e4812edce24fa0b76e9e1e99bd00",
+      "task_sha256": "d0ce3da9895fcb44ef5336a92285084b6dc5f806c68d6cd51916410727793a39"
+    },
+    {
+      "item_id": "assistant-manual_review-0050",
+      "provenance_sha256": "b26a791cb840d6b489a4ec846b55d9f1ff5feee2f1731b3030a9f4fc71193969",
+      "task_sha256": "6193f52ca6b7226e3f3cafaae37413a839b9caf4a92c48ab8ee7c6ebfdf5fd23"
+    },
+    {
+      "item_id": "assistant-manual_review-0051",
+      "provenance_sha256": "f50a5b853c8fcca914ca78746ddb8dd2a78cfe8bb21e08ac1f0abaa80a676868",
+      "task_sha256": "37e52049946ed5b34df612228d9a515c59f3f94a40b0d968047d7964e957c3a2"
+    },
+    {
+      "item_id": "assistant-manual_review-0052",
+      "provenance_sha256": "9cf1ebd41a1079860acb217a025fdf53ceb64a24b8c5ce92573f9ef52576ed06",
+      "task_sha256": "14c2fcbf4d750dcd2bb226d695e7ac7ee57e7305c4fedd556e138842d02a5760"
+    },
+    {
+      "item_id": "assistant-manual_review-0053",
+      "provenance_sha256": "d5a21bcc8935d2df093c99483ce5d573b9892b87ef6cfde48bcaf03c49c30067",
+      "task_sha256": "0bf77865dcc0fe16debb8e7dfb2eda85a23485d191557914db5a4deb2a145e02"
+    },
+    {
+      "item_id": "assistant-manual_review-0054",
+      "provenance_sha256": "9a07c304df63bc32f47a5c9f67f4d915d6c1b1ae61ff71fa8f11b7bda09f477e",
+      "task_sha256": "3d559478c678076674515eabb1c4f3472e2075196b103ff8132485da555bef2f"
+    },
+    {
+      "item_id": "assistant-manual_review-0055",
+      "provenance_sha256": "6baa73832e163ab624d394fc9fd46589d80693334b88a3a2f9de2ed2cd9cf8f6",
+      "task_sha256": "02b4dd584985de1a2d2b17299de1c0375b24cb9f795fb141da2dac5c772c9e46"
+    },
+    {
+      "item_id": "assistant-manual_review-0056",
+      "provenance_sha256": "e53e4a1d1327613f1e192b241da395c3f499ecc399169b83ed306caa6865b4c8",
+      "task_sha256": "672330221e2d5288498c0647a48210e55dbb1843ba16919edd52843115d0aedd"
+    },
+    {
+      "item_id": "assistant-manual_review-0057",
+      "provenance_sha256": "3b4e89f78d3f760840d0ac6dc55ca9c9952dcca9d94711214819850ad47b28a4",
+      "task_sha256": "1eed5b123d33e3be0b3b0c980709bceaef1201c32e43359a05a3ad046894c805"
+    },
+    {
+      "item_id": "assistant-manual_review-0058",
+      "provenance_sha256": "3a82adf992ad8da3e8ab642630bce4dbb81db6d70be2e5d225a976368233f22c",
+      "task_sha256": "ee56730742837c20c64d14f12bd66a0b8ba2e46db0070a55d4e30ab159437056"
+    },
+    {
+      "item_id": "assistant-manual_review-0059",
+      "provenance_sha256": "b36bd0b981385d18cf41d03b90e3aa62051b4de9150ed418d109b1e3a58cc01a",
+      "task_sha256": "21d24edfedb9f915e0516cf837f40c49ae8363aed6c2b98c3c32d534748e11af"
+    },
+    {
+      "item_id": "assistant-manual_review-0060",
+      "provenance_sha256": "a34854382a8b8e7943def6d22b50663eb4e240f610cb59ba859638d96bcc312c",
+      "task_sha256": "602380bf03c2b27a6eeae09d6d6eb17d6997a53beaf0050d06cf5c3f104bb398"
+    }
+  ],
+  "payload": {
+    "byte_count": 39255,
+    "path": "evaluation/candidates/vasu_140m_base_v2_development_v1/manual_review/payload.jsonl",
+    "record_count": 60,
+    "sha256": "1207978bae120c2335d3f3670e6c32962ebf37c0363b24dfc24fc0528af7c42f"
+  },
+  "production_suite_frozen": false,
+  "provenance_index": {
+    "byte_count": 38940,
+    "path": "evaluation/candidates/vasu_140m_base_v2_development_v1/manual_review/provenance.jsonl",
+    "record_count": 60,
+    "sha256": "8e74995dd90fc7fa7d62208e110adb8cba51cce52e7d624448faa97b64b118b5"
+  },
+  "repository_commit": "b6a6f55d2c1d3b99cd2ea6f4c5e56869fd03852d",
+  "schema_id": "vasu_140m_base_evaluation_inventory_v2",
+  "scorer": {
+    "path": "evaluation/framework/vasu_140m_base_v2_tasks.py",
+    "sha256": "7777bd7d6a488c21e3937b5b05e1e46153e7fddbcb67784c47dc9e53a5087bf5"
+  },
+  "split": "development",
+  "suite_id": "vasu-140m-base-evaluation-v2-development-candidate-v1",
+  "tokenizer_sha256": "04942e101a4a01f87f7e492ad9e463d299a559e784b650fdedd1763a017d195a",
+  "training_authorized": false
+}
